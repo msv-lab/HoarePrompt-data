@@ -1,0 +1,45 @@
+{
+  "question_id": "0013",
+  "generation_passes": 46,
+  "generation_total": 182,
+  "generation_pass_rate": 0.25274725274725274,
+  "generation_tokens": 1410,
+  "repair_passes": 46,
+  "repair_total": 182,
+  "repair_pass_rate": 0.25274725274725274,
+  "repair_tokens": 2092,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 46,
+      "total": 182,
+      "pass_rate": "25.27%",
+      "tokens": 1410,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\nThe given code is attempting to solve the problem by performing a topological sort of the courses. However, there are several bugs in the code that need to be addressed.\n\n#### 1. Incorrect initialization of the main_courses set\nThe code initializes the main_courses set using `set(map(int, input().split()))`. However, the input specifies k distinct integers as the numbers of main online-courses. Therefore, the correct initialization should be `set(input().split())` without any conversion to `int`.\n\n#### 2. Incorrect initialization of the edges list\nThe code initializes the edges list using `edges = [[] for _ in range(n+1)]`. However, the list should have a length of n, not n+1, since the course numbers range from 1 to n.\n\n#### 3. Incorrect calculation of indegree\nThe code calculates the indegree of the courses by counting the number of dependencies for each course. However, the dependencies are specified in the input as a list of distinct integers, and the first integer represents the number of dependencies. Therefore, to calculate the indegree, the code should use `indegree[i] += depends[0]`, where `depends` is the list of dependencies for the i-th course.\n\n#### 4. Incorrect order of removing courses from main_courses\nThe code removes the course from the main_courses set after checking if it is in the queue. This can lead to incorrect results because a course may be removed from main_courses even if it is not the next course to be taken. To fix this, the code should remove the course from main_courses only when it is dequeued from the queue.\n\n### BUGS\n1. Incorrect initialization of the main_courses set\n2. Incorrect initialization of the edges list\n3. Incorrect calculation of indegree\n4. Incorrect order of removing courses from main_courses\n\n### Where the bugs occur\n1. Line 7\n2. Line 10\n3. Line 17\n4. Line 31\n\n### Impact of the bugs\n1. The main_courses set will be initialized with integer values instead of string values, which will cause incorrect comparison later in the code.\n2. The edges list will have an extra element at the end, leading to out-of-range errors and incorrect indexing.\n3. The indegree of the courses will be calculated incorrectly, leading to incorrect sorting and potentially missing prerequisites.\n4. Courses may be removed from main_courses incorrectly, leading to incorrect results and potentially missing prerequisites.",
+          "tokens": 1727,
+          "metadata": {
+            "actual_input": "6 2\n5 3\n0\n0\n0\n2 2 1\n1 4\n1 5\n",
+            "actual_output": "6\n1 2 3 4 5 6\n",
+            "expected_output": "5\n1 2 3 4 5 \n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 46,
+              "total": 182,
+              "pass_rate": "25.27%",
+              "tokens": 2092,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "question_id": "0056",
+  "generation_passes": 14,
+  "generation_total": 121,
+  "generation_pass_rate": 0.11570247933884298,
+  "generation_tokens": 1108,
+  "repair_passes": 16,
+  "repair_total": 121,
+  "repair_pass_rate": 0.1322314049586777,
+  "repair_tokens": 1521,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 14,
+      "total": 121,
+      "pass_rate": "11.57%",
+      "tokens": 1108,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### BUG 1: Incorrect Calculation of Total Glasses\n\nIn the code, the calculation of `total_glasses` is incorrect. It should be the sum of numbers from 1 to `n`, inclusive. However, the current calculation is `(n * (n + 1) // 2)`, which is the sum of numbers from 1 to `n`, inclusive. This causes an incorrect number of total glasses.\n\n### BUG 2: Incorrect Check of Filled Glasses\n\nIn the code, the check `filled_glasses < total_glasses * 2` is incorrect. It should be `filled_glasses <= total_glasses * 2`, since the number of filled glasses can also be equal to the total number of glasses in the pyramid. This causes an incorrect count of filled glasses.\n\n### BUG 3: Incorrect Time Calculation\n\nIn the code, the calculation of `remaining_time` is incorrect. It should be `remaining_time = t - total_glasses - 1` instead of `remaining_time = t - total_glasses`. The `-1` is needed because the top glass is filled in the first second, so the remaining time should be reduced by 1. Currently, this causes an incorrect distribution of time between filling the glasses.\n\n### BUG 4: Incorrect Fill Level Calculation\n\nIn the code, the fill level is calculated using the variable `level`, which is incremented by 1 in each iteration of the while loop. However, the fill level should be equal to the number of glasses on each level, starting from 1 and increasing by 1 for each level. This causes an incorrect fill level, leading to an incorrect count of filled glasses.\n\n### IMPACT:\nThese bugs impact the program's functionality by producing incorrect output. The calculation of the total glasses, checks for filled glasses, time calculation, and fill level are all incorrect. This can result in an incorrect count of completely full glasses and an inaccurate simulation of pouring champagne into the pyramid.",
+          "tokens": 1270,
+          "metadata": {
+            "actual_input": "3 5\n",
+            "actual_output": "5\n",
+            "expected_output": "4\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 16,
+              "total": 121,
+              "pass_rate": "13.22%",
+              "tokens": 1521,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
