@@ -1,0 +1,45 @@
+{
+  "question_id": "2765",
+  "generation_passes": 1,
+  "generation_total": 3,
+  "generation_pass_rate": 0.3333333333333333,
+  "generation_tokens": 1437,
+  "repair_passes": 1,
+  "repair_total": 3,
+  "repair_pass_rate": 0.3333333333333333,
+  "repair_tokens": 1703,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 1,
+      "total": 3,
+      "pass_rate": "33.33%",
+      "tokens": 1437,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### BUG 1: INDEX OUT OF RANGE\nOn line 6, the code assumes that the list `denominations` will always have at least two elements (`denominations[-1]` and `denominations[-2]`). However, this assumption is not valid, and there is no guarantee that `n` will be greater than or equal to 2.\n\n### BUG 2: MISSING ARGUMENT PASSED TO FUNCTION\nOn line 10, the function `check_canonical` is defined to take a parameter `denominations`. However, when the function is called on line 20, no argument is passed to the function. This will result in a `TypeError` when the function is executed.\n\nBoth bugs are located in the same piece of code.",
+          "tokens": 1364,
+          "metadata": {
+            "actual_input": "4\n1 2 4 8\n",
+            "actual_output": "non-canonical\n",
+            "expected_output": "canonical\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 1,
+              "total": 3,
+              "pass_rate": "33.33%",
+              "tokens": 1703,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

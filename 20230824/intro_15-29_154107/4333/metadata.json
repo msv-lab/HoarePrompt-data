@@ -1,0 +1,45 @@
+{
+  "question_id": "4333",
+  "generation_passes": 0,
+  "generation_total": 11,
+  "generation_pass_rate": 0.0,
+  "generation_tokens": 1047,
+  "repair_passes": 0,
+  "repair_total": 11,
+  "repair_pass_rate": 0.0,
+  "repair_tokens": 2026,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 0,
+      "total": 11,
+      "pass_rate": "0.00%",
+      "tokens": 1047,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\n\nThere are multiple bugs in the code provided.\n\n1. The calculation of `dx` and `dy` is incorrect. The code subtracts `x1` from `x2` and `y1` from `y2`, which means it is calculating the difference in the opposite way. It should be `dx = x1 - x2` and `dy = y1 - y2`.\n\n2. The restoration of `x3` and `y3` is incorrect. The code adds `dy` to `x2` and subtracts `dx` from `y2`. However, this is incorrect. To restore `x3` and `y3`, we need to subtract `dy` from `x2` and add `dx` to `y2`.\n\n3. The restoration of `x4` and `y4` is incorrect. The code adds `dx` to `x3` and `dy` to `y3`. However, this is incorrect. To restore `x4` and `y4`, we need to subtract `dx` from `x3` and subtract `dy` from `y3`.\n\n### BUGS\n\n1. The calculation of `dx` and `dy` is incorrect.\n   - The bug occurs in lines 3 and 4.\n   - The impact of this bug is that the difference between the given points is not calculated correctly, leading to incorrect restoration of the other points.\n\n2. The restoration of `x3` and `y3` is incorrect.\n   - The bug occurs in lines 8 and 9.\n   - The impact of this bug is that the coordinates of the third point are not restored correctly, leading to incorrect output.\n\n3. The restoration of `x4` and `y4` is incorrect.\n   - The bug occurs in lines 12 and 13.\n   - The impact of this bug is that the coordinates of the fourth point are not restored correctly, leading to incorrect output.",
+          "tokens": 1234,
+          "metadata": {
+            "actual_input": "0 0 0 1\n",
+            "actual_output": "1 1 1 2\n",
+            "expected_output": "-1 1 -1 0\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 0,
+              "total": 11,
+              "pass_rate": "0.00%",
+              "tokens": 2026,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

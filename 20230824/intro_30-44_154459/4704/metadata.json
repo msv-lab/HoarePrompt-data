@@ -1,0 +1,45 @@
+{
+  "question_id": "4704",
+  "generation_passes": 1,
+  "generation_total": 2,
+  "generation_pass_rate": 0.5,
+  "generation_tokens": 920,
+  "repair_passes": 2,
+  "repair_total": 2,
+  "repair_pass_rate": 1.0,
+  "repair_tokens": 1379,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 1,
+      "total": 2,
+      "pass_rate": "50.00%",
+      "tokens": 920,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### BUGS IDENTIFIED\n1. The code does not handle the case where the number of cards is less than 2.\n2. The code does not handle the case where all the cards have the same value.\n3. The code does not correctly calculate the sum of Snuke's cards.\n4. The code does not correctly calculate the sum of Raccoon's cards.\n5. The code does not account for the fact that Raccoon must take all the remaining cards.",
+          "tokens": 791,
+          "metadata": {
+            "actual_input": "6\n1 2 3 4 5 6\n",
+            "actual_output": "9\n",
+            "expected_output": "1\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 2,
+              "total": 2,
+              "pass_rate": "100.00%",
+              "tokens": 1379,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

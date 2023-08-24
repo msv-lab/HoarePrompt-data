@@ -1,0 +1,45 @@
+{
+  "question_id": "0467",
+  "generation_passes": 5,
+  "generation_total": 48,
+  "generation_pass_rate": 0.10416666666666667,
+  "generation_tokens": 1404,
+  "repair_passes": 0,
+  "repair_total": 48,
+  "repair_pass_rate": 0.0,
+  "repair_tokens": 2234,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 5,
+      "total": 48,
+      "pass_rate": "10.42%",
+      "tokens": 1404,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\nThere are several bugs in the provided code:\n1. The check for the string length is incorrect. It should check if the length is not equal to 26.\n2. The placement of the first tile in the grid is incorrect. It should be placed in the top left corner, not the top right.\n3. The logic for finding adjacent tiles is flawed. It should check all four adjacent positions, not just three.\n4. The loop for finding a tile in the queue that is adjacent to the current position is incorrect. It should iterate over the remaining tiles in the queue, not just once.\n5. The check for tiles remaining in the queue is incorrect. It should check if the length of the queue is not zero, not if the queue itself is not empty.\n6. The conversion of the grid to strings is incorrect. It should join the rows with a newline character, not a space.\n\nLet's go through each bug in detail and discuss their impact on the program's functionality.",
+          "tokens": 1386,
+          "metadata": {
+            "actual_input": "ABCDEFGHIJKLMNOPQRSGTUVWXYZ\n",
+            "actual_output": "Impossible\n",
+            "expected_output": "YXWVUTGHIJKLM\nZABCDEFSRQPON\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 0,
+              "total": 48,
+              "pass_rate": "0.00%",
+              "tokens": 2234,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

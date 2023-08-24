@@ -1,0 +1,45 @@
+{
+  "question_id": "3836",
+  "generation_passes": 8,
+  "generation_total": 40,
+  "generation_pass_rate": 0.2,
+  "generation_tokens": 1641,
+  "repair_passes": 6,
+  "repair_total": 40,
+  "repair_pass_rate": 0.15,
+  "repair_tokens": 2188,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 8,
+      "total": 40,
+      "pass_rate": "20.00%",
+      "tokens": 1641,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\n\nThere are several bugs in the code:\n\n1. The condition for inviting spectators is incorrectly checked. The correct condition is `alice_count >= n/2 and bob_count >= n/2`, but the code mistakenly checks `alice_count >= n/2 and bob_count > n/2`.\n\n2. The code fails to consider the case where there are not enough spectators who support Alice and Bob to fulfill the condition. In this case, the code should output 0, but the code does not handle this case.\n\n3. The code incorrectly calculates `remaining_alice` and `remaining_bob`. These variables should represent the number of remaining spectators needed to fulfill the condition for Alice and Bob respectively, but the code sets them to the difference between the lengths of the supporter lists and the count variables.\n\n4. The code does not handle the case where there are not enough neutral supporters to fill the remaining spots for Alice or Bob. It incorrectly assumes that there will always be enough neutral supporters to fill the remaining spots.\n\n5. The code does not handle the case where there are not enough both supporters to fill the remaining spots for Alice and Bob. It incorrectly assumes that there will always be enough both supporters to fill the remaining spots.\n\n6. The code does not consider the case where there are not enough spectators to form a set that satisfies the condition. In this case, the code should output 0, but it does not handle this case.\n\n### BUGS\nThe bugs are:\n\n1. The condition for inviting spectators is incorrectly checked.\n2. The code fails to handle the case where there are not enough supporters to fulfill the condition.\n3. The code incorrectly calculates `remaining_alice` and `remaining_bob`.\n4. The code does not handle the case where there are not enough neutral supporters.\n5. The code does not handle the case where there are not enough both supporters.\n6. The code does not consider the case where there are not enough spectators.\n",
+          "tokens": 1823,
+          "metadata": {
+            "actual_input": "6\n11 6\n10 4\n01 3\n00 3\n00 7\n00 9\n",
+            "actual_output": "0\n",
+            "expected_output": "22\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 6,
+              "total": 40,
+              "pass_rate": "15.00%",
+              "tokens": 2188,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "question_id": "2062",
+  "generation_passes": 2,
+  "generation_total": 8,
+  "generation_pass_rate": 0.25,
+  "generation_tokens": 1275,
+  "repair_passes": 2,
+  "repair_total": 8,
+  "repair_pass_rate": 0.25,
+  "repair_tokens": 1813,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 2,
+      "total": 8,
+      "pass_rate": "25.00%",
+      "tokens": 1275,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\n\nThere are two bugs in the code that are causing incorrect output.\n\n1. The first bug is in the for loop that is iterating over the powers of the video cards. The condition `if power % max_power == 0` checks if the power of the current video card is divisible by the max power, if it is divisible then it adds the power of the current video card to the total power and breaks out of the loop. But this condition only checks if the power of the current video card is divisible by the max power, it doesn't check if the power of any other video card is divisible by the power of the current video card. Thus, this condition is incorrect and needs to be fixed.\n\n2. The second bug is in the initialization of the `total_power` variable. It is currently initialized to `max_power`, which is the maximum power from the list of video cards. However, this is incorrect because it assumes that the maximum power video card is always the leading one, which may not be the case. The leading video card can be any video card from the list. So, the initialization of `total_power` needs to be changed.\n\n### BUG FIXES\n\n1. To fix the first bug, we need to change the condition in the for loop to check if the power of any other video card is divisible by the power of the current video card. We can do this by iterating over all the video cards and checking if their powers are divisible by the power of the current video card. If we find such a video card, we add its power to the total power and break out of the loop. If no such video card is found, we continue to the next video card.\n\n2. To fix the second bug, we need to initialize the `total_power` variable to 0 instead of `max_power`. This is because we don't know which video card will be the leading one, so we need to start with 0 power and add the power of the leading video card later.\n\n### UPDATED CODE\n\n```python\ndef max_video_power(n, powers):\n    powers.sort(reverse=True)\n    total_power = 0\n    \n    for i in range(n):\n        divisible = False\n        for j in range(i + 1, n):\n            if powers[j] % powers[i] == 0:\n                total_power += powers[j]\n                divisible = True\n                break\n        if not divisible:\n            total_power += powers[i]\n            \n    return total_power\n\nn = int(input())\npowers = list(map(int, input().split()))\n\nresult = max_video_power(n, powers)\nprint(result)\n```\n\n### TEST CASES\n\n**Test Case 1:**\n\n- Input:\n```\n4\n3 2 15 9\n```\n\n- Output:\n```\n27\n```\n\n**Test Case 2:**\n\n- Input:\n```\n4\n8 2 2 7\n```\n\n- Output:\n```\n18\n```\n\n**Test Case 3:**\n\n- Input:\n```\n3\n5 10 15\n```\n\n- Output:\n```\n25\n```\n\n**Test Case 4:**\n\n- Input:\n```\n1\n1\n```\n\n- Output:\n```\n1\n```\n\n**Test Case 5:**\n\n- Input:\n```\n5\n7 13 4 9 2\n```\n\n- Output:\n```\n33\n```",
+          "tokens": 1743,
+          "metadata": {
+            "actual_input": "4\n3 2 15 9\n",
+            "actual_output": "15\n",
+            "expected_output": "27\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 2,
+              "total": 8,
+              "pass_rate": "25.00%",
+              "tokens": 1813,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

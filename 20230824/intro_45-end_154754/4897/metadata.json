@@ -1,0 +1,45 @@
+{
+  "question_id": "4897",
+  "generation_passes": 0,
+  "generation_total": 2,
+  "generation_pass_rate": 0.0,
+  "generation_tokens": 1379,
+  "repair_passes": 0,
+  "repair_total": 2,
+  "repair_pass_rate": 0.0,
+  "repair_tokens": 2243,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 0,
+      "total": 2,
+      "pass_rate": "0.00%",
+      "tokens": 1379,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### BUGS\n\n1. **IndexError:** The `selected_sprinters` list is being populated incorrectly in the `for` loop. The index `i+1` is being used to access the other leg time for each runner, but this will result in an \"index out of range\" error because the tuples in the `runners` list only have three elements (name, first leg time, and other leg time).\n\n2. **Total Time Calculation:** The total time calculation is incorrect. Instead of summing the other leg times of the selected sprinters, the code is summing the other leg times of the first four runners in the sorted list `runners`. This will result in an incorrect total time.\n\n3. **Printing of Names:** The code is currently printing the names of the selected sprinters incorrectly. It is printing the tuple itself instead of just the name.\n\n4. **Output Format:** The total time is being printed with only two decimal places, but the expected output shows the total time with four decimal places.\n\n### IMPACT\n\nThese bugs have the following impact on the program's functionality:\n\n1. The bug in the `selected_sprinters` list population causes the code to raise an `IndexError` at runtime. This prevents the program from producing the correct output.\n\n2. The incorrect total time calculation means that the program will output an incorrect time for the best team. This means that the program will not select the optimal team of sprinters.\n\n3. The incorrect printing of names in the output means that the program will produce an output that does not match the expected output format.\n\n4. The incorrect format of the total time in the output also means that the program's output will not match the expected output format.",
+          "tokens": 1710,
+          "metadata": {
+            "actual_input": "6\nASHMEADE 9.90 8.85\nBLAKE 9.69 8.72\nBOLT 9.58 8.43\nCARTER 9.78 8.93\nFRATER 9.88 8.92\nPOWELL 9.72 8.61\n",
+            "actual_output": "Traceback (most recent call last):\n  File \"/var/folders/46/8ybh48tn40l32kbzy6n99p380000gn/T/tmp1wqj0tfo.py\", line 31, in <module>\n    choose_sprinters()\n  File \"/var/folders/46/8ybh48tn40l32kbzy6n99p380000gn/T/tmp1wqj0tfo.py\", line 20, in choose_sprinters\n    selected_sprinters.append((runners[i][0], runners[i][i+1]))\nIndexError: tuple index out of range\n",
+            "expected_output": "35.54\nCARTER\nBOLT\nPOWELL\nBLAKE\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 0,
+              "total": 2,
+              "pass_rate": "0.00%",
+              "tokens": 2243,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "question_id": "0300",
+  "generation_passes": 14,
+  "generation_total": 61,
+  "generation_pass_rate": 0.22950819672131148,
+  "generation_tokens": 1167,
+  "repair_passes": 8,
+  "repair_total": 61,
+  "repair_pass_rate": 0.13114754098360656,
+  "repair_tokens": 1849,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 14,
+      "total": 61,
+      "pass_rate": "22.95%",
+      "tokens": 1167,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\n1. The code takes two inputs: the number of grades, `n`, and a list of grades, `grades`.\n2. It calculates the sum of all grades and the target grade, which is `n * 5`.\n3. If the total grade is greater than or equal to the target grade, it prints 0 and exits.\n4. Otherwise, it enters a while loop and keeps increasing the total grade by 5 until it becomes greater than or equal to the target grade.\n5. For each iteration, it increments the variable `num_redo` by 1.\n6. Finally, it prints the value of `num_redo`.\n\n### BUGS\nThere are several bugs in the code:\n1. The calculation of the target grade is incorrect. It should be `n * 5 + 0.5` to account for the rounding up.\n2. The while loop condition is wrong. It should check if the total grade is less than the target grade.\n3. The code assumes that redoing a lab work will increase the total grade by exactly 5. This is not always the case. The grade can only be increased if it is less than 5.\n4. The code does not handle the rounding correctly. It always increases the total grade by 5, which can lead to incorrect results.\n\n### IMPACT\nThese bugs have several impacts on the functionality of the program:\n1. The target grade calculation will result in a incorrect target grade, leading to incorrect decisions on whether to redo lab works or not.\n2. The while loop condition will not be satisfied, causing the program to exit prematurely.\n3. The incorrect assumption about increasing the total grade by 5 may result in redoing more lab works than necessary.\n4. The incorrect handling of rounding can lead to incorrect calculations and wrong results.\n\n### SUGGESTED IMPROVEMENTS\nTo correct the bugs and improve the functionality of the program, the following changes can be made:\n1. Update the target grade calculation to `n * 5 + 0.5` to account for rounding up.\n2. Update the while loop condition to `total_grade < target_grade` to ensure that the loop continues until the target grade is reached.\n3. Update the while loop to only increase the total grade by the difference between the target grade and the current grade if the current grade is less than 5.\n4. Update the calculation of the final number of lab works to redo by subtracting 2 from the total grade (to account for rounding) and dividing it by 5.\n5. Add logic to handle cases where the total grade is already greater than or equal to the target grade, as no lab works need to be redone in this case.\n\n### PSEUDO CODE\nHere is the updated pseudo code for the program:\n\n```\nn = int(input())\ngrades = list(map(int, input().split()))\n\ntotal_grade = sum(grades)\ntarget_grade = n * 5 + 0.5\n\nif total_grade >= target_grade:\n    print(0)\nelse:\n    num_redo = (target_grade - total_grade) / 5\n    if total_grade % 1 != 0:\n        num_redo += 1\n    print(int(num_redo))\n```",
+          "tokens": 1604,
+          "metadata": {
+            "actual_input": "3\n4 4 4\n",
+            "actual_output": "1\n",
+            "expected_output": "2\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 8,
+              "total": 61,
+              "pass_rate": "13.11%",
+              "tokens": 1849,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

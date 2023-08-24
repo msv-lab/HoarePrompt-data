@@ -1,0 +1,45 @@
+{
+  "question_id": "3062",
+  "generation_passes": 1,
+  "generation_total": 4,
+  "generation_pass_rate": 0.25,
+  "generation_tokens": 1255,
+  "repair_passes": 1,
+  "repair_total": 4,
+  "repair_pass_rate": 0.25,
+  "repair_tokens": 1921,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 1,
+      "total": 4,
+      "pass_rate": "25.00%",
+      "tokens": 1255,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\n\nThe code is designed to calculate the minimum amount of time it takes for the hovercraft to reach a target location on a 2D grid. There are two main components to consider: straight movement and rotation.\n\n- Straight Movement: The code correctly calculates the Euclidean distance between the starting point and target location. It then calculates the time it takes to travel straight at a fixed speed using the equation `distance / v`. However, there are no checks to ensure that the hovercraft is actually facing the target location before moving straight. This means that the time calculated for straight movement may not be accurate if the hovercraft is not facing directly towards the target.\n\n- Rotation: The code correctly calculates the angle between the starting point and target location using `math.atan2(y, x)`. It then calculates the time it takes to rotate at a fixed rate using the equation `angle / w`. However, there are no checks to ensure that the hovercraft is actually moving straight before starting to rotate. This means that the time calculated for rotation may not be accurate if the hovercraft is not moving straight towards the target.\n\n- Total Time: The code calculates the total time by summing the time for straight movement and the time for rotation. However, since there are no checks for the hovercraft's orientation before straight movement and rotation, the total time calculated may not be accurate.\n\n### BUGS\n\n1. No checks for hovercraft's orientation before straight movement or rotation\n2. Incorrect calculation of total time due to missing checks for hovercraft's orientation\n\n### BUGGY CODE",
+          "tokens": 1351,
+          "metadata": {
+            "actual_input": "-10 10\n10.00 1.00\n",
+            "actual_output": "3.77040805\n",
+            "expected_output": "3.14159265\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 1,
+              "total": 4,
+              "pass_rate": "25.00%",
+              "tokens": 1921,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "question_id": "0274",
+  "generation_passes": 0,
+  "generation_total": 64,
+  "generation_pass_rate": 0.0,
+  "generation_tokens": 1779,
+  "repair_passes": 0,
+  "repair_total": 64,
+  "repair_pass_rate": 0.0,
+  "repair_tokens": 2426,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 0,
+      "total": 64,
+      "pass_rate": "0.00%",
+      "tokens": 1779,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "Bugs/Issues:\n\n1. The grid initialization is incorrect. The width should be `n * 2 - 1` instead of `n * 2` to account for the spaces between brackets.\n2. The calculation of start and end positions of the brackets is incorrect. The logic used for calculating the row positions is incorrect and needs to be fixed.\n3. The calculation of start and end positions of the brackets is incorrect. The logic used for calculating the column positions is incorrect and needs to be fixed.\n4. The horizontal lines of the brackets are being drawn incorrectly. The start and end positions of the horizontal lines are incorrect.\n5. The final string representation of the brackets is being constructed incorrectly. The vertical and horizontal lines are not being displayed correctly.\n6. The final string representation of the brackets is not being trimmed of trailing whitespace, causing incorrect output.\n\nSuggested Modifications:\n\n1. Update the width calculation in the grid initialization to `n * 2 - 1`.\n2. Update the calculation of start and end positions of the brackets as follows:\n   - Set `start_row = i * 2 - 1`.\n   - Set `end_row = (n - i - 1) * 2 + 1`.\n   - Set `start_col = i * 2`.\n   - Set `end_col = (i + 1) * 2 - 1`.\n3. Update the drawing of vertical lines of the brackets as follows:\n   - Basing the start and end row positions, draw the vertical lines between `start_row` and `end_row - 1` (inclusive).\n4. Update the drawing of horizontal lines of the brackets as follows:\n   - Basing the start and end column positions, draw the horizontal lines between `start_col + 1` and `end_col` (inclusive).\n5. Update the final string representation of the brackets as follows:\n   - Iterate through each grid row and join the characters using `'|'` as the delimiter.\n   - Join the resulting rows with `'\\n'` as the delimiter.\n6. Trim the final string representation of the brackets using `rstrip()` before returning it.\n\nNote: These suggested modifications are provided for reference and to help you identify the bugs in the code. Please implement the fixes yourself, as per the requirement.",
+          "tokens": 1755,
+          "metadata": {
+            "actual_input": "8\n[[][]][]\n",
+            "actual_output": "|-|             \n| |             \n| |-|        -  \n| | |           \n| | |           \n| | |           \n| | | |-|       \n| | | | |       \n| | | |-|       \n| | |           \n| | |           \n| | |           \n| |-|        -  \n| |             \n|-|\n",
+            "expected_output": "+-        -++- -+\n|+- -++- -+||   |\n||   ||   |||   |\n|+- -++- -+||   |\n+-        -++- -+\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 0,
+              "total": 64,
+              "pass_rate": "0.00%",
+              "tokens": 2426,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

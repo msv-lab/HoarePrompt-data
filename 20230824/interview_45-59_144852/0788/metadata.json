@@ -1,0 +1,45 @@
+{
+  "question_id": "0788",
+  "generation_passes": 0,
+  "generation_total": 33,
+  "generation_pass_rate": 0.0,
+  "generation_tokens": 677,
+  "repair_passes": 3,
+  "repair_total": 33,
+  "repair_pass_rate": 0.09090909090909091,
+  "repair_tokens": 900,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 0,
+      "total": 33,
+      "pass_rate": "0.00%",
+      "tokens": 677,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### FEEDBACK\n\nThere are a few bugs in the code that need to be addressed. Let's go through them step by step.\n\n1. Issue: Invalid output\n   - The current implementation is subtracting 12 from the number extracted from the input string.\n   - However, the requirement is to output the first two digits, not the result of subtracting 12.\n   - This is why the output is incorrect for the given example.\n\n2. Issue: Incorrect digit extraction\n   - The code is incorrectly extracting the digits from the input string.\n   - It assumes that the first character is \"A\" and the remaining characters are digits.\n   - This assumption is not correct since the input format is fixed: the first character is \"A\" followed by 6 digits.\n   - The current implementation should be modified to extract the correct digits from the input string.\n\n3. Issue: Missing input validation\n   - The code does not include any validation to check if the input format is correct.\n   - It assumes that the input is always valid, which is not a safe assumption to make.\n   - It is important to validate the input to prevent unexpected errors or incorrect outputs.\n\nThese are the main bugs in the code that need to be addressed. Let me know if you need any further clarification.",
+          "tokens": 703,
+          "metadata": {
+            "actual_input": "A221033\n",
+            "actual_output": "221021\n",
+            "expected_output": "21\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 3,
+              "total": 33,
+              "pass_rate": "9.09%",
+              "tokens": 900,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

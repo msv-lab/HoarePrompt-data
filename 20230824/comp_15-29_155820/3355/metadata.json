@@ -1,0 +1,45 @@
+{
+  "question_id": "3355",
+  "generation_passes": 0,
+  "generation_total": 2,
+  "generation_pass_rate": 0.0,
+  "generation_tokens": 1793,
+  "repair_passes": 0,
+  "repair_total": 2,
+  "repair_pass_rate": 0.0,
+  "repair_tokens": 2720,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 0,
+      "total": 2,
+      "pass_rate": "0.00%",
+      "tokens": 1793,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\nThere are several bugs in the code that need to be fixed:\n\n1. The code does not check if it is possible to reach the ending location within the given time limit. If it is not possible, the code should return 0.\n2. The code incorrectly calculates the maximum points for each task. The condition for adding points to dp[i][j] is incorrect.\n3. The code does not handle the case when there is no deadline for a task correctly. It should check if dp[i - 1][j + times[k][i]] + tasks[i - 1][0] > dp[i][j] only if tasks[i - 1][2] == -1.\n4. The code incorrectly finds the path from the ending location to the starting location. The starting location should be n+1 and the ending location should be n+2.\n5. The code incorrectly prints the indices of the tasks. The indices should be sorted in ascending order, but the code just reverses the list.\n\nLet's go through each of these bugs in detail.\n\nBug 1: Check if it is possible to reach the ending location within the given time limit.\n\nTo fix this bug, we need to add a check after the dynamic programming loop to ensure that it is possible to reach the ending location within the given time limit. If it is not possible, we should return 0. The check can be done by comparing dp[n+1][j], where n+1 is the ending location, with 0.\n\nBug 2: Incorrect calculation of maximum points for each task.\n\nTo fix this bug, we need to update the condition on line 19 to check if dp[i - 1][j + times[k][i]] + tasks[i - 1][0] is greater than dp[i][j], rather than just checking if it is greater than 0.\n\nBug 3: Incorrect handling of tasks with no deadline.\n\nTo fix this bug, we need to update the condition on line 16 to check if tasks[i - 1][2] is equal to -1, rather than checking if it is not equal to -1. This ensures that the condition is only applied when there is no deadline for the task.\n\nBug 4: Incorrect finding of the path from the ending location to the starting location.\n\nTo fix this bug, we need to update the loop on line 26 to iterate from n+1 to 0, rather than from n to 0. We also need to update the if condition on line 27 to check if prev[i][j] is -1, rather than checking if it is not equal to -1. Additionally, we need to update the starting location to n+1 and the ending location to n+2.\n\nBug 5: Incorrect printing of the indices of the tasks.\n\nTo fix this bug, we need to sort the path list in ascending order before printing it, so that the indices are printed in the correct order.\n\nNow let's update the code to fix these bugs.",
+          "tokens": 2251,
+          "metadata": {
+            "actual_input": "3 352\n93 82 444\n92 76 436\n99 62 -1\n0 70 66 71 97\n76 0 87 66 74\n62 90 0 60 94\n60 68 68 0 69\n83 78 83 73 0\n",
+            "actual_output": "185\n1 2 3\n",
+            "expected_output": "99\n3\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 0,
+              "total": 2,
+              "pass_rate": "0.00%",
+              "tokens": 2720,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

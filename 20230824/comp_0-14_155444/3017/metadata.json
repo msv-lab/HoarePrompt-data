@@ -1,0 +1,45 @@
+{
+  "question_id": "3017",
+  "generation_passes": 3,
+  "generation_total": 5,
+  "generation_pass_rate": 0.6,
+  "generation_tokens": 834,
+  "repair_passes": 3,
+  "repair_total": 5,
+  "repair_pass_rate": 0.6,
+  "repair_tokens": 1170,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 3,
+      "total": 5,
+      "pass_rate": "60.00%",
+      "tokens": 834,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "## Review\nThe code seems to have a performance issue. It produces a \"Time Limit Exceeds\" error for larger inputs. Additionally, it doesn't count the number of distinct integers correctly.\n\nHere's a step-by-step explanation of the code and the issues it has:\n\n1. The code takes two integers `n` and `e` as input.\n2. It initializes a variable `count` to 0.\n3. It loops through numbers from 0 to `n` (inclusive).\n4. For each number, it checks if the string representation of `2**e` (the `e`th power of 2) is in the string representation of the current number.\n5. If it is, it increments the `count` variable.\n6. Finally, it prints the value of `count`.\n\n### Issues:\n1. Performance: The code iterates through numbers from 0 to `n` and converts each number to a string to check if `2**e` is a substring. This approach has a time complexity of O(n) and can be very slow for large values of `n`.\n2. Counting the number of distinct integers: The code checks if the string representation of `2**e` is a substring of each number. However, this can result in counting the same number multiple times if it contains multiple occurrences of `2**e`. For example, for `n = 12560` and `e = 8`, the code will count the number 12560 twice (as it has two occurrences of 256 in its digits).\n3. Comparison issue: The code uses `in` keyword to check if `2**e` is a substring of the number's digits. This can lead to incorrect results if the digits of `2**e` appear in a different order in the number. For example, for `n = 12560` and `e = 8`, the code will not count the number 12560 as it checks for the exact substring match and the digits of `2**e` (256) are not in the same order.\n\nConsidering the issues mentioned above, the code needs revision and improvement to correctly count the number of distinct integers that contain the digits of `2**e` as a substring.",
+          "tokens": 1070,
+          "metadata": {
+            "actual_input": "9000000000000000000 62\n",
+            "actual_output": "Error: Time Limit Exceeds",
+            "expected_output": "1\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 3,
+              "total": 5,
+              "pass_rate": "60.00%",
+              "tokens": 1170,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

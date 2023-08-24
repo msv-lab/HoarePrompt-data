@@ -1,0 +1,45 @@
+{
+  "question_id": "3823",
+  "generation_passes": 0,
+  "generation_total": 42,
+  "generation_pass_rate": 0.0,
+  "generation_tokens": 1192,
+  "repair_passes": 1,
+  "repair_total": 42,
+  "repair_pass_rate": 0.023809523809523808,
+  "repair_tokens": 1619,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 0,
+      "total": 42,
+      "pass_rate": "0.00%",
+      "tokens": 1192,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### REVIEW\nThe given code has some bugs that are causing incorrect output. Let's go through the code to identify and discuss the bugs:\n\n### Bug 1: Incorrect index calculation\nIn the line `numbers[-(i+1)] = int(numbers[-(i+1)]) + 1`, the indexing is incorrect. It should be `numbers[-(n-i-1)]` instead of `numbers[-(i+1)]`. This bug is causing the last n numbers to be rounded up incorrectly.\n\n### Bug 2: Incorrect calculation of original sum\nThe line `original_sum = sum(numbers) - n` is calculating the original sum incorrectly. It should calculate the sum of the original numbers, not the modified numbers. The bug causes the original sum to be too low, resulting in an incorrect difference.\n\n### Bug 3: Incorrect calculation of adjusted sum\nThe line `adjusted_sum = sum(numbers)` is calculating the adjusted sum incorrectly. It should calculate the sum of the modified numbers, not the original numbers. This bug causes the adjusted sum to be too high, resulting in an incorrect difference.\n\n### Bug 4: Incorrect rounding of numbers\nThe line `numbers[i] = int(numbers[i])` is rounding the numbers down, but the task requires rounding to the nearest integer that is not more than the original number. To achieve this, instead of using `int()`, we need to use the `math.floor()` function. Similarly, the line `numbers[-(n-i-1)] = int(numbers[-(n-i-1)]) + 1` is rounding the numbers up, but it should round to the nearest integer that is not less than the original number. To achieve this, we need to use the `math.ceil()` function.\n\nNow that we have identified the bugs, let's summarize them and their impact on the functionality of the program:\n\n- Bug 1: Incorrect index calculation: This bug causes the last n numbers to be rounded up incorrectly.\n- Bug 2: Incorrect calculation of original sum: This bug causes the original sum to be too low, resulting in an incorrect difference.\n- Bug 3: Incorrect calculation of adjusted sum: This bug causes the adjusted sum to be too high, resulting in an incorrect difference.\n- Bug 4: Incorrect rounding of numbers: This bug causes the numbers to be rounded incorrectly, resulting in an incorrect difference.\n\nThese bugs collectively cause incorrect output and need to be fixed for the program to work correctly.",
+          "tokens": 1481,
+          "metadata": {
+            "actual_input": "3\n0.000 0.500 0.750 1.000 2.000 3.000\n",
+            "actual_output": "3.000\n",
+            "expected_output": "0.250\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 1,
+              "total": 42,
+              "pass_rate": "2.38%",
+              "tokens": 1619,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

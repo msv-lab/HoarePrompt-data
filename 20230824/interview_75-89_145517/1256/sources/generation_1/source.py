@@ -1,0 +1,5 @@
+s = input()
+numbers = list(map(int, s.split("+")))
+numbers.sort()
+new_sum = "+".join(map(str, numbers))
+print(new_sum)

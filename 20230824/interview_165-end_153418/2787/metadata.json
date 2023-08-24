@@ -1,0 +1,45 @@
+{
+  "question_id": "2787",
+  "generation_passes": 0,
+  "generation_total": 3,
+  "generation_pass_rate": 0.0,
+  "generation_tokens": 1777,
+  "repair_passes": 0,
+  "repair_total": 3,
+  "repair_pass_rate": 0.0,
+  "repair_tokens": 2811,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 0,
+      "total": 3,
+      "pass_rate": "0.00%",
+      "tokens": 1777,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### BUGS IN THE CODE\n\n1. The variable `airports` is not defined, but it is used in the loop to iterate over neighboring airports in the Dijkstra's algorithm.\n2. There is a typo in the code. The variable `visited` is misspelled as `visisted` when calculating the total shame.\n3. The calculation of the total shame is incorrect. It adds `100` times the number of visited airports minus `1`, but it should add `100` times the number of flights taken, which is one less than the number of visited airports.\n4. The function `calculate_distance` is missing the conversion of longitude to radians.\n\n### BUG 1: Undefined variable `airports`\n\nIn the Dijkstra's algorithm loop, the variable `airports` is used to iterate over neighboring airports, but it is not defined anywhere in the code. The correct variable to use is `dist`.\n\nTo fix this bug, replace the line:\n```python\nairport1, lat1, lon1 = airport\nairport2, lat2, lon2 = airports[v]\n```\nwith:\n```python\nairport1, lat1, lon1 = u, lat, lon\nairport2, lat2, lon2 = airport, dist[airport][0], dist[airport][1]\n```\n\n### BUG 2: Misspelled variable name `visisted`\n\nIn the calculation of the total shame, the variable `visited` is misspelled as `visisted`. This will result in a `NameError`.\n\nTo fix this bug, replace the line:\n```python\ntotal_shame = dist[target] + 100 * (len(visisted) - 1)\n```\nwith:\n```python\ntotal_shame = dist[target] + 100 * (len(visited) - 1)\n```\n\n### BUG 3: Incorrect calculation of total shame\n\nThe calculation of the total shame is incorrect. It adds `100` times the number of visited airports minus `1`, but it should add `100` times the number of flights taken, which is one less than the number of visited airports.\n\nTo fix this bug, replace the line:\n```python\ntotal_shame = dist[target] + 100 * (len(visited) - 1)\n```\nwith:\n```python\ntotal_shame = dist[target] + 100 * (len(visited) - 1)\n```\n\n### BUG 4: Missing conversion of longitude to radians\n\nIn the function `calculate_distance`, only the latitude values are converted to radians, while the longitude values are not. This will result in incorrect distance calculations.\n\nTo fix this bug, replace the line:\n```python\nlon1 = lon1 * (math.pi / 180)\nlon2 = lon2 * (math.pi / 180)\n```\nwith:\n```python\nlon1 = math.radians(lon1)\nlon2 = math.radians(lon2)\n```",
+          "tokens": 2300,
+          "metadata": {
+            "actual_input": "4 4\nARN SCR\nARN 59.6467921 17.9370443\nSCR 61.156603 12.837360\nCPH 55.618023 12.650763\nOSL 60.197646 11.100008\nARN OSL\nARN CPH\nSCR OSL\nOSL CPH\n",
+            "actual_output": "Traceback (most recent call last):\n  File \"/var/folders/46/8ybh48tn40l32kbzy6n99p380000gn/T/tmp7f3vc5rg.py\", line 54, in <module>\n    airport2, lat2, lon2 = airports[v]\nNameError: name 'airports' is not defined. Did you mean: 'airport'?\n",
+            "expected_output": "729.09706162045\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 0,
+              "total": 3,
+              "pass_rate": "0.00%",
+              "tokens": 2811,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

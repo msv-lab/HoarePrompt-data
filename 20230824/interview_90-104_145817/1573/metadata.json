@@ -1,0 +1,45 @@
+{
+  "question_id": "1573",
+  "generation_passes": 0,
+  "generation_total": 15,
+  "generation_pass_rate": 0.0,
+  "generation_tokens": 1072,
+  "repair_passes": 0,
+  "repair_total": 15,
+  "repair_pass_rate": 0.0,
+  "repair_tokens": 1930,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 0,
+      "total": 15,
+      "pass_rate": "0.00%",
+      "tokens": 1072,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "**Bug 1: Incorrect sorting of friends**\n\nThe code sorts the friends list, but it does not specify how it should be sorted. By default, Python's `sort()` function sorts in ascending order. However, in this case, we need to sort the friends based on their money (m) in descending order, so that the friend with the most money is first in the list.\n\nTo fix this bug, we need to change the sorting line to:\n\n```python\nfriends.sort(reverse=True)\n```\n\n**Bug 2: Incorrect calculation of total money**\n\nIn the while loop, the code updates the total money by adding `friends[right][0]`. However, this is incorrect because `friends[right][0]` represents the money of the friend at the current index (right), not the additional money being added to the total.\n\nTo fix this bug, we need to change the line to:\n\n```python\ntotal_money += friends[right][0] - friends[left][0]\n```\n\n**Bug 3: Incorrect calculation of max_friendship**\n\nThe code incorrectly calculates the `max_friendship` inside the while loop. At each iteration, it compares the current total money with `max_friendship`. However, this does not account for the friendship factor (s) of the friends.\n\nTo fix this bug, we need to update the line to:\n\n```python\nmax_friendship = max(max_friendship, total_money * friends[right][1])\n```\n\n**Bug 4: Incorrect updating of left index**\n\nThe code updates the left index by incrementing `left += 1`. However, this is incorrect because it should be incremented by `left -= 1` to move to the next friend in the company, not to the one who was previously in the company.\n\nTo fix this bug, we need to change the line to:\n\n```python\nleft -= 1\n```\n\nWith these bug fixes, the corrected code is as follows:\n\n```python\nn, d = map(int, input().split())\n\nfriends = []\nfor _ in range(n):\n    m, s = map(int, input().split())\n    friends.append((m, s))\n\nfriends.sort(reverse=True)\n\nmax_friendship = 0\nleft = 0\nright = 0\ntotal_money = friends[0][0]\n\nwhile right < n:\n    if friends[right][0] - friends[left][0] < d:\n        total_money += friends[right][0] - friends[left][0]\n        max_friendship = max(max_friendship, total_money * friends[right][1])\n        right += 1\n    else:\n        total_money -= friends[left][0]\n        left -= 1\n\nprint(max_friendship)\n```\n\nAfter making these changes, the code should produce the correct output.",
+          "tokens": 1417,
+          "metadata": {
+            "actual_input": "4 5\n75 5\n0 100\n150 20\n75 1\n",
+            "actual_output": "150\n",
+            "expected_output": "100\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 0,
+              "total": 15,
+              "pass_rate": "0.00%",
+              "tokens": 1930,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

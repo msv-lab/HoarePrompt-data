@@ -1,0 +1,45 @@
+{
+  "question_id": "2844",
+  "generation_passes": 2,
+  "generation_total": 3,
+  "generation_pass_rate": 0.6666666666666666,
+  "generation_tokens": 1290,
+  "repair_passes": 1,
+  "repair_total": 3,
+  "repair_pass_rate": 0.3333333333333333,
+  "repair_tokens": 1735,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 2,
+      "total": 3,
+      "pass_rate": "66.67%",
+      "tokens": 1290,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### REVIEW\nThere are several bugs in the given code:\n\n1. The indices of the start position `start` are being assigned incorrectly. Instead of `start = (graph.index(row), row.index('S'))`, it should be `start = (forest.index(row), row.index('S'))`.\n\n2. The `bfs` function does not correctly handle the case where it is impossible to reach the den. If the queue becomes empty and the den has not been reached, the function should return -1 instead of 0.\n\n3. The condition `graph[row][col] == 'D'` in the `bfs` function checks if the current node is the den, but it does not take into account the fact that the den cannot be flooded. The condition should be `graph[row][col] == 'D' and col != 0`.\n\n4. The condition `graph[r][c] == 'D'` in the inner for loop of the `bfs` function incorrectly checks if the current node is the den. It should be `graph[r][c] == 'D' and c != 0`.\n\n5. The start position should also be added to the visited set before entering the while loop.\n\n6. The start position should be added to the queue as `(start, 1)` instead of `(start, 0)`.\n\n7. The check for empty fields that have at least one common side with a flooded field is missing. This condition should be added to the inner for loop in the `bfs` function.\n\n8. The input is not being read correctly. Instead of `R, C = map(int, input().split())`, it should be `R, C = map(int, input().strip().split())`.\n\n9. The forest variable is unnecessary. The graph variable can be used directly.\n\n10. The output for the case where it is impossible to reach the den should be \"KAKTUS\" instead of -1.",
+          "tokens": 1463,
+          "metadata": {
+            "actual_input": "3 3\nD.*\n...\n..S\n",
+            "actual_output": "4\n",
+            "expected_output": "KAKTUS\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 1,
+              "total": 3,
+              "pass_rate": "33.33%",
+              "tokens": 1735,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "question_id": "0056",
+  "generation_passes": 50,
+  "generation_total": 121,
+  "generation_pass_rate": 0.4132231404958678,
+  "generation_tokens": 1240,
+  "repair_passes": 14,
+  "repair_total": 121,
+  "repair_pass_rate": 0.11570247933884298,
+  "repair_tokens": 2654,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 50,
+      "total": 121,
+      "pass_rate": "41.32%",
+      "tokens": 1240,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "## Review\nBefore identifying the bugs in the code, let's understand the problem and its requirements:\n\nMary has constructed a pyramid of champagne glasses to celebrate her graduation. The height of the pyramid is given by `n`. At each level, the number of glasses is equal to the level number. The top level has only one glass, while the bottom level has `n` glasses.\n\nVlad pours champagne into the top glass of the pyramid continuously for `t` seconds. If a glass overflows, the champagne evenly distributes between the two glasses below it. If the overflowed glass is on the bottom level, the champagne spills onto the table.\n\nThe task is to determine the number of completely full glasses after `t` seconds.\n\nNow let's identify the bugs in the code:\n\n1. The formula to calculate the total capacity of the glasses in the current level is incorrect.\n2. The calculation of `champagne_per_glass` is incorrect. It should be the amount of champagne poured into each glass per second.\n3. The condition for checking if the champagne overflows from the glasses in the current level is incorrect. It should check if `champagne_per_glass * num_glasses` is greater than or equal to 1.\n\nLet's go through the code and identify the bugs in detail:\n\n```python\n# Read inputs\nn, t = map(int, input().split())\n\n# Initialize the number of completely full glasses to 0\nfull_glasses = 0\n\n# Iterate through each level of the pyramid\nfor level in range(1, n+1):\n    # Calculate the number of glasses in the current level\n    num_glasses = level\n    \n    # Calculate the total capacity of the glasses in the current level\n    total_capacity = num_glasses * (num_glasses + 1) // 2\n    \n    # Calculate the amount of champagne poured into each glass in the current level\n    champagne_per_glass = t / total_capacity\n    \n    # Check if the champagne overflows from the glasses in the current level\n    if champagne_per_glass >= 1:\n        # Update the number of completely full glasses with the number of glasses in the current level\n        full_glasses += num_glasses\n        # Reduce the remaining time by the time it takes to fill the glasses in the current level\n        t -= total_capacity\n    \n    # Otherwise, calculate the number of completely full glasses in the current level\n    else:\n        # Update the number of completely full glasses with the number of glasses in the current level multiplied by the amount of champagne poured into each glass\n        full_glasses += int(champagne_per_glass * num_glasses)\n\n# Print the number of completely full glasses\nprint(full_glasses)\n```\n\nNow let's discuss the impact of these bugs on the functionality of the program:\n\n1. The formula to calculate the total capacity of the glasses in the current level (`total_capacity = num_glasses * (num_glasses + 1) // 2`) is incorrect. Currently, the formula calculates the triangle number instead of the total number of glasses in a level. This bug will lead to incorrect calculations of `total_capacity` and further incorrect calculations in the program.\n\n2. The calculation of `champagne_per_glass` (`champagne_per_glass = t / total_capacity`) is incorrect. Currently, it calculates the average amount of champagne poured into each glass over `t` seconds. This bug leads to incorrect calculations of `champagne_per_glass` and incorrect calculations in the program.\n\n3. The condition for checking if the champagne overflows from the glasses in the current level (`if champagne_per_glass >= 1`) is incorrect. Currently, it checks if the average amount of champagne poured into each glass is greater than or equal to 1. This bug will lead to incorrect calculations of `full_glasses` and incorrect output.\n\nDue to these bugs, the program does not provide the correct number of completely full glasses after `t` seconds.",
+          "tokens": 1822,
+          "metadata": {
+            "actual_input": "3 5\n",
+            "actual_output": "3\n",
+            "expected_output": "4\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 14,
+              "total": 121,
+              "pass_rate": "11.57%",
+              "tokens": 2654,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

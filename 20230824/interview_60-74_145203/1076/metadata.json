@@ -1,0 +1,45 @@
+{
+  "question_id": "1076",
+  "generation_passes": 0,
+  "generation_total": 25,
+  "generation_pass_rate": 0.0,
+  "generation_tokens": 1275,
+  "repair_passes": 0,
+  "repair_total": 25,
+  "repair_pass_rate": 0.0,
+  "repair_tokens": 2325,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 0,
+      "total": 25,
+      "pass_rate": "0.00%",
+      "tokens": 1275,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "# Review\nThe code provided attempts to determine the expected number of seconds before the game ends. However, there are several issues in the code that result in incorrect output. Let's review them one by one.\n\n### 1. Inconsistent definition of DECK_SIZE\nThe variable `DECK_SIZE` is defined as the sum of `n` and `m`, which represents the number of cards in the deck. However, in the code, it is used with `n` as the upper bound in some places, and with `n + m` in others. This inconsistency could potentially affect the correctness of the calculation.\n\n### 2. Incorrect calculation of (n + m)!\nThe code attempts to calculate the value of `(n + m)!` using a simple for loop. However, this approach is incorrect because the calculation of a factorial requires multiplications, and the modulus operation should be applied after each multiplication to avoid integer overflow. In the current implementation, the modulus operation is only applied at the end, which might result in incorrect values.\n\n### 3. Incorrect calculation of (n + m - i)!\nThe code attempts to calculate the value of `(n + m - i)!` for each `i` in the range `[0, n-1]`. However, the calculation is incorrect because it uses the wrong formula. The code multiplies the previous factorials by the inverse of `DECK_SIZE - i`, which is not the correct formula for calculating factorials.\n\n### 4. Incorrect calculation of expected time\nThe code attempts to calculate the expected time by summing the values of `(MULTIPLIER * factorials[i])` for each `i` in the range `[0, n-1]`. However, the code incorrectly multiplies each value by `MULTIPLIER`, which does not follow the correct formula for calculating expected time.\n\n### 5. Incorrect calculation of MULTIPLIER\nThe code attempts to calculate the value of `MULTIPLIER` by multiplying it by 2 for each iteration. However, the calculation is incorrect because it does not account for the jokers drawn. The correct calculation should multiply `MULTIPLIER` by 2 only if a joker is drawn, and should set `MULTIPLIER` to 1 otherwise.\n\n### 6. Incorrect handling of jokers\nThe code attempts to handle jokers by resetting the deck to contain all cards from 1 to `n` and the `m` jokers. However, the code does not include the jokers in the deck when calculating the factorials, which results in incorrect values.\n\n### 7. Missing input handling\nThe code does not handle the input correctly. It attempts to read the input through `input()` function, but the code does not call `split()` on the returned string to split the space-separated integers.\n\n### 8. Unnecessary use of `MOD` parameter\nThe code includes a `MOD` parameter, which is intended to be used for modulus operations. However, the modulus operation is only applied once at the end of the calculation, and it is not consistently applied throughout the code. This parameter is unnecessary and can be removed.\n\n### 9. Inconsistent output format\nThe code currently prints the result directly to the output. However, the problem statement specifies that the result should be printed as `(P * Q^-1) % 998244353`, where `P` and `Q` are the numerator and denominator of the result fraction. The code should be modified to follow this format.\n\n### 10. Lack of comments and code structure\nThe code lacks comments and proper code structure, making it difficult to understand the intent and purpose of each part of the code. Adding comments and organizing the code into logical sections would improve its readability.\n\nIn conclusion, the provided code contains several bugs that result in incorrect output. The issues include inconsistent variable usage, incorrect factorial calculations, incorrect calculation of expected time, incorrect handling of jokers, missing input handling, unnecessary use of a modulus parameter, and inconsistent output format. These issues need to be addressed to fix the bugs and obtain the correct output.",
+          "tokens": 1872,
+          "metadata": {
+            "actual_input": "2 1\n",
+            "actual_output": "24\n",
+            "expected_output": "5\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 0,
+              "total": 25,
+              "pass_rate": "0.00%",
+              "tokens": 2325,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "question_id": "3077",
+  "generation_passes": 0,
+  "generation_total": 3,
+  "generation_pass_rate": 0.0,
+  "generation_tokens": 1415,
+  "repair_passes": 0,
+  "repair_total": 3,
+  "repair_pass_rate": 0.0,
+  "repair_tokens": 2060,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 0,
+      "total": 3,
+      "pass_rate": "0.00%",
+      "tokens": 1415,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\nThe code has a logical error in the implementation of the attack area. The attack area is currently being defined using the wrong range of indices in the nested for-loop. Instead of iterating over all possible attack centers, the code iterates over all possible pairs of minion locations. This will not cover all possible attack centers and will miss some minions that can be destroyed.\n\nAdditionally, there is an error in the calculation of the distance between the attack center and the villages. The calculation currently subtracts the radius of the village from the distance formula, which will result in incorrect distances.\n\nFurthermore, the code checks if the distance from the attack center to each village is greater than the attack radius to determine if the village is outside the attack radius. This logic is incorrect because the attack area is a circle and the distance should be compared to the *sum* of the village radius and the attack radius.\n\nLastly, the variable `max_destroyed` is not initialized correctly. It is currently initialized to zero, but it should be initialized to negative infinity to ensure that it is updated correctly with the maximum number of destroyed minions.\n\n### BUGS\n1. The nested for-loop in the `calculate_max_minions_destroyed` function does not cover all possible attack centers.\n2. Incorrect calculation of the distance between the attack center and the villages.\n3. Incorrect comparison of the distance to determine if a village is outside the attack radius.\n4. Incorrect initialization of `max_destroyed` variable.\n\n### IMPACT\nThese bugs will result in incorrect determination of the maximum number of minions that can be destroyed. The code may fail to consider some valid attack centers and may miss destroying some minions that can be destroyed. This will lead to incorrect results and the output will not match the expected output.",
+          "tokens": 1555,
+          "metadata": {
+            "actual_input": "1 3 3\n0 0 1\n3 3\n-3 3\n3 -3\n",
+            "actual_output": "2\n",
+            "expected_output": "1\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 0,
+              "total": 3,
+              "pass_rate": "0.00%",
+              "tokens": 2060,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

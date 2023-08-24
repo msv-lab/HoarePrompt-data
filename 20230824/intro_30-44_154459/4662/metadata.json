@@ -1,0 +1,45 @@
+{
+  "question_id": "4662",
+  "generation_passes": 0,
+  "generation_total": 2,
+  "generation_pass_rate": 0.0,
+  "generation_tokens": 750,
+  "repair_passes": 0,
+  "repair_total": 2,
+  "repair_pass_rate": 0.0,
+  "repair_tokens": 1057,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 0,
+      "total": 2,
+      "pass_rate": "0.00%",
+      "tokens": 750,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\n\nThere are a few bugs in the provided code. Let's analyze them one by one:\n\n1. Issue: The code is not correctly identifying the start and end tags.\n   - Bug: The code checks for the character `<` to identify the start tag, which is correct. However, it checks for the character `>` to identify the end tag, which is incorrect. In XML, the end tag is identified by `</`.\n   - Impact: This bug results in an incorrect calculation of the maximum level of nesting.\n\n2. Issue: The code does not handle self-closing tags properly.\n   - Bug: The code only increments the `current_level` variable when it encounters a start tag, and decrements it when it encounters an end tag. However, it does not handle self-closing tags, which should not change the current level.\n   - Impact: This bug results in an incorrect calculation of the maximum level of nesting.\n\n### BUGS SUMMARY\n1. The code incorrectly identifies the end tags using the `>` character.\n2. The code does not handle self-closing tags properly.\n\n### SUGGESTED FIX\nTo fix the issues, the following changes can be made to the code:\n\n1. Modify the condition to check for the end tag. Update the `elif` condition from `char == \">\"` to `char == \"/\" and prev_char == \"<\"`.\n2. Add a check for self-closing tags. Update the `if` condition to check for self-closing tags using the `\"/\"` character.\n\nBy making these changes, the code will correctly identify start tags, end tags, and self-closing tags, and calculate the maximum level of nesting accurately.",
+          "tokens": 926,
+          "metadata": {
+            "actual_input": "6\n<feed xml:lang='en'>\n  <title>HackerRank</title>\n  <subtitle lang='en'>Programming challenges</subtitle>\n  <link rel='alternate' type='text/html' href='http://hackerrank.com/'/>\n  <updated>2013-12-25T12:00:00</updated>\n</feed>",
+            "actual_output": "1\n",
+            "expected_output": "1",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 0,
+              "total": 2,
+              "pass_rate": "0.00%",
+              "tokens": 1057,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

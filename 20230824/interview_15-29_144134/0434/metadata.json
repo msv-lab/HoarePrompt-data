@@ -1,0 +1,45 @@
+{
+  "question_id": "0434",
+  "generation_passes": 11,
+  "generation_total": 50,
+  "generation_pass_rate": 0.22,
+  "generation_tokens": 1266,
+  "repair_passes": 11,
+  "repair_total": 50,
+  "repair_pass_rate": 0.22,
+  "repair_tokens": 1600,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 11,
+      "total": 50,
+      "pass_rate": "22.00%",
+      "tokens": 1266,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### BUGS IDENTIFIED\n1. There is a bug in the calculation of the number of progressions. The calculation `progressions += 1` is incorrectly placed inside the condition `elif a[i-1] == -1`. It should be outside the condition.\n2. There is a bug in the condition to check if the sequence is an arithmetic progression. The condition `a[i] - a[i-1] != a[i-1] - a[i-2]` is incorrect. It should be `a[i] != a[i-1] + (a[i-1] - a[i-2])`.\n3. There is a bug in the count of elements in the sequence. The initial value of `count` is incorrect. It should be initialized as `1` only if the first element in the sequence is not equal to `-1`.\n\n### IMPACT OF BUGS\n1. The incorrect placement of the calculation `progressions += 1` inside the condition results in a higher count of progressions than expected.\n2. The incorrect condition to check if the sequence is an arithmetic progression can lead to incorrect categorization of elements in progressions.\n3. The incorrect initialization of `count` can result in a lower count of elements in the sequence if the first element is equal to `-1`.\n\n### CORRECTED CODE",
+          "tokens": 1317,
+          "metadata": {
+            "actual_input": "9\n8 6 4 2 1 4 7 10 2\n",
+            "actual_output": "5\n",
+            "expected_output": "3\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 11,
+              "total": 50,
+              "pass_rate": "22.00%",
+              "tokens": 1600,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

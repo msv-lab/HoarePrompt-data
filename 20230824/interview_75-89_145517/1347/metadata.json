@@ -1,0 +1,45 @@
+{
+  "question_id": "1347",
+  "generation_passes": 2,
+  "generation_total": 19,
+  "generation_pass_rate": 0.10526315789473684,
+  "generation_tokens": 1325,
+  "repair_passes": 0,
+  "repair_total": 19,
+  "repair_pass_rate": 0.0,
+  "repair_tokens": 1768,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 2,
+      "total": 19,
+      "pass_rate": "10.53%",
+      "tokens": 1325,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\n\nThere are multiple bugs in the given code:\n\n#### 1. Incorrect Parsing of Input\nThe code does not correctly parse the input. The first line of input represents the number of words in the initial essay, `m`, but the code does not capture this value. It directly goes to parsing the essay itself.\n\n#### 2. Incorrect Initialization of Variables\nThe variables `min_r` and `min_length` are initialized with `float('inf')`, which means they are initialized with infinity. However, since we are trying to find the minimum values, these variables should be initialized with a very large value, such as `float('inf')`. \n\n#### 3. Incorrect Counting of Letters 'R'\nThe function `count_r` counts the number of occurrences of the letter 'r', but it does not account for case-insensitivity. The function should convert the word to lowercase before counting the occurrences of the letter 'r'.\n\n#### 4. Incorrect Replacement Rule\nThe function `replace_word` tries to replace a word with its synonym if it exists in the synonym dictionary. However, the code only considers the first synonym it finds. It does not consider all possible synonyms and choose the one with the minimum number of 'r's. \n\n#### 5. Incorrect Updating of Minimum Variables\nThe code updates `min_r` and `min_length` after appending a new word to the `new_essay` list. However, `min_length` should represent the length of the entire essay, not just the length of the `new_essay` list. It should be updated after the entire essay is constructed.\n\n#### 6. Incorrect Output\nThe code prints `min_r` and `min_length` as the output. However, since `min_r` represents the minimum number of 'r's in the essay and `min_length` represents the minimum length of the essay, they should be printed in reverse order as the output.\n\n### BUG-FIXED CODE",
+          "tokens": 1515,
+          "metadata": {
+            "actual_input": "3\nAbRb r Zz\n4\nxR abRb\naA xr\nzz Z\nxr y\n",
+            "actual_output": "0 1\n",
+            "expected_output": "2 6\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 0,
+              "total": 19,
+              "pass_rate": "0.00%",
+              "tokens": 1768,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "question_id": "4350",
+  "generation_passes": 2,
+  "generation_total": 10,
+  "generation_pass_rate": 0.2,
+  "generation_tokens": 1452,
+  "repair_passes": 4,
+  "repair_total": 10,
+  "repair_pass_rate": 0.4,
+  "repair_tokens": 2328,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 2,
+      "total": 10,
+      "pass_rate": "20.00%",
+      "tokens": 1452,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\nThere are several bugs in the code. \n\n1. The loop indices in the `draw_star` function are incorrect. The loops should range from 0 to n and from 0 to m, instead of ranging from 1 to n-1 and from 1 to m-1. \n\n2. The condition to check if a cell is part of a star is incorrect. Currently, the code checks if the current cell and its four adjacent cells are all asterisks. However, the condition should be that the current cell is an asterisk and the four diagonal cells are also asterisks. \n\n3. The condition for expanding the star is incorrect. Currently, the code checks if the diagonal cells of the current size are all asterisks. However, the condition should be that the cells at the corners of the star with the current size are all asterisks. \n\n4. The `draw_star` function returns `None` if no star is found, but the expected output for this case should be `-1`. \n\n5. The loop for reading the grid input does not handle the case where the input is given in multiple lines. Currently, the code assumes that the grid input is given in a single line. \n\n6. There is no need to use a separate variable `size` to keep track of the star size. The size can be easily inferred from the number of iterations in the while loop. \n\n7. The stars are not printed in the expected format. The row and column indices should be printed starting from 1, but the code currently prints them starting from 0. \n\n### BUGS\n1. The loop indices in the `draw_star` function should range from 0 to n and from 0 to m, not from 1 to n-1 and from 1 to m-1. \n\n2. The condition to check if a cell is part of a star should be that the current cell is an asterisk and the four diagonal cells are also asterisks. \n\n3. The condition for expanding the star should be that the cells at the corners of the star with the current size are all asterisks. \n\n4. The `draw_star` function should return `-1` if no star is found, instead of returning `None`. \n\n5. The grid input should be read in multiple lines, not in a single line. \n\n6. The stars should be printed with row and column indices starting from 1, not from 0. \n\n### EXAMPLES\nHere are some additional examples to test the code:",
+          "tokens": 1768,
+          "metadata": {
+            "actual_input": "6 8\n....*...\n...**...\n..*****.\n...**...\n....*...\n........\n",
+            "actual_output": "1\n3 4 1\n",
+            "expected_output": "2\n3 4 1\n3 5 2\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 4,
+              "total": 10,
+              "pass_rate": "40.00%",
+              "tokens": 2328,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

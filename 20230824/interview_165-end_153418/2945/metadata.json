@@ -1,0 +1,45 @@
+{
+  "question_id": "2945",
+  "generation_passes": 0,
+  "generation_total": 2,
+  "generation_pass_rate": 0.0,
+  "generation_tokens": 1476,
+  "repair_passes": 0,
+  "repair_total": 2,
+  "repair_pass_rate": 0.0,
+  "repair_tokens": 1811,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 0,
+      "total": 2,
+      "pass_rate": "0.00%",
+      "tokens": 1476,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\nThe code above is intended to calculate the time between the arrival of the first type of monkeys and the arrival of the second type, given the total time that monkeys spent in the garden and the characteristics of each type of monkey.\n\nHere are the identified bugs in the code:\n\n1. Input Parsing: The code does not accurately parse the input data.\n2. Variable Naming: The code uses variable names that are not intuitive and do not reflect their purpose.\n3. Calculation of Arrival Times: The code calculates the arrival times of the monkeys incorrectly.\n4. Minimum and Maximum Arrival Times: The code does not correctly determine the minimum and maximum arrival times for each type of monkey.\n5. Calculation of Result: The code calculates the result using incorrect variables.\n\nNow let's go through each bug in detail and discuss their impact on the program's functionality.",
+          "tokens": 1419,
+          "metadata": {
+            "actual_input": "12\n1\n3 1\n1\n5 1\n",
+            "actual_output": "0\n",
+            "expected_output": "5\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 0,
+              "total": 2,
+              "pass_rate": "0.00%",
+              "tokens": 1811,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

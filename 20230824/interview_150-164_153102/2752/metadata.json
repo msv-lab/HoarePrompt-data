@@ -1,0 +1,45 @@
+{
+  "question_id": "2752",
+  "generation_passes": 0,
+  "generation_total": 3,
+  "generation_pass_rate": 0.0,
+  "generation_tokens": 1303,
+  "repair_passes": 0,
+  "repair_total": 3,
+  "repair_pass_rate": 0.0,
+  "repair_tokens": 2016,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 0,
+      "total": 3,
+      "pass_rate": "0.00%",
+      "tokens": 1303,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### REVIEW\n\nThere are several bugs in the provided code:\n\n1. The program reads the input incorrectly. The first line contains the number of days and the number of buildings, so it should be read as two separate integers, not as a single string.\n\n2. The code incorrectly reads the buildings that Gregory will work in during the morning and afternoon. It is expecting two space-separated integers on each line, but the input specifies that there should be two integers on separate lines for each day.\n\n3. The code incorrectly reads the weather for each day. It is expecting a string of three characters on each line, but the input specifies that there should be three separate lines for each day.\n\n4. The variable `happiness` is not initialized correctly. It should be initialized to 0, but the code does not initialize it at all.\n\n5. The code incorrectly calculates the number of happiness units Gregory must lose from carrying umbrellas. The conditions in the if statements are not correct. The code checks if all three weather conditions are raining by comparing each character individually, but the correct condition should check if any of the weather conditions are raining.\n\n6. The code does not check if Gregory is working in the same building during the morning and afternoon. According to the problem statement, Gregory should work in two different buildings each day, but the code does not enforce this condition.\n\nOverall, the code has several logical errors and incorrect assumptions about the input format. The bugs occur in the input reading, variable initialization, and calculation of happiness units. These bugs result in incorrect output for the given test case.",
+          "tokens": 1390,
+          "metadata": {
+            "actual_input": "1 2\n1 2\nSSR\n",
+            "actual_output": "0\n",
+            "expected_output": "3\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 0,
+              "total": 3,
+              "pass_rate": "0.00%",
+              "tokens": 2016,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

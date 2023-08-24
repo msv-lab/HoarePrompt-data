@@ -1,0 +1,45 @@
+{
+  "question_id": "1863",
+  "generation_passes": 2,
+  "generation_total": 10,
+  "generation_pass_rate": 0.2,
+  "generation_tokens": 1197,
+  "repair_passes": 1,
+  "repair_total": 10,
+  "repair_pass_rate": 0.1,
+  "repair_tokens": 1426,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 2,
+      "total": 10,
+      "pass_rate": "20.00%",
+      "tokens": 1197,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\n\nThere are multiple bugs and issues in the given code.\n\n1. **Incorrect Distribution Logic**: The current logic for distributing the eggs is incorrect. The code checks if the absolute difference between the cumulative sum of prices said by A and G for the eggs distributed so far is less than or equal to 500. If it is, it assigns the egg to A, otherwise to G. This logic does not guarantee that the total money paid to A will be different from the total money paid to G by no more than 500. \n\n2. **Missing Increment in Egg Distribution**: After assigning an egg to either A or G, the code should increment the values of `a[i]` and `g[i]` to reflect that the egg has been distributed. However, the code is mistakenly set `a[i]` to 0 and `g[i]` to 1000 (or vice versa). This incorrect assignment will lead to incorrect distribution and will affect the final calculation of money paid to A and G.\n\n3. **Incorrect Check for Distribution Possibility**: The code incorrectly checks if the absolute difference between the total money paid to A and the total money paid to G is less than or equal to 500. This check should only be made after all eggs have been distributed, not during the distribution loop. \n\n### BUGS\n1. Incorrect distribution logic\n2. Missing increment in egg distribution\n3. Incorrect check for distribution possibility\n\n### IMPACT\nThe bugs in the code will result in incorrect distribution of eggs and incorrect calculation of money paid to A and G. This will lead to incorrect results and may produce -1 as the output even when a valid distribution is possible.",
+          "tokens": 1308,
+          "metadata": {
+            "actual_input": "2\n1 999\n999 1\n",
+            "actual_output": "-1\n",
+            "expected_output": "AG\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 1,
+              "total": 10,
+              "pass_rate": "10.00%",
+              "tokens": 1426,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

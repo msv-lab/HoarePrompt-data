@@ -1,0 +1,1 @@
+friends.sort(reverse=True)

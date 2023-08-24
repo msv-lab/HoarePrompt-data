@@ -1,0 +1,45 @@
+{
+  "question_id": "4164",
+  "generation_passes": 17,
+  "generation_total": 18,
+  "generation_pass_rate": 0.9444444444444444,
+  "generation_tokens": 799,
+  "repair_passes": 12,
+  "repair_total": 18,
+  "repair_pass_rate": 0.6666666666666666,
+  "repair_tokens": 880,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 17,
+      "total": 18,
+      "pass_rate": "94.44%",
+      "tokens": 799,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### BUG 1: Input Reading\nIn the given code, the input is being read using the `input()` function. However, the prompt states that the input is given from Standard Input. Therefore, the code should use the `sys.stdin.readline()` function to read the input.\n\n### BUG 2: Integer Division\nIn the calculation of the ratio, the code is using the `/` operator which performs floating-point division. However, the prompt clearly states that the answer should be an integer. The code needs to change the division operator from `/` to `//` to perform integer division.\n\n### BUG 3: Incorrect Output\nThe expected output for the given sample input is \"5776\", but the code is producing \"5775\". This indicates that the code is calculating the ratio incorrectly.\n\n### IMPACT:\nThese bugs affect the functionality and accuracy of the program. The incorrect input reading and division operator result in incorrect calculations and output, leading to incorrect results.",
+          "tokens": 755,
+          "metadata": {
+            "actual_input": "76\n",
+            "actual_output": "5775\n",
+            "expected_output": "5776\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 12,
+              "total": 18,
+              "pass_rate": "66.67%",
+              "tokens": 880,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

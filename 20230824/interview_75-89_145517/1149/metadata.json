@@ -1,0 +1,45 @@
+{
+  "question_id": "1149",
+  "generation_passes": 13,
+  "generation_total": 23,
+  "generation_pass_rate": 0.5652173913043478,
+  "generation_tokens": 959,
+  "repair_passes": 11,
+  "repair_total": 23,
+  "repair_pass_rate": 0.4782608695652174,
+  "repair_tokens": 1228,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 13,
+      "total": 23,
+      "pass_rate": "56.52%",
+      "tokens": 959,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\nLet's analyze the code and identify the bugs:\n\n1. The code is missing a space after the comma in the input. This causes the third line of the input to be read as a single integer instead of multiple integers. This results in incorrect values being assigned to `y_levels`.\n\n2. The condition `all_levels.issubset(x_levels.union(y_levels))` is checking if all levels are present in the set `x_levels.union(y_levels)`, which is not correct. It should check if all levels are present in the union of `x_levels` and `y_levels` individually. \n\n3. The code does not handle the case where a level is present in `all_levels`, but not in either `x_levels` or `y_levels`. In this case, the code incorrectly considers the level as passed, leading to incorrect results.\n\n### BUGS\n1. Missing space after the comma in the input.\n2. Incorrect condition for checking if all levels are passed.\n3. Missing handling for levels that are present in `all_levels`, but not in either `x_levels` or `y_levels`.\n\n### IMPACT\nThe bugs in the code can lead to incorrect results. The program may incorrectly determine whether Little X and Little Y can pass all levels. This can result in an incorrect output, leading to a misleading message being displayed to the user.",
+          "tokens": 1018,
+          "metadata": {
+            "actual_input": "4\n3 1 2 3\n2 2 3\n",
+            "actual_output": "Oh, my keyboard.\n",
+            "expected_output": "Oh, my keyboard!\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 11,
+              "total": 23,
+              "pass_rate": "47.83%",
+              "tokens": 1228,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

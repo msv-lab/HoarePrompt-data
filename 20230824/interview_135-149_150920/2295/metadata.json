@@ -1,0 +1,45 @@
+{
+  "question_id": "2295",
+  "generation_passes": 0,
+  "generation_total": 5,
+  "generation_pass_rate": 0.0,
+  "generation_tokens": 906,
+  "repair_passes": 1,
+  "repair_total": 5,
+  "repair_pass_rate": 0.2,
+  "repair_tokens": 941,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 0,
+      "total": 5,
+      "pass_rate": "0.00%",
+      "tokens": 906,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\nLet's analyze the code and find the bugs:\n\n#### Bug 1:\nThe code has an indentation error in line 21. The print statement should be outside the for loop in order to print the final result after calculating the expected number of unique elements.\n\n#### Bug 2:\nThere is an off-by-one error in the for loop in line 16. The loop should iterate from 0 to n-1 instead of 1 to n. This is because the indexes of the array start from 0.\n\n#### Bug 3:\nThe calculation of the expected number of unique elements is incorrect. The code is currently dividing the frequency of each number by n, but it should be divided by the total number of possible pairs (n*(n+1)/2) since l and r are picked randomly.",
+          "tokens": 841,
+          "metadata": {
+            "actual_input": "2\n1 2\n",
+            "actual_output": "1.000000\n",
+            "expected_output": "1.500000\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 1,
+              "total": 5,
+              "pass_rate": "20.00%",
+              "tokens": 941,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

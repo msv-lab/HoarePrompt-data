@@ -1,0 +1,45 @@
+{
+  "question_id": "4347",
+  "generation_passes": 2,
+  "generation_total": 10,
+  "generation_pass_rate": 0.2,
+  "generation_tokens": 1026,
+  "repair_passes": 1,
+  "repair_total": 10,
+  "repair_pass_rate": 0.1,
+  "repair_tokens": 1082,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 2,
+      "total": 10,
+      "pass_rate": "20.00%",
+      "tokens": 1026,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "## Observations\nThe given code attempts to solve the problem by calculating the factorial of `n-1` and then dividing it by `2` to the power of `n//2-1`. However, the code fails to produce the correct output for the given test case.\n\n## Bugs\n1. The code calculates the factorial of `n-1`, which is incorrect. The correct value to calculate factorial should be `n`.\n2. The code does not handle the division correctly. It should divide by `2` raised to the power of `(n//2-1)`, but the code only divides by `2**(n//2-1)`.\n\n## Impact\nDue to the bugs in the code, it does not produce the correct output for the given test case. The factorial calculation is incorrect and the division operation is not performed correctly, leading to an incorrect final result.",
+          "tokens": 966,
+          "metadata": {
+            "actual_input": "8\n",
+            "actual_output": "630\n",
+            "expected_output": "1260\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 1,
+              "total": 10,
+              "pass_rate": "10.00%",
+              "tokens": 1082,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

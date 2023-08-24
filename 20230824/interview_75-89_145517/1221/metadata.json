@@ -1,0 +1,45 @@
+{
+  "question_id": "1221",
+  "generation_passes": 5,
+  "generation_total": 22,
+  "generation_pass_rate": 0.22727272727272727,
+  "generation_tokens": 1069,
+  "repair_passes": 3,
+  "repair_total": 22,
+  "repair_pass_rate": 0.13636363636363635,
+  "repair_tokens": 1596,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 5,
+      "total": 22,
+      "pass_rate": "22.73%",
+      "tokens": 1069,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### FEEDBACK\n\nThere are several bugs in the code provided:\n\n1. Incorrectly sorting the brightness values:\n\n   In the code, both the `a` and `b` lists are sorted in ascending order using the `sort()` method. However, according to the problem statement, Tommy wants to hide the lantern with the maximum brightness. Sorting the `a` list in ascending order will result in Tommy hiding the lantern with the minimum brightness instead.\n\n2. Incorrectly calculating `a_hidden`:\n\n   The `a_hidden` list is created by slicing the `a` list using `a[:-1]`. This will exclude the last element of the sorted `a` list, which is the minimum brightness. However, the problem statement states that Tommy should hide the lantern with the maximum brightness, not the minimum brightness.\n\n3. Incorrectly selecting Banban's lantern:\n\n   Currently, the code always selects the last element of the sorted `b` list as Banban's lantern. However, Banban should choose his lantern optimally to maximize the brightness of the pair.\n\n4. Incorrectly calculating the pair brightness:\n\n   The code calculates the brightness of the pair by multiplying Tommy's selected lantern from `a_hidden` with Banban's selected lantern from `b`. However, it doesn't consider the case where Tommy hides the lantern with the minimum brightness. In this case, the pair brightness should be the product of the minimum brightness from `a` and the maximum brightness from `b`.\n\nTo fix these bugs, the following changes can be made to the code:\n\n1. Reverse the sorting of `a` and `b`:\n\n   Instead of sorting `a` and `b` in ascending order, they should be sorted in descending order, so that the maximum brightness values are at the beginning of the lists.\n\n2. Fix `a_hidden` calculation:\n\n   Instead of excluding the last element of the sorted `a` list, Tommy should exclude the first element of the reversed `a` list, since it will be the minimum brightness.\n\n3. Select Banban's lantern optimally:\n\n   Instead of always selecting the last element of the sorted `b` list, Banban should select the first element of the reversed `b` list, since it will be the maximum brightness.\n\n4. Update pair brightness calculation:\n\n   Modify the calculation of the pair brightness to consider both the case where Tommy hides the maximum brightness lantern and the case where he hides the minimum brightness lantern. The maximum brightness of the pair can be determined by calculating the maximum of the products: Tommy's maximum brightness lantern * Banban's maximum brightness lantern and Tommy's minimum brightness lantern * Banban's maximum brightness lantern.",
+          "tokens": 1433,
+          "metadata": {
+            "actual_input": "5 7\n-130464232 -73113866 -542094710 -53118823 -63528720\n-775179088 631683023 -974858199 -157471745 -629658630 71825477 -6235611\n",
+            "actual_output": "-40130013896920560\n",
+            "expected_output": "127184126241438168\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 3,
+              "total": 22,
+              "pass_rate": "13.64%",
+              "tokens": 1596,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

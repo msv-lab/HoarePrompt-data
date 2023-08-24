@@ -1,0 +1,45 @@
+{
+  "question_id": "2093",
+  "generation_passes": 3,
+  "generation_total": 7,
+  "generation_pass_rate": 0.42857142857142855,
+  "generation_tokens": 1105,
+  "repair_passes": 3,
+  "repair_total": 7,
+  "repair_pass_rate": 0.42857142857142855,
+  "repair_tokens": 1039,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 3,
+      "total": 7,
+      "pass_rate": "42.86%",
+      "tokens": 1105,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\n\nThere is only one bug in the code. The issue is with the comparison condition in the inner loop. The program is currently checking if `episodes[i] == episodes[j]`, which is incorrect. \n\nTo fix this bug, we need to change the comparison condition to `episodes[i] == episodes[j] and i != j`. This condition makes sure that we count a pair only if we have both `season x episode y` and `season y episode x` and that `x` and `y` are different.\n\nOther than that, the program looks fine. It correctly reads the input and iterates over the episodes pairwise to check for matching seasons.",
+          "tokens": 1009,
+          "metadata": {
+            "actual_input": "3\n8 12 7\n",
+            "actual_output": "0\n",
+            "expected_output": "3\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 3,
+              "total": 7,
+              "pass_rate": "42.86%",
+              "tokens": 1039,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

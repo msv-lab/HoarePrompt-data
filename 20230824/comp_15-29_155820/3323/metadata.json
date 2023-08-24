@@ -1,0 +1,45 @@
+{
+  "question_id": "3323",
+  "generation_passes": 0,
+  "generation_total": 2,
+  "generation_pass_rate": 0.0,
+  "generation_tokens": 1144,
+  "repair_passes": 0,
+  "repair_total": 2,
+  "repair_pass_rate": 0.0,
+  "repair_tokens": 1667,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 0,
+      "total": 2,
+      "pass_rate": "0.00%",
+      "tokens": 1144,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\nThe code aims to calculate the maximum number of people who will like the drink based on their minimum requirements for each juice. However, there are several bugs in the code that result in incorrect output.\n\n1. The nested loop to iterate through the possible fractions of each juice has a range of 101. However, the valid fractions provided in the input range from 0 to 10000 inclusive. Therefore, the loop should iterate up to 10001 instead of 101.\n\n2. The count variable is not initialized outside the nested loop, causing it to be reset to 0 for each person. As a result, the count only represents the number of people in the last iteration of the loop, rather than the maximum number of people who will like the drink. The initialization of count should be moved outside the loop to fix this bug.\n\n3. The condition for checking if a person's minimum requirements are satisfied is incorrect. The condition should be \"person[0] >= i and person[1] >= j and person[2] >= k\" instead of \"person[0] <= i and person[1] <= j and person[2] <= k\". The current condition checks if the person's requirements are less than or equal to the fractions, instead of greater than or equal to.\n\n4. The max_likes variable is updated within the nested loops, resulting in unnecessary computations. The update should be moved outside the nested loops to improve efficiency.\n\n### BUGS\n1. The range for the nested loops should be 0 to 10001, instead of 0 to 101.\n2. The count variable should be initialized outside the nested loops.\n3. The condition for checking if a person's requirements are satisfied should use the greater than or equal to operator.\n4. The update of max_likes should be moved outside the nested loops for efficiency.\n\n### SUGGESTED IMPROVEMENTS\n1. Fix the range in the nested loops.\n2. Initialize the count variable outside the nested loops.\n3. Update the condition for checking if a person's requirements are satisfied.\n4. Move the update of max_likes outside the nested loops.",
+          "tokens": 1411,
+          "metadata": {
+            "actual_input": "2\n3\n10000 0 0\n0 10000 0\n0 0 10000\n3\n5000 0 0\n0 2000 0\n0 0 4000\n",
+            "actual_output": "Case #1: 0\nCase #2: 0\n",
+            "expected_output": "Case #1: 1\nCase #2: 2\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 0,
+              "total": 2,
+              "pass_rate": "0.00%",
+              "tokens": 1667,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

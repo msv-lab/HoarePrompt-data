@@ -1,0 +1,45 @@
+{
+  "question_id": "0304",
+  "generation_passes": 0,
+  "generation_total": 61,
+  "generation_pass_rate": 0.0,
+  "generation_tokens": 1075,
+  "repair_passes": 9,
+  "repair_total": 61,
+  "repair_pass_rate": 0.14754098360655737,
+  "repair_tokens": 1265,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 0,
+      "total": 61,
+      "pass_rate": "0.00%",
+      "tokens": 1075,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\n\nThe code calculates the number of possible variations of the bus number that Vasya could have seen given the number of the bus that was seen. However, there are a few bugs in the code that need to be fixed in order to get the correct output.\n\nLet's go through each part of the code and identify the bugs:\n\n1. Reading input: The code uses the `input()` function to read the number of the bus that was seen. However, it doesn't convert the input into an integer before processing it. This means that the number is treated as a string throughout the code. \n\n2. Length calculation: The code correctly calculates the length of the input number using the `len()` function and assigns it to the variable `length`.\n\n3. Number of positions to swap: The code calculates the number of positions where the digits could be swapped by subtracting 1 from the length of the number and assigns it to the variable `count`.\n\n4. Result calculation: The code multiplies the number of positions to swap by 2 to account for the two possible digits that can be placed in each position. However, this calculation doesn't take into account the possibility of having the same digit in all positions. Additionally, the code adds 1 to the result if the length of the number is greater than 1, but it doesn't handle the case where the number consists of repeated digits.\n\n5. Output: The code prints the result.\n\nTo fix the bugs, we need to consider the following:\n\n1. Convert the input to an integer before processing it.\n\n2. Adjust the result calculation to handle the possibility of having the same digit in all positions.\n\n3. Handle the case where the number consists of repeated digits.\n\nLet's now update the code to fix these bugs.",
+          "tokens": 1196,
+          "metadata": {
+            "actual_input": "97\n",
+            "actual_output": "3\n",
+            "expected_output": "2\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 9,
+              "total": 61,
+              "pass_rate": "14.75%",
+              "tokens": 1265,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

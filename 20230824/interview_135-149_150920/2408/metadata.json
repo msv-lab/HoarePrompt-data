@@ -1,0 +1,45 @@
+{
+  "question_id": "2408",
+  "generation_passes": 0,
+  "generation_total": 3,
+  "generation_pass_rate": 0.0,
+  "generation_tokens": 1877,
+  "repair_passes": 1,
+  "repair_total": 3,
+  "repair_pass_rate": 0.3333333333333333,
+  "repair_tokens": 3093,
+  "generations": [
+    {
+      "id": 1,
+      "passes": 0,
+      "total": 3,
+      "pass_rate": "0.00%",
+      "tokens": 1877,
+      "feedbacks": [
+        {
+          "id": 1,
+          "feedback": "### ANALYSIS\nThere are several bugs in the provided code:\n1. The `intersect` function is defined after its usage. It should be defined before it is called in the main code.\n2. The `intersect` function and the helper `orientation` and `on_segment` functions are not indented correctly. They should be indented to be inside the main code block.\n3. The `intersect` function is missing the `def` keyword before its definition. It should be `def intersect(p1, q1, p2, q2):`.\n4. The `orientation` function is returning the wrong values for collinear, clockwise, and counter-clockwise orientations. It should return -1 for collinear, 1 for clockwise, and 0 for counter-clockwise.\n5. The `on_segment` function is returning the wrong condition to check if a point lies on a line segment. It should check if `q[1] >= min(p[1], r[1])` instead of `q[1] <= max(p[1], r[1])`.\n\n### BUGS\n1. The `intersect` function is not defined before it is called in the main code. This results in a `NameError`.\n2. The `intersect` function and the helper `orientation` and `on_segment` functions are not indented correctly. They should be indented to be inside the main code block.\n3. The `intersect` function is missing the `def` keyword before its definition.\n4. The `orientation` function is returning the wrong values for collinear, clockwise, and counter-clockwise orientations.\n5. The `on_segment` function is returning the wrong condition to check if a point lies on a line segment.",
+          "tokens": 2099,
+          "metadata": {
+            "actual_input": "4\n0 0\n1 1\n0 3\n1 2",
+            "actual_output": "Traceback (most recent call last):\n  File \"/var/folders/46/8ybh48tn40l32kbzy6n99p380000gn/T/tmp88wn3uue.py\", line 35, in <module>\n    if intersect((x1, y1), (x2, y2), (x3, y3), (x4, y4)):\nNameError: name 'intersect' is not defined\n",
+            "expected_output": "14\n",
+            "include_test_case": true
+          },
+          "repairs": [
+            {
+              "id": 1,
+              "passes": 1,
+              "total": 3,
+              "pass_rate": "33.33%",
+              "tokens": 3093,
+              "metadata": {
+                "include_test_case": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
