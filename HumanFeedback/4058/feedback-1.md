@@ -1,0 +1,2 @@
+1. When changing the `heaters` and `last_heater`, make sure that the current heater can cover the position to the right of `last_heater + 1`.
+2. When `i + r - 1 >= n`, it means that the coverage exceeds the boundary, rather than not covering all the rooms.
