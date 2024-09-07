@@ -44,51 +44,57 @@ def clean_prompt(prompt: str) -> str:
     return cleaned_prompt
 
 
-def get_code(data, model: Model, output_file: Path):
+def get_code(data, model, output_file: Path):
     output_file.parent.mkdir(parents=True, exist_ok=True)
 
-    with open(output_file, 'w') as f:
-        for task in data:
-            task_id = task['task_id']
-            prompt = task['prompt']
-            test = task["assertion"]
+    results = []
 
-            specification = clean_prompt(prompt)
-            formatted_prompt = CODE_GEN_PROMPT.format(prompt=prompt, test=test)
+    for task in data:
+        task_id = task['task_id']
+        prompt = task['prompt']
+        test = task["assertion"]
 
-            max_attempts = 3
-            attempts = 0
-            success = False
-            generated_code = ""
+        specification = clean_prompt(prompt)
+        formatted_prompt = CODE_GEN_PROMPT.format(prompt=prompt, test=test)
 
-            while attempts < max_attempts and not success:
-                attempts += 1
-                response = model.query(formatted_prompt)
-                generated_code = extract_code_from_response(response)
+        max_attempts = 3
+        attempts = 0
+        success = False
+        generated_code = ""
 
-                try:
-                    ast.parse(generated_code)
-                    success = True
-                except SyntaxError:
-                    print(f"Task {task_id}: Syntax error on attempt {attempts}. Retrying...")
+        while attempts < max_attempts and not success:
+            attempts += 1
+            response = model.query(formatted_prompt)
+            generated_code = extract_code_from_response(response)
 
-            if success:
-                total_tests, passed_tests, test_results = execute_tests(task, generated_code)
+            try:
+                ast.parse(generated_code)
+                success = True
+            except SyntaxError:
+                print(f"Task {task_id}: Syntax error on attempt {attempts}. Retrying...")
 
-                pass_rate = summary(passed_tests, total_tests)
-                result = {
-                    'task_id': task_id,
-                    'specification': specification,
-                    'generated_code': generated_code,
-                    'pass_rate': pass_rate,
-                    'test_results': test_results
-                }
+        if success:
+            total_tests, passed_tests, test_results = execute_tests(task, generated_code)
 
-                print("*" * 50)
-                print(f"finish task: {task_id}")
-                f.write(json.dumps(result, indent=4) + "\n")
-            else:
-                print(f"Task {task_id}: Failed to generate valid code after {max_attempts} attempts. Skipping...")
+            pass_rate = summary(passed_tests, total_tests)
+            result = {
+                'task_id': task_id,
+                'specification': specification,
+                'generated_code': generated_code,
+                'pass_rate': pass_rate,
+                'test_results': test_results
+            }
+
+            print("*" * 50)
+            print(f"finish task: {task_id}")
+            results.append(result)
+        else:
+            print(f"Task {task_id}: Failed to generate valid code after {max_attempts} attempts. Skipping...")
+
+    with open(output_file, 'w', encoding='utf-8') as f:
+        json.dump(results, f, ensure_ascii=False, indent=4)
+
+    print(f"Results saved to {output_file}")
 
 
 def extract_code_from_response(response_content: str) -> str:
@@ -113,10 +119,11 @@ if __name__ == "__main__":
     with open("MbppPlus.jsonl", "r") as f:
         mbpp_data = [json.loads(line) for line in f]
 
-    model_name = "gpt-4o-2024-05-13"
+    # model_name = "gpt-4o-2024-05-13"
+    model_name = "llama3-70b-8192"
     model = get_model(model_name, 0.7)
 
     timestamp = datetime.now().strftime("%Y%m%d")
-    output_file = output_dir / f"mbppplus_{model_name}_{timestamp}.jsonl"
+    output_file = output_dir / f"mbppplus_{model_name}_{timestamp}.json"
 
     get_code(mbpp_data, model, output_file)

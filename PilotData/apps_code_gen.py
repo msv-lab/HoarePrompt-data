@@ -6,7 +6,6 @@ from datetime import datetime
 from model import get_model, Model
 from apps_test import execute_tests
 
-
 SYSTEM_PROMPT = '''
 You have been assigned the role of a Python program developer. You need to provide a program that meets the given requirements. There are two types of formats:
 
@@ -200,52 +199,56 @@ def load_problem_data(problem_dir):
 
     return problem
 
-def get_code(data_dir: Path, model: Model, output_file: Path, limit=300):
+
+def get_code(data_dir: Path, model: Model, output_file: Path, limit=150):
     output_file.parent.mkdir(parents=True, exist_ok=True)
 
     i = -1
-    with open(output_file, 'w') as f:
-        for problem_dir in sorted(data_dir.iterdir()):
-            if i == limit:
-                break
-            else:
-                i += 1
-            problem_data = load_problem_data(problem_dir)
+    results = []
+    for problem_dir in sorted(data_dir.iterdir()):
+        if i == limit:
+            break
+        else:
+            i += 1
+        problem_data = load_problem_data(problem_dir)
 
-            test_case = problem_data["input_output"]
-            prompt = problem_data["question"]
-            starter_code = problem_data["starter_code"]
+        test_case = problem_data["input_output"]
+        prompt = problem_data["question"]
+        starter_code = problem_data["starter_code"]
 
-            if not prompt or not test_case:
-                print(f"Skipping {problem_dir.name} due to missing data.")
-                continue
+        if not prompt or not test_case:
+            print(f"Skipping {problem_dir.name} due to missing data.")
+            continue
 
-            formatted_prompt = generate_prompt(test_case, prompt, starter_code)
+        formatted_prompt = generate_prompt(test_case, prompt, starter_code)
 
-            response = model.query(formatted_prompt)
+        response = model.query(formatted_prompt)
 
-            generated_code = extract_code_from_response(response)
+        generated_code = extract_code_from_response(response)
 
-            test_inputs = test_case["inputs"]
-            test_outputs = test_case["outputs"]
+        test_inputs = test_case["inputs"]
+        test_outputs = test_case["outputs"]
 
-            passed_tests, total_tests = execute_tests(test_inputs, test_outputs, generated_code)
-            pass_rate = passed_tests / total_tests if total_tests > 0 else 0
+        passed_tests, total_tests = execute_tests(test_inputs, test_outputs, generated_code)
+        pass_rate = passed_tests / total_tests if total_tests > 0 else 0
 
-            result = {
-                'task_id': problem_dir.name,
-                'question': prompt,
-                'generated_code': generated_code,
-                'pass_rate': pass_rate,
-                'passed_tests': passed_tests,
-                'total_tests': total_tests
-            }
-            f.write(json.dumps(result, indent=4) + "\n")
-            print("*" * 100)
-            print(f"Pass test: {passed_tests}/{total_tests}")
-            print(f"Finished task: {problem_dir.name}")
+        result = {
+            'task_id': problem_dir.name,
+            'question': prompt,
+            'generated_code': generated_code,
+            'pass_rate': pass_rate,
+            'passed_tests': passed_tests,
+            'total_tests': total_tests
+        }
+        results.append(result)
+        print("*" * 100)
+        print(f"Pass test: {passed_tests}/{total_tests}")
+        print(f"Finished task: {problem_dir.name}")
 
+    with open(output_file, 'w', encoding='utf-8') as f:
+        json.dump(results, f, ensure_ascii=False, indent=4)
 
+    print(f"Results saved to {output_file}")
 
 
 def extract_code_from_response(response_content: str) -> str:
@@ -265,10 +268,11 @@ if __name__ == "__main__":
     data_dir = Path("APPS") / "test"
     output_dir = Path(args.save) if args.save else Path('data')
 
+    # model_name = "gpt-4o-2024-05-13"
     model_name = "llama3-70b-8192"
     model = get_model(model_name, 0.7)
 
     timestamp = datetime.now().strftime("%Y%m%d")
-    output_file = output_dir / f"apps_{model_name}_{timestamp}.jsonl"
+    output_file = output_dir / f"apps_{model_name}_{timestamp}.json"
 
-    get_code(data_dir, model, output_file)
+    get_code(data_dir, model, output_file, 50)
