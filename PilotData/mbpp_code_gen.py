@@ -6,7 +6,7 @@ from pathlib import Path
 from datetime import datetime
 
 from model import get_model, Model
-from mbppplus_test import execute_tests, summary
+from mbppplus_test import test_function
 
 CODE_GEN_PROMPT = """
 You are an expert Python programmer. Your task is to provide code according to the specification. Your code should pass the provided tests. Ensure that the function name is consistent.
@@ -44,7 +44,7 @@ def clean_prompt(prompt: str) -> str:
     return cleaned_prompt
 
 
-def get_code(data, model, output_file: Path):
+def get_code(data, model: Model, output_file: Path):
     output_file.parent.mkdir(parents=True, exist_ok=True)
 
     results = []
@@ -74,19 +74,19 @@ def get_code(data, model, output_file: Path):
                 print(f"Task {task_id}: Syntax error on attempt {attempts}. Retrying...")
 
         if success:
-            total_tests, passed_tests, test_results = execute_tests(task, generated_code)
+            base_accuracy, plus_accuracy, assertion_accuracy = test_function(task, generated_code)
 
-            pass_rate = summary(passed_tests, total_tests)
             result = {
                 'task_id': task_id,
                 'specification': specification,
                 'generated_code': generated_code,
-                'pass_rate': pass_rate,
-                'test_results': test_results
+                'base_accuracy': base_accuracy,
+                'plus_accuracy': plus_accuracy,
+                'assertion_accuracy': assertion_accuracy
             }
 
             print("*" * 50)
-            print(f"finish task: {task_id}")
+            print(f"finish task: {task_id} with base accuracy: {base_accuracy*100:.2f}% and plus accuracy: {plus_accuracy*100:.2f}%")
             results.append(result)
         else:
             print(f"Task {task_id}: Failed to generate valid code after {max_attempts} attempts. Skipping...")
@@ -119,8 +119,8 @@ if __name__ == "__main__":
     with open("MbppPlus.jsonl", "r") as f:
         mbpp_data = [json.loads(line) for line in f]
 
-    # model_name = "gpt-4o-2024-05-13"
-    model_name = "llama3-70b-8192"
+    model_name = "gpt-4o-2024-05-13"
+    # model_name = "llama3-70b-8192"
     model = get_model(model_name, 0.7)
 
     timestamp = datetime.now().strftime("%Y%m%d")
