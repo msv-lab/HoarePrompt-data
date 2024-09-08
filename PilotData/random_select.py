@@ -1,5 +1,6 @@
 import json
 import random
+import re
 from pathlib import Path
 
 
@@ -21,6 +22,12 @@ def get_model_from_filename(file_name):
     return "unknown"
 
 
+def count_function_defs(code: str) -> int:
+    pattern = r'\bdef\s+\w+\s*\('
+    matches = re.findall(pattern, code)
+    return len(matches)
+
+
 def select_matched_tasks(data1, data2, model1, model2, dataset, sample_size=25):
     data2_dict = {task['task_id']: task for task in data2}
 
@@ -31,21 +38,25 @@ def select_matched_tasks(data1, data2, model1, model2, dataset, sample_size=25):
         task_id = task['task_id']
 
         if task_id in data2_dict:
-            matched_task = [
-                {
-                    "task_id": task_id,
-                    "dataset": dataset,
-                    "model": model1,
-                    **task
-                },
-                {
-                    "task_id": task_id,
-                    "dataset": dataset,
-                    "model": model2,
-                    **data2_dict[task_id]
-                }
-            ]
-            matched_tasks.append(matched_task)
+            code1 = task.get('generated_code')
+            code2 = data2_dict[task_id].get('generated_code')
+
+            if count_function_defs(code1) <= 1 and count_function_defs(code2) <= 1:
+                matched_task = [
+                    {
+                        "task_id": task_id,
+                        "dataset": dataset,
+                        "model": model1,
+                        **task
+                    },
+                    {
+                        "task_id": task_id,
+                        "dataset": dataset,
+                        "model": model2,
+                        **data2_dict[task_id]
+                    }
+                ]
+                matched_tasks.append(matched_task)
 
         if len(matched_tasks) == sample_size:
             break
