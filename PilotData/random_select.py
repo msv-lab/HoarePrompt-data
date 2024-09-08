@@ -22,36 +22,32 @@ def get_model_from_filename(file_name):
 
 
 def select_matched_tasks(data1, data2, model1, model2, dataset, sample_size=25):
-    # 将 data2 文件中的数据按 task_id 构建字典
     data2_dict = {task['task_id']: task for task in data2}
 
     matched_tasks = []
 
-    # 随机打乱 data1 文件中的数据
     random.shuffle(data1)
 
     for task in data1:
         task_id = task['task_id']
 
-        # 检查 data2 文件中是否有相同的 task_id
         if task_id in data2_dict:
             matched_task = [
                 {
                     "task_id": task_id,
                     "dataset": dataset,
                     "model": model1,
-                    **task  # 展开 task 的内容
+                    **task
                 },
                 {
                     "task_id": task_id,
                     "dataset": dataset,
                     "model": model2,
-                    **data2_dict[task_id]  # 展开另一个任务
+                    **data2_dict[task_id]
                 }
             ]
             matched_tasks.append(matched_task)
 
-        # 如果已经找到了足够的任务，则停止
         if len(matched_tasks) == sample_size:
             break
 
