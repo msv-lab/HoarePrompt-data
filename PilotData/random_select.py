@@ -41,6 +41,7 @@ def select_matched_tasks(data1, data2, model1, model2, dataset, sample_size=25):
             code1 = task.get('generated_code')
             code2 = data2_dict[task_id].get('generated_code')
 
+            # filter mul-function cases
             if count_function_defs(code1) <= 1 and count_function_defs(code2) <= 1:
                 matched_task = [
                     {
