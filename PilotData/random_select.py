@@ -25,7 +25,6 @@ def select_matched_tasks(data1, data2, model1, model2, dataset, sample_size=25):
     data2_dict = {task['task_id']: task for task in data2}
 
     matched_tasks = []
-
     random.shuffle(data1)
 
     for task in data1:
