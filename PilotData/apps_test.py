@@ -7,7 +7,7 @@ def execute_code(code_str: str, input_data: str):
                                 capture_output=True, text=True, timeout=3)
         return result.stdout, result.stderr
     except subprocess.TimeoutExpired:
-        return '', 'Execution timed out after 3 seconds'
+        return '', 'TimeoutError: Execution exceeded time limit'
     except Exception as e:
         return '', str(e)
 

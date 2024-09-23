@@ -49,34 +49,33 @@ def select_matched_tasks(data1, data2, model1, model2, dataset, sample_size=25):
     for task in data1:
         task_id = task['task_id']
 
+        # find same task in data2
         if task_id in data2_dict:
-            code1 = task.get('generated_code')
-            code2 = data2_dict[task_id].get('generated_code')
+            task1_correct = is_task_correct(task, dataset)
+            task2_correct = is_task_correct(data2_dict[task_id], dataset)
+            task1_ce = task.get("counterexample")
+            task2_ce = data2_dict[task_id].get("counterexample")
 
-            # Filter multi-function cases
-            if count_function_defs(code1) <= 1 and count_function_defs(code2) <= 1:
-                task1_correct = is_task_correct(task, dataset)
-                task2_correct = is_task_correct(data2_dict[task_id], dataset)
+            matched_tasks.append({
+                "task_id": task_id,
+                "dataset": dataset,
+                "model": model1,
+                "correct": task1_correct,
+                "description": task.get("specification") or task.get("question"),
+                "generated_code": task["generated_code"],
+                "counter_example": task1_ce
+            })
+            matched_tasks.append({
+                "task_id": task_id,
+                "dataset": dataset,
+                "model": model2,
+                "correct": task2_correct,
+                "description": data2_dict[task_id].get("specification") or data2_dict[task_id].get("question"),
+                "generated_code": data2_dict[task_id]["generated_code"],
+                "counter_example": task2_ce
+            })
 
-                matched_tasks.append({
-                    "task_id": task_id,
-                    "dataset": dataset,
-                    "model": model1,
-                    "correct": task1_correct,
-                    "description": task.get("specification") or task.get("question"),
-                    "generated_code": task["generated_code"],
-                    "counter_example": task.get("counterexample")
-                })
-                matched_tasks.append({
-                    "task_id": task_id,
-                    "dataset": dataset,
-                    "model": model2,
-                    "correct": task2_correct,
-                    "description": data2_dict[task_id].get("specification") or data2_dict[task_id].get("question"),
-                    "generated_code": data2_dict[task_id]["generated_code"],
-                    "counter_example": data2_dict[task_id].get("counterexample")
-                })
-
+        # count the example
         if len(matched_tasks) // 2 == sample_size:
             break
 
