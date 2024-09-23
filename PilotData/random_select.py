@@ -28,6 +28,18 @@ def count_function_defs(code: str) -> int:
     return len(matches)
 
 
+def is_task_correct(task, dataset):
+    if dataset == "apps":
+        return task.get("pass_rate") == 1
+    elif dataset == "mbpp":
+        return (
+            task.get("base_accuracy") == 1
+            and task.get("plus_accuracy") == 1
+            and task.get("assertion_passed") is True
+        )
+    return False
+
+
 def select_matched_tasks(data1, data2, model1, model2, dataset, sample_size=25):
     data2_dict = {task['task_id']: task for task in data2}
 
@@ -41,25 +53,31 @@ def select_matched_tasks(data1, data2, model1, model2, dataset, sample_size=25):
             code1 = task.get('generated_code')
             code2 = data2_dict[task_id].get('generated_code')
 
-            # filter mul-function cases
+            # Filter multi-function cases
             if count_function_defs(code1) <= 1 and count_function_defs(code2) <= 1:
-                matched_task = [
-                    {
-                        "task_id": task_id,
-                        "dataset": dataset,
-                        "model": model1,
-                        **task
-                    },
-                    {
-                        "task_id": task_id,
-                        "dataset": dataset,
-                        "model": model2,
-                        **data2_dict[task_id]
-                    }
-                ]
-                matched_tasks.append(matched_task)
+                task1_correct = is_task_correct(task, dataset)
+                task2_correct = is_task_correct(data2_dict[task_id], dataset)
 
-        if len(matched_tasks) == sample_size:
+                matched_tasks.append({
+                    "task_id": task_id,
+                    "dataset": dataset,
+                    "model": model1,
+                    "correct": task1_correct,
+                    "description": task.get("specification") or task.get("question"),
+                    "generated_code": task["generated_code"],
+                    "counter_example": task.get("counterexample")
+                })
+                matched_tasks.append({
+                    "task_id": task_id,
+                    "dataset": dataset,
+                    "model": model2,
+                    "correct": task2_correct,
+                    "description": data2_dict[task_id].get("specification") or data2_dict[task_id].get("question"),
+                    "generated_code": data2_dict[task_id]["generated_code"],
+                    "counter_example": data2_dict[task_id].get("counterexample")
+                })
+
+        if len(matched_tasks) // 2 == sample_size:
             break
 
     return matched_tasks
@@ -69,10 +87,10 @@ if __name__ == "__main__":
     data_folder = Path("data")
 
     # data file path
-    apps_llama_file = data_folder / "apps_llama3-70b-8192_20240906.json"
-    apps_gpt_file = data_folder / "apps_gpt-4o-2024-05-13_20240906.json"
-    mbpp_llama_file = data_folder / "mbppplus_llama3-70b-8192_20240908.json"
-    mbpp_gpt_file = data_folder / "mbppplus_gpt-4o-2024-05-13_20240908.json"
+    apps_llama_file = data_folder / "apps_llama3-70b-8192_20240920.json"
+    apps_gpt_file = data_folder / "apps_gpt-4o-2024-05-13_20240922.json"
+    mbpp_llama_file = data_folder / "mbppplus_llama3-70b-8192_20240922.json"
+    mbpp_gpt_file = data_folder / "mbppplus_gpt-4o-2024-05-13_20240922.json"
 
     apps_llama_data = load_data(apps_llama_file)
     apps_gpt_data = load_data(apps_gpt_file)
@@ -96,5 +114,5 @@ if __name__ == "__main__":
     output_file = data_folder / "pilot.json"
     save_to_json(combined_data, output_file)
 
-    print(f"Selected {len(matched_apps_tasks)} matched tasks from APPs and {len(matched_mbpp_tasks)} matched tasks from MBPP.")
+    print(f"Selected {len(matched_apps_tasks) // 2} matched tasks from APPs and {len(matched_mbpp_tasks) // 2} matched tasks from MBPP.")
     print(f"Results saved to {output_file}")

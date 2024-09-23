@@ -229,7 +229,7 @@ def get_code(data_dir: Path, model: Model, output_file: Path, limit=150):
         test_inputs = test_case["inputs"]
         test_outputs = test_case["outputs"]
 
-        passed_tests, total_tests = execute_tests(test_inputs, test_outputs, generated_code)
+        passed_tests, total_tests, counterexample = execute_tests(test_inputs, test_outputs, generated_code)
         pass_rate = passed_tests / total_tests if total_tests > 0 else 0
 
         result = {
@@ -238,7 +238,8 @@ def get_code(data_dir: Path, model: Model, output_file: Path, limit=150):
             'generated_code': generated_code,
             'pass_rate': pass_rate,
             'passed_tests': passed_tests,
-            'total_tests': total_tests
+            'total_tests': total_tests,
+            'counterexample': counterexample
         }
         results.append(result)
         print("*" * 100)
@@ -268,11 +269,11 @@ if __name__ == "__main__":
     data_dir = Path("APPS") / "test"
     output_dir = Path(args.save) if args.save else Path('data')
 
-    # model_name = "gpt-4o-2024-05-13"
-    model_name = "llama3-70b-8192"
+    model_name = "gpt-4o-2024-05-13"
+    # model_name = "llama3-70b-8192"
     model = get_model(model_name, 0.7)
 
     timestamp = datetime.now().strftime("%Y%m%d")
     output_file = output_dir / f"apps_{model_name}_{timestamp}.json"
 
-    get_code(data_dir, model, output_file, 50)
+    get_code(data_dir, model, output_file, 300)

@@ -51,12 +51,16 @@ def get_code(data, model: Model, output_file: Path):
 
     for task in data:
         task_id = task['task_id']
+
+        if task_id == "Mbpp/255":
+            continue
         prompt = task['prompt']
         test = task["assertion"]
 
         specification = clean_prompt(prompt)
         formatted_prompt = CODE_GEN_PROMPT.format(prompt=prompt, test=test)
 
+        # allow 3 tries to get parseable code
         max_attempts = 3
         attempts = 0
         success = False
@@ -74,7 +78,7 @@ def get_code(data, model: Model, output_file: Path):
                 print(f"Task {task_id}: Syntax error on attempt {attempts}. Retrying...")
 
         if success:
-            base_accuracy, plus_accuracy, assertion_accuracy = test_function(task, generated_code)
+            base_accuracy, plus_accuracy, assertion_passed, counterexample = test_function(task, generated_code)
 
             result = {
                 'task_id': task_id,
@@ -82,14 +86,15 @@ def get_code(data, model: Model, output_file: Path):
                 'generated_code': generated_code,
                 'base_accuracy': base_accuracy,
                 'plus_accuracy': plus_accuracy,
-                'assertion_accuracy': assertion_accuracy
+                'assertion_passed': assertion_passed,
+                'counterexample': counterexample
             }
-
-            print("*" * 50)
-            print(f"finish task: {task_id} with base accuracy: {base_accuracy*100:.2f}% and plus accuracy: {plus_accuracy*100:.2f}%")
             results.append(result)
+
+            print(f"finish task: {task_id} with base accuracy: {base_accuracy*100:.2f}% and plus accuracy: {plus_accuracy*100:.2f}%")
         else:
             print(f"Task {task_id}: Failed to generate valid code after {max_attempts} attempts. Skipping...")
+        print("*" * 50)
 
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(results, f, ensure_ascii=False, indent=4)
