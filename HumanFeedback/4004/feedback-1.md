@@ -1,3 +1,0 @@
-1. The target is not necessarily the average of the minimum and maximum values. For example, for [2, 5], 3.5 cannot be the target. In this case, the smallest D should be 3.
-2. When the target is the average of the maximum and minimum values, during the iteration process in the list, diff can be an odd number. For example: [2, 5, 8], when the target is 5, diff is 3.
-3. diff is undefined outside the loop.

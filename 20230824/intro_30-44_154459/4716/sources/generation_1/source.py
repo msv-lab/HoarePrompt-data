@@ -1,5 +1,0 @@
-N, K = map(int, input().split())
-sticks = list(map(int, input().split()))
-sticks.sort(reverse=True)
-toy_length = sum(sticks[:K])
-print(toy_length)
