@@ -1,0 +1,116 @@
+[
+    {
+        "task_id": "0176",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Find the number of k-divisible numbers on the segment [a, b]. In other words you need to find the number of such integer values x that a ≤ x ≤ b and x is divisible by k.\n\n\n-----Input-----\n\nThe only line contains three space-separated integers k, a and b (1 ≤ k ≤ 10^18; - 10^18 ≤ a ≤ b ≤ 10^18).\n\n\n-----Output-----\n\nPrint the required number.\n\n\n-----Examples-----\nInput\n1 1 10\n\nOutput\n10\n\nInput\n2 -4 4\n\nOutput\n5",
+        "generated_code": "k, a, b = map(int, input().split())\nprint((b // k) - (a - 1) // k)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0176",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Find the number of k-divisible numbers on the segment [a, b]. In other words you need to find the number of such integer values x that a ≤ x ≤ b and x is divisible by k.\n\n\n-----Input-----\n\nThe only line contains three space-separated integers k, a and b (1 ≤ k ≤ 10^18; - 10^18 ≤ a ≤ b ≤ 10^18).\n\n\n-----Output-----\n\nPrint the required number.\n\n\n-----Examples-----\nInput\n1 1 10\n\nOutput\n10\n\nInput\n2 -4 4\n\nOutput\n5",
+        "generated_code": "k, a, b = map(int, input().split())\n\nif a % k == 0:\n    first_divisible = a\nelse:\n    first_divisible = a + (k - a % k)\n\nif b % k == 0:\n    last_divisible = b\nelse:\n    last_divisible = b - (b % k)\n\nif first_divisible > b or last_divisible < a:\n    print(0)\nelse:\n    print((last_divisible - first_divisible) // k + 1)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0016",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "A string is called bracket sequence if it does not contain any characters other than \"(\" and \")\". A bracket sequence is called regular if it it is possible to obtain correct arithmetic expression by inserting characters \"+\" and \"1\" into this sequence. For example, \"\", \"(())\" and \"()()\" are regular bracket sequences; \"))\" and \")((\" are bracket sequences (but not regular ones), and \"(a)\" and \"(1)+(1)\" are not bracket sequences at all.\n\nYou have a number of strings; each string is a bracket sequence of length $2$. So, overall you have $cnt_1$ strings \"((\", $cnt_2$ strings \"()\", $cnt_3$ strings \")(\" and $cnt_4$ strings \"))\". You want to write all these strings in some order, one after another; after that, you will get a long bracket sequence of length $2(cnt_1 + cnt_2 + cnt_3 + cnt_4)$. You wonder: is it possible to choose some order of the strings you have such that you will get a regular bracket sequence? Note that you may not remove any characters or strings, and you may not add anything either.\n\n\n-----Input-----\n\nThe input consists of four lines, $i$-th of them contains one integer $cnt_i$ ($0 \\le cnt_i \\le 10^9$).\n\n\n-----Output-----\n\nPrint one integer: $1$ if it is possible to form a regular bracket sequence by choosing the correct order of the given strings, $0$ otherwise.\n\n\n-----Examples-----\nInput\n3\n1\n4\n3\n\nOutput\n1\n\nInput\n0\n0\n0\n0\n\nOutput\n1\n\nInput\n1\n2\n3\n4\n\nOutput\n0\n\n\n\n-----Note-----\n\nIn the first example it is possible to construct a string \"(())()(()((()()()())))\", which is a regular bracket sequence.\n\nIn the second example it is possible to construct a string \"\", which is a regular bracket sequence.",
+        "generated_code": "cnt1, cnt2, cnt3, cnt4 = map(int, [input() for _ in range(4)])\n\nif cnt3 > cnt1:\n    print(0)\nelse:\n    print(1)\n",
+        "counter_example": {
+            "input": "3\n1\n4\n3\n",
+            "expected": "1\n",
+            "got": "0"
+        }
+    },
+    {
+        "task_id": "0016",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "A string is called bracket sequence if it does not contain any characters other than \"(\" and \")\". A bracket sequence is called regular if it it is possible to obtain correct arithmetic expression by inserting characters \"+\" and \"1\" into this sequence. For example, \"\", \"(())\" and \"()()\" are regular bracket sequences; \"))\" and \")((\" are bracket sequences (but not regular ones), and \"(a)\" and \"(1)+(1)\" are not bracket sequences at all.\n\nYou have a number of strings; each string is a bracket sequence of length $2$. So, overall you have $cnt_1$ strings \"((\", $cnt_2$ strings \"()\", $cnt_3$ strings \")(\" and $cnt_4$ strings \"))\". You want to write all these strings in some order, one after another; after that, you will get a long bracket sequence of length $2(cnt_1 + cnt_2 + cnt_3 + cnt_4)$. You wonder: is it possible to choose some order of the strings you have such that you will get a regular bracket sequence? Note that you may not remove any characters or strings, and you may not add anything either.\n\n\n-----Input-----\n\nThe input consists of four lines, $i$-th of them contains one integer $cnt_i$ ($0 \\le cnt_i \\le 10^9$).\n\n\n-----Output-----\n\nPrint one integer: $1$ if it is possible to form a regular bracket sequence by choosing the correct order of the given strings, $0$ otherwise.\n\n\n-----Examples-----\nInput\n3\n1\n4\n3\n\nOutput\n1\n\nInput\n0\n0\n0\n0\n\nOutput\n1\n\nInput\n1\n2\n3\n4\n\nOutput\n0\n\n\n\n-----Note-----\n\nIn the first example it is possible to construct a string \"(())()(()((()()()())))\", which is a regular bracket sequence.\n\nIn the second example it is possible to construct a string \"\", which is a regular bracket sequence.",
+        "generated_code": "cnt1 = int(input())\ncnt2 = int(input())\ncnt3 = int(input())\ncnt4 = int(input())\n\n# To form a regular bracket sequence:\n# 1. The total number of opening brackets must equal the total number of closing brackets.\n# 2. At any point in the sequence, the number of closing brackets should not exceed the number of opening brackets.\n\n# Total opening brackets = cnt1 + cnt2\n# Total closing brackets = cnt3 + cnt4\n\n# For the sequence to be regular:\n# cnt1 + cnt2 must equal cnt3 + cnt4\n# Also, we need cnt2 >= cnt3 to ensure that the closing brackets never exceed the opening brackets at any point\n\nif cnt1 + cnt2 == cnt3 + cnt4 and cnt2 >= cnt3:\n    print(1)\nelse:\n    print(0)\n",
+        "counter_example": {
+            "input": "3\n1\n4\n3\n",
+            "expected": "1\n",
+            "got": "0"
+        }
+    },
+    {
+        "task_id": "0281",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Even if the world is full of counterfeits, I still regard it as wonderful.\n\nPile up herbs and incense, and arise again from the flames and ashes of its predecessor — as is known to many, the phoenix does it like this.\n\nThe phoenix has a rather long lifespan, and reincarnates itself once every a! years. Here a! denotes the factorial of integer a, that is, a! = 1 × 2 × ... × a. Specifically, 0! = 1.\n\nKoyomi doesn't care much about this, but before he gets into another mess with oddities, he is interested in the number of times the phoenix will reincarnate in a timespan of b! years, that is, [Image]. Note that when b ≥ a this value is always integer.\n\nAs the answer can be quite large, it would be enough for Koyomi just to know the last digit of the answer in decimal representation. And you're here to provide Koyomi with this knowledge.\n\n\n-----Input-----\n\nThe first and only line of input contains two space-separated integers a and b (0 ≤ a ≤ b ≤ 10^18).\n\n\n-----Output-----\n\nOutput one line containing a single decimal digit — the last digit of the value that interests Koyomi.\n\n\n-----Examples-----\nInput\n2 4\n\nOutput\n2\n\nInput\n0 10\n\nOutput\n0\n\nInput\n107 109\n\nOutput\n2\n\n\n\n-----Note-----\n\nIn the first example, the last digit of $\\frac{4 !}{2 !} = 12$ is 2;\n\nIn the second example, the last digit of $\\frac{10 !}{0 !} = 3628800$ is 0;\n\nIn the third example, the last digit of $\\frac{109 !}{107 !} = 11772$ is 2.",
+        "generated_code": "a, b = map(int, input().split())\ndef factorial(n):\n    res = 1\n    for i in range(1, n+1):\n        res *= i\n    return res\n\nres = factorial(b) // factorial(a)\nprint(res % 10)\n",
+        "counter_example": {
+            "input": "998244355 998244359\n",
+            "expected": "4\n",
+            "got": "TimeoutError: Execution exceeded time limit"
+        }
+    },
+    {
+        "task_id": "0281",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Even if the world is full of counterfeits, I still regard it as wonderful.\n\nPile up herbs and incense, and arise again from the flames and ashes of its predecessor — as is known to many, the phoenix does it like this.\n\nThe phoenix has a rather long lifespan, and reincarnates itself once every a! years. Here a! denotes the factorial of integer a, that is, a! = 1 × 2 × ... × a. Specifically, 0! = 1.\n\nKoyomi doesn't care much about this, but before he gets into another mess with oddities, he is interested in the number of times the phoenix will reincarnate in a timespan of b! years, that is, [Image]. Note that when b ≥ a this value is always integer.\n\nAs the answer can be quite large, it would be enough for Koyomi just to know the last digit of the answer in decimal representation. And you're here to provide Koyomi with this knowledge.\n\n\n-----Input-----\n\nThe first and only line of input contains two space-separated integers a and b (0 ≤ a ≤ b ≤ 10^18).\n\n\n-----Output-----\n\nOutput one line containing a single decimal digit — the last digit of the value that interests Koyomi.\n\n\n-----Examples-----\nInput\n2 4\n\nOutput\n2\n\nInput\n0 10\n\nOutput\n0\n\nInput\n107 109\n\nOutput\n2\n\n\n\n-----Note-----\n\nIn the first example, the last digit of $\\frac{4 !}{2 !} = 12$ is 2;\n\nIn the second example, the last digit of $\\frac{10 !}{0 !} = 3628800$ is 0;\n\nIn the third example, the last digit of $\\frac{109 !}{107 !} = 11772$ is 2.",
+        "generated_code": "def last_digit_of_quotient(a, b):\n    if b - a >= 5:\n        return 0\n    else:\n        result = 1\n        for i in range(a + 1, b + 1):\n            result *= i\n            result %= 10  # We only care about the last digit\n        return result\n\n# Reading input in the standard input format\na, b = map(int, input().split())\nprint(last_digit_of_quotient(a, b))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0223",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Let's define a function $f(p)$ on a permutation $p$ as follows. Let $g_i$ be the greatest common divisor (GCD) of elements $p_1$, $p_2$, ..., $p_i$ (in other words, it is the GCD of the prefix of length $i$). Then $f(p)$ is the number of distinct elements among $g_1$, $g_2$, ..., $g_n$.\n\nLet $f_{max}(n)$ be the maximum value of $f(p)$ among all permutations $p$ of integers $1$, $2$, ..., $n$.\n\nGiven an integers $n$, count the number of permutations $p$ of integers $1$, $2$, ..., $n$, such that $f(p)$ is equal to $f_{max}(n)$. Since the answer may be large, print the remainder of its division by $1000\\,000\\,007 = 10^9 + 7$.\n\n\n-----Input-----\n\nThe only line contains the integer $n$ ($2 \\le n \\le 10^6$) — the length of the permutations.\n\n\n-----Output-----\n\nThe only line should contain your answer modulo $10^9+7$.\n\n\n-----Examples-----\nInput\n2\n\nOutput\n1\nInput\n3\n\nOutput\n4\nInput\n6\n\nOutput\n120\n\n\n-----Note-----\n\nConsider the second example: these are the permutations of length $3$:  $[1,2,3]$, $f(p)=1$.  $[1,3,2]$, $f(p)=1$.  $[2,1,3]$, $f(p)=2$.  $[2,3,1]$, $f(p)=2$.  $[3,1,2]$, $f(p)=2$.  $[3,2,1]$, $f(p)=2$. \n\nThe maximum value $f_{max}(3) = 2$, and there are $4$ permutations $p$ such that $f(p)=2$.",
+        "generated_code": "def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n\ndef f_max(n):\n    res = 0\n    for i in range(1, n+1):\n        res = max(res, gcd(res, i))\n    return res\n\ndef count_permutations(n, f_max_n):\n    MOD = 10**9 + 7\n    dp = [0]*(f_max_n+1)\n    dp[0] = 1\n    for i in range(1, n+1):\n        for j in range(f_max_n, 0, -1):\n            dp[j] += dp[j-1]\n            dp[j] %= MOD\n    return dp[f_max_n]\n\nn = int(input())\nf_max_n = f_max(n)\nprint(count_permutations(n, f_max_n))\n",
+        "counter_example": {
+            "input": "2\n",
+            "expected": "1",
+            "got": "2"
+        }
+    },
+    {
+        "task_id": "0223",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Let's define a function $f(p)$ on a permutation $p$ as follows. Let $g_i$ be the greatest common divisor (GCD) of elements $p_1$, $p_2$, ..., $p_i$ (in other words, it is the GCD of the prefix of length $i$). Then $f(p)$ is the number of distinct elements among $g_1$, $g_2$, ..., $g_n$.\n\nLet $f_{max}(n)$ be the maximum value of $f(p)$ among all permutations $p$ of integers $1$, $2$, ..., $n$.\n\nGiven an integers $n$, count the number of permutations $p$ of integers $1$, $2$, ..., $n$, such that $f(p)$ is equal to $f_{max}(n)$. Since the answer may be large, print the remainder of its division by $1000\\,000\\,007 = 10^9 + 7$.\n\n\n-----Input-----\n\nThe only line contains the integer $n$ ($2 \\le n \\le 10^6$) — the length of the permutations.\n\n\n-----Output-----\n\nThe only line should contain your answer modulo $10^9+7$.\n\n\n-----Examples-----\nInput\n2\n\nOutput\n1\nInput\n3\n\nOutput\n4\nInput\n6\n\nOutput\n120\n\n\n-----Note-----\n\nConsider the second example: these are the permutations of length $3$:  $[1,2,3]$, $f(p)=1$.  $[1,3,2]$, $f(p)=1$.  $[2,1,3]$, $f(p)=2$.  $[2,3,1]$, $f(p)=2$.  $[3,1,2]$, $f(p)=2$.  $[3,2,1]$, $f(p)=2$. \n\nThe maximum value $f_{max}(3) = 2$, and there are $4$ permutations $p$ such that $f(p)=2$.",
+        "generated_code": "MOD = 10**9 + 7\n\ndef factorial_mod(n, mod):\n    result = 1\n    for i in range(2, n+1):\n        result = (result * i) % mod\n    return result\n\n# Read input\nn = int(input())\n\n# Compute the result\nif n == 2:\n    result = 1\nelse:\n    result = factorial_mod(n-1, MOD)\n\n# Print the result\nprint(result)\n",
+        "counter_example": {
+            "input": "3\n",
+            "expected": "4",
+            "got": "2"
+        }
+    },
+    {
+        "task_id": "0010",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "On the planet Mars a year lasts exactly n days (there are no leap years on Mars). But Martians have the same weeks as earthlings — 5 work days and then 2 days off. Your task is to determine the minimum possible and the maximum possible number of days off per year on Mars.\n\n\n-----Input-----\n\nThe first line of the input contains a positive integer n (1 ≤ n ≤ 1 000 000) — the number of days in a year on Mars.\n\n\n-----Output-----\n\nPrint two integers — the minimum possible and the maximum possible number of days off per year on Mars.\n\n\n-----Examples-----\nInput\n14\n\nOutput\n4 4\n\nInput\n2\n\nOutput\n0 2\n\n\n\n-----Note-----\n\nIn the first sample there are 14 days in a year on Mars, and therefore independently of the day a year starts with there will be exactly 4 days off .\n\nIn the second sample there are only 2 days in a year on Mars, and they can both be either work days or days off.",
+        "generated_code": "n = int(input())\nprint((n - 1) // 5 * 2, n - (n - 1) // 5 * 5)\n",
+        "counter_example": {
+            "input": "3\n",
+            "expected": "0 2\n",
+            "got": "0 3"
+        }
+    },
+    {
+        "task_id": "0010",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "On the planet Mars a year lasts exactly n days (there are no leap years on Mars). But Martians have the same weeks as earthlings — 5 work days and then 2 days off. Your task is to determine the minimum possible and the maximum possible number of days off per year on Mars.\n\n\n-----Input-----\n\nThe first line of the input contains a positive integer n (1 ≤ n ≤ 1 000 000) — the number of days in a year on Mars.\n\n\n-----Output-----\n\nPrint two integers — the minimum possible and the maximum possible number of days off per year on Mars.\n\n\n-----Examples-----\nInput\n14\n\nOutput\n4 4\n\nInput\n2\n\nOutput\n0 2\n\n\n\n-----Note-----\n\nIn the first sample there are 14 days in a year on Mars, and therefore independently of the day a year starts with there will be exactly 4 days off .\n\nIn the second sample there are only 2 days in a year on Mars, and they can both be either work days or days off.",
+        "generated_code": "n = int(input())\n\n# Calculate full weeks and the remainder days\nfull_weeks = n // 7\nremainder_days = n % 7\n\n# Max days off is when the remainder days are all days off (maximum 2 days off)\nmax_days_off = full_weeks * 2 + min(remainder_days, 2)\n\n# Min days off is when the remainder days are all work days, but if there are more than 5 remainder days, the extra are days off\nmin_days_off = full_weeks * 2 + max(0, remainder_days - 5)\n\nprint(min_days_off, max_days_off)\n",
+        "counter_example": null
+    }
+]

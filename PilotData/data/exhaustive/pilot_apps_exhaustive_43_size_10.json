@@ -1,0 +1,120 @@
+[
+    {
+        "task_id": "0266",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "You have a positive integer m and a non-negative integer s. Your task is to find the smallest and the largest of the numbers that have length m and sum of digits s. The required numbers should be non-negative integers written in the decimal base without leading zeroes.\n\n\n-----Input-----\n\nThe single line of the input contains a pair of integers m, s (1 ≤ m ≤ 100, 0 ≤ s ≤ 900) — the length and the sum of the digits of the required numbers.\n\n\n-----Output-----\n\nIn the output print the pair of the required non-negative integer numbers — first the minimum possible number, then — the maximum possible number. If no numbers satisfying conditions required exist, print the pair of numbers \"-1 -1\" (without the quotes).\n\n\n-----Examples-----\nInput\n2 15\n\nOutput\n69 96\n\nInput\n3 0\n\nOutput\n-1 -1",
+        "generated_code": "m, s = map(int, input().split())\n\ndef min_num(m, s):\n    if s == 0:\n        if m > 1:\n            return -1\n        else:\n            return 0\n    if s > 9 * m:\n        return -1\n    num = ''\n    for _ in range(m):\n        if s > 9:\n            num += '9'\n            s -= 9\n        else:\n            num += str(s)\n            s = 0\n    return int(num)\n\ndef max_num(m, s):\n    if s == 0:\n        if m > 1:\n            return -1\n        else:\n            return 0\n    if s > 9 * m:\n        return -1\n    num = ''\n    for _ in range(m - 1):\n        if s > 9:\n            num += '9'\n            s -= 9\n        else:\n            num += str(s)\n            s = 0\n    num += str(s)\n    return int(num)\n\nmin_num_val = min_num(m, s)\nmax_num_val = max_num(m, s)\n\nif min_num_val == -1 or max_num_val == -1:\n    print(-1, -1)\nelse:\n    print(min_num_val, max_num_val)\n",
+        "counter_example": {
+            "input": "2 15\n",
+            "expected": "69 96\n",
+            "got": "96 96"
+        }
+    },
+    {
+        "task_id": "0266",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "You have a positive integer m and a non-negative integer s. Your task is to find the smallest and the largest of the numbers that have length m and sum of digits s. The required numbers should be non-negative integers written in the decimal base without leading zeroes.\n\n\n-----Input-----\n\nThe single line of the input contains a pair of integers m, s (1 ≤ m ≤ 100, 0 ≤ s ≤ 900) — the length and the sum of the digits of the required numbers.\n\n\n-----Output-----\n\nIn the output print the pair of the required non-negative integer numbers — first the minimum possible number, then — the maximum possible number. If no numbers satisfying conditions required exist, print the pair of numbers \"-1 -1\" (without the quotes).\n\n\n-----Examples-----\nInput\n2 15\n\nOutput\n69 96\n\nInput\n3 0\n\nOutput\n-1 -1",
+        "generated_code": "def find_min_max(m, s):\n    if s == 0:\n        if m == 1:\n            return \"0 0\"\n        else:\n            return \"-1 -1\"\n    \n    if s > 9 * m:\n        return \"-1 -1\"\n    \n    # Find the minimum number\n    min_num = [0] * m\n    sum_s = s\n    for i in range(m-1, -1, -1):\n        if sum_s > 9:\n            min_num[i] = 9\n            sum_s -= 9\n        else:\n            min_num[i] = sum_s\n            break\n    \n    if min_num[0] == 0:\n        for i in range(1, m):\n            if min_num[i] > 0:\n                min_num[i] -= 1\n                min_num[0] = 1\n                break\n    \n    # Find the maximum number\n    max_num = [0] * m\n    sum_s = s\n    for i in range(m):\n        if sum_s > 9:\n            max_num[i] = 9\n            sum_s -= 9\n        else:\n            max_num[i] = sum_s\n            break\n    \n    return ''.join(map(str, min_num)) + ' ' + ''.join(map(str, max_num))\n\n\n# Read the input\nm, s = map(int, input().split())\n\n# Get the result\nresult = find_min_max(m, s)\n\n# Print the result\nprint(result)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0001",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Anton has the integer x. He is interested what positive integer, which doesn't exceed x, has the maximum sum of digits.\n\nYour task is to help Anton and to find the integer that interests him. If there are several such integers, determine the biggest of them. \n\n\n-----Input-----\n\nThe first line contains the positive integer x (1 ≤ x ≤ 10^18) — the integer which Anton has. \n\n\n-----Output-----\n\nPrint the positive integer which doesn't exceed x and has the maximum sum of digits. If there are several such integers, print the biggest of them. Printed integer must not contain leading zeros.\n\n\n-----Examples-----\nInput\n100\n\nOutput\n99\n\nInput\n48\n\nOutput\n48\n\nInput\n521\n\nOutput\n499",
+        "generated_code": "x = int(input())\n\nmax_sum = 0\nmax_num = 0\n\nfor i in range(1, x + 1):\n    digit_sum = sum(int(digit) for digit in str(i))\n    if digit_sum > max_sum:\n        max_sum = digit_sum\n        max_num = i\n\nprint(max_num)\n",
+        "counter_example": {
+            "input": "48\n",
+            "expected": "48\n",
+            "got": "39"
+        }
+    },
+    {
+        "task_id": "0001",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Anton has the integer x. He is interested what positive integer, which doesn't exceed x, has the maximum sum of digits.\n\nYour task is to help Anton and to find the integer that interests him. If there are several such integers, determine the biggest of them. \n\n\n-----Input-----\n\nThe first line contains the positive integer x (1 ≤ x ≤ 10^18) — the integer which Anton has. \n\n\n-----Output-----\n\nPrint the positive integer which doesn't exceed x and has the maximum sum of digits. If there are several such integers, print the biggest of them. Printed integer must not contain leading zeros.\n\n\n-----Examples-----\nInput\n100\n\nOutput\n99\n\nInput\n48\n\nOutput\n48\n\nInput\n521\n\nOutput\n499",
+        "generated_code": "def sum_of_digits(n):\n    return sum(int(digit) for digit in str(n))\n\nx = int(input().strip())\n\n# Convert x to a string to manipulate digits\nx_str = str(x)\nn = len(x_str)\n\n# Generate a candidate number by replacing the last non-zero digit with zero and all following digits with 9\nif x_str[0] != '1':\n    candidate = int(x_str[0]) - 1\n    candidate = str(candidate) + '9' * (n - 1)\nelse:\n    candidate = '9' * (n - 1)\ncandidate = int(candidate)\n\n# Compare sum of digits of x and candidate\nsum_x = sum_of_digits(x)\nsum_candidate = sum_of_digits(candidate)\n\nif sum_candidate > sum_x:\n    print(candidate)\nelse:\n    print(x)\n",
+        "counter_example": {
+            "input": "1\n",
+            "expected": "1\n",
+            "got": "Traceback (most recent call last):\n  File \"<string>\", line 16, in <module>\nValueError: invalid literal for int() with base 10: ''"
+        }
+    },
+    {
+        "task_id": "0063",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Vova again tries to play some computer card game.\n\nThe rules of deck creation in this game are simple. Vova is given an existing deck of n cards and a magic number k. The order of the cards in the deck is fixed. Each card has a number written on it; number a_{i} is written on the i-th card in the deck.\n\nAfter receiving the deck and the magic number, Vova removes x (possibly x = 0) cards from the top of the deck, y (possibly y = 0) cards from the bottom of the deck, and the rest of the deck is his new deck (Vova has to leave at least one card in the deck after removing cards). So Vova's new deck actually contains cards x + 1, x + 2, ... n - y - 1, n - y from the original deck.\n\nVova's new deck is considered valid iff the product of all numbers written on the cards in his new deck is divisible by k. So Vova received a deck (possibly not a valid one) and a number k, and now he wonders, how many ways are there to choose x and y so the deck he will get after removing x cards from the top and y cards from the bottom is valid?\n\n\n-----Input-----\n\nThe first line contains two integers n and k (1 ≤ n ≤ 100 000, 1 ≤ k ≤ 10^9).\n\nThe second line contains n integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ 10^9) — the numbers written on the cards.\n\n\n-----Output-----\n\nPrint the number of ways to choose x and y so the resulting deck is valid.\n\n\n-----Examples-----\nInput\n3 4\n6 2 8\n\nOutput\n4\n\nInput\n3 6\n9 1 14\n\nOutput\n1\n\n\n\n-----Note-----\n\nIn the first example the possible values of x and y are:\n\n  x = 0, y = 0;  x = 1, y = 0;  x = 2, y = 0;  x = 0, y = 1.",
+        "generated_code": "n, k = map(int, input().split())\nnums = list(map(int, input().split()))\n\ndef gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n\nlcm = 1\nfor num in nums:\n    lcm = lcm * num // gcd(lcm, num)\n\nres = 0\nfor i in range(n):\n    temp = lcm\n    for j in range(i, n):\n        temp = temp * nums[j] // gcd(temp, nums[j])\n        if temp % k == 0:\n            res += 1\n\nprint(res)\n",
+        "counter_example": {
+            "input": "3 4\n6 2 8\n",
+            "expected": "4\n",
+            "got": "6"
+        }
+    },
+    {
+        "task_id": "0063",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Vova again tries to play some computer card game.\n\nThe rules of deck creation in this game are simple. Vova is given an existing deck of n cards and a magic number k. The order of the cards in the deck is fixed. Each card has a number written on it; number a_{i} is written on the i-th card in the deck.\n\nAfter receiving the deck and the magic number, Vova removes x (possibly x = 0) cards from the top of the deck, y (possibly y = 0) cards from the bottom of the deck, and the rest of the deck is his new deck (Vova has to leave at least one card in the deck after removing cards). So Vova's new deck actually contains cards x + 1, x + 2, ... n - y - 1, n - y from the original deck.\n\nVova's new deck is considered valid iff the product of all numbers written on the cards in his new deck is divisible by k. So Vova received a deck (possibly not a valid one) and a number k, and now he wonders, how many ways are there to choose x and y so the deck he will get after removing x cards from the top and y cards from the bottom is valid?\n\n\n-----Input-----\n\nThe first line contains two integers n and k (1 ≤ n ≤ 100 000, 1 ≤ k ≤ 10^9).\n\nThe second line contains n integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ 10^9) — the numbers written on the cards.\n\n\n-----Output-----\n\nPrint the number of ways to choose x and y so the resulting deck is valid.\n\n\n-----Examples-----\nInput\n3 4\n6 2 8\n\nOutput\n4\n\nInput\n3 6\n9 1 14\n\nOutput\n1\n\n\n\n-----Note-----\n\nIn the first example the possible values of x and y are:\n\n  x = 0, y = 0;  x = 1, y = 0;  x = 2, y = 0;  x = 0, y = 1.",
+        "generated_code": "def count_valid_decks(n, k, cards):\n    from math import gcd\n    from functools import reduce\n    \n    def lcm(a, b):\n        return a * b // gcd(a, b)\n    \n    def product(arr):\n        return reduce(lambda x, y: x * y, arr, 1)\n    \n    total_product = product(cards)\n    \n    if total_product % k != 0:\n        return 0\n    \n    right_product = [1] * (n + 1)\n    for i in range(n - 1, -1, -1):\n        right_product[i] = right_product[i + 1] * cards[i]\n    \n    valid_ways = 0\n    left_product = 1\n    \n    for x in range(n):\n        if left_product * right_product[x + 1] % k == 0:\n            valid_ways += 1\n        left_product *= cards[x]\n    \n    return valid_ways\n\n# Reading input\nimport sys\ninput = sys.stdin.read\ndata = input().split()\nn = int(data[0])\nk = int(data[1])\ncards = list(map(int, data[2:]))\n\n# Calculating and printing the number of valid ways\nprint(count_valid_decks(n, k, cards))\n",
+        "counter_example": {
+            "input": "3 4\n6 2 8\n",
+            "expected": "4\n",
+            "got": "3"
+        }
+    },
+    {
+        "task_id": "0214",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Bishwock is a chess figure that consists of three squares resembling an \"L-bar\". This figure can be rotated by 90, 180 and 270 degrees so it can have four possible states:\n\n \n\nXX   XX   .X   X.\n\nX.   .X   XX   XX\n\n \n\nBishwocks don't attack any squares and can even occupy on the adjacent squares as long as they don't occupy the same square. \n\nVasya has a board with $2\\times n$ squares onto which he wants to put some bishwocks. To his dismay, several squares on this board are already occupied by pawns and Vasya can't put bishwocks there. However, pawns also don't attack bishwocks and they can occupy adjacent squares peacefully.\n\nKnowing the positions of pawns on the board, help Vasya to determine the maximum amount of bishwocks he can put onto the board so that they wouldn't occupy the same squares and wouldn't occupy squares with pawns.\n\n\n-----Input-----\n\nThe input contains two nonempty strings that describe Vasya's board. Those strings contain only symbols \"0\" (zero) that denote the empty squares and symbols \"X\" (uppercase English letter) that denote the squares occupied by pawns. Strings are nonempty and are of the same length that does not exceed $100$.\n\n\n-----Output-----\n\nOutput a single integer — the maximum amount of bishwocks that can be placed onto the given board.\n\n\n-----Examples-----\nInput\n00\n00\n\nOutput\n1\nInput\n00X00X0XXX0\n0XXX0X00X00\n\nOutput\n4\nInput\n0X0X0\n0X0X0\n\nOutput\n0\nInput\n0XXX0\n00000\n\nOutput\n2",
+        "generated_code": "s1 = input()\ns2 = input()\n\nn = len(s1)\nres = 0\ni = 0\nwhile i < n:\n    if s1[i] == '0' and s2[i] == '0':\n        if i + 1 < n and s1[i + 1] == '0' and s2[i + 1] == '0':\n            res += 1\n            i += 2\n        elif i + 2 < n and s1[i + 2] == '0' and s2[i + 2] == '0':\n            res += 1\n            i += 3\n        else:\n            i += 1\n    else:\n        i += 1\nprint(res)\n",
+        "counter_example": {
+            "input": "00X00X0XXX0\n0XXX0X00X00\n",
+            "expected": "4",
+            "got": "1"
+        }
+    },
+    {
+        "task_id": "0214",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Bishwock is a chess figure that consists of three squares resembling an \"L-bar\". This figure can be rotated by 90, 180 and 270 degrees so it can have four possible states:\n\n \n\nXX   XX   .X   X.\n\nX.   .X   XX   XX\n\n \n\nBishwocks don't attack any squares and can even occupy on the adjacent squares as long as they don't occupy the same square. \n\nVasya has a board with $2\\times n$ squares onto which he wants to put some bishwocks. To his dismay, several squares on this board are already occupied by pawns and Vasya can't put bishwocks there. However, pawns also don't attack bishwocks and they can occupy adjacent squares peacefully.\n\nKnowing the positions of pawns on the board, help Vasya to determine the maximum amount of bishwocks he can put onto the board so that they wouldn't occupy the same squares and wouldn't occupy squares with pawns.\n\n\n-----Input-----\n\nThe input contains two nonempty strings that describe Vasya's board. Those strings contain only symbols \"0\" (zero) that denote the empty squares and symbols \"X\" (uppercase English letter) that denote the squares occupied by pawns. Strings are nonempty and are of the same length that does not exceed $100$.\n\n\n-----Output-----\n\nOutput a single integer — the maximum amount of bishwocks that can be placed onto the given board.\n\n\n-----Examples-----\nInput\n00\n00\n\nOutput\n1\nInput\n00X00X0XXX0\n0XXX0X00X00\n\nOutput\n4\nInput\n0X0X0\n0X0X0\n\nOutput\n0\nInput\n0XXX0\n00000\n\nOutput\n2",
+        "generated_code": "def max_bishwocks(board1, board2):\n    n = len(board1)\n    board = [list(board1), list(board2)]\n    \n    def can_place_bishwock(i, j, shape):\n        # Check if we can place the shape starting at (i, j)\n        for dx, dy in shape:\n            ni, nj = i + dx, j + dy\n            if ni >= 2 or nj >= n or board[ni][nj] == 'X':\n                return False\n        return True\n    \n    def place_bishwock(i, j, shape):\n        # Place the shape starting at (i, j)\n        for dx, dy in shape:\n            ni, nj = i + dx, j + dy\n            board[ni][nj] = 'X'\n    \n    # Define all four possible shapes of a Bishwock\n    shapes = [\n        [(0, 0), (0, 1), (1, 0)],  # Original shape\n        [(0, 0), (0, 1), (1, 1)],  # Rotated 90 degrees\n        [(0, 1), (1, 0), (1, 1)],  # Rotated 180 degrees\n        [(0, 0), (1, 0), (1, 1)]   # Rotated 270 degrees\n    ]\n    \n    count = 0\n    for j in range(n):\n        for i in range(2):\n            for shape in shapes:\n                if can_place_bishwock(i, j, shape):\n                    place_bishwock(i, j, shape)\n                    count += 1\n                    break  # Move to the next position after placing a Bishwock\n    \n    return count\n\n# Reading input\nboard1 = input().strip()\nboard2 = input().strip()\n\n# Processing and Output\nprint(max_bishwocks(board1, board2))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0057",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "After making bad dives into swimming pools, Wilbur wants to build a swimming pool in the shape of a rectangle in his backyard. He has set up coordinate axes, and he wants the sides of the rectangle to be parallel to them. Of course, the area of the rectangle must be positive. Wilbur had all four vertices of the planned pool written on a paper, until his friend came along and erased some of the vertices.\n\nNow Wilbur is wondering, if the remaining n vertices of the initial rectangle give enough information to restore the area of the planned swimming pool.\n\n\n-----Input-----\n\nThe first line of the input contains a single integer n (1 ≤ n ≤ 4) — the number of vertices that were not erased by Wilbur's friend.\n\nEach of the following n lines contains two integers x_{i} and y_{i} ( - 1000 ≤ x_{i}, y_{i} ≤ 1000) —the coordinates of the i-th vertex that remains. Vertices are given in an arbitrary order.\n\nIt's guaranteed that these points are distinct vertices of some rectangle, that has positive area and which sides are parallel to the coordinate axes.\n\n\n-----Output-----\n\nPrint the area of the initial rectangle if it could be uniquely determined by the points remaining. Otherwise, print  - 1. \n\n\n-----Examples-----\nInput\n2\n0 0\n1 1\n\nOutput\n1\n\nInput\n1\n1 1\n\nOutput\n-1\n\n\n\n-----Note-----\n\nIn the first sample, two opposite corners of the initial rectangle are given, and that gives enough information to say that the rectangle is actually a unit square.\n\nIn the second sample there is only one vertex left and this is definitely not enough to uniquely define the area.",
+        "generated_code": "n = int(input())\npoints = []\nfor _ in range(n):\n    x, y = map(int, input().split())\n    points.append((x, y))\n\ndef find_area(points):\n    x_coords = sorted(list(set([point[0] for point in points])))\n    y_coords = sorted(list(set([point[1] for point in points])))\n    if len(x_coords) != 2 or len(y_coords) != 2:\n        return -1\n    else:\n        return abs((x_coords[1] - x_coords[0]) * (y_coords[1] - y_coords[0]))\n\nprint(find_area(points))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0057",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "After making bad dives into swimming pools, Wilbur wants to build a swimming pool in the shape of a rectangle in his backyard. He has set up coordinate axes, and he wants the sides of the rectangle to be parallel to them. Of course, the area of the rectangle must be positive. Wilbur had all four vertices of the planned pool written on a paper, until his friend came along and erased some of the vertices.\n\nNow Wilbur is wondering, if the remaining n vertices of the initial rectangle give enough information to restore the area of the planned swimming pool.\n\n\n-----Input-----\n\nThe first line of the input contains a single integer n (1 ≤ n ≤ 4) — the number of vertices that were not erased by Wilbur's friend.\n\nEach of the following n lines contains two integers x_{i} and y_{i} ( - 1000 ≤ x_{i}, y_{i} ≤ 1000) —the coordinates of the i-th vertex that remains. Vertices are given in an arbitrary order.\n\nIt's guaranteed that these points are distinct vertices of some rectangle, that has positive area and which sides are parallel to the coordinate axes.\n\n\n-----Output-----\n\nPrint the area of the initial rectangle if it could be uniquely determined by the points remaining. Otherwise, print  - 1. \n\n\n-----Examples-----\nInput\n2\n0 0\n1 1\n\nOutput\n1\n\nInput\n1\n1 1\n\nOutput\n-1\n\n\n\n-----Note-----\n\nIn the first sample, two opposite corners of the initial rectangle are given, and that gives enough information to say that the rectangle is actually a unit square.\n\nIn the second sample there is only one vertex left and this is definitely not enough to uniquely define the area.",
+        "generated_code": "def determine_area(n, vertices):\n    if n == 1 or n == 3:\n        return -1\n    elif n == 2:\n        x1, y1 = vertices[0]\n        x2, y2 = vertices[1]\n        return abs(x2 - x1) * abs(y2 - y1)\n    else:  # n == 4\n        x_coords = set()\n        y_coords = set()\n        for x, y in vertices:\n            x_coords.add(x)\n            y_coords.add(y)\n        if len(x_coords) == 2 and len(y_coords) == 2:\n            return abs(max(x_coords) - min(x_coords)) * abs(max(y_coords) - min(y_coords))\n        else:\n            return -1\n\nif __name__ == \"__main__\":\n    import sys\n    input = sys.stdin.read\n    data = input().split()\n    n = int(data[0])\n    vertices = []\n    index = 1\n    for i in range(n):\n        x = int(data[index])\n        y = int(data[index + 1])\n        vertices.append((x, y))\n        index += 2\n    print(determine_area(n, vertices))\n",
+        "counter_example": {
+            "input": "2\n-1000 -1000\n-1000 0\n",
+            "expected": "-1\n",
+            "got": "0"
+        }
+    }
+]

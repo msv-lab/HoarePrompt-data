@@ -1,0 +1,199 @@
+[
+    {
+        "task_id": "Mbpp/245",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function that takes an array and finds the maximum sum of a bitonic subsequence for the given array, where a sequence is bitonic if it is first increasing and then decreasing.",
+        "generated_code": "def max_sum(arr):\n    n = len(arr)\n    inc = [0]*n\n    dec = [0]*n\n    inc[0] = arr[0]\n    for i in range(1, n):\n        inc[i] = arr[i]\n        for j in range(i):\n            if arr[i] > arr[j]:\n                inc[i] = max(inc[i], inc[j] + arr[i])\n    dec[n-1] = arr[n-1]\n    for i in range(n-2, -1, -1):\n        dec[i] = arr[i]\n        for j in range(i+1, n):\n            if arr[i] > arr[j]:\n                dec[i] = max(dec[i], dec[j] + arr[i])\n    max_sum = max(inc)\n    return max_sum\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                [
+                    1,
+                    15,
+                    51,
+                    45,
+                    33,
+                    100,
+                    12,
+                    18,
+                    9
+                ]
+            ],
+            "expected": 194,
+            "got": 167
+        }
+    },
+    {
+        "task_id": "Mbpp/245",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function that takes an array and finds the maximum sum of a bitonic subsequence for the given array, where a sequence is bitonic if it is first increasing and then decreasing.",
+        "generated_code": "def max_sum(arr):\n    n = len(arr)\n    \n    if n == 0:\n        return 0\n    \n    # Step 1: Calculate MSIS for each element\n    msis = [0] * n\n    for i in range(n):\n        msis[i] = arr[i]\n        for j in range(i):\n            if arr[j] < arr[i] and msis[i] < msis[j] + arr[i]:\n                msis[i] = msis[j] + arr[i]\n    \n    # Step 2: Calculate MSDS for each element\n    msds = [0] * n\n    for i in range(n-1, -1, -1):\n        msds[i] = arr[i]\n        for j in range(n-1, i, -1):\n            if arr[j] < arr[i] and msds[i] < msds[j] + arr[i]:\n                msds[i] = msds[j] + arr[i]\n    \n    # Step 3: Combine MSIS and MSDS to get the maximum sum bitonic subsequence\n    max_bitonic_sum = 0\n    for i in range(n):\n        max_bitonic_sum = max(max_bitonic_sum, msis[i] + msds[i] - arr[i])\n    \n    return max_bitonic_sum\n\n# Tests\nassert max_sum([1, 15, 51, 45, 33, 100, 12, 18, 9]) == 194\nassert max_sum([80, 60, 30, 40, 20, 10]) == 210\nassert max_sum([2, 3, 14, 16, 21, 23, 29, 30]) == 138\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/398",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to compute the sum of digits of each number of a given list.",
+        "generated_code": "def sum_of_digits(lst):\n    total_sum = 0\n    for elem in lst:\n        if isinstance(elem, int):\n            total_sum += sum(int(digit) for digit in str(abs(elem)))\n    return total_sum\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                [
+                    [
+                        10,
+                        20,
+                        4,
+                        5,
+                        "b",
+                        70,
+                        "a"
+                    ]
+                ]
+            ],
+            "expected": 19,
+            "got": 0
+        }
+    },
+    {
+        "task_id": "Mbpp/398",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Write a function to compute the sum of digits of each number of a given list.",
+        "generated_code": "def sum_of_digits(lst):\n    def digit_sum(n):\n        n = abs(n)  # Ensure n is positive\n        return sum(int(digit) for digit in str(n))\n    \n    total_sum = 0\n    for item in lst:\n        if isinstance(item, int):  # Check if item is an integer\n            total_sum += digit_sum(item)\n    \n    return total_sum\n\n# Test cases\nassert sum_of_digits([10, 2, 56]) == 14\nassert sum_of_digits([10, 20, 4, 5, 'b', 70, 'a']) == 19\nassert sum_of_digits([10, 20, -4, 5, -70]) == 19\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                [
+                    [
+                        10,
+                        20,
+                        4,
+                        5,
+                        "b",
+                        70,
+                        "a"
+                    ]
+                ]
+            ],
+            "expected": 19,
+            "got": 0
+        }
+    },
+    {
+        "task_id": "Mbpp/441",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to find the surface area of a cube of a given size.",
+        "generated_code": "def surfacearea_cube(side_length: int) -> int:\n    return 6 * (side_length ** 2)\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                1000.99
+            ],
+            "expected": 6011885.880600001,
+            "got": 6011885.8806
+        }
+    },
+    {
+        "task_id": "Mbpp/441",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Write a function to find the surface area of a cube of a given size.",
+        "generated_code": "def surfacearea_cube(side_length):\n    return 6 * side_length ** 2\n\n# Testing the function with the provided test cases\nassert surfacearea_cube(5) == 150\nassert surfacearea_cube(3) == 54\nassert surfacearea_cube(10) == 600\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                1000.99
+            ],
+            "expected": 6011885.880600001,
+            "got": 6011885.8806
+        }
+    },
+    {
+        "task_id": "Mbpp/603",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to get all lucid numbers smaller than or equal to a given integer.",
+        "generated_code": "def get_ludic(n):\n    def is_ludic(num):\n        if num < 2:\n            return True\n        for i in range(2, int(num ** 0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    lucid_nums = [i for i in range(1, n + 1) if is_ludic(i)]\n    return lucid_nums\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                25
+            ],
+            "expected": [
+                1,
+                2,
+                3,
+                5,
+                7,
+                11,
+                13,
+                17,
+                23,
+                25
+            ],
+            "got": [
+                1,
+                2,
+                3,
+                5,
+                7,
+                11,
+                13,
+                17,
+                19,
+                23
+            ]
+        }
+    },
+    {
+        "task_id": "Mbpp/603",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Write a function to get all lucid numbers smaller than or equal to a given integer.",
+        "generated_code": "def get_ludic(n):\n    if n < 1:\n        return []\n    \n    # Start with a list from 1 to n\n    numbers = list(range(1, n + 1))\n    index = 1  # Start from the second element (1-based index)\n    \n    while index < len(numbers):\n        step = numbers[index]\n        if step > len(numbers):\n            break\n        # Remove every step-th element starting from the step-th element (1-based index)\n        numbers = [num for i, num in enumerate(numbers) if (i + 1) % step != 0 or i == 0]\n        index += 1\n    \n    return numbers\n\n# Tests\nassert get_ludic(10) == [1, 2, 3, 5, 7]\nassert get_ludic(25) == [1, 2, 3, 5, 7, 11, 13, 17, 23, 25]\nassert get_ludic(45) == [1, 2, 3, 5, 7, 11, 13, 17, 23, 25, 29, 37, 41, 43]\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                10
+            ],
+            "expected": [
+                1,
+                2,
+                3,
+                5,
+                7
+            ],
+            "got": null
+        }
+    },
+    {
+        "task_id": "Mbpp/470",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to find the pairwise addition of the neighboring elements of the given tuple.",
+        "generated_code": "def add_pairwise(tup):\n    return tuple(tup[i] + tup[i+1] for i in range(len(tup)-1))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/470",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to find the pairwise addition of the neighboring elements of the given tuple.",
+        "generated_code": "def add_pairwise(tup):\n    return tuple(tup[i] + tup[i + 1] for i in range(len(tup) - 1))\n\n# Test cases\nassert add_pairwise((1, 5, 7, 8, 10)) == (6, 12, 15, 18)\nassert add_pairwise((2, 6, 8, 9, 11)) == (8, 14, 17, 20)\nassert add_pairwise((3, 7, 9, 10, 12)) == (10, 16, 19, 22)\n",
+        "counter_example": null
+    }
+]

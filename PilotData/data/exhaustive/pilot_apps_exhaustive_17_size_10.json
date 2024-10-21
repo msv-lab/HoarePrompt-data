@@ -1,0 +1,120 @@
+[
+    {
+        "task_id": "0282",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "A frog lives on the axis Ox and needs to reach home which is in the point n. She starts from the point 1. The frog can jump to the right at a distance not more than d. So, after she jumped from the point x she can reach the point x + a, where a is an integer from 1 to d.\n\nFor each point from 1 to n is known if there is a lily flower in it. The frog can jump only in points with a lilies. Guaranteed that there are lilies in the points 1 and n.\n\nDetermine the minimal number of jumps that the frog needs to reach home which is in the point n from the point 1. Consider that initially the frog is in the point 1. If the frog can not reach home, print -1.\n\n\n-----Input-----\n\nThe first line contains two integers n and d (2 ≤ n ≤ 100, 1 ≤ d ≤ n - 1) — the point, which the frog wants to reach, and the maximal length of the frog jump.\n\nThe second line contains a string s of length n, consisting of zeros and ones. If a character of the string s equals to zero, then in the corresponding point there is no lily flower. In the other case, in the corresponding point there is a lily flower. Guaranteed that the first and the last characters of the string s equal to one.\n\n\n-----Output-----\n\nIf the frog can not reach the home, print -1.\n\nIn the other case, print the minimal number of jumps that the frog needs to reach the home which is in the point n from the point 1.\n\n\n-----Examples-----\nInput\n8 4\n10010101\n\nOutput\n2\n\nInput\n4 2\n1001\n\nOutput\n-1\n\nInput\n8 4\n11100101\n\nOutput\n3\n\nInput\n12 3\n101111100101\n\nOutput\n4\n\n\n\n-----Note-----\n\nIn the first example the from can reach home in two jumps: the first jump from the point 1 to the point 4 (the length of the jump is three), and the second jump from the point 4 to the point 8 (the length of the jump is four).\n\nIn the second example the frog can not reach home, because to make it she need to jump on a distance three, but the maximum length of her jump equals to two.",
+        "generated_code": "n, d = map(int, input().split())\ns = input()\n\ndp = [float('inf')] * (n + 1)\ndp[1] = 0\n\nfor i in range(1, n + 1):\n    if s[i - 1] == '1':\n        for j in range(1, d + 1):\n            if i - j >= 1:\n                dp[i] = min(dp[i], dp[i - j] + 1)\n\nif dp[n] == float('inf'):\n    print(-1)\nelse:\n    print(dp[n])\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0282",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "A frog lives on the axis Ox and needs to reach home which is in the point n. She starts from the point 1. The frog can jump to the right at a distance not more than d. So, after she jumped from the point x she can reach the point x + a, where a is an integer from 1 to d.\n\nFor each point from 1 to n is known if there is a lily flower in it. The frog can jump only in points with a lilies. Guaranteed that there are lilies in the points 1 and n.\n\nDetermine the minimal number of jumps that the frog needs to reach home which is in the point n from the point 1. Consider that initially the frog is in the point 1. If the frog can not reach home, print -1.\n\n\n-----Input-----\n\nThe first line contains two integers n and d (2 ≤ n ≤ 100, 1 ≤ d ≤ n - 1) — the point, which the frog wants to reach, and the maximal length of the frog jump.\n\nThe second line contains a string s of length n, consisting of zeros and ones. If a character of the string s equals to zero, then in the corresponding point there is no lily flower. In the other case, in the corresponding point there is a lily flower. Guaranteed that the first and the last characters of the string s equal to one.\n\n\n-----Output-----\n\nIf the frog can not reach the home, print -1.\n\nIn the other case, print the minimal number of jumps that the frog needs to reach the home which is in the point n from the point 1.\n\n\n-----Examples-----\nInput\n8 4\n10010101\n\nOutput\n2\n\nInput\n4 2\n1001\n\nOutput\n-1\n\nInput\n8 4\n11100101\n\nOutput\n3\n\nInput\n12 3\n101111100101\n\nOutput\n4\n\n\n\n-----Note-----\n\nIn the first example the from can reach home in two jumps: the first jump from the point 1 to the point 4 (the length of the jump is three), and the second jump from the point 4 to the point 8 (the length of the jump is four).\n\nIn the second example the frog can not reach home, because to make it she need to jump on a distance three, but the maximum length of her jump equals to two.",
+        "generated_code": "def min_jumps_to_home(n, d, s):\n    # Initialize the jumps count and the current position\n    jumps = 0\n    position = 0\n\n    # While the frog hasn't reached the last position\n    while position < n - 1:\n        # Find the farthest position the frog can jump to within the range [position + 1, position + d]\n        next_position = position\n        for i in range(position + 1, min(position + d + 1, n)):\n            if s[i] == '1':\n                next_position = i\n        # If the frog cannot move forward, return -1\n        if next_position == position:\n            return -1\n        # Move to the next position and increment the jump count\n        position = next_position\n        jumps += 1\n\n    return jumps\n\n# Read input\nn, d = map(int, input().split())\ns = input()\n\n# Print the result\nprint(min_jumps_to_home(n, d, s))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0037",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Dante is engaged in a fight with \"The Savior\". Before he can fight it with his sword, he needs to break its shields. He has two guns, Ebony and Ivory, each of them is able to perform any non-negative number of shots.\n\nFor every bullet that hits the shield, Ebony deals a units of damage while Ivory deals b units of damage. In order to break the shield Dante has to deal exactly c units of damage. Find out if this is possible.\n\n\n-----Input-----\n\nThe first line of the input contains three integers a, b, c (1 ≤ a, b ≤ 100, 1 ≤ c ≤ 10 000) — the number of units of damage dealt by Ebony gun and Ivory gun, and the total number of damage required to break the shield, respectively.\n\n\n-----Output-----\n\nPrint \"Yes\" (without quotes) if Dante can deal exactly c damage to the shield and \"No\" (without quotes) otherwise.\n\n\n-----Examples-----\nInput\n4 6 15\n\nOutput\nNo\n\nInput\n3 2 7\n\nOutput\nYes\n\nInput\n6 11 6\n\nOutput\nYes\n\n\n\n-----Note-----\n\nIn the second sample, Dante can fire 1 bullet from Ebony and 2 from Ivory to deal exactly 1·3 + 2·2 = 7 damage. In the third sample, Dante can fire 1 bullet from ebony and no bullets from ivory to do 1·6 + 0·11 = 6 damage.",
+        "generated_code": "a, b, c = map(int, input().split())\nif c % a == 0 or c % b == 0 or (a != b and c % gcd(a, b) == 0):\n    print(\"Yes\")\nelse:\n    print(\"No\")\n\ndef gcd(x, y):\n    while y:\n        x, y = y, x % y\n    return x\n",
+        "counter_example": {
+            "input": "4 6 15\n",
+            "expected": "No\n",
+            "got": "Traceback (most recent call last):\n  File \"<string>\", line 2, in <module>\nNameError: name 'gcd' is not defined"
+        }
+    },
+    {
+        "task_id": "0037",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Dante is engaged in a fight with \"The Savior\". Before he can fight it with his sword, he needs to break its shields. He has two guns, Ebony and Ivory, each of them is able to perform any non-negative number of shots.\n\nFor every bullet that hits the shield, Ebony deals a units of damage while Ivory deals b units of damage. In order to break the shield Dante has to deal exactly c units of damage. Find out if this is possible.\n\n\n-----Input-----\n\nThe first line of the input contains three integers a, b, c (1 ≤ a, b ≤ 100, 1 ≤ c ≤ 10 000) — the number of units of damage dealt by Ebony gun and Ivory gun, and the total number of damage required to break the shield, respectively.\n\n\n-----Output-----\n\nPrint \"Yes\" (without quotes) if Dante can deal exactly c damage to the shield and \"No\" (without quotes) otherwise.\n\n\n-----Examples-----\nInput\n4 6 15\n\nOutput\nNo\n\nInput\n3 2 7\n\nOutput\nYes\n\nInput\n6 11 6\n\nOutput\nYes\n\n\n\n-----Note-----\n\nIn the second sample, Dante can fire 1 bullet from Ebony and 2 from Ivory to deal exactly 1·3 + 2·2 = 7 damage. In the third sample, Dante can fire 1 bullet from ebony and no bullets from ivory to do 1·6 + 0·11 = 6 damage.",
+        "generated_code": "def can_break_shield(a, b, c):\n    for x in range(c // a + 1):\n        if (c - a * x) % b == 0:\n            return True\n    return False\n\n# Read input\na, b, c = map(int, input().split())\n\n# Check if it's possible to break the shield\nif can_break_shield(a, b, c):\n    print(\"Yes\")\nelse:\n    print(\"No\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0025",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "You are given matrix with n rows and n columns filled with zeroes. You should put k ones in it in such a way that the resulting matrix is symmetrical with respect to the main diagonal (the diagonal that goes from the top left to the bottom right corner) and is lexicographically maximal.\n\nOne matrix is lexicographically greater than the other if the first different number in the first different row from the top in the first matrix is greater than the corresponding number in the second one.\n\nIf there exists no such matrix then output -1.\n\n\n-----Input-----\n\nThe first line consists of two numbers n and k (1 ≤ n ≤ 100, 0 ≤ k ≤ 10^6).\n\n\n-----Output-----\n\nIf the answer exists then output resulting matrix. Otherwise output -1.\n\n\n-----Examples-----\nInput\n2 1\n\nOutput\n1 0 \n0 0 \n\nInput\n3 2\n\nOutput\n1 0 0 \n0 1 0 \n0 0 0 \n\nInput\n2 5\n\nOutput\n-1",
+        "generated_code": "n, k = map(int, input().split())\nif k > n*(n+1)//2:\n    print(-1)\nelse:\n    matrix = [[0]*n for _ in range(n)]\n    count = 0\n    for i in range(n-1, -1, -1):\n        for j in range(i, -1, -1):\n            if count < k:\n                matrix[i][j] = 1\n                matrix[j][i] = 1\n                count += 1\n            else:\n                break\n        if count == k:\n            break\n    for row in matrix:\n        print(' '.join(map(str, row)))\n",
+        "counter_example": {
+            "input": "2 1\n",
+            "expected": "1 0 \n0 0 \n",
+            "got": "0 0\n0 1"
+        }
+    },
+    {
+        "task_id": "0025",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "You are given matrix with n rows and n columns filled with zeroes. You should put k ones in it in such a way that the resulting matrix is symmetrical with respect to the main diagonal (the diagonal that goes from the top left to the bottom right corner) and is lexicographically maximal.\n\nOne matrix is lexicographically greater than the other if the first different number in the first different row from the top in the first matrix is greater than the corresponding number in the second one.\n\nIf there exists no such matrix then output -1.\n\n\n-----Input-----\n\nThe first line consists of two numbers n and k (1 ≤ n ≤ 100, 0 ≤ k ≤ 10^6).\n\n\n-----Output-----\n\nIf the answer exists then output resulting matrix. Otherwise output -1.\n\n\n-----Examples-----\nInput\n2 1\n\nOutput\n1 0 \n0 0 \n\nInput\n3 2\n\nOutput\n1 0 0 \n0 1 0 \n0 0 0 \n\nInput\n2 5\n\nOutput\n-1",
+        "generated_code": "def create_symmetric_matrix(n, k):\n    # If k exceeds the maximum number of ones that can be placed, return -1\n    if k > n * n:\n        return -1\n    \n    matrix = [[0] * n for _ in range(n)]\n    \n    for i in range(n):\n        if k <= 0:\n            break\n        # Place a '1' at the diagonal if we have remaining k\n        if k > 0:\n            matrix[i][i] = 1\n            k -= 1\n\n        for j in range(i + 1, n):\n            if k <= 0:\n                break\n            # Place '1's at symmetric positions if we have remaining k\n            if k >= 2:\n                matrix[i][j] = 1\n                matrix[j][i] = 1\n                k -= 2\n\n    # If after placing all possible ones, we still have remaining k, return -1\n    if k > 0:\n        return -1\n    \n    return matrix\n\n# Read inputs\nn, k = map(int, input().split())\n\n# Generate the matrix\nresult = create_symmetric_matrix(n, k)\n\n# Print the result\nif result == -1:\n    print(-1)\nelse:\n    for row in result:\n        print(' '.join(map(str, row)))\n",
+        "counter_example": {
+            "input": "2 1\n",
+            "expected": "1 0 \n0 0 \n",
+            "got": "1 0\n0 0"
+        }
+    },
+    {
+        "task_id": "0248",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Memory and his friend Lexa are competing to get higher score in one popular computer game. Memory starts with score a and Lexa starts with score b. In a single turn, both Memory and Lexa get some integer in the range [ - k;k] (i.e. one integer among  - k,  - k + 1,  - k + 2, ...,  - 2,  - 1, 0, 1, 2, ..., k - 1, k) and add them to their current scores. The game has exactly t turns. Memory and Lexa, however, are not good at this game, so they both always get a random integer at their turn.\n\nMemory wonders how many possible games exist such that he ends with a strictly higher score than Lexa. Two games are considered to be different if in at least one turn at least one player gets different score. There are (2k + 1)^2t games in total. Since the answer can be very large, you should print it modulo 10^9 + 7. Please solve this problem for Memory.\n\n\n-----Input-----\n\nThe first and only line of input contains the four integers a, b, k, and t (1 ≤ a, b ≤ 100, 1 ≤ k ≤ 1000, 1 ≤ t ≤ 100) — the amount Memory and Lexa start with, the number k, and the number of turns respectively.\n\n\n-----Output-----\n\nPrint the number of possible games satisfying the conditions modulo 1 000 000 007 (10^9 + 7) in one line.\n\n\n-----Examples-----\nInput\n1 2 2 1\n\nOutput\n6\n\nInput\n1 1 1 2\n\nOutput\n31\n\nInput\n2 12 3 1\n\nOutput\n0\n\n\n\n-----Note-----\n\nIn the first sample test, Memory starts with 1 and Lexa starts with 2. If Lexa picks  - 2, Memory can pick 0, 1, or 2 to win. If Lexa picks  - 1, Memory can pick 1 or 2 to win. If Lexa picks 0, Memory can pick 2 to win. If Lexa picks 1 or 2, Memory cannot win. Thus, there are 3 + 2 + 1 = 6 possible games in which Memory wins.",
+        "generated_code": "MOD = 10**9 + 7\na, b, k, t = map(int, input().split())\nans = 0\nfor i in range(-k, k+1):\n    if a + i > b:\n        ans += (2*k + 1)**(t-1)\nans %= MOD\nprint(ans)\n",
+        "counter_example": {
+            "input": "1 2 2 1\n",
+            "expected": "6\n",
+            "got": "1"
+        }
+    },
+    {
+        "task_id": "0248",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Memory and his friend Lexa are competing to get higher score in one popular computer game. Memory starts with score a and Lexa starts with score b. In a single turn, both Memory and Lexa get some integer in the range [ - k;k] (i.e. one integer among  - k,  - k + 1,  - k + 2, ...,  - 2,  - 1, 0, 1, 2, ..., k - 1, k) and add them to their current scores. The game has exactly t turns. Memory and Lexa, however, are not good at this game, so they both always get a random integer at their turn.\n\nMemory wonders how many possible games exist such that he ends with a strictly higher score than Lexa. Two games are considered to be different if in at least one turn at least one player gets different score. There are (2k + 1)^2t games in total. Since the answer can be very large, you should print it modulo 10^9 + 7. Please solve this problem for Memory.\n\n\n-----Input-----\n\nThe first and only line of input contains the four integers a, b, k, and t (1 ≤ a, b ≤ 100, 1 ≤ k ≤ 1000, 1 ≤ t ≤ 100) — the amount Memory and Lexa start with, the number k, and the number of turns respectively.\n\n\n-----Output-----\n\nPrint the number of possible games satisfying the conditions modulo 1 000 000 007 (10^9 + 7) in one line.\n\n\n-----Examples-----\nInput\n1 2 2 1\n\nOutput\n6\n\nInput\n1 1 1 2\n\nOutput\n31\n\nInput\n2 12 3 1\n\nOutput\n0\n\n\n\n-----Note-----\n\nIn the first sample test, Memory starts with 1 and Lexa starts with 2. If Lexa picks  - 2, Memory can pick 0, 1, or 2 to win. If Lexa picks  - 1, Memory can pick 1 or 2 to win. If Lexa picks 0, Memory can pick 2 to win. If Lexa picks 1 or 2, Memory cannot win. Thus, there are 3 + 2 + 1 = 6 possible games in which Memory wins.",
+        "generated_code": "MOD = 10**9 + 7\n\ndef solve(a, b, k, t):\n    max_diff = 2 * k * t\n    dp_prev = [0] * (2 * max_diff + 1)\n    dp_curr = [0] * (2 * max_diff + 1)\n    \n    dp_prev[max_diff + (a - b)] = 1\n    \n    for _ in range(t):\n        prefix_sum = [0] * (2 * max_diff + 3)\n        for i in range(2 * max_diff + 1):\n            prefix_sum[i + 1] = (prefix_sum[i] + dp_prev[i]) % MOD\n        \n        for i in range(2 * max_diff + 1):\n            left = max(0, i - 2 * k)\n            right = min(2 * max_diff, i + 2 * k) + 1\n            dp_curr[i] = (prefix_sum[right] - prefix_sum[left]) % MOD\n        \n        dp_prev, dp_curr = dp_curr, dp_prev\n    \n    result = 0\n    for i in range(max_diff + 1, 2 * max_diff + 1):\n        result = (result + dp_prev[i]) % MOD\n    \n    print(result)\n\n# Input\na, b, k, t = map(int, input().split())\nsolve(a, b, k, t)\n",
+        "counter_example": {
+            "input": "1 2 2 1\n",
+            "expected": "6\n",
+            "got": "3"
+        }
+    },
+    {
+        "task_id": "0066",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Vector Willman and Array Bolt are the two most famous athletes of Byteforces. They are going to compete in a race with a distance of L meters today.\n\n [Image] \n\nWillman and Bolt have exactly the same speed, so when they compete the result is always a tie. That is a problem for the organizers because they want a winner. \n\nWhile watching previous races the organizers have noticed that Willman can perform only steps of length equal to w meters, and Bolt can perform only steps of length equal to b meters. Organizers decided to slightly change the rules of the race. Now, at the end of the racetrack there will be an abyss, and the winner will be declared the athlete, who manages to run farther from the starting point of the the racetrack (which is not the subject to change by any of the athletes). \n\nNote that none of the athletes can run infinitely far, as they both will at some moment of time face the point, such that only one step further will cause them to fall in the abyss. In other words, the athlete will not fall into the abyss if the total length of all his steps will be less or equal to the chosen distance L.\n\nSince the organizers are very fair, the are going to set the length of the racetrack as an integer chosen randomly and uniformly in range from 1 to t (both are included). What is the probability that Willman and Bolt tie again today?\n\n\n-----Input-----\n\nThe first line of the input contains three integers t, w and b (1 ≤ t, w, b ≤ 5·10^18) — the maximum possible length of the racetrack, the length of Willman's steps and the length of Bolt's steps respectively.\n\n\n-----Output-----\n\nPrint the answer to the problem as an irreducible fraction [Image]. Follow the format of the samples output.\n\nThe fraction [Image] (p and q are integers, and both p ≥ 0 and q > 0 holds) is called irreducible, if there is no such integer d > 1, that both p and q are divisible by d.\n\n\n-----Examples-----\nInput\n10 3 2\n\nOutput\n3/10\n\nInput\n7 1 2\n\nOutput\n3/7\n\n\n\n-----Note-----\n\nIn the first sample Willman and Bolt will tie in case 1, 6 or 7 are chosen as the length of the racetrack.",
+        "generated_code": "def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n\nt, w, b = map(int, input().split())\ng = gcd(w, b)\nlcm = w * b // g\ncount = t // lcm\nres = count * (lcm // w) * (lcm // b)\nprint(f\"{res}/{t}\")\n",
+        "counter_example": {
+            "input": "10 3 2\n",
+            "expected": "3/10\n",
+            "got": "6/10"
+        }
+    },
+    {
+        "task_id": "0066",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Vector Willman and Array Bolt are the two most famous athletes of Byteforces. They are going to compete in a race with a distance of L meters today.\n\n [Image] \n\nWillman and Bolt have exactly the same speed, so when they compete the result is always a tie. That is a problem for the organizers because they want a winner. \n\nWhile watching previous races the organizers have noticed that Willman can perform only steps of length equal to w meters, and Bolt can perform only steps of length equal to b meters. Organizers decided to slightly change the rules of the race. Now, at the end of the racetrack there will be an abyss, and the winner will be declared the athlete, who manages to run farther from the starting point of the the racetrack (which is not the subject to change by any of the athletes). \n\nNote that none of the athletes can run infinitely far, as they both will at some moment of time face the point, such that only one step further will cause them to fall in the abyss. In other words, the athlete will not fall into the abyss if the total length of all his steps will be less or equal to the chosen distance L.\n\nSince the organizers are very fair, the are going to set the length of the racetrack as an integer chosen randomly and uniformly in range from 1 to t (both are included). What is the probability that Willman and Bolt tie again today?\n\n\n-----Input-----\n\nThe first line of the input contains three integers t, w and b (1 ≤ t, w, b ≤ 5·10^18) — the maximum possible length of the racetrack, the length of Willman's steps and the length of Bolt's steps respectively.\n\n\n-----Output-----\n\nPrint the answer to the problem as an irreducible fraction [Image]. Follow the format of the samples output.\n\nThe fraction [Image] (p and q are integers, and both p ≥ 0 and q > 0 holds) is called irreducible, if there is no such integer d > 1, that both p and q are divisible by d.\n\n\n-----Examples-----\nInput\n10 3 2\n\nOutput\n3/10\n\nInput\n7 1 2\n\nOutput\n3/7\n\n\n\n-----Note-----\n\nIn the first sample Willman and Bolt will tie in case 1, 6 or 7 are chosen as the length of the racetrack.",
+        "generated_code": "from math import gcd\n\ndef lcm(x, y):\n    return x * y // gcd(x, y)\n\ndef count_ties(t, w, b):\n    if w > b:\n        w, b = b, w\n    \n    lcm_wb = lcm(w, b)\n    full_cycles = t // lcm_wb\n    \n    common_lengths = min(w, b) - 1\n    tie_count = full_cycles * common_lengths\n    \n    remainder = t % lcm_wb\n    \n    tie_count += min(common_lengths, remainder)\n    \n    return tie_count\n\ndef irreducible_fraction(p, q):\n    g = gcd(p, q)\n    return f\"{p // g}/{q // g}\"\n\ndef main():\n    import sys\n    input = sys.stdin.read\n    t, w, b = map(int, input().split())\n    \n    if w == b:\n        print(\"1/1\")\n        return\n    \n    num_ties = count_ties(t, w, b)\n    \n    print(irreducible_fraction(num_ties, t))\n\nif __name__ == \"__main__\":\n    main()\n",
+        "counter_example": {
+            "input": "10 3 2\n",
+            "expected": "3/10\n",
+            "got": "1/5"
+        }
+    }
+]

@@ -1,0 +1,113 @@
+[
+    {
+        "task_id": "Mbpp/300",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to find the count of all binary sequences of length 2n such that sum of first n bits is same as sum of last n bits.",
+        "generated_code": "import math\n\ndef count_binary_seq(n):\n    total = 2 ** (2 * n)\n    half = 2 ** n\n    result = 0\n    for k in range(half + 1):\n        result += math.comb(2 * n, k) * math.comb(2 * n, k)\n    return result / total\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                1
+            ],
+            "expected": 2.0,
+            "got": 1.5
+        }
+    },
+    {
+        "task_id": "Mbpp/300",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Write a function to find the count of all binary sequences of length 2n such that sum of first n bits is same as sum of last n bits.",
+        "generated_code": "from math import comb, isclose\n\ndef count_binary_seq(n):\n    def binomial_coeff(n, k):\n        if k > n:\n            return 0\n        return comb(n, k)\n\n    # Initialize an array to store the results of subproblems\n    dp = [[0] * (n + 1) for _ in range(n + 1)]\n\n    for i in range(n + 1):\n        dp[i][0] = dp[0][i] = 1\n\n    for i in range(1, n + 1):\n        for j in range(1, n + 1):\n            dp[i][j] = dp[i - 1][j] + dp[i][j - 1]\n\n    result = sum(dp[n][i] * dp[n][i] for i in range(n + 1))\n    return result\n\n# Test cases\nassert isclose(count_binary_seq(1), 2.0, rel_tol=0.001)\nassert isclose(count_binary_seq(2), 6.0, rel_tol=0.001)\nassert isclose(count_binary_seq(3), 20.0, rel_tol=0.001)\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                1
+            ],
+            "expected": 2.0,
+            "got": null
+        }
+    },
+    {
+        "task_id": "Mbpp/780",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to find the combinations of sums with tuples in the given tuple list.",
+        "generated_code": "import itertools\n\ndef find_combinations(tuples):\n    combinations = list(itertools.combinations(tuples, 2))\n    result = []\n    for combination in combinations:\n        result.append(tuple(sum(x) for x in zip(*combination)))\n    return result\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/780",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to find the combinations of sums with tuples in the given tuple list.",
+        "generated_code": "from itertools import combinations\n\ndef find_combinations(tuple_list):\n    result = []\n    for (a, b) in combinations(tuple_list, 2):\n        result.append(tuple(x + y for x, y in zip(a, b)))\n    return result\n\n# Test cases to validate the solution\nassert find_combinations([(1, 2, 3), (3, 4, 5)]) == [(4, 6, 8)]\nassert find_combinations([(2, 4), (6, 7), (5, 1), (6, 10)]) == [(8, 11), (7, 5), (8, 14), (11, 8), (12, 17), (11, 11)]\nassert find_combinations([(3, 5), (7, 8), (6, 2), (7, 11)]) == [(10, 13), (9, 7), (10, 16), (13, 10), (14, 19), (13, 13)]\nassert find_combinations([(4, 6), (8, 9), (7, 3), (8, 12)]) == [(12, 15), (11, 9), (12, 18), (15, 12), (16, 21), (15, 15)]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/167",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function to find the smallest power of 2 greater than or equal to n.",
+        "generated_code": "def next_power_of_2(n: int) -> int:\n    if n <= 0:\n        return 1\n    power = 1\n    while power < n:\n        power *= 2\n    return power\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/167",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to find the smallest power of 2 greater than or equal to n.",
+        "generated_code": "def next_power_of_2(n):\n    if n <= 0:\n        return 1\n    n -= 1\n    n |= n >> 1\n    n |= n >> 2\n    n |= n >> 4\n    n |= n >> 8\n    n |= n >> 16\n    n |= n >> 32\n    return n + 1\n\n# Provided test cases\nassert next_power_of_2(0) == 1\nassert next_power_of_2(5) == 8\nassert next_power_of_2(17) == 32\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/409",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to find the minimum product from the pairs of tuples within a given list.",
+        "generated_code": "def min_product_tuple(tuples):\n    return min(a * b for a, b in tuples)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/409",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to find the minimum product from the pairs of tuples within a given list.",
+        "generated_code": "def min_product_tuple(pairs):\n    # Initialize the minimum product with a large value\n    min_product = float('inf')\n    \n    # Iterate through each pair in the list\n    for pair in pairs:\n        # Calculate the product of the current pair\n        product = pair[0] * pair[1]\n        # Update the minimum product if the current product is smaller\n        if product < min_product:\n            min_product = product\n    \n    return min_product\n\n# Testing the function with the provided test cases\nassert min_product_tuple([(2, 7), (2, 6), (1, 8), (4, 9)] ) == 8\nassert min_product_tuple([(10,20), (15,2), (5,10)] ) == 30\nassert min_product_tuple([(11,44), (10,15), (20,5), (12, 9)] ) == 100\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/730",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to remove consecutive duplicates of a given list.",
+        "generated_code": "def consecutive_duplicates(lst):\n    result = [lst[0]]\n    for i in range(1, len(lst)):\n        if lst[i] != lst[i-1]:\n            result.append(lst[i])\n    return result\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                []
+            ],
+            "expected": [],
+            "got": null
+        }
+    },
+    {
+        "task_id": "Mbpp/730",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to remove consecutive duplicates of a given list.",
+        "generated_code": "def consecutive_duplicates(lst):\n    if not lst:\n        return []\n\n    # Initialize the result list with the first element\n    result = [lst[0]]\n\n    # Iterate over the list starting from the second element\n    for i in range(1, len(lst)):\n        # If the current element is different from the last element in result, append it\n        if lst[i] != lst[i - 1]:\n            result.append(lst[i])\n\n    return result\n\n# Testing the function with the provided test cases\nassert consecutive_duplicates([0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4 ]) == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 4]\nassert consecutive_duplicates([10, 10, 15, 19, 18, 18, 17, 26, 26, 17, 18, 10]) == [10, 15, 19, 18, 17, 26, 17, 18, 10]\nassert consecutive_duplicates(['a', 'a', 'b', 'c', 'd', 'd']) == ['a', 'b', 'c', 'd']\nassert consecutive_duplicates(['a', 'a', 'b', 'c', 'd', 'd', 'a', 'a']) == ['a', 'b', 'c', 'd', 'a']\n",
+        "counter_example": null
+    }
+]

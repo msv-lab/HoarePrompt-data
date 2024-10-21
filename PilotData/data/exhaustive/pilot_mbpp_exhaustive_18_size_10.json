@@ -1,0 +1,99 @@
+[
+    {
+        "task_id": "Mbpp/80",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to find the nth tetrahedral number.",
+        "generated_code": "def tetrahedral_number(n: int) -> int:\n    return (n * (n + 1) * (n + 2)) // 6\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/80",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to find the nth tetrahedral number.",
+        "generated_code": "def tetrahedral_number(n):\n    return n * (n + 1) * (n + 2) // 6\n\n# Tests\nassert tetrahedral_number(5) == 35\nassert tetrahedral_number(6) == 56\nassert tetrahedral_number(7) == 84\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/626",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a python function to find the area of the largest triangle that can be inscribed in a semicircle with a given radius.",
+        "generated_code": "import math\n\ndef triangle_area(radius: float) -> float:\n    if radius < 0:\n        return None\n    elif radius == 0:\n        return 0\n    else:\n        return (radius ** 2) / 2\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                2
+            ],
+            "expected": 4,
+            "got": 2.0
+        }
+    },
+    {
+        "task_id": "Mbpp/626",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to find the area of the largest triangle that can be inscribed in a semicircle with a given radius.",
+        "generated_code": "def triangle_area(radius):\n    if radius < 0:\n        return None\n    return radius * radius\n\n# Test cases\nassert triangle_area(-1) == None\nassert triangle_area(0) == 0\nassert triangle_area(2) == 4\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/764",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function to count number of digits in a given string.",
+        "generated_code": "def number_ctr(s):\n    return sum(c.isdigit() for c in s)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/764",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to count number of digits in a given string.",
+        "generated_code": "def number_ctr(s: str) -> int:\n    return sum(c.isdigit() for c in s)\n\n# Test cases\nassert number_ctr('program2bedone') == 1\nassert number_ctr('3wonders') == 1\nassert number_ctr('123') == 3\nassert number_ctr('3wond-1ers2') == 3\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/277",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function that takes in a dictionary and integer n and filters the dictionary to only include entries with values greater than or equal to n.",
+        "generated_code": "def dict_filter(d, n):\n    return {k: v for k, v in d.items() if v >= n}\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/277",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function that takes in a dictionary and integer n and filters the dictionary to only include entries with values greater than or equal to n.",
+        "generated_code": "def dict_filter(d: dict, n: int) -> dict:\n    return {k: v for k, v in d.items() if v >= n}\n\n# Test cases\nassert dict_filter({'Cierra Vega': 175, 'Alden Cantrell': 180, 'Kierra Gentry': 165, 'Pierre Cox': 190}, 170) == {'Cierra Vega': 175, 'Alden Cantrell': 180, 'Pierre Cox': 190}\nassert dict_filter({'Cierra Vega': 175, 'Alden Cantrell': 180, 'Kierra Gentry': 165, 'Pierre Cox': 190}, 180) == {'Alden Cantrell': 180, 'Pierre Cox': 190}\nassert dict_filter({'Cierra Vega': 175, 'Alden Cantrell': 180, 'Kierra Gentry': 165, 'Pierre Cox': 190}, 190) == {'Pierre Cox': 190}\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/758",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to count lists within a list. The function should return a dictionary where every list is converted to a tuple and the value of such tuple is the number of its occurencies in the original list.",
+        "generated_code": "def unique_sublists(lst):\n    return {tuple(sublist): lst.count(sublist) for sublist in lst}\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/758",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to count lists within a list. The function should return a dictionary where every list is converted to a tuple and the value of such tuple is the number of its occurencies in the original list.",
+        "generated_code": "def unique_sublists(lst):\n    result = {}\n    for sublist in lst:\n        tuple_sublist = tuple(sublist)\n        if tuple_sublist in result:\n            result[tuple_sublist] += 1\n        else:\n            result[tuple_sublist] = 1\n    return result\n\n# Provided test cases\nassert unique_sublists([[1, 3], [5, 7], [1, 3], [13, 15, 17], [5, 7], [9, 11]]) == {(1, 3): 2, (5, 7): 2, (13, 15, 17): 1, (9, 11): 1}\nassert unique_sublists([['green', 'orange'], ['black'], ['green', 'orange'], ['white']]) == {('green', 'orange'): 2, ('black',): 1, ('white',): 1}\nassert unique_sublists([[10, 20, 30, 40], [60, 70, 50, 50], [90, 100, 200]]) == {(10, 20, 30, 40): 1, (60, 70, 50, 50): 1, (90, 100, 200): 1}\nassert unique_sublists([['john']]) == {('john',): 1}\n",
+        "counter_example": null
+    }
+]

@@ -1,0 +1,124 @@
+[
+    {
+        "task_id": "0092",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Let's denote d(n) as the number of divisors of a positive integer n. You are given three integers a, b and c. Your task is to calculate the following sum:\n\n$\\sum_{i = 1}^{a} \\sum_{j = 1}^{b} \\sum_{k = 1}^{c} d(i \\cdot j \\cdot k)$\n\nFind the sum modulo 1073741824 (2^30).\n\n\n-----Input-----\n\nThe first line contains three space-separated integers a, b and c (1 ≤ a, b, c ≤ 100).\n\n\n-----Output-----\n\nPrint a single integer — the required sum modulo 1073741824 (2^30).\n\n\n-----Examples-----\nInput\n2 2 2\n\nOutput\n20\n\nInput\n5 6 7\n\nOutput\n1520\n\n\n\n-----Note-----\n\nFor the first example.\n\n  d(1·1·1) = d(1) = 1;  d(1·1·2) = d(2) = 2;  d(1·2·1) = d(2) = 2;  d(1·2·2) = d(4) = 3;  d(2·1·1) = d(2) = 2;  d(2·1·2) = d(4) = 3;  d(2·2·1) = d(4) = 3;  d(2·2·2) = d(8) = 4. \n\nSo the result is 1 + 2 + 2 + 3 + 2 + 3 + 3 + 4 = 20.",
+        "generated_code": "def count_divisors(n):\n    count = 0\n    for i in range(1, int(n**0.5) + 1):\n        if n % i == 0:\n            if n // i == i:\n                count += 1\n            else:\n                count += 2\n    return count\n\na, b, c = map(int, input().split())\nmod = 1073741824\n\nresult = 0\nfor i in range(1, a + 1):\n    for j in range(1, b + 1):\n        for k in range(1, c + 1):\n            result += count_divisors(i * j * k)\n            result %= mod\n\nprint(result)\n",
+        "counter_example": {
+            "input": "90 82 100\n",
+            "expected": "35482866\n",
+            "got": "TimeoutError: Execution exceeded time limit"
+        }
+    },
+    {
+        "task_id": "0092",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Let's denote d(n) as the number of divisors of a positive integer n. You are given three integers a, b and c. Your task is to calculate the following sum:\n\n$\\sum_{i = 1}^{a} \\sum_{j = 1}^{b} \\sum_{k = 1}^{c} d(i \\cdot j \\cdot k)$\n\nFind the sum modulo 1073741824 (2^30).\n\n\n-----Input-----\n\nThe first line contains three space-separated integers a, b and c (1 ≤ a, b, c ≤ 100).\n\n\n-----Output-----\n\nPrint a single integer — the required sum modulo 1073741824 (2^30).\n\n\n-----Examples-----\nInput\n2 2 2\n\nOutput\n20\n\nInput\n5 6 7\n\nOutput\n1520\n\n\n\n-----Note-----\n\nFor the first example.\n\n  d(1·1·1) = d(1) = 1;  d(1·1·2) = d(2) = 2;  d(1·2·1) = d(2) = 2;  d(1·2·2) = d(4) = 3;  d(2·1·1) = d(2) = 2;  d(2·1·2) = d(4) = 3;  d(2·2·1) = d(4) = 3;  d(2·2·2) = d(8) = 4. \n\nSo the result is 1 + 2 + 2 + 3 + 2 + 3 + 3 + 4 = 20.",
+        "generated_code": "def count_divisors(n):\n    count = 0\n    i = 1\n    while i * i <= n:\n        if n % i == 0:\n            count += 1\n            if i != n // i:\n                count += 1\n        i += 1\n    return count\n\nMOD = 1073741824\n\na, b, c = map(int, input().split())\n\ntotal_sum = 0\nfor i in range(1, a + 1):\n    for j in range(1, b + 1):\n        for k in range(1, c + 1):\n            product = i * j * k\n            total_sum += count_divisors(product)\n            total_sum %= MOD\n\nprint(total_sum)\n",
+        "counter_example": {
+            "input": "90 82 100\n",
+            "expected": "35482866\n",
+            "got": "TimeoutError: Execution exceeded time limit"
+        }
+    },
+    {
+        "task_id": "0061",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "After seeing the \"ALL YOUR BASE ARE BELONG TO US\" meme for the first time, numbers X and Y realised that they have different bases, which complicated their relations.\n\nYou're given a number X represented in base b_{x} and a number Y represented in base b_{y}. Compare those two numbers.\n\n\n-----Input-----\n\nThe first line of the input contains two space-separated integers n and b_{x} (1 ≤ n ≤ 10, 2 ≤ b_{x} ≤ 40), where n is the number of digits in the b_{x}-based representation of X. \n\nThe second line contains n space-separated integers x_1, x_2, ..., x_{n} (0 ≤ x_{i} < b_{x}) — the digits of X. They are given in the order from the most significant digit to the least significant one.\n\nThe following two lines describe Y in the same way: the third line contains two space-separated integers m and b_{y} (1 ≤ m ≤ 10, 2 ≤ b_{y} ≤ 40, b_{x} ≠ b_{y}), where m is the number of digits in the b_{y}-based representation of Y, and the fourth line contains m space-separated integers y_1, y_2, ..., y_{m} (0 ≤ y_{i} < b_{y}) — the digits of Y.\n\nThere will be no leading zeroes. Both X and Y will be positive. All digits of both numbers are given in the standard decimal numeral system.\n\n\n-----Output-----\n\nOutput a single character (quotes for clarity):   '<' if X < Y  '>' if X > Y  '=' if X = Y \n\n\n-----Examples-----\nInput\n6 2\n1 0 1 1 1 1\n2 10\n4 7\n\nOutput\n=\n\nInput\n3 3\n1 0 2\n2 5\n2 4\n\nOutput\n<\n\nInput\n7 16\n15 15 4 0 0 7 10\n7 9\n4 8 0 3 1 5 0\n\nOutput\n>\n\n\n\n-----Note-----\n\nIn the first sample, X = 101111_2 = 47_10 = Y.\n\nIn the second sample, X = 102_3 = 21_5 and Y = 24_5 = 112_3, thus X < Y.\n\nIn the third sample, $X = FF 4007 A_{16}$ and Y = 4803150_9. We may notice that X starts with much larger digits and b_{x} is much larger than b_{y}, so X is clearly larger than Y.",
+        "generated_code": "def base_converter(digits, base):\n    result = 0\n    for digit in digits:\n        result = result * base + digit\n    return result\n\nn, bx = map(int, input().split())\nx_digits = list(map(int, input().split()))\nm, by = map(int, input().split())\ny_digits = list(map(int, input().split()))\n\nx = base_converter(x_digits, bx)\ny = base_converter(y_digits, by)\n\nif x < y:\n    print('<')\nelif x > y:\n    print('>')\nelse:\n    print('=')\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0061",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "After seeing the \"ALL YOUR BASE ARE BELONG TO US\" meme for the first time, numbers X and Y realised that they have different bases, which complicated their relations.\n\nYou're given a number X represented in base b_{x} and a number Y represented in base b_{y}. Compare those two numbers.\n\n\n-----Input-----\n\nThe first line of the input contains two space-separated integers n and b_{x} (1 ≤ n ≤ 10, 2 ≤ b_{x} ≤ 40), where n is the number of digits in the b_{x}-based representation of X. \n\nThe second line contains n space-separated integers x_1, x_2, ..., x_{n} (0 ≤ x_{i} < b_{x}) — the digits of X. They are given in the order from the most significant digit to the least significant one.\n\nThe following two lines describe Y in the same way: the third line contains two space-separated integers m and b_{y} (1 ≤ m ≤ 10, 2 ≤ b_{y} ≤ 40, b_{x} ≠ b_{y}), where m is the number of digits in the b_{y}-based representation of Y, and the fourth line contains m space-separated integers y_1, y_2, ..., y_{m} (0 ≤ y_{i} < b_{y}) — the digits of Y.\n\nThere will be no leading zeroes. Both X and Y will be positive. All digits of both numbers are given in the standard decimal numeral system.\n\n\n-----Output-----\n\nOutput a single character (quotes for clarity):   '<' if X < Y  '>' if X > Y  '=' if X = Y \n\n\n-----Examples-----\nInput\n6 2\n1 0 1 1 1 1\n2 10\n4 7\n\nOutput\n=\n\nInput\n3 3\n1 0 2\n2 5\n2 4\n\nOutput\n<\n\nInput\n7 16\n15 15 4 0 0 7 10\n7 9\n4 8 0 3 1 5 0\n\nOutput\n>\n\n\n\n-----Note-----\n\nIn the first sample, X = 101111_2 = 47_10 = Y.\n\nIn the second sample, X = 102_3 = 21_5 and Y = 24_5 = 112_3, thus X < Y.\n\nIn the third sample, $X = FF 4007 A_{16}$ and Y = 4803150_9. We may notice that X starts with much larger digits and b_{x} is much larger than b_{y}, so X is clearly larger than Y.",
+        "generated_code": "def convert_to_decimal(digits, base):\n    decimal_value = 0\n    for digit in digits:\n        decimal_value = decimal_value * base + digit\n    return decimal_value\n\n# Read input\nn, base_x = map(int, input().split())\ndigits_x = list(map(int, input().split()))\nm, base_y = map(int, input().split())\ndigits_y = list(map(int, input().split()))\n\n# Convert both numbers to decimal\ndecimal_x = convert_to_decimal(digits_x, base_x)\ndecimal_y = convert_to_decimal(digits_y, base_y)\n\n# Compare and print result\nif decimal_x < decimal_y:\n    print('<')\nelif decimal_x > decimal_y:\n    print('>')\nelse:\n    print('=')\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0042",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "You are given a binary string $s$.\n\nFind the number of distinct cyclical binary strings of length $n$ which contain $s$ as a substring.\n\nThe cyclical string $t$ contains $s$ as a substring if there is some cyclical shift of string $t$, such that $s$ is a substring of this cyclical shift of $t$.\n\nFor example, the cyclical string \"000111\" contains substrings \"001\", \"01110\" and \"10\", but doesn't contain \"0110\" and \"10110\".\n\nTwo cyclical strings are called different if they differ from each other as strings. For example, two different strings, which differ from each other by a cyclical shift, are still considered different cyclical strings.\n\n\n-----Input-----\n\nThe first line contains a single integer $n$ ($1 \\le n \\le 40$) — the length of the target string $t$.\n\nThe next line contains the string $s$ ($1 \\le |s| \\le n$) — the string which must be a substring of cyclical string $t$. String $s$ contains only characters '0' and '1'.\n\n\n-----Output-----\n\nPrint the only integer — the number of distinct cyclical binary strings $t$, which contain $s$ as a substring.\n\n\n-----Examples-----\nInput\n2\n0\n\nOutput\n3\nInput\n4\n1010\n\nOutput\n2\nInput\n20\n10101010101010\n\nOutput\n962\n\n\n-----Note-----\n\nIn the first example, there are three cyclical strings, which contain \"0\" — \"00\", \"01\" and \"10\".\n\nIn the second example, there are only two such strings — \"1010\", \"0101\".",
+        "generated_code": "n = int(input())\ns = input()\ncount = 0\nfor i in range(2**n):\n    t = bin(i)[2:].zfill(n)\n    if all(t[i:i+len(s)] == s or t[i+len(s):] + t[:i] == s for i in range(n)):\n        count += 1\nprint(count)\n",
+        "counter_example": {
+            "input": "4\n1010\n",
+            "expected": "2",
+            "got": "0"
+        }
+    },
+    {
+        "task_id": "0042",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "You are given a binary string $s$.\n\nFind the number of distinct cyclical binary strings of length $n$ which contain $s$ as a substring.\n\nThe cyclical string $t$ contains $s$ as a substring if there is some cyclical shift of string $t$, such that $s$ is a substring of this cyclical shift of $t$.\n\nFor example, the cyclical string \"000111\" contains substrings \"001\", \"01110\" and \"10\", but doesn't contain \"0110\" and \"10110\".\n\nTwo cyclical strings are called different if they differ from each other as strings. For example, two different strings, which differ from each other by a cyclical shift, are still considered different cyclical strings.\n\n\n-----Input-----\n\nThe first line contains a single integer $n$ ($1 \\le n \\le 40$) — the length of the target string $t$.\n\nThe next line contains the string $s$ ($1 \\le |s| \\le n$) — the string which must be a substring of cyclical string $t$. String $s$ contains only characters '0' and '1'.\n\n\n-----Output-----\n\nPrint the only integer — the number of distinct cyclical binary strings $t$, which contain $s$ as a substring.\n\n\n-----Examples-----\nInput\n2\n0\n\nOutput\n3\nInput\n4\n1010\n\nOutput\n2\nInput\n20\n10101010101010\n\nOutput\n962\n\n\n-----Note-----\n\nIn the first example, there are three cyclical strings, which contain \"0\" — \"00\", \"01\" and \"10\".\n\nIn the second example, there are only two such strings — \"1010\", \"0101\".",
+        "generated_code": "def count_distinct_cyclical_strings(n, s):\n    # Function to check if string s is a substring of t or any of its cyclic permutations\n    def is_cyclic_substring(t, s):\n        t_extended = t + t\n        return s in t_extended[:n + len(s) - 1]\n\n    # Generate all binary strings of length n\n    from itertools import product\n    all_binary_strings = [''.join(p) for p in product('01', repeat=n)]\n    \n    # Count the number of distinct binary strings that contain s as a substring\n    count = 0\n    for t in all_binary_strings:\n        if is_cyclic_substring(t, s):\n            count += 1\n    \n    return count\n\n# Reading input\nn = int(input())\ns = input()\n\n# Printing the result\nprint(count_distinct_cyclical_strings(n, s))\n",
+        "counter_example": {
+            "input": "33\n0001100010001100110000\n",
+            "expected": "67584",
+            "got": "TimeoutError: Execution exceeded time limit"
+        }
+    },
+    {
+        "task_id": "0128",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "It is a balmy spring afternoon, and Farmer John's n cows are ruminating about link-cut cacti in their stalls. The cows, labeled 1 through n, are arranged so that the i-th cow occupies the i-th stall from the left. However, Elsie, after realizing that she will forever live in the shadows beyond Bessie's limelight, has formed the Mischievous Mess Makers and is plotting to disrupt this beautiful pastoral rhythm. While Farmer John takes his k minute long nap, Elsie and the Mess Makers plan to repeatedly choose two distinct stalls and swap the cows occupying those stalls, making no more than one swap each minute.\n\nBeing the meticulous pranksters that they are, the Mischievous Mess Makers would like to know the maximum messiness attainable in the k minutes that they have. We denote as p_{i} the label of the cow in the i-th stall. The messiness of an arrangement of cows is defined as the number of pairs (i, j) such that i < j and p_{i} > p_{j}.\n\n\n-----Input-----\n\nThe first line of the input contains two integers n and k (1 ≤ n, k ≤ 100 000) — the number of cows and the length of Farmer John's nap, respectively.\n\n\n-----Output-----\n\nOutput a single integer, the maximum messiness that the Mischievous Mess Makers can achieve by performing no more than k swaps. \n\n\n-----Examples-----\nInput\n5 2\n\nOutput\n10\n\nInput\n1 10\n\nOutput\n0\n\n\n\n-----Note-----\n\nIn the first sample, the Mischievous Mess Makers can swap the cows in the stalls 1 and 5 during the first minute, then the cows in stalls 2 and 4 during the second minute. This reverses the arrangement of cows, giving us a total messiness of 10.\n\nIn the second sample, there is only one cow, so the maximum possible messiness is 0.",
+        "generated_code": "n, k = map(int, input().split())\nprint(k * (n - 1) // 2)\n",
+        "counter_example": {
+            "input": "5 2\n",
+            "expected": "10\n",
+            "got": "4"
+        }
+    },
+    {
+        "task_id": "0128",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "It is a balmy spring afternoon, and Farmer John's n cows are ruminating about link-cut cacti in their stalls. The cows, labeled 1 through n, are arranged so that the i-th cow occupies the i-th stall from the left. However, Elsie, after realizing that she will forever live in the shadows beyond Bessie's limelight, has formed the Mischievous Mess Makers and is plotting to disrupt this beautiful pastoral rhythm. While Farmer John takes his k minute long nap, Elsie and the Mess Makers plan to repeatedly choose two distinct stalls and swap the cows occupying those stalls, making no more than one swap each minute.\n\nBeing the meticulous pranksters that they are, the Mischievous Mess Makers would like to know the maximum messiness attainable in the k minutes that they have. We denote as p_{i} the label of the cow in the i-th stall. The messiness of an arrangement of cows is defined as the number of pairs (i, j) such that i < j and p_{i} > p_{j}.\n\n\n-----Input-----\n\nThe first line of the input contains two integers n and k (1 ≤ n, k ≤ 100 000) — the number of cows and the length of Farmer John's nap, respectively.\n\n\n-----Output-----\n\nOutput a single integer, the maximum messiness that the Mischievous Mess Makers can achieve by performing no more than k swaps. \n\n\n-----Examples-----\nInput\n5 2\n\nOutput\n10\n\nInput\n1 10\n\nOutput\n0\n\n\n\n-----Note-----\n\nIn the first sample, the Mischievous Mess Makers can swap the cows in the stalls 1 and 5 during the first minute, then the cows in stalls 2 and 4 during the second minute. This reverses the arrangement of cows, giving us a total messiness of 10.\n\nIn the second sample, there is only one cow, so the maximum possible messiness is 0.",
+        "generated_code": "# Function to calculate the maximum messiness\ndef max_messiness(n, k):\n    # Maximum number of pairs in a fully reversed list\n    max_pairs = n * (n - 1) // 2\n    \n    # If k is large enough to allow full reversal, return max_pairs\n    if k >= max_pairs:\n        return max_pairs\n    \n    # Otherwise, the maximum messiness we can achieve with k swaps\n    return k\n\n# Reading input\nimport sys\ninput = sys.stdin.read\ndata = input().strip().split()\nn = int(data[0])\nk = int(data[1])\n\n# Calculating and printing the result\nprint(max_messiness(n, k))\n",
+        "counter_example": {
+            "input": "5 2\n",
+            "expected": "10\n",
+            "got": "2"
+        }
+    },
+    {
+        "task_id": "0045",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "You are given positive integer number n. You should create such strictly increasing sequence of k positive numbers a_1, a_2, ..., a_{k}, that their sum is equal to n and greatest common divisor is maximal.\n\nGreatest common divisor of sequence is maximum of such numbers that every element of sequence is divisible by them.\n\nIf there is no possible sequence then output -1.\n\n\n-----Input-----\n\nThe first line consists of two numbers n and k (1 ≤ n, k ≤ 10^10).\n\n\n-----Output-----\n\nIf the answer exists then output k numbers — resulting sequence. Otherwise output -1. If there are multiple answers, print any of them.\n\n\n-----Examples-----\nInput\n6 3\n\nOutput\n1 2 3\n\nInput\n8 2\n\nOutput\n2 6\n\nInput\n5 3\n\nOutput\n-1",
+        "generated_code": "def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n\nn, k = map(int, input().split())\n\nif n < k:\n    print(-1)\nelse:\n    seq = []\n    for i in range(1, k + 1):\n        if n >= i:\n            seq.append(i)\n            n -= i\n        else:\n            break\n    if len(seq) != k:\n        print(-1)\n    else:\n        print(' '.join(map(str, seq)))\n",
+        "counter_example": {
+            "input": "8 2\n",
+            "expected": "2 6\n",
+            "got": "1 2"
+        }
+    },
+    {
+        "task_id": "0045",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "You are given positive integer number n. You should create such strictly increasing sequence of k positive numbers a_1, a_2, ..., a_{k}, that their sum is equal to n and greatest common divisor is maximal.\n\nGreatest common divisor of sequence is maximum of such numbers that every element of sequence is divisible by them.\n\nIf there is no possible sequence then output -1.\n\n\n-----Input-----\n\nThe first line consists of two numbers n and k (1 ≤ n, k ≤ 10^10).\n\n\n-----Output-----\n\nIf the answer exists then output k numbers — resulting sequence. Otherwise output -1. If there are multiple answers, print any of them.\n\n\n-----Examples-----\nInput\n6 3\n\nOutput\n1 2 3\n\nInput\n8 2\n\nOutput\n2 6\n\nInput\n5 3\n\nOutput\n-1",
+        "generated_code": "def find_sequence(n, k):\n    min_sum = k * (k + 1) // 2  # Sum of the first k natural numbers\n    \n    if min_sum > n:\n        return -1\n    \n    d = n // min_sum  # Maximum possible GCD\n    remainder = n - d * min_sum\n    \n    sequence = [d * (i + 1) for i in range(k)]\n    \n    # Distribute the remainder to the sequence to make the sum equal to n\n    for i in range(k-1, -1, -1):\n        if remainder == 0:\n            break\n        sequence[i] += 1\n        remainder -= 1\n    \n    return sequence\n\n# Read input\nn, k = map(int, input().split())\n\nresult = find_sequence(n, k)\nif result == -1:\n    print(-1)\nelse:\n    print(\" \".join(map(str, result)))\n",
+        "counter_example": {
+            "input": "8 2\n",
+            "expected": "2 6\n",
+            "got": "3 5"
+        }
+    }
+]

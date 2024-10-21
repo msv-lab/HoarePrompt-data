@@ -1,0 +1,114 @@
+[
+    {
+        "task_id": "Mbpp/771",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to check if the given expression is balanced or not.",
+        "generated_code": "def check_expression(s: str) -> bool:\n    stack = []\n    mapping = {\")\": \"(\", \"}\": \"{\", \"]\": \"[\"}\n    for char in s:\n        if char in mapping.values():\n            stack.append(char)\n        elif char in mapping:\n            if not stack or mapping[char] != stack.pop():\n                return False\n    return not stack\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                ""
+            ],
+            "expected": false,
+            "got": true
+        }
+    },
+    {
+        "task_id": "Mbpp/771",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Write a function to check if the given expression is balanced or not.",
+        "generated_code": "def check_expression(expr):\n    stack = []\n    matching_pairs = {')': '(', ']': '[', '}': '{'}\n    \n    for char in expr:\n        if char in matching_pairs.values():\n            stack.append(char)\n        elif char in matching_pairs:\n            if stack == [] or stack.pop() != matching_pairs[char]:\n                return False\n    return stack == []\n\n# Testing the function with the provided test cases\nassert check_expression(\"{()}[{}]\") == True\nassert check_expression(\"{()}[{]\") == False\nassert check_expression(\"{()}[{}][]({})\") == True\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                ""
+            ],
+            "expected": false,
+            "got": true
+        }
+    },
+    {
+        "task_id": "Mbpp/128",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to find words that are longer than n characters from a given list of words.",
+        "generated_code": "def long_words(n, sentence):\n    words = sentence.split()\n    return [word for word in words if len(word) > n]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/128",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to find words that are longer than n characters from a given list of words.",
+        "generated_code": "def long_words(n, sentence):\n    # Split the sentence into words\n    words = sentence.split()\n    \n    # Filter words that are longer than n characters\n    result = [word for word in words if len(word) > n]\n    \n    return result\n\n# Test cases\nassert long_words(3, \"python is a programming language\") == ['python', 'programming', 'language']\nassert long_words(2, \"writing a program\") == ['writing', 'program']\nassert long_words(5, \"sorting list\") == ['sorting']\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/797",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function to find the sum of all odd natural numbers within the range l and r.",
+        "generated_code": "def sum_in_range(l, r):\n    return sum(i for i in range(l, r+1) if i % 2 != 0)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/797",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to find the sum of all odd natural numbers within the range l and r.",
+        "generated_code": "def sum_in_range(l, r):\n    return sum(i for i in range(l, r + 1) if i % 2 != 0)\n\n# Test cases\nassert sum_in_range(2, 5) == 8\nassert sum_in_range(5, 7) == 12\nassert sum_in_range(7, 13) == 40\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/11",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function to remove first and last occurrence of a given character from the string.",
+        "generated_code": "def remove_Occ(s, c):\n    first_occ = s.find(c)\n    last_occ = s.rfind(c)\n    if first_occ != -1 and last_occ != -1:\n        return s[:first_occ] + s[first_occ+1:last_occ] + s[last_occ+1:]\n    else:\n        return s\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/11",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Write a python function to remove first and last occurrence of a given character from the string.",
+        "generated_code": "def remove_Occ(s: str, ch: str) -> str:\n    first_index = s.find(ch)\n    last_index = s.rfind(ch)\n    \n    if first_index == -1 or last_index == -1 or first_index == last_index:\n        return s  # No removal needed if ch is not found or only one occurrence\n    \n    # Create a new string without the first and last occurrence of ch\n    return s[:first_index] + s[first_index + 1:last_index] + s[last_index + 1:]\n\n# Testing the function with the provided test cases\nassert remove_Occ(\"hello\", \"l\") == \"heo\"\nassert remove_Occ(\"abcda\", \"a\") == \"bcd\"\nassert remove_Occ(\"PHP\", \"P\") == \"H\"\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                "a",
+                "a"
+            ],
+            "expected": "",
+            "got": "a"
+        }
+    },
+    {
+        "task_id": "Mbpp/404",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function to find the minimum of two numbers.",
+        "generated_code": "def minimum(a, b):\n    return min(a, b)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/404",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to find the minimum of two numbers.",
+        "generated_code": "def minimum(a, b):\n    return a if a < b else b\n\n# Tests\nassert minimum(1, 2) == 1\nassert minimum(-5, -4) == -5\nassert minimum(0, 0) == 0\n",
+        "counter_example": null
+    }
+]

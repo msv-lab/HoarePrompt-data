@@ -1,0 +1,109 @@
+[
+    {
+        "task_id": "Mbpp/85",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to find the surface area of a sphere.",
+        "generated_code": "import math\n\ndef surfacearea_sphere(radius: float) -> float:\n    return 4 * math.pi * (radius ** 2)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/85",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to find the surface area of a sphere.",
+        "generated_code": "import math\n\ndef surfacearea_sphere(radius):\n    return 4 * math.pi * radius ** 2\n\n# Test cases\nassert math.isclose(surfacearea_sphere(10), 1256.6370614359173, rel_tol=0.001)\nassert math.isclose(surfacearea_sphere(15), 2827.4333882308138, rel_tol=0.001)\nassert math.isclose(surfacearea_sphere(20), 5026.548245743669, rel_tol=0.001)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/446",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a python function to count the occurence of all elements of list in a tuple.",
+        "generated_code": "def count_Occurrence(tup, lst):\n    return sum(1 for elem in lst if elem in tup)\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                [
+                    "a",
+                    "a",
+                    "c",
+                    "b",
+                    "d"
+                ],
+                [
+                    "a",
+                    "b"
+                ]
+            ],
+            "expected": 3,
+            "got": 2
+        }
+    },
+    {
+        "task_id": "Mbpp/446",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to count the occurence of all elements of list in a tuple.",
+        "generated_code": "def count_Occurrence(tup, elements):\n    count = sum(tup.count(element) for element in elements)\n    return count\n\n# Test cases\nassert count_Occurrence(('a', 'a', 'c', 'b', 'd'), ['a', 'b']) == 3\nassert count_Occurrence((1, 2, 3, 1, 4, 6, 7, 1, 4), [1, 4, 7]) == 6\nassert count_Occurrence((1, 2, 3, 4, 5, 6), [1, 2]) == 2\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/554",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function which takes a list of integers and only returns the odd ones.",
+        "generated_code": "def Split(lst):\n    return [i for i in lst if i % 2 != 0]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/554",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function which takes a list of integers and only returns the odd ones.",
+        "generated_code": "def Split(nums):\n    return [num for num in nums if num % 2 != 0]\n\n# Tests\nassert Split([1,2,3,4,5,6]) == [1, 3, 5]\nassert Split([10,11,12,13]) == [11, 13]\nassert Split([7,8,9,1]) == [7, 9, 1]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/614",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to find the cumulative sum of all the values that are present in the given tuple list.",
+        "generated_code": "def cummulative_sum(tup_list):\n    return sum(sum(sub_tup) for sub_tup in tup_list)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/614",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to find the cumulative sum of all the values that are present in the given tuple list.",
+        "generated_code": "def cummulative_sum(tuple_list):\n    total_sum = 0\n    for tup in tuple_list:\n        total_sum += sum(tup)\n    return total_sum\n\n# Test cases\nassert cummulative_sum([(1, 3), (5, 6, 7), (2, 6)]) == 30\nassert cummulative_sum([(2, 4), (6, 7, 8), (3, 7)]) == 37\nassert cummulative_sum([(3, 5), (7, 8, 9), (4, 8)]) == 44\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/91",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to check if a string is present as a substring in a given list of string values.",
+        "generated_code": "def find_substring(lst, sub):\n    for string in lst:\n        if sub in string:\n            return True\n    return False\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/91",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to check if a string is present as a substring in a given list of string values.",
+        "generated_code": "def find_substring(list_of_strings, substring):\n    for string in list_of_strings:\n        if substring in string:\n            return True\n    return False\n\n# Tests\nassert find_substring([\"red\", \"black\", \"white\", \"green\", \"orange\"], \"ack\") == True\nassert find_substring([\"red\", \"black\", \"white\", \"green\", \"orange\"], \"abc\") == False\nassert find_substring([\"red\", \"black\", \"white\", \"green\", \"orange\"], \"ange\") == True\n",
+        "counter_example": null
+    }
+]

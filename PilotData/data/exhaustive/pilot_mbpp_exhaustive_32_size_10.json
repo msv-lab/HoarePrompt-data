@@ -1,0 +1,120 @@
+[
+    {
+        "task_id": "Mbpp/419",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to round every number of a given list of numbers and print the total sum multiplied by the length of the list.",
+        "generated_code": "def round_and_sum(nums):\n    total_sum = sum(round(num) for num in nums)\n    return total_sum * len(nums)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/419",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to round every number of a given list of numbers and print the total sum multiplied by the length of the list.",
+        "generated_code": "def round_and_sum(numbers):\n    rounded_numbers = [round(num) for num in numbers]\n    total_sum = sum(rounded_numbers)\n    result = total_sum * len(numbers)\n    return result\n\n# Tests\nassert round_and_sum([22.4, 4.0, -16.22, -9.10, 11.00, -12.22, 14.20, -5.20, 17.50]) == 243\nassert round_and_sum([5, 2, 9, 24.3, 29]) == 345\nassert round_and_sum([25.0, 56.7, 89.2]) == 513\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/257",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function that takes in two numbers and returns a tuple with the second number and then the first number.",
+        "generated_code": "def swap_numbers(a, b):\n    return (b, a)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/257",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function that takes in two numbers and returns a tuple with the second number and then the first number.",
+        "generated_code": "def swap_numbers(a, b):\n    return (b, a)\n\n# Testing the function with provided test cases\nassert swap_numbers(10, 20) == (20, 10)\nassert swap_numbers(15, 17) == (17, 15)\nassert swap_numbers(100, 200) == (200, 100)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/113",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to check if a string represents an integer or not.",
+        "generated_code": "def check_integer(s: str) -> bool:\n    try:\n        int(s)\n        return True\n    except ValueError:\n        return False\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                ""
+            ],
+            "expected": null,
+            "got": false
+        }
+    },
+    {
+        "task_id": "Mbpp/113",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Write a function to check if a string represents an integer or not.",
+        "generated_code": "def check_integer(s: str) -> bool:\n    try:\n        int(s)\n        return True\n    except ValueError:\n        return False\n\n# Tests\nassert check_integer(\"python\") == False\nassert check_integer(\"1\") == True\nassert check_integer(\"12345\") == True\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                ""
+            ],
+            "expected": null,
+            "got": false
+        }
+    },
+    {
+        "task_id": "Mbpp/77",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a python function to find whether a number is divisible by 11.",
+        "generated_code": "def is_Diff(n: int) -> bool:\n    n = str(n)\n    sum_even = sum(int(digit) for i, digit in enumerate(n) if i % 2 == 0)\n    sum_odd = sum(int(digit) for i, digit in enumerate(n) if i % 2 != 0)\n    return (sum_even - sum_odd) % 11 == 0\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                -1212
+            ],
+            "expected": false,
+            "got": null
+        }
+    },
+    {
+        "task_id": "Mbpp/77",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Write a python function to find whether a number is divisible by 11.",
+        "generated_code": "def is_Diff(n):\n    # Convert the number to a string to easily access the digits\n    n_str = str(n)\n    \n    # Initialize sums for odd and even positioned digits\n    odd_sum = 0\n    even_sum = 0\n    \n    # Iterate through the digits\n    for i, digit in enumerate(n_str):\n        if i % 2 == 0:  # 0-based index, so 0, 2, 4,... are odd positions\n            odd_sum += int(digit)\n        else:  # 1, 3, 5,... are even positions\n            even_sum += int(digit)\n    \n    # Calculate the difference between the sums\n    diff = abs(odd_sum - even_sum)\n    \n    # Check if the difference is divisible by 11\n    return diff % 11 == 0\n\n# Test cases\nassert is_Diff(12345) == False\nassert is_Diff(1212112) == True\nassert is_Diff(1212) == False\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                -1212
+            ],
+            "expected": false,
+            "got": null
+        }
+    },
+    {
+        "task_id": "Mbpp/724",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function that takes base and power as arguments and calculate the sum of all digits of the base to the specified power.",
+        "generated_code": "def power_base_sum(base, power):\n    result = base ** power\n    return sum(int(digit) for digit in str(result))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/724",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function that takes base and power as arguments and calculate the sum of all digits of the base to the specified power.",
+        "generated_code": "def power_base_sum(base, power):\n    # Calculate the base raised to the given power\n    result = base ** power\n    \n    # Convert the result to a string to iterate over each digit\n    result_str = str(result)\n    \n    # Sum the digits of the resulting string\n    digit_sum = sum(int(digit) for digit in result_str)\n    \n    return digit_sum\n\n# Test cases\nassert power_base_sum(2, 100) == 115\nassert power_base_sum(8, 10) == 37\nassert power_base_sum(8, 15) == 62\nassert power_base_sum(3, 3) == 9\n",
+        "counter_example": null
+    }
+]
