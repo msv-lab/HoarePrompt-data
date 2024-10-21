@@ -61,19 +61,16 @@ Follow these steps to set up and start using the data and scripts in this reposi
 3. Use the `Results` folder to store the logs and outputs of your experiments, following the recommendations provided in the  **[PilotData README](./PilotData/README.md)** .
   
 ## Contributions
-This is a joint project collaboration of Peking Univeristy and University College London.
-Feel free to contribute to HoarePrompt-data by opening issues or submitting pull requests on GitHub. Your contributions are highly appreciated!
+This is a project of Peking Univeristy. Feel free to contribute to HoarePrompt-data by opening issues or submitting pull requests on GitHub. Your contributions are highly appreciated!
 
-<table>
+<table style="width: 100%; table-layout: fixed; text-align: center;">
   <tr>
-    <td style="text-align: center;">
+    <td style="width: 50%; text-align: center;">
       <img src="./assets/PKU.png" alt="Image 1" width="300"/>
     </td>
-    <td style="text-align: center;">
+    <td style="width: 50%; text-align: center;">
       <img src="./assets/HoarePrompt_logo.png" alt="Image 2" width="300"/>
-    </td>
-    <td style="text-align: center;">
-      <img src="./assets/UCL.png" alt="Image 3" width="300"/>
     </td>
   </tr>
 </table>
+
