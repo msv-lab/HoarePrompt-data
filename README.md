@@ -58,7 +58,7 @@ Follow these steps to set up and start using the data and scripts in this reposi
    ```
 2. To generate datasets, follow the instructions in the **[PilotData README](./PilotData/README.md)** to generate new pilot data using LLMs and test them.
 
-3. Use the `Results` folder to store the logs and outputs of your experiments, following the recommendations provided above.
+3. Use the `Results` folder to store the logs and outputs of your experiments, following the recommendations provided in the  **[PilotData README](./PilotData/README.md)** .
   
 ## Contributions
 This is a joint project collaboration of Peking Univeristy and University College London.

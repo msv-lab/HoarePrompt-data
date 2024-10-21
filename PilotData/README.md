@@ -5,7 +5,7 @@
       <img src="../assets/HoarePrompt_logo.png" alt="HoarePrompt Logo" width="100"/>
     </td>
     <td style="width: 80%; text-align: left;">
-      <h1>HPilotData: Data generation for running HoarePrompt experiments</h1>
+      <h1>PilotData: Data generation for running HoarePrompt experiments</h1>
     </td>
   </tr>
 </table>
@@ -110,7 +110,7 @@ This script provides an interface to select the appropriate LLM (OpenAI or Groq)
 
 ## Next Steps
 
-To start using the generated datasets for testing and experimentation with **HoarePrompt**, you can run the scripts in the **PilotData** folder to generate new code solutions or to create pilot datasets for experiments. 
+To start using the generated datasets for testing and experimentation with **HoarePrompt**, you can run the scripts in the **PilotData** folder to generate new code solutions or to create pilot datasets for experiments based on the already generated solutions. 
 You can use any of the Pilot jsons or create on of your desired size and use it as the Data File for the HoarePrompt tool using the capabilities of the [HoarePrompt-experiments repo](https://github.com/msv-lab/HoarePrompt-experiments)
 
 For moreinformation  regarding the missing APPS datasetand to  download it visit the following [link](https://github.com/hendrycks/apps).
