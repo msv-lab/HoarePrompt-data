@@ -1,0 +1,536 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,data file
+0226,apps,llama3-70b-8192,gpt-4o-2024-05-13,"You may have heard of the pie rule before. It states that if two people wish to fairly share a slice of pie, one person should cut the slice in half, and the other person should choose who gets which slice. Alice and Bob have many slices of pie, and rather than cutting the slices in half, each individual slice will be eaten by just one person.
+
+The way Alice and Bob decide who eats each slice is as follows. First, the order in which the pies are to be handed out is decided. There is a special token called the ""decider"" token, initially held by Bob. Until all the pie is handed out, whoever has the decider token will give the next slice of pie to one of the participants, and the decider token to the other participant. They continue until no slices of pie are left.
+
+All of the slices are of excellent quality, so each participant obviously wants to maximize the total amount of pie they get to eat. Assuming both players make their decisions optimally, how much pie will each participant receive?
+
+
+-----Input-----
+
+Input will begin with an integer N (1 ≤ N ≤ 50), the number of slices of pie. 
+
+Following this is a line with N integers indicating the sizes of the slices (each between 1 and 100000, inclusive), in the order in which they must be handed out.
+
+
+-----Output-----
+
+Print two integers. First, the sum of the sizes of slices eaten by Alice, then the sum of the sizes of the slices eaten by Bob, assuming both players make their decisions optimally.
+
+
+-----Examples-----
+Input
+3
+141 592 653
+
+Output
+653 733
+
+Input
+5
+10 21 10 21 10
+
+Output
+31 41
+
+
+
+-----Note-----
+
+In the first example, Bob takes the size 141 slice for himself and gives the decider token to Alice. Then Alice gives the size 592 slice to Bob and keeps the decider token for herself, so that she can then give the size 653 slice to herself.","N = int(input())
+sizes = list(map(int, input().split()))
+
+sizes.sort(reverse=True)
+
+alice, bob = 0, 0
+decider = True
+
+for size in sizes:
+    if decider:
+        alice += size
+    else:
+        bob += size
+    decider = not decider
+
+print(alice, bob)
+",,False,"`N` remains an input integer between 1 and 50. `sizes` remains a list of integers sorted in descending order, where each integer is between 1 and 100000 inclusive. `alice` and `bob` contain sums of elements from `sizes` based on the alternating value of `decider`. `decider` is toggled to its opposite value each iteration and ends in the opposite state from which it started. `iterator` is exhausted. If `sizes` is empty, `alice` and `bob` remain 0. The values of `alice` and `bob` are printed.",False,False,pilot_apps_exhaustive_3_size_10.json
+0226,apps,gpt-4o-2024-05-13,gpt-4o-2024-05-13,"You may have heard of the pie rule before. It states that if two people wish to fairly share a slice of pie, one person should cut the slice in half, and the other person should choose who gets which slice. Alice and Bob have many slices of pie, and rather than cutting the slices in half, each individual slice will be eaten by just one person.
+
+The way Alice and Bob decide who eats each slice is as follows. First, the order in which the pies are to be handed out is decided. There is a special token called the ""decider"" token, initially held by Bob. Until all the pie is handed out, whoever has the decider token will give the next slice of pie to one of the participants, and the decider token to the other participant. They continue until no slices of pie are left.
+
+All of the slices are of excellent quality, so each participant obviously wants to maximize the total amount of pie they get to eat. Assuming both players make their decisions optimally, how much pie will each participant receive?
+
+
+-----Input-----
+
+Input will begin with an integer N (1 ≤ N ≤ 50), the number of slices of pie. 
+
+Following this is a line with N integers indicating the sizes of the slices (each between 1 and 100000, inclusive), in the order in which they must be handed out.
+
+
+-----Output-----
+
+Print two integers. First, the sum of the sizes of slices eaten by Alice, then the sum of the sizes of the slices eaten by Bob, assuming both players make their decisions optimally.
+
+
+-----Examples-----
+Input
+3
+141 592 653
+
+Output
+653 733
+
+Input
+5
+10 21 10 21 10
+
+Output
+31 41
+
+
+
+-----Note-----
+
+In the first example, Bob takes the size 141 slice for himself and gives the decider token to Alice. Then Alice gives the size 592 slice to Bob and keeps the decider token for herself, so that she can then give the size 653 slice to herself.","def optimal_pie_distribution():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    N = int(data[0])
+    slices = list(map(int, data[1:]))
+    
+    # Initialize sums for Alice and Bob
+    alice_sum = 0
+    bob_sum = 0
+    
+    # Initialize who has the decider token
+    # 0 means Bob has the token, 1 means Alice has the token
+    decider = 0
+    
+    # Iterate over the slices
+    for i in range(N):
+        if decider == 0:
+            # Bob decides
+            if i < N - 1 and slices[i] < slices[i + 1]:
+                # Give the slice to Alice and keep the decider token
+                alice_sum += slices[i]
+                decider = 0
+            else:
+                # Take the slice for Bob and pass the decider token to Alice
+                bob_sum += slices[i]
+                decider = 1
+        else:
+            # Alice decides
+            if i < N - 1 and slices[i] < slices[i + 1]:
+                # Give the slice to Bob and keep the decider token
+                bob_sum += slices[i]
+                decider = 1
+            else:
+                # Take the slice for Alice and pass the decider token to Bob
+                alice_sum += slices[i]
+                decider = 0
+    
+    print(alice_sum, bob_sum)
+
+# Run the function
+optimal_pie_distribution()
+",,False,The function prints '0 0',False,False,pilot_apps_exhaustive_3_size_10.json
+0011,apps,llama3-70b-8192,gpt-4o-2024-05-13,"Little Joty has got a task to do. She has a line of n tiles indexed from 1 to n. She has to paint them in a strange pattern.
+
+An unpainted tile should be painted Red if it's index is divisible by a and an unpainted tile should be painted Blue if it's index is divisible by b. So the tile with the number divisible by a and b can be either painted Red or Blue.
+
+After her painting is done, she will get p chocolates for each tile that is painted Red and q chocolates for each tile that is painted Blue.
+
+Note that she can paint tiles in any order she wants.
+
+Given the required information, find the maximum number of chocolates Joty can get.
+
+
+-----Input-----
+
+The only line contains five integers n, a, b, p and q (1 ≤ n, a, b, p, q ≤ 10^9).
+
+
+-----Output-----
+
+Print the only integer s — the maximum number of chocolates Joty can get.
+
+Note that the answer can be too large, so you should use 64-bit integer type to store it. In C++ you can use the long long integer type and in Java you can use long integer type.
+
+
+-----Examples-----
+Input
+5 2 3 12 15
+
+Output
+39
+
+Input
+20 2 3 3 5
+
+Output
+51","n, a, b, p, q = map(int, input().split())
+lcm = a * b // math.gcd(a, b)
+red = n // a * p
+blue = n // b * q
+both = n // lcm * min(p, q)
+print(red + blue - both)
+",,True,"`n`, `a`, `b`, `p`, and `q` are input integers where 1 ≤ n, a, b, p, q ≤ 10^9, `lcm` is `a * b // math.gcd(a, b)`, `red` is `n // a * p`, `blue` is `n // b * q`, `both` is `n // lcm * min(p, q)`, and the function prints `red + blue - both`",False,True,pilot_apps_exhaustive_3_size_10.json
+0011,apps,gpt-4o-2024-05-13,gpt-4o-2024-05-13,"Little Joty has got a task to do. She has a line of n tiles indexed from 1 to n. She has to paint them in a strange pattern.
+
+An unpainted tile should be painted Red if it's index is divisible by a and an unpainted tile should be painted Blue if it's index is divisible by b. So the tile with the number divisible by a and b can be either painted Red or Blue.
+
+After her painting is done, she will get p chocolates for each tile that is painted Red and q chocolates for each tile that is painted Blue.
+
+Note that she can paint tiles in any order she wants.
+
+Given the required information, find the maximum number of chocolates Joty can get.
+
+
+-----Input-----
+
+The only line contains five integers n, a, b, p and q (1 ≤ n, a, b, p, q ≤ 10^9).
+
+
+-----Output-----
+
+Print the only integer s — the maximum number of chocolates Joty can get.
+
+Note that the answer can be too large, so you should use 64-bit integer type to store it. In C++ you can use the long long integer type and in Java you can use long integer type.
+
+
+-----Examples-----
+Input
+5 2 3 12 15
+
+Output
+39
+
+Input
+20 2 3 3 5
+
+Output
+51","n, a, b, p, q = map(int, input().split())
+
+def lcm(x, y):
+    from math import gcd
+    return x * y // gcd(x, y)
+
+red_tiles = n // a
+blue_tiles = n // b
+both_tiles = n // lcm(a, b)
+
+# Since the tiles that can be painted both Red or Blue can only be counted once, we need to subtract them once
+max_chocolates = red_tiles * p + blue_tiles * q - both_tiles * min(p, q)
+
+print(max_chocolates)
+",,True,"`red_tiles` is `n // a`, `blue_tiles` is `n // b`, `both_tiles` is `n // func(a, b)`, `max_chocolates` is `red_tiles * p + blue_tiles * q - both_tiles * min(p, q)` and `max_chocolates` is printed",True,True,pilot_apps_exhaustive_3_size_10.json
+0043,apps,llama3-70b-8192,gpt-4o-2024-05-13,"You are given the set of vectors on the plane, each of them starting at the origin. Your task is to find a pair of vectors with the minimal non-oriented angle between them.
+
+Non-oriented angle is non-negative value, minimal between clockwise and counterclockwise direction angles. Non-oriented angle is always between 0 and π. For example, opposite directions vectors have angle equals to π.
+
+
+-----Input-----
+
+First line of the input contains a single integer n (2 ≤ n ≤ 100 000) — the number of vectors.
+
+The i-th of the following n lines contains two integers x_{i} and y_{i} (|x|, |y| ≤ 10 000, x^2 + y^2 > 0) — the coordinates of the i-th vector. Vectors are numbered from 1 to n in order of appearing in the input. It is guaranteed that no two vectors in the input share the same direction (but they still can have opposite directions).
+
+
+-----Output-----
+
+Print two integer numbers a and b (a ≠ b) — a pair of indices of vectors with the minimal non-oriented angle. You can print the numbers in any order. If there are many possible answers, print any.
+
+
+-----Examples-----
+Input
+4
+-1 0
+0 -1
+1 0
+1 1
+
+Output
+3 4
+
+Input
+6
+-1 0
+0 -1
+1 0
+1 1
+-4 -5
+-4 -6
+
+Output
+6 5","import math
+
+n = int(input())
+vectors = []
+for _ in range(n):
+    x, y = map(int, input().split())
+    vectors.append((x, y))
+
+min_angle = float('inf')
+ans = (-1, -1)
+for i in range(n):
+    for j in range(i + 1, n):
+        xi, yi = vectors[i]
+        xj, yj = vectors[j]
+        dot_product = xi * xj + yi * yj
+        magnitude_i = math.sqrt(xi ** 2 + yi ** 2)
+        magnitude_j = math.sqrt(xj ** 2 + yj ** 2)
+        angle = math.acos(dot_product / (magnitude_i * magnitude_j))
+        if angle < min_angle:
+            min_angle = angle
+            ans = (i + 1, j + 1)
+
+print(*ans)
+",,False,"If `_` is negative initially, `vectors` will contain tuples `(x, y)` for each input pair until `_` becomes non-negative, and `_` will be non-negative. If `_` is 0 or positive initially, `vectors` will remain an empty list, and `_` will retain its initial value. If `n` is 0 or negative, the loop will not execute. If `n` is positive and `i` starts at `n`, the outer loop will not execute, and the state will remain: `min_angle` as `float('inf')`, `ans` as `(-1, -1)`, `i` as `n`. If `i` starts less than 0, the loop executes as follows: `min_angle` is the smallest angle computed between the vectors, `ans` is the pair of indices (1-based) corresponding to the vectors that form this angle, `i` will be incremented until it is 0 or greater, and `j` will be incremented until it equals `n`. The function prints the values in `ans`.",False,False,pilot_apps_exhaustive_3_size_10.json
+0043,apps,gpt-4o-2024-05-13,gpt-4o-2024-05-13,"You are given the set of vectors on the plane, each of them starting at the origin. Your task is to find a pair of vectors with the minimal non-oriented angle between them.
+
+Non-oriented angle is non-negative value, minimal between clockwise and counterclockwise direction angles. Non-oriented angle is always between 0 and π. For example, opposite directions vectors have angle equals to π.
+
+
+-----Input-----
+
+First line of the input contains a single integer n (2 ≤ n ≤ 100 000) — the number of vectors.
+
+The i-th of the following n lines contains two integers x_{i} and y_{i} (|x|, |y| ≤ 10 000, x^2 + y^2 > 0) — the coordinates of the i-th vector. Vectors are numbered from 1 to n in order of appearing in the input. It is guaranteed that no two vectors in the input share the same direction (but they still can have opposite directions).
+
+
+-----Output-----
+
+Print two integer numbers a and b (a ≠ b) — a pair of indices of vectors with the minimal non-oriented angle. You can print the numbers in any order. If there are many possible answers, print any.
+
+
+-----Examples-----
+Input
+4
+-1 0
+0 -1
+1 0
+1 1
+
+Output
+3 4
+
+Input
+6
+-1 0
+0 -1
+1 0
+1 1
+-4 -5
+-4 -6
+
+Output
+6 5","import math
+
+def minimal_angle_vectors():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    vectors = []
+    
+    for i in range(n):
+        x = int(data[2*i + 1])
+        y = int(data[2*i + 2])
+        angle = math.atan2(y, x)
+        vectors.append((angle, i + 1))
+        
+    vectors.sort()
+    
+    min_angle = float('inf')
+    a, b = -1, -1
+    
+    for i in range(1, n):
+        angle_diff = vectors[i][0] - vectors[i - 1][0]
+        if angle_diff < min_angle:
+            min_angle = angle_diff
+            a, b = vectors[i - 1][1], vectors[i][1]
+            
+    # Check the circular case, between the first and last vector
+    first_last_angle_diff = 2 * math.pi - (vectors[-1][0] - vectors[0][0])
+    if first_last_angle_diff < min_angle:
+        a, b = vectors[0][1], vectors[-1][1]
+    
+    print(a, b)
+
+minimal_angle_vectors()
+",,False,"The function reads `n` vectors from standard input, calculates the angles of these vectors, and prints the indices of the two vectors with the smallest angular difference. It does not handle cases where the input data is insufficient to form `n` vectors, and there is an error in the loop condition for processing the vectors. Additionally, the function might not correctly handle angle wrap-around cases.",False,True,pilot_apps_exhaustive_3_size_10.json
+0031,apps,llama3-70b-8192,gpt-4o-2024-05-13,"ZS the Coder has recently found an interesting concept called the Birthday Paradox. It states that given a random set of 23 people, there is around 50% chance that some two of them share the same birthday. ZS the Coder finds this very interesting, and decides to test this with the inhabitants of Udayland.
+
+In Udayland, there are 2^{n} days in a year. ZS the Coder wants to interview k people from Udayland, each of them has birthday in one of 2^{n} days (each day with equal probability). He is interested in the probability of at least two of them have the birthday at the same day. 
+
+ZS the Coder knows that the answer can be written as an irreducible fraction $\frac{A}{B}$. He wants to find the values of A and B (he does not like to deal with floating point numbers). Can you help him?
+
+
+-----Input-----
+
+The first and only line of the input contains two integers n and k (1 ≤ n ≤ 10^18, 2 ≤ k ≤ 10^18), meaning that there are 2^{n} days in a year and that ZS the Coder wants to interview exactly k people.
+
+
+-----Output-----
+
+If the probability of at least two k people having the same birthday in 2^{n} days long year equals $\frac{A}{B}$ (A ≥ 0, B ≥ 1, $\operatorname{gcd}(A, B) = 1$), print the A and B in a single line.
+
+Since these numbers may be too large, print them modulo 10^6 + 3. Note that A and B must be coprime before their remainders modulo 10^6 + 3 are taken.
+
+
+-----Examples-----
+Input
+3 2
+
+Output
+1 8
+Input
+1 3
+
+Output
+1 1
+Input
+4 3
+
+Output
+23 128
+
+
+-----Note-----
+
+In the first sample case, there are 2^3 = 8 days in Udayland. The probability that 2 people have the same birthday among 2 people is clearly $\frac{1}{8}$, so A = 1, B = 8.
+
+In the second sample case, there are only 2^1 = 2 days in Udayland, but there are 3 people, so it is guaranteed that two of them have the same birthday. Thus, the probability is 1 and A = B = 1.","def calculate_probability(n, k):
+    total_days = 2 ** n
+    numerator = 1
+    denominator = 1
+    for i in range(k):
+        numerator *= (total_days - i)
+        denominator *= (total_days)
+    gcd = math.gcd(numerator, denominator)
+    numerator //= gcd
+    denominator //= gcd
+    return numerator % (10**6 + 3), denominator % (10**6 + 3)
+
+n, k = map(int, input().split())
+A, B = calculate_probability(n, k)
+print(A, B)
+",,False,"The function accepts two integers `n` and `k` from input, `A` and `B` are the values returned by `func(n, k)`, and `A` and `B` are printed",False,False,pilot_apps_exhaustive_3_size_10.json
+0271,apps,llama3-70b-8192,gpt-4o-2024-05-13,"Vasya has a non-negative integer n. He wants to round it to nearest integer, which ends up with 0. If n already ends up with 0, Vasya considers it already rounded.
+
+For example, if n = 4722 answer is 4720. If n = 5 Vasya can round it to 0 or to 10. Both ways are correct.
+
+For given n find out to which integer will Vasya round it.
+
+
+-----Input-----
+
+The first line contains single integer n (0 ≤ n ≤ 10^9) — number that Vasya has.
+
+
+-----Output-----
+
+Print result of rounding n. Pay attention that in some cases answer isn't unique. In that case print any correct answer.
+
+
+-----Examples-----
+Input
+5
+
+Output
+0
+
+Input
+113
+
+Output
+110
+
+Input
+1000000000
+
+Output
+1000000000
+
+Input
+5432359
+
+Output
+5432360
+
+
+
+-----Note-----
+
+In the first example n = 5. Nearest integers, that ends up with zero are 0 and 10. Any of these answers is correct, so you can print 0 or 10.","n = int(input())
+if n % 10 == 0:
+    print(n)
+else:
+    if n % 10 <= 5:
+        print(n - (n % 10))
+    else:
+        print(n + (10 - n % 10))
+",,True,"`n` is an input integer. If `n` is a multiple of 10 (i.e., `n % 10 == 0`), the function prints `n`. If the last digit of `n` (i.e., `n % 10`) is less than or equal to 5, the function prints `n` rounded down to the nearest multiple of 10. Otherwise, it prints `n` rounded up to the nearest multiple of 10.",True,True,pilot_apps_exhaustive_3_size_10.json
+0271,apps,gpt-4o-2024-05-13,gpt-4o-2024-05-13,"Vasya has a non-negative integer n. He wants to round it to nearest integer, which ends up with 0. If n already ends up with 0, Vasya considers it already rounded.
+
+For example, if n = 4722 answer is 4720. If n = 5 Vasya can round it to 0 or to 10. Both ways are correct.
+
+For given n find out to which integer will Vasya round it.
+
+
+-----Input-----
+
+The first line contains single integer n (0 ≤ n ≤ 10^9) — number that Vasya has.
+
+
+-----Output-----
+
+Print result of rounding n. Pay attention that in some cases answer isn't unique. In that case print any correct answer.
+
+
+-----Examples-----
+Input
+5
+
+Output
+0
+
+Input
+113
+
+Output
+110
+
+Input
+1000000000
+
+Output
+1000000000
+
+Input
+5432359
+
+Output
+5432360
+
+
+
+-----Note-----
+
+In the first example n = 5. Nearest integers, that ends up with zero are 0 and 10. Any of these answers is correct, so you can print 0 or 10.","n = int(input())
+
+# Find the remainder when n is divided by 10
+remainder = n % 10
+
+# If the remainder is less than or equal to 5, round down
+# Otherwise, round up
+if remainder <= 5:
+    result = n - remainder
+else:
+    result = n + (10 - remainder)
+
+print(result)
+",,False,"`n` is an input integer such that 0 ≤ `n` ≤ 10^9, `remainder` is an integer between 0 and 9, `result` is an integer within the range of -9 to 10^9 and is either `n - remainder` if `remainder` ≤ 5 or `n + (10 - remainder)` if `remainder` > 5, and `result` is printed.",True,True,pilot_apps_exhaustive_3_size_10.json
