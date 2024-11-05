@@ -1,0 +1,94 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,data file
+Mbpp/280,mbpp,llama3-70b,gpt-3.5-turbo-0125,Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).,"def sequential_search(arr, elem):
+    for i, x in enumerate(arr):
+        if x == elem:
+            return (True, i)
+    return (False, -1)
+",,True,"The function `func` accepts a list `arr` and an element `elem`. It iterates through the list `arr` and if it finds an element equal to `elem`, it returns True along with the index of that element. If no such element is found in the list, the function returns False and -1. Therefore, the functionality of the function is to search for the presence of a specific element in the list and return True with the index if found, or False and -1 if not found.",True,True,pilot_mbpp3.json
+Mbpp/280,mbpp,gpt-4o,gpt-3.5-turbo-0125,Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).,"def sequential_search(arr, element):
+    for index, value in enumerate(arr):
+        if value == element:
+            return (True, index)
+    return (False, -1)
+
+# Test cases
+assert sequential_search([11,23,58,31,56,77,43,12,65,19],31) == (True, 3)
+assert sequential_search([12, 32, 45, 62, 35, 47, 44, 61],61) == (True, 7)
+assert sequential_search([9, 10, 17, 19, 22, 39, 48, 56],48) == (True, 6)
+",,True,"Functionality: The function `func` accepts two parameters: `arr`, which is a list of elements, and `element`, which is a single element to be compared within the list. The function searches for the `element` in the `arr`. If the `element` is found in the `arr`, the function returns True along with the index where the element is located. If the `element` is not found in the `arr`, the function returns False. If the `arr` is empty, the function also returns False. If the `element` is not found in a non-empty `arr`, the function should return False.",True,True,pilot_mbpp3.json
+Mbpp/11,mbpp,llama3-70b,gpt-3.5-turbo-0125,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s, c):
+    first_occ = s.find(c)
+    last_occ = s.rfind(c)
+    if first_occ != -1 and last_occ != -1:
+        return s[:first_occ] + s[first_occ+1:last_occ] + s[last_occ+1:]
+    else:
+        return s
+",,False,"Functionality: The function func accepts a string `s` and a single character `c`. If both the index of the first occurrence of `c` in `s` and the index of the last occurrence of `c` in `s` are not -1, the function returns the modified string after removing the substring between the first and last occurrences inclusive. If either the index of the first occurrence or the index of the last occurrence of `c` is -1, the function returns the original string `s`.",True,False,pilot_mbpp3.json
+Mbpp/11,mbpp,gpt-4o,gpt-3.5-turbo-0125,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s: str, ch: str) -> str:
+    first_index = s.find(ch)
+    last_index = s.rfind(ch)
+    
+    if first_index == -1 or last_index == -1 or first_index == last_index:
+        return s  # No removal needed if ch is not found or only one occurrence
+    
+    # Create a new string without the first and last occurrence of ch
+    return s[:first_index] + s[first_index + 1:last_index] + s[last_index + 1:]
+
+# Testing the function with the provided test cases
+assert remove_Occ(""hello"", ""l"") == ""heo""
+assert remove_Occ(""abcda"", ""a"") == ""bcd""
+assert remove_Occ(""PHP"", ""P"") == ""H""
+",,True,"The function `func` accepts two parameters `s` and `ch`, where `s` is a string and `ch` is a string of length 1. If `first_index` is -1 or `last_index` is -1 or `first_index` is equal to `last_index`, then the function returns `s`. Otherwise, it removes the character at the first and last occurrences of `ch` in `s` and returns the modified string.",False,True,pilot_mbpp3.json
+Mbpp/562,mbpp,llama3-70b,gpt-3.5-turbo-0125,Write a python function to find the length of the longest sublists.,"def Find_Max_Length(lists):
+    return max(len(sublist) for sublist in lists)
+",,True,"The function `func` accepts a parameter `lists`, which is a list of lists where each sublist contains elements. It then returns the length of the longest sublist within `lists`.",True,True,pilot_mbpp3.json
+Mbpp/562,mbpp,gpt-4o,gpt-3.5-turbo-0125,Write a python function to find the length of the longest sublists.,"def Find_Max_Length(list_of_lists):
+    max_length = 0
+    for sublist in list_of_lists:
+        if len(sublist) > max_length:
+            max_length = len(sublist)
+    return max_length
+
+# Test cases
+assert Find_Max_Length([[1],[1,4],[5,6,7,8]]) == 4
+assert Find_Max_Length([[0,1],[2,2,],[3,2,1]]) == 3
+assert Find_Max_Length([[7],[22,23],[13,14,15],[10,20,30,40,50]]) == 5
+",,True,"The function accepts a parameter list_of_lists, iterates through each sublist, calculates the length of the longest sublist, and returns that length. If the input list is empty, it returns 0. The function accurately determines the length of the longest sublist regardless of the initial value of `max_length` mentioned in the annotations.",True,True,pilot_mbpp3.json
+Mbpp/109,mbpp,llama3-70b,gpt-3.5-turbo-0125,Write a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.,"def odd_Equivalent(s, n):
+    s = s * (n // len(s) + 1)
+    count = 0
+    for i in range(n):
+        temp = s[i:i+len(s)]
+        count += temp.count('1') % 2
+    return count
+",,False,"Functionality: The function accepts two parameters, a binary string `s` and a non-negative integer `n`. It calculates the parity of the count of '1's in substrings of length equal to the length of `s`. If `n` is 0 or negative, or if the length of `s` is 0, the function returns 0. The function then returns the final value of `count` which represents the parity count of '1's. However, there is missing functionality in the code as it doesn't handle cases where the length of the binary string `s` is less than `n`. This missing logic could potentially lead to unexpected results.",False,True,pilot_mbpp3.json
+Mbpp/109,mbpp,gpt-4o,gpt-3.5-turbo-0125,Write a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.,"def odd_Equivalent(binary_str, num_rotations):
+    count = 0
+    for _ in range(num_rotations):
+        # Rotate the string by moving the last character to the front
+        binary_str = binary_str[-1] + binary_str[:-1]
+        # Convert the rotated binary string to an integer
+        integer_value = int(binary_str, 2)
+        # Check if the integer is odd
+        if integer_value % 2 == 1:
+            count += 1
+    return count
+
+# Testing the function with the provided test cases
+assert odd_Equivalent(""011001"", 6) == 3
+assert odd_Equivalent(""11011"", 5) == 4
+assert odd_Equivalent(""1010"", 4) == 2
+",,True,"The function `func` accepts two parameters: `binary_str`, which is a binary string, and `num_rotations`, a non-negative integer. It rotates the binary string `num_rotations` times, calculates the decimal representation of the final rotated binary string, and counts the number of times this decimal value is odd. The function then returns this count. If `num_rotations` is 0, the loop does not execute, and the count remains 0.",False,True,pilot_mbpp3.json
+Mbpp/618,mbpp,llama3-70b,gpt-3.5-turbo-0125,Write a function to divide two lists element wise.,"def div_list(list1, list2):
+    if len(list1) != len(list2):
+        raise ValueError(""Both lists must be of the same length"")
+    return [x/y for x, y in zip(list1, list2)]
+",,True,"The function func accepts two lists, list1 and list2, of the same length. If the lengths of list1 and list2 are not equal, a ValueError is raised stating that both lists must be of the same length. Otherwise, it returns a new list containing the result of element-wise division of corresponding elements from list1 and list2.",True,True,pilot_mbpp3.json
+Mbpp/618,mbpp,gpt-4o,gpt-3.5-turbo-0125,Write a function to divide two lists element wise.,"def div_list(list1, list2):
+    return [a / b for a, b in zip(list1, list2)]
+
+# Testing the function with provided test cases
+assert div_list([4,5,6],[1, 2, 3]) == [4.0, 2.5, 2.0]
+assert div_list([3,2],[1,4]) == [3.0, 0.5]
+assert div_list([90,120],[50,70]) == [1.8, 1.7142857142857142]
+",,True,"The function accepts two lists of numbers, list1 and list2. It then returns a new list containing the division of each element in list1 by the corresponding element in list2. It is assumed that list2 does not contain any zero elements.",True,True,pilot_mbpp3.json
