@@ -1,0 +1,120 @@
+[
+    {
+        "task_id": "0232",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": "There is unrest in the Galactic Senate. Several thousand solar systems have declared their intentions to leave the Republic. Master Heidi needs to select the Jedi Knights who will go on peacekeeping missions throughout the galaxy. It is well-known that the success of any peacekeeping mission depends on the colors of the lightsabers of the Jedi who will go on that mission. \n\nHeidi has n Jedi Knights standing in front of her, each one with a lightsaber of one of m possible colors. She knows that for the mission to be the most effective, she needs to select some contiguous interval of knights such that there are exactly k_1 knights with lightsabers of the first color, k_2 knights with lightsabers of the second color, ..., k_{m} knights with lightsabers of the m-th color. Help her find out if this is possible.\n\n\n-----Input-----\n\nThe first line of the input contains n (1 ≤ n ≤ 100) and m (1 ≤ m ≤ n). The second line contains n integers in the range {1, 2, ..., m} representing colors of the lightsabers of the subsequent Jedi Knights. The third line contains m integers k_1, k_2, ..., k_{m} (with $1 \\leq \\sum_{i = 1}^{m} k_{i} \\leq n$) – the desired counts of lightsabers of each color from 1 to m.\n\n\n-----Output-----\n\nOutput YES if an interval with prescribed color counts exists, or output NO if there is none.\n\n\n-----Example-----\nInput\n5 2\n1 1 2 2 1\n1 2\n\nOutput\nYES",
+        "generated_code": "n, m = map(int, input().split())\ncolors = list(map(int, input().split()))\ncounts = list(map(int, input().split()))\n\ncolor_counts = {}\nfor color in colors:\n    if color not in color_counts:\n        color_counts[color] = 0\n    color_counts[color] += 1\n\nfound = False\nfor i in range(n):\n    window_counts = {}\n    for j in range(i, n):\n        color = colors[j]\n        if color not in window_counts:\n            window_counts[color] = 0\n        window_counts[color] += 1\n        if all(count == target for count, target in zip(sorted(window_counts.values()), counts)):\n            found = True\n            break\n    if found:\n        break\n\nprint(\"YES\" if found else \"NO\")\n",
+        "counter_example": {
+            "input": "4 4\n2 3 3 2\n0 0 1 0\n",
+            "expected": "YES\n",
+            "got": "NO"
+        }
+    },
+    {
+        "task_id": "0232",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": true,
+        "description": "There is unrest in the Galactic Senate. Several thousand solar systems have declared their intentions to leave the Republic. Master Heidi needs to select the Jedi Knights who will go on peacekeeping missions throughout the galaxy. It is well-known that the success of any peacekeeping mission depends on the colors of the lightsabers of the Jedi who will go on that mission. \n\nHeidi has n Jedi Knights standing in front of her, each one with a lightsaber of one of m possible colors. She knows that for the mission to be the most effective, she needs to select some contiguous interval of knights such that there are exactly k_1 knights with lightsabers of the first color, k_2 knights with lightsabers of the second color, ..., k_{m} knights with lightsabers of the m-th color. Help her find out if this is possible.\n\n\n-----Input-----\n\nThe first line of the input contains n (1 ≤ n ≤ 100) and m (1 ≤ m ≤ n). The second line contains n integers in the range {1, 2, ..., m} representing colors of the lightsabers of the subsequent Jedi Knights. The third line contains m integers k_1, k_2, ..., k_{m} (with $1 \\leq \\sum_{i = 1}^{m} k_{i} \\leq n$) – the desired counts of lightsabers of each color from 1 to m.\n\n\n-----Output-----\n\nOutput YES if an interval with prescribed color counts exists, or output NO if there is none.\n\n\n-----Example-----\nInput\n5 2\n1 1 2 2 1\n1 2\n\nOutput\nYES",
+        "generated_code": "def can_find_interval(n, m, colors, k):\n    # We will create a sliding window to find the interval\n    from collections import defaultdict\n    \n    # Desired counts for each color\n    desired_counts = dict(zip(range(1, m+1), k))\n    \n    # Current counts in the sliding window\n    current_counts = defaultdict(int)\n    \n    # Initialize two pointers for the sliding window\n    left = 0\n    \n    for right in range(n):\n        current_counts[colors[right]] += 1\n        \n        # Check if current window meets the condition\n        while all(current_counts[color] >= desired_counts[color] for color in desired_counts):\n            if all(current_counts[color] == desired_counts[color] for color in desired_counts):\n                return \"YES\"\n            current_counts[colors[left]] -= 1\n            left += 1\n    \n    return \"NO\"\n\n# Read input\nn, m = map(int, input().split())\ncolors = list(map(int, input().split()))\nk = list(map(int, input().split()))\n\n# Output the result\nprint(can_find_interval(n, m, colors, k))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0022",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": "Let's call a string \"s-palindrome\" if it is symmetric about the middle of the string. For example, the string \"oHo\" is \"s-palindrome\", but the string \"aa\" is not. The string \"aa\" is not \"s-palindrome\", because the second half of it is not a mirror reflection of the first half.\n\n [Image] English alphabet \n\nYou are given a string s. Check if the string is \"s-palindrome\".\n\n\n-----Input-----\n\nThe only line contains the string s (1 ≤ |s| ≤ 1000) which consists of only English letters.\n\n\n-----Output-----\n\nPrint \"TAK\" if the string s is \"s-palindrome\" and \"NIE\" otherwise.\n\n\n-----Examples-----\nInput\noXoxoXo\n\nOutput\nTAK\n\nInput\nbod\n\nOutput\nTAK\n\nInput\nER\n\nOutput\nNIE",
+        "generated_code": "s = input()\nn = len(s)\nis_spalindrome = True\nfor i in range(n // 2):\n    if s[i] != s[n - i - 1]:\n        is_spalindrome = False\n        break\nprint(\"TAK\" if is_spalindrome else \"NIE\")\n",
+        "counter_example": {
+            "input": "bod\n",
+            "expected": "TAK\n",
+            "got": "NIE"
+        }
+    },
+    {
+        "task_id": "0022",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": "Let's call a string \"s-palindrome\" if it is symmetric about the middle of the string. For example, the string \"oHo\" is \"s-palindrome\", but the string \"aa\" is not. The string \"aa\" is not \"s-palindrome\", because the second half of it is not a mirror reflection of the first half.\n\n [Image] English alphabet \n\nYou are given a string s. Check if the string is \"s-palindrome\".\n\n\n-----Input-----\n\nThe only line contains the string s (1 ≤ |s| ≤ 1000) which consists of only English letters.\n\n\n-----Output-----\n\nPrint \"TAK\" if the string s is \"s-palindrome\" and \"NIE\" otherwise.\n\n\n-----Examples-----\nInput\noXoxoXo\n\nOutput\nTAK\n\nInput\nbod\n\nOutput\nTAK\n\nInput\nER\n\nOutput\nNIE",
+        "generated_code": "def is_s_palindrome(s):\n    n = len(s)\n    for i in range(n // 2):\n        if s[i] != s[n - 1 - i]:\n            return False\n    return True\n\n# Read input\ns = input().strip()\n\n# Check if the string is \"s-palindrome\"\nif is_s_palindrome(s):\n    print(\"TAK\")\nelse:\n    print(\"NIE\")\n",
+        "counter_example": {
+            "input": "bod\n",
+            "expected": "TAK\n",
+            "got": "NIE"
+        }
+    },
+    {
+        "task_id": "0067",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": "Nauuo is a girl who loves writing comments.\n\nOne day, she posted a comment on Codeforces, wondering whether she would get upvotes or downvotes.\n\nIt's known that there were $x$ persons who would upvote, $y$ persons who would downvote, and there were also another $z$ persons who would vote, but you don't know whether they would upvote or downvote. Note that each of the $x+y+z$ people would vote exactly one time.\n\nThere are three different results: if there are more people upvote than downvote, the result will be \"+\"; if there are more people downvote than upvote, the result will be \"-\"; otherwise the result will be \"0\".\n\nBecause of the $z$ unknown persons, the result may be uncertain (i.e. there are more than one possible results). More formally, the result is uncertain if and only if there exist two different situations of how the $z$ persons vote, that the results are different in the two situations.\n\nTell Nauuo the result or report that the result is uncertain.\n\n\n-----Input-----\n\nThe only line contains three integers $x$, $y$, $z$ ($0\\le x,y,z\\le100$), corresponding to the number of persons who would upvote, downvote or unknown.\n\n\n-----Output-----\n\nIf there is only one possible result, print the result : \"+\", \"-\" or \"0\".\n\nOtherwise, print \"?\" to report that the result is uncertain.\n\n\n-----Examples-----\nInput\n3 7 0\n\nOutput\n-\nInput\n2 0 1\n\nOutput\n+\nInput\n1 1 0\n\nOutput\n0\nInput\n0 0 1\n\nOutput\n?\n\n\n-----Note-----\n\nIn the first example, Nauuo would definitely get three upvotes and seven downvotes, so the only possible result is \"-\".\n\nIn the second example, no matter the person unknown downvotes or upvotes, Nauuo would get more upvotes than downvotes. So the only possible result is \"+\".\n\nIn the third example, Nauuo would definitely get one upvote and one downvote, so the only possible result is \"0\".\n\nIn the fourth example, if the only one person upvoted, the result would be \"+\", otherwise, the result would be \"-\". There are two possible results, so the result is uncertain.",
+        "generated_code": "x, y, z = map(int, input().split())\nif x > y + z:\n    print(\"+\")\nelif x < y:\n    print(\"-\")\nelif x == y:\n    if z == 0:\n        print(\"0\")\n    else:\n        print(\"?\")\nelse:\n    print(\"?\")\n",
+        "counter_example": {
+            "input": "22 99 77\n",
+            "expected": "?",
+            "got": "-"
+        }
+    },
+    {
+        "task_id": "0067",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": "Nauuo is a girl who loves writing comments.\n\nOne day, she posted a comment on Codeforces, wondering whether she would get upvotes or downvotes.\n\nIt's known that there were $x$ persons who would upvote, $y$ persons who would downvote, and there were also another $z$ persons who would vote, but you don't know whether they would upvote or downvote. Note that each of the $x+y+z$ people would vote exactly one time.\n\nThere are three different results: if there are more people upvote than downvote, the result will be \"+\"; if there are more people downvote than upvote, the result will be \"-\"; otherwise the result will be \"0\".\n\nBecause of the $z$ unknown persons, the result may be uncertain (i.e. there are more than one possible results). More formally, the result is uncertain if and only if there exist two different situations of how the $z$ persons vote, that the results are different in the two situations.\n\nTell Nauuo the result or report that the result is uncertain.\n\n\n-----Input-----\n\nThe only line contains three integers $x$, $y$, $z$ ($0\\le x,y,z\\le100$), corresponding to the number of persons who would upvote, downvote or unknown.\n\n\n-----Output-----\n\nIf there is only one possible result, print the result : \"+\", \"-\" or \"0\".\n\nOtherwise, print \"?\" to report that the result is uncertain.\n\n\n-----Examples-----\nInput\n3 7 0\n\nOutput\n-\nInput\n2 0 1\n\nOutput\n+\nInput\n1 1 0\n\nOutput\n0\nInput\n0 0 1\n\nOutput\n?\n\n\n-----Note-----\n\nIn the first example, Nauuo would definitely get three upvotes and seven downvotes, so the only possible result is \"-\".\n\nIn the second example, no matter the person unknown downvotes or upvotes, Nauuo would get more upvotes than downvotes. So the only possible result is \"+\".\n\nIn the third example, Nauuo would definitely get one upvote and one downvote, so the only possible result is \"0\".\n\nIn the fourth example, if the only one person upvoted, the result would be \"+\", otherwise, the result would be \"-\". There are two possible results, so the result is uncertain.",
+        "generated_code": "x, y, z = map(int, input().split())\n\n# Calculate the minimum and maximum possible upvotes\nmin_upvotes = x\nmax_upvotes = x + z\n\n# Calculate the minimum and maximum possible downvotes\nmin_downvotes = y\nmax_downvotes = y + z\n\nif max_upvotes < min_downvotes:\n    print(\"-\")\nelif max_downvotes < min_upvotes:\n    print(\"+\")\nelse:\n    print(\"?\")\n",
+        "counter_example": {
+            "input": "1 1 0\n",
+            "expected": "0",
+            "got": "?"
+        }
+    },
+    {
+        "task_id": "0240",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": "Vasya decided to pass a very large integer n to Kate. First, he wrote that number as a string, then he appended to the right integer k — the number of digits in n. \n\nMagically, all the numbers were shuffled in arbitrary order while this note was passed to Kate. The only thing that Vasya remembers, is a non-empty substring of n (a substring of n is a sequence of consecutive digits of the number n).\n\nVasya knows that there may be more than one way to restore the number n. Your task is to find the smallest possible initial integer n. Note that decimal representation of number n contained no leading zeroes, except the case the integer n was equal to zero itself (in this case a single digit 0 was used).\n\n\n-----Input-----\n\nThe first line of the input contains the string received by Kate. The number of digits in this string does not exceed 1 000 000.\n\nThe second line contains the substring of n which Vasya remembers. This string can contain leading zeroes. \n\nIt is guaranteed that the input data is correct, and the answer always exists.\n\n\n-----Output-----\n\nPrint the smalles integer n which Vasya could pass to Kate.\n\n\n-----Examples-----\nInput\n003512\n021\n\nOutput\n30021\n\nInput\n199966633300\n63\n\nOutput\n3036366999",
+        "generated_code": "s = input()\nt = input()\n\ndef smallest_n(s, t):\n    t_set = set(t)\n    n = ''\n    for c in s:\n        if c in t_set:\n            n += c\n    n += t\n    return int(n)\n\nprint(smallest_n(s, t))\n",
+        "counter_example": {
+            "input": "003512\n021\n",
+            "expected": "30021\n",
+            "got": "12021"
+        }
+    },
+    {
+        "task_id": "0240",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": "Vasya decided to pass a very large integer n to Kate. First, he wrote that number as a string, then he appended to the right integer k — the number of digits in n. \n\nMagically, all the numbers were shuffled in arbitrary order while this note was passed to Kate. The only thing that Vasya remembers, is a non-empty substring of n (a substring of n is a sequence of consecutive digits of the number n).\n\nVasya knows that there may be more than one way to restore the number n. Your task is to find the smallest possible initial integer n. Note that decimal representation of number n contained no leading zeroes, except the case the integer n was equal to zero itself (in this case a single digit 0 was used).\n\n\n-----Input-----\n\nThe first line of the input contains the string received by Kate. The number of digits in this string does not exceed 1 000 000.\n\nThe second line contains the substring of n which Vasya remembers. This string can contain leading zeroes. \n\nIt is guaranteed that the input data is correct, and the answer always exists.\n\n\n-----Output-----\n\nPrint the smalles integer n which Vasya could pass to Kate.\n\n\n-----Examples-----\nInput\n003512\n021\n\nOutput\n30021\n\nInput\n199966633300\n63\n\nOutput\n3036366999",
+        "generated_code": "def find_smallest_possible_n(s, sub):\n    n_len = len(s) - len(sub)\n\n    def is_valid_number(num_str, sub):\n        return sub in num_str and len(num_str) == n_len\n\n    def generate_possible_numbers(chars, sub):\n        from itertools import permutations\n        for perm in permutations(chars):\n            candidate = ''.join(perm)\n            if is_valid_number(candidate, sub):\n                yield candidate\n\n    from collections import Counter\n    s_counter = Counter(s)\n    sub_counter = Counter(sub)\n\n    for char in sub_counter:\n        s_counter[char] -= sub_counter[char]\n\n    remaining_chars = ''.join([char * s_counter[char] for char in s_counter])\n\n    possible_numbers = generate_possible_numbers(remaining_chars, sub)\n    smallest_number = min(possible_numbers, key=int)\n\n    return smallest_number\n\nif __name__ == \"__main__\":\n    import sys\n    input = sys.stdin.read\n    data = input().split()\n    s = data[0]\n    sub = data[1]\n    \n    result = find_smallest_possible_n(s, sub)\n    print(result)\n",
+        "counter_example": {
+            "input": "003512\n021\n",
+            "expected": "30021\n",
+            "got": "Traceback (most recent call last):\n  File \"<string>\", line 35, in <module>\n  File \"<string>\", line 24, in find_smallest_possible_n\nValueError: min() arg is an empty sequence"
+        }
+    },
+    {
+        "task_id": "0271",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": true,
+        "description": "Vasya has a non-negative integer n. He wants to round it to nearest integer, which ends up with 0. If n already ends up with 0, Vasya considers it already rounded.\n\nFor example, if n = 4722 answer is 4720. If n = 5 Vasya can round it to 0 or to 10. Both ways are correct.\n\nFor given n find out to which integer will Vasya round it.\n\n\n-----Input-----\n\nThe first line contains single integer n (0 ≤ n ≤ 10^9) — number that Vasya has.\n\n\n-----Output-----\n\nPrint result of rounding n. Pay attention that in some cases answer isn't unique. In that case print any correct answer.\n\n\n-----Examples-----\nInput\n5\n\nOutput\n0\n\nInput\n113\n\nOutput\n110\n\nInput\n1000000000\n\nOutput\n1000000000\n\nInput\n5432359\n\nOutput\n5432360\n\n\n\n-----Note-----\n\nIn the first example n = 5. Nearest integers, that ends up with zero are 0 and 10. Any of these answers is correct, so you can print 0 or 10.",
+        "generated_code": "n = int(input())\nif n % 10 == 0:\n    print(n)\nelse:\n    if n % 10 <= 5:\n        print(n - (n % 10))\n    else:\n        print(n + (10 - n % 10))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0271",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": true,
+        "description": "Vasya has a non-negative integer n. He wants to round it to nearest integer, which ends up with 0. If n already ends up with 0, Vasya considers it already rounded.\n\nFor example, if n = 4722 answer is 4720. If n = 5 Vasya can round it to 0 or to 10. Both ways are correct.\n\nFor given n find out to which integer will Vasya round it.\n\n\n-----Input-----\n\nThe first line contains single integer n (0 ≤ n ≤ 10^9) — number that Vasya has.\n\n\n-----Output-----\n\nPrint result of rounding n. Pay attention that in some cases answer isn't unique. In that case print any correct answer.\n\n\n-----Examples-----\nInput\n5\n\nOutput\n0\n\nInput\n113\n\nOutput\n110\n\nInput\n1000000000\n\nOutput\n1000000000\n\nInput\n5432359\n\nOutput\n5432360\n\n\n\n-----Note-----\n\nIn the first example n = 5. Nearest integers, that ends up with zero are 0 and 10. Any of these answers is correct, so you can print 0 or 10.",
+        "generated_code": "n = int(input())\n\n# Find the remainder when n is divided by 10\nremainder = n % 10\n\n# If the remainder is less than or equal to 5, round down\n# Otherwise, round up\nif remainder <= 5:\n    result = n - remainder\nelse:\n    result = n + (10 - remainder)\n\nprint(result)\n",
+        "counter_example": null
+    }
+]
