@@ -1,0 +1,16 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+Mbpp_256,llama3-70b,mbpp,gpt-3.5-turbo-0125,"def count_Primes_nums(n: int) -> int:
+    def is_prime(num: int) -> bool:
+        if num < 2:
+            return False
+        for i in range(2, int(num**0.5) + 1):
+            if num % i == 0:
+                return False
+        return True
+
+    count = 0
+    for num in range(2, n):
+        if is_prime(num):
+            count += 1
+    return count
+",Error: [Errno 17] File exists: '/home/jim/HoarePrompt-data/Results/test/20241107-151547/Mbpp_256/llama3-70b/extract-precondition',hoareprompt
