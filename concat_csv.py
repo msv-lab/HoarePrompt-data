@@ -28,6 +28,6 @@ def concat_csv_files(input_dir, output_file):
         print("No CSV files found in subdirectories")
 
 # Usage
-input_directory = '/home/jim/HoarePrompt-data/Results/Pilot_reruns/apps_4_mini_2'
-output_csv = 'combined_output_apps_4mini_2.csv'
+input_directory = '/home/jim/HoarePrompt-data/Results/Pilot_reruns/mbpp_llama_1'
+output_csv = 'combined_output_mbpp_llama_1.csv'
 concat_csv_files(input_directory, output_csv)
