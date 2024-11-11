@@ -1,0 +1,6 @@
+The function `func_1` accepts two integer parameters `n` and `k`, both within the range 1 ≤ n, k ≤ 10^18. 
+The function checks if k is greater than or equal to n; if true, it returns 'No'. 
+If k is less than n, the function iterates through the range from 1 to k inclusive, calculating the remainder of n divided by each number. 
+If any remainder is already in the set of seen remainders, the function returns 'No'. 
+If no repeated remainders are found, the function returns 'Yes' after completing the loop. 
+However, the code does not handle the case where k equals 0, which could potentially lead to a division by zero error.
