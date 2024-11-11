@@ -1,0 +1,364 @@
+[
+    {
+        "task_id": "Mbpp/462",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to find all possible combinations of the elements of a given list.",
+        "generated_code": "import itertools\n\ndef combinations_list(input_list):\n    result = []\n    for r in range(len(input_list) + 1):\n        result.extend(itertools.combinations(input_list, r))\n    return [list(subset) for subset in result]\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                [
+                    "orange",
+                    "red",
+                    "green",
+                    "blue"
+                ]
+            ],
+            "expected": [
+                [],
+                [
+                    "orange"
+                ],
+                [
+                    "red"
+                ],
+                [
+                    "red",
+                    "orange"
+                ],
+                [
+                    "green"
+                ],
+                [
+                    "green",
+                    "orange"
+                ],
+                [
+                    "green",
+                    "red"
+                ],
+                [
+                    "green",
+                    "red",
+                    "orange"
+                ],
+                [
+                    "blue"
+                ],
+                [
+                    "blue",
+                    "orange"
+                ],
+                [
+                    "blue",
+                    "red"
+                ],
+                [
+                    "blue",
+                    "red",
+                    "orange"
+                ],
+                [
+                    "blue",
+                    "green"
+                ],
+                [
+                    "blue",
+                    "green",
+                    "orange"
+                ],
+                [
+                    "blue",
+                    "green",
+                    "red"
+                ],
+                [
+                    "blue",
+                    "green",
+                    "red",
+                    "orange"
+                ]
+            ],
+            "got": [
+                [],
+                [
+                    "orange"
+                ],
+                [
+                    "red"
+                ],
+                [
+                    "green"
+                ],
+                [
+                    "blue"
+                ],
+                [
+                    "orange",
+                    "red"
+                ],
+                [
+                    "orange",
+                    "green"
+                ],
+                [
+                    "orange",
+                    "blue"
+                ],
+                [
+                    "red",
+                    "green"
+                ],
+                [
+                    "red",
+                    "blue"
+                ],
+                [
+                    "green",
+                    "blue"
+                ],
+                [
+                    "orange",
+                    "red",
+                    "green"
+                ],
+                [
+                    "orange",
+                    "red",
+                    "blue"
+                ],
+                [
+                    "orange",
+                    "green",
+                    "blue"
+                ],
+                [
+                    "red",
+                    "green",
+                    "blue"
+                ],
+                [
+                    "orange",
+                    "red",
+                    "green",
+                    "blue"
+                ]
+            ]
+        }
+    },
+    {
+        "task_id": "Mbpp/462",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Write a function to find all possible combinations of the elements of a given list.",
+        "generated_code": "from itertools import combinations\n\ndef combinations_list(elements):\n    result = []\n    for r in range(len(elements) + 1):\n        for combo in combinations(elements, r):\n            result.append(list(combo))\n    return result\n\n# Test cases\nassert combinations_list(['orange', 'red', 'green', 'blue']) == [\n    [], ['orange'], ['red'], ['red', 'orange'], ['green'], ['green', 'orange'], \n    ['green', 'red'], ['green', 'red', 'orange'], ['blue'], ['blue', 'orange'], \n    ['blue', 'red'], ['blue', 'red', 'orange'], ['blue', 'green'], \n    ['blue', 'green', 'orange'], ['blue', 'green', 'red'], ['blue', 'green', 'red', 'orange']\n]\nassert combinations_list(['red', 'green', 'blue', 'white', 'black', 'orange']) == [\n    [], ['red'], ['green'], ['green', 'red'], ['blue'], ['blue', 'red'], \n    ['blue', 'green'], ['blue', 'green', 'red'], ['white'], ['white', 'red'], \n    ['white', 'green'], ['white', 'green', 'red'], ['white', 'blue'], \n    ['white', 'blue', 'red'], ['white', 'blue', 'green'], ['white', 'blue', 'green', 'red'], \n    ['black'], ['black', 'red'], ['black', 'green'], ['black', 'green', 'red'], \n    ['black', 'blue'], ['black', 'blue', 'red'], ['black', 'blue', 'green'], \n    ['black', 'blue', 'green', 'red'], ['black', 'white'], ['black', 'white', 'red'], \n    ['black', 'white', 'green'], ['black', 'white', 'green', 'red'], \n    ['black', 'white', 'blue'], ['black', 'white', 'blue', 'red'], \n    ['black', 'white', 'blue', 'green'], ['black', 'white', 'blue', 'green', 'red'], \n    ['orange'], ['orange', 'red'], ['orange', 'green'], ['orange', 'green', 'red'], \n    ['orange', 'blue'], ['orange', 'blue', 'red'], ['orange', 'blue', 'green'], \n    ['orange', 'blue', 'green', 'red'], ['orange', 'white'], ['orange', 'white', 'red'], \n    ['orange', 'white', 'green'], ['orange', 'white', 'green', 'red'], \n    ['orange', 'white', 'blue'], ['orange', 'white', 'blue', 'red'], \n    ['orange', 'white', 'blue', 'green'], ['orange', 'white', 'blue', 'green', 'red'], \n    ['orange', 'black'], ['orange', 'black', 'red'], ['orange', 'black', 'green'], \n    ['orange', 'black', 'green', 'red'], ['orange', 'black', 'blue'], \n    ['orange', 'black', 'blue', 'red'], ['orange', 'black', 'blue', 'green'], \n    ['orange', 'black', 'blue', 'green', 'red'], ['orange', 'black', 'white'], \n    ['orange', 'black', 'white', 'red'], ['orange', 'black', 'white', 'green'], \n    ['orange', 'black', 'white', 'green', 'red'], ['orange', 'black', 'white', 'blue'], \n    ['orange', 'black', 'white', 'blue', 'red'], ['orange', 'black', 'white', 'blue', 'green'], \n    ['orange', 'black', 'white', 'blue', 'green', 'red']\n]\nassert combinations_list(['red', 'green', 'black', 'orange']) == [\n    [], ['red'], ['green'], ['green', 'red'], ['black'], ['black', 'red'], \n    ['black', 'green'], ['black', 'green', 'red'], ['orange'], ['orange', 'red'], \n    ['orange', 'green'], ['orange', 'green', 'red'], ['orange', 'black'], \n    ['orange', 'black', 'red'], ['orange', 'black', 'green'], \n    ['orange', 'black', 'green', 'red']\n]\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                [
+                    "orange",
+                    "red",
+                    "green",
+                    "blue"
+                ]
+            ],
+            "expected": [
+                [],
+                [
+                    "orange"
+                ],
+                [
+                    "red"
+                ],
+                [
+                    "red",
+                    "orange"
+                ],
+                [
+                    "green"
+                ],
+                [
+                    "green",
+                    "orange"
+                ],
+                [
+                    "green",
+                    "red"
+                ],
+                [
+                    "green",
+                    "red",
+                    "orange"
+                ],
+                [
+                    "blue"
+                ],
+                [
+                    "blue",
+                    "orange"
+                ],
+                [
+                    "blue",
+                    "red"
+                ],
+                [
+                    "blue",
+                    "red",
+                    "orange"
+                ],
+                [
+                    "blue",
+                    "green"
+                ],
+                [
+                    "blue",
+                    "green",
+                    "orange"
+                ],
+                [
+                    "blue",
+                    "green",
+                    "red"
+                ],
+                [
+                    "blue",
+                    "green",
+                    "red",
+                    "orange"
+                ]
+            ],
+            "got": null
+        }
+    },
+    {
+        "task_id": "Mbpp/786",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to locate the right insertion point for a specified value in sorted order.",
+        "generated_code": "def right_insertion(sorted_list, target):\n    for i, elem in enumerate(sorted_list):\n        if elem >= target:\n            return i\n    return len(sorted_list)\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                [
+                    50.64327388212607,
+                    -72.16612625583227,
+                    95.25630303581863,
+                    -75.73998556144497,
+                    11.857449640680656,
+                    90.05081633927793,
+                    -90.20293226837086,
+                    -12.02758648076636,
+                    -35.964731488229475
+                ],
+                7
+            ],
+            "expected": 2,
+            "got": 0
+        }
+    },
+    {
+        "task_id": "Mbpp/786",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to locate the right insertion point for a specified value in sorted order.",
+        "generated_code": "import bisect\n\ndef right_insertion(sorted_list, value):\n    return bisect.bisect_right(sorted_list, value)\n\n# Test cases\nassert right_insertion([1,2,4,5],6)==4\nassert right_insertion([1,2,4,5],3)==2\nassert right_insertion([1,2,4,5],7)==4\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/63",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to find the maximum difference between available pairs in the given tuple list.",
+        "generated_code": "def max_difference(pairs):\n    return max(y - x for x, y in pairs)\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                [
+                    [
+                        3,
+                        5
+                    ],
+                    [
+                        1,
+                        7
+                    ],
+                    [
+                        10,
+                        3
+                    ],
+                    [
+                        1,
+                        2
+                    ]
+                ]
+            ],
+            "expected": 7,
+            "got": 6
+        }
+    },
+    {
+        "task_id": "Mbpp/63",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to find the maximum difference between available pairs in the given tuple list.",
+        "generated_code": "def max_difference(pairs):\n    max_diff = 0\n    for a, b in pairs:\n        diff = abs(a - b)\n        if diff > max_diff:\n            max_diff = diff\n    return max_diff\n\n# Test cases\nassert max_difference([(3, 5), (1, 7), (10, 3), (1, 2)]) == 7\nassert max_difference([(4, 6), (2, 17), (9, 13), (11, 12)]) == 15\nassert max_difference([(12, 35), (21, 27), (13, 23), (41, 22)]) == 23\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/276",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function that takes in the radius and height of a cylinder and returns the the volume.",
+        "generated_code": "import math\n\ndef volume_cylinder(radius, height):\n    return math.pi * (radius ** 2) * height\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/276",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function that takes in the radius and height of a cylinder and returns the the volume.",
+        "generated_code": "import math\n\ndef volume_cylinder(radius, height):\n    # Calculate the volume using the formula for the volume of a cylinder\n    volume = math.pi * (radius ** 2) * height\n    return volume\n\n# Tests to validate the function\nassert math.isclose(volume_cylinder(10, 5), 1570.7500000000002, rel_tol=0.001)\nassert math.isclose(volume_cylinder(4, 5), 251.32000000000002, rel_tol=0.001)\nassert math.isclose(volume_cylinder(4, 10), 502.64000000000004, rel_tol=0.001)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/787",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function that matches a string that has an a followed by three 'b'.",
+        "generated_code": "import re\ndef text_match_three(text: str) -> bool:\n  pattern = re.compile(r'abbb')\n  return bool(pattern.search(text))\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                "ac"
+            ],
+            "expected": null,
+            "got": false
+        }
+    },
+    {
+        "task_id": "Mbpp/787",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Write a function that matches a string that has an a followed by three 'b'.",
+        "generated_code": "import re\n\ndef text_match_three(text):\n    pattern = r'a[b]{3}'\n    match = re.search(pattern, text)\n    return bool(match)\n\n# Test cases\nassert not text_match_three(\"ac\")\nassert not text_match_three(\"dc\")\nassert text_match_three(\"abbbba\")\nassert text_match_three(\"caacabbbba\")\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                "ac"
+            ],
+            "expected": null,
+            "got": false
+        }
+    }
+]

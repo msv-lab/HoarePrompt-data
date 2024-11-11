@@ -1,0 +1,508 @@
+DEBUG - Start Task 0192
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: Memory is now interested in the de-evolution of objects, specifically triangles. He starts with an equilateral triangle of side length x, and he wishes to perform operations to obtain an equilateral triangle of side length y.
+
+In a single second, he can modify the length of a single side of the current triangle such that it remains a non-degenerate triangle (triangle of positive area). At any moment of time, the length of each side should be integer.
+
+What is the minimum number of seconds required for Memory to obtain the equilateral triangle of side length y?
+
+
+-----Input-----
+
+The first and only line contains two integers x and y (3 ≤ y < x ≤ 100 000) — the starting and ending equilateral triangle side lengths respectively.
+
+
+-----Output-----
+
+Print a single integer — the minimum number of seconds required for Memory to obtain the equilateral triangle of side length y if he starts with the equilateral triangle of side length x.
+
+
+-----Examples-----
+Input
+6 3
+
+Output
+4
+
+Input
+8 5
+
+Output
+3
+
+Input
+22 4
+
+Output
+6
+
+
+
+-----Note-----
+
+In the first sample test, Memory starts with an equilateral triangle of side length 6 and wants one of side length 3. Denote a triangle with sides a, b, and c as (a, b, c). Then, Memory can do $(6,6,6) \rightarrow(6,6,3) \rightarrow(6,4,3) \rightarrow(3,4,3) \rightarrow(3,3,3)$.
+
+In the second sample test, Memory can do $(8,8,8) \rightarrow(8,8,5) \rightarrow(8,5,5) \rightarrow(5,5,5)$.
+
+In the third sample test, Memory can do: $(22,22,22) \rightarrow(7,22,22) \rightarrow(7,22,16) \rightarrow(7,10,16) \rightarrow(7,10,4) \rightarrow$
+
+$(7,4,4) \rightarrow(4,4,4)$.
+DEBUG - Correctness: False
+DEBUG - Start Task 0192
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: Memory is now interested in the de-evolution of objects, specifically triangles. He starts with an equilateral triangle of side length x, and he wishes to perform operations to obtain an equilateral triangle of side length y.
+
+In a single second, he can modify the length of a single side of the current triangle such that it remains a non-degenerate triangle (triangle of positive area). At any moment of time, the length of each side should be integer.
+
+What is the minimum number of seconds required for Memory to obtain the equilateral triangle of side length y?
+
+
+-----Input-----
+
+The first and only line contains two integers x and y (3 ≤ y < x ≤ 100 000) — the starting and ending equilateral triangle side lengths respectively.
+
+
+-----Output-----
+
+Print a single integer — the minimum number of seconds required for Memory to obtain the equilateral triangle of side length y if he starts with the equilateral triangle of side length x.
+
+
+-----Examples-----
+Input
+6 3
+
+Output
+4
+
+Input
+8 5
+
+Output
+3
+
+Input
+22 4
+
+Output
+6
+
+
+
+-----Note-----
+
+In the first sample test, Memory starts with an equilateral triangle of side length 6 and wants one of side length 3. Denote a triangle with sides a, b, and c as (a, b, c). Then, Memory can do $(6,6,6) \rightarrow(6,6,3) \rightarrow(6,4,3) \rightarrow(3,4,3) \rightarrow(3,3,3)$.
+
+In the second sample test, Memory can do $(8,8,8) \rightarrow(8,8,5) \rightarrow(8,5,5) \rightarrow(5,5,5)$.
+
+In the third sample test, Memory can do: $(22,22,22) \rightarrow(7,22,22) \rightarrow(7,22,16) \rightarrow(7,10,16) \rightarrow(7,10,4) \rightarrow$
+
+$(7,4,4) \rightarrow(4,4,4)$.
+DEBUG - Correctness: True
+DEBUG - Start Task 0045
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: You are given positive integer number n. You should create such strictly increasing sequence of k positive numbers a_1, a_2, ..., a_{k}, that their sum is equal to n and greatest common divisor is maximal.
+
+Greatest common divisor of sequence is maximum of such numbers that every element of sequence is divisible by them.
+
+If there is no possible sequence then output -1.
+
+
+-----Input-----
+
+The first line consists of two numbers n and k (1 ≤ n, k ≤ 10^10).
+
+
+-----Output-----
+
+If the answer exists then output k numbers — resulting sequence. Otherwise output -1. If there are multiple answers, print any of them.
+
+
+-----Examples-----
+Input
+6 3
+
+Output
+1 2 3
+
+Input
+8 2
+
+Output
+2 6
+
+Input
+5 3
+
+Output
+-1
+DEBUG - Correctness: False
+DEBUG - Start Task 0045
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: You are given positive integer number n. You should create such strictly increasing sequence of k positive numbers a_1, a_2, ..., a_{k}, that their sum is equal to n and greatest common divisor is maximal.
+
+Greatest common divisor of sequence is maximum of such numbers that every element of sequence is divisible by them.
+
+If there is no possible sequence then output -1.
+
+
+-----Input-----
+
+The first line consists of two numbers n and k (1 ≤ n, k ≤ 10^10).
+
+
+-----Output-----
+
+If the answer exists then output k numbers — resulting sequence. Otherwise output -1. If there are multiple answers, print any of them.
+
+
+-----Examples-----
+Input
+6 3
+
+Output
+1 2 3
+
+Input
+8 2
+
+Output
+2 6
+
+Input
+5 3
+
+Output
+-1
+DEBUG - Correctness: True
+DEBUG - Start Task 0136
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: You are given two very long integers a, b (leading zeroes are allowed). You should check what number a or b is greater or determine that they are equal.
+
+The input size is very large so don't use the reading of symbols one by one. Instead of that use the reading of a whole line or token.
+
+As input/output can reach huge size it is recommended to use fast input/output methods: for example, prefer to use scanf/printf instead of cin/cout in C++, prefer to use BufferedReader/PrintWriter instead of Scanner/System.out in Java. Don't use the function input() in Python2 instead of it use the function raw_input().
+
+
+-----Input-----
+
+The first line contains a non-negative integer a.
+
+The second line contains a non-negative integer b.
+
+The numbers a, b may contain leading zeroes. Each of them contains no more than 10^6 digits.
+
+
+-----Output-----
+
+Print the symbol "<" if a < b and the symbol ">" if a > b. If the numbers are equal print the symbol "=".
+
+
+-----Examples-----
+Input
+9
+10
+
+Output
+<
+
+Input
+11
+10
+
+Output
+>
+
+Input
+00012345
+12345
+
+Output
+=
+
+Input
+0123
+9
+
+Output
+>
+
+Input
+0123
+111
+
+Output
+>
+DEBUG - Correctness: False
+DEBUG - Start Task 0136
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: You are given two very long integers a, b (leading zeroes are allowed). You should check what number a or b is greater or determine that they are equal.
+
+The input size is very large so don't use the reading of symbols one by one. Instead of that use the reading of a whole line or token.
+
+As input/output can reach huge size it is recommended to use fast input/output methods: for example, prefer to use scanf/printf instead of cin/cout in C++, prefer to use BufferedReader/PrintWriter instead of Scanner/System.out in Java. Don't use the function input() in Python2 instead of it use the function raw_input().
+
+
+-----Input-----
+
+The first line contains a non-negative integer a.
+
+The second line contains a non-negative integer b.
+
+The numbers a, b may contain leading zeroes. Each of them contains no more than 10^6 digits.
+
+
+-----Output-----
+
+Print the symbol "<" if a < b and the symbol ">" if a > b. If the numbers are equal print the symbol "=".
+
+
+-----Examples-----
+Input
+9
+10
+
+Output
+<
+
+Input
+11
+10
+
+Output
+>
+
+Input
+00012345
+12345
+
+Output
+=
+
+Input
+0123
+9
+
+Output
+>
+
+Input
+0123
+111
+
+Output
+>
+DEBUG - Correctness: True
+DEBUG - Start Task 0031
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: ZS the Coder has recently found an interesting concept called the Birthday Paradox. It states that given a random set of 23 people, there is around 50% chance that some two of them share the same birthday. ZS the Coder finds this very interesting, and decides to test this with the inhabitants of Udayland.
+
+In Udayland, there are 2^{n} days in a year. ZS the Coder wants to interview k people from Udayland, each of them has birthday in one of 2^{n} days (each day with equal probability). He is interested in the probability of at least two of them have the birthday at the same day. 
+
+ZS the Coder knows that the answer can be written as an irreducible fraction $\frac{A}{B}$. He wants to find the values of A and B (he does not like to deal with floating point numbers). Can you help him?
+
+
+-----Input-----
+
+The first and only line of the input contains two integers n and k (1 ≤ n ≤ 10^18, 2 ≤ k ≤ 10^18), meaning that there are 2^{n} days in a year and that ZS the Coder wants to interview exactly k people.
+
+
+-----Output-----
+
+If the probability of at least two k people having the same birthday in 2^{n} days long year equals $\frac{A}{B}$ (A ≥ 0, B ≥ 1, $\operatorname{gcd}(A, B) = 1$), print the A and B in a single line.
+
+Since these numbers may be too large, print them modulo 10^6 + 3. Note that A and B must be coprime before their remainders modulo 10^6 + 3 are taken.
+
+
+-----Examples-----
+Input
+3 2
+
+Output
+1 8
+Input
+1 3
+
+Output
+1 1
+Input
+4 3
+
+Output
+23 128
+
+
+-----Note-----
+
+In the first sample case, there are 2^3 = 8 days in Udayland. The probability that 2 people have the same birthday among 2 people is clearly $\frac{1}{8}$, so A = 1, B = 8.
+
+In the second sample case, there are only 2^1 = 2 days in Udayland, but there are 3 people, so it is guaranteed that two of them have the same birthday. Thus, the probability is 1 and A = B = 1.
+DEBUG - Correctness: False
+DEBUG - Start Task 0031
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: ZS the Coder has recently found an interesting concept called the Birthday Paradox. It states that given a random set of 23 people, there is around 50% chance that some two of them share the same birthday. ZS the Coder finds this very interesting, and decides to test this with the inhabitants of Udayland.
+
+In Udayland, there are 2^{n} days in a year. ZS the Coder wants to interview k people from Udayland, each of them has birthday in one of 2^{n} days (each day with equal probability). He is interested in the probability of at least two of them have the birthday at the same day. 
+
+ZS the Coder knows that the answer can be written as an irreducible fraction $\frac{A}{B}$. He wants to find the values of A and B (he does not like to deal with floating point numbers). Can you help him?
+
+
+-----Input-----
+
+The first and only line of the input contains two integers n and k (1 ≤ n ≤ 10^18, 2 ≤ k ≤ 10^18), meaning that there are 2^{n} days in a year and that ZS the Coder wants to interview exactly k people.
+
+
+-----Output-----
+
+If the probability of at least two k people having the same birthday in 2^{n} days long year equals $\frac{A}{B}$ (A ≥ 0, B ≥ 1, $\operatorname{gcd}(A, B) = 1$), print the A and B in a single line.
+
+Since these numbers may be too large, print them modulo 10^6 + 3. Note that A and B must be coprime before their remainders modulo 10^6 + 3 are taken.
+
+
+-----Examples-----
+Input
+3 2
+
+Output
+1 8
+Input
+1 3
+
+Output
+1 1
+Input
+4 3
+
+Output
+23 128
+
+
+-----Note-----
+
+In the first sample case, there are 2^3 = 8 days in Udayland. The probability that 2 people have the same birthday among 2 people is clearly $\frac{1}{8}$, so A = 1, B = 8.
+
+In the second sample case, there are only 2^1 = 2 days in Udayland, but there are 3 people, so it is guaranteed that two of them have the same birthday. Thus, the probability is 1 and A = B = 1.
+DEBUG - Correctness: True
+DEBUG - Start Task 0050
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: Welcome to Codeforces Stock Exchange! We're pretty limited now as we currently allow trading on one stock, Codeforces Ltd. We hope you'll still be able to make profit from the market!
+
+In the morning, there are $n$ opportunities to buy shares. The $i$-th of them allows to buy as many shares as you want, each at the price of $s_i$ bourles.
+
+In the evening, there are $m$ opportunities to sell shares. The $i$-th of them allows to sell as many shares as you want, each at the price of $b_i$ bourles. You can't sell more shares than you have.
+
+It's morning now and you possess $r$ bourles and no shares.
+
+What is the maximum number of bourles you can hold after the evening?
+
+
+-----Input-----
+
+The first line of the input contains three integers $n, m, r$ ($1 \leq n \leq 30$, $1 \leq m \leq 30$, $1 \leq r \leq 1000$) — the number of ways to buy the shares on the market, the number of ways to sell the shares on the market, and the number of bourles you hold now.
+
+The next line contains $n$ integers $s_1, s_2, \dots, s_n$ ($1 \leq s_i \leq 1000$); $s_i$ indicates the opportunity to buy shares at the price of $s_i$ bourles.
+
+The following line contains $m$ integers $b_1, b_2, \dots, b_m$ ($1 \leq b_i \leq 1000$); $b_i$ indicates the opportunity to sell shares at the price of $b_i$ bourles.
+
+
+-----Output-----
+
+Output a single integer — the maximum number of bourles you can hold after the evening.
+
+
+-----Examples-----
+Input
+3 4 11
+4 2 5
+4 4 5 4
+
+Output
+26
+
+Input
+2 2 50
+5 7
+4 2
+
+Output
+50
+
+
+
+-----Note-----
+
+In the first example test, you have $11$ bourles in the morning. It's optimal to buy $5$ shares of a stock at the price of $2$ bourles in the morning, and then to sell all of them at the price of $5$ bourles in the evening. It's easy to verify that you'll have $26$ bourles after the evening.
+
+In the second example test, it's optimal not to take any action.
+DEBUG - Correctness: True
+DEBUG - Start Task 0050
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: Welcome to Codeforces Stock Exchange! We're pretty limited now as we currently allow trading on one stock, Codeforces Ltd. We hope you'll still be able to make profit from the market!
+
+In the morning, there are $n$ opportunities to buy shares. The $i$-th of them allows to buy as many shares as you want, each at the price of $s_i$ bourles.
+
+In the evening, there are $m$ opportunities to sell shares. The $i$-th of them allows to sell as many shares as you want, each at the price of $b_i$ bourles. You can't sell more shares than you have.
+
+It's morning now and you possess $r$ bourles and no shares.
+
+What is the maximum number of bourles you can hold after the evening?
+
+
+-----Input-----
+
+The first line of the input contains three integers $n, m, r$ ($1 \leq n \leq 30$, $1 \leq m \leq 30$, $1 \leq r \leq 1000$) — the number of ways to buy the shares on the market, the number of ways to sell the shares on the market, and the number of bourles you hold now.
+
+The next line contains $n$ integers $s_1, s_2, \dots, s_n$ ($1 \leq s_i \leq 1000$); $s_i$ indicates the opportunity to buy shares at the price of $s_i$ bourles.
+
+The following line contains $m$ integers $b_1, b_2, \dots, b_m$ ($1 \leq b_i \leq 1000$); $b_i$ indicates the opportunity to sell shares at the price of $b_i$ bourles.
+
+
+-----Output-----
+
+Output a single integer — the maximum number of bourles you can hold after the evening.
+
+
+-----Examples-----
+Input
+3 4 11
+4 2 5
+4 4 5 4
+
+Output
+26
+
+Input
+2 2 50
+5 7
+4 2
+
+Output
+50
+
+
+
+-----Note-----
+
+In the first example test, you have $11$ bourles in the morning. It's optimal to buy $5$ shares of a stock at the price of $2$ bourles in the morning, and then to sell all of them at the price of $5$ bourles in the evening. It's easy to verify that you'll have $26$ bourles after the evening.
+
+In the second example test, it's optimal not to take any action.
+DEBUG - Correctness: True

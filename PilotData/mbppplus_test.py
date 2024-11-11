@@ -6,15 +6,15 @@ from contextlib import contextmanager
 
 TIME_LIMIT = 3
 
-
+# Exception to handle timeout errors
 class TimeoutException(Exception):
     pass
 
-
+# Handler function that raises a TimeoutException when the execution time exceeds the limit
 def timeout_handler(signum, frame):
     raise TimeoutException("Execution timed out")
 
-
+# Context manager to enforce a time limit on a block of code
 @contextmanager
 def time_limit(seconds):
     signal.signal(signal.SIGALRM, timeout_handler)
@@ -26,21 +26,21 @@ def time_limit(seconds):
     finally:
         signal.alarm(0)
 
-
+# Function to execute the generated Python code within a time limit
 def execute_code(code_str: str, entry_point: str, inputs):
     try:
         with time_limit(TIME_LIMIT):
-            exec_globals = {}
+            exec_globals = {} # Dictionary to hold the global variables created by exec
             exec(code_str, exec_globals)
             fn = exec_globals[entry_point]
             result = fn(*inputs)
             return result, None
     except TimeoutException as te:
-        return None, "TimeoutError: Execution exceeded time limit"
+        return None, "TimeoutError: Execution exceeded time limit" # Handle timeout error
     except Exception as e:
-        return None, str(e)
+        return None, str(e)  # Handle any other exception and return the error message
 
-
+# Safely compare the output to the expected output, handling floating point numbers
 def safe_compare(output, expected_output, atol):
     try:
         if atol == 0:
@@ -50,7 +50,7 @@ def safe_compare(output, expected_output, atol):
         print(f"Comparison error: {e}")
         return False
 
-
+# Attempt to serialize an object; if non-serializable, return a string representation
 def safe_serialize(obj):
     try:
         json.dumps(obj)
@@ -58,17 +58,17 @@ def safe_serialize(obj):
     except (TypeError, OverflowError):
         return f"(non-serializable) {str(obj)}"
 
-
+# Main function to test the generated code against the provided test cases
 def test_function(task, generated_code):
     base_input = task['base_input']
     plus_input = task['plus_input']
     entry_point = task['entry_point']
     reference_code = task['canonical_solution']
     assertion_tests = task.get('assertion', '')
-    atol = task.get('atol', 0)
+    atol = task.get('atol', 0) # Absolute tolerance for floating point comparison
 
-    base_correct = 0
-    failure_example = None
+    base_correct = 0  # Count of correct base input results
+    failure_example = None # Store the first failure case which essentially are counterexamples
 
     # Base input testing with debug output
     for i, inputs in enumerate(base_input):
@@ -125,7 +125,7 @@ def test_function(task, generated_code):
 {generated_code}
 
 {assertion_tests}
-        """
+        """ # Combine generated code with assertion tests
         try:
             with time_limit(TIME_LIMIT):
                 exec_globals = {}

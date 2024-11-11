@@ -1,0 +1,108 @@
+[
+    {
+        "task_id": "Mbpp/728",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function takes as input two lists [a_1,...,a_n], [b_1,...,b_n] and returns [a_1+b_1,...,a_n+b_n].",
+        "generated_code": "def sum_list(list1, list2):\n    return [a + b for a, b in zip(list1, list2)]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/728",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function takes as input two lists [a_1,...,a_n], [b_1,...,b_n] and returns [a_1+b_1,...,a_n+b_n].",
+        "generated_code": "def sum_list(list1, list2):\n    return [a + b for a, b in zip(list1, list2)]\n\n# Testing the function with the provided assertions\nassert sum_list([10, 20, 30], [15, 25, 35]) == [25, 45, 65]\nassert sum_list([1, 2, 3], [5, 6, 7]) == [6, 8, 10]\nassert sum_list([15, 20, 30], [15, 45, 75]) == [30, 65, 105]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/796",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write function to find the sum of all items in the given dictionary.",
+        "generated_code": "def return_sum(input_dict):\n    return sum(input_dict.values())\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/796",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write function to find the sum of all items in the given dictionary.",
+        "generated_code": "def return_sum(input_dict):\n    return sum(input_dict.values())\n\n# Test cases\nassert return_sum({'a': 100, 'b':200, 'c':300}) == 600\nassert return_sum({'a': 25, 'b':18, 'c':45}) == 88\nassert return_sum({'a': 36, 'b':39, 'c':49}) == 124\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/644",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function to reverse an array upto a given position.",
+        "generated_code": "def reverse_Array_Upto_K(arr, k):\n    return arr[:k][::-1] + arr[k:]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/644",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to reverse an array upto a given position.",
+        "generated_code": "def reverse_Array_Upto_K(arr, k):\n    # Reverse the portion of the array from start up to the k-th element\n    return arr[:k][::-1] + arr[k:]\n\n# Test cases\nassert reverse_Array_Upto_K([1, 2, 3, 4, 5, 6], 4) == [4, 3, 2, 1, 5, 6]\nassert reverse_Array_Upto_K([4, 5, 6, 7], 2) == [5, 4, 6, 7]\nassert reverse_Array_Upto_K([9, 8, 7, 6, 5], 3) == [7, 8, 9, 6, 5]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/69",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to check whether a list contains the given sublist or not.",
+        "generated_code": "def is_sublist(main_list, sub_list):\n    sub_list_len = len(sub_list)\n    for i in range(len(main_list)):\n        if main_list[i:i+sub_list_len] == sub_list:\n            return True\n    return False\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                [],
+                []
+            ],
+            "expected": true,
+            "got": false
+        }
+    },
+    {
+        "task_id": "Mbpp/69",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Write a function to check whether a list contains the given sublist or not.",
+        "generated_code": "def is_sublist(main_list, sublist):\n    len_main = len(main_list)\n    len_sub = len(sublist)\n    \n    # If the sublist is empty or larger than the main list, return False\n    if len_sub == 0 or len_sub > len_main:\n        return False\n    \n    # Iterate through the main list\n    for i in range(len_main - len_sub + 1):\n        # Check if the sublist matches the slice of the main list\n        if main_list[i:i + len_sub] == sublist:\n            return True\n    \n    return False\n\n# Tests\nassert is_sublist([2, 4, 3, 5, 7], [3, 7]) == False\nassert is_sublist([2, 4, 3, 5, 7], [4, 3]) == True\nassert is_sublist([2, 4, 3, 5, 7], [1, 6]) == False\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                [],
+                []
+            ],
+            "expected": true,
+            "got": false
+        }
+    },
+    {
+        "task_id": "Mbpp/472",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function to check whether the given list contains consecutive numbers or not.",
+        "generated_code": "def check_Consecutive(lst):\n    return lst == list(range(min(lst), max(lst) + 1))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/472",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to check whether the given list contains consecutive numbers or not.",
+        "generated_code": "def check_Consecutive(lst):\n    if not lst:  # If the list is empty, it cannot be consecutive\n        return False\n    \n    lst_sorted = sorted(lst)\n    \n    for i in range(len(lst_sorted) - 1):\n        if lst_sorted[i + 1] - lst_sorted[i] != 1:\n            return False\n    \n    return True\n\n# Test cases\nassert check_Consecutive([1, 2, 3, 4, 5]) == True\nassert check_Consecutive([1, 2, 3, 5, 6]) == False\nassert check_Consecutive([1, 2, 1]) == False\n",
+        "counter_example": null
+    }
+]

@@ -1,0 +1,120 @@
+[
+    {
+        "task_id": "0226",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "You may have heard of the pie rule before. It states that if two people wish to fairly share a slice of pie, one person should cut the slice in half, and the other person should choose who gets which slice. Alice and Bob have many slices of pie, and rather than cutting the slices in half, each individual slice will be eaten by just one person.\n\nThe way Alice and Bob decide who eats each slice is as follows. First, the order in which the pies are to be handed out is decided. There is a special token called the \"decider\" token, initially held by Bob. Until all the pie is handed out, whoever has the decider token will give the next slice of pie to one of the participants, and the decider token to the other participant. They continue until no slices of pie are left.\n\nAll of the slices are of excellent quality, so each participant obviously wants to maximize the total amount of pie they get to eat. Assuming both players make their decisions optimally, how much pie will each participant receive?\n\n\n-----Input-----\n\nInput will begin with an integer N (1 ≤ N ≤ 50), the number of slices of pie. \n\nFollowing this is a line with N integers indicating the sizes of the slices (each between 1 and 100000, inclusive), in the order in which they must be handed out.\n\n\n-----Output-----\n\nPrint two integers. First, the sum of the sizes of slices eaten by Alice, then the sum of the sizes of the slices eaten by Bob, assuming both players make their decisions optimally.\n\n\n-----Examples-----\nInput\n3\n141 592 653\n\nOutput\n653 733\n\nInput\n5\n10 21 10 21 10\n\nOutput\n31 41\n\n\n\n-----Note-----\n\nIn the first example, Bob takes the size 141 slice for himself and gives the decider token to Alice. Then Alice gives the size 592 slice to Bob and keeps the decider token for herself, so that she can then give the size 653 slice to herself.",
+        "generated_code": "N = int(input())\nsizes = list(map(int, input().split()))\n\nsizes.sort(reverse=True)\n\nalice, bob = 0, 0\ndecider = True\n\nfor size in sizes:\n    if decider:\n        alice += size\n    else:\n        bob += size\n    decider = not decider\n\nprint(alice, bob)\n",
+        "counter_example": {
+            "input": "3\n141 592 653\n",
+            "expected": "653 733\n",
+            "got": "794 592"
+        }
+    },
+    {
+        "task_id": "0226",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "You may have heard of the pie rule before. It states that if two people wish to fairly share a slice of pie, one person should cut the slice in half, and the other person should choose who gets which slice. Alice and Bob have many slices of pie, and rather than cutting the slices in half, each individual slice will be eaten by just one person.\n\nThe way Alice and Bob decide who eats each slice is as follows. First, the order in which the pies are to be handed out is decided. There is a special token called the \"decider\" token, initially held by Bob. Until all the pie is handed out, whoever has the decider token will give the next slice of pie to one of the participants, and the decider token to the other participant. They continue until no slices of pie are left.\n\nAll of the slices are of excellent quality, so each participant obviously wants to maximize the total amount of pie they get to eat. Assuming both players make their decisions optimally, how much pie will each participant receive?\n\n\n-----Input-----\n\nInput will begin with an integer N (1 ≤ N ≤ 50), the number of slices of pie. \n\nFollowing this is a line with N integers indicating the sizes of the slices (each between 1 and 100000, inclusive), in the order in which they must be handed out.\n\n\n-----Output-----\n\nPrint two integers. First, the sum of the sizes of slices eaten by Alice, then the sum of the sizes of the slices eaten by Bob, assuming both players make their decisions optimally.\n\n\n-----Examples-----\nInput\n3\n141 592 653\n\nOutput\n653 733\n\nInput\n5\n10 21 10 21 10\n\nOutput\n31 41\n\n\n\n-----Note-----\n\nIn the first example, Bob takes the size 141 slice for himself and gives the decider token to Alice. Then Alice gives the size 592 slice to Bob and keeps the decider token for herself, so that she can then give the size 653 slice to herself.",
+        "generated_code": "def optimal_pie_distribution():\n    import sys\n    input = sys.stdin.read\n    data = input().split()\n    \n    N = int(data[0])\n    slices = list(map(int, data[1:]))\n    \n    # Initialize sums for Alice and Bob\n    alice_sum = 0\n    bob_sum = 0\n    \n    # Initialize who has the decider token\n    # 0 means Bob has the token, 1 means Alice has the token\n    decider = 0\n    \n    # Iterate over the slices\n    for i in range(N):\n        if decider == 0:\n            # Bob decides\n            if i < N - 1 and slices[i] < slices[i + 1]:\n                # Give the slice to Alice and keep the decider token\n                alice_sum += slices[i]\n                decider = 0\n            else:\n                # Take the slice for Bob and pass the decider token to Alice\n                bob_sum += slices[i]\n                decider = 1\n        else:\n            # Alice decides\n            if i < N - 1 and slices[i] < slices[i + 1]:\n                # Give the slice to Bob and keep the decider token\n                bob_sum += slices[i]\n                decider = 1\n            else:\n                # Take the slice for Alice and pass the decider token to Bob\n                alice_sum += slices[i]\n                decider = 0\n    \n    print(alice_sum, bob_sum)\n\n# Run the function\noptimal_pie_distribution()\n",
+        "counter_example": {
+            "input": "3\n141 592 653\n",
+            "expected": "653 733\n",
+            "got": "733 653"
+        }
+    },
+    {
+        "task_id": "0011",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Little Joty has got a task to do. She has a line of n tiles indexed from 1 to n. She has to paint them in a strange pattern.\n\nAn unpainted tile should be painted Red if it's index is divisible by a and an unpainted tile should be painted Blue if it's index is divisible by b. So the tile with the number divisible by a and b can be either painted Red or Blue.\n\nAfter her painting is done, she will get p chocolates for each tile that is painted Red and q chocolates for each tile that is painted Blue.\n\nNote that she can paint tiles in any order she wants.\n\nGiven the required information, find the maximum number of chocolates Joty can get.\n\n\n-----Input-----\n\nThe only line contains five integers n, a, b, p and q (1 ≤ n, a, b, p, q ≤ 10^9).\n\n\n-----Output-----\n\nPrint the only integer s — the maximum number of chocolates Joty can get.\n\nNote that the answer can be too large, so you should use 64-bit integer type to store it. In C++ you can use the long long integer type and in Java you can use long integer type.\n\n\n-----Examples-----\nInput\n5 2 3 12 15\n\nOutput\n39\n\nInput\n20 2 3 3 5\n\nOutput\n51",
+        "generated_code": "n, a, b, p, q = map(int, input().split())\nlcm = a * b // math.gcd(a, b)\nred = n // a * p\nblue = n // b * q\nboth = n // lcm * min(p, q)\nprint(red + blue - both)\n",
+        "counter_example": {
+            "input": "5 2 3 12 15\n",
+            "expected": "39\n",
+            "got": "Traceback (most recent call last):\n  File \"<string>\", line 2, in <module>\nNameError: name 'math' is not defined"
+        }
+    },
+    {
+        "task_id": "0011",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Little Joty has got a task to do. She has a line of n tiles indexed from 1 to n. She has to paint them in a strange pattern.\n\nAn unpainted tile should be painted Red if it's index is divisible by a and an unpainted tile should be painted Blue if it's index is divisible by b. So the tile with the number divisible by a and b can be either painted Red or Blue.\n\nAfter her painting is done, she will get p chocolates for each tile that is painted Red and q chocolates for each tile that is painted Blue.\n\nNote that she can paint tiles in any order she wants.\n\nGiven the required information, find the maximum number of chocolates Joty can get.\n\n\n-----Input-----\n\nThe only line contains five integers n, a, b, p and q (1 ≤ n, a, b, p, q ≤ 10^9).\n\n\n-----Output-----\n\nPrint the only integer s — the maximum number of chocolates Joty can get.\n\nNote that the answer can be too large, so you should use 64-bit integer type to store it. In C++ you can use the long long integer type and in Java you can use long integer type.\n\n\n-----Examples-----\nInput\n5 2 3 12 15\n\nOutput\n39\n\nInput\n20 2 3 3 5\n\nOutput\n51",
+        "generated_code": "n, a, b, p, q = map(int, input().split())\n\ndef lcm(x, y):\n    from math import gcd\n    return x * y // gcd(x, y)\n\nred_tiles = n // a\nblue_tiles = n // b\nboth_tiles = n // lcm(a, b)\n\n# Since the tiles that can be painted both Red or Blue can only be counted once, we need to subtract them once\nmax_chocolates = red_tiles * p + blue_tiles * q - both_tiles * min(p, q)\n\nprint(max_chocolates)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0043",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "You are given the set of vectors on the plane, each of them starting at the origin. Your task is to find a pair of vectors with the minimal non-oriented angle between them.\n\nNon-oriented angle is non-negative value, minimal between clockwise and counterclockwise direction angles. Non-oriented angle is always between 0 and π. For example, opposite directions vectors have angle equals to π.\n\n\n-----Input-----\n\nFirst line of the input contains a single integer n (2 ≤ n ≤ 100 000) — the number of vectors.\n\nThe i-th of the following n lines contains two integers x_{i} and y_{i} (|x|, |y| ≤ 10 000, x^2 + y^2 > 0) — the coordinates of the i-th vector. Vectors are numbered from 1 to n in order of appearing in the input. It is guaranteed that no two vectors in the input share the same direction (but they still can have opposite directions).\n\n\n-----Output-----\n\nPrint two integer numbers a and b (a ≠ b) — a pair of indices of vectors with the minimal non-oriented angle. You can print the numbers in any order. If there are many possible answers, print any.\n\n\n-----Examples-----\nInput\n4\n-1 0\n0 -1\n1 0\n1 1\n\nOutput\n3 4\n\nInput\n6\n-1 0\n0 -1\n1 0\n1 1\n-4 -5\n-4 -6\n\nOutput\n6 5",
+        "generated_code": "import math\n\nn = int(input())\nvectors = []\nfor _ in range(n):\n    x, y = map(int, input().split())\n    vectors.append((x, y))\n\nmin_angle = float('inf')\nans = (-1, -1)\nfor i in range(n):\n    for j in range(i + 1, n):\n        xi, yi = vectors[i]\n        xj, yj = vectors[j]\n        dot_product = xi * xj + yi * yj\n        magnitude_i = math.sqrt(xi ** 2 + yi ** 2)\n        magnitude_j = math.sqrt(xj ** 2 + yj ** 2)\n        angle = math.acos(dot_product / (magnitude_i * magnitude_j))\n        if angle < min_angle:\n            min_angle = angle\n            ans = (i + 1, j + 1)\n\nprint(*ans)\n",
+        "counter_example": {
+            "input": "2\n351 -4175\n-328 -657\n",
+            "expected": "2 1\n",
+            "got": "1 2"
+        }
+    },
+    {
+        "task_id": "0043",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "You are given the set of vectors on the plane, each of them starting at the origin. Your task is to find a pair of vectors with the minimal non-oriented angle between them.\n\nNon-oriented angle is non-negative value, minimal between clockwise and counterclockwise direction angles. Non-oriented angle is always between 0 and π. For example, opposite directions vectors have angle equals to π.\n\n\n-----Input-----\n\nFirst line of the input contains a single integer n (2 ≤ n ≤ 100 000) — the number of vectors.\n\nThe i-th of the following n lines contains two integers x_{i} and y_{i} (|x|, |y| ≤ 10 000, x^2 + y^2 > 0) — the coordinates of the i-th vector. Vectors are numbered from 1 to n in order of appearing in the input. It is guaranteed that no two vectors in the input share the same direction (but they still can have opposite directions).\n\n\n-----Output-----\n\nPrint two integer numbers a and b (a ≠ b) — a pair of indices of vectors with the minimal non-oriented angle. You can print the numbers in any order. If there are many possible answers, print any.\n\n\n-----Examples-----\nInput\n4\n-1 0\n0 -1\n1 0\n1 1\n\nOutput\n3 4\n\nInput\n6\n-1 0\n0 -1\n1 0\n1 1\n-4 -5\n-4 -6\n\nOutput\n6 5",
+        "generated_code": "import math\n\ndef minimal_angle_vectors():\n    import sys\n    input = sys.stdin.read\n    data = input().split()\n    \n    n = int(data[0])\n    vectors = []\n    \n    for i in range(n):\n        x = int(data[2*i + 1])\n        y = int(data[2*i + 2])\n        angle = math.atan2(y, x)\n        vectors.append((angle, i + 1))\n        \n    vectors.sort()\n    \n    min_angle = float('inf')\n    a, b = -1, -1\n    \n    for i in range(1, n):\n        angle_diff = vectors[i][0] - vectors[i - 1][0]\n        if angle_diff < min_angle:\n            min_angle = angle_diff\n            a, b = vectors[i - 1][1], vectors[i][1]\n            \n    # Check the circular case, between the first and last vector\n    first_last_angle_diff = 2 * math.pi - (vectors[-1][0] - vectors[0][0])\n    if first_last_angle_diff < min_angle:\n        a, b = vectors[0][1], vectors[-1][1]\n    \n    print(a, b)\n\nminimal_angle_vectors()\n",
+        "counter_example": {
+            "input": "2\n0 1\n0 -1\n",
+            "expected": "1 2\n",
+            "got": "2 1"
+        }
+    },
+    {
+        "task_id": "0031",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "ZS the Coder has recently found an interesting concept called the Birthday Paradox. It states that given a random set of 23 people, there is around 50% chance that some two of them share the same birthday. ZS the Coder finds this very interesting, and decides to test this with the inhabitants of Udayland.\n\nIn Udayland, there are 2^{n} days in a year. ZS the Coder wants to interview k people from Udayland, each of them has birthday in one of 2^{n} days (each day with equal probability). He is interested in the probability of at least two of them have the birthday at the same day. \n\nZS the Coder knows that the answer can be written as an irreducible fraction $\\frac{A}{B}$. He wants to find the values of A and B (he does not like to deal with floating point numbers). Can you help him?\n\n\n-----Input-----\n\nThe first and only line of the input contains two integers n and k (1 ≤ n ≤ 10^18, 2 ≤ k ≤ 10^18), meaning that there are 2^{n} days in a year and that ZS the Coder wants to interview exactly k people.\n\n\n-----Output-----\n\nIf the probability of at least two k people having the same birthday in 2^{n} days long year equals $\\frac{A}{B}$ (A ≥ 0, B ≥ 1, $\\operatorname{gcd}(A, B) = 1$), print the A and B in a single line.\n\nSince these numbers may be too large, print them modulo 10^6 + 3. Note that A and B must be coprime before their remainders modulo 10^6 + 3 are taken.\n\n\n-----Examples-----\nInput\n3 2\n\nOutput\n1 8\nInput\n1 3\n\nOutput\n1 1\nInput\n4 3\n\nOutput\n23 128\n\n\n-----Note-----\n\nIn the first sample case, there are 2^3 = 8 days in Udayland. The probability that 2 people have the same birthday among 2 people is clearly $\\frac{1}{8}$, so A = 1, B = 8.\n\nIn the second sample case, there are only 2^1 = 2 days in Udayland, but there are 3 people, so it is guaranteed that two of them have the same birthday. Thus, the probability is 1 and A = B = 1.",
+        "generated_code": "def calculate_probability(n, k):\n    total_days = 2 ** n\n    numerator = 1\n    denominator = 1\n    for i in range(k):\n        numerator *= (total_days - i)\n        denominator *= (total_days)\n    gcd = math.gcd(numerator, denominator)\n    numerator //= gcd\n    denominator //= gcd\n    return numerator % (10**6 + 3), denominator % (10**6 + 3)\n\nn, k = map(int, input().split())\nA, B = calculate_probability(n, k)\nprint(A, B)\n",
+        "counter_example": {
+            "input": "3 2\n",
+            "expected": "1 8",
+            "got": "Traceback (most recent call last):\n  File \"<string>\", line 14, in <module>\n  File \"<string>\", line 8, in calculate_probability\nNameError: name 'math' is not defined"
+        }
+    },
+    {
+        "task_id": "0031",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "ZS the Coder has recently found an interesting concept called the Birthday Paradox. It states that given a random set of 23 people, there is around 50% chance that some two of them share the same birthday. ZS the Coder finds this very interesting, and decides to test this with the inhabitants of Udayland.\n\nIn Udayland, there are 2^{n} days in a year. ZS the Coder wants to interview k people from Udayland, each of them has birthday in one of 2^{n} days (each day with equal probability). He is interested in the probability of at least two of them have the birthday at the same day. \n\nZS the Coder knows that the answer can be written as an irreducible fraction $\\frac{A}{B}$. He wants to find the values of A and B (he does not like to deal with floating point numbers). Can you help him?\n\n\n-----Input-----\n\nThe first and only line of the input contains two integers n and k (1 ≤ n ≤ 10^18, 2 ≤ k ≤ 10^18), meaning that there are 2^{n} days in a year and that ZS the Coder wants to interview exactly k people.\n\n\n-----Output-----\n\nIf the probability of at least two k people having the same birthday in 2^{n} days long year equals $\\frac{A}{B}$ (A ≥ 0, B ≥ 1, $\\operatorname{gcd}(A, B) = 1$), print the A and B in a single line.\n\nSince these numbers may be too large, print them modulo 10^6 + 3. Note that A and B must be coprime before their remainders modulo 10^6 + 3 are taken.\n\n\n-----Examples-----\nInput\n3 2\n\nOutput\n1 8\nInput\n1 3\n\nOutput\n1 1\nInput\n4 3\n\nOutput\n23 128\n\n\n-----Note-----\n\nIn the first sample case, there are 2^3 = 8 days in Udayland. The probability that 2 people have the same birthday among 2 people is clearly $\\frac{1}{8}$, so A = 1, B = 8.\n\nIn the second sample case, there are only 2^1 = 2 days in Udayland, but there are 3 people, so it is guaranteed that two of them have the same birthday. Thus, the probability is 1 and A = B = 1.",
+        "generated_code": "import math\n\ndef gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n\ndef solve(n, k):\n    MOD = 10**6 + 3\n    \n    if k > (1 << n):\n        print(1, 1)\n        return\n    \n    total_days = 1 << n\n    \n    numerator = 1\n    denominator = 1\n    for i in range(k):\n        numerator = numerator * (total_days - i) % MOD\n        denominator = denominator * total_days % MOD\n    \n    p_no_shared = numerator\n    p_total = denominator\n    \n    p_shared = (p_total - p_no_shared + MOD) % MOD\n    \n    A = p_shared\n    B = p_total\n    \n    g = gcd(A, B)\n    A //= g\n    B //= g\n    \n    print(A % MOD, B % MOD)\n\n# Read input\nn, k = map(int, input().split())\nsolve(n, k)\n",
+        "counter_example": {
+            "input": "1000000000000000000 1000000000000000000\n",
+            "expected": "906300 906300",
+            "got": "Traceback (most recent call last):\n  File \"<string>\", line 39, in <module>\n  File \"<string>\", line 11, in solve\nMemoryError"
+        }
+    },
+    {
+        "task_id": "0271",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Vasya has a non-negative integer n. He wants to round it to nearest integer, which ends up with 0. If n already ends up with 0, Vasya considers it already rounded.\n\nFor example, if n = 4722 answer is 4720. If n = 5 Vasya can round it to 0 or to 10. Both ways are correct.\n\nFor given n find out to which integer will Vasya round it.\n\n\n-----Input-----\n\nThe first line contains single integer n (0 ≤ n ≤ 10^9) — number that Vasya has.\n\n\n-----Output-----\n\nPrint result of rounding n. Pay attention that in some cases answer isn't unique. In that case print any correct answer.\n\n\n-----Examples-----\nInput\n5\n\nOutput\n0\n\nInput\n113\n\nOutput\n110\n\nInput\n1000000000\n\nOutput\n1000000000\n\nInput\n5432359\n\nOutput\n5432360\n\n\n\n-----Note-----\n\nIn the first example n = 5. Nearest integers, that ends up with zero are 0 and 10. Any of these answers is correct, so you can print 0 or 10.",
+        "generated_code": "n = int(input())\nif n % 10 == 0:\n    print(n)\nelse:\n    if n % 10 <= 5:\n        print(n - (n % 10))\n    else:\n        print(n + (10 - n % 10))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0271",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Vasya has a non-negative integer n. He wants to round it to nearest integer, which ends up with 0. If n already ends up with 0, Vasya considers it already rounded.\n\nFor example, if n = 4722 answer is 4720. If n = 5 Vasya can round it to 0 or to 10. Both ways are correct.\n\nFor given n find out to which integer will Vasya round it.\n\n\n-----Input-----\n\nThe first line contains single integer n (0 ≤ n ≤ 10^9) — number that Vasya has.\n\n\n-----Output-----\n\nPrint result of rounding n. Pay attention that in some cases answer isn't unique. In that case print any correct answer.\n\n\n-----Examples-----\nInput\n5\n\nOutput\n0\n\nInput\n113\n\nOutput\n110\n\nInput\n1000000000\n\nOutput\n1000000000\n\nInput\n5432359\n\nOutput\n5432360\n\n\n\n-----Note-----\n\nIn the first example n = 5. Nearest integers, that ends up with zero are 0 and 10. Any of these answers is correct, so you can print 0 or 10.",
+        "generated_code": "n = int(input())\n\n# Find the remainder when n is divided by 10\nremainder = n % 10\n\n# If the remainder is less than or equal to 5, round down\n# Otherwise, round up\nif remainder <= 5:\n    result = n - remainder\nelse:\n    result = n + (10 - remainder)\n\nprint(result)\n",
+        "counter_example": null
+    }
+]

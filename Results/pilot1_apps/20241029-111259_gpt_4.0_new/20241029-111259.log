@@ -1,0 +1,552 @@
+DEBUG - Start Task 0050
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b-8192
+DEBUG - model_run: gpt-4o-2024-08-06
+DEBUG - description: Welcome to Codeforces Stock Exchange! We're pretty limited now as we currently allow trading on one stock, Codeforces Ltd. We hope you'll still be able to make profit from the market!
+
+In the morning, there are $n$ opportunities to buy shares. The $i$-th of them allows to buy as many shares as you want, each at the price of $s_i$ bourles.
+
+In the evening, there are $m$ opportunities to sell shares. The $i$-th of them allows to sell as many shares as you want, each at the price of $b_i$ bourles. You can't sell more shares than you have.
+
+It's morning now and you possess $r$ bourles and no shares.
+
+What is the maximum number of bourles you can hold after the evening?
+
+
+-----Input-----
+
+The first line of the input contains three integers $n, m, r$ ($1 \leq n \leq 30$, $1 \leq m \leq 30$, $1 \leq r \leq 1000$) — the number of ways to buy the shares on the market, the number of ways to sell the shares on the market, and the number of bourles you hold now.
+
+The next line contains $n$ integers $s_1, s_2, \dots, s_n$ ($1 \leq s_i \leq 1000$); $s_i$ indicates the opportunity to buy shares at the price of $s_i$ bourles.
+
+The following line contains $m$ integers $b_1, b_2, \dots, b_m$ ($1 \leq b_i \leq 1000$); $b_i$ indicates the opportunity to sell shares at the price of $b_i$ bourles.
+
+
+-----Output-----
+
+Output a single integer — the maximum number of bourles you can hold after the evening.
+
+
+-----Examples-----
+Input
+3 4 11
+4 2 5
+4 4 5 4
+
+Output
+26
+
+Input
+2 2 50
+5 7
+4 2
+
+Output
+50
+
+
+
+-----Note-----
+
+In the first example test, you have $11$ bourles in the morning. It's optimal to buy $5$ shares of a stock at the price of $2$ bourles in the morning, and then to sell all of them at the price of $5$ bourles in the evening. It's easy to verify that you'll have $26$ bourles after the evening.
+
+In the second example test, it's optimal not to take any action.
+DEBUG - Postcondition: If `i` is initially less than 0 and `shares` is greater than 0, `r` will be incremented by `shares * b[i]`, `shares` will be set to 0, and `i` will be incremented until it is greater than or equal to 0 or `shares` becomes 0. If `i` is initially greater than or equal to 0 or `shares` is not greater than 0, all variables remain unchanged, and the loop does not execute. The value of `r` is printed.
+DEBUG - Correctness: False
+DEBUG - Start Task 0050
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o-2024-05-13
+DEBUG - model_run: gpt-4o-2024-08-06
+DEBUG - description: Welcome to Codeforces Stock Exchange! We're pretty limited now as we currently allow trading on one stock, Codeforces Ltd. We hope you'll still be able to make profit from the market!
+
+In the morning, there are $n$ opportunities to buy shares. The $i$-th of them allows to buy as many shares as you want, each at the price of $s_i$ bourles.
+
+In the evening, there are $m$ opportunities to sell shares. The $i$-th of them allows to sell as many shares as you want, each at the price of $b_i$ bourles. You can't sell more shares than you have.
+
+It's morning now and you possess $r$ bourles and no shares.
+
+What is the maximum number of bourles you can hold after the evening?
+
+
+-----Input-----
+
+The first line of the input contains three integers $n, m, r$ ($1 \leq n \leq 30$, $1 \leq m \leq 30$, $1 \leq r \leq 1000$) — the number of ways to buy the shares on the market, the number of ways to sell the shares on the market, and the number of bourles you hold now.
+
+The next line contains $n$ integers $s_1, s_2, \dots, s_n$ ($1 \leq s_i \leq 1000$); $s_i$ indicates the opportunity to buy shares at the price of $s_i$ bourles.
+
+The following line contains $m$ integers $b_1, b_2, \dots, b_m$ ($1 \leq b_i \leq 1000$); $b_i$ indicates the opportunity to sell shares at the price of $b_i$ bourles.
+
+
+-----Output-----
+
+Output a single integer — the maximum number of bourles you can hold after the evening.
+
+
+-----Examples-----
+Input
+3 4 11
+4 2 5
+4 4 5 4
+
+Output
+26
+
+Input
+2 2 50
+5 7
+4 2
+
+Output
+50
+
+
+
+-----Note-----
+
+In the first example test, you have $11$ bourles in the morning. It's optimal to buy $5$ shares of a stock at the price of $2$ bourles in the morning, and then to sell all of them at the price of $5$ bourles in the evening. It's easy to verify that you'll have $26$ bourles after the evening.
+
+In the second example test, it's optimal not to take any action.
+DEBUG - Postcondition: `n`, `m`, and `r` are integers obtained from input; `s` is a list of integers obtained from new input; `b` is a list of integers obtained from input using `map(int, input().split())`; `min_buy_price` is the minimum value in the list `s`; `max_sell_price` is the maximum value in the list `b`. If `max_sell_price` is less than or equal to `min_buy_price`, then `r` is printed. Otherwise, the integer division of `r` by `min_buy_price` gives `max_shares`, the remainder gives `remaining_bourles`, and the sum of `max_shares * max_sell_price` and `remaining_bourles` results in `total_bourles`, which is printed.
+DEBUG - Correctness: True
+DEBUG - Start Task 0279
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b-8192
+DEBUG - model_run: gpt-4o-2024-08-06
+DEBUG - description: The on-board computer on Polycarp's car measured that the car speed at the beginning of some section of the path equals v_1 meters per second, and in the end it is v_2 meters per second. We know that this section of the route took exactly t seconds to pass.
+
+Assuming that at each of the seconds the speed is constant, and between seconds the speed can change at most by d meters per second in absolute value (i.e., the difference in the speed of any two adjacent seconds does not exceed d in absolute value), find the maximum possible length of the path section in meters.
+
+
+-----Input-----
+
+The first line contains two integers v_1 and v_2 (1 ≤ v_1, v_2 ≤ 100) — the speeds in meters per second at the beginning of the segment and at the end of the segment, respectively.
+
+The second line contains two integers t (2 ≤ t ≤ 100) — the time when the car moves along the segment in seconds, d (0 ≤ d ≤ 10) — the maximum value of the speed change between adjacent seconds.
+
+It is guaranteed that there is a way to complete the segment so that:  the speed in the first second equals v_1,  the speed in the last second equals v_2,  the absolute value of difference of speeds between any two adjacent seconds doesn't exceed d. 
+
+
+-----Output-----
+
+Print the maximum possible length of the path segment in meters. 
+
+
+-----Examples-----
+Input
+5 6
+4 2
+
+Output
+26
+Input
+10 10
+10 0
+
+Output
+100
+
+
+-----Note-----
+
+In the first sample the sequence of speeds of Polycarpus' car can look as follows: 5, 7, 8, 6. Thus, the total path is 5 + 7 + 8 + 6 = 26 meters.
+
+In the second sample, as d = 0, the car covers the whole segment at constant speed v = 10. In t = 10 seconds it covers the distance of 100 meters.
+DEBUG - Postcondition: The initial state and calculations are unknown, but the current state of the program results in printing the value of `max_length`.
+DEBUG - Correctness: False
+DEBUG - Start Task 0279
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o-2024-05-13
+DEBUG - model_run: gpt-4o-2024-08-06
+DEBUG - description: The on-board computer on Polycarp's car measured that the car speed at the beginning of some section of the path equals v_1 meters per second, and in the end it is v_2 meters per second. We know that this section of the route took exactly t seconds to pass.
+
+Assuming that at each of the seconds the speed is constant, and between seconds the speed can change at most by d meters per second in absolute value (i.e., the difference in the speed of any two adjacent seconds does not exceed d in absolute value), find the maximum possible length of the path section in meters.
+
+
+-----Input-----
+
+The first line contains two integers v_1 and v_2 (1 ≤ v_1, v_2 ≤ 100) — the speeds in meters per second at the beginning of the segment and at the end of the segment, respectively.
+
+The second line contains two integers t (2 ≤ t ≤ 100) — the time when the car moves along the segment in seconds, d (0 ≤ d ≤ 10) — the maximum value of the speed change between adjacent seconds.
+
+It is guaranteed that there is a way to complete the segment so that:  the speed in the first second equals v_1,  the speed in the last second equals v_2,  the absolute value of difference of speeds between any two adjacent seconds doesn't exceed d. 
+
+
+-----Output-----
+
+Print the maximum possible length of the path segment in meters. 
+
+
+-----Examples-----
+Input
+5 6
+4 2
+
+Output
+26
+Input
+10 10
+10 0
+
+Output
+100
+
+
+-----Note-----
+
+In the first sample the sequence of speeds of Polycarpus' car can look as follows: 5, 7, 8, 6. Thus, the total path is 5 + 7 + 8 + 6 = 26 meters.
+
+In the second sample, as d = 0, the car covers the whole segment at constant speed v = 10. In t = 10 seconds it covers the distance of 100 meters.
+DEBUG - Postcondition: If `t <= 1`, the `speeds` list remains unchanged with `speeds[0]` as `v1` and `speeds[-1]` as `v2`. If `t > 1`, `speeds` is a list where `speeds[0]` is `v1`, `speeds[-1]` is `v2`, and for each `i` from 1 to `t-2`, `speeds[i]` is computed as `min(speeds[i - 1] + d, v2 + (t - i - 1) * d)`. The loop control variable `i` will be `t` after the loop completes. `total_distance` is the sum of all elements in the `speeds` list and is printed.
+DEBUG - Correctness: True
+DEBUG - Start Task 0199
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b-8192
+DEBUG - model_run: gpt-4o-2024-08-06
+DEBUG - description: The Fair Nut likes kvass very much. On his birthday parents presented him $n$ kegs of kvass. There are $v_i$ liters of kvass in the $i$-th keg. Each keg has a lever. You can pour your glass by exactly $1$ liter pulling this lever. The Fair Nut likes this drink very much, so he wants to pour his glass by $s$ liters of kvass. But he wants to do it, so kvass level in the least keg is as much as possible.
+
+Help him find out how much kvass can be in the least keg or define it's not possible to pour his glass by $s$ liters of kvass.
+
+
+-----Input-----
+
+The first line contains two integers $n$ and $s$ ($1 \le n \le 10^3$, $1 \le s \le 10^{12}$) — the number of kegs and glass volume.
+
+The second line contains $n$ integers $v_1, v_2, \ldots, v_n$ ($1 \le v_i \le 10^9$) — the volume of $i$-th keg.
+
+
+-----Output-----
+
+If the Fair Nut cannot pour his glass by $s$ liters of kvass, print $-1$. Otherwise, print a single integer — how much kvass in the least keg can be.
+
+
+-----Examples-----
+Input
+3 3
+4 3 5
+
+Output
+3
+
+Input
+3 4
+5 3 4
+
+Output
+2
+
+Input
+3 7
+1 2 3
+
+Output
+-1
+
+
+
+-----Note-----
+
+In the first example, the answer is $3$, the Fair Nut can take $1$ liter from the first keg and $2$ liters from the third keg. There are $3$ liters of kvass in each keg.
+
+In the second example, the answer is $2$, the Fair Nut can take $3$ liters from the first keg and $1$ liter from the second keg.
+
+In the third example, the Fair Nut can't pour his cup by $7$ liters, so the answer is $-1$.
+DEBUG - Postcondition: After the loop, `low` will be the greatest possible value such that the sum of `min(low, x)` for each `x` in `v` is less than `s`. If `n` is 0, `low` remains 0, and `high` remains the minimum element in `v`. If `s` is larger than any possible sum of elements in `v`, `low` will approach the minimum element in `v`. If `s` is very small or negative, `high` may be reduced to a value close to or less than 0. If the sum of `min(low, x)` for each `x` in `v` does not equal `s`, the code prints -1. Otherwise, it prints the value of `low`.
+DEBUG - Correctness: False
+DEBUG - Start Task 0199
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o-2024-05-13
+DEBUG - model_run: gpt-4o-2024-08-06
+DEBUG - description: The Fair Nut likes kvass very much. On his birthday parents presented him $n$ kegs of kvass. There are $v_i$ liters of kvass in the $i$-th keg. Each keg has a lever. You can pour your glass by exactly $1$ liter pulling this lever. The Fair Nut likes this drink very much, so he wants to pour his glass by $s$ liters of kvass. But he wants to do it, so kvass level in the least keg is as much as possible.
+
+Help him find out how much kvass can be in the least keg or define it's not possible to pour his glass by $s$ liters of kvass.
+
+
+-----Input-----
+
+The first line contains two integers $n$ and $s$ ($1 \le n \le 10^3$, $1 \le s \le 10^{12}$) — the number of kegs and glass volume.
+
+The second line contains $n$ integers $v_1, v_2, \ldots, v_n$ ($1 \le v_i \le 10^9$) — the volume of $i$-th keg.
+
+
+-----Output-----
+
+If the Fair Nut cannot pour his glass by $s$ liters of kvass, print $-1$. Otherwise, print a single integer — how much kvass in the least keg can be.
+
+
+-----Examples-----
+Input
+3 3
+4 3 5
+
+Output
+3
+
+Input
+3 4
+5 3 4
+
+Output
+2
+
+Input
+3 7
+1 2 3
+
+Output
+-1
+
+
+
+-----Note-----
+
+In the first example, the answer is $3$, the Fair Nut can take $1$ liter from the first keg and $2$ liters from the third keg. There are $3$ liters of kvass in each keg.
+
+In the second example, the answer is $2$, the Fair Nut can take $3$ liters from the first keg and $1$ liter from the second keg.
+
+In the third example, the Fair Nut can't pour his cup by $7$ liters, so the answer is $-1$.
+DEBUG - Postcondition: `n` and `s` are reassigned two input integers; `volumes` is a sorted list of input integers; `total_volume` is the sum of the integers in `volumes`. If `total_volume` is less than `s`, `-1` is printed. Otherwise, the smallest volume in `volumes` is set as `min_keg_volume`, and the algorithm attempts to distribute `s` units of kvass among the kegs without exceeding their capacities. The loop iterates over the kegs, deducting the possible amount of kvass that can be added to each keg from `remaining_kvass`. If `remaining_kvass` becomes 0, the loop exits early. If `remaining_kvass` remains greater than 0 after the loop, `min_keg_volume` is reduced by `(remaining_kvass + n - 1) // n` to evenly distribute the remaining kvass. Finally, the adjusted `min_keg_volume` is printed.
+DEBUG - Correctness: False
+DEBUG - Start Task 0098
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b-8192
+DEBUG - model_run: gpt-4o-2024-08-06
+DEBUG - description: Gerald bought two very rare paintings at the Sotheby's auction and he now wants to hang them on the wall. For that he bought a special board to attach it to the wall and place the paintings on the board. The board has shape of an a_1 × b_1 rectangle, the paintings have shape of a a_2 × b_2 and a_3 × b_3 rectangles.
+
+Since the paintings are painted in the style of abstract art, it does not matter exactly how they will be rotated, but still, one side of both the board, and each of the paintings must be parallel to the floor. The paintings can touch each other and the edges of the board, but can not overlap or go beyond the edge of the board. Gerald asks whether it is possible to place the paintings on the board, or is the board he bought not large enough?
+
+
+-----Input-----
+
+The first line contains two space-separated numbers a_1 and b_1 — the sides of the board. Next two lines contain numbers a_2, b_2, a_3 and b_3 — the sides of the paintings. All numbers a_{i}, b_{i} in the input are integers and fit into the range from 1 to 1000.
+
+
+-----Output-----
+
+If the paintings can be placed on the wall, print "YES" (without the quotes), and if they cannot, print "NO" (without the quotes).
+
+
+-----Examples-----
+Input
+3 2
+1 3
+2 1
+
+Output
+YES
+
+Input
+5 5
+3 3
+3 3
+
+Output
+NO
+
+Input
+4 2
+2 3
+1 2
+
+Output
+YES
+
+
+
+-----Note-----
+
+That's how we can place the pictures in the first test:
+
+[Image]
+
+And that's how we can do it in the third one.
+
+[Image]
+DEBUG - Postcondition: `a1`, `b1`, `a2`, `b2`, `a3`, and `b3` are integers. If the maximum of `a1` and `b1` is greater than or equal to the maximum of `a2` and `b2`, and the minimum of `a1` and `b1` is greater than or equal to the minimum of `a2` and `b2`, the program checks further against `a3` and `b3`: if the maximum and minimum conditions also hold true against `a3` and `b3`, `'YES'` is printed; otherwise, `'NO'` is printed. If the initial condition against `a2` and `b2` does not hold, the program checks directly against `a3` and `b3`: if the conditions hold, `'YES'` is printed; otherwise, `'NO'` is printed. This logic ensures that if both `a2, b2` and `a3, b3` are lesser or equal in both max and min comparisons to `a1, b1`, the output is `'YES'`, otherwise `'NO'` is printed.
+DEBUG - Correctness: False
+DEBUG - Start Task 0098
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o-2024-05-13
+DEBUG - model_run: gpt-4o-2024-08-06
+DEBUG - description: Gerald bought two very rare paintings at the Sotheby's auction and he now wants to hang them on the wall. For that he bought a special board to attach it to the wall and place the paintings on the board. The board has shape of an a_1 × b_1 rectangle, the paintings have shape of a a_2 × b_2 and a_3 × b_3 rectangles.
+
+Since the paintings are painted in the style of abstract art, it does not matter exactly how they will be rotated, but still, one side of both the board, and each of the paintings must be parallel to the floor. The paintings can touch each other and the edges of the board, but can not overlap or go beyond the edge of the board. Gerald asks whether it is possible to place the paintings on the board, or is the board he bought not large enough?
+
+
+-----Input-----
+
+The first line contains two space-separated numbers a_1 and b_1 — the sides of the board. Next two lines contain numbers a_2, b_2, a_3 and b_3 — the sides of the paintings. All numbers a_{i}, b_{i} in the input are integers and fit into the range from 1 to 1000.
+
+
+-----Output-----
+
+If the paintings can be placed on the wall, print "YES" (without the quotes), and if they cannot, print "NO" (without the quotes).
+
+
+-----Examples-----
+Input
+3 2
+1 3
+2 1
+
+Output
+YES
+
+Input
+5 5
+3 3
+3 3
+
+Output
+NO
+
+Input
+4 2
+2 3
+1 2
+
+Output
+YES
+
+
+
+-----Note-----
+
+That's how we can place the pictures in the first test:
+
+[Image]
+
+And that's how we can do it in the third one.
+
+[Image]
+DEBUG - Postcondition: `a1` is assigned the integer value of `data[0]`, `b1` is assigned the integer value of `data[1]`, `a2` is assigned the integer value of `data[2]`, `b2` is assigned the integer value of `data[3]`, `a3` is assigned the integer value of `data[4]`, `b3` is assigned the integer value of `data[5]`, and the function `func` is called with these variables as arguments, and its result is printed.
+DEBUG - Correctness: True
+DEBUG - Start Task 0152
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b-8192
+DEBUG - model_run: gpt-4o-2024-08-06
+DEBUG - description: Anton is playing a very interesting computer game, but now he is stuck at one of the levels. To pass to the next level he has to prepare n potions.
+
+Anton has a special kettle, that can prepare one potions in x seconds. Also, he knows spells of two types that can faster the process of preparing potions.  Spells of this type speed up the preparation time of one potion. There are m spells of this type, the i-th of them costs b_{i} manapoints and changes the preparation time of each potion to a_{i} instead of x.  Spells of this type immediately prepare some number of potions. There are k such spells, the i-th of them costs d_{i} manapoints and instantly create c_{i} potions. 
+
+Anton can use no more than one spell of the first type and no more than one spell of the second type, and the total number of manapoints spent should not exceed s. Consider that all spells are used instantly and right before Anton starts to prepare potions.
+
+Anton wants to get to the next level as fast as possible, so he is interested in the minimum number of time he needs to spent in order to prepare at least n potions.
+
+
+-----Input-----
+
+The first line of the input contains three integers n, m, k (1 ≤ n ≤ 2·10^9, 1 ≤ m, k ≤ 2·10^5) — the number of potions, Anton has to make, the number of spells of the first type and the number of spells of the second type.
+
+The second line of the input contains two integers x and s (2 ≤ x ≤ 2·10^9, 1 ≤ s ≤ 2·10^9) — the initial number of seconds required to prepare one potion and the number of manapoints Anton can use.
+
+The third line contains m integers a_{i} (1 ≤ a_{i} < x) — the number of seconds it will take to prepare one potion if the i-th spell of the first type is used.
+
+The fourth line contains m integers b_{i} (1 ≤ b_{i} ≤ 2·10^9) — the number of manapoints to use the i-th spell of the first type.
+
+There are k integers c_{i} (1 ≤ c_{i} ≤ n) in the fifth line — the number of potions that will be immediately created if the i-th spell of the second type is used. It's guaranteed that c_{i} are not decreasing, i.e. c_{i} ≤ c_{j} if i < j.
+
+The sixth line contains k integers d_{i} (1 ≤ d_{i} ≤ 2·10^9) — the number of manapoints required to use the i-th spell of the second type. It's guaranteed that d_{i} are not decreasing, i.e. d_{i} ≤ d_{j} if i < j.
+
+
+-----Output-----
+
+Print one integer — the minimum time one has to spent in order to prepare n potions.
+
+
+-----Examples-----
+Input
+20 3 2
+10 99
+2 4 3
+20 10 40
+4 15
+10 80
+
+Output
+20
+
+Input
+20 3 2
+10 99
+2 4 3
+200 100 400
+4 15
+100 800
+
+Output
+200
+
+
+
+-----Note-----
+
+In the first sample, the optimum answer is to use the second spell of the first type that costs 10 manapoints. Thus, the preparation time of each potion changes to 4 seconds. Also, Anton should use the second spell of the second type to instantly prepare 15 potions spending 80 manapoints. The total number of manapoints used is 10 + 80 = 90, and the preparation time is 4·5 = 20 seconds (15 potions were prepared instantly, and the remaining 5 will take 4 seconds each).
+
+In the second sample, Anton can't use any of the spells, so he just prepares 20 potions, spending 10 seconds on each of them and the answer is 20·10 = 200.
+DEBUG - Postcondition: `ans` remains positive infinity, `i` remains `m + 1`, and the function prints positive infinity
+DEBUG - Correctness: False
+DEBUG - Start Task 0152
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o-2024-05-13
+DEBUG - model_run: gpt-4o-2024-08-06
+DEBUG - description: Anton is playing a very interesting computer game, but now he is stuck at one of the levels. To pass to the next level he has to prepare n potions.
+
+Anton has a special kettle, that can prepare one potions in x seconds. Also, he knows spells of two types that can faster the process of preparing potions.  Spells of this type speed up the preparation time of one potion. There are m spells of this type, the i-th of them costs b_{i} manapoints and changes the preparation time of each potion to a_{i} instead of x.  Spells of this type immediately prepare some number of potions. There are k such spells, the i-th of them costs d_{i} manapoints and instantly create c_{i} potions. 
+
+Anton can use no more than one spell of the first type and no more than one spell of the second type, and the total number of manapoints spent should not exceed s. Consider that all spells are used instantly and right before Anton starts to prepare potions.
+
+Anton wants to get to the next level as fast as possible, so he is interested in the minimum number of time he needs to spent in order to prepare at least n potions.
+
+
+-----Input-----
+
+The first line of the input contains three integers n, m, k (1 ≤ n ≤ 2·10^9, 1 ≤ m, k ≤ 2·10^5) — the number of potions, Anton has to make, the number of spells of the first type and the number of spells of the second type.
+
+The second line of the input contains two integers x and s (2 ≤ x ≤ 2·10^9, 1 ≤ s ≤ 2·10^9) — the initial number of seconds required to prepare one potion and the number of manapoints Anton can use.
+
+The third line contains m integers a_{i} (1 ≤ a_{i} < x) — the number of seconds it will take to prepare one potion if the i-th spell of the first type is used.
+
+The fourth line contains m integers b_{i} (1 ≤ b_{i} ≤ 2·10^9) — the number of manapoints to use the i-th spell of the first type.
+
+There are k integers c_{i} (1 ≤ c_{i} ≤ n) in the fifth line — the number of potions that will be immediately created if the i-th spell of the second type is used. It's guaranteed that c_{i} are not decreasing, i.e. c_{i} ≤ c_{j} if i < j.
+
+The sixth line contains k integers d_{i} (1 ≤ d_{i} ≤ 2·10^9) — the number of manapoints required to use the i-th spell of the second type. It's guaranteed that d_{i} are not decreasing, i.e. d_{i} ≤ d_{j} if i < j.
+
+
+-----Output-----
+
+Print one integer — the minimum time one has to spent in order to prepare n potions.
+
+
+-----Examples-----
+Input
+20 3 2
+10 99
+2 4 3
+20 10 40
+4 15
+10 80
+
+Output
+20
+
+Input
+20 3 2
+10 99
+2 4 3
+200 100 400
+4 15
+100 800
+
+Output
+200
+
+
+
+-----Note-----
+
+In the first sample, the optimum answer is to use the second spell of the first type that costs 10 manapoints. Thus, the preparation time of each potion changes to 4 seconds. Also, Anton should use the second spell of the second type to instantly prepare 15 potions spending 80 manapoints. The total number of manapoints used is 10 + 80 = 90, and the preparation time is 4·5 = 20 seconds (15 potions were prepared instantly, and the remaining 5 will take 4 seconds each).
+
+In the second sample, Anton can't use any of the spells, so he just prepares 20 potions, spending 10 seconds on each of them and the answer is 20·10 = 200.
+DEBUG - Postcondition: If the script is executed as the main program, `n`, `m`, `k`, `x`, and `s` are initialized to integers from the input data, specifically from indices 0 to 4. Lists `a`, `b`, `c`, and `d` are initialized with integers converted from respective slices of the input data. The function `func` is called with these parameters, and its result is stored in `result` and printed. Edge cases such as negative indices or incorrect loop conditions within `func` that prevent the expected execution of loops are not handled, potentially leaving `min_time` as `n * x`.
+DEBUG - Correctness: True

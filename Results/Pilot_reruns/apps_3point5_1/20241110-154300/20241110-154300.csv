@@ -1,0 +1,652 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,naive no fsl correctness,data file
+0192,apps,llama3-70b,gpt-3.5-turbo-0125,"Memory is now interested in the de-evolution of objects, specifically triangles. He starts with an equilateral triangle of side length x, and he wishes to perform operations to obtain an equilateral triangle of side length y.
+
+In a single second, he can modify the length of a single side of the current triangle such that it remains a non-degenerate triangle (triangle of positive area). At any moment of time, the length of each side should be integer.
+
+What is the minimum number of seconds required for Memory to obtain the equilateral triangle of side length y?
+
+
+-----Input-----
+
+The first and only line contains two integers x and y (3 ≤ y < x ≤ 100 000) — the starting and ending equilateral triangle side lengths respectively.
+
+
+-----Output-----
+
+Print a single integer — the minimum number of seconds required for Memory to obtain the equilateral triangle of side length y if he starts with the equilateral triangle of side length x.
+
+
+-----Examples-----
+Input
+6 3
+
+Output
+4
+
+Input
+8 5
+
+Output
+3
+
+Input
+22 4
+
+Output
+6
+
+
+
+-----Note-----
+
+In the first sample test, Memory starts with an equilateral triangle of side length 6 and wants one of side length 3. Denote a triangle with sides a, b, and c as (a, b, c). Then, Memory can do $(6,6,6) \rightarrow(6,6,3) \rightarrow(6,4,3) \rightarrow(3,4,3) \rightarrow(3,3,3)$.
+
+In the second sample test, Memory can do $(8,8,8) \rightarrow(8,8,5) \rightarrow(8,5,5) \rightarrow(5,5,5)$.
+
+In the third sample test, Memory can do: $(22,22,22) \rightarrow(7,22,22) \rightarrow(7,22,16) \rightarrow(7,10,16) \rightarrow(7,10,4) \rightarrow$
+
+$(7,4,4) \rightarrow(4,4,4)$.","x, y = map(int, input().split())
+print(abs(x - y))
+",,True,post,False,True,False,True,pilot_apps3.json
+0192,apps,gpt-4o,gpt-3.5-turbo-0125,"Memory is now interested in the de-evolution of objects, specifically triangles. He starts with an equilateral triangle of side length x, and he wishes to perform operations to obtain an equilateral triangle of side length y.
+
+In a single second, he can modify the length of a single side of the current triangle such that it remains a non-degenerate triangle (triangle of positive area). At any moment of time, the length of each side should be integer.
+
+What is the minimum number of seconds required for Memory to obtain the equilateral triangle of side length y?
+
+
+-----Input-----
+
+The first and only line contains two integers x and y (3 ≤ y < x ≤ 100 000) — the starting and ending equilateral triangle side lengths respectively.
+
+
+-----Output-----
+
+Print a single integer — the minimum number of seconds required for Memory to obtain the equilateral triangle of side length y if he starts with the equilateral triangle of side length x.
+
+
+-----Examples-----
+Input
+6 3
+
+Output
+4
+
+Input
+8 5
+
+Output
+3
+
+Input
+22 4
+
+Output
+6
+
+
+
+-----Note-----
+
+In the first sample test, Memory starts with an equilateral triangle of side length 6 and wants one of side length 3. Denote a triangle with sides a, b, and c as (a, b, c). Then, Memory can do $(6,6,6) \rightarrow(6,6,3) \rightarrow(6,4,3) \rightarrow(3,4,3) \rightarrow(3,3,3)$.
+
+In the second sample test, Memory can do $(8,8,8) \rightarrow(8,8,5) \rightarrow(8,5,5) \rightarrow(5,5,5)$.
+
+In the third sample test, Memory can do: $(22,22,22) \rightarrow(7,22,22) \rightarrow(7,22,16) \rightarrow(7,10,16) \rightarrow(7,10,4) \rightarrow$
+
+$(7,4,4) \rightarrow(4,4,4)$.","x, y = map(int, input().split())
+
+# The minimum number of seconds required to transform the triangle of side length x to side length y
+# can be computed as (x - y) / 2 plus the remainder when (x - y) is divided by 2.
+# This is because we can decrease each side by 1 in each second, and for each decrease of 1, we can
+# reduce the total side lengths by 3. So we need (x - y) // 2 steps to reduce two sides in each step
+# and one additional step if there is a remainder.
+
+print((x - y) // 2 + (x - y) % 2)
+",,True,post,False,True,True,True,pilot_apps3.json
+0045,apps,llama3-70b,gpt-3.5-turbo-0125,"You are given positive integer number n. You should create such strictly increasing sequence of k positive numbers a_1, a_2, ..., a_{k}, that their sum is equal to n and greatest common divisor is maximal.
+
+Greatest common divisor of sequence is maximum of such numbers that every element of sequence is divisible by them.
+
+If there is no possible sequence then output -1.
+
+
+-----Input-----
+
+The first line consists of two numbers n and k (1 ≤ n, k ≤ 10^10).
+
+
+-----Output-----
+
+If the answer exists then output k numbers — resulting sequence. Otherwise output -1. If there are multiple answers, print any of them.
+
+
+-----Examples-----
+Input
+6 3
+
+Output
+1 2 3
+
+Input
+8 2
+
+Output
+2 6
+
+Input
+5 3
+
+Output
+-1","def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+n, k = map(int, input().split())
+
+if n < k:
+    print(-1)
+else:
+    seq = []
+    for i in range(1, k + 1):
+        if n >= i:
+            seq.append(i)
+            n -= i
+        else:
+            break
+    if len(seq) != k:
+        print(-1)
+    else:
+        print(' '.join(map(str, seq)))
+",,True,post,False,True,False,True,pilot_apps3.json
+0045,apps,gpt-4o,gpt-3.5-turbo-0125,"You are given positive integer number n. You should create such strictly increasing sequence of k positive numbers a_1, a_2, ..., a_{k}, that their sum is equal to n and greatest common divisor is maximal.
+
+Greatest common divisor of sequence is maximum of such numbers that every element of sequence is divisible by them.
+
+If there is no possible sequence then output -1.
+
+
+-----Input-----
+
+The first line consists of two numbers n and k (1 ≤ n, k ≤ 10^10).
+
+
+-----Output-----
+
+If the answer exists then output k numbers — resulting sequence. Otherwise output -1. If there are multiple answers, print any of them.
+
+
+-----Examples-----
+Input
+6 3
+
+Output
+1 2 3
+
+Input
+8 2
+
+Output
+2 6
+
+Input
+5 3
+
+Output
+-1","def find_sequence(n, k):
+    min_sum = k * (k + 1) // 2  # Sum of the first k natural numbers
+    
+    if min_sum > n:
+        return -1
+    
+    d = n // min_sum  # Maximum possible GCD
+    remainder = n - d * min_sum
+    
+    sequence = [d * (i + 1) for i in range(k)]
+    
+    # Distribute the remainder to the sequence to make the sum equal to n
+    for i in range(k-1, -1, -1):
+        if remainder == 0:
+            break
+        sequence[i] += 1
+        remainder -= 1
+    
+    return sequence
+
+# Read input
+n, k = map(int, input().split())
+
+result = find_sequence(n, k)
+if result == -1:
+    print(-1)
+else:
+    print("" "".join(map(str, result)))
+",,True,post,False,True,True,True,pilot_apps3.json
+0136,apps,llama3-70b,gpt-3.5-turbo-0125,"You are given two very long integers a, b (leading zeroes are allowed). You should check what number a or b is greater or determine that they are equal.
+
+The input size is very large so don't use the reading of symbols one by one. Instead of that use the reading of a whole line or token.
+
+As input/output can reach huge size it is recommended to use fast input/output methods: for example, prefer to use scanf/printf instead of cin/cout in C++, prefer to use BufferedReader/PrintWriter instead of Scanner/System.out in Java. Don't use the function input() in Python2 instead of it use the function raw_input().
+
+
+-----Input-----
+
+The first line contains a non-negative integer a.
+
+The second line contains a non-negative integer b.
+
+The numbers a, b may contain leading zeroes. Each of them contains no more than 10^6 digits.
+
+
+-----Output-----
+
+Print the symbol ""<"" if a < b and the symbol "">"" if a > b. If the numbers are equal print the symbol ""="".
+
+
+-----Examples-----
+Input
+9
+10
+
+Output
+<
+
+Input
+11
+10
+
+Output
+>
+
+Input
+00012345
+12345
+
+Output
+=
+
+Input
+0123
+9
+
+Output
+>
+
+Input
+0123
+111
+
+Output
+>","a = input().lstrip('0')
+b = input().lstrip('0')
+
+if a == b:
+    print(""="")
+elif a < b:
+    print(""<"")
+else:
+    print("">"")
+",,True,post,False,True,True,True,pilot_apps3.json
+0136,apps,gpt-4o,gpt-3.5-turbo-0125,"You are given two very long integers a, b (leading zeroes are allowed). You should check what number a or b is greater or determine that they are equal.
+
+The input size is very large so don't use the reading of symbols one by one. Instead of that use the reading of a whole line or token.
+
+As input/output can reach huge size it is recommended to use fast input/output methods: for example, prefer to use scanf/printf instead of cin/cout in C++, prefer to use BufferedReader/PrintWriter instead of Scanner/System.out in Java. Don't use the function input() in Python2 instead of it use the function raw_input().
+
+
+-----Input-----
+
+The first line contains a non-negative integer a.
+
+The second line contains a non-negative integer b.
+
+The numbers a, b may contain leading zeroes. Each of them contains no more than 10^6 digits.
+
+
+-----Output-----
+
+Print the symbol ""<"" if a < b and the symbol "">"" if a > b. If the numbers are equal print the symbol ""="".
+
+
+-----Examples-----
+Input
+9
+10
+
+Output
+<
+
+Input
+11
+10
+
+Output
+>
+
+Input
+00012345
+12345
+
+Output
+=
+
+Input
+0123
+9
+
+Output
+>
+
+Input
+0123
+111
+
+Output
+>","import sys
+input = sys.stdin.read
+
+def compare_large_numbers():
+    data = input().split()
+    a = data[0].lstrip('0')
+    b = data[1].lstrip('0')
+    
+    # If both a and b become empty after stripping leading zeros, they are zero
+    if not a:
+        a = '0'
+    if not b:
+        b = '0'
+    
+    if len(a) < len(b):
+        print('<')
+    elif len(a) > len(b):
+        print('>')
+    else:
+        if a < b:
+            print('<')
+        elif a > b:
+            print('>')
+        else:
+            print('=')
+
+compare_large_numbers()
+",,True,post,True,True,True,True,pilot_apps3.json
+0031,apps,llama3-70b,gpt-3.5-turbo-0125,"ZS the Coder has recently found an interesting concept called the Birthday Paradox. It states that given a random set of 23 people, there is around 50% chance that some two of them share the same birthday. ZS the Coder finds this very interesting, and decides to test this with the inhabitants of Udayland.
+
+In Udayland, there are 2^{n} days in a year. ZS the Coder wants to interview k people from Udayland, each of them has birthday in one of 2^{n} days (each day with equal probability). He is interested in the probability of at least two of them have the birthday at the same day. 
+
+ZS the Coder knows that the answer can be written as an irreducible fraction $\frac{A}{B}$. He wants to find the values of A and B (he does not like to deal with floating point numbers). Can you help him?
+
+
+-----Input-----
+
+The first and only line of the input contains two integers n and k (1 ≤ n ≤ 10^18, 2 ≤ k ≤ 10^18), meaning that there are 2^{n} days in a year and that ZS the Coder wants to interview exactly k people.
+
+
+-----Output-----
+
+If the probability of at least two k people having the same birthday in 2^{n} days long year equals $\frac{A}{B}$ (A ≥ 0, B ≥ 1, $\operatorname{gcd}(A, B) = 1$), print the A and B in a single line.
+
+Since these numbers may be too large, print them modulo 10^6 + 3. Note that A and B must be coprime before their remainders modulo 10^6 + 3 are taken.
+
+
+-----Examples-----
+Input
+3 2
+
+Output
+1 8
+Input
+1 3
+
+Output
+1 1
+Input
+4 3
+
+Output
+23 128
+
+
+-----Note-----
+
+In the first sample case, there are 2^3 = 8 days in Udayland. The probability that 2 people have the same birthday among 2 people is clearly $\frac{1}{8}$, so A = 1, B = 8.
+
+In the second sample case, there are only 2^1 = 2 days in Udayland, but there are 3 people, so it is guaranteed that two of them have the same birthday. Thus, the probability is 1 and A = B = 1.","def calculate_probability(n, k):
+    total_days = 2 ** n
+    numerator = 1
+    denominator = 1
+    for i in range(k):
+        numerator *= (total_days - i)
+        denominator *= (total_days)
+    gcd = math.gcd(numerator, denominator)
+    numerator //= gcd
+    denominator //= gcd
+    return numerator % (10**6 + 3), denominator % (10**6 + 3)
+
+n, k = map(int, input().split())
+A, B = calculate_probability(n, k)
+print(A, B)
+",,True,post,False,False,False,True,pilot_apps3.json
+0031,apps,gpt-4o,gpt-3.5-turbo-0125,"ZS the Coder has recently found an interesting concept called the Birthday Paradox. It states that given a random set of 23 people, there is around 50% chance that some two of them share the same birthday. ZS the Coder finds this very interesting, and decides to test this with the inhabitants of Udayland.
+
+In Udayland, there are 2^{n} days in a year. ZS the Coder wants to interview k people from Udayland, each of them has birthday in one of 2^{n} days (each day with equal probability). He is interested in the probability of at least two of them have the birthday at the same day. 
+
+ZS the Coder knows that the answer can be written as an irreducible fraction $\frac{A}{B}$. He wants to find the values of A and B (he does not like to deal with floating point numbers). Can you help him?
+
+
+-----Input-----
+
+The first and only line of the input contains two integers n and k (1 ≤ n ≤ 10^18, 2 ≤ k ≤ 10^18), meaning that there are 2^{n} days in a year and that ZS the Coder wants to interview exactly k people.
+
+
+-----Output-----
+
+If the probability of at least two k people having the same birthday in 2^{n} days long year equals $\frac{A}{B}$ (A ≥ 0, B ≥ 1, $\operatorname{gcd}(A, B) = 1$), print the A and B in a single line.
+
+Since these numbers may be too large, print them modulo 10^6 + 3. Note that A and B must be coprime before their remainders modulo 10^6 + 3 are taken.
+
+
+-----Examples-----
+Input
+3 2
+
+Output
+1 8
+Input
+1 3
+
+Output
+1 1
+Input
+4 3
+
+Output
+23 128
+
+
+-----Note-----
+
+In the first sample case, there are 2^3 = 8 days in Udayland. The probability that 2 people have the same birthday among 2 people is clearly $\frac{1}{8}$, so A = 1, B = 8.
+
+In the second sample case, there are only 2^1 = 2 days in Udayland, but there are 3 people, so it is guaranteed that two of them have the same birthday. Thus, the probability is 1 and A = B = 1.","import math
+
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def solve(n, k):
+    MOD = 10**6 + 3
+    
+    if k > (1 << n):
+        print(1, 1)
+        return
+    
+    total_days = 1 << n
+    
+    numerator = 1
+    denominator = 1
+    for i in range(k):
+        numerator = numerator * (total_days - i) % MOD
+        denominator = denominator * total_days % MOD
+    
+    p_no_shared = numerator
+    p_total = denominator
+    
+    p_shared = (p_total - p_no_shared + MOD) % MOD
+    
+    A = p_shared
+    B = p_total
+    
+    g = gcd(A, B)
+    A //= g
+    B //= g
+    
+    print(A % MOD, B % MOD)
+
+# Read input
+n, k = map(int, input().split())
+solve(n, k)
+",,True,post,False,True,True,True,pilot_apps3.json
+0050,apps,llama3-70b,gpt-3.5-turbo-0125,"Welcome to Codeforces Stock Exchange! We're pretty limited now as we currently allow trading on one stock, Codeforces Ltd. We hope you'll still be able to make profit from the market!
+
+In the morning, there are $n$ opportunities to buy shares. The $i$-th of them allows to buy as many shares as you want, each at the price of $s_i$ bourles.
+
+In the evening, there are $m$ opportunities to sell shares. The $i$-th of them allows to sell as many shares as you want, each at the price of $b_i$ bourles. You can't sell more shares than you have.
+
+It's morning now and you possess $r$ bourles and no shares.
+
+What is the maximum number of bourles you can hold after the evening?
+
+
+-----Input-----
+
+The first line of the input contains three integers $n, m, r$ ($1 \leq n \leq 30$, $1 \leq m \leq 30$, $1 \leq r \leq 1000$) — the number of ways to buy the shares on the market, the number of ways to sell the shares on the market, and the number of bourles you hold now.
+
+The next line contains $n$ integers $s_1, s_2, \dots, s_n$ ($1 \leq s_i \leq 1000$); $s_i$ indicates the opportunity to buy shares at the price of $s_i$ bourles.
+
+The following line contains $m$ integers $b_1, b_2, \dots, b_m$ ($1 \leq b_i \leq 1000$); $b_i$ indicates the opportunity to sell shares at the price of $b_i$ bourles.
+
+
+-----Output-----
+
+Output a single integer — the maximum number of bourles you can hold after the evening.
+
+
+-----Examples-----
+Input
+3 4 11
+4 2 5
+4 4 5 4
+
+Output
+26
+
+Input
+2 2 50
+5 7
+4 2
+
+Output
+50
+
+
+
+-----Note-----
+
+In the first example test, you have $11$ bourles in the morning. It's optimal to buy $5$ shares of a stock at the price of $2$ bourles in the morning, and then to sell all of them at the price of $5$ bourles in the evening. It's easy to verify that you'll have $26$ bourles after the evening.
+
+In the second example test, it's optimal not to take any action.","n, m, r = map(int, input().split())
+s = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+s.sort()
+b.sort(reverse=True)
+
+shares = 0
+for i in range(n):
+    if r >= s[i]:
+        shares += r // s[i]
+        r %= s[i]
+    else:
+        break
+
+for i in range(m):
+    if shares > 0:
+        r += shares * b[i]
+        shares = 0
+    else:
+        break
+
+print(r)
+",,True,post,False,True,False,True,pilot_apps3.json
+0050,apps,gpt-4o,gpt-3.5-turbo-0125,"Welcome to Codeforces Stock Exchange! We're pretty limited now as we currently allow trading on one stock, Codeforces Ltd. We hope you'll still be able to make profit from the market!
+
+In the morning, there are $n$ opportunities to buy shares. The $i$-th of them allows to buy as many shares as you want, each at the price of $s_i$ bourles.
+
+In the evening, there are $m$ opportunities to sell shares. The $i$-th of them allows to sell as many shares as you want, each at the price of $b_i$ bourles. You can't sell more shares than you have.
+
+It's morning now and you possess $r$ bourles and no shares.
+
+What is the maximum number of bourles you can hold after the evening?
+
+
+-----Input-----
+
+The first line of the input contains three integers $n, m, r$ ($1 \leq n \leq 30$, $1 \leq m \leq 30$, $1 \leq r \leq 1000$) — the number of ways to buy the shares on the market, the number of ways to sell the shares on the market, and the number of bourles you hold now.
+
+The next line contains $n$ integers $s_1, s_2, \dots, s_n$ ($1 \leq s_i \leq 1000$); $s_i$ indicates the opportunity to buy shares at the price of $s_i$ bourles.
+
+The following line contains $m$ integers $b_1, b_2, \dots, b_m$ ($1 \leq b_i \leq 1000$); $b_i$ indicates the opportunity to sell shares at the price of $b_i$ bourles.
+
+
+-----Output-----
+
+Output a single integer — the maximum number of bourles you can hold after the evening.
+
+
+-----Examples-----
+Input
+3 4 11
+4 2 5
+4 4 5 4
+
+Output
+26
+
+Input
+2 2 50
+5 7
+4 2
+
+Output
+50
+
+
+
+-----Note-----
+
+In the first example test, you have $11$ bourles in the morning. It's optimal to buy $5$ shares of a stock at the price of $2$ bourles in the morning, and then to sell all of them at the price of $5$ bourles in the evening. It's easy to verify that you'll have $26$ bourles after the evening.
+
+In the second example test, it's optimal not to take any action.","# Reading input
+n, m, r = map(int, input().split())
+s = list(map(int, input().split()))
+b = list(map(int, input().split()))
+
+# Finding the minimum buy price and maximum sell price
+min_buy_price = min(s)
+max_sell_price = max(b)
+
+# If the maximum sell price is less than or equal to the minimum buy price, no profit can be made
+if max_sell_price <= min_buy_price:
+    print(r)
+else:
+    # Calculate the maximum number of shares that can be bought with current bourles
+    max_shares = r // min_buy_price
+    # Calculate remaining bourles after buying shares
+    remaining_bourles = r % min_buy_price
+    # Calculate total bourles after selling all shares at maximum sell price
+    total_bourles = max_shares * max_sell_price + remaining_bourles
+    print(total_bourles)
+",,True,post,True,True,True,True,pilot_apps3.json

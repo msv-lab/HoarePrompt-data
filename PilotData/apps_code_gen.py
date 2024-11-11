@@ -6,6 +6,7 @@ from datetime import datetime
 from model import get_model, Model
 from apps_test import execute_tests
 
+# The prompt that defines the basic structure used to instruct the LLM for code generation
 SYSTEM_PROMPT = '''
 You have been assigned the role of a Python program developer. You need to provide a program that meets the given requirements. There are two types of formats:
 
@@ -139,7 +140,7 @@ class Solution:
 Your Task:
 '''
 
-
+# Function to generate the prompt sent to the LLM based on the prompt template from earlier
 def generate_prompt(test_case, prompt, starter_code=None):
     _input = SYSTEM_PROMPT
     _input += "QUESTION:\n"
@@ -161,7 +162,7 @@ def generate_prompt(test_case, prompt, starter_code=None):
     _input += "\nANSWER:\n"
     return _input
 
-
+# Function to load problem data from a directory . It assumes a certain structure for the problem directory
 def load_problem_data(problem_dir):
     problem = {}
 
@@ -199,7 +200,7 @@ def load_problem_data(problem_dir):
 
     return problem
 
-
+# Main function to generate code using LLM and save the results
 def get_code(data_dir: Path, model: Model, output_file: Path, limit=150):
     output_file.parent.mkdir(parents=True, exist_ok=True)
 
@@ -210,25 +211,31 @@ def get_code(data_dir: Path, model: Model, output_file: Path, limit=150):
             break
         else:
             i += 1
+
+         # Load data for each problem from its directory
         problem_data = load_problem_data(problem_dir)
 
         test_case = problem_data["input_output"]
         prompt = problem_data["question"]
         starter_code = problem_data["starter_code"]
 
+        # If either the prompt or test case is missing, skip this problem
         if not prompt or not test_case:
             print(f"Skipping {problem_dir.name} due to missing data.")
             continue
 
         formatted_prompt = generate_prompt(test_case, prompt, starter_code)
 
+        # Query the LLM to generate code
         response = model.query(formatted_prompt)
 
+        # Extract the generated code from the LLM response
         generated_code = extract_code_from_response(response)
 
         test_inputs = test_case["inputs"]
         test_outputs = test_case["outputs"]
 
+        # Execute tests on the generated code and calculate the pass rate, we give as argument the inputs the ouputs that are expeted and the generated code we need to test
         passed_tests, total_tests, counterexample = execute_tests(test_inputs, test_outputs, generated_code)
         pass_rate = passed_tests / total_tests if total_tests > 0 else 0
 
@@ -251,7 +258,7 @@ def get_code(data_dir: Path, model: Model, output_file: Path, limit=150):
 
     print(f"Results saved to {output_file}")
 
-
+# Function to extract the generated code from the LLM response
 def extract_code_from_response(response_content: str) -> str:
     code_pattern = r"```(?:[Pp]ython)?\n(.*?)```"
     match = re.search(code_pattern, response_content, re.DOTALL)
@@ -266,6 +273,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+    # This path is missing from the git repo 
     data_dir = Path("APPS") / "test"
     output_dir = Path(args.save) if args.save else Path('data')
 

@@ -1,0 +1,386 @@
+[
+    {
+        "task_id": "Mbpp/630",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to extract all the adjacent coordinates of the given coordinate tuple.",
+        "generated_code": "def get_coordinates(coord):\n    x, y = coord\n    return [[x-1, y-1], [x-1, y], [x-1, y+1], \n           [x, y-1], [x, y], [x, y+1], \n           [x+1, y-1], [x+1, y], [x+1, y+1]]\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                [
+                    1,
+                    1,
+                    1
+                ]
+            ],
+            "expected": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    1
+                ],
+                [
+                    0,
+                    0,
+                    2
+                ],
+                [
+                    0,
+                    1,
+                    0
+                ],
+                [
+                    0,
+                    1,
+                    1
+                ],
+                [
+                    0,
+                    1,
+                    2
+                ],
+                [
+                    0,
+                    2,
+                    0
+                ],
+                [
+                    0,
+                    2,
+                    1
+                ],
+                [
+                    0,
+                    2,
+                    2
+                ],
+                [
+                    1,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    0,
+                    1
+                ],
+                [
+                    1,
+                    0,
+                    2
+                ],
+                [
+                    1,
+                    1,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    1,
+                    1,
+                    2
+                ],
+                [
+                    1,
+                    2,
+                    0
+                ],
+                [
+                    1,
+                    2,
+                    1
+                ],
+                [
+                    1,
+                    2,
+                    2
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    2,
+                    0,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    2
+                ],
+                [
+                    2,
+                    1,
+                    0
+                ],
+                [
+                    2,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    1,
+                    2
+                ],
+                [
+                    2,
+                    2,
+                    0
+                ],
+                [
+                    2,
+                    2,
+                    1
+                ],
+                [
+                    2,
+                    2,
+                    2
+                ]
+            ],
+            "got": null
+        }
+    },
+    {
+        "task_id": "Mbpp/630",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Write a function to extract all the adjacent coordinates of the given coordinate tuple.",
+        "generated_code": "def get_coordinates(coord):\n    x, y = coord\n    adjacent_coords = []\n    for dx in range(-1, 2):\n        for dy in range(-1, 2):\n            adjacent_coords.append([x + dx, y + dy])\n    return adjacent_coords\n\n# Test cases to verify the solution\nassert get_coordinates((3, 4)) == [[2, 3], [2, 4], [2, 5], [3, 3], [3, 4], [3, 5], [4, 3], [4, 4], [4, 5]]\nassert get_coordinates((4, 5)) == [[3, 4], [3, 5], [3, 6], [4, 4], [4, 5], [4, 6], [5, 4], [5, 5], [5, 6]]\nassert get_coordinates((5, 6)) == [[4, 5], [4, 6], [4, 7], [5, 5], [5, 6], [5, 7], [6, 5], [6, 6], [6, 7]]\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                [
+                    1,
+                    1,
+                    1
+                ]
+            ],
+            "expected": [
+                [
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    1
+                ],
+                [
+                    0,
+                    0,
+                    2
+                ],
+                [
+                    0,
+                    1,
+                    0
+                ],
+                [
+                    0,
+                    1,
+                    1
+                ],
+                [
+                    0,
+                    1,
+                    2
+                ],
+                [
+                    0,
+                    2,
+                    0
+                ],
+                [
+                    0,
+                    2,
+                    1
+                ],
+                [
+                    0,
+                    2,
+                    2
+                ],
+                [
+                    1,
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    0,
+                    1
+                ],
+                [
+                    1,
+                    0,
+                    2
+                ],
+                [
+                    1,
+                    1,
+                    0
+                ],
+                [
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    1,
+                    1,
+                    2
+                ],
+                [
+                    1,
+                    2,
+                    0
+                ],
+                [
+                    1,
+                    2,
+                    1
+                ],
+                [
+                    1,
+                    2,
+                    2
+                ],
+                [
+                    2,
+                    0,
+                    0
+                ],
+                [
+                    2,
+                    0,
+                    1
+                ],
+                [
+                    2,
+                    0,
+                    2
+                ],
+                [
+                    2,
+                    1,
+                    0
+                ],
+                [
+                    2,
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    1,
+                    2
+                ],
+                [
+                    2,
+                    2,
+                    0
+                ],
+                [
+                    2,
+                    2,
+                    1
+                ],
+                [
+                    2,
+                    2,
+                    2
+                ]
+            ],
+            "got": null
+        }
+    },
+    {
+        "task_id": "Mbpp/618",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to divide two lists element wise.",
+        "generated_code": "def div_list(list1, list2):\n    if len(list1) != len(list2):\n        raise ValueError(\"Both lists must be of the same length\")\n    return [x/y for x, y in zip(list1, list2)]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/618",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to divide two lists element wise.",
+        "generated_code": "def div_list(list1, list2):\n    return [a / b for a, b in zip(list1, list2)]\n\n# Testing the function with provided test cases\nassert div_list([4,5,6],[1, 2, 3]) == [4.0, 2.5, 2.0]\nassert div_list([3,2],[1,4]) == [3.0, 0.5]\nassert div_list([90,120],[50,70]) == [1.8, 1.7142857142857142]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/591",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function to interchange the first and last elements in a list.",
+        "generated_code": "def swap_List(input_list):\n    if len(input_list) > 1:\n        input_list[0], input_list[-1] = input_list[-1], input_list[0]\n    return input_list\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/591",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to interchange the first and last elements in a list.",
+        "generated_code": "def swap_List(lst):\n    if len(lst) < 2:\n        return lst\n    lst[0], lst[-1] = lst[-1], lst[0]\n    return lst\n\n# Testing the function with the provided test cases\nassert swap_List([12, 35, 9, 56, 24]) == [24, 35, 9, 56, 12]\nassert swap_List([1, 2, 3]) == [3, 2, 1]\nassert swap_List([4, 5, 6]) == [6, 5, 4]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/94",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Given a list of tuples, write a function that returns the first value of the tuple with the smallest second value.",
+        "generated_code": "def index_minimum(tuples):\n    return min(tuples, key=lambda x: x[1])[0]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/94",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Given a list of tuples, write a function that returns the first value of the tuple with the smallest second value.",
+        "generated_code": "def index_minimum(lst):\n    if not lst:\n        return None  # Handle the edge case where the list is empty\n    return min(lst, key=lambda x: x[1])[0]\n\n# Testing the function with the provided test cases\nassert index_minimum([('Rash', 143), ('Manjeet', 200), ('Varsha', 100)]) == 'Varsha'\nassert index_minimum([('Yash', 185), ('Dawood', 125), ('Sanya', 175)]) == 'Dawood'\nassert index_minimum([('Sai', 345), ('Salman', 145), ('Ayesha', 96)]) == 'Ayesha'\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/605",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to check if the given integer is a prime number.",
+        "generated_code": "import math\n\ndef prime_num(n: int) -> bool:\n    if n <= 1:\n        return False\n    if n == 2:\n        return True\n    if n % 2 == 0:\n        return False\n    max_divisor = math.floor(math.sqrt(n))\n    for d in range(3, 1 + max_divisor, 2):\n        if n % d == 0:\n            return False\n    return True\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/605",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to check if the given integer is a prime number.",
+        "generated_code": "import math\n\ndef prime_num(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            return False\n    return True\n\n# Test cases\nassert prime_num(13) == True\nassert prime_num(7) == True\nassert prime_num(-1010) == False\n",
+        "counter_example": null
+    }
+]

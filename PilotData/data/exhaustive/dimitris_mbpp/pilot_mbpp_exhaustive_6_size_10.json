@@ -1,0 +1,203 @@
+[
+    {
+        "task_id": "Mbpp/405",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to check whether an element exists within a tuple.",
+        "generated_code": "def check_tuplex(tup, elem):\n    return elem in tup\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/405",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to check whether an element exists within a tuple.",
+        "generated_code": "def check_tuplex(tup, element):\n    return element in tup\n\n# Test cases\nassert check_tuplex((\"w\", 3, \"r\", \"e\", \"s\", \"o\", \"u\", \"r\", \"c\", \"e\"),'r') == True\nassert check_tuplex((\"w\", 3, \"r\", \"e\", \"s\", \"o\", \"u\", \"r\", \"c\", \"e\"),'5') == False\nassert check_tuplex((\"w\", 3, \"r\", \"e\", \"s\", \"o\", \"u\", \"r\", \"c\", \"e\"),3) == True\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/424",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to extract only the rear index element of each string in the given tuple.",
+        "generated_code": "def extract_rear(strings: tuple) -> list:\n    return [s[-1] for s in strings]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/424",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to extract only the rear index element of each string in the given tuple.",
+        "generated_code": "def extract_rear(tup):\n    return [s[-1] for s in tup]\n\n# Test cases\nassert extract_rear(('Mers', 'for', 'Vers')) == ['s', 'r', 's']\nassert extract_rear(('Avenge', 'for', 'People')) == ['e', 'r', 'e']\nassert extract_rear(('Gotta', 'get', 'go')) == ['a', 't', 'o']\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/137",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to find the ratio of zeroes to non-zeroes in an array of integers.",
+        "generated_code": "def zero_count(nums):\n    zero_ctr = nums.count(0)\n    non_zero_ctr = len(nums) - zero_ctr\n    if non_zero_ctr == 0:\n        return 0\n    else:\n        return zero_ctr / non_zero_ctr\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                [
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            ],
+            "expected": Infinity,
+            "got": 0
+        }
+    },
+    {
+        "task_id": "Mbpp/137",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to find the ratio of zeroes to non-zeroes in an array of integers.",
+        "generated_code": "import math\n\ndef zero_count(arr):\n    zeroes = arr.count(0)\n    non_zeroes = len(arr) - zeroes\n    \n    if non_zeroes == 0:\n        return float('inf')  # To handle division by zero if there are no non-zero elements\n    \n    return zeroes / non_zeroes\n\n# Test cases\nassert math.isclose(zero_count([0, 1, 2, -1, -5, 6, 0, -3, -2, 3, 4, 6, 8]), 0.181818, rel_tol=0.001)\nassert math.isclose(zero_count([2, 1, 2, -1, -5, 6, 4, -3, -2, 3, 4, 6, 8]), 0.00, rel_tol=0.001)\nassert math.isclose(zero_count([2, 4, -6, -9, 11, -12, 14, -5, 17]), 0.00, rel_tol=0.001)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/126",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a python function to find the sum of common divisors of two given numbers.",
+        "generated_code": "def sum(a, b):\n    common_divisors = [i for i in range(1, min(a, b) + 1) if a % i == 0 and b % i == 0]\n    return sum(common_divisors)\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                10,
+                15
+            ],
+            "expected": 6.0,
+            "got": null
+        }
+    },
+    {
+        "task_id": "Mbpp/126",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Write a python function to find the sum of common divisors of two given numbers.",
+        "generated_code": "def sum_common_divisors(a, b):\n    def divisors(n):\n        divs = set()\n        for i in range(1, int(n**0.5) + 1):\n            if n % i == 0:\n                divs.add(i)\n                divs.add(n // i)\n        return divs\n    \n    divisors_a = divisors(a)\n    divisors_b = divisors(b)\n    common_divisors = divisors_a & divisors_b\n    \n    return sum(common_divisors)\n\n# Test cases\nassert sum_common_divisors(10, 15) == 6\nassert sum_common_divisors(100, 150) == 93\nassert sum_common_divisors(4, 6) == 3\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                10,
+                15
+            ],
+            "expected": 6.0,
+            "got": null
+        }
+    },
+    {
+        "task_id": "Mbpp/259",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to maximize the given two tuples.",
+        "generated_code": "def maximize_elements(tup1, tup2):\n    return tuple(max(pair1, pair2) for pair1, pair2 in zip(tup1, tup2))\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                [
+                    [
+                        1,
+                        3
+                    ],
+                    [
+                        4,
+                        5
+                    ],
+                    [
+                        2,
+                        9
+                    ],
+                    [
+                        1,
+                        10
+                    ]
+                ],
+                [
+                    [
+                        6,
+                        7
+                    ],
+                    [
+                        3,
+                        9
+                    ],
+                    [
+                        1,
+                        1
+                    ],
+                    [
+                        7,
+                        3
+                    ]
+                ]
+            ],
+            "expected": [
+                [
+                    6,
+                    7
+                ],
+                [
+                    4,
+                    9
+                ],
+                [
+                    2,
+                    9
+                ],
+                [
+                    7,
+                    10
+                ]
+            ],
+            "got": [
+                [
+                    6,
+                    7
+                ],
+                [
+                    4,
+                    5
+                ],
+                [
+                    2,
+                    9
+                ],
+                [
+                    7,
+                    3
+                ]
+            ]
+        }
+    },
+    {
+        "task_id": "Mbpp/259",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to maximize the given two tuples.",
+        "generated_code": "def maximize_elements(tup1, tup2):\n    return tuple((max(a, c), max(b, d)) for (a, b), (c, d) in zip(tup1, tup2))\n\n# Test cases\nassert maximize_elements(((1, 3), (4, 5), (2, 9), (1, 10)), ((6, 7), (3, 9), (1, 1), (7, 3))) == ((6, 7), (4, 9), (2, 9), (7, 10))\nassert maximize_elements(((2, 4), (5, 6), (3, 10), (2, 11)), ((7, 8), (4, 10), (2, 2), (8, 4))) == ((7, 8), (5, 10), (3, 10), (8, 11))\nassert maximize_elements(((3, 5), (6, 7), (4, 11), (3, 12)), ((8, 9), (5, 11), (3, 3), (9, 5))) == ((8, 9), (6, 11), (4, 11), (9, 12))\n",
+        "counter_example": null
+    }
+]

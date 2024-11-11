@@ -1,0 +1,116 @@
+[
+    {
+        "task_id": "0058",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Petya has equal wooden bars of length n. He wants to make a frame for two equal doors. Each frame has two vertical (left and right) sides of length a and one top side of length b. A solid (i.e. continuous without breaks) piece of bar is needed for each side.\n\nDetermine a minimal number of wooden bars which are needed to make the frames for two doors. Petya can cut the wooden bars into any parts, but each side of each door should be a solid piece of a wooden bar (or a whole wooden bar).\n\n\n-----Input-----\n\nThe first line contains a single integer n (1 ≤ n ≤ 1 000) — the length of each wooden bar.\n\nThe second line contains a single integer a (1 ≤ a ≤ n) — the length of the vertical (left and right) sides of a door frame.\n\nThe third line contains a single integer b (1 ≤ b ≤ n) — the length of the upper side of a door frame.\n\n\n-----Output-----\n\nPrint the minimal number of wooden bars with length n which are needed to make the frames for two doors.\n\n\n-----Examples-----\nInput\n8\n1\n2\n\nOutput\n1\n\nInput\n5\n3\n4\n\nOutput\n6\n\nInput\n6\n4\n2\n\nOutput\n4\n\nInput\n20\n5\n6\n\nOutput\n2\n\n\n\n-----Note-----\n\nIn the first example one wooden bar is enough, since the total length of all six sides of the frames for two doors is 8.\n\nIn the second example 6 wooden bars is enough, because for each side of the frames the new wooden bar is needed.",
+        "generated_code": "n = int(input())\na = int(input())\nb = int(input())\n\ntotal_length = 2 * (a * 2 + b)\nif total_length <= n:\n    print(1)\nelse:\n    print(-(-total_length // n))\n",
+        "counter_example": {
+            "input": "5\n3\n4\n",
+            "expected": "6\n",
+            "got": "4"
+        }
+    },
+    {
+        "task_id": "0058",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Petya has equal wooden bars of length n. He wants to make a frame for two equal doors. Each frame has two vertical (left and right) sides of length a and one top side of length b. A solid (i.e. continuous without breaks) piece of bar is needed for each side.\n\nDetermine a minimal number of wooden bars which are needed to make the frames for two doors. Petya can cut the wooden bars into any parts, but each side of each door should be a solid piece of a wooden bar (or a whole wooden bar).\n\n\n-----Input-----\n\nThe first line contains a single integer n (1 ≤ n ≤ 1 000) — the length of each wooden bar.\n\nThe second line contains a single integer a (1 ≤ a ≤ n) — the length of the vertical (left and right) sides of a door frame.\n\nThe third line contains a single integer b (1 ≤ b ≤ n) — the length of the upper side of a door frame.\n\n\n-----Output-----\n\nPrint the minimal number of wooden bars with length n which are needed to make the frames for two doors.\n\n\n-----Examples-----\nInput\n8\n1\n2\n\nOutput\n1\n\nInput\n5\n3\n4\n\nOutput\n6\n\nInput\n6\n4\n2\n\nOutput\n4\n\nInput\n20\n5\n6\n\nOutput\n2\n\n\n\n-----Note-----\n\nIn the first example one wooden bar is enough, since the total length of all six sides of the frames for two doors is 8.\n\nIn the second example 6 wooden bars is enough, because for each side of the frames the new wooden bar is needed.",
+        "generated_code": "# Read input values\nn = int(input())\na = int(input())\nb = int(input())\n\n# Calculate the total length needed for two door frames\ntotal_length_needed = 2 * (2 * a + b)\n\n# Calculate the minimal number of wooden bars required\nminimal_bars_needed = (total_length_needed + n - 1) // n\n\n# Print the result\nprint(minimal_bars_needed)\n",
+        "counter_example": {
+            "input": "5\n3\n4\n",
+            "expected": "6\n",
+            "got": "4"
+        }
+    },
+    {
+        "task_id": "0154",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Recall that a binary search tree is a rooted binary tree, whose nodes each store a key and each have at most two distinguished subtrees, left and right. The key in each node must be greater than any key stored in the left subtree, and less than any key stored in the right subtree.\n\nThe depth of a vertex is the number of edges on the simple path from the vertex to the root. In particular, the depth of the root is $0$.\n\nLet's call a binary search tree perfectly balanced if there doesn't exist a binary search tree with the same number of vertices that has a strictly smaller sum of depths of its vertices.\n\nLet's call a binary search tree with integer keys striped if both of the following conditions are satisfied for every vertex $v$:   If $v$ has a left subtree whose root is $u$, then the parity of the key of $v$ is different from the parity of the key of $u$.  If $v$ has a right subtree whose root is $w$, then the parity of the key of $v$ is the same as the parity of the key of $w$. \n\nYou are given a single integer $n$. Find the number of perfectly balanced striped binary search trees with $n$ vertices that have distinct integer keys between $1$ and $n$, inclusive. Output this number modulo $998\\,244\\,353$.\n\n\n-----Input-----\n\nThe only line contains a single integer $n$ ($1 \\le n \\le 10^6$), denoting the required number of vertices.\n\n\n-----Output-----\n\nOutput the number of perfectly balanced striped binary search trees with $n$ vertices and distinct integer keys between $1$ and $n$, inclusive, modulo $998\\,244\\,353$.\n\n\n-----Examples-----\nInput\n4\n\nOutput\n1\n\nInput\n3\n\nOutput\n0\n\n\n\n-----Note-----\n\nIn the first example, this is the only tree that satisfies the conditions: $\\left. \\begin{array}{l}{\\text{perfectly balanced}} \\\\{\\text{striped}} \\\\{\\text{binary search tree}} \\end{array} \\right.$\n\nIn the second example, here are various trees that don't satisfy some condition: [Image]",
+        "generated_code": "def count_trees(n):\n    MOD = 998244353\n    dp = [0] * (n + 1)\n    dp[0] = 1\n    for i in range(1, n + 1):\n        for j in range(i):\n            dp[i] += dp[j] * dp[i - j - 1] * ((i - 1) // j % 2)\n            dp[i] %= MOD\n    return dp[n]\n\nn = int(input())\nprint(count_trees(n))\n",
+        "counter_example": {
+            "input": "4\n",
+            "expected": "1\n",
+            "got": "Traceback (most recent call last):\n  File \"<string>\", line 12, in <module>\n  File \"<string>\", line 7, in count_trees\nZeroDivisionError: integer division or modulo by zero"
+        }
+    },
+    {
+        "task_id": "0154",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Recall that a binary search tree is a rooted binary tree, whose nodes each store a key and each have at most two distinguished subtrees, left and right. The key in each node must be greater than any key stored in the left subtree, and less than any key stored in the right subtree.\n\nThe depth of a vertex is the number of edges on the simple path from the vertex to the root. In particular, the depth of the root is $0$.\n\nLet's call a binary search tree perfectly balanced if there doesn't exist a binary search tree with the same number of vertices that has a strictly smaller sum of depths of its vertices.\n\nLet's call a binary search tree with integer keys striped if both of the following conditions are satisfied for every vertex $v$:   If $v$ has a left subtree whose root is $u$, then the parity of the key of $v$ is different from the parity of the key of $u$.  If $v$ has a right subtree whose root is $w$, then the parity of the key of $v$ is the same as the parity of the key of $w$. \n\nYou are given a single integer $n$. Find the number of perfectly balanced striped binary search trees with $n$ vertices that have distinct integer keys between $1$ and $n$, inclusive. Output this number modulo $998\\,244\\,353$.\n\n\n-----Input-----\n\nThe only line contains a single integer $n$ ($1 \\le n \\le 10^6$), denoting the required number of vertices.\n\n\n-----Output-----\n\nOutput the number of perfectly balanced striped binary search trees with $n$ vertices and distinct integer keys between $1$ and $n$, inclusive, modulo $998\\,244\\,353$.\n\n\n-----Examples-----\nInput\n4\n\nOutput\n1\n\nInput\n3\n\nOutput\n0\n\n\n\n-----Note-----\n\nIn the first example, this is the only tree that satisfies the conditions: $\\left. \\begin{array}{l}{\\text{perfectly balanced}} \\\\{\\text{striped}} \\\\{\\text{binary search tree}} \\end{array} \\right.$\n\nIn the second example, here are various trees that don't satisfy some condition: [Image]",
+        "generated_code": "MOD = 998244353\n\ndef count_balanced_striped_trees(n):\n    if n == 1:\n        return 1\n    if n == 2:\n        return 0\n    \n    # Initialize DP arrays\n    dp = [0] * (n + 1)\n    dp[0] = 1\n    dp[1] = 1  # Only one tree with one node\n    dp[2] = 0  # No valid tree with two nodes due to striped condition\n    \n    # Precompute powers of two up to n for efficiency\n    power_of_two = [1] * (n + 1)\n    for i in range(1, n + 1):\n        power_of_two[i] = (power_of_two[i - 1] * 2) % MOD\n    \n    # Fill dp array\n    for i in range(3, n + 1):\n        # Calculate number of balanced striped trees with i nodes\n        half = (i - 1) // 2\n        if (i - 1) % 2 == 0:\n            dp[i] = (dp[half] * dp[half] * 2) % MOD\n        else:\n            dp[i] = (dp[half] * dp[half + 1] * 2) % MOD\n    \n    return dp[n]\n\n# Read input\nimport sys\ninput = sys.stdin.read\nn = int(input().strip())\n\n# Output the result\nprint(count_balanced_striped_trees(n))\n",
+        "counter_example": {
+            "input": "4\n",
+            "expected": "1\n",
+            "got": "0"
+        }
+    },
+    {
+        "task_id": "0145",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Those days, many boys use beautiful girls' photos as avatars in forums. So it is pretty hard to tell the gender of a user at the first glance. Last year, our hero went to a forum and had a nice chat with a beauty (he thought so). After that they talked very often and eventually they became a couple in the network. \n\nBut yesterday, he came to see \"her\" in the real world and found out \"she\" is actually a very strong man! Our hero is very sad and he is too tired to love again now. So he came up with a way to recognize users' genders by their user names.\n\nThis is his method: if the number of distinct characters in one's user name is odd, then he is a male, otherwise she is a female. You are given the string that denotes the user name, please help our hero to determine the gender of this user by his method.\n\n\n-----Input-----\n\nThe first line contains a non-empty string, that contains only lowercase English letters — the user name. This string contains at most 100 letters.\n\n\n-----Output-----\n\nIf it is a female by our hero's method, print \"CHAT WITH HER!\" (without the quotes), otherwise, print \"IGNORE HIM!\" (without the quotes).\n\n\n-----Examples-----\nInput\nwjmzbmr\n\nOutput\nCHAT WITH HER!\n\nInput\nxiaodao\n\nOutput\nIGNORE HIM!\n\nInput\nsevenkplus\n\nOutput\nCHAT WITH HER!\n\n\n\n-----Note-----\n\nFor the first example. There are 6 distinct characters in \"wjmzbmr\". These characters are: \"w\", \"j\", \"m\", \"z\", \"b\", \"r\". So wjmzbmr is a female and you should print \"CHAT WITH HER!\".",
+        "generated_code": "s = input()\ndistinct_chars = set(s)\nif len(distinct_chars) % 2 == 0:\n    print(\"CHAT WITH HER!\")\nelse:\n    print(\"IGNORE HIM!\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0145",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Those days, many boys use beautiful girls' photos as avatars in forums. So it is pretty hard to tell the gender of a user at the first glance. Last year, our hero went to a forum and had a nice chat with a beauty (he thought so). After that they talked very often and eventually they became a couple in the network. \n\nBut yesterday, he came to see \"her\" in the real world and found out \"she\" is actually a very strong man! Our hero is very sad and he is too tired to love again now. So he came up with a way to recognize users' genders by their user names.\n\nThis is his method: if the number of distinct characters in one's user name is odd, then he is a male, otherwise she is a female. You are given the string that denotes the user name, please help our hero to determine the gender of this user by his method.\n\n\n-----Input-----\n\nThe first line contains a non-empty string, that contains only lowercase English letters — the user name. This string contains at most 100 letters.\n\n\n-----Output-----\n\nIf it is a female by our hero's method, print \"CHAT WITH HER!\" (without the quotes), otherwise, print \"IGNORE HIM!\" (without the quotes).\n\n\n-----Examples-----\nInput\nwjmzbmr\n\nOutput\nCHAT WITH HER!\n\nInput\nxiaodao\n\nOutput\nIGNORE HIM!\n\nInput\nsevenkplus\n\nOutput\nCHAT WITH HER!\n\n\n\n-----Note-----\n\nFor the first example. There are 6 distinct characters in \"wjmzbmr\". These characters are: \"w\", \"j\", \"m\", \"z\", \"b\", \"r\". So wjmzbmr is a female and you should print \"CHAT WITH HER!\".",
+        "generated_code": "username = input().strip()\ndistinct_characters = set(username)\n\nif len(distinct_characters) % 2 == 0:\n    print(\"CHAT WITH HER!\")\nelse:\n    print(\"IGNORE HIM!\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0049",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Let's write all the positive integer numbers one after another from $1$ without any delimiters (i.e. as a single string). It will be the infinite sequence starting with 123456789101112131415161718192021222324252627282930313233343536...\n\nYour task is to print the $k$-th digit of this sequence.\n\n\n-----Input-----\n\nThe first and only line contains integer $k$ ($1 \\le k \\le 10^{12}$) — the position to process ($1$-based index).\n\n\n-----Output-----\n\nPrint the $k$-th digit of the resulting infinite sequence.\n\n\n-----Examples-----\nInput\n7\n\nOutput\n7\n\nInput\n21\n\nOutput\n5",
+        "generated_code": "k = int(input())\nn = 1\nwhile True:\n    s = str(n)\n    if len(s) >= k:\n        print(s[k-1])\n        break\n    k -= len(s)\n    n += 1\n",
+        "counter_example": {
+            "input": "1000000000\n",
+            "expected": "1\n",
+            "got": "TimeoutError: Execution exceeded time limit"
+        }
+    },
+    {
+        "task_id": "0049",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Let's write all the positive integer numbers one after another from $1$ without any delimiters (i.e. as a single string). It will be the infinite sequence starting with 123456789101112131415161718192021222324252627282930313233343536...\n\nYour task is to print the $k$-th digit of this sequence.\n\n\n-----Input-----\n\nThe first and only line contains integer $k$ ($1 \\le k \\le 10^{12}$) — the position to process ($1$-based index).\n\n\n-----Output-----\n\nPrint the $k$-th digit of the resulting infinite sequence.\n\n\n-----Examples-----\nInput\n7\n\nOutput\n7\n\nInput\n21\n\nOutput\n5",
+        "generated_code": "k = int(input())\n\n# Step 1: Determine the length of the number where the k-th digit lies\nlength = 1\ncount = 9\nstart = 1\n\nwhile k > length * count:\n    k -= length * count\n    length += 1\n    count *= 10\n    start *= 10\n\n# Step 2: Determine the exact number and digit within that number\nnumber = start + (k - 1) // length\ndigit_index = (k - 1) % length\n\n# Step 3: Convert the number to string and get the digit\nresult = str(number)[digit_index]\n\nprint(result)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0093",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Bessie the cow and her best friend Elsie each received a sliding puzzle on Pi Day. Their puzzles consist of a 2 × 2 grid and three tiles labeled 'A', 'B', and 'C'. The three tiles sit on top of the grid, leaving one grid cell empty. To make a move, Bessie or Elsie can slide a tile adjacent to the empty cell into the empty cell as shown below: $\\rightarrow$ \n\nIn order to determine if they are truly Best Friends For Life (BFFLs), Bessie and Elsie would like to know if there exists a sequence of moves that takes their puzzles to the same configuration (moves can be performed in both puzzles). Two puzzles are considered to be in the same configuration if each tile is on top of the same grid cell in both puzzles. Since the tiles are labeled with letters, rotations and reflections are not allowed.\n\n\n-----Input-----\n\nThe first two lines of the input consist of a 2 × 2 grid describing the initial configuration of Bessie's puzzle. The next two lines contain a 2 × 2 grid describing the initial configuration of Elsie's puzzle. The positions of the tiles are labeled 'A', 'B', and 'C', while the empty cell is labeled 'X'. It's guaranteed that both puzzles contain exactly one tile with each letter and exactly one empty position.\n\n\n-----Output-----\n\nOutput \"YES\"(without quotes) if the puzzles can reach the same configuration (and Bessie and Elsie are truly BFFLs). Otherwise, print \"NO\" (without quotes).\n\n\n-----Examples-----\nInput\nAB\nXC\nXB\nAC\n\nOutput\nYES\n\nInput\nAB\nXC\nAC\nBX\n\nOutput\nNO\n\n\n\n-----Note-----\n\nThe solution to the first sample is described by the image. All Bessie needs to do is slide her 'A' tile down.\n\nIn the second sample, the two puzzles can never be in the same configuration. Perhaps Bessie and Elsie are not meant to be friends after all...",
+        "generated_code": "def is_bffl(puzzle1, puzzle2):\n    for i in range(4):\n        if puzzle1[i] == 'X':\n            x1 = i\n        if puzzle2[i] == 'X':\n            x2 = i\n    puzzle1[x1], puzzle2[x2] = puzzle2[x2], puzzle1[x1]\n    return sorted(puzzle1) == sorted(puzzle2)\n\npuzzle1 = [input() + input()]\npuzzle2 = [input() + input()]\n\npuzzle1 = ''.join(puzzle1).replace('\\n', '')\npuzzle2 = ''.join(puzzle2).replace('\\n', '')\n\nif is_bffl(puzzle1, puzzle2):\n    print(\"YES\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": {
+            "input": "AB\nXC\nXB\nAC\n",
+            "expected": "YES\n",
+            "got": "Traceback (most recent call last):\n  File \"<string>\", line 16, in <module>\n  File \"<string>\", line 7, in is_bffl\nTypeError: 'str' object does not support item assignment"
+        }
+    },
+    {
+        "task_id": "0093",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Bessie the cow and her best friend Elsie each received a sliding puzzle on Pi Day. Their puzzles consist of a 2 × 2 grid and three tiles labeled 'A', 'B', and 'C'. The three tiles sit on top of the grid, leaving one grid cell empty. To make a move, Bessie or Elsie can slide a tile adjacent to the empty cell into the empty cell as shown below: $\\rightarrow$ \n\nIn order to determine if they are truly Best Friends For Life (BFFLs), Bessie and Elsie would like to know if there exists a sequence of moves that takes their puzzles to the same configuration (moves can be performed in both puzzles). Two puzzles are considered to be in the same configuration if each tile is on top of the same grid cell in both puzzles. Since the tiles are labeled with letters, rotations and reflections are not allowed.\n\n\n-----Input-----\n\nThe first two lines of the input consist of a 2 × 2 grid describing the initial configuration of Bessie's puzzle. The next two lines contain a 2 × 2 grid describing the initial configuration of Elsie's puzzle. The positions of the tiles are labeled 'A', 'B', and 'C', while the empty cell is labeled 'X'. It's guaranteed that both puzzles contain exactly one tile with each letter and exactly one empty position.\n\n\n-----Output-----\n\nOutput \"YES\"(without quotes) if the puzzles can reach the same configuration (and Bessie and Elsie are truly BFFLs). Otherwise, print \"NO\" (without quotes).\n\n\n-----Examples-----\nInput\nAB\nXC\nXB\nAC\n\nOutput\nYES\n\nInput\nAB\nXC\nAC\nBX\n\nOutput\nNO\n\n\n\n-----Note-----\n\nThe solution to the first sample is described by the image. All Bessie needs to do is slide her 'A' tile down.\n\nIn the second sample, the two puzzles can never be in the same configuration. Perhaps Bessie and Elsie are not meant to be friends after all...",
+        "generated_code": "from collections import deque\n\ndef puzzle_to_string(puzzle):\n    return puzzle[0] + puzzle[1]\n\ndef bfs(start):\n    queue = deque([start])\n    visited = set([start])\n    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]  # Up, Down, Left, Right\n    while queue:\n        current = queue.popleft()\n        empty_pos = current.index('X')\n        empty_row, empty_col = divmod(empty_pos, 2)\n        for dr, dc in directions:\n            new_row, new_col = empty_row + dr, empty_col + dc\n            if 0 <= new_row < 2 and 0 <= new_col < 2:\n                new_pos = new_row * 2 + new_col\n                new_state = list(current)\n                new_state[empty_pos], new_state[new_pos] = new_state[new_pos], new_state[empty_pos]\n                new_state_str = ''.join(new_state)\n                if new_state_str not in visited:\n                    visited.add(new_state_str)\n                    queue.append(new_state_str)\n    return visited\n\n# Read input\nbessie_puzzle = [input().strip() for _ in range(2)]\nelsie_puzzle = [input().strip() for _ in range(2)]\n\n# Convert puzzles to string representation\nbessie_start = puzzle_to_string(bessie_puzzle)\nelsie_start = puzzle_to_string(elsie_puzzle)\n\n# Perform BFS for both puzzles\nbessie_reachable = bfs(bessie_start)\nelsie_reachable = bfs(elsie_start)\n\n# Check if there is any common state\nif bessie_reachable & elsie_reachable:\n    print(\"YES\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": null
+    }
+]

@@ -8,7 +8,7 @@ from tenacity import (
     wait_random_exponential,
 )  # for exponential backoff
 
-
+# Selects and returns the appropriate model, either OpenAI or Groq based on the model name
 def get_model(name: str, temperature: float):
     openai_models = {
         "gpt-4o-2024-05-13",
@@ -29,9 +29,10 @@ def get_model(name: str, temperature: float):
     if name in groq_models:
         return GroqModel(name, temperature)
 
-
+# Abstract Class for interacting with all models.
 class Model(ABC):
 
+    # Method to query the models
     def query(self, prompt):
         response = self._query(prompt)
         return response
@@ -40,7 +41,7 @@ class Model(ABC):
     def _query(self, prompt):
         pass
 
-
+# Specific subclass for interacting with OpenAI's models.
 class OpenAIModel(Model):
 
     def __init__(self, name, temperature):
@@ -50,7 +51,8 @@ class OpenAIModel(Model):
         self.client = OpenAI(
             api_key=os.environ.get("OPENAI_API_KEY"),
         )
-
+    # Method to query the models
+    # Includes retry logic to handle potential API failures
     @retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(6))
     def _query(self, prompt):
         response = self.client.chat.completions.create(
@@ -59,7 +61,7 @@ class OpenAIModel(Model):
             temperature=self.temperature)
         return response.choices[0].message.content
 
-
+# Specific subclass for interacting with Groq's models.
 class GroqModel(Model):
 
     def __init__(self, name, temperature):
@@ -69,7 +71,8 @@ class GroqModel(Model):
         self.client = Groq(
             api_key=os.environ.get("GROQ_API_KEY"),
         )
-
+    # query method to query the models
+    # Includes retry logic to handle potential API failures
     @retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(6))
     def _query(self, prompt):
         response = self.client.chat.completions.create(

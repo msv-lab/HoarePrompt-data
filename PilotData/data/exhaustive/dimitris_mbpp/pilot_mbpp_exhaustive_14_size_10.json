@@ -1,0 +1,120 @@
+[
+    {
+        "task_id": "Mbpp/588",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function to find the difference between largest and smallest value in a given list.",
+        "generated_code": "def big_diff(nums):\n    return max(nums) - min(nums)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/588",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to find the difference between largest and smallest value in a given list.",
+        "generated_code": "def big_diff(nums):\n    return max(nums) - min(nums)\n\n# Provided test cases\nassert big_diff([1,2,3,4]) == 3\nassert big_diff([4,5,12]) == 8\nassert big_diff([9,2,3]) == 7\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/4",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to find the n largest integers from a given list of numbers, returned in descending order.",
+        "generated_code": "import heapq as hq\ndef heap_queue_largest(nums: list, n: int) -> list:\n  largest_nums = hq.nlargest(n, nums)\n  return largest_nums\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/4",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to find the n largest integers from a given list of numbers, returned in descending order.",
+        "generated_code": "import heapq as hq\n\ndef heap_queue_largest(nums: list, n: int) -> list:\n    largest_nums = hq.nlargest(n, nums)\n    return largest_nums\n\n# Test cases\nassert heap_queue_largest([25, 35, 22, 85, 14, 65, 75, 22, 58], 3) == [85, 75, 65]\nassert heap_queue_largest([25, 35, 22, 85, 14, 65, 75, 22, 58], 2) == [85, 75]\nassert heap_queue_largest([25, 35, 22, 85, 14, 65, 75, 22, 58], 5) == [85, 75, 65, 58, 35]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/639",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to sum the length of the names of a given list of names after removing the names that start with a lowercase letter.",
+        "generated_code": "def sample_nam(names):\n    return sum(len(name) for name in names if name[0].isupper())\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                [
+                    "AbCdE",
+                    "fGH",
+                    "IJKLMnOp",
+                    "qrs",
+                    "TUVW",
+                    "xyz"
+                ]
+            ],
+            "expected": 0,
+            "got": 17
+        }
+    },
+    {
+        "task_id": "Mbpp/639",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Write a function to sum the length of the names of a given list of names after removing the names that start with a lowercase letter.",
+        "generated_code": "def sample_nam(names):\n    # Filter out names that start with a lowercase letter\n    filtered_names = [name for name in names if not name[0].islower()]\n    # Sum the lengths of the remaining names\n    total_length = sum(len(name) for name in filtered_names)\n    return total_length\n\n# Tests\nassert sample_nam(['sally', 'Dylan', 'rebecca', 'Diana', 'Joanne', 'keith']) == 16\nassert sample_nam([\"php\", \"res\", \"Python\", \"abcd\", \"Java\", \"aaa\"]) == 10\nassert sample_nam([\"abcd\", \"Python\", \"abba\", \"aba\"]) == 6\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                [
+                    "AbCdE",
+                    "fGH",
+                    "IJKLMnOp",
+                    "qrs",
+                    "TUVW",
+                    "xyz"
+                ]
+            ],
+            "expected": 0,
+            "got": 17
+        }
+    },
+    {
+        "task_id": "Mbpp/171",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to find the perimeter of a regular pentagon from the length of its sides.",
+        "generated_code": "def perimeter_pentagon(side_length: int) -> int:\n    \"\"\"\n    This function calculates the perimeter of a regular pentagon from the length of its sides.\n\n    Args:\n    side_length (int): The length of one side of the pentagon.\n\n    Returns:\n    int: The perimeter of the pentagon.\n    \"\"\"\n    return 5 * side_length\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/171",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to find the perimeter of a regular pentagon from the length of its sides.",
+        "generated_code": "def perimeter_pentagon(side_length):\n    return 5 * side_length\n\n# Tests\nassert perimeter_pentagon(5) == 25\nassert perimeter_pentagon(10) == 50\nassert perimeter_pentagon(15) == 75\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/447",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to find cubes of individual elements in a list.",
+        "generated_code": "def cube_nums(nums):\n    return [num ** 3 for num in nums]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/447",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to find cubes of individual elements in a list.",
+        "generated_code": "def cube_nums(nums):\n    return [x**3 for x in nums]\n\n# Test cases\nassert cube_nums([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == [1, 8, 27, 64, 125, 216, 343, 512, 729, 1000]\nassert cube_nums([10, 20, 30]) == [1000, 8000, 27000]\nassert cube_nums([12, 15]) == [1728, 3375]\n",
+        "counter_example": null
+    }
+]

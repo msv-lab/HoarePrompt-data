@@ -1,0 +1,124 @@
+[
+    {
+        "task_id": "0261",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "In this problem you will meet the simplified model of game King of Thieves.\n\nIn a new ZeptoLab game called \"King of Thieves\" your aim is to reach a chest with gold by controlling your character, avoiding traps and obstacles on your way. [Image] \n\nAn interesting feature of the game is that you can design your own levels that will be available to other players. Let's consider the following simple design of a level.\n\nA dungeon consists of n segments located at a same vertical level, each segment is either a platform that character can stand on, or a pit with a trap that makes player lose if he falls into it. All segments have the same length, platforms on the scheme of the level are represented as '*' and pits are represented as '.'. \n\nOne of things that affects speedrun characteristics of the level is a possibility to perform a series of consecutive jumps of the same length. More formally, when the character is on the platform number i_1, he can make a sequence of jumps through the platforms i_1 < i_2 < ... < i_{k}, if i_2 - i_1 = i_3 - i_2 = ... = i_{k} - i_{k} - 1. Of course, all segments i_1, i_2, ... i_{k} should be exactly the platforms, not pits. \n\nLet's call a level to be good if you can perform a sequence of four jumps of the same length or in the other words there must be a sequence i_1, i_2, ..., i_5, consisting of five platforms so that the intervals between consecutive platforms are of the same length. Given the scheme of the level, check if it is good.\n\n\n-----Input-----\n\nThe first line contains integer n (1 ≤ n ≤ 100) — the number of segments on the level.\n\nNext line contains the scheme of the level represented as a string of n characters '*' and '.'.\n\n\n-----Output-----\n\nIf the level is good, print the word \"yes\" (without the quotes), otherwise print the word \"no\" (without the quotes).\n\n\n-----Examples-----\nInput\n16\n.**.*..*.***.**.\n\nOutput\nyes\nInput\n11\n.*.*...*.*.\n\nOutput\nno\n\n\n-----Note-----\n\nIn the first sample test you may perform a sequence of jumps through platforms 2, 5, 8, 11, 14.",
+        "generated_code": "n = int(input())\ns = input()\nplatforms = [i for i, c in enumerate(s) if c == '*']\n\ngood = False\nfor i in range(len(platforms) - 4):\n    delta = platforms[i + 1] - platforms[i]\n    if all(platforms[i + j] - platforms[i + j - 1] == delta for j in range(2, 5)):\n        good = True\n        break\n\nprint(\"yes\" if good else \"no\")\n",
+        "counter_example": {
+            "input": "16\n.**.*..*.***.**.\n",
+            "expected": "yes",
+            "got": "no"
+        }
+    },
+    {
+        "task_id": "0261",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "In this problem you will meet the simplified model of game King of Thieves.\n\nIn a new ZeptoLab game called \"King of Thieves\" your aim is to reach a chest with gold by controlling your character, avoiding traps and obstacles on your way. [Image] \n\nAn interesting feature of the game is that you can design your own levels that will be available to other players. Let's consider the following simple design of a level.\n\nA dungeon consists of n segments located at a same vertical level, each segment is either a platform that character can stand on, or a pit with a trap that makes player lose if he falls into it. All segments have the same length, platforms on the scheme of the level are represented as '*' and pits are represented as '.'. \n\nOne of things that affects speedrun characteristics of the level is a possibility to perform a series of consecutive jumps of the same length. More formally, when the character is on the platform number i_1, he can make a sequence of jumps through the platforms i_1 < i_2 < ... < i_{k}, if i_2 - i_1 = i_3 - i_2 = ... = i_{k} - i_{k} - 1. Of course, all segments i_1, i_2, ... i_{k} should be exactly the platforms, not pits. \n\nLet's call a level to be good if you can perform a sequence of four jumps of the same length or in the other words there must be a sequence i_1, i_2, ..., i_5, consisting of five platforms so that the intervals between consecutive platforms are of the same length. Given the scheme of the level, check if it is good.\n\n\n-----Input-----\n\nThe first line contains integer n (1 ≤ n ≤ 100) — the number of segments on the level.\n\nNext line contains the scheme of the level represented as a string of n characters '*' and '.'.\n\n\n-----Output-----\n\nIf the level is good, print the word \"yes\" (without the quotes), otherwise print the word \"no\" (without the quotes).\n\n\n-----Examples-----\nInput\n16\n.**.*..*.***.**.\n\nOutput\nyes\nInput\n11\n.*.*...*.*.\n\nOutput\nno\n\n\n-----Note-----\n\nIn the first sample test you may perform a sequence of jumps through platforms 2, 5, 8, 11, 14.",
+        "generated_code": "def is_good_level(n, scheme):\n    # Find all positions of the platforms '*'\n    platforms = [i for i, segment in enumerate(scheme) if segment == '*']\n    \n    # Check for sequence of five platforms with the same jump length\n    for i in range(len(platforms)):\n        for j in range(i + 1, len(platforms)):\n            d = platforms[j] - platforms[i]\n            count = 2\n            k = platforms[j]\n            while count < 5:\n                k += d\n                if k in platforms:\n                    count += 1\n                else:\n                    break\n            if count == 5:\n                return \"yes\"\n    return \"no\"\n\n# Read input\nn = int(input())\nscheme = input().strip()\n\n# Output result\nprint(is_good_level(n, scheme))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0272",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Santa Claus decided to disassemble his keyboard to clean it. After he returned all the keys back, he suddenly realized that some pairs of keys took each other's place! That is, Santa suspects that each key is either on its place, or on the place of another key, which is located exactly where the first key should be. \n\nIn order to make sure that he's right and restore the correct order of keys, Santa typed his favorite patter looking only to his keyboard.\n\nYou are given the Santa's favorite patter and the string he actually typed. Determine which pairs of keys could be mixed. Each key must occur in pairs at most once.\n\n\n-----Input-----\n\nThe input consists of only two strings s and t denoting the favorite Santa's patter and the resulting string. s and t are not empty and have the same length, which is at most 1000. Both strings consist only of lowercase English letters.\n\n\n-----Output-----\n\nIf Santa is wrong, and there is no way to divide some of keys into pairs and swap keys in each pair so that the keyboard will be fixed, print «-1» (without quotes).\n\nOtherwise, the first line of output should contain the only integer k (k ≥ 0) — the number of pairs of keys that should be swapped. The following k lines should contain two space-separated letters each, denoting the keys which should be swapped. All printed letters must be distinct.\n\nIf there are several possible answers, print any of them. You are free to choose the order of the pairs and the order of keys in a pair.\n\nEach letter must occur at most once. Santa considers the keyboard to be fixed if he can print his favorite patter without mistakes.\n\n\n-----Examples-----\nInput\nhelloworld\nehoolwlroz\n\nOutput\n3\nh e\nl o\nd z\n\nInput\nhastalavistababy\nhastalavistababy\n\nOutput\n0\n\nInput\nmerrychristmas\nchristmasmerry\n\nOutput\n-1",
+        "generated_code": "s = input()\nt = input()\nn = len(s)\ncount = {}\nfor i in range(n):\n    if s[i] != t[i]:\n        if s[i] not in count:\n            count[s[i]] = t[i]\n        else:\n            if count[s[i]] != t[i]:\n                print(-1)\n                exit()\n        if t[i] not in count:\n            count[t[i]] = s[i]\n        else:\n            if count[t[i]] != s[i]:\n                print(-1)\n                exit()\n\nk = len(count) // 2\nprint(k)\nfor key, value in count.items():\n    if key < value:\n        print(key, value)\n",
+        "counter_example": {
+            "input": "helloworld\nehoolwlroz\n",
+            "expected": "3\nh e\nl o\nd z\n",
+            "got": "3\ne h\nl o\nd z"
+        }
+    },
+    {
+        "task_id": "0272",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Santa Claus decided to disassemble his keyboard to clean it. After he returned all the keys back, he suddenly realized that some pairs of keys took each other's place! That is, Santa suspects that each key is either on its place, or on the place of another key, which is located exactly where the first key should be. \n\nIn order to make sure that he's right and restore the correct order of keys, Santa typed his favorite patter looking only to his keyboard.\n\nYou are given the Santa's favorite patter and the string he actually typed. Determine which pairs of keys could be mixed. Each key must occur in pairs at most once.\n\n\n-----Input-----\n\nThe input consists of only two strings s and t denoting the favorite Santa's patter and the resulting string. s and t are not empty and have the same length, which is at most 1000. Both strings consist only of lowercase English letters.\n\n\n-----Output-----\n\nIf Santa is wrong, and there is no way to divide some of keys into pairs and swap keys in each pair so that the keyboard will be fixed, print «-1» (without quotes).\n\nOtherwise, the first line of output should contain the only integer k (k ≥ 0) — the number of pairs of keys that should be swapped. The following k lines should contain two space-separated letters each, denoting the keys which should be swapped. All printed letters must be distinct.\n\nIf there are several possible answers, print any of them. You are free to choose the order of the pairs and the order of keys in a pair.\n\nEach letter must occur at most once. Santa considers the keyboard to be fixed if he can print his favorite patter without mistakes.\n\n\n-----Examples-----\nInput\nhelloworld\nehoolwlroz\n\nOutput\n3\nh e\nl o\nd z\n\nInput\nhastalavistababy\nhastalavistababy\n\nOutput\n0\n\nInput\nmerrychristmas\nchristmasmerry\n\nOutput\n-1",
+        "generated_code": "def find_swaps(s, t):\n    if len(s) != len(t):\n        return -1\n\n    pairs = {}\n    used = set()\n    swaps = []\n\n    for i in range(len(s)):\n        if s[i] == t[i]:\n            continue\n        if s[i] in used or t[i] in used:\n            return -1\n        if s[i] in pairs and pairs[s[i]] != t[i]:\n            return -1\n        if t[i] in pairs and pairs[t[i]] != s[i]:\n            return -1\n        pairs[s[i]] = t[i]\n        pairs[t[i]] = s[i]\n        used.add(s[i])\n        used.add(t[i])\n\n    for key, value in pairs.items():\n        if key < value:\n            swaps.append((key, value))\n\n    print(len(swaps))\n    for swap in swaps:\n        print(swap[0], swap[1])\n\n# Read input\ns = input()\nt = input()\n\n# Call the function\nfind_swaps(s, t)\n",
+        "counter_example": {
+            "input": "helloworld\nehoolwlroz\n",
+            "expected": "3\nh e\nl o\nd z\n",
+            "got": ""
+        }
+    },
+    {
+        "task_id": "0240",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Vasya decided to pass a very large integer n to Kate. First, he wrote that number as a string, then he appended to the right integer k — the number of digits in n. \n\nMagically, all the numbers were shuffled in arbitrary order while this note was passed to Kate. The only thing that Vasya remembers, is a non-empty substring of n (a substring of n is a sequence of consecutive digits of the number n).\n\nVasya knows that there may be more than one way to restore the number n. Your task is to find the smallest possible initial integer n. Note that decimal representation of number n contained no leading zeroes, except the case the integer n was equal to zero itself (in this case a single digit 0 was used).\n\n\n-----Input-----\n\nThe first line of the input contains the string received by Kate. The number of digits in this string does not exceed 1 000 000.\n\nThe second line contains the substring of n which Vasya remembers. This string can contain leading zeroes. \n\nIt is guaranteed that the input data is correct, and the answer always exists.\n\n\n-----Output-----\n\nPrint the smalles integer n which Vasya could pass to Kate.\n\n\n-----Examples-----\nInput\n003512\n021\n\nOutput\n30021\n\nInput\n199966633300\n63\n\nOutput\n3036366999",
+        "generated_code": "s = input()\nt = input()\n\ndef smallest_n(s, t):\n    t_set = set(t)\n    n = ''\n    for c in s:\n        if c in t_set:\n            n += c\n    n += t\n    return int(n)\n\nprint(smallest_n(s, t))\n",
+        "counter_example": {
+            "input": "003512\n021\n",
+            "expected": "30021\n",
+            "got": "12021"
+        }
+    },
+    {
+        "task_id": "0240",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Vasya decided to pass a very large integer n to Kate. First, he wrote that number as a string, then he appended to the right integer k — the number of digits in n. \n\nMagically, all the numbers were shuffled in arbitrary order while this note was passed to Kate. The only thing that Vasya remembers, is a non-empty substring of n (a substring of n is a sequence of consecutive digits of the number n).\n\nVasya knows that there may be more than one way to restore the number n. Your task is to find the smallest possible initial integer n. Note that decimal representation of number n contained no leading zeroes, except the case the integer n was equal to zero itself (in this case a single digit 0 was used).\n\n\n-----Input-----\n\nThe first line of the input contains the string received by Kate. The number of digits in this string does not exceed 1 000 000.\n\nThe second line contains the substring of n which Vasya remembers. This string can contain leading zeroes. \n\nIt is guaranteed that the input data is correct, and the answer always exists.\n\n\n-----Output-----\n\nPrint the smalles integer n which Vasya could pass to Kate.\n\n\n-----Examples-----\nInput\n003512\n021\n\nOutput\n30021\n\nInput\n199966633300\n63\n\nOutput\n3036366999",
+        "generated_code": "def find_smallest_possible_n(s, sub):\n    n_len = len(s) - len(sub)\n\n    def is_valid_number(num_str, sub):\n        return sub in num_str and len(num_str) == n_len\n\n    def generate_possible_numbers(chars, sub):\n        from itertools import permutations\n        for perm in permutations(chars):\n            candidate = ''.join(perm)\n            if is_valid_number(candidate, sub):\n                yield candidate\n\n    from collections import Counter\n    s_counter = Counter(s)\n    sub_counter = Counter(sub)\n\n    for char in sub_counter:\n        s_counter[char] -= sub_counter[char]\n\n    remaining_chars = ''.join([char * s_counter[char] for char in s_counter])\n\n    possible_numbers = generate_possible_numbers(remaining_chars, sub)\n    smallest_number = min(possible_numbers, key=int)\n\n    return smallest_number\n\nif __name__ == \"__main__\":\n    import sys\n    input = sys.stdin.read\n    data = input().split()\n    s = data[0]\n    sub = data[1]\n    \n    result = find_smallest_possible_n(s, sub)\n    print(result)\n",
+        "counter_example": {
+            "input": "003512\n021\n",
+            "expected": "30021\n",
+            "got": "Traceback (most recent call last):\n  File \"<string>\", line 35, in <module>\n  File \"<string>\", line 24, in find_smallest_possible_n\nValueError: min() arg is an empty sequence"
+        }
+    },
+    {
+        "task_id": "0156",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Today, Osama gave Fadi an integer $X$, and Fadi was wondering about the minimum possible value of $max(a, b)$ such that $LCM(a, b)$ equals $X$. Both $a$ and $b$ should be positive integers.\n\n$LCM(a, b)$ is the smallest positive integer that is divisible by both $a$ and $b$. For example, $LCM(6, 8) = 24$, $LCM(4, 12) = 12$, $LCM(2, 3) = 6$.\n\nOf course, Fadi immediately knew the answer. Can you be just like Fadi and find any such pair?\n\n\n-----Input-----\n\nThe first and only line contains an integer $X$ ($1 \\le X \\le 10^{12}$).\n\n\n-----Output-----\n\nPrint two positive integers, $a$ and $b$, such that the value of $max(a, b)$ is minimum possible and $LCM(a, b)$ equals $X$. If there are several possible such pairs, you can print any.\n\n\n-----Examples-----\nInput\n2\n\nOutput\n1 2\n\nInput\n6\n\nOutput\n2 3\n\nInput\n4\n\nOutput\n1 4\n\nInput\n1\n\nOutput\n1 1",
+        "generated_code": "import math\n\nX = int(input())\n\ndef gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n\nfor a in range(1, X + 1):\n    b = X // a\n    if a * b == X and gcd(a, b) == 1:\n        print(a, b)\n        break\n",
+        "counter_example": {
+            "input": "6\n",
+            "expected": "2 3\n",
+            "got": "1 6"
+        }
+    },
+    {
+        "task_id": "0156",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Today, Osama gave Fadi an integer $X$, and Fadi was wondering about the minimum possible value of $max(a, b)$ such that $LCM(a, b)$ equals $X$. Both $a$ and $b$ should be positive integers.\n\n$LCM(a, b)$ is the smallest positive integer that is divisible by both $a$ and $b$. For example, $LCM(6, 8) = 24$, $LCM(4, 12) = 12$, $LCM(2, 3) = 6$.\n\nOf course, Fadi immediately knew the answer. Can you be just like Fadi and find any such pair?\n\n\n-----Input-----\n\nThe first and only line contains an integer $X$ ($1 \\le X \\le 10^{12}$).\n\n\n-----Output-----\n\nPrint two positive integers, $a$ and $b$, such that the value of $max(a, b)$ is minimum possible and $LCM(a, b)$ equals $X$. If there are several possible such pairs, you can print any.\n\n\n-----Examples-----\nInput\n2\n\nOutput\n1 2\n\nInput\n6\n\nOutput\n2 3\n\nInput\n4\n\nOutput\n1 4\n\nInput\n1\n\nOutput\n1 1",
+        "generated_code": "import math\n\ndef find_min_max_pair(X):\n    min_max_value = X\n    a, b = 1, X\n    \n    for d in range(1, int(math.sqrt(X)) + 1):\n        if X % d == 0:\n            e = X // d\n            if max(d, e) < min_max_value:\n                min_max_value = max(d, e)\n                a, b = d, e\n    \n    return a, b\n\n# Read input\nX = int(input().strip())\n\n# Find and print the result\na, b = find_min_max_pair(X)\nprint(a, b)\n",
+        "counter_example": {
+            "input": "4\n",
+            "expected": "1 4\n",
+            "got": "2 2"
+        }
+    },
+    {
+        "task_id": "0070",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Polycarp is crazy about round numbers. He especially likes the numbers divisible by 10^{k}.\n\nIn the given number of n Polycarp wants to remove the least number of digits to get a number that is divisible by 10^{k}. For example, if k = 3, in the number 30020 it is enough to delete a single digit (2). In this case, the result is 3000 that is divisible by 10^3 = 1000.\n\nWrite a program that prints the minimum number of digits to be deleted from the given integer number n, so that the result is divisible by 10^{k}. The result should not start with the unnecessary leading zero (i.e., zero can start only the number 0, which is required to be written as exactly one digit).\n\nIt is guaranteed that the answer exists.\n\n\n-----Input-----\n\nThe only line of the input contains two integer numbers n and k (0 ≤ n ≤ 2 000 000 000, 1 ≤ k ≤ 9).\n\nIt is guaranteed that the answer exists. All numbers in the input are written in traditional notation of integers, that is, without any extra leading zeros.\n\n\n-----Output-----\n\nPrint w — the required minimal number of digits to erase. After removing the appropriate w digits from the number n, the result should have a value that is divisible by 10^{k}. The result can start with digit 0 in the single case (the result is zero and written by exactly the only digit 0).\n\n\n-----Examples-----\nInput\n30020 3\n\nOutput\n1\n\nInput\n100 9\n\nOutput\n2\n\nInput\n10203049 2\n\nOutput\n3\n\n\n\n-----Note-----\n\nIn the example 2 you can remove two digits: 1 and any 0. The result is number 0 which is divisible by any number.",
+        "generated_code": "n, k = map(int, input().split())\nw = 0\nwhile n % (10 ** k) != 0:\n    w += 1\n    n //= 10\nprint(w)\n",
+        "counter_example": {
+            "input": "30020 3\n",
+            "expected": "1\n",
+            "got": "5"
+        }
+    },
+    {
+        "task_id": "0070",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Polycarp is crazy about round numbers. He especially likes the numbers divisible by 10^{k}.\n\nIn the given number of n Polycarp wants to remove the least number of digits to get a number that is divisible by 10^{k}. For example, if k = 3, in the number 30020 it is enough to delete a single digit (2). In this case, the result is 3000 that is divisible by 10^3 = 1000.\n\nWrite a program that prints the minimum number of digits to be deleted from the given integer number n, so that the result is divisible by 10^{k}. The result should not start with the unnecessary leading zero (i.e., zero can start only the number 0, which is required to be written as exactly one digit).\n\nIt is guaranteed that the answer exists.\n\n\n-----Input-----\n\nThe only line of the input contains two integer numbers n and k (0 ≤ n ≤ 2 000 000 000, 1 ≤ k ≤ 9).\n\nIt is guaranteed that the answer exists. All numbers in the input are written in traditional notation of integers, that is, without any extra leading zeros.\n\n\n-----Output-----\n\nPrint w — the required minimal number of digits to erase. After removing the appropriate w digits from the number n, the result should have a value that is divisible by 10^{k}. The result can start with digit 0 in the single case (the result is zero and written by exactly the only digit 0).\n\n\n-----Examples-----\nInput\n30020 3\n\nOutput\n1\n\nInput\n100 9\n\nOutput\n2\n\nInput\n10203049 2\n\nOutput\n3\n\n\n\n-----Note-----\n\nIn the example 2 you can remove two digits: 1 and any 0. The result is number 0 which is divisible by any number.",
+        "generated_code": "n, k = map(str, input().split())\nk = int(k)\n\ncount_zeros = 0\nto_remove = 0\n\n# Iterate from the end of the number to the beginning\nfor digit in reversed(n):\n    if digit == '0':\n        count_zeros += 1\n    else:\n        to_remove += 1\n    # If we have enough zeros, we can stop\n    if count_zeros == k:\n        break\n\n# If we have enough zeros, print the number of digits removed\nif count_zeros == k:\n    print(to_remove)\nelse:\n    # If not enough zeros, we need to remove all digits except one\n    print(len(n) - 1)\n",
+        "counter_example": null
+    }
+]

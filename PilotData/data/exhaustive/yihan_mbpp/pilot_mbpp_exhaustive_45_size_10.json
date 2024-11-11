@@ -1,0 +1,127 @@
+[
+    {
+        "task_id": "Mbpp/628",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to replace all spaces in the given string with '%20'.",
+        "generated_code": "def replace_spaces(s: str) -> str:\n    return s.replace(' ', '%20')\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/628",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to replace all spaces in the given string with '%20'.",
+        "generated_code": "def replace_spaces(input_string):\n    return input_string.replace(' ', '%20')\n\n# Test cases\nassert replace_spaces(\"My Name is Dawood\") == 'My%20Name%20is%20Dawood'\nassert replace_spaces(\"I am a Programmer\") == 'I%20am%20a%20Programmer'\nassert replace_spaces(\"I love Coding\") == 'I%20love%20Coding'\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/270",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function to find the sum of even numbers at even positions of a list.",
+        "generated_code": "def sum_even_and_even_index(lst):\n    return sum(num for idx, num in enumerate(lst) if idx % 2 == 0 and num % 2 == 0)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/270",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to find the sum of even numbers at even positions of a list.",
+        "generated_code": "def sum_even_and_even_index(lst):\n    return sum(value for index, value in enumerate(lst) if index % 2 == 0 and value % 2 == 0)\n\n# Test cases to verify the function\nassert sum_even_and_even_index([5, 6, 12, 1, 18, 8]) == 30\nassert sum_even_and_even_index([3, 20, 17, 9, 2, 10, 18, 13, 6, 18]) == 26\nassert sum_even_and_even_index([5, 6, 12, 1]) == 12\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/234",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to find the volume of a cube given its side length.",
+        "generated_code": "def volume_cube(side_length: int) -> int:\n    return side_length ** 3\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/234",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to find the volume of a cube given its side length.",
+        "generated_code": "def volume_cube(side_length):\n    return side_length ** 3\n\n# Tests\nassert volume_cube(3) == 27\nassert volume_cube(2) == 8\nassert volume_cube(5) == 125\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/468",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to find the maximum product formed by multiplying numbers of an increasing subsequence of that array.",
+        "generated_code": "def max_product(nums):\n    if not nums:\n        return 0\n    n = len(nums)\n    max_dp = [1] * n\n    min_dp = [1] * n\n    max_product = nums[0]\n    max_dp[0] = min_dp[0] = nums[0]\n    for i in range(1, n):\n        if nums[i] > max_dp[i-1]:\n            max_dp[i] = nums[i]\n            min_dp[i] = min(min_dp[i-1] * nums[i], 1)\n        elif nums[i] < min_dp[i-1]:\n            max_dp[i] = max(max_dp[i-1] * nums[i], 1)\n            min_dp[i] = nums[i]\n        else:\n            max_dp[i] = max(max_dp[i-1] * nums[i], nums[i], min_dp[i-1] * nums[i])\n            min_dp[i] = min(min_dp[i-1] * nums[i], nums[i], max_dp[i-1] * nums[i])\n        max_product = max(max_product, max_dp[i])\n    return max_product\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                [
+                    3,
+                    100,
+                    4,
+                    5,
+                    150,
+                    6
+                ]
+            ],
+            "expected": 3000,
+            "got": 1800000
+        }
+    },
+    {
+        "task_id": "Mbpp/468",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Write a function to find the maximum product formed by multiplying numbers of an increasing subsequence of that array.",
+        "generated_code": "def max_product(arr):\n    n = len(arr)\n    if n == 0:\n        return 0\n    \n    max_product = arr[:]\n    \n    for i in range(1, n):\n        for j in range(i):\n            if arr[i] > arr[j]:\n                max_product[i] = max(max_product[i], max_product[j] * arr[i])\n    \n    return max(max_product)\n\n# Test cases\nassert max_product([3, 100, 4, 5, 150, 6]) == 3000\nassert max_product([4, 42, 55, 68, 80]) == 50265600\nassert max_product([10, 22, 9, 33, 21, 50, 41, 60]) == 2460\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                [
+                    3,
+                    100,
+                    4,
+                    5,
+                    150,
+                    6
+                ]
+            ],
+            "expected": 3000,
+            "got": null
+        }
+    },
+    {
+        "task_id": "Mbpp/20",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to check if the given number is woodball or not.",
+        "generated_code": "def is_prime(n):\n    if n == 1:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef is_woodall(n):\n    i = 1\n    while True:\n        woodall = i * 2**i + 1\n        if woodall == n:\n            return is_prime(i)\n        elif woodall > n:\n            return False\n        i += 1\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                383
+            ],
+            "expected": true,
+            "got": false
+        }
+    },
+    {
+        "task_id": "Mbpp/20",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to check if the given number is woodball or not.",
+        "generated_code": "def is_woodall(num):\n    n = 1\n    while True:\n        woodall_num = n * (2 ** n) - 1\n        if woodall_num == num:\n            return True\n        elif woodall_num > num:\n            return False\n        n += 1\n\n# Test cases\nassert is_woodall(383) == True\nassert is_woodall(254) == False\nassert is_woodall(200) == False\n",
+        "counter_example": null
+    }
+]

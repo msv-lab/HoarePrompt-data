@@ -1,0 +1,100 @@
+[
+    {
+        "task_id": "Mbpp/269",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to find the ascii value of a character.",
+        "generated_code": "def ascii_value(char: str) -> int:\n    return ord(char)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/269",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to find the ascii value of a character.",
+        "generated_code": "def ascii_value(char):\n    return ord(char)\n\n# Tests\nassert ascii_value('A') == 65\nassert ascii_value('R') == 82\nassert ascii_value('S') == 83\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/64",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to sort a list of tuples using the second value of each tuple.",
+        "generated_code": "def subject_marks(marks_list):\n    return sorted(marks_list, key=lambda x: x[1])\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/64",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to sort a list of tuples using the second value of each tuple.",
+        "generated_code": "def subject_marks(subjects):\n    return sorted(subjects, key=lambda x: x[1])\n\n# Test cases\nassert subject_marks([('English', 88), ('Science', 90), ('Maths', 97), ('Social sciences', 82)]) == [('Social sciences', 82), ('English', 88), ('Science', 90), ('Maths', 97)]\nassert subject_marks([('Telugu',49),('Hindhi',54),('Social',33)]) == [('Social',33),('Telugu',49),('Hindhi',54)]\nassert subject_marks([('Physics',96),('Chemistry',97),('Biology',45)]) == [('Biology',45),('Physics',96),('Chemistry',97)]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/280",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).",
+        "generated_code": "def sequential_search(arr, elem):\n    for i, x in enumerate(arr):\n        if x == elem:\n            return (True, i)\n    return (False, -1)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/280",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).",
+        "generated_code": "def sequential_search(arr, element):\n    for index, value in enumerate(arr):\n        if value == element:\n            return (True, index)\n    return (False, -1)\n\n# Test cases\nassert sequential_search([11,23,58,31,56,77,43,12,65,19],31) == (True, 3)\nassert sequential_search([12, 32, 45, 62, 35, 47, 44, 61],61) == (True, 7)\nassert sequential_search([9, 10, 17, 19, 22, 39, 48, 56],48) == (True, 6)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/6",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a python function to check whether the two numbers differ at one bit position only or not.",
+        "generated_code": "def differ_At_One_Bit_Pos(num1: int, num2: int) -> bool:\n    return bin(num1 ^ num2).count('1') == 1\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                -10,
+                10
+            ],
+            "expected": false,
+            "got": true
+        }
+    },
+    {
+        "task_id": "Mbpp/6",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to check whether the two numbers differ at one bit position only or not.",
+        "generated_code": "def differ_At_One_Bit_Pos(a, b):\n    xor_result = a ^ b\n    return xor_result != 0 and (xor_result & (xor_result - 1)) == 0\n\n# Tests\nassert differ_At_One_Bit_Pos(13, 9) == True\nassert differ_At_One_Bit_Pos(15, 8) == False\nassert differ_At_One_Bit_Pos(2, 4) == False\nassert differ_At_One_Bit_Pos(2, 3) == True\nassert differ_At_One_Bit_Pos(5, 1) == True\nassert differ_At_One_Bit_Pos(1, 5) == True\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/274",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function that takes in a positive integer n and finds the sum of even index binomial coefficients.",
+        "generated_code": "import math\n\ndef even_binomial_Coeff_Sum(n):\n    total_sum = 0\n    for i in range(n + 1):\n        if i % 2 == 0:\n            total_sum += math.comb(n, i)\n    return total_sum\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/274",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function that takes in a positive integer n and finds the sum of even index binomial coefficients.",
+        "generated_code": "import math\n\ndef even_binomial_Coeff_Sum(n):\n    # Sum of binomial coefficients at even indices is given by 2^(n-1)\n    return 2**(n-1)\n\n# Test cases\nassert even_binomial_Coeff_Sum(4) == 8\nassert even_binomial_Coeff_Sum(6) == 32\nassert even_binomial_Coeff_Sum(2) == 2\n",
+        "counter_example": null
+    }
+]

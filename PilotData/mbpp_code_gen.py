@@ -8,6 +8,7 @@ from datetime import datetime
 from model import get_model, Model
 from mbppplus_test import test_function
 
+# The prompt that instructs the LLM on how to generate new programs for the pilot dataset
 CODE_GEN_PROMPT = """
 You are an expert Python programmer. Your task is to provide code according to the specification. Your code should pass the provided tests. Ensure that the function name is consistent.
 
@@ -37,13 +38,13 @@ Your Task:
 You are an expert Python programmer, and here is your task: {prompt},  Your code should pass these tests:\n\n{test}
 """
 
-
+# Clean the prompt by removing any assert statements and stripping extra quotes
 def clean_prompt(prompt: str) -> str:
     cleaned_prompt = re.sub(r"assert\s+.*", "", prompt).strip()
     cleaned_prompt = cleaned_prompt.strip('\"').strip()
     return cleaned_prompt
 
-
+# This is the main function  that handles the task of generating code, testing it, and saving the results.
 def get_code(data, model: Model, output_file: Path):
     output_file.parent.mkdir(parents=True, exist_ok=True)
 
@@ -52,15 +53,17 @@ def get_code(data, model: Model, output_file: Path):
     for task in data:
         task_id = task['task_id']
 
+        # Skip task 255 due to its complexity
         if task_id == "Mbpp/255":
             continue
         prompt = task['prompt']
         test = task["assertion"]
 
+        # Clean up and format the task description to present to the LLM
         specification = clean_prompt(prompt)
         formatted_prompt = CODE_GEN_PROMPT.format(prompt=prompt, test=test)
 
-        # allow 3 tries to get parseable code
+        # Try up to 3 times to generate valid (when we say valid we mean parseable) Python code
         max_attempts = 3
         attempts = 0
         success = False
@@ -71,12 +74,15 @@ def get_code(data, model: Model, output_file: Path):
             response = model.query(formatted_prompt)
             generated_code = extract_code_from_response(response)
 
+            # Validate the generated code by attempting to parse it using Python's AST 
             try:
                 ast.parse(generated_code)
                 success = True
             except SyntaxError:
                 print(f"Task {task_id}: Syntax error on attempt {attempts}. Retrying...")
-
+        
+        # If the generated code was valid, test it with predefined test cases
+        # The test functions are in the mbppplus_test.py
         if success:
             base_accuracy, plus_accuracy, assertion_passed, counterexample = test_function(task, generated_code)
 
@@ -101,7 +107,7 @@ def get_code(data, model: Model, output_file: Path):
 
     print(f"Results saved to {output_file}")
 
-
+# Extract Python code from the model's response using regex
 def extract_code_from_response(response_content: str) -> str:
     code_pattern = r"```(?:python)?\n(.*?)```"
     match = re.search(code_pattern, response_content, re.DOTALL)
@@ -114,16 +120,19 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="mbppplus code generation")
     parser.add_argument('--save', type=str, help="Directory to save result")
 
-    args = parser.parse_args()
 
+    args = parser.parse_args()
+    
+    # Directory to save the result
     if args.save:
         output_dir = Path(args.save)
     else:
         output_dir = Path('data')
 
-    with open("MbppPlus.jsonl", "r") as f:
+    with open("data/MbppPlus.jsonl", "r") as f:
         mbpp_data = [json.loads(line) for line in f]
 
+    # choose the model to generate the code
     model_name = "gpt-4o-2024-05-13"
     # model_name = "llama3-70b-8192"
     model = get_model(model_name, 0.7)

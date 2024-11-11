@@ -1,0 +1,130 @@
+[
+    {
+        "task_id": "Mbpp/74",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a function to check whether it follows the sequence given in the patterns array.",
+        "generated_code": "def is_samepatterns(patterns, seq):\n    if len(patterns) != len(seq):\n        return False\n    pattern_map = {}\n    for pattern, element in zip(patterns, seq):\n        if pattern not in pattern_map:\n            pattern_map[pattern] = element\n        elif pattern_map[pattern] != element:\n            return False\n    return True\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                [
+                    "red",
+                    "green",
+                    "greenn"
+                ],
+                [
+                    "a",
+                    "b",
+                    "b"
+                ]
+            ],
+            "expected": false,
+            "got": true
+        }
+    },
+    {
+        "task_id": "Mbpp/74",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Write a function to check whether it follows the sequence given in the patterns array.",
+        "generated_code": "def is_samepatterns(lst1, lst2):\n    if len(lst1) != len(lst2):\n        return False\n\n    map1 = {}\n    map2 = {}\n\n    for i in range(len(lst1)):\n        if lst1[i] not in map1:\n            map1[lst1[i]] = lst2[i]\n        if lst2[i] not in map2:\n            map2[lst2[i]] = lst1[i]\n        if map1[lst1[i]] != lst2[i] or map2[lst2[i]] != lst1[i]:\n            return False\n\n    return True\n\n# Test cases\nassert is_samepatterns([\"red\",\"green\",\"green\"], [\"a\", \"b\", \"b\"]) == True\nassert is_samepatterns([\"red\",\"green\",\"greenn\"], [\"a\",\"b\",\"b\"]) == False\nassert is_samepatterns([\"red\",\"green\",\"greenn\"], [\"a\",\"b\"]) == False\n",
+        "counter_example": {
+            "test_type": "plus",
+            "input": [
+                [
+                    "red",
+                    "red",
+                    "red",
+                    "red",
+                    "red",
+                    "red"
+                ],
+                [
+                    "a",
+                    "b",
+                    "c",
+                    "a",
+                    "b",
+                    "c"
+                ]
+            ],
+            "expected": true,
+            "got": false
+        }
+    },
+    {
+        "task_id": "Mbpp/453",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function to find the sum of even factors of a number.",
+        "generated_code": "def sumofFactors(n: int) -> int:\n    sum_even_factors = 0\n    for i in range(1, n + 1):\n        if n % i == 0 and i % 2 == 0:\n            sum_even_factors += i\n    return sum_even_factors\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/453",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to find the sum of even factors of a number.",
+        "generated_code": "def sumofFactors(n):\n    even_sum = 0\n    for i in range(1, n + 1):\n        if n % i == 0 and i % 2 == 0:\n            even_sum += i\n    return even_sum\n\n# Test cases\nassert sumofFactors(18) == 26\nassert sumofFactors(30) == 48\nassert sumofFactors(6) == 8\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/567",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to check whether a specified list is sorted or not.",
+        "generated_code": "def issort_list(lst):\n    return all(lst[i] <= lst[i+1] for i in range(len(lst)-1))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/567",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to check whether a specified list is sorted or not.",
+        "generated_code": "def issort_list(lst):\n    for i in range(len(lst) - 1):\n        if lst[i] > lst[i + 1]:\n            return False\n    return True\n\n# Test cases\nassert issort_list([1, 2, 4, 6, 8, 10, 12, 14, 16, 17]) == True\nassert issort_list([1, 2, 4, 6, 8, 10, 12, 14, 20, 17]) == False\nassert issort_list([1, 2, 4, 6, 8, 10, 15, 14, 20]) == False\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/145",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function to find the maximum difference between any two elements in a given array.",
+        "generated_code": "def max_Abs_Diff(nums):\n    return max(nums) - min(nums)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/145",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to find the maximum difference between any two elements in a given array.",
+        "generated_code": "def max_Abs_Diff(arr):\n    # Find the minimum and maximum values in the array\n    min_val = min(arr)\n    max_val = max(arr)\n    \n    # Calculate the maximum absolute difference\n    max_diff = max_val - min_val\n    \n    return max_diff\n\n# Test cases\nassert max_Abs_Diff((2, 1, 5, 3)) == 4\nassert max_Abs_Diff((9, 3, 2, 5, 1)) == 8\nassert max_Abs_Diff((3, 2, 1)) == 2\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/3",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function to identify non-prime numbers.",
+        "generated_code": "import math\ndef is_not_prime(n):\n    if n <= 1:\n        return True\n    for i in range(2, int(math.sqrt(n))+1):\n        if n % i == 0:\n            return True\n    return False\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/3",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to identify non-prime numbers.",
+        "generated_code": "import math\n\ndef is_not_prime(n):\n    if n <= 1:\n        return True\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            return True\n    return False\n\n# Test cases\nassert is_not_prime(1) == True\nassert is_not_prime(2) == False\nassert is_not_prime(10) == True\nassert is_not_prime(35) == True\nassert is_not_prime(37) == False\n",
+        "counter_example": null
+    }
+]

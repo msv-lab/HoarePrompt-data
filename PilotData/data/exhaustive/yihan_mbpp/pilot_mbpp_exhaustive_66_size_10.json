@@ -1,0 +1,92 @@
+[
+    {
+        "task_id": "Mbpp/751",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to check if the given array represents min heap or not.",
+        "generated_code": "def check_min_heap(arr):\n    n = len(arr)\n    for i in range(n // 2):\n        left_child = 2 * i + 1\n        right_child = 2 * i + 2\n        if left_child < n and arr[i] > arr[left_child]:\n            return False\n        if right_child < n and arr[i] > arr[right_child]:\n            return False\n    return True\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/751",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to check if the given array represents min heap or not.",
+        "generated_code": "def check_min_heap(arr):\n    n = len(arr)\n    # Iterate over each parent node\n    for i in range((n - 2) // 2 + 1):\n        # Check left child\n        if 2 * i + 1 < n and arr[i] > arr[2 * i + 1]:\n            return False\n        # Check right child\n        if 2 * i + 2 < n and arr[i] > arr[2 * i + 2]:\n            return False\n    return True\n\n# Test cases\nassert check_min_heap([1, 2, 3, 4, 5, 6]) == True\nassert check_min_heap([2, 3, 4, 5, 10, 15]) == True\nassert check_min_heap([2, 10, 4, 5, 3, 15]) == False\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/557",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to toggle the case of all characters in a string.",
+        "generated_code": "def toggle_string(s: str) -> str:\n    return s.swapcase()\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/557",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to toggle the case of all characters in a string.",
+        "generated_code": "def toggle_string(s: str) -> str:\n    return s.swapcase()\n\n# Tests\nassert toggle_string(\"Python\") == \"pYTHON\"\nassert toggle_string(\"Pangram\") == \"pANGRAM\"\nassert toggle_string(\"LIttLE\") == \"liTTle\"\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/406",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function to find whether the parity of a given number is odd.",
+        "generated_code": "def find_Parity(n: int) -> bool:\n    return n % 2 != 0\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/406",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to find whether the parity of a given number is odd.",
+        "generated_code": "def find_Parity(n):\n    return n % 2 != 0\n\n# Test cases\nassert find_Parity(12) == False\nassert find_Parity(7) == True\nassert find_Parity(10) == False\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/732",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to replace all occurrences of spaces, commas, or dots with a colon.",
+        "generated_code": "def replace_specialchar(s: str) -> str:\n    return s.replace(\" \", \":\").replace(\",\", \":\").replace(\".\", \":\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/732",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to replace all occurrences of spaces, commas, or dots with a colon.",
+        "generated_code": "import re\n\ndef replace_specialchar(input_string: str) -> str:\n    # Use regular expression to replace spaces, commas, and dots with a colon.\n    return re.sub(r'[ ,.]', ':', input_string)\n\n# Tests\nassert replace_specialchar('Python language, Programming language.') == 'Python:language::Programming:language:'\nassert replace_specialchar('a b c,d e f') == 'a:b:c:d:e:f'\nassert replace_specialchar('ram reshma,ram rahim') == 'ram:reshma:ram:rahim'\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/600",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function to check whether the given number is even or not.",
+        "generated_code": "def is_Even(n):\n    return n % 2 == 0\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/600",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to check whether the given number is even or not.",
+        "generated_code": "def is_Even(n):\n    return n % 2 == 0\n\n# Test cases\nassert is_Even(1) == False\nassert is_Even(2) == True\nassert is_Even(3) == False\n",
+        "counter_example": null
+    }
+]

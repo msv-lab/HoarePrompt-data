@@ -1,0 +1,106 @@
+[
+    {
+        "task_id": "Mbpp/629",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function to find even numbers from a list of numbers.",
+        "generated_code": "def Split(numbers):\n    return [num for num in numbers if num % 2 == 0]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/629",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to find even numbers from a list of numbers.",
+        "generated_code": "def Split(numbers):\n    # Use a list comprehension to filter and return only even numbers\n    return [num for num in numbers if num % 2 == 0]\n\n# Test cases to validate the implementation\nassert Split([1,2,3,4,5]) == [2, 4]\nassert Split([4,5,6,7,8,0,1]) == [4, 6, 8, 0]\nassert Split([8,12,15,19]) == [8, 12]\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/170",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a function to find the sum of numbers in a list within a range specified by two indices.",
+        "generated_code": "def sum_range_list(lst, start, end):\n    return sum(lst[start:end+1])\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/170",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a function to find the sum of numbers in a list within a range specified by two indices.",
+        "generated_code": "def sum_range_list(lst, start_idx, end_idx):\n    return sum(lst[start_idx:end_idx + 1])\n\n# Test cases\nassert sum_range_list([2,1,5,6,8,3,4,9,10,11,8,12], 8, 10) == 29\nassert sum_range_list([2,1,5,6,8,3,4,9,10,11,8,12], 5, 7) == 16\nassert sum_range_list([2,1,5,6,8,3,4,9,10,11,8,12], 7, 10) == 38\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/256",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function that takes in a non-negative number and returns the number of prime numbers less than the given non-negative number.",
+        "generated_code": "def count_Primes_nums(n: int) -> int:\n    def is_prime(num: int) -> bool:\n        if num < 2:\n            return False\n        for i in range(2, int(num**0.5) + 1):\n            if num % i == 0:\n                return False\n        return True\n\n    count = 0\n    for num in range(2, n):\n        if is_prime(num):\n            count += 1\n    return count\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/256",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function that takes in a non-negative number and returns the number of prime numbers less than the given non-negative number.",
+        "generated_code": "def count_Primes_nums(n):\n    if n <= 2:\n        return 0\n    \n    # Initialize a list to keep track of prime status for each number up to n-1\n    is_prime = [True] * n\n    is_prime[0] = is_prime[1] = False # 0 and 1 are not prime numbers\n    \n    # Sieve of Eratosthenes\n    for i in range(2, int(n ** 0.5) + 1):\n        if is_prime[i]:\n            for j in range(i * i, n, i):\n                is_prime[j] = False\n    \n    # Count primes less than n\n    return sum(is_prime)\n\n# Test cases\nassert count_Primes_nums(5) == 2\nassert count_Primes_nums(10) == 4\nassert count_Primes_nums(100) == 25\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/734",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Write a python function to find sum of products of all possible sublists of a given list.",
+        "generated_code": "from itertools import chain, combinations\n\ndef sum_Of_Subarray_Prod(lst):\n    def product(lst):\n        result = 1\n        for x in lst:\n            result *= x\n        return result\n\n    return sum(product(sub) for sub in chain(*map(lambda x: combinations(lst, x), range(1, len(lst) + 1))))\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                []
+            ],
+            "expected": 20,
+            "got": 0
+        }
+    },
+    {
+        "task_id": "Mbpp/734",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Write a python function to find sum of products of all possible sublists of a given list.",
+        "generated_code": "from itertools import combinations\nfrom functools import reduce\nfrom operator import mul\n\ndef sum_Of_Subarray_Prod(lst):\n    total_sum = 0\n    # Generate all sublists of all lengths\n    for length in range(1, len(lst) + 1):\n        for sublist in combinations(lst, length):\n            # Compute the product of the sublist\n            product = reduce(mul, sublist)\n            # Add the product to the total sum\n            total_sum += product\n    return total_sum\n\n# Test cases\nassert sum_Of_Subarray_Prod([1,2,3]) == 20\nassert sum_Of_Subarray_Prod([1,2]) == 5\nassert sum_Of_Subarray_Prod([1,2,3,4]) == 84\n",
+        "counter_example": {
+            "test_type": "base",
+            "input": [
+                []
+            ],
+            "expected": 20,
+            "got": null
+        }
+    },
+    {
+        "task_id": "Mbpp/798",
+        "dataset": "mbpp",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Write a python function to find the sum of an array.",
+        "generated_code": "def _sum(arr):\n    return sum(arr)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "Mbpp/798",
+        "dataset": "mbpp",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Write a python function to find the sum of an array.",
+        "generated_code": "def _sum(arr):\n    return sum(arr)\n\n# Test cases to verify the solution\nassert _sum([1, 2, 3]) == 6\nassert _sum([15, 12, 13, 10]) == 50\nassert _sum([0, 1, 2]) == 3\n",
+        "counter_example": null
+    }
+]

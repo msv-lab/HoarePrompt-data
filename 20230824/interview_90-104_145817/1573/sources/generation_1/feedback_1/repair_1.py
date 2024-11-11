@@ -1,1 +1,0 @@
-friends.sort(reverse=True)

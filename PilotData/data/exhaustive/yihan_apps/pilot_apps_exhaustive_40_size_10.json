@@ -1,0 +1,124 @@
+[
+    {
+        "task_id": "0294",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Everybody in Russia uses Gregorian calendar. In this calendar there are 31 days in January, 28 or 29 days in February (depending on whether the year is leap or not), 31 days in March, 30 days in April, 31 days in May, 30 in June, 31 in July, 31 in August, 30 in September, 31 in October, 30 in November, 31 in December.\n\nA year is leap in one of two cases: either its number is divisible by 4, but not divisible by 100, or is divisible by 400. For example, the following years are leap: 2000, 2004, but years 1900 and 2018 are not leap.\n\nIn this problem you are given n (1 ≤ n ≤ 24) integers a_1, a_2, ..., a_{n}, and you have to check if these integers could be durations in days of n consecutive months, according to Gregorian calendar. Note that these months could belong to several consecutive years. In other words, check if there is a month in some year, such that its duration is a_1 days, duration of the next month is a_2 days, and so on.\n\n\n-----Input-----\n\nThe first line contains single integer n (1 ≤ n ≤ 24) — the number of integers.\n\nThe second line contains n integers a_1, a_2, ..., a_{n} (28 ≤ a_{i} ≤ 31) — the numbers you are to check.\n\n\n-----Output-----\n\nIf there are several consecutive months that fit the sequence, print \"YES\" (without quotes). Otherwise, print \"NO\" (without quotes).\n\nYou can print each letter in arbitrary case (small or large).\n\n\n-----Examples-----\nInput\n4\n31 31 30 31\n\nOutput\nYes\n\n\nInput\n2\n30 30\n\nOutput\nNo\n\n\nInput\n5\n29 31 30 31 30\n\nOutput\nYes\n\n\nInput\n3\n31 28 30\n\nOutput\nNo\n\n\nInput\n3\n31 31 28\n\nOutput\nYes\n\n\n\n\n-----Note-----\n\nIn the first example the integers can denote months July, August, September and October.\n\nIn the second example the answer is no, because there are no two consecutive months each having 30 days.\n\nIn the third example the months are: February (leap year) — March — April – May — June.\n\nIn the fourth example the number of days in the second month is 28, so this is February. March follows February and has 31 days, but not 30, so the answer is NO.\n\nIn the fifth example the months are: December — January — February (non-leap year).",
+        "generated_code": "months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n\nn = int(input())\na = list(map(int, input().split()))\n\nif n > 12:\n    a = a[:12] + a[12:]  # wrap around the year\n\nfor i in range(12 - n + 1):\n    if a == months[i:i+n]:\n        print(\"YES\")\n        exit()\n\nprint(\"NO\")\n",
+        "counter_example": {
+            "input": "4\n31 31 30 31\n",
+            "expected": "Yes\n\n",
+            "got": "YES"
+        }
+    },
+    {
+        "task_id": "0294",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Everybody in Russia uses Gregorian calendar. In this calendar there are 31 days in January, 28 or 29 days in February (depending on whether the year is leap or not), 31 days in March, 30 days in April, 31 days in May, 30 in June, 31 in July, 31 in August, 30 in September, 31 in October, 30 in November, 31 in December.\n\nA year is leap in one of two cases: either its number is divisible by 4, but not divisible by 100, or is divisible by 400. For example, the following years are leap: 2000, 2004, but years 1900 and 2018 are not leap.\n\nIn this problem you are given n (1 ≤ n ≤ 24) integers a_1, a_2, ..., a_{n}, and you have to check if these integers could be durations in days of n consecutive months, according to Gregorian calendar. Note that these months could belong to several consecutive years. In other words, check if there is a month in some year, such that its duration is a_1 days, duration of the next month is a_2 days, and so on.\n\n\n-----Input-----\n\nThe first line contains single integer n (1 ≤ n ≤ 24) — the number of integers.\n\nThe second line contains n integers a_1, a_2, ..., a_{n} (28 ≤ a_{i} ≤ 31) — the numbers you are to check.\n\n\n-----Output-----\n\nIf there are several consecutive months that fit the sequence, print \"YES\" (without quotes). Otherwise, print \"NO\" (without quotes).\n\nYou can print each letter in arbitrary case (small or large).\n\n\n-----Examples-----\nInput\n4\n31 31 30 31\n\nOutput\nYes\n\n\nInput\n2\n30 30\n\nOutput\nNo\n\n\nInput\n5\n29 31 30 31 30\n\nOutput\nYes\n\n\nInput\n3\n31 28 30\n\nOutput\nNo\n\n\nInput\n3\n31 31 28\n\nOutput\nYes\n\n\n\n\n-----Note-----\n\nIn the first example the integers can denote months July, August, September and October.\n\nIn the second example the answer is no, because there are no two consecutive months each having 30 days.\n\nIn the third example the months are: February (leap year) — March — April – May — June.\n\nIn the fourth example the number of days in the second month is 28, so this is February. March follows February and has 31 days, but not 30, so the answer is NO.\n\nIn the fifth example the months are: December — January — February (non-leap year).",
+        "generated_code": "def is_leap_year(year):\n    if year % 400 == 0:\n        return True\n    if year % 100 == 0:\n        return False\n    if year % 4 == 0:\n        return True\n    return False\n\ndef check_consecutive_months(n, months):\n    month_lengths = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31,\n                     31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]\n    \n    for i in range(12):\n        if months == month_lengths[i:i+n]:\n            return True\n    \n    return False\n\n# Read input\nimport sys\ninput = sys.stdin.read\ndata = input().split()\n\nn = int(data[0])\nmonths = list(map(int, data[1:]))\n\n# Check if the sequence matches any of the month patterns\nif check_consecutive_months(n, months):\n    print(\"YES\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": {
+            "input": "4\n31 31 30 31\n",
+            "expected": "Yes\n\n",
+            "got": "YES"
+        }
+    },
+    {
+        "task_id": "0236",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "A necklace can be described as a string of links ('-') and pearls ('o'), with the last link or pearl connected to the first one. $0$ \n\nYou can remove a link or a pearl and insert it between two other existing links or pearls (or between a link and a pearl) on the necklace. This process can be repeated as many times as you like, but you can't throw away any parts.\n\nCan you make the number of links between every two adjacent pearls equal? Two pearls are considered to be adjacent if there is no other pearl between them.\n\nNote that the final necklace should remain as one circular part of the same length as the initial necklace.\n\n\n-----Input-----\n\nThe only line of input contains a string $s$ ($3 \\leq |s| \\leq 100$), representing the necklace, where a dash '-' represents a link and the lowercase English letter 'o' represents a pearl.\n\n\n-----Output-----\n\nPrint \"YES\" if the links and pearls can be rejoined such that the number of links between adjacent pearls is equal. Otherwise print \"NO\".\n\nYou can print each letter in any case (upper or lower).\n\n\n-----Examples-----\nInput\n-o-o--\nOutput\nYES\nInput\n-o---\n\nOutput\nYES\nInput\n-o---o-\n\nOutput\nNO\nInput\nooo\n\nOutput\nYES",
+        "generated_code": "s = input()\nlinks = s.count('-')\npearls = s.count('o')\n\nif pearls == 0:\n    print(\"NO\")\nelif links % pearls == 0:\n    print(\"YES\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": {
+            "input": "---\n",
+            "expected": "YES\n",
+            "got": "NO"
+        }
+    },
+    {
+        "task_id": "0236",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "A necklace can be described as a string of links ('-') and pearls ('o'), with the last link or pearl connected to the first one. $0$ \n\nYou can remove a link or a pearl and insert it between two other existing links or pearls (or between a link and a pearl) on the necklace. This process can be repeated as many times as you like, but you can't throw away any parts.\n\nCan you make the number of links between every two adjacent pearls equal? Two pearls are considered to be adjacent if there is no other pearl between them.\n\nNote that the final necklace should remain as one circular part of the same length as the initial necklace.\n\n\n-----Input-----\n\nThe only line of input contains a string $s$ ($3 \\leq |s| \\leq 100$), representing the necklace, where a dash '-' represents a link and the lowercase English letter 'o' represents a pearl.\n\n\n-----Output-----\n\nPrint \"YES\" if the links and pearls can be rejoined such that the number of links between adjacent pearls is equal. Otherwise print \"NO\".\n\nYou can print each letter in any case (upper or lower).\n\n\n-----Examples-----\nInput\n-o-o--\nOutput\nYES\nInput\n-o---\n\nOutput\nYES\nInput\n-o---o-\n\nOutput\nNO\nInput\nooo\n\nOutput\nYES",
+        "generated_code": "s = input().strip()\n\n# Count the number of pearls ('o') and links ('-') in the string\npearl_count = s.count('o')\nlink_count = s.count('-')\n\n# If there are no pearls or only one pearl, we can always make the necklace valid\nif pearl_count == 0 or pearl_count == 1:\n    print(\"YES\")\nelse:\n    # Check if the links can be evenly distributed among the pearls\n    if link_count % pearl_count == 0:\n        print(\"YES\")\n    else:\n        print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0221",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Long story short, shashlik is Miroslav's favorite food. Shashlik is prepared on several skewers simultaneously. There are two states for each skewer: initial and turned over.\n\nThis time Miroslav laid out $n$ skewers parallel to each other, and enumerated them with consecutive integers from $1$ to $n$ in order from left to right. For better cooking, he puts them quite close to each other, so when he turns skewer number $i$, it leads to turning $k$ closest skewers from each side of the skewer $i$, that is, skewers number $i - k$, $i - k + 1$, ..., $i - 1$, $i + 1$, ..., $i + k - 1$, $i + k$ (if they exist). \n\nFor example, let $n = 6$ and $k = 1$. When Miroslav turns skewer number $3$, then skewers with numbers $2$, $3$, and $4$ will come up turned over. If after that he turns skewer number $1$, then skewers number $1$, $3$, and $4$ will be turned over, while skewer number $2$ will be in the initial position (because it is turned again).\n\nAs we said before, the art of cooking requires perfect timing, so Miroslav wants to turn over all $n$ skewers with the minimal possible number of actions. For example, for the above example $n = 6$ and $k = 1$, two turnings are sufficient: he can turn over skewers number $2$ and $5$.\n\nHelp Miroslav turn over all $n$ skewers.\n\n\n-----Input-----\n\nThe first line contains two integers $n$ and $k$ ($1 \\leq n \\leq 1000$, $0 \\leq k \\leq 1000$) — the number of skewers and the number of skewers from each side that are turned in one step.\n\n\n-----Output-----\n\nThe first line should contain integer $l$ — the minimum number of actions needed by Miroslav to turn over all $n$ skewers. After than print $l$ integers from $1$ to $n$ denoting the number of the skewer that is to be turned over at the corresponding step.\n\n\n-----Examples-----\nInput\n7 2\n\nOutput\n2\n1 6 \n\nInput\n5 1\n\nOutput\n2\n1 4 \n\n\n\n-----Note-----\n\nIn the first example the first operation turns over skewers $1$, $2$ and $3$, the second operation turns over skewers $4$, $5$, $6$ and $7$.\n\nIn the second example it is also correct to turn over skewers $2$ and $5$, but turning skewers $2$ and $4$, or $1$ and $5$ are incorrect solutions because the skewer $3$ is in the initial state after these operations.",
+        "generated_code": "n, k = map(int, input().split())\nl = (n + k - 1) // (k * 2 + 1)\nres = []\nfor i in range(l):\n    res.append(i * (k * 2 + 1) + 1)\nprint(l)\nprint(' '.join(map(str, res)))\n",
+        "counter_example": {
+            "input": "7 2\n",
+            "expected": "2\n1 6 \n",
+            "got": "1\n1"
+        }
+    },
+    {
+        "task_id": "0221",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Long story short, shashlik is Miroslav's favorite food. Shashlik is prepared on several skewers simultaneously. There are two states for each skewer: initial and turned over.\n\nThis time Miroslav laid out $n$ skewers parallel to each other, and enumerated them with consecutive integers from $1$ to $n$ in order from left to right. For better cooking, he puts them quite close to each other, so when he turns skewer number $i$, it leads to turning $k$ closest skewers from each side of the skewer $i$, that is, skewers number $i - k$, $i - k + 1$, ..., $i - 1$, $i + 1$, ..., $i + k - 1$, $i + k$ (if they exist). \n\nFor example, let $n = 6$ and $k = 1$. When Miroslav turns skewer number $3$, then skewers with numbers $2$, $3$, and $4$ will come up turned over. If after that he turns skewer number $1$, then skewers number $1$, $3$, and $4$ will be turned over, while skewer number $2$ will be in the initial position (because it is turned again).\n\nAs we said before, the art of cooking requires perfect timing, so Miroslav wants to turn over all $n$ skewers with the minimal possible number of actions. For example, for the above example $n = 6$ and $k = 1$, two turnings are sufficient: he can turn over skewers number $2$ and $5$.\n\nHelp Miroslav turn over all $n$ skewers.\n\n\n-----Input-----\n\nThe first line contains two integers $n$ and $k$ ($1 \\leq n \\leq 1000$, $0 \\leq k \\leq 1000$) — the number of skewers and the number of skewers from each side that are turned in one step.\n\n\n-----Output-----\n\nThe first line should contain integer $l$ — the minimum number of actions needed by Miroslav to turn over all $n$ skewers. After than print $l$ integers from $1$ to $n$ denoting the number of the skewer that is to be turned over at the corresponding step.\n\n\n-----Examples-----\nInput\n7 2\n\nOutput\n2\n1 6 \n\nInput\n5 1\n\nOutput\n2\n1 4 \n\n\n\n-----Note-----\n\nIn the first example the first operation turns over skewers $1$, $2$ and $3$, the second operation turns over skewers $4$, $5$, $6$ and $7$.\n\nIn the second example it is also correct to turn over skewers $2$ and $5$, but turning skewers $2$ and $4$, or $1$ and $5$ are incorrect solutions because the skewer $3$ is in the initial state after these operations.",
+        "generated_code": "def turn_skewers(n, k):\n    positions = []\n    i = 1  # Start from the first skewer\n    \n    while i <= n:\n        positions.append(i)\n        i += 2 * k + 1  # Jump to the next segment that needs turning\n    \n    # Now print the results\n    print(len(positions))\n    print(\" \".join(map(str, positions)))\n\n# Read input\nn, k = map(int, input().split())\n\n# Execute function\nturn_skewers(n, k)\n",
+        "counter_example": {
+            "input": "10 10\n",
+            "expected": "1\n10\n",
+            "got": "1\n1"
+        }
+    },
+    {
+        "task_id": "0230",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Given is a string S of length N.\nFind the maximum length of a non-empty string that occurs twice or more in S as contiguous substrings without overlapping.\nMore formally, find the maximum positive integer len such that there exist integers l_1 and l_2 ( 1 \\leq l_1, l_2 \\leq N - len + 1 ) that satisfy the following:\n - l_1 + len \\leq l_2\n - S[l_1+i] = S[l_2+i] (i = 0, 1, ..., len - 1)\nIf there is no such integer len, print 0.\n\n-----Constraints-----\n - 2 \\leq N \\leq 5 \\times 10^3\n - |S| = N\n - S consists of lowercase English letters.\n\n-----Input-----\nInput is given from Standard Input in the following format:\nN\nS\n\n-----Output-----\nPrint the maximum length of a non-empty string that occurs twice or more in S as contiguous substrings without overlapping. If there is no such non-empty string, print 0 instead.\n\n-----Sample Input-----\n5\nababa\n\n-----Sample Output-----\n2\n\nThe strings satisfying the conditions are: a, b, ab, and ba. The maximum length among them is 2, which is the answer.\nNote that aba occurs twice in S as contiguous substrings, but there is no pair of integers l_1 and l_2 mentioned in the statement such that l_1 + len \\leq l_2.",
+        "generated_code": "N = int(input())\nS = input()\n\nmax_len = 0\nfor len in range(1, N // 2 + 1):\n    for i in range(N - len):\n        substr = S[i:i + len]\n        if S.count(substr) > 1 and i + len <= S.index(substr, i + 1):\n            max_len = max(max_len, len)\n\nprint(max_len)\n",
+        "counter_example": {
+            "input": "5\nababa\n",
+            "expected": "2\n",
+            "got": "Traceback (most recent call last):\n  File \"<string>\", line 8, in <module>\nValueError: substring not found"
+        }
+    },
+    {
+        "task_id": "0230",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Given is a string S of length N.\nFind the maximum length of a non-empty string that occurs twice or more in S as contiguous substrings without overlapping.\nMore formally, find the maximum positive integer len such that there exist integers l_1 and l_2 ( 1 \\leq l_1, l_2 \\leq N - len + 1 ) that satisfy the following:\n - l_1 + len \\leq l_2\n - S[l_1+i] = S[l_2+i] (i = 0, 1, ..., len - 1)\nIf there is no such integer len, print 0.\n\n-----Constraints-----\n - 2 \\leq N \\leq 5 \\times 10^3\n - |S| = N\n - S consists of lowercase English letters.\n\n-----Input-----\nInput is given from Standard Input in the following format:\nN\nS\n\n-----Output-----\nPrint the maximum length of a non-empty string that occurs twice or more in S as contiguous substrings without overlapping. If there is no such non-empty string, print 0 instead.\n\n-----Sample Input-----\n5\nababa\n\n-----Sample Output-----\n2\n\nThe strings satisfying the conditions are: a, b, ab, and ba. The maximum length among them is 2, which is the answer.\nNote that aba occurs twice in S as contiguous substrings, but there is no pair of integers l_1 and l_2 mentioned in the statement such that l_1 + len \\leq l_2.",
+        "generated_code": "def check_for_length(S, length):\n    seen = set()\n    for i in range(len(S) - length + 1):\n        substring = S[i:i + length]\n        if substring in seen:\n            return True\n        seen.add(substring)\n    return False\n\ndef find_max_length(S):\n    left, right = 1, len(S)\n    max_len = 0\n    \n    while left <= right:\n        mid = (left + right) // 2\n        if check_for_length(S, mid):\n            max_len = mid\n            left = mid + 1\n        else:\n            right = mid - 1\n    \n    return max_len\n\n# Read input\nn = int(input())\ns = input()\n\n# Find and print the result\nprint(find_max_length(s))\n",
+        "counter_example": {
+            "input": "5\nababa\n",
+            "expected": "2\n",
+            "got": "3"
+        }
+    },
+    {
+        "task_id": "0139",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "You are given a directed graph consisting of n vertices and m edges (each edge is directed, so it can be traversed in only one direction). You are allowed to remove at most one edge from it.\n\nCan you make this graph acyclic by removing at most one edge from it? A directed graph is called acyclic iff it doesn't contain any cycle (a non-empty path that starts and ends in the same vertex).\n\n\n-----Input-----\n\nThe first line contains two integers n and m (2 ≤ n ≤ 500, 1 ≤ m ≤ min(n(n - 1), 100000)) — the number of vertices and the number of edges, respectively.\n\nThen m lines follow. Each line contains two integers u and v denoting a directed edge going from vertex u to vertex v (1 ≤ u, v ≤ n, u ≠ v). Each ordered pair (u, v) is listed at most once (there is at most one directed edge from u to v).\n\n\n-----Output-----\n\nIf it is possible to make this graph acyclic by removing at most one edge, print YES. Otherwise, print NO.\n\n\n-----Examples-----\nInput\n3 4\n1 2\n2 3\n3 2\n3 1\n\nOutput\nYES\n\nInput\n5 6\n1 2\n2 3\n3 2\n3 1\n2 1\n4 5\n\nOutput\nNO\n\n\n\n-----Note-----\n\nIn the first example you can remove edge $2 \\rightarrow 3$, and the graph becomes acyclic.\n\nIn the second example you have to remove at least two edges (for example, $2 \\rightarrow 1$ and $2 \\rightarrow 3$) in order to make the graph acyclic.",
+        "generated_code": "def dfs(node, graph, visited, rec_stack):\n    visited[node] = True\n    rec_stack[node] = True\n\n    for neighbor in graph[node]:\n        if not visited[neighbor]:\n            if dfs(neighbor, graph, visited, rec_stack):\n                return True\n        elif rec_stack[neighbor]:\n            return True\n\n    rec_stack[node] = False\n    return False\n\nn, m = map(int, input().split())\ngraph = [[] for _ in range(n + 1)]\n\nfor _ in range(m):\n    u, v = map(int, input().split())\n    graph[u].append(v)\n\nvisited = [False] * (n + 1)\nrec_stack = [False] * (n + 1)\nhas_cycle = False\n\nfor node in range(1, n + 1):\n    if not visited[node]:\n        if dfs(node, graph, visited, rec_stack):\n            has_cycle = True\n            break\n\nif has_cycle:\n    print(\"NO\")\nelse:\n    print(\"YES\")\n",
+        "counter_example": {
+            "input": "3 4\n1 2\n2 3\n3 2\n3 1\n",
+            "expected": "YES\n",
+            "got": "NO"
+        }
+    },
+    {
+        "task_id": "0139",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "You are given a directed graph consisting of n vertices and m edges (each edge is directed, so it can be traversed in only one direction). You are allowed to remove at most one edge from it.\n\nCan you make this graph acyclic by removing at most one edge from it? A directed graph is called acyclic iff it doesn't contain any cycle (a non-empty path that starts and ends in the same vertex).\n\n\n-----Input-----\n\nThe first line contains two integers n and m (2 ≤ n ≤ 500, 1 ≤ m ≤ min(n(n - 1), 100000)) — the number of vertices and the number of edges, respectively.\n\nThen m lines follow. Each line contains two integers u and v denoting a directed edge going from vertex u to vertex v (1 ≤ u, v ≤ n, u ≠ v). Each ordered pair (u, v) is listed at most once (there is at most one directed edge from u to v).\n\n\n-----Output-----\n\nIf it is possible to make this graph acyclic by removing at most one edge, print YES. Otherwise, print NO.\n\n\n-----Examples-----\nInput\n3 4\n1 2\n2 3\n3 2\n3 1\n\nOutput\nYES\n\nInput\n5 6\n1 2\n2 3\n3 2\n3 1\n2 1\n4 5\n\nOutput\nNO\n\n\n\n-----Note-----\n\nIn the first example you can remove edge $2 \\rightarrow 3$, and the graph becomes acyclic.\n\nIn the second example you have to remove at least two edges (for example, $2 \\rightarrow 1$ and $2 \\rightarrow 3$) in order to make the graph acyclic.",
+        "generated_code": "def can_make_acyclic(n, m, edges):\n    from collections import defaultdict, deque\n    \n    def has_cycle(graph):\n        in_degree = {i: 0 for i in range(1, n + 1)}\n        for u in graph:\n            for v in graph[u]:\n                in_degree[v] += 1\n        \n        queue = deque([node for node in in_degree if in_degree[node] == 0])\n        count = 0\n        \n        while queue:\n            node = queue.popleft()\n            count += 1\n            for neighbor in graph[node]:\n                in_degree[neighbor] -= 1\n                if in_degree[neighbor] == 0:\n                    queue.append(neighbor)\n        \n        return count != n\n    \n    graph = defaultdict(list)\n    for u, v in edges:\n        graph[u].append(v)\n    \n    if not has_cycle(graph):\n        return 'YES'\n    \n    for u, v in edges:\n        graph[u].remove(v)\n        if not has_cycle(graph):\n            return 'YES'\n        graph[u].append(v)\n    \n    return 'NO'\n\n\n# Reading input\nimport sys\ninput = sys.stdin.read\ndata = input().split()\n\nn = int(data[0])\nm = int(data[1])\nedges = [(int(data[i]), int(data[i+1])) for i in range(2, len(data), 2)]\n\n# Solve the problem\nresult = can_make_acyclic(n, m, edges)\nprint(result)\n",
+        "counter_example": null
+    }
+]

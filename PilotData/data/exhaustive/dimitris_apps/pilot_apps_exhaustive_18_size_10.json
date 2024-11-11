@@ -1,0 +1,120 @@
+[
+    {
+        "task_id": "0026",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Wet Shark asked Rat Kwesh to generate three positive real numbers x, y and z, from 0.1 to 200.0, inclusive. Wet Krash wants to impress Wet Shark, so all generated numbers will have exactly one digit after the decimal point.\n\nWet Shark knows Rat Kwesh will want a lot of cheese. So he will give the Rat an opportunity to earn a lot of cheese. He will hand the three numbers x, y and z to Rat Kwesh, and Rat Kwesh will pick one of the these twelve options:  a_1 = x^{y}^{z};  a_2 = x^{z}^{y};  a_3 = (x^{y})^{z};  a_4 = (x^{z})^{y};  a_5 = y^{x}^{z};  a_6 = y^{z}^{x};  a_7 = (y^{x})^{z};  a_8 = (y^{z})^{x};  a_9 = z^{x}^{y};  a_10 = z^{y}^{x};  a_11 = (z^{x})^{y};  a_12 = (z^{y})^{x}. \n\nLet m be the maximum of all the a_{i}, and c be the smallest index (from 1 to 12) such that a_{c} = m. Rat's goal is to find that c, and he asks you to help him. Rat Kwesh wants to see how much cheese he gets, so he you will have to print the expression corresponding to that a_{c}.\n\n \n\n\n-----Input-----\n\nThe only line of the input contains three space-separated real numbers x, y and z (0.1 ≤ x, y, z ≤ 200.0). Each of x, y and z is given with exactly one digit after the decimal point.\n\n\n-----Output-----\n\nFind the maximum value of expression among x^{y}^{z}, x^{z}^{y}, (x^{y})^{z}, (x^{z})^{y}, y^{x}^{z}, y^{z}^{x}, (y^{x})^{z}, (y^{z})^{x}, z^{x}^{y}, z^{y}^{x}, (z^{x})^{y}, (z^{y})^{x} and print the corresponding expression. If there are many maximums, print the one that comes first in the list. \n\nx^{y}^{z} should be outputted as x^y^z (without brackets), and (x^{y})^{z} should be outputted as (x^y)^z (quotes for clarity). \n\n\n-----Examples-----\nInput\n1.1 3.4 2.5\n\nOutput\nz^y^x\n\nInput\n2.0 2.0 2.0\n\nOutput\nx^y^z\n\nInput\n1.9 1.8 1.7\n\nOutput\n(x^y)^z",
+        "generated_code": "x, y, z = map(float, input().split())\nexpressions = [x**(y**z), x**(z**y), (x**y)**z, (x**z)**y, y**(x**z), y**(z**x), (y**x)**z, (y**z)**x, z**(x**y), z**(y**x), (z**x)**y, (z**y)**x]\nmax_expression = max(expressions)\nindex = expressions.index(max_expression)\noptions = ['x^y^z', 'x^z^y', '(x^y)^z', '(x^z)^y', 'y^x^z', 'y^z^x', '(y^x)^z', '(y^z)^x', 'z^x^y', 'z^y^x', '(z^x)^y', '(z^y)^x']\nprint(options[index])\n",
+        "counter_example": {
+            "input": "1.5 1.7 2.5\n",
+            "expected": "(z^x)^y\n",
+            "got": "(z^y)^x"
+        }
+    },
+    {
+        "task_id": "0026",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Wet Shark asked Rat Kwesh to generate three positive real numbers x, y and z, from 0.1 to 200.0, inclusive. Wet Krash wants to impress Wet Shark, so all generated numbers will have exactly one digit after the decimal point.\n\nWet Shark knows Rat Kwesh will want a lot of cheese. So he will give the Rat an opportunity to earn a lot of cheese. He will hand the three numbers x, y and z to Rat Kwesh, and Rat Kwesh will pick one of the these twelve options:  a_1 = x^{y}^{z};  a_2 = x^{z}^{y};  a_3 = (x^{y})^{z};  a_4 = (x^{z})^{y};  a_5 = y^{x}^{z};  a_6 = y^{z}^{x};  a_7 = (y^{x})^{z};  a_8 = (y^{z})^{x};  a_9 = z^{x}^{y};  a_10 = z^{y}^{x};  a_11 = (z^{x})^{y};  a_12 = (z^{y})^{x}. \n\nLet m be the maximum of all the a_{i}, and c be the smallest index (from 1 to 12) such that a_{c} = m. Rat's goal is to find that c, and he asks you to help him. Rat Kwesh wants to see how much cheese he gets, so he you will have to print the expression corresponding to that a_{c}.\n\n \n\n\n-----Input-----\n\nThe only line of the input contains three space-separated real numbers x, y and z (0.1 ≤ x, y, z ≤ 200.0). Each of x, y and z is given with exactly one digit after the decimal point.\n\n\n-----Output-----\n\nFind the maximum value of expression among x^{y}^{z}, x^{z}^{y}, (x^{y})^{z}, (x^{z})^{y}, y^{x}^{z}, y^{z}^{x}, (y^{x})^{z}, (y^{z})^{x}, z^{x}^{y}, z^{y}^{x}, (z^{x})^{y}, (z^{y})^{x} and print the corresponding expression. If there are many maximums, print the one that comes first in the list. \n\nx^{y}^{z} should be outputted as x^y^z (without brackets), and (x^{y})^{z} should be outputted as (x^y)^z (quotes for clarity). \n\n\n-----Examples-----\nInput\n1.1 3.4 2.5\n\nOutput\nz^y^x\n\nInput\n2.0 2.0 2.0\n\nOutput\nx^y^z\n\nInput\n1.9 1.8 1.7\n\nOutput\n(x^y)^z",
+        "generated_code": "import math\n\ndef compare_expressions(x, y, z):\n    expressions = [\n        (x**(y**z), \"x^y^z\"),\n        (x**(z**y), \"x^z^y\"),\n        ((x**y)**z, \"(x^y)^z\"),\n        ((x**z)**y, \"(x^z)^y\"),\n        (y**(x**z), \"y^x^z\"),\n        (y**(z**x), \"y^z^x\"),\n        ((y**x)**z, \"(y^x)^z\"),\n        ((y**z)**x, \"(y^z)^x\"),\n        (z**(x**y), \"z^x^y\"),\n        (z**(y**x), \"z^y^x\"),\n        ((z**x)**y, \"(z^x)^y\"),\n        ((z**y)**x, \"(z^y)^x\")\n    ]\n    \n    max_value, max_expr = max(expressions, key=lambda item: item[0])\n    return max_expr\n\n# Input reading\nx, y, z = map(float, input().split())\nresult = compare_expressions(x, y, z)\nprint(result)\n",
+        "counter_example": {
+            "input": "1.5 1.7 2.5\n",
+            "expected": "(z^x)^y\n",
+            "got": "(z^y)^x"
+        }
+    },
+    {
+        "task_id": "0190",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": true,
+        "description": "Карта звёздного неба представляет собой прямоугольное поле, состоящее из n строк по m символов в каждой строке. Каждый символ — это либо «.» (означает пустой участок неба), либо «*» (означает то, что в этом месте на небе есть звезда). \n\nНовое издание карты звёздного неба будет напечатано на квадратных листах, поэтому требуется найти минимально возможную сторону квадрата, в который могут поместиться все звезды. Границы искомого квадрата должны быть параллельны сторонам заданного прямоугольного поля.\n\n\n-----Входные данные-----\n\nВ первой строке входных данных записаны два числа n и m (1 ≤ n, m ≤ 1000) — количество строк и столбцов на карте звездного неба.\n\nВ следующих n строках задано по m символов. Каждый символ — это либо «.» (пустой участок неба), либо «*» (звезда).\n\nГарантируется, что на небе есть хотя бы одна звезда.\n\n\n-----Выходные данные-----\n\nВыведите одно число — минимально возможную сторону квадрата, которым можно накрыть все звезды.\n\n\n-----Примеры-----\nВходные данные\n4 4\n....\n..*.\n...*\n..**\n\nВыходные данные\n3\n\nВходные данные\n1 3\n*.*\n\nВыходные данные\n3\n\nВходные данные\n2 1\n.\n*\n\nВыходные данные\n1\n\n\n\n-----Примечание-----\n\nОдин из возможных ответов на первый тестовый пример:\n\n [Image] \n\nОдин из возможных ответов на второй тестовый пример (обратите внимание, что покрывающий квадрат выходит за пределы карты звездного неба):\n\n [Image] \n\nОтвет на третий тестовый пример:\n\n [Image]",
+        "generated_code": "n, m = map(int, input().split())\nstars = []\nfor _ in range(n):\n    row = input()\n    for j, c in enumerate(row):\n        if c == '*':\n            stars.append((j, _))\n\nmin_x = min(x for x, y in stars)\nmax_x = max(x for x, y in stars)\nmin_y = min(y for x, y in stars)\nmax_y = max(y for x, y in stars)\n\nside = max(max_x - min_x + 1, max_y - min_y + 1)\nprint(side)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0190",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "Карта звёздного неба представляет собой прямоугольное поле, состоящее из n строк по m символов в каждой строке. Каждый символ — это либо «.» (означает пустой участок неба), либо «*» (означает то, что в этом месте на небе есть звезда). \n\nНовое издание карты звёздного неба будет напечатано на квадратных листах, поэтому требуется найти минимально возможную сторону квадрата, в который могут поместиться все звезды. Границы искомого квадрата должны быть параллельны сторонам заданного прямоугольного поля.\n\n\n-----Входные данные-----\n\nВ первой строке входных данных записаны два числа n и m (1 ≤ n, m ≤ 1000) — количество строк и столбцов на карте звездного неба.\n\nВ следующих n строках задано по m символов. Каждый символ — это либо «.» (пустой участок неба), либо «*» (звезда).\n\nГарантируется, что на небе есть хотя бы одна звезда.\n\n\n-----Выходные данные-----\n\nВыведите одно число — минимально возможную сторону квадрата, которым можно накрыть все звезды.\n\n\n-----Примеры-----\nВходные данные\n4 4\n....\n..*.\n...*\n..**\n\nВыходные данные\n3\n\nВходные данные\n1 3\n*.*\n\nВыходные данные\n3\n\nВходные данные\n2 1\n.\n*\n\nВыходные данные\n1\n\n\n\n-----Примечание-----\n\nОдин из возможных ответов на первый тестовый пример:\n\n [Image] \n\nОдин из возможных ответов на второй тестовый пример (обратите внимание, что покрывающий квадрат выходит за пределы карты звездного неба):\n\n [Image] \n\nОтвет на третий тестовый пример:\n\n [Image]",
+        "generated_code": "n, m = map(int, input().split())\nsky_map = [input().strip() for _ in range(n)]\n\nmin_row, max_row = n, -1\nmin_col, max_col = m, -1\n\n# Find the bounding box of the stars\nfor i in range(n):\n    for j in range(m):\n        if sky_map[i][j] == '*':\n            if i < min_row:\n                min_row = i\n            if i > max_row:\n                max_row = i\n            if j < min_col:\n                min_col = j\n            if j > max_col:\n                max_col = j\n\n# Calculate the side length of the square that can cover all stars\nside_length = max(max_row - min_row + 1, max_col - min_col + 1)\n\nprint(side_length)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0228",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "Alice and Bob are playing a game with $n$ piles of stones. It is guaranteed that $n$ is an even number. The $i$-th pile has $a_i$ stones.\n\nAlice and Bob will play a game alternating turns with Alice going first.\n\nOn a player's turn, they must choose exactly $\\frac{n}{2}$ nonempty piles and independently remove a positive number of stones from each of the chosen piles. They can remove a different number of stones from the piles in a single turn. The first player unable to make a move loses (when there are less than $\\frac{n}{2}$ nonempty piles).\n\nGiven the starting configuration, determine who will win the game.\n\n\n-----Input-----\n\nThe first line contains one integer $n$ ($2 \\leq n \\leq 50$) — the number of piles. It is guaranteed that $n$ is an even number.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\leq a_i \\leq 50$) — the number of stones in the piles.\n\n\n-----Output-----\n\nPrint a single string \"Alice\" if Alice wins; otherwise, print \"Bob\" (without double quotes).\n\n\n-----Examples-----\nInput\n2\n8 8\n\nOutput\nBob\n\nInput\n4\n3 1 4 1\n\nOutput\nAlice\n\n\n\n-----Note-----\n\nIn the first example, each player can only remove stones from one pile ($\\frac{2}{2}=1$). Alice loses, since Bob can copy whatever Alice does on the other pile, so Alice will run out of moves first.\n\nIn the second example, Alice can remove $2$ stones from the first pile and $3$ stones from the third pile on her first move to guarantee a win.",
+        "generated_code": "n = int(input())\na = list(map(int, input().split()))\nalice_turn = True\nwhile True:\n    max_stones = max(a)\n    if max_stones == 0:\n        break\n    piles_to_remove = n // 2\n    piles_removed = 0\n    for i in range(n):\n        if a[i] > 0 and piles_removed < piles_to_remove:\n            a[i] -= 1\n            piles_removed += 1\n    alice_turn = not alice_turn\nif alice_turn:\n    print(\"Bob\")\nelse:\n    print(\"Alice\")\n",
+        "counter_example": {
+            "input": "4\n42 49 42 42\n",
+            "expected": "Bob\n",
+            "got": "Alice"
+        }
+    },
+    {
+        "task_id": "0228",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "Alice and Bob are playing a game with $n$ piles of stones. It is guaranteed that $n$ is an even number. The $i$-th pile has $a_i$ stones.\n\nAlice and Bob will play a game alternating turns with Alice going first.\n\nOn a player's turn, they must choose exactly $\\frac{n}{2}$ nonempty piles and independently remove a positive number of stones from each of the chosen piles. They can remove a different number of stones from the piles in a single turn. The first player unable to make a move loses (when there are less than $\\frac{n}{2}$ nonempty piles).\n\nGiven the starting configuration, determine who will win the game.\n\n\n-----Input-----\n\nThe first line contains one integer $n$ ($2 \\leq n \\leq 50$) — the number of piles. It is guaranteed that $n$ is an even number.\n\nThe second line contains $n$ integers $a_1, a_2, \\ldots, a_n$ ($1 \\leq a_i \\leq 50$) — the number of stones in the piles.\n\n\n-----Output-----\n\nPrint a single string \"Alice\" if Alice wins; otherwise, print \"Bob\" (without double quotes).\n\n\n-----Examples-----\nInput\n2\n8 8\n\nOutput\nBob\n\nInput\n4\n3 1 4 1\n\nOutput\nAlice\n\n\n\n-----Note-----\n\nIn the first example, each player can only remove stones from one pile ($\\frac{2}{2}=1$). Alice loses, since Bob can copy whatever Alice does on the other pile, so Alice will run out of moves first.\n\nIn the second example, Alice can remove $2$ stones from the first pile and $3$ stones from the third pile on her first move to guarantee a win.",
+        "generated_code": "def determine_winner(n, piles):\n    # Check if all piles have the same number of stones\n    if all(pile == piles[0] for pile in piles):\n        # If all piles are the same, Alice will always lose because Bob can mirror Alice's moves\n        return \"Bob\"\n    else:\n        # If not all piles are the same, Alice can always find a way to guarantee a win\n        return \"Alice\"\n\n# Read input\nn = int(input())\npiles = list(map(int, input().split()))\n\n# Determine and print the winner\nprint(determine_winner(n, piles))\n",
+        "counter_example": {
+            "input": "4\n42 49 42 42\n",
+            "expected": "Bob\n",
+            "got": "Alice"
+        }
+    },
+    {
+        "task_id": "0034",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "It's New Year's Eve soon, so Ivan decided it's high time he started setting the table. Ivan has bought two cakes and cut them into pieces: the first cake has been cut into a pieces, and the second one — into b pieces.\n\nIvan knows that there will be n people at the celebration (including himself), so Ivan has set n plates for the cakes. Now he is thinking about how to distribute the cakes between the plates. Ivan wants to do it in such a way that all following conditions are met:  Each piece of each cake is put on some plate;  Each plate contains at least one piece of cake;  No plate contains pieces of both cakes. \n\nTo make his guests happy, Ivan wants to distribute the cakes in such a way that the minimum number of pieces on the plate is maximized. Formally, Ivan wants to know the maximum possible number x such that he can distribute the cakes according to the aforementioned conditions, and each plate will contain at least x pieces of cake.\n\nHelp Ivan to calculate this number x!\n\n\n-----Input-----\n\nThe first line contains three integers n, a and b (1 ≤ a, b ≤ 100, 2 ≤ n ≤ a + b) — the number of plates, the number of pieces of the first cake, and the number of pieces of the second cake, respectively.\n\n\n-----Output-----\n\nPrint the maximum possible number x such that Ivan can distribute the cake in such a way that each plate will contain at least x pieces of cake.\n\n\n-----Examples-----\nInput\n5 2 3\n\nOutput\n1\n\nInput\n4 7 10\n\nOutput\n3\n\n\n\n-----Note-----\n\nIn the first example there is only one way to distribute cakes to plates, all of them will have 1 cake on it.\n\nIn the second example you can have two plates with 3 and 4 pieces of the first cake and two plates both with 5 pieces of the second cake. Minimal number of pieces is 3.",
+        "generated_code": "n, a, b = map(int, input().split())\nx = min(n, a, b)\nwhile True:\n    if a >= x and b >= x and (a - x) + (b - x) >= x:\n        break\n    x -= 1\nprint(x)\n",
+        "counter_example": {
+            "input": "4 7 10\n",
+            "expected": "3\n",
+            "got": "4"
+        }
+    },
+    {
+        "task_id": "0034",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": true,
+        "description": "It's New Year's Eve soon, so Ivan decided it's high time he started setting the table. Ivan has bought two cakes and cut them into pieces: the first cake has been cut into a pieces, and the second one — into b pieces.\n\nIvan knows that there will be n people at the celebration (including himself), so Ivan has set n plates for the cakes. Now he is thinking about how to distribute the cakes between the plates. Ivan wants to do it in such a way that all following conditions are met:  Each piece of each cake is put on some plate;  Each plate contains at least one piece of cake;  No plate contains pieces of both cakes. \n\nTo make his guests happy, Ivan wants to distribute the cakes in such a way that the minimum number of pieces on the plate is maximized. Formally, Ivan wants to know the maximum possible number x such that he can distribute the cakes according to the aforementioned conditions, and each plate will contain at least x pieces of cake.\n\nHelp Ivan to calculate this number x!\n\n\n-----Input-----\n\nThe first line contains three integers n, a and b (1 ≤ a, b ≤ 100, 2 ≤ n ≤ a + b) — the number of plates, the number of pieces of the first cake, and the number of pieces of the second cake, respectively.\n\n\n-----Output-----\n\nPrint the maximum possible number x such that Ivan can distribute the cake in such a way that each plate will contain at least x pieces of cake.\n\n\n-----Examples-----\nInput\n5 2 3\n\nOutput\n1\n\nInput\n4 7 10\n\nOutput\n3\n\n\n\n-----Note-----\n\nIn the first example there is only one way to distribute cakes to plates, all of them will have 1 cake on it.\n\nIn the second example you can have two plates with 3 and 4 pieces of the first cake and two plates both with 5 pieces of the second cake. Minimal number of pieces is 3.",
+        "generated_code": "def max_min_pieces(n, a, b):\n    low, high = 1, min(a, b) + 1\n\n    def can_distribute(x):\n        return (a // x) + (b // x) >= n\n\n    while low < high:\n        mid = (low + high) // 2\n        if can_distribute(mid):\n            low = mid + 1\n        else:\n            high = mid\n    \n    return low - 1\n\n# Read input values\nn, a, b = map(int, input().split())\n\n# Compute and print the result\nprint(max_min_pieces(n, a, b))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "0267",
+        "dataset": "apps",
+        "model": "llama3-70b-8192",
+        "correct": false,
+        "description": "You are given two integers $l$ and $r$ ($l \\le r$). Your task is to calculate the sum of numbers from $l$ to $r$ (including $l$ and $r$) such that each number contains at most $k$ different digits, and print this sum modulo $998244353$.\n\nFor example, if $k = 1$ then you have to calculate all numbers from $l$ to $r$ such that each number is formed using only one digit. For $l = 10, r = 50$ the answer is $11 + 22 + 33 + 44 = 110$.\n\n\n-----Input-----\n\nThe only line of the input contains three integers $l$, $r$ and $k$ ($1 \\le l \\le r < 10^{18}, 1 \\le k \\le 10$) — the borders of the segment and the maximum number of different digits.\n\n\n-----Output-----\n\nPrint one integer — the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits, modulo $998244353$.\n\n\n-----Examples-----\nInput\n10 50 2\n\nOutput\n1230\n\nInput\n1 2345 10\n\nOutput\n2750685\n\nInput\n101 154 2\n\nOutput\n2189\n\n\n\n-----Note-----\n\nFor the first example the answer is just the sum of numbers from $l$ to $r$ which equals to $\\frac{50 \\cdot 51}{2} - \\frac{9 \\cdot 10}{2} = 1230$. This example also explained in the problem statement but for $k = 1$.\n\nFor the second example the answer is just the sum of numbers from $l$ to $r$ which equals to $\\frac{2345 \\cdot 2346}{2} = 2750685$.\n\nFor the third example the answer is $101 + 110 + 111 + 112 + 113 + 114 + 115 + 116 + 117 + 118 + 119 + 121 + 122 + 131 + 133 + 141 + 144 + 151 = 2189$.",
+        "generated_code": "MOD = 998244353\ndef count_numbers(l, r, k):\n    def count(n, k, dp):\n        if k == 0:\n            return 0\n        if (n, k) in dp:\n            return dp[(n, k)]\n        if n < 10**k:\n            dp[(n, k)] = n\n        else:\n            dp[(n, k)] = 9\n            for i in range(1, k):\n                dp[(n, k)] += 9 * 10**(i-1) * (10**(k-i) - 10**(i-1))\n            dp[(n, k)] += (10**(k-1) - 10**(k-2)) * (n // 10**(k-1) - 1)\n            dp[(n, k)] %= MOD\n        return dp[(n, k)]\n\n    dp = {}\n    return (count(r, k, dp) - count(l-1, k, dp)) % MOD\n\nl, r, k = map(int, input().split())\nprint(count_numbers(l, r, k))\n",
+        "counter_example": {
+            "input": "10 50 2\n",
+            "expected": "1230\n",
+            "got": "41"
+        }
+    },
+    {
+        "task_id": "0267",
+        "dataset": "apps",
+        "model": "gpt-4o-2024-05-13",
+        "correct": false,
+        "description": "You are given two integers $l$ and $r$ ($l \\le r$). Your task is to calculate the sum of numbers from $l$ to $r$ (including $l$ and $r$) such that each number contains at most $k$ different digits, and print this sum modulo $998244353$.\n\nFor example, if $k = 1$ then you have to calculate all numbers from $l$ to $r$ such that each number is formed using only one digit. For $l = 10, r = 50$ the answer is $11 + 22 + 33 + 44 = 110$.\n\n\n-----Input-----\n\nThe only line of the input contains three integers $l$, $r$ and $k$ ($1 \\le l \\le r < 10^{18}, 1 \\le k \\le 10$) — the borders of the segment and the maximum number of different digits.\n\n\n-----Output-----\n\nPrint one integer — the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits, modulo $998244353$.\n\n\n-----Examples-----\nInput\n10 50 2\n\nOutput\n1230\n\nInput\n1 2345 10\n\nOutput\n2750685\n\nInput\n101 154 2\n\nOutput\n2189\n\n\n\n-----Note-----\n\nFor the first example the answer is just the sum of numbers from $l$ to $r$ which equals to $\\frac{50 \\cdot 51}{2} - \\frac{9 \\cdot 10}{2} = 1230$. This example also explained in the problem statement but for $k = 1$.\n\nFor the second example the answer is just the sum of numbers from $l$ to $r$ which equals to $\\frac{2345 \\cdot 2346}{2} = 2750685$.\n\nFor the third example the answer is $101 + 110 + 111 + 112 + 113 + 114 + 115 + 116 + 117 + 118 + 119 + 121 + 122 + 131 + 133 + 141 + 144 + 151 = 2189$.",
+        "generated_code": "MOD = 998244353\n\ndef contains_at_most_k_unique_digits(n, k):\n    return len(set(str(n))) <= k\n\ndef sum_of_numbers_with_k_unique_digits(l, r, k):\n    total_sum = 0\n    for num in range(l, r + 1):\n        if contains_at_most_k_unique_digits(num, k):\n            total_sum = (total_sum + num) % MOD\n    return total_sum\n\n# Read input\nl, r, k = map(int, input().split())\n\n# Calculate and print the result\nprint(sum_of_numbers_with_k_unique_digits(l, r, k))\n",
+        "counter_example": {
+            "input": "427896435961371452 630581697708338740 1\n",
+            "expected": "716070897\n",
+            "got": "TimeoutError: Execution exceeded time limit"
+        }
+    }
+]

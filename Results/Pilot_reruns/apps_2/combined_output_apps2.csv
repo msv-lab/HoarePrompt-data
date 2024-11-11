@@ -1,0 +1,1890 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,naive no fsl correctness,data file,task_id,dataset,code,fail_reason,type_of_run
+69.0,apps,llama3-70b,gpt-3.5-turbo-0125,"You are given string $s$ of length $n$ consisting of 0-s and 1-s. You build an infinite string $t$ as a concatenation of an infinite number of strings $s$, or $t = ssss \dots$ For example, if $s =$ 10010, then $t =$ 100101001010010...
+
+Calculate the number of prefixes of $t$ with balance equal to $x$. The balance of some string $q$ is equal to $cnt_{0, q} - cnt_{1, q}$, where $cnt_{0, q}$ is the number of occurrences of 0 in $q$, and $cnt_{1, q}$ is the number of occurrences of 1 in $q$. The number of such prefixes can be infinite; if it is so, you must say that.
+
+A prefix is a string consisting of several first letters of a given string, without any reorders. An empty prefix is also a valid prefix. For example, the string ""abcd"" has 5 prefixes: empty string, ""a"", ""ab"", ""abc"" and ""abcd"".
+
+
+-----Input-----
+
+The first line contains the single integer $T$ ($1 \le T \le 100$) — the number of test cases.
+
+Next $2T$ lines contain descriptions of test cases — two lines per test case. The first line contains two integers $n$ and $x$ ($1 \le n \le 10^5$, $-10^9 \le x \le 10^9$) — the length of string $s$ and the desired balance, respectively.
+
+The second line contains the binary string $s$ ($|s| = n$, $s_i \in \{\text{0}, \text{1}\}$).
+
+It's guaranteed that the total sum of $n$ doesn't exceed $10^5$.
+
+
+-----Output-----
+
+Print $T$ integers — one per test case. For each test case print the number of prefixes or $-1$ if there is an infinite number of such prefixes.
+
+
+-----Example-----
+Input
+4
+6 10
+010010
+5 3
+10101
+1 0
+0
+2 0
+01
+
+Output
+3
+0
+1
+-1
+
+
+
+-----Note-----
+
+In the first test case, there are 3 good prefixes of $t$: with length $28$, $30$ and $32$.","T = int(input())
+for _ in range(T):
+    n, x = map(int, input().split())
+    s = input()
+    cnt0, cnt1 = s.count('0'), s.count('1')
+    balance = cnt0 - cnt1
+    if balance == x:
+        print(n + 1)
+    elif (x - balance) % (cnt0 - cnt1) == 0:
+        print(-1)
+    else:
+        print((x - balance) // (cnt0 - cnt1) + 1)
+",,True,post,False,True,True,False,pilot_apps5.json,,,,,
+69.0,apps,gpt-4o,gpt-3.5-turbo-0125,"You are given string $s$ of length $n$ consisting of 0-s and 1-s. You build an infinite string $t$ as a concatenation of an infinite number of strings $s$, or $t = ssss \dots$ For example, if $s =$ 10010, then $t =$ 100101001010010...
+
+Calculate the number of prefixes of $t$ with balance equal to $x$. The balance of some string $q$ is equal to $cnt_{0, q} - cnt_{1, q}$, where $cnt_{0, q}$ is the number of occurrences of 0 in $q$, and $cnt_{1, q}$ is the number of occurrences of 1 in $q$. The number of such prefixes can be infinite; if it is so, you must say that.
+
+A prefix is a string consisting of several first letters of a given string, without any reorders. An empty prefix is also a valid prefix. For example, the string ""abcd"" has 5 prefixes: empty string, ""a"", ""ab"", ""abc"" and ""abcd"".
+
+
+-----Input-----
+
+The first line contains the single integer $T$ ($1 \le T \le 100$) — the number of test cases.
+
+Next $2T$ lines contain descriptions of test cases — two lines per test case. The first line contains two integers $n$ and $x$ ($1 \le n \le 10^5$, $-10^9 \le x \le 10^9$) — the length of string $s$ and the desired balance, respectively.
+
+The second line contains the binary string $s$ ($|s| = n$, $s_i \in \{\text{0}, \text{1}\}$).
+
+It's guaranteed that the total sum of $n$ doesn't exceed $10^5$.
+
+
+-----Output-----
+
+Print $T$ integers — one per test case. For each test case print the number of prefixes or $-1$ if there is an infinite number of such prefixes.
+
+
+-----Example-----
+Input
+4
+6 10
+010010
+5 3
+10101
+1 0
+0
+2 0
+01
+
+Output
+3
+0
+1
+-1
+
+
+
+-----Note-----
+
+In the first test case, there are 3 good prefixes of $t$: with length $28$, $30$ and $32$.","def solve():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+
+    T = int(data[0])
+    index = 1
+    
+    results = []
+    
+    for _ in range(T):
+        n = int(data[index])
+        x = int(data[index + 1])
+        s = data[index + 2]
+        index += 3
+        
+        # Calculate the total balance of the given string s
+        balance = s.count('0') - s.count('1')
+        
+        # Generate prefix balances
+        prefix_balances = [0] * (n + 1)
+        for i in range(1, n + 1):
+            prefix_balances[i] = prefix_balances[i - 1] + (1 if s[i - 1] == '0' else -1)
+        
+        if balance == 0:
+            # If balance is 0, check if any prefix has the exact balance x
+            if x in prefix_balances:
+                results.append(-1)
+            else:
+                results.append(0)
+        else:
+            count = 0
+            for b in prefix_balances:
+                if (x - b) % balance == 0 and (x - b) // balance >= 0:
+                    count += 1
+            results.append(count)
+    
+    for result in results:
+        print(result)
+
+if __name__ == ""__main__"":
+    solve()
+",,True,post,False,True,False,False,pilot_apps5.json,,,,,
+106.0,apps,llama3-70b,gpt-3.5-turbo-0125,"Есть n-подъездный дом, в каждом подъезде по m этажей, и на каждом этаже каждого подъезда ровно k квартир. Таким образом, в доме всего n·m·k квартир. Они пронумерованы естественным образом от 1 до n·m·k, то есть первая квартира на первом этаже в первом подъезде имеет номер 1, первая квартира на втором этаже первого подъезда имеет номер k + 1 и так далее. Особенность этого дома состоит в том, что он круглый. То есть если обходить его по часовой стрелке, то после подъезда номер 1 следует подъезд номер 2, затем подъезд номер 3 и так далее до подъезда номер n. После подъезда номер n снова идёт подъезд номер 1.
+
+Эдвард живёт в квартире номер a, а Наташа — в квартире номер b. Переход на 1 этаж вверх или вниз по лестнице занимает 5 секунд, переход от двери подъезда к двери соседнего подъезда — 15 секунд, а переход в пределах одного этажа одного подъезда происходит мгновенно. Также в каждом подъезде дома есть лифт. Он устроен следующим образом: он всегда приезжает ровно через 10 секунд после вызова, а чтобы переместить пассажира на один этаж вверх или вниз, лифт тратит ровно 1 секунду. Посадка и высадка происходят мгновенно.
+
+Помогите Эдварду найти минимальное время, за которое он сможет добраться до квартиры Наташи. Считайте, что Эдвард может выйти из подъезда только с первого этажа соответствующего подъезда (это происходит мгновенно). Если Эдвард стоит перед дверью какого-то подъезда, он может зайти в него и сразу окажется на первом этаже этого подъезда (это также происходит мгновенно). Эдвард может выбирать, в каком направлении идти вокруг дома.
+
+
+-----Входные данные-----
+
+В первой строке входных данных следуют три числа n, m, k (1 ≤ n, m, k ≤ 1000) — количество подъездов в доме, количество этажей в каждом подъезде и количество квартир на каждом этаже каждого подъезда соответственно.
+
+Во второй строке входных данных записаны два числа a и b (1 ≤ a, b ≤ n·m·k) — номера квартир, в которых живут Эдвард и Наташа, соответственно. Гарантируется, что эти номера различны. 
+
+
+-----Выходные данные-----
+
+Выведите единственное целое число — минимальное время (в секундах), за которое Эдвард сможет добраться от своей квартиры до квартиры Наташи.
+
+
+-----Примеры-----
+Входные данные
+4 10 5
+200 6
+
+Выходные данные
+39
+
+Входные данные
+3 1 5
+7 2
+
+Выходные данные
+15
+
+
+
+-----Примечание-----
+
+В первом тестовом примере Эдвард находится в 4 подъезде на 10 этаже, а Наташа находится в 1 подъезде на 2 этаже. Поэтому Эдварду выгодно сначала спуститься на лифте на первый этаж (на это он потратит 19 секунд, из которых 10 — на ожидание и 9 — на поездку на лифте), затем обойти дом против часовой стрелки до подъезда номер 1 (на это он потратит 15 секунд), и наконец подняться по лестнице на этаж номер 2 (на это он потратит 5 секунд). Таким образом, ответ равен 19 + 15 + 5 = 39.
+
+Во втором тестовом примере Эдвард живёт в подъезде 2 на этаже 1, а Наташа находится в подъезде 1 на этаже 1. Поэтому Эдварду выгодно просто обойти дом по часовой стрелке до подъезда 1, на это он потратит 15 секунд.","n, m, k = map(int, input().split())
+a, b = map(int, input().split())
+
+# Calculate the floor and block number of Edward and Natasha
+a_floor = (a - 1) % m + 1
+a_block = (a - 1) // (m * k) + 1
+b_floor = (b - 1) % m + 1
+b_block = (b - 1) // (m * k) + 1
+
+# Calculate the minimum time to reach Natasha's block
+min_block_time = min(abs(a_block - b_block), n - abs(a_block - b_block)) * 15
+
+# Calculate the minimum time to reach Natasha's floor
+if a_floor > b_floor:
+    min_floor_time = (a_floor - b_floor) * 5 + 10
+else:
+    min_floor_time = (b_floor - a_floor) * 5 + 10
+
+print(min_block_time + min_floor_time)
+",,True,post,False,True,False,True,pilot_apps5.json,,,,,
+106.0,apps,gpt-4o,gpt-3.5-turbo-0125,"Есть n-подъездный дом, в каждом подъезде по m этажей, и на каждом этаже каждого подъезда ровно k квартир. Таким образом, в доме всего n·m·k квартир. Они пронумерованы естественным образом от 1 до n·m·k, то есть первая квартира на первом этаже в первом подъезде имеет номер 1, первая квартира на втором этаже первого подъезда имеет номер k + 1 и так далее. Особенность этого дома состоит в том, что он круглый. То есть если обходить его по часовой стрелке, то после подъезда номер 1 следует подъезд номер 2, затем подъезд номер 3 и так далее до подъезда номер n. После подъезда номер n снова идёт подъезд номер 1.
+
+Эдвард живёт в квартире номер a, а Наташа — в квартире номер b. Переход на 1 этаж вверх или вниз по лестнице занимает 5 секунд, переход от двери подъезда к двери соседнего подъезда — 15 секунд, а переход в пределах одного этажа одного подъезда происходит мгновенно. Также в каждом подъезде дома есть лифт. Он устроен следующим образом: он всегда приезжает ровно через 10 секунд после вызова, а чтобы переместить пассажира на один этаж вверх или вниз, лифт тратит ровно 1 секунду. Посадка и высадка происходят мгновенно.
+
+Помогите Эдварду найти минимальное время, за которое он сможет добраться до квартиры Наташи. Считайте, что Эдвард может выйти из подъезда только с первого этажа соответствующего подъезда (это происходит мгновенно). Если Эдвард стоит перед дверью какого-то подъезда, он может зайти в него и сразу окажется на первом этаже этого подъезда (это также происходит мгновенно). Эдвард может выбирать, в каком направлении идти вокруг дома.
+
+
+-----Входные данные-----
+
+В первой строке входных данных следуют три числа n, m, k (1 ≤ n, m, k ≤ 1000) — количество подъездов в доме, количество этажей в каждом подъезде и количество квартир на каждом этаже каждого подъезда соответственно.
+
+Во второй строке входных данных записаны два числа a и b (1 ≤ a, b ≤ n·m·k) — номера квартир, в которых живут Эдвард и Наташа, соответственно. Гарантируется, что эти номера различны. 
+
+
+-----Выходные данные-----
+
+Выведите единственное целое число — минимальное время (в секундах), за которое Эдвард сможет добраться от своей квартиры до квартиры Наташи.
+
+
+-----Примеры-----
+Входные данные
+4 10 5
+200 6
+
+Выходные данные
+39
+
+Входные данные
+3 1 5
+7 2
+
+Выходные данные
+15
+
+
+
+-----Примечание-----
+
+В первом тестовом примере Эдвард находится в 4 подъезде на 10 этаже, а Наташа находится в 1 подъезде на 2 этаже. Поэтому Эдварду выгодно сначала спуститься на лифте на первый этаж (на это он потратит 19 секунд, из которых 10 — на ожидание и 9 — на поездку на лифте), затем обойти дом против часовой стрелки до подъезда номер 1 (на это он потратит 15 секунд), и наконец подняться по лестнице на этаж номер 2 (на это он потратит 5 секунд). Таким образом, ответ равен 19 + 15 + 5 = 39.
+
+Во втором тестовом примере Эдвард живёт в подъезде 2 на этаже 1, а Наташа находится в подъезде 1 на этаже 1. Поэтому Эдварду выгодно просто обойти дом по часовой стрелке до подъезда 1, на это он потратит 15 секунд.","# Function to calculate minimum time for Edward to reach Natasha's apartment
+def min_time_to_reach(n, m, k, a, b):
+    # Calculating block, floor, and apartment within floor for both apartments
+    def get_location(apartment):
+        block = (apartment - 1) // (m * k) + 1
+        floor_within_block = (apartment - 1) % (m * k)
+        floor = floor_within_block // k + 1
+        return block, floor
+
+    block_a, floor_a = get_location(a)
+    block_b, floor_b = get_location(b)
+    
+    # Time to get from floor_a to floor 1 using the elevator
+    if floor_a == 1:
+        time_to_exit = 0
+    else:
+        time_to_exit = 10 + (floor_a - 1)
+    
+    # Time to walk between the blocks
+    direct_walk_time = (abs(block_a - block_b) % n) * 15
+    reverse_walk_time = (n - abs(block_a - block_b)) % n * 15
+    min_walk_time = min(direct_walk_time, reverse_walk_time)
+
+    # Time to go from floor 1 in block_b to floor_b
+    time_to_target_floor = (floor_b - 1) * 5
+    
+    # Total time
+    total_time = time_to_exit + min_walk_time + time_to_target_floor
+    return total_time
+
+# Reading input
+n, m, k = map(int, input().split())
+a, b = map(int, input().split())
+
+# Computing the result
+result = min_time_to_reach(n, m, k, a, b)
+
+# Printing the result
+print(result)
+",,True,post,False,True,True,True,pilot_apps5.json,,,,,
+203.0,apps,llama3-70b,gpt-3.5-turbo-0125,"There are n employees in Alternative Cake Manufacturing (ACM). They are now voting on some very important question and the leading world media are trying to predict the outcome of the vote.
+
+Each of the employees belongs to one of two fractions: depublicans or remocrats, and these two fractions have opposite opinions on what should be the outcome of the vote. The voting procedure is rather complicated:   Each of n employees makes a statement. They make statements one by one starting from employees 1 and finishing with employee n. If at the moment when it's time for the i-th employee to make a statement he no longer has the right to vote, he just skips his turn (and no longer takes part in this voting).  When employee makes a statement, he can do nothing or declare that one of the other employees no longer has a right to vote. It's allowed to deny from voting people who already made the statement or people who are only waiting to do so. If someone is denied from voting he no longer participates in the voting till the very end.  When all employees are done with their statements, the procedure repeats: again, each employees starting from 1 and finishing with n who are still eligible to vote make their statements.  The process repeats until there is only one employee eligible to vote remaining and he determines the outcome of the whole voting. Of course, he votes for the decision suitable for his fraction. 
+
+You know the order employees are going to vote and that they behave optimal (and they also know the order and who belongs to which fraction). Predict the outcome of the vote.
+
+
+-----Input-----
+
+The first line of the input contains a single integer n (1 ≤ n ≤ 200 000) — the number of employees. 
+
+The next line contains n characters. The i-th character is 'D' if the i-th employee is from depublicans fraction or 'R' if he is from remocrats.
+
+
+-----Output-----
+
+Print 'D' if the outcome of the vote will be suitable for depublicans and 'R' if remocrats will win.
+
+
+-----Examples-----
+Input
+5
+DDRRR
+
+Output
+D
+
+Input
+6
+DDRRRR
+
+Output
+R
+
+
+
+-----Note-----
+
+Consider one of the voting scenarios for the first sample:   Employee 1 denies employee 5 to vote.  Employee 2 denies employee 3 to vote.  Employee 3 has no right to vote and skips his turn (he was denied by employee 2).  Employee 4 denies employee 2 to vote.  Employee 5 has no right to vote and skips his turn (he was denied by employee 1).  Employee 1 denies employee 4.  Only employee 1 now has the right to vote so the voting ends with the victory of depublicans.","n = int(input())
+fractions = input()
+
+depublicans = 0
+remocrats = 0
+
+for fraction in fractions:
+    if fraction == 'D':
+        depublicans += 1
+    else:
+        remocrats += 1
+
+if depublicans > remocrats:
+    print('D')
+else:
+    print('R')
+",,True,post,False,True,False,True,pilot_apps5.json,,,,,
+203.0,apps,gpt-4o,gpt-3.5-turbo-0125,"There are n employees in Alternative Cake Manufacturing (ACM). They are now voting on some very important question and the leading world media are trying to predict the outcome of the vote.
+
+Each of the employees belongs to one of two fractions: depublicans or remocrats, and these two fractions have opposite opinions on what should be the outcome of the vote. The voting procedure is rather complicated:   Each of n employees makes a statement. They make statements one by one starting from employees 1 and finishing with employee n. If at the moment when it's time for the i-th employee to make a statement he no longer has the right to vote, he just skips his turn (and no longer takes part in this voting).  When employee makes a statement, he can do nothing or declare that one of the other employees no longer has a right to vote. It's allowed to deny from voting people who already made the statement or people who are only waiting to do so. If someone is denied from voting he no longer participates in the voting till the very end.  When all employees are done with their statements, the procedure repeats: again, each employees starting from 1 and finishing with n who are still eligible to vote make their statements.  The process repeats until there is only one employee eligible to vote remaining and he determines the outcome of the whole voting. Of course, he votes for the decision suitable for his fraction. 
+
+You know the order employees are going to vote and that they behave optimal (and they also know the order and who belongs to which fraction). Predict the outcome of the vote.
+
+
+-----Input-----
+
+The first line of the input contains a single integer n (1 ≤ n ≤ 200 000) — the number of employees. 
+
+The next line contains n characters. The i-th character is 'D' if the i-th employee is from depublicans fraction or 'R' if he is from remocrats.
+
+
+-----Output-----
+
+Print 'D' if the outcome of the vote will be suitable for depublicans and 'R' if remocrats will win.
+
+
+-----Examples-----
+Input
+5
+DDRRR
+
+Output
+D
+
+Input
+6
+DDRRRR
+
+Output
+R
+
+
+
+-----Note-----
+
+Consider one of the voting scenarios for the first sample:   Employee 1 denies employee 5 to vote.  Employee 2 denies employee 3 to vote.  Employee 3 has no right to vote and skips his turn (he was denied by employee 2).  Employee 4 denies employee 2 to vote.  Employee 5 has no right to vote and skips his turn (he was denied by employee 1).  Employee 1 denies employee 4.  Only employee 1 now has the right to vote so the voting ends with the victory of depublicans.","n = int(input())
+votes = input().strip()
+
+# Queues to track the positions of 'D' and 'R'
+d_queue = []
+r_queue = []
+
+# Populate the initial queues with the index of each 'D' and 'R'
+for i, v in enumerate(votes):
+    if v == 'D':
+        d_queue.append(i)
+    else:
+        r_queue.append(i)
+
+# Process the queues until one of them is empty
+while d_queue and r_queue:
+    d_index = d_queue.pop(0)
+    r_index = r_queue.pop(0)
+    
+    # The smaller index (earlier in the sequence) eliminates the other
+    if d_index < r_index:
+        d_queue.append(d_index + n)
+    else:
+        r_queue.append(r_index + n)
+
+# Determine the winner based on the remaining non-empty queue
+if d_queue:
+    print('D')
+else:
+    print('R')
+",,True,post,True,True,True,True,pilot_apps5.json,,,,,
+135.0,apps,llama3-70b,gpt-3.5-turbo-0125,"Imp is watching a documentary about cave painting. [Image] 
+
+Some numbers, carved in chaotic order, immediately attracted his attention. Imp rapidly proposed a guess that they are the remainders of division of a number n by all integers i from 1 to k. Unfortunately, there are too many integers to analyze for Imp.
+
+Imp wants you to check whether all these remainders are distinct. Formally, he wants to check, if all $n \text{mod} i$, 1 ≤ i ≤ k, are distinct, i. e. there is no such pair (i, j) that:   1 ≤ i < j ≤ k,  $n \operatorname{mod} i = n \operatorname{mod} j$, where $x \operatorname{mod} y$ is the remainder of division x by y. 
+
+
+-----Input-----
+
+The only line contains two integers n, k (1 ≤ n, k ≤ 10^18).
+
+
+-----Output-----
+
+Print ""Yes"", if all the remainders are distinct, and ""No"" otherwise.
+
+You can print each letter in arbitrary case (lower or upper).
+
+
+-----Examples-----
+Input
+4 4
+
+Output
+No
+
+Input
+5 3
+
+Output
+Yes
+
+
+
+-----Note-----
+
+In the first sample remainders modulo 1 and 4 coincide.","n, k = map(int, input().split())
+seen = set()
+for i in range(1, k+1):
+    remainder = n % i
+    if remainder in seen:
+        print(""No"")
+        exit()
+    seen.add(remainder)
+print(""Yes"")
+",,True,post,True,True,True,True,pilot_apps5.json,,,,,
+135.0,apps,gpt-4o,gpt-3.5-turbo-0125,"Imp is watching a documentary about cave painting. [Image] 
+
+Some numbers, carved in chaotic order, immediately attracted his attention. Imp rapidly proposed a guess that they are the remainders of division of a number n by all integers i from 1 to k. Unfortunately, there are too many integers to analyze for Imp.
+
+Imp wants you to check whether all these remainders are distinct. Formally, he wants to check, if all $n \text{mod} i$, 1 ≤ i ≤ k, are distinct, i. e. there is no such pair (i, j) that:   1 ≤ i < j ≤ k,  $n \operatorname{mod} i = n \operatorname{mod} j$, where $x \operatorname{mod} y$ is the remainder of division x by y. 
+
+
+-----Input-----
+
+The only line contains two integers n, k (1 ≤ n, k ≤ 10^18).
+
+
+-----Output-----
+
+Print ""Yes"", if all the remainders are distinct, and ""No"" otherwise.
+
+You can print each letter in arbitrary case (lower or upper).
+
+
+-----Examples-----
+Input
+4 4
+
+Output
+No
+
+Input
+5 3
+
+Output
+Yes
+
+
+
+-----Note-----
+
+In the first sample remainders modulo 1 and 4 coincide.","n, k = map(int, input().split())
+
+def are_remainders_distinct(n, k):
+    # For k >= n, there will always be non-distinct remainders
+    if k >= n:
+        return ""No""
+    
+    # For k < n, we'll check for remainders
+    seen_remainders = set()
+    for i in range(1, k + 1):
+        remainder = n % i
+        if remainder in seen_remainders:
+            return ""No""
+        seen_remainders.add(remainder)
+    
+    return ""Yes""
+
+print(are_remainders_distinct(n, k))
+",,True,post,False,True,True,True,pilot_apps5.json,,,,,
+227.0,apps,llama3-70b,gpt-3.5-turbo-0125,"You've got a positive integer sequence a_1, a_2, ..., a_{n}. All numbers in the sequence are distinct. Let's fix the set of variables b_1, b_2, ..., b_{m}. Initially each variable b_{i} (1 ≤ i ≤ m) contains the value of zero. Consider the following sequence, consisting of n operations.
+
+The first operation is assigning the value of a_1 to some variable b_{x} (1 ≤ x ≤ m). Each of the following n - 1 operations is assigning to some variable b_{y} the value that is equal to the sum of values that are stored in the variables b_{i} and b_{j} (1 ≤ i, j, y ≤ m). At that, the value that is assigned on the t-th operation, must equal a_{t}. For each operation numbers y, i, j are chosen anew.
+
+Your task is to find the minimum number of variables m, such that those variables can help you perform the described sequence of operations.
+
+
+-----Input-----
+
+The first line contains integer n (1 ≤ n ≤ 23). The second line contains n space-separated integers a_1, a_2, ..., a_{n} (1 ≤ a_{k} ≤ 10^9).
+
+It is guaranteed that all numbers in the sequence are distinct.
+
+
+-----Output-----
+
+In a single line print a single number — the minimum number of variables m, such that those variables can help you perform the described sequence of operations.
+
+If you cannot perform the sequence of operations at any m, print -1.
+
+
+-----Examples-----
+Input
+5
+1 2 3 6 8
+
+Output
+2
+
+Input
+3
+3 6 5
+
+Output
+-1
+
+Input
+6
+2 4 8 6 10 18
+
+Output
+3
+
+
+
+-----Note-----
+
+In the first sample, you can use two variables b_1 and b_2 to perform the following sequence of operations.  b_1 := 1;  b_2 := b_1 + b_1;  b_1 := b_1 + b_2;  b_1 := b_1 + b_1;  b_1 := b_1 + b_2.","n = int(input())
+a = list(map(int, input().split()))
+a.sort()
+m = 1
+for i in range(1, n):
+    if a[i] != a[i-1] * 2:
+        m += 1
+print(m if m <= 23 else -1)
+",,True,post,False,True,False,True,pilot_apps5.json,,,,,
+227.0,apps,gpt-4o,gpt-3.5-turbo-0125,"You've got a positive integer sequence a_1, a_2, ..., a_{n}. All numbers in the sequence are distinct. Let's fix the set of variables b_1, b_2, ..., b_{m}. Initially each variable b_{i} (1 ≤ i ≤ m) contains the value of zero. Consider the following sequence, consisting of n operations.
+
+The first operation is assigning the value of a_1 to some variable b_{x} (1 ≤ x ≤ m). Each of the following n - 1 operations is assigning to some variable b_{y} the value that is equal to the sum of values that are stored in the variables b_{i} and b_{j} (1 ≤ i, j, y ≤ m). At that, the value that is assigned on the t-th operation, must equal a_{t}. For each operation numbers y, i, j are chosen anew.
+
+Your task is to find the minimum number of variables m, such that those variables can help you perform the described sequence of operations.
+
+
+-----Input-----
+
+The first line contains integer n (1 ≤ n ≤ 23). The second line contains n space-separated integers a_1, a_2, ..., a_{n} (1 ≤ a_{k} ≤ 10^9).
+
+It is guaranteed that all numbers in the sequence are distinct.
+
+
+-----Output-----
+
+In a single line print a single number — the minimum number of variables m, such that those variables can help you perform the described sequence of operations.
+
+If you cannot perform the sequence of operations at any m, print -1.
+
+
+-----Examples-----
+Input
+5
+1 2 3 6 8
+
+Output
+2
+
+Input
+3
+3 6 5
+
+Output
+-1
+
+Input
+6
+2 4 8 6 10 18
+
+Output
+3
+
+
+
+-----Note-----
+
+In the first sample, you can use two variables b_1 and b_2 to perform the following sequence of operations.  b_1 := 1;  b_2 := b_1 + b_1;  b_1 := b_1 + b_2;  b_1 := b_1 + b_1;  b_1 := b_1 + b_2.","def min_variables(n, a):
+    a.sort()
+    assigned = set()
+    assigned.add(a[0])
+    m = 1
+
+    for i in range(1, n):
+        can_form = False
+        for x in assigned:
+            if (a[i] - x) in assigned:
+                can_form = True
+                break
+        if not can_form:
+            m += 1
+        assigned.add(a[i])
+    
+    return m
+
+import sys
+input = sys.stdin.read
+data = input().split()
+n = int(data[0])
+a = list(map(int, data[1:]))
+
+print(min_variables(n, a))
+",,False,post,False,True,True,False,pilot_apps5.json,,,,,
+113.0,apps,llama3-70b,gpt-3.5-turbo-0125,"For a given positive integer n denote its k-rounding as the minimum positive integer x, such that x ends with k or more zeros in base 10 and is divisible by n.
+
+For example, 4-rounding of 375 is 375·80 = 30000. 30000 is the minimum integer such that it ends with 4 or more zeros and is divisible by 375.
+
+Write a program that will perform the k-rounding of n.
+
+
+-----Input-----
+
+The only line contains two integers n and k (1 ≤ n ≤ 10^9, 0 ≤ k ≤ 8).
+
+
+-----Output-----
+
+Print the k-rounding of n.
+
+
+-----Examples-----
+Input
+375 4
+
+Output
+30000
+
+Input
+10000 1
+
+Output
+10000
+
+Input
+38101 0
+
+Output
+38101
+
+Input
+123456789 8
+
+Output
+12345678900000000","n, k = map(int, input().split())
+x = 10 ** k
+while n % x != 0:
+    n += 1
+print(n)
+",,True,post,False,True,False,True,pilot_apps4.json,,,,,
+113.0,apps,gpt-4o,gpt-3.5-turbo-0125,"For a given positive integer n denote its k-rounding as the minimum positive integer x, such that x ends with k or more zeros in base 10 and is divisible by n.
+
+For example, 4-rounding of 375 is 375·80 = 30000. 30000 is the minimum integer such that it ends with 4 or more zeros and is divisible by 375.
+
+Write a program that will perform the k-rounding of n.
+
+
+-----Input-----
+
+The only line contains two integers n and k (1 ≤ n ≤ 10^9, 0 ≤ k ≤ 8).
+
+
+-----Output-----
+
+Print the k-rounding of n.
+
+
+-----Examples-----
+Input
+375 4
+
+Output
+30000
+
+Input
+10000 1
+
+Output
+10000
+
+Input
+38101 0
+
+Output
+38101
+
+Input
+123456789 8
+
+Output
+12345678900000000","import math
+
+def k_rounding(n, k):
+    # Calculate the minimum number that ends with at least k zeros
+    multiplier = 10**k
+    # Find the smallest number x that is a multiple of n and also ends with k zeros
+    x = (n * (multiplier // math.gcd(n, multiplier)))
+    return x
+
+# Read input
+n, k = map(int, input().split())
+# Print the k-rounding of n
+print(k_rounding(n, k))
+",,True,post,True,True,True,True,pilot_apps4.json,,,,,
+259.0,apps,llama3-70b,gpt-3.5-turbo-0125,"It is raining heavily. But this is the first day for Serval, who just became 3 years old, to go to the kindergarten. Unfortunately, he lives far from kindergarten, and his father is too busy to drive him there. The only choice for this poor little boy is to wait for a bus on this rainy day. Under such circumstances, the poor boy will use the first bus he sees no matter where it goes. If several buses come at the same time, he will choose one randomly.
+
+Serval will go to the bus station at time $t$, and there are $n$ bus routes which stop at this station. For the $i$-th bus route, the first bus arrives at time $s_i$ minutes, and each bus of this route comes $d_i$ minutes later than the previous one.
+
+As Serval's best friend, you wonder which bus route will he get on. If several buses arrive at the same time, you can print any of them.
+
+
+-----Input-----
+
+The first line contains two space-separated integers $n$ and $t$ ($1\leq n\leq 100$, $1\leq t\leq 10^5$) — the number of bus routes and the time Serval goes to the station. 
+
+Each of the next $n$ lines contains two space-separated integers $s_i$ and $d_i$ ($1\leq s_i,d_i\leq 10^5$) — the time when the first bus of this route arrives and the interval between two buses of this route.
+
+
+-----Output-----
+
+Print one number — what bus route Serval will use. If there are several possible answers, you can print any of them.
+
+
+-----Examples-----
+Input
+2 2
+6 4
+9 5
+
+Output
+1
+
+Input
+5 5
+3 3
+2 5
+5 6
+4 9
+6 1
+
+Output
+3
+
+Input
+3 7
+2 2
+2 3
+2 4
+
+Output
+1
+
+
+
+-----Note-----
+
+In the first example, the first bus of the first route arrives at time $6$, and the first bus of the second route arrives at time $9$, so the first route is the answer.
+
+In the second example, a bus of the third route arrives at time $5$, so it is the answer.
+
+In the third example, buses of the first route come at times $2$, $4$, $6$, $8$, and so fourth, buses of the second route come at times $2$, $5$, $8$, and so fourth and buses of the third route come at times $2$, $6$, $10$, and so on, so $1$ and $2$ are both acceptable answers while $3$ is not.","n, t = map(int, input().split())
+buses = []
+for _ in range(n):
+    s, d = map(int, input().split())
+    buses.append((s, d))
+
+min_time = float('inf')
+ans = -1
+for i, (s, d) in enumerate(buses):
+    time = (t - s) % d
+    if time < min_time:
+        min_time = time
+        ans = i + 1
+print(ans)
+",,True,post,False,True,True,True,pilot_apps4.json,,,,,
+259.0,apps,gpt-4o,gpt-3.5-turbo-0125,"It is raining heavily. But this is the first day for Serval, who just became 3 years old, to go to the kindergarten. Unfortunately, he lives far from kindergarten, and his father is too busy to drive him there. The only choice for this poor little boy is to wait for a bus on this rainy day. Under such circumstances, the poor boy will use the first bus he sees no matter where it goes. If several buses come at the same time, he will choose one randomly.
+
+Serval will go to the bus station at time $t$, and there are $n$ bus routes which stop at this station. For the $i$-th bus route, the first bus arrives at time $s_i$ minutes, and each bus of this route comes $d_i$ minutes later than the previous one.
+
+As Serval's best friend, you wonder which bus route will he get on. If several buses arrive at the same time, you can print any of them.
+
+
+-----Input-----
+
+The first line contains two space-separated integers $n$ and $t$ ($1\leq n\leq 100$, $1\leq t\leq 10^5$) — the number of bus routes and the time Serval goes to the station. 
+
+Each of the next $n$ lines contains two space-separated integers $s_i$ and $d_i$ ($1\leq s_i,d_i\leq 10^5$) — the time when the first bus of this route arrives and the interval between two buses of this route.
+
+
+-----Output-----
+
+Print one number — what bus route Serval will use. If there are several possible answers, you can print any of them.
+
+
+-----Examples-----
+Input
+2 2
+6 4
+9 5
+
+Output
+1
+
+Input
+5 5
+3 3
+2 5
+5 6
+4 9
+6 1
+
+Output
+3
+
+Input
+3 7
+2 2
+2 3
+2 4
+
+Output
+1
+
+
+
+-----Note-----
+
+In the first example, the first bus of the first route arrives at time $6$, and the first bus of the second route arrives at time $9$, so the first route is the answer.
+
+In the second example, a bus of the third route arrives at time $5$, so it is the answer.
+
+In the third example, buses of the first route come at times $2$, $4$, $6$, $8$, and so fourth, buses of the second route come at times $2$, $5$, $8$, and so fourth and buses of the third route come at times $2$, $6$, $10$, and so on, so $1$ and $2$ are both acceptable answers while $3$ is not.","# Function to find the bus route Serval will take
+def find_bus_route(n, t, bus_routes):
+    min_wait_time = float('inf')
+    chosen_route = -1
+
+    for i in range(n):
+        s_i, d_i = bus_routes[i]
+
+        # Calculate the first bus time after or at t
+        if s_i >= t:
+            wait_time = s_i - t
+        else:
+            if (t - s_i) % d_i == 0:
+                wait_time = 0
+            else:
+                wait_time = d_i - (t - s_i) % d_i
+
+        if wait_time < min_wait_time:
+            min_wait_time = wait_time
+            chosen_route = i + 1
+
+    return chosen_route
+
+# Read input
+import sys
+input = sys.stdin.read
+data = input().split()
+
+n = int(data[0])
+t = int(data[1])
+bus_routes = []
+
+for i in range(n):
+    s_i = int(data[2 + i * 2])
+    d_i = int(data[2 + i * 2 + 1])
+    bus_routes.append((s_i, d_i))
+
+# Find and print the bus route Serval will take
+print(find_bus_route(n, t, bus_routes))
+",,True,post,True,True,True,True,pilot_apps4.json,,,,,
+21.0,apps,llama3-70b,gpt-3.5-turbo-0125,"Nicholas has an array a that contains n distinct integers from 1 to n. In other words, Nicholas has a permutation of size n.
+
+Nicholas want the minimum element (integer 1) and the maximum element (integer n) to be as far as possible from each other. He wants to perform exactly one swap in order to maximize the distance between the minimum and the maximum elements. The distance between two elements is considered to be equal to the absolute difference between their positions.
+
+
+-----Input-----
+
+The first line of the input contains a single integer n (2 ≤ n ≤ 100) — the size of the permutation.
+
+The second line of the input contains n distinct integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ n), where a_{i} is equal to the element at the i-th position.
+
+
+-----Output-----
+
+Print a single integer — the maximum possible distance between the minimum and the maximum elements Nicholas can achieve by performing exactly one swap.
+
+
+-----Examples-----
+Input
+5
+4 5 1 3 2
+
+Output
+3
+
+Input
+7
+1 6 5 3 4 7 2
+
+Output
+6
+
+Input
+6
+6 5 4 3 2 1
+
+Output
+5
+
+
+
+-----Note-----
+
+In the first sample, one may obtain the optimal answer by swapping elements 1 and 2.
+
+In the second sample, the minimum and the maximum elements will be located in the opposite ends of the array if we swap 7 and 2.
+
+In the third sample, the distance between the minimum and the maximum elements is already maximum possible, so we just perform some unnecessary swap, for example, one can swap 5 and 2.","n = int(input())
+a = list(map(int, input().split()))
+
+pos1 = a.index(1)
+posn = a.index(n)
+
+max_dist = max(abs(pos1 - posn) - 1, n - 2)
+min_dist = min(abs(pos1 - posn) - 1, n - 2)
+
+print(max(max_dist, n - 1 - min_dist))
+",,True,post,False,True,True,True,pilot_apps4.json,,,,,
+21.0,apps,gpt-4o,gpt-3.5-turbo-0125,"Nicholas has an array a that contains n distinct integers from 1 to n. In other words, Nicholas has a permutation of size n.
+
+Nicholas want the minimum element (integer 1) and the maximum element (integer n) to be as far as possible from each other. He wants to perform exactly one swap in order to maximize the distance between the minimum and the maximum elements. The distance between two elements is considered to be equal to the absolute difference between their positions.
+
+
+-----Input-----
+
+The first line of the input contains a single integer n (2 ≤ n ≤ 100) — the size of the permutation.
+
+The second line of the input contains n distinct integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ n), where a_{i} is equal to the element at the i-th position.
+
+
+-----Output-----
+
+Print a single integer — the maximum possible distance between the minimum and the maximum elements Nicholas can achieve by performing exactly one swap.
+
+
+-----Examples-----
+Input
+5
+4 5 1 3 2
+
+Output
+3
+
+Input
+7
+1 6 5 3 4 7 2
+
+Output
+6
+
+Input
+6
+6 5 4 3 2 1
+
+Output
+5
+
+
+
+-----Note-----
+
+In the first sample, one may obtain the optimal answer by swapping elements 1 and 2.
+
+In the second sample, the minimum and the maximum elements will be located in the opposite ends of the array if we swap 7 and 2.
+
+In the third sample, the distance between the minimum and the maximum elements is already maximum possible, so we just perform some unnecessary swap, for example, one can swap 5 and 2.","n = int(input())
+a = list(map(int, input().split()))
+
+# Find the initial positions of the minimum and maximum elements
+min_pos = a.index(1)
+max_pos = a.index(n)
+
+# Calculate possible new distances after performing one swap
+# Option 1: Swap the minimum element with the element at the start
+dist1 = abs(0 - max_pos)
+# Option 2: Swap the minimum element with the element at the end
+dist2 = abs((n-1) - max_pos)
+# Option 3: Swap the maximum element with the element at the start
+dist3 = abs(0 - min_pos)
+# Option 4: Swap the maximum element with the element at the end
+dist4 = abs((n-1) - min_pos)
+
+# The maximum possible distance after one swap
+max_distance = max(dist1, dist2, dist3, dist4)
+print(max_distance)
+",,False,post,True,True,True,True,pilot_apps4.json,,,,,
+160.0,apps,llama3-70b,gpt-3.5-turbo-0125,"We have a sequence of N integers: A_1, A_2, \cdots, A_N.
+You can perform the following operation between 0 and K times (inclusive):
+ - Choose two integers i and j such that i \neq j, each between 1 and N (inclusive). Add 1 to A_i and -1 to A_j, possibly producing a negative element.
+Compute the maximum possible positive integer that divides every element of A after the operations. Here a positive integer x divides an integer y if and only if there exists an integer z such that y = xz.
+
+-----Constraints-----
+ - 2 \leq N \leq 500
+ - 1 \leq A_i \leq 10^6
+ - 0 \leq K \leq 10^9
+ - All values in input are integers.
+
+-----Input-----
+Input is given from Standard Input in the following format:
+N K
+A_1 A_2 \cdots A_{N-1} A_{N}
+
+-----Output-----
+Print the maximum possible positive integer that divides every element of A after the operations.
+
+-----Sample Input-----
+2 3
+8 20
+
+-----Sample Output-----
+7
+
+7 will divide every element of A if, for example, we perform the following operation:
+ - Choose i = 2, j = 1. A becomes (7, 21).
+We cannot reach the situation where 8 or greater integer divides every element of A.","import math
+N, K = map(int, input().split())
+A = list(map(int, input().split()))
+
+gcd = A[0]
+for i in range(1, N):
+    gcd = math.gcd(gcd, A[i])
+
+max_divisor = gcd
+for i in range(1, int(math.sqrt(gcd)) + 1):
+    if gcd % i == 0:
+        max_divisor = max(max_divisor, i)
+        if i * i != gcd:
+            max_divisor = max(max_divisor, gcd // i)
+
+print(max_divisor)
+",,True,post,False,True,True,True,pilot_apps4.json,,,,,
+160.0,apps,gpt-4o,gpt-3.5-turbo-0125,"We have a sequence of N integers: A_1, A_2, \cdots, A_N.
+You can perform the following operation between 0 and K times (inclusive):
+ - Choose two integers i and j such that i \neq j, each between 1 and N (inclusive). Add 1 to A_i and -1 to A_j, possibly producing a negative element.
+Compute the maximum possible positive integer that divides every element of A after the operations. Here a positive integer x divides an integer y if and only if there exists an integer z such that y = xz.
+
+-----Constraints-----
+ - 2 \leq N \leq 500
+ - 1 \leq A_i \leq 10^6
+ - 0 \leq K \leq 10^9
+ - All values in input are integers.
+
+-----Input-----
+Input is given from Standard Input in the following format:
+N K
+A_1 A_2 \cdots A_{N-1} A_{N}
+
+-----Output-----
+Print the maximum possible positive integer that divides every element of A after the operations.
+
+-----Sample Input-----
+2 3
+8 20
+
+-----Sample Output-----
+7
+
+7 will divide every element of A if, for example, we perform the following operation:
+ - Choose i = 2, j = 1. A becomes (7, 21).
+We cannot reach the situation where 8 or greater integer divides every element of A.","import math
+
+# Read input values
+N, K = map(int, input().split())
+A = list(map(int, input().split()))
+
+# Calculate the sum of the array
+sum_A = sum(A)
+
+# Function to compute the greatest common divisor (GCD) of a list
+def gcd_of_list(lst):
+    gcd_result = lst[0]
+    for num in lst[1:]:
+        gcd_result = math.gcd(gcd_result, num)
+    return gcd_result
+
+# Function to find all divisors of a number
+def find_divisors(x):
+    divisors = set()
+    for i in range(1, int(math.sqrt(x)) + 1):
+        if x % i == 0:
+            divisors.add(i)
+            divisors.add(x // i)
+    return sorted(divisors, reverse=True)
+
+# Find the GCD of the array
+gcd_A = gcd_of_list(A)
+
+# Find all divisors of sum_A
+divisors = find_divisors(sum_A)
+
+# Find the maximum divisor that divides all elements of A
+for d in divisors:
+    if all((a % d == 0) or ((sum_A - a) % d <= K) for a in A):
+        print(d)
+        break
+",,True,post,False,True,True,True,pilot_apps4.json,,,,,
+102.0,apps,llama3-70b,gpt-3.5-turbo-0125,"Today Tavas got his test result as an integer score and he wants to share it with his girlfriend, Nafas.
+
+His phone operating system is Tavdroid, and its keyboard doesn't have any digits! He wants to share his score with Nafas via text, so he has no choice but to send this number using words. [Image] 
+
+He ate coffee mix without water again, so right now he's really messed up and can't think.
+
+Your task is to help him by telling him what to type.
+
+
+-----Input-----
+
+The first and only line of input contains an integer s (0 ≤ s ≤ 99), Tavas's score. 
+
+
+-----Output-----
+
+In the first and only line of output, print a single string consisting only from English lowercase letters and hyphens ('-'). Do not use spaces.
+
+
+-----Examples-----
+Input
+6
+
+Output
+six
+
+Input
+99
+
+Output
+ninety-nine
+
+Input
+20
+
+Output
+twenty
+
+
+
+-----Note-----
+
+You can find all you need to know about English numerals in http://en.wikipedia.org/wiki/English_numerals .","ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+teens = ['ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
+tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
+
+s = int(input())
+if s < 10:
+    print(ones[s])
+elif s < 20:
+    print(teens[s-10])
+else:
+    print(tens[s//10] + ('' if s%10==0 else '-' + ones[s%10]))
+",,True,post,False,False,True,True,pilot_apps4.json,,,,,
+102.0,apps,gpt-4o,gpt-3.5-turbo-0125,"Today Tavas got his test result as an integer score and he wants to share it with his girlfriend, Nafas.
+
+His phone operating system is Tavdroid, and its keyboard doesn't have any digits! He wants to share his score with Nafas via text, so he has no choice but to send this number using words. [Image] 
+
+He ate coffee mix without water again, so right now he's really messed up and can't think.
+
+Your task is to help him by telling him what to type.
+
+
+-----Input-----
+
+The first and only line of input contains an integer s (0 ≤ s ≤ 99), Tavas's score. 
+
+
+-----Output-----
+
+In the first and only line of output, print a single string consisting only from English lowercase letters and hyphens ('-'). Do not use spaces.
+
+
+-----Examples-----
+Input
+6
+
+Output
+six
+
+Input
+99
+
+Output
+ninety-nine
+
+Input
+20
+
+Output
+twenty
+
+
+
+-----Note-----
+
+You can find all you need to know about English numerals in http://en.wikipedia.org/wiki/English_numerals .","def number_to_words(n):
+    ones = [""zero"", ""one"", ""two"", ""three"", ""four"", ""five"", ""six"", ""seven"", ""eight"", ""nine""]
+    teens = ["""", ""eleven"", ""twelve"", ""thirteen"", ""fourteen"", ""fifteen"", ""sixteen"", ""seventeen"", ""eighteen"", ""nineteen""]
+    tens = ["""", ""ten"", ""twenty"", ""thirty"", ""forty"", ""fifty"", ""sixty"", ""seventy"", ""eighty"", ""ninety""]
+
+    if 0 <= n <= 9:
+        return ones[n]
+    elif 11 <= n <= 19:
+        return teens[n - 10]
+    elif 10 <= n <= 99:
+        if n % 10 == 0:
+            return tens[n // 10]
+        else:
+            return tens[n // 10] + ""-"" + ones[n % 10]
+
+if __name__ == ""__main__"":
+    s = int(input())
+    print(number_to_words(s))
+",,True,post,True,True,True,True,pilot_apps4.json,,,,,
+,,llama3-70b,gpt-3.5-turbo-0125,,,,,,,,,,,232.0,apps,"n, m = map(int, input().split())
+colors = list(map(int, input().split()))
+counts = list(map(int, input().split()))
+
+color_counts = {}
+for color in colors:
+    if color not in color_counts:
+        color_counts[color] = 0
+    color_counts[color] += 1
+
+found = False
+for i in range(n):
+    window_counts = {}
+    for j in range(i, n):
+        color = colors[j]
+        if color not in window_counts:
+            window_counts[color] = 0
+        window_counts[color] += 1
+        if all(count == target for count, target in zip(sorted(window_counts.values()), counts)):
+            found = True
+            break
+    if found:
+        break
+
+print(""YES"" if found else ""NO"")
+",Error: RetryError[<Future at 0x76b5a655ace0 state=finished raised APIConnectionError>],hoareprompt
+,,llama3-70b,gpt-3.5-turbo-0125,,,,,,,,,,,192.0,apps,"x, y = map(int, input().split())
+print(abs(x - y))
+",Error: RetryError[<Future at 0x7634f7d0fd60 state=finished raised APIConnectionError>],hoareprompt
+267.0,apps,llama3-70b,gpt-3.5-turbo-0125,"You are given two integers $l$ and $r$ ($l \le r$). Your task is to calculate the sum of numbers from $l$ to $r$ (including $l$ and $r$) such that each number contains at most $k$ different digits, and print this sum modulo $998244353$.
+
+For example, if $k = 1$ then you have to calculate all numbers from $l$ to $r$ such that each number is formed using only one digit. For $l = 10, r = 50$ the answer is $11 + 22 + 33 + 44 = 110$.
+
+
+-----Input-----
+
+The only line of the input contains three integers $l$, $r$ and $k$ ($1 \le l \le r < 10^{18}, 1 \le k \le 10$) — the borders of the segment and the maximum number of different digits.
+
+
+-----Output-----
+
+Print one integer — the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits, modulo $998244353$.
+
+
+-----Examples-----
+Input
+10 50 2
+
+Output
+1230
+
+Input
+1 2345 10
+
+Output
+2750685
+
+Input
+101 154 2
+
+Output
+2189
+
+
+
+-----Note-----
+
+For the first example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{50 \cdot 51}{2} - \frac{9 \cdot 10}{2} = 1230$. This example also explained in the problem statement but for $k = 1$.
+
+For the second example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{2345 \cdot 2346}{2} = 2750685$.
+
+For the third example the answer is $101 + 110 + 111 + 112 + 113 + 114 + 115 + 116 + 117 + 118 + 119 + 121 + 122 + 131 + 133 + 141 + 144 + 151 = 2189$.","MOD = 998244353
+def count_numbers(l, r, k):
+    def count(n, k, dp):
+        if k == 0:
+            return 0
+        if (n, k) in dp:
+            return dp[(n, k)]
+        if n < 10**k:
+            dp[(n, k)] = n
+        else:
+            dp[(n, k)] = 9
+            for i in range(1, k):
+                dp[(n, k)] += 9 * 10**(i-1) * (10**(k-i) - 10**(i-1))
+            dp[(n, k)] += (10**(k-1) - 10**(k-2)) * (n // 10**(k-1) - 1)
+            dp[(n, k)] %= MOD
+        return dp[(n, k)]
+
+    dp = {}
+    return (count(r, k, dp) - count(l-1, k, dp)) % MOD
+
+l, r, k = map(int, input().split())
+print(count_numbers(l, r, k))
+",,False,post,False,True,True,True,pilot_apps1.json,,,,,
+267.0,apps,gpt-4o,gpt-3.5-turbo-0125,"You are given two integers $l$ and $r$ ($l \le r$). Your task is to calculate the sum of numbers from $l$ to $r$ (including $l$ and $r$) such that each number contains at most $k$ different digits, and print this sum modulo $998244353$.
+
+For example, if $k = 1$ then you have to calculate all numbers from $l$ to $r$ such that each number is formed using only one digit. For $l = 10, r = 50$ the answer is $11 + 22 + 33 + 44 = 110$.
+
+
+-----Input-----
+
+The only line of the input contains three integers $l$, $r$ and $k$ ($1 \le l \le r < 10^{18}, 1 \le k \le 10$) — the borders of the segment and the maximum number of different digits.
+
+
+-----Output-----
+
+Print one integer — the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits, modulo $998244353$.
+
+
+-----Examples-----
+Input
+10 50 2
+
+Output
+1230
+
+Input
+1 2345 10
+
+Output
+2750685
+
+Input
+101 154 2
+
+Output
+2189
+
+
+
+-----Note-----
+
+For the first example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{50 \cdot 51}{2} - \frac{9 \cdot 10}{2} = 1230$. This example also explained in the problem statement but for $k = 1$.
+
+For the second example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{2345 \cdot 2346}{2} = 2750685$.
+
+For the third example the answer is $101 + 110 + 111 + 112 + 113 + 114 + 115 + 116 + 117 + 118 + 119 + 121 + 122 + 131 + 133 + 141 + 144 + 151 = 2189$.","MOD = 998244353
+
+def contains_at_most_k_unique_digits(n, k):
+    return len(set(str(n))) <= k
+
+def sum_of_numbers_with_k_unique_digits(l, r, k):
+    total_sum = 0
+    for num in range(l, r + 1):
+        if contains_at_most_k_unique_digits(num, k):
+            total_sum = (total_sum + num) % MOD
+    return total_sum
+
+# Read input
+l, r, k = map(int, input().split())
+
+# Calculate and print the result
+print(sum_of_numbers_with_k_unique_digits(l, r, k))
+",,True,post,False,True,True,True,pilot_apps1.json,,,,,
+108.0,apps,llama3-70b,gpt-3.5-turbo-0125,"You are given a string s consisting of |s| small english letters.
+
+In one move you can replace any character of this string to the next character in alphabetical order (a will be replaced with b, s will be replaced with t, etc.). You cannot replace letter z with any other letter.
+
+Your target is to make some number of moves (not necessary minimal) to get string abcdefghijklmnopqrstuvwxyz (english alphabet) as a subsequence. Subsequence of the string is the string that is obtained by deleting characters at some positions. You need to print the string that will be obtained from the given string and will be contain english alphabet as a subsequence or say that it is impossible.
+
+
+-----Input-----
+
+The only one line of the input consisting of the string s consisting of |s| (1 ≤ |s| ≤ 10^5) small english letters.
+
+
+-----Output-----
+
+If you can get a string that can be obtained from the given string and will contain english alphabet as a subsequence, print it. Otherwise print «-1» (without quotes).
+
+
+-----Examples-----
+Input
+aacceeggiikkmmooqqssuuwwyy
+
+Output
+abcdefghijklmnopqrstuvwxyz
+
+Input
+thereisnoanswer
+
+Output
+-1","s = input()
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+res = ''
+for char in alphabet:
+    while char in s:
+        res += char
+        s = s.replace(char, chr(ord(char) + 1), 1)
+if len(res) == 26:
+    print(res)
+else:
+    print(-1)
+",,True,post,False,True,True,True,pilot_apps1.json,,,,,
+108.0,apps,gpt-4o,gpt-3.5-turbo-0125,"You are given a string s consisting of |s| small english letters.
+
+In one move you can replace any character of this string to the next character in alphabetical order (a will be replaced with b, s will be replaced with t, etc.). You cannot replace letter z with any other letter.
+
+Your target is to make some number of moves (not necessary minimal) to get string abcdefghijklmnopqrstuvwxyz (english alphabet) as a subsequence. Subsequence of the string is the string that is obtained by deleting characters at some positions. You need to print the string that will be obtained from the given string and will be contain english alphabet as a subsequence or say that it is impossible.
+
+
+-----Input-----
+
+The only one line of the input consisting of the string s consisting of |s| (1 ≤ |s| ≤ 10^5) small english letters.
+
+
+-----Output-----
+
+If you can get a string that can be obtained from the given string and will contain english alphabet as a subsequence, print it. Otherwise print «-1» (without quotes).
+
+
+-----Examples-----
+Input
+aacceeggiikkmmooqqssuuwwyy
+
+Output
+abcdefghijklmnopqrstuvwxyz
+
+Input
+thereisnoanswer
+
+Output
+-1","s = input()
+
+# Target alphabet sequence
+target = ""abcdefghijklmnopqrstuvwxyz""
+target_len = len(target)
+i, j = 0, 0
+
+# Iterate over the input string and try to match the target sequence
+while i < len(s) and j < target_len:
+    if s[i] == target[j]:
+        j += 1
+    i += 1
+
+# If we have matched the entire target sequence, print the target
+if j == target_len:
+    print(target)
+else:
+    print(-1)
+",,True,post,False,True,True,True,pilot_apps1.json,,,,,
+157.0,apps,llama3-70b,gpt-3.5-turbo-0125,"Nikolay has a lemons, b apples and c pears. He decided to cook a compote. According to the recipe the fruits should be in the ratio 1: 2: 4. It means that for each lemon in the compote should be exactly 2 apples and exactly 4 pears. You can't crumble up, break up or cut these fruits into pieces. These fruits — lemons, apples and pears — should be put in the compote as whole fruits.
+
+Your task is to determine the maximum total number of lemons, apples and pears from which Nikolay can cook the compote. It is possible that Nikolay can't use any fruits, in this case print 0. 
+
+
+-----Input-----
+
+The first line contains the positive integer a (1 ≤ a ≤ 1000) — the number of lemons Nikolay has. 
+
+The second line contains the positive integer b (1 ≤ b ≤ 1000) — the number of apples Nikolay has. 
+
+The third line contains the positive integer c (1 ≤ c ≤ 1000) — the number of pears Nikolay has.
+
+
+-----Output-----
+
+Print the maximum total number of lemons, apples and pears from which Nikolay can cook the compote.
+
+
+-----Examples-----
+Input
+2
+5
+7
+
+Output
+7
+
+Input
+4
+7
+13
+
+Output
+21
+
+Input
+2
+3
+2
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example Nikolay can use 1 lemon, 2 apples and 4 pears, so the answer is 1 + 2 + 4 = 7.
+
+In the second example Nikolay can use 3 lemons, 6 apples and 12 pears, so the answer is 3 + 6 + 12 = 21.
+
+In the third example Nikolay don't have enough pears to cook any compote, so the answer is 0.","a = int(input())
+b = int(input())
+c = int(input())
+
+min_lemon = min(a, b//2, c//4)
+print(min_lemon + min_lemon*2 + min_lemon*4)
+",,True,post,True,True,False,True,pilot_apps1.json,,,,,
+157.0,apps,gpt-4o,gpt-3.5-turbo-0125,"Nikolay has a lemons, b apples and c pears. He decided to cook a compote. According to the recipe the fruits should be in the ratio 1: 2: 4. It means that for each lemon in the compote should be exactly 2 apples and exactly 4 pears. You can't crumble up, break up or cut these fruits into pieces. These fruits — lemons, apples and pears — should be put in the compote as whole fruits.
+
+Your task is to determine the maximum total number of lemons, apples and pears from which Nikolay can cook the compote. It is possible that Nikolay can't use any fruits, in this case print 0. 
+
+
+-----Input-----
+
+The first line contains the positive integer a (1 ≤ a ≤ 1000) — the number of lemons Nikolay has. 
+
+The second line contains the positive integer b (1 ≤ b ≤ 1000) — the number of apples Nikolay has. 
+
+The third line contains the positive integer c (1 ≤ c ≤ 1000) — the number of pears Nikolay has.
+
+
+-----Output-----
+
+Print the maximum total number of lemons, apples and pears from which Nikolay can cook the compote.
+
+
+-----Examples-----
+Input
+2
+5
+7
+
+Output
+7
+
+Input
+4
+7
+13
+
+Output
+21
+
+Input
+2
+3
+2
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example Nikolay can use 1 lemon, 2 apples and 4 pears, so the answer is 1 + 2 + 4 = 7.
+
+In the second example Nikolay can use 3 lemons, 6 apples and 12 pears, so the answer is 3 + 6 + 12 = 21.
+
+In the third example Nikolay don't have enough pears to cook any compote, so the answer is 0.","# Read input values
+a = int(input())
+b = int(input())
+c = int(input())
+
+# Calculate the maximum number of lemons that can be used
+# It must satisfy the condition that there are 2 apples for each lemon
+# and 4 pears for each lemon.
+max_lemons = min(a, b // 2, c // 4)
+
+# Calculate the total number of fruits used in the compote
+total_fruits = max_lemons * 1 + max_lemons * 2 + max_lemons * 4
+
+# Print the result
+print(total_fruits)
+",,True,post,True,True,True,True,pilot_apps1.json,,,,,
+15.0,apps,llama3-70b,gpt-3.5-turbo-0125,"Vasya likes everything infinite. Now he is studying the properties of a sequence s, such that its first element is equal to a (s_1 = a), and the difference between any two neighbouring elements is equal to c (s_{i} - s_{i} - 1 = c). In particular, Vasya wonders if his favourite integer b appears in this sequence, that is, there exists a positive integer i, such that s_{i} = b. Of course, you are the person he asks for a help.
+
+
+-----Input-----
+
+The first line of the input contain three integers a, b and c ( - 10^9 ≤ a, b, c ≤ 10^9) — the first element of the sequence, Vasya's favorite number and the difference between any two neighbouring elements of the sequence, respectively.
+
+
+-----Output-----
+
+If b appears in the sequence s print ""YES"" (without quotes), otherwise print ""NO"" (without quotes).
+
+
+-----Examples-----
+Input
+1 7 3
+
+Output
+YES
+
+Input
+10 10 0
+
+Output
+YES
+
+Input
+1 -4 5
+
+Output
+NO
+
+Input
+0 60 50
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first sample, the sequence starts from integers 1, 4, 7, so 7 is its element.
+
+In the second sample, the favorite integer of Vasya is equal to the first element of the sequence.
+
+In the third sample all elements of the sequence are greater than Vasya's favorite integer.
+
+In the fourth sample, the sequence starts from 0, 50, 100, and all the following elements are greater than Vasya's favorite integer.","a, b, c = map(int, input().split())
+if c == 0:
+    if a == b:
+        print(""YES"")
+    else:
+        print(""NO"")
+else:
+    if (b - a) % c == 0 and (b - a) / c >= 0:
+        print(""YES"")
+    else:
+        print(""NO"")
+",,True,post,True,True,True,True,pilot_apps1.json,,,,,
+15.0,apps,gpt-4o,gpt-3.5-turbo-0125,"Vasya likes everything infinite. Now he is studying the properties of a sequence s, such that its first element is equal to a (s_1 = a), and the difference between any two neighbouring elements is equal to c (s_{i} - s_{i} - 1 = c). In particular, Vasya wonders if his favourite integer b appears in this sequence, that is, there exists a positive integer i, such that s_{i} = b. Of course, you are the person he asks for a help.
+
+
+-----Input-----
+
+The first line of the input contain three integers a, b and c ( - 10^9 ≤ a, b, c ≤ 10^9) — the first element of the sequence, Vasya's favorite number and the difference between any two neighbouring elements of the sequence, respectively.
+
+
+-----Output-----
+
+If b appears in the sequence s print ""YES"" (without quotes), otherwise print ""NO"" (without quotes).
+
+
+-----Examples-----
+Input
+1 7 3
+
+Output
+YES
+
+Input
+10 10 0
+
+Output
+YES
+
+Input
+1 -4 5
+
+Output
+NO
+
+Input
+0 60 50
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first sample, the sequence starts from integers 1, 4, 7, so 7 is its element.
+
+In the second sample, the favorite integer of Vasya is equal to the first element of the sequence.
+
+In the third sample all elements of the sequence are greater than Vasya's favorite integer.
+
+In the fourth sample, the sequence starts from 0, 50, 100, and all the following elements are greater than Vasya's favorite integer.","a, b, c = map(int, input().split())
+
+if b == a:
+    print(""YES"")
+elif c == 0:
+    print(""NO"")
+else:
+    if (b - a) % c == 0 and (b - a) / c >= 0:
+        print(""YES"")
+    else:
+        print(""NO"")
+",,True,post,True,True,True,True,pilot_apps1.json,,,,,
+112.0,apps,llama3-70b,gpt-3.5-turbo-0125,"Absent-minded Masha got set of n cubes for her birthday.
+
+At each of 6 faces of each cube, there is exactly one digit from 0 to 9. Masha became interested what is the largest natural x such she can make using her new cubes all integers from 1 to x.
+
+To make a number Masha can rotate her cubes and put them in a row. After that, she looks at upper faces of cubes from left to right and reads the number.
+
+The number can't contain leading zeros. It's not required to use all cubes to build a number.
+
+Pay attention: Masha can't make digit 6 from digit 9 and vice-versa using cube rotations.
+
+
+-----Input-----
+
+In first line integer n is given (1 ≤ n ≤ 3) — the number of cubes, Masha got for her birthday.
+
+Each of next n lines contains 6 integers a_{i}_{j} (0 ≤ a_{i}_{j} ≤ 9) — number on j-th face of i-th cube.
+
+
+-----Output-----
+
+Print single integer — maximum number x such Masha can make any integers from 1 to x using her cubes or 0 if Masha can't make even 1.
+
+
+-----Examples-----
+Input
+3
+0 1 2 3 4 5
+6 7 8 9 0 1
+2 3 4 5 6 7
+
+Output
+87
+Input
+3
+0 1 3 5 6 8
+1 2 4 5 7 8
+2 3 4 6 7 9
+
+Output
+98
+
+
+-----Note-----
+
+In the first test case, Masha can build all numbers from 1 to 87, but she can't make 88 because there are no two cubes with digit 8.","n = int(input())
+cubes = [list(map(int, input().split())) for _ in range(n)]
+
+digits = set()
+for cube in cubes:
+    digits.update(str(digit) for digit in cube)
+
+if '0' in digits:
+    digits.remove('0')
+
+max_num = int(''.join(sorted(digits, reverse=True)))
+print(max_num)
+",,True,post,False,False,True,False,pilot_apps1.json,,,,,
+112.0,apps,gpt-4o,gpt-3.5-turbo-0125,"Absent-minded Masha got set of n cubes for her birthday.
+
+At each of 6 faces of each cube, there is exactly one digit from 0 to 9. Masha became interested what is the largest natural x such she can make using her new cubes all integers from 1 to x.
+
+To make a number Masha can rotate her cubes and put them in a row. After that, she looks at upper faces of cubes from left to right and reads the number.
+
+The number can't contain leading zeros. It's not required to use all cubes to build a number.
+
+Pay attention: Masha can't make digit 6 from digit 9 and vice-versa using cube rotations.
+
+
+-----Input-----
+
+In first line integer n is given (1 ≤ n ≤ 3) — the number of cubes, Masha got for her birthday.
+
+Each of next n lines contains 6 integers a_{i}_{j} (0 ≤ a_{i}_{j} ≤ 9) — number on j-th face of i-th cube.
+
+
+-----Output-----
+
+Print single integer — maximum number x such Masha can make any integers from 1 to x using her cubes or 0 if Masha can't make even 1.
+
+
+-----Examples-----
+Input
+3
+0 1 2 3 4 5
+6 7 8 9 0 1
+2 3 4 5 6 7
+
+Output
+87
+Input
+3
+0 1 3 5 6 8
+1 2 4 5 7 8
+2 3 4 6 7 9
+
+Output
+98
+
+
+-----Note-----
+
+In the first test case, Masha can build all numbers from 1 to 87, but she can't make 88 because there are no two cubes with digit 8.","def find_max_x(n, cubes):
+    from itertools import product
+
+    # Create a set for each cube's faces
+    cube_faces = [set(cube) for cube in cubes]
+
+    def can_form_number(num):
+        digits = list(str(num))
+        used_cubes = [False] * n
+
+        for digit in digits:
+            found = False
+            for i in range(n):
+                if not used_cubes[i] and digit in cube_faces[i]:
+                    used_cubes[i] = True
+                    found = True
+                    break
+            if not found:
+                return False
+        return True
+
+    x = 0
+    while can_form_number(x + 1):
+        x += 1
+
+    return x
+
+if __name__ == ""__main__"":
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    cubes = []
+    index = 1
+    
+    for i in range(n):
+        cubes.append(data[index:index + 6])
+        index += 6
+
+    print(find_max_x(n, cubes))
+",,True,post,False,True,False,False,pilot_apps1.json,,,,,
