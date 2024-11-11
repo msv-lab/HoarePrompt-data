@@ -1,0 +1,84 @@
+{
+    "total_valid_rows": {
+        "value": 150,
+        "description": "Total number of valid rows after preprocessing and removing invalid entries."
+    },
+    "original_correctness_agreement": {
+        "correctness": {
+            "count": 64,
+            "percentage": 42.66666666666667,
+            "mcc": 0.17566201313073598,
+            "description": "Number, percentage, and MCC for 'Correctness' agreement with 'original correctness'."
+        },
+        "naive_correctness": {
+            "count": 47,
+            "percentage": 31.333333333333336,
+            "mcc": -0.058321184351980436,
+            "description": "Number, percentage, and MCC for 'naive correctness' agreement with 'original correctness'."
+        },
+        "annotated_correctness": {
+            "count": 73,
+            "percentage": 48.66666666666667,
+            "mcc": 0.25018104137357094,
+            "description": "Number, percentage, and MCC for 'annotated correctness' agreement with 'original correctness'."
+        },
+        "naive_no_fsl_correctness": {
+            "count": 59,
+            "percentage": 39.33333333333333,
+            "mcc": 0.17908596800826015,
+            "description": "Number, percentage, and MCC for 'naive no fsl correctness' agreement with 'original correctness'."
+        }
+    },
+    "false_positives": {
+        "naive_correctness": {
+            "count": 99,
+            "description": "Number of cases where 'original correctness' is True but 'naive correctness' is False."
+        },
+        "correctness": {
+            "count": 83,
+            "description": "Number of cases where 'original correctness' is True but 'Correctness' is False."
+        }
+    },
+    "false_negatives": {
+        "naive_correctness": {
+            "count": 4,
+            "description": "Number of cases where 'original correctness' is False but 'naive correctness' is True."
+        },
+        "correctness": {
+            "count": 3,
+            "description": "Number of cases where 'original correctness' is False but 'Correctness' is True."
+        }
+    },
+    "naive_correctness_vs_correctness_diff": {
+        "description": "Analysis of cases where 'naive correctness' and 'Correctness' differ.",
+        "naive_correctness_with_original_in_diff": {
+            "count": 6,
+            "percentage": 20.689655172413794,
+            "description": "Number and percentage of times 'naive correctness' agrees with 'original correctness' when 'naive correctness' and 'Correctness' differ."
+        },
+        "correctness_with_original_in_diff": {
+            "count": 23,
+            "percentage": 79.3103448275862,
+            "description": "Number and percentage of times 'Correctness' agrees with 'original correctness' when 'naive correctness' and 'Correctness' differ."
+        }
+    },
+    "naive_correctness_vs_correctness_same": {
+        "description": "Analysis of cases where 'naive correctness' and 'Correctness' are the same.",
+        "same_correctness_original_agreement": {
+            "count": 41,
+            "percentage": 33.88429752066116,
+            "description": "Number and percentage of times both 'naive correctness' and 'Correctness' agree with 'original correctness' when they are the same."
+        },
+        "same_correctness_original_disagreement": {
+            "count": 80,
+            "percentage": 66.11570247933885,
+            "description": "Number and percentage of times both 'naive correctness' and 'Correctness' do not agree with 'original correctness' when they are the same."
+        }
+    },
+    "additional_analysis": {
+        "difference_in_agreement_with_original": {
+            "value": 11.333333333333336,
+            "description": "Difference in agreement percentage between 'Correctness' and 'naive correctness' with 'original correctness'."
+        }
+    }
+}
