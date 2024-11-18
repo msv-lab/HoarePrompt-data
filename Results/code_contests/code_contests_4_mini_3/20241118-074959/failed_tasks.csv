@@ -1,0 +1,19 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+4952,human,code_contests,gpt-4o-mini-2024-07-18,"n=input()
+s=list(raw_input())
+ns=''
+
+i=n-2
+while(i>=0):
+    ns+=s[i]
+    i-=2
+
+if n%2: i=0
+else: i=1
+
+while(i<n):
+    ns+=s[i]
+    i+=2
+
+print(ns)
+",Error: RetryError[<Future at 0x102f9bf40 state=finished raised APIConnectionError>],naive

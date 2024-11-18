@@ -1,0 +1,431 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,naive no fsl correctness,data file
+4586,code_contests,human,gpt-3.5-turbo-0125,"There are two popular keyboard layouts in Berland, they differ only in letters positions. All the other keys are the same. In Berland they use alphabet with 26 letters which coincides with English alphabet.
+
+You are given two strings consisting of 26 distinct letters each: all keys of the first and the second layouts in the same order. 
+
+You are also given some text consisting of small and capital English letters and digits. It is known that it was typed in the first layout, but the writer intended to type it in the second layout. Print the text if the same keys were pressed in the second layout.
+
+Since all keys but letters are the same in both layouts, the capitalization of the letters should remain the same, as well as all other characters.
+
+Input
+
+The first line contains a string of length 26 consisting of distinct lowercase English letters. This is the first layout.
+
+The second line contains a string of length 26 consisting of distinct lowercase English letters. This is the second layout.
+
+The third line contains a non-empty string s consisting of lowercase and uppercase English letters and digits. This is the text typed in the first layout. The length of s does not exceed 1000.
+
+Output
+
+Print the text if the same keys were pressed in the second layout.
+
+Examples
+
+Input
+
+qwertyuiopasdfghjklzxcvbnm
+veamhjsgqocnrbfxdtwkylupzi
+TwccpQZAvb2017
+
+
+Output
+
+HelloVKCup2017
+
+
+Input
+
+mnbvcxzlkjhgfdsapoiuytrewq
+asdfghjklqwertyuiopzxcvbnm
+7abaCABAABAcaba7
+
+
+Output
+
+7uduGUDUUDUgudu7","layout1 = raw_input()
+layout2 = raw_input()
+s = raw_input()
+Mods=''
+
+dic = {}
+for i in range(26):
+	dic[layout1[i]] = i
+for i in range(len(s)):
+	if s[i].isdigit():
+		Mods += s[i]
+	elif s[i].isupper():
+		Mods += layout2[dic[s[i].lower()]].upper()
+	else:
+		Mods += layout2[dic[s[i]]]
+print(Mods)
+",,True,post,True,True,True,True,code_contests5.json
+1422,code_contests,human,gpt-3.5-turbo-0125,"Kostya is a genial sculptor, he has an idea: to carve a marble sculpture in the shape of a sphere. Kostya has a friend Zahar who works at a career. Zahar knows about Kostya's idea and wants to present him a rectangular parallelepiped of marble from which he can carve the sphere. 
+
+Zahar has n stones which are rectangular parallelepipeds. The edges sizes of the i-th of them are ai, bi and ci. He can take no more than two stones and present them to Kostya. 
+
+If Zahar takes two stones, he should glue them together on one of the faces in order to get a new piece of rectangular parallelepiped of marble. Thus, it is possible to glue a pair of stones together if and only if two faces on which they are glued together match as rectangles. In such gluing it is allowed to rotate and flip the stones in any way. 
+
+Help Zahar choose such a present so that Kostya can carve a sphere of the maximum possible volume and present it to Zahar.
+
+Input
+
+The first line contains the integer n (1 ≤ n ≤ 105).
+
+n lines follow, in the i-th of which there are three integers ai, bi and ci (1 ≤ ai, bi, ci ≤ 109) — the lengths of edges of the i-th stone. Note, that two stones may have exactly the same sizes, but they still will be considered two different stones.
+
+Output
+
+In the first line print k (1 ≤ k ≤ 2) the number of stones which Zahar has chosen. In the second line print k distinct integers from 1 to n — the numbers of stones which Zahar needs to choose. Consider that stones are numbered from 1 to n in the order as they are given in the input data.
+
+You can print the stones in arbitrary order. If there are several answers print any of them. 
+
+Examples
+
+Input
+
+6
+5 5 5
+3 2 4
+1 4 1
+2 1 3
+3 2 4
+3 3 4
+
+
+Output
+
+1
+1
+
+
+Input
+
+7
+10 7 8
+5 10 3
+4 2 6
+5 5 5
+10 2 8
+4 2 1
+7 7 7
+
+
+Output
+
+2
+1 5
+
+Note
+
+In the first example we can connect the pairs of stones:
+
+  * 2 and 4, the size of the parallelepiped: 3 × 2 × 5, the radius of the inscribed sphere 1
+  * 2 and 5, the size of the parallelepiped: 3 × 2 × 8 or 6 × 2 × 4 or 3 × 4 × 4, the radius of the inscribed sphere 1, or 1, or 1.5 respectively. 
+  * 2 and 6, the size of the parallelepiped: 3 × 5 × 4, the radius of the inscribed sphere 1.5
+  * 4 and 5, the size of the parallelepiped: 3 × 2 × 5, the radius of the inscribed sphere 1
+  * 5 and 6, the size of the parallelepiped: 3 × 4 × 5, the radius of the inscribed sphere 1.5
+
+
+
+Or take only one stone:
+
+  * 1 the size of the parallelepiped: 5 × 5 × 5, the radius of the inscribed sphere 2.5
+  * 2 the size of the parallelepiped: 3 × 2 × 4, the radius of the inscribed sphere 1
+  * 3 the size of the parallelepiped: 1 × 4 × 1, the radius of the inscribed sphere 0.5
+  * 4 the size of the parallelepiped: 2 × 1 × 3, the radius of the inscribed sphere 0.5
+  * 5 the size of the parallelepiped: 3 × 2 × 4, the radius of the inscribed sphere 1
+  * 6 the size of the parallelepiped: 3 × 3 × 4, the radius of the inscribed sphere 1.5
+
+
+
+It is most profitable to take only the first stone. ","from sys import stdin, stdout
+n = int(stdin.readline())
+
+one = {}
+two = {}
+ans = []
+challengers = []
+for i in range(n):
+    a, b, c = map(int, stdin.readline().split())
+    challengers.append((a, b, c))
+    
+    first = (max(a, b), min(a, b))
+    second = (max(a, c), min(a, c))
+    third = (max(b, c), min(b, c))
+    
+    if first in two:
+        if two[first] < one[first][0] + c:
+            ans.append((one[first][0] + c, first[0], first[1], one[first][1], i))
+            two[first] = one[first][0] + c
+    elif first in one:
+        two[first] = one[first][0] + c
+        ans.append((one[first][0] + c, first[0], first[1], one[first][1], i))
+    
+    if second in two:
+        if two[second] < one[second][0] + c:
+            ans.append((one[second][0] + b, second[0], second[1], one[second][1], i))
+            two[second] = one[second][0] + b
+    elif second in one:
+        two[second] = one[second][0] + b    
+        ans.append((one[second][0] + b, second[0], second[1], one[second][1], i))        
+        
+    if third in two:
+        if two[third] < one[third][0] + c:
+            ans.append((one[third][0] + a, third[0], third[1], one[third][1], i))
+            two[third] = one[third][0] + a
+    elif third in one:
+        two[third] = one[third][0] + a
+        ans.append((one[third][0] + a, third[0], third[1], one[third][1], i))
+    
+    if first not in one or one[first][0] < c:
+        one[first] = (c, i)
+    
+    if second not in one or one[second][0] < b:
+        one[second] = (b, i)
+    
+    if third not in one or one[third][0] < a:
+        one[third] = (a, i)
+
+label = 0
+cnt = 0
+for a, b, c, ind1, ind2 in ans:
+    if min(min(a, b), c) > cnt:
+        label = 2
+        cnt = min(min(a, b), c)
+        first = ind1
+        second = ind2
+
+for i in range(n):
+    a, b, c = challengers[i]
+    if min(min(a, b), c) > cnt:
+        label = 1
+        cnt = min(min(a, b), c)
+        first = i
+
+if label == 1:
+    stdout.write('1' + '\n' + str(first + 1))
+else:
+    stdout.write('2' + '\n' + str(first + 1) + ' ' + str(second + 1))",,False,post,True,True,True,True,code_contests5.json
+2005,code_contests,human,gpt-3.5-turbo-0125,"Petya and Vasya are playing a game. Petya's got n non-transparent glasses, standing in a row. The glasses' positions are indexed with integers from 1 to n from left to right. Note that the positions are indexed but the glasses are not.
+
+First Petya puts a marble under the glass in position s. Then he performs some (possibly zero) shuffling operations. One shuffling operation means moving the glass from the first position to position p1, the glass from the second position to position p2 and so on. That is, a glass goes from position i to position pi. Consider all glasses are moving simultaneously during one shuffling operation. When the glasses are shuffled, the marble doesn't travel from one glass to another: it moves together with the glass it was initially been put in.
+
+After all shuffling operations Petya shows Vasya that the ball has moved to position t. Vasya's task is to say what minimum number of shuffling operations Petya has performed or determine that Petya has made a mistake and the marble could not have got from position s to position t.
+
+Input
+
+The first line contains three integers: n, s, t (1 ≤ n ≤ 105; 1 ≤ s, t ≤ n) — the number of glasses, the ball's initial and final position. The second line contains n space-separated integers: p1, p2, ..., pn (1 ≤ pi ≤ n) — the shuffling operation parameters. It is guaranteed that all pi's are distinct.
+
+Note that s can equal t.
+
+Output
+
+If the marble can move from position s to position t, then print on a single line a non-negative integer — the minimum number of shuffling operations, needed to get the marble to position t. If it is impossible, print number -1.
+
+Examples
+
+Input
+
+4 2 1
+2 3 4 1
+
+
+Output
+
+3
+
+
+Input
+
+4 3 3
+4 1 3 2
+
+
+Output
+
+0
+
+
+Input
+
+4 3 4
+1 2 3 4
+
+
+Output
+
+-1
+
+
+Input
+
+3 1 3
+2 1 3
+
+
+Output
+
+-1","IN = lambda: map(int, raw_input().split())
+print -(sum(IN())-sum(IN()))
+",,True,post,False,True,False,False,code_contests5.json
+1326,code_contests,human,gpt-3.5-turbo-0125,"Let a and b be two arrays of lengths n and m, respectively, with no elements in common. We can define a new array merge(a,b) of length n+m recursively as follows:
+
+  * If one of the arrays is empty, the result is the other array. That is, merge(∅,b)=b and merge(a,∅)=a. In particular, merge(∅,∅)=∅. 
+  * If both arrays are non-empty, and a_1<b_1, then merge(a,b)=[a_1]+merge([a_2,…,a_n],b). That is, we delete the first element a_1 of a, merge the remaining arrays, then add a_1 to the beginning of the result. 
+  * If both arrays are non-empty, and a_1>b_1, then merge(a,b)=[b_1]+merge(a,[b_2,…,b_m]). That is, we delete the first element b_1 of b, merge the remaining arrays, then add b_1 to the beginning of the result. 
+
+
+
+This algorithm has the nice property that if a and b are sorted, then merge(a,b) will also be sorted. For example, it is used as a subroutine in merge-sort. For this problem, however, we will consider the same procedure acting on non-sorted arrays as well. For example, if a=[3,1] and b=[2,4], then merge(a,b)=[2,3,1,4].
+
+A permutation is an array consisting of n distinct integers from 1 to n in arbitrary order. For example, [2,3,1,5,4] is a permutation, but [1,2,2] is not a permutation (2 appears twice in the array) and [1,3,4] is also not a permutation (n=3 but there is 4 in the array).
+
+There is a permutation p of length 2n. Determine if there exist two arrays a and b, each of length n and with no elements in common, so that p=merge(a,b).
+
+Input
+
+The first line contains a single integer t (1≤ t≤ 1000) — the number of test cases. Next 2t lines contain descriptions of test cases. 
+
+The first line of each test case contains a single integer n (1≤ n≤ 2000).
+
+The second line of each test case contains 2n integers p_1,…,p_{2n} (1≤ p_i≤ 2n). It is guaranteed that p is a permutation.
+
+It is guaranteed that the sum of n across all test cases does not exceed 2000.
+
+Output
+
+For each test case, output ""YES"" if there exist arrays a, b, each of length n and with no common elements, so that p=merge(a,b). Otherwise, output ""NO"".
+
+Example
+
+Input
+
+
+6
+2
+2 3 1 4
+2
+3 1 2 4
+4
+3 2 6 1 5 7 8 4
+3
+1 2 3 4 5 6
+4
+6 1 3 7 4 5 8 2
+6
+4 3 2 5 1 11 9 12 8 6 10 7
+
+
+Output
+
+
+YES
+NO
+YES
+YES
+NO
+NO
+
+Note
+
+In the first test case, [2,3,1,4]=merge([3,1],[2,4]).
+
+In the second test case, we can show that [3,1,2,4] is not the merge of two arrays of length 2.
+
+In the third test case, [3,2,6,1,5,7,8,4]=merge([3,2,8,4],[6,1,5,7]).
+
+In the fourth test case, [1,2,3,4,5,6]=merge([1,3,6],[2,4,5]), for example.","from collections import *
+import sys
+try: inp = raw_input
+except: inp = input
+def err(s):
+    sys.stderr.write('{}\n'.format(s))
+
+def ni():
+    return int(inp())
+
+def nl():
+    return [int(_) for _ in inp().split()]
+
+def solve(N):
+    P = nl()
+
+    a = [10**5]
+    b = [10**5]
+    fail = False
+    for c in P[::-1]:
+        if len(a) == 1:
+            a.append(c)
+            continue
+        if c > a[-1] and c > b[-1]:
+            fail = True
+            break
+        if c > a[-1]:
+            a.append(c)
+            continue
+        if c > b[-1]:
+            b.append(c)
+            continue
+        if (len(b), b[-1]) < (len(a), a[-1]):
+            b.append(c)
+        else:
+            a.append(c)
+    if len(a) != N +1: fail = True
+    if fail:
+        print('NO')
+    else:
+        print('YES')
+
+t = ni()
+for _ in range(t):
+    N = ni()
+    solve(N)
+",,False,post,False,True,True,True,code_contests5.json
+3141,code_contests,human,gpt-3.5-turbo-0125,"In some village, there are 999 towers that are 1,(1+2),(1+2+3),...,(1+2+3+...+999) meters high from west to east, at intervals of 1 meter.
+
+It had been snowing for a while before it finally stopped. For some two adjacent towers located 1 meter apart, we measured the lengths of the parts of those towers that are not covered with snow, and the results are a meters for the west tower, and b meters for the east tower.
+
+Assuming that the depth of snow cover and the altitude are the same everywhere in the village, find the amount of the snow cover.
+
+Assume also that the depth of the snow cover is always at least 1 meter.
+
+Constraints
+
+* 1 \leq a < b < 499500(=1+2+3+...+999)
+* All values in input are integers.
+* There is no input that contradicts the assumption.
+
+Input
+
+Input is given from Standard Input in the following format:
+
+
+a b
+
+
+Output
+
+If the depth of the snow cover is x meters, print x as an integer.
+
+Examples
+
+Input
+
+8 13
+
+
+Output
+
+2
+
+
+Input
+
+54 65
+
+
+Output
+
+1","a,b = map(int, raw_input().split())
+print (b-a)*(b-a-1)/2-a
+",,False,post,True,False,False,False,code_contests5.json
