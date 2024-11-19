@@ -3,88 +3,46 @@
         "value": 250,
         "description": "Total number of valid rows after preprocessing and removing invalid entries."
     },
-    "original_correctness_agreement": {
-        "correctness": {
-            "count": 91,
-            "percentage": 36.4,
-            "mcc": 0.11092107999698035,
-            "description": "Number, percentage, and MCC for 'Correctness' agreement with 'original correctness'."
-        },
-        "naive_correctness": {
-            "count": 81,
-            "percentage": 32.4,
-            "mcc": 0.06943296507508849,
-            "description": "Number, percentage, and MCC for 'naive correctness' agreement with 'original correctness'."
-        },
-        "annotated_correctness": {
-            "count": 107,
-            "percentage": 42.8,
-            "mcc": 0.1531811288869061,
-            "description": "Number, percentage, and MCC for 'annotated correctness' agreement with 'original correctness'."
-        },
-        "naive_no_fsl_correctness": {
-            "count": 95,
-            "percentage": 38.0,
-            "mcc": 0.19304683562633607,
-            "description": "Number, percentage, and MCC for 'naive no fsl correctness' agreement with 'original correctness'."
-        },
-        "annotated_correctness_simple": {
-            "count": 79,
-            "percentage": 31.6,
-            "mcc": 0.08347838711296822,
-            "description": "Number, percentage, and MCC for 'annotated correctness' agreement with 'original correctness'."
-        }
+    "Correctness": {
+        "agreement_count": "91",
+        "agreement_percentage": 36.4,
+        "mcc": 0.11092107999698035,
+        "description": "Agreement analysis between 'Correctness' and 'original correctness'."
     },
-    "false_positives": {
-        "naive_correctness": {
-            "count": 168,
-            "description": "Number of cases where 'original correctness' is True but 'naive correctness' is False."
-        },
-        "correctness": {
-            "count": 156,
-            "description": "Number of cases where 'original correctness' is True but 'Correctness' is False."
-        }
+    "naive correctness": {
+        "agreement_count": "81",
+        "agreement_percentage": 32.4,
+        "mcc": 0.06943296507508849,
+        "description": "Agreement analysis between 'naive correctness' and 'original correctness'."
     },
-    "false_negatives": {
-        "naive_correctness": {
-            "count": 1,
-            "description": "Number of cases where 'original correctness' is False but 'naive correctness' is True."
-        },
-        "correctness": {
-            "count": 3,
-            "description": "Number of cases where 'original correctness' is False but 'Correctness' is True."
-        }
+    "annotated correctness": {
+        "agreement_count": "107",
+        "agreement_percentage": 42.8,
+        "mcc": 0.1531811288869061,
+        "description": "Agreement analysis between 'annotated correctness' and 'original correctness'."
+    },
+    "annotated correctness simple": {
+        "agreement_count": "79",
+        "agreement_percentage": 31.6,
+        "mcc": 0.08347838711296822,
+        "description": "Agreement analysis between 'annotated correctness simple' and 'original correctness'."
+    },
+    "naive no fsl correctness": {
+        "agreement_count": "95",
+        "agreement_percentage": 38.0,
+        "mcc": 0.19304683562633607,
+        "description": "Agreement analysis between 'naive no fsl correctness' and 'original correctness'."
     },
     "naive_correctness_vs_correctness_diff": {
         "description": "Analysis of cases where 'naive correctness' and 'Correctness' differ.",
-        "naive_correctness_with_original_in_diff": {
-            "count": 6,
-            "percentage": 27.27272727272727,
-            "description": "Number and percentage of times 'naive correctness' agrees with 'original correctness' when 'naive correctness' and 'Correctness' differ."
-        },
-        "correctness_with_original_in_diff": {
-            "count": 16,
-            "percentage": 72.72727272727273,
-            "description": "Number and percentage of times 'Correctness' agrees with 'original correctness' when 'naive correctness' and 'Correctness' differ."
-        }
+        "count": 22,
+        "original_agreement_count": "6",
+        "original_agreement_percentage": 27.27272727272727
     },
     "naive_correctness_vs_correctness_same": {
         "description": "Analysis of cases where 'naive correctness' and 'Correctness' are the same.",
-        "same_correctness_original_agreement": {
-            "count": 75,
-            "percentage": 32.89473684210527,
-            "description": "Number and percentage of times both 'naive correctness' and 'Correctness' agree with 'original correctness' when they are the same."
-        },
-        "same_correctness_original_disagreement": {
-            "count": 153,
-            "percentage": 67.10526315789474,
-            "description": "Number and percentage of times both 'naive correctness' and 'Correctness' do not agree with 'original correctness' when they are the same."
-        }
-    },
-    "additional_analysis": {
-        "difference_in_agreement_with_original": {
-            "value": 4.0,
-            "description": "Difference in agreement percentage between 'Correctness' and 'naive correctness' with 'original correctness'."
-        }
+        "count": 228,
+        "original_agreement_count": "75",
+        "original_disagreement_count": "153"
     }
 }

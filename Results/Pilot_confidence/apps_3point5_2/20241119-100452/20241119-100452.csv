@@ -1,0 +1,3115 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Post,original correctness,confidence1,confidence2,correctness1,correctness2,data file
+0267,apps,llama3-70b,gpt-3.5-turbo-0125,"You are given two integers $l$ and $r$ ($l \le r$). Your task is to calculate the sum of numbers from $l$ to $r$ (including $l$ and $r$) such that each number contains at most $k$ different digits, and print this sum modulo $998244353$.
+
+For example, if $k = 1$ then you have to calculate all numbers from $l$ to $r$ such that each number is formed using only one digit. For $l = 10, r = 50$ the answer is $11 + 22 + 33 + 44 = 110$.
+
+
+-----Input-----
+
+The only line of the input contains three integers $l$, $r$ and $k$ ($1 \le l \le r < 10^{18}, 1 \le k \le 10$) — the borders of the segment and the maximum number of different digits.
+
+
+-----Output-----
+
+Print one integer — the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits, modulo $998244353$.
+
+
+-----Examples-----
+Input
+10 50 2
+
+Output
+1230
+
+Input
+1 2345 10
+
+Output
+2750685
+
+Input
+101 154 2
+
+Output
+2189
+
+
+
+-----Note-----
+
+For the first example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{50 \cdot 51}{2} - \frac{9 \cdot 10}{2} = 1230$. This example also explained in the problem statement but for $k = 1$.
+
+For the second example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{2345 \cdot 2346}{2} = 2750685$.
+
+For the third example the answer is $101 + 110 + 111 + 112 + 113 + 114 + 115 + 116 + 117 + 118 + 119 + 121 + 122 + 131 + 133 + 141 + 144 + 151 = 2189$.","MOD = 998244353
+def count_numbers(l, r, k):
+    def count(n, k, dp):
+        if k == 0:
+            return 0
+        if (n, k) in dp:
+            return dp[(n, k)]
+        if n < 10**k:
+            dp[(n, k)] = n
+        else:
+            dp[(n, k)] = 9
+            for i in range(1, k):
+                dp[(n, k)] += 9 * 10**(i-1) * (10**(k-i) - 10**(i-1))
+            dp[(n, k)] += (10**(k-1) - 10**(k-2)) * (n // 10**(k-1) - 1)
+            dp[(n, k)] %= MOD
+        return dp[(n, k)]
+
+    dp = {}
+    return (count(r, k, dp) - count(l-1, k, dp)) % MOD
+
+l, r, k = map(int, input().split())
+print(count_numbers(l, r, k))
+",,post,False,0.30460890698179627,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly implements the logic described in the problem statement. It calculates the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits. The function `count` calculates the count of valid numbers with at most $k$ different digits, and then the main function `func_1` calculates the difference between the count for $r$ and $l-1$ to get the final sum. The modulo operation is also correctly applied. The program handles all potential cases and edge cases described in the problem statement.",True,,pilot_apps1.json
+0267,apps,llama3-70b,gpt-3.5-turbo-0125,"You are given two integers $l$ and $r$ ($l \le r$). Your task is to calculate the sum of numbers from $l$ to $r$ (including $l$ and $r$) such that each number contains at most $k$ different digits, and print this sum modulo $998244353$.
+
+For example, if $k = 1$ then you have to calculate all numbers from $l$ to $r$ such that each number is formed using only one digit. For $l = 10, r = 50$ the answer is $11 + 22 + 33 + 44 = 110$.
+
+
+-----Input-----
+
+The only line of the input contains three integers $l$, $r$ and $k$ ($1 \le l \le r < 10^{18}, 1 \le k \le 10$) — the borders of the segment and the maximum number of different digits.
+
+
+-----Output-----
+
+Print one integer — the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits, modulo $998244353$.
+
+
+-----Examples-----
+Input
+10 50 2
+
+Output
+1230
+
+Input
+1 2345 10
+
+Output
+2750685
+
+Input
+101 154 2
+
+Output
+2189
+
+
+
+-----Note-----
+
+For the first example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{50 \cdot 51}{2} - \frac{9 \cdot 10}{2} = 1230$. This example also explained in the problem statement but for $k = 1$.
+
+For the second example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{2345 \cdot 2346}{2} = 2750685$.
+
+For the third example the answer is $101 + 110 + 111 + 112 + 113 + 114 + 115 + 116 + 117 + 118 + 119 + 121 + 122 + 131 + 133 + 141 + 144 + 151 = 2189$.","MOD = 998244353
+def count_numbers(l, r, k):
+    def count(n, k, dp):
+        if k == 0:
+            return 0
+        if (n, k) in dp:
+            return dp[(n, k)]
+        if n < 10**k:
+            dp[(n, k)] = n
+        else:
+            dp[(n, k)] = 9
+            for i in range(1, k):
+                dp[(n, k)] += 9 * 10**(i-1) * (10**(k-i) - 10**(i-1))
+            dp[(n, k)] += (10**(k-1) - 10**(k-2)) * (n // 10**(k-1) - 1)
+            dp[(n, k)] %= MOD
+        return dp[(n, k)]
+
+    dp = {}
+    return (count(r, k, dp) - count(l-1, k, dp)) % MOD
+
+l, r, k = map(int, input().split())
+print(count_numbers(l, r, k))
+",,post,False,0.637043517128538,"Correctness: True, Confidence: 100
+
+Explanation: The program implements the logic described in the problem statement accurately. It calculates the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits and returns the result modulo $998244353$. The function `func_1` correctly uses dynamic programming to count the numbers that meet the criteria and returns the correct sum. The input is also being read correctly and passed to the function. Overall, the program seems to be handling all potential cases as described in the problem statement.",True,,pilot_apps1.json
+0267,apps,llama3-70b,gpt-3.5-turbo-0125,"You are given two integers $l$ and $r$ ($l \le r$). Your task is to calculate the sum of numbers from $l$ to $r$ (including $l$ and $r$) such that each number contains at most $k$ different digits, and print this sum modulo $998244353$.
+
+For example, if $k = 1$ then you have to calculate all numbers from $l$ to $r$ such that each number is formed using only one digit. For $l = 10, r = 50$ the answer is $11 + 22 + 33 + 44 = 110$.
+
+
+-----Input-----
+
+The only line of the input contains three integers $l$, $r$ and $k$ ($1 \le l \le r < 10^{18}, 1 \le k \le 10$) — the borders of the segment and the maximum number of different digits.
+
+
+-----Output-----
+
+Print one integer — the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits, modulo $998244353$.
+
+
+-----Examples-----
+Input
+10 50 2
+
+Output
+1230
+
+Input
+1 2345 10
+
+Output
+2750685
+
+Input
+101 154 2
+
+Output
+2189
+
+
+
+-----Note-----
+
+For the first example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{50 \cdot 51}{2} - \frac{9 \cdot 10}{2} = 1230$. This example also explained in the problem statement but for $k = 1$.
+
+For the second example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{2345 \cdot 2346}{2} = 2750685$.
+
+For the third example the answer is $101 + 110 + 111 + 112 + 113 + 114 + 115 + 116 + 117 + 118 + 119 + 121 + 122 + 131 + 133 + 141 + 144 + 151 = 2189$.","MOD = 998244353
+def count_numbers(l, r, k):
+    def count(n, k, dp):
+        if k == 0:
+            return 0
+        if (n, k) in dp:
+            return dp[(n, k)]
+        if n < 10**k:
+            dp[(n, k)] = n
+        else:
+            dp[(n, k)] = 9
+            for i in range(1, k):
+                dp[(n, k)] += 9 * 10**(i-1) * (10**(k-i) - 10**(i-1))
+            dp[(n, k)] += (10**(k-1) - 10**(k-2)) * (n // 10**(k-1) - 1)
+            dp[(n, k)] %= MOD
+        return dp[(n, k)]
+
+    dp = {}
+    return (count(r, k, dp) - count(l-1, k, dp)) % MOD
+
+l, r, k = map(int, input().split())
+print(count_numbers(l, r, k))
+",,post,False,0.2469190324351204,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly implements the logic described in the problem statement. It calculates the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits, and prints the result modulo $998244353$. The function `count` correctly calculates the count of numbers with at most $k$ different digits in a given range. The main function `func_1` correctly calculates the final result by subtracting the count for $l-1$ from the count for $r$. The input is correctly parsed and the output is correctly printed. The program covers all potential cases and works as expected for all inputs within the specified constraints.",True,,pilot_apps1.json
+0267,apps,llama3-70b,gpt-3.5-turbo-0125,"You are given two integers $l$ and $r$ ($l \le r$). Your task is to calculate the sum of numbers from $l$ to $r$ (including $l$ and $r$) such that each number contains at most $k$ different digits, and print this sum modulo $998244353$.
+
+For example, if $k = 1$ then you have to calculate all numbers from $l$ to $r$ such that each number is formed using only one digit. For $l = 10, r = 50$ the answer is $11 + 22 + 33 + 44 = 110$.
+
+
+-----Input-----
+
+The only line of the input contains three integers $l$, $r$ and $k$ ($1 \le l \le r < 10^{18}, 1 \le k \le 10$) — the borders of the segment and the maximum number of different digits.
+
+
+-----Output-----
+
+Print one integer — the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits, modulo $998244353$.
+
+
+-----Examples-----
+Input
+10 50 2
+
+Output
+1230
+
+Input
+1 2345 10
+
+Output
+2750685
+
+Input
+101 154 2
+
+Output
+2189
+
+
+
+-----Note-----
+
+For the first example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{50 \cdot 51}{2} - \frac{9 \cdot 10}{2} = 1230$. This example also explained in the problem statement but for $k = 1$.
+
+For the second example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{2345 \cdot 2346}{2} = 2750685$.
+
+For the third example the answer is $101 + 110 + 111 + 112 + 113 + 114 + 115 + 116 + 117 + 118 + 119 + 121 + 122 + 131 + 133 + 141 + 144 + 151 = 2189$.","MOD = 998244353
+def count_numbers(l, r, k):
+    def count(n, k, dp):
+        if k == 0:
+            return 0
+        if (n, k) in dp:
+            return dp[(n, k)]
+        if n < 10**k:
+            dp[(n, k)] = n
+        else:
+            dp[(n, k)] = 9
+            for i in range(1, k):
+                dp[(n, k)] += 9 * 10**(i-1) * (10**(k-i) - 10**(i-1))
+            dp[(n, k)] += (10**(k-1) - 10**(k-2)) * (n // 10**(k-1) - 1)
+            dp[(n, k)] %= MOD
+        return dp[(n, k)]
+
+    dp = {}
+    return (count(r, k, dp) - count(l-1, k, dp)) % MOD
+
+l, r, k = map(int, input().split())
+print(count_numbers(l, r, k))
+",,post,False,0.63672306389417,"Correctness: True, Confidence: 100
+
+Explanation: The program defines a function `count` that calculates the count of numbers with at most `k` different digits up to a given number `n`. The main function `func_1` then calculates the sum of numbers within the range `[l, r]` that satisfy the condition of having at most `k` different digits by subtracting the count up to `l-1` from the count up to `r`. The program follows the problem description and the logic seems correct for all potential cases within the given constraints.",True,,pilot_apps1.json
+0267,apps,llama3-70b,gpt-3.5-turbo-0125,"You are given two integers $l$ and $r$ ($l \le r$). Your task is to calculate the sum of numbers from $l$ to $r$ (including $l$ and $r$) such that each number contains at most $k$ different digits, and print this sum modulo $998244353$.
+
+For example, if $k = 1$ then you have to calculate all numbers from $l$ to $r$ such that each number is formed using only one digit. For $l = 10, r = 50$ the answer is $11 + 22 + 33 + 44 = 110$.
+
+
+-----Input-----
+
+The only line of the input contains three integers $l$, $r$ and $k$ ($1 \le l \le r < 10^{18}, 1 \le k \le 10$) — the borders of the segment and the maximum number of different digits.
+
+
+-----Output-----
+
+Print one integer — the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits, modulo $998244353$.
+
+
+-----Examples-----
+Input
+10 50 2
+
+Output
+1230
+
+Input
+1 2345 10
+
+Output
+2750685
+
+Input
+101 154 2
+
+Output
+2189
+
+
+
+-----Note-----
+
+For the first example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{50 \cdot 51}{2} - \frac{9 \cdot 10}{2} = 1230$. This example also explained in the problem statement but for $k = 1$.
+
+For the second example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{2345 \cdot 2346}{2} = 2750685$.
+
+For the third example the answer is $101 + 110 + 111 + 112 + 113 + 114 + 115 + 116 + 117 + 118 + 119 + 121 + 122 + 131 + 133 + 141 + 144 + 151 = 2189$.","MOD = 998244353
+def count_numbers(l, r, k):
+    def count(n, k, dp):
+        if k == 0:
+            return 0
+        if (n, k) in dp:
+            return dp[(n, k)]
+        if n < 10**k:
+            dp[(n, k)] = n
+        else:
+            dp[(n, k)] = 9
+            for i in range(1, k):
+                dp[(n, k)] += 9 * 10**(i-1) * (10**(k-i) - 10**(i-1))
+            dp[(n, k)] += (10**(k-1) - 10**(k-2)) * (n // 10**(k-1) - 1)
+            dp[(n, k)] %= MOD
+        return dp[(n, k)]
+
+    dp = {}
+    return (count(r, k, dp) - count(l-1, k, dp)) % MOD
+
+l, r, k = map(int, input().split())
+print(count_numbers(l, r, k))
+",,post,False,0.3896343510115778,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly implements the logic to calculate the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits. The function `count` calculates the count of numbers with at most $k$ different digits up to a given number, and the main function `func_1` correctly calculates the sum by subtracting the counts for $l-1$ from the count for $r$. The modulo operation is also correctly applied. The program handles all potential cases as described in the problem statement.",True,,pilot_apps1.json
+0267,apps,gpt-4o,gpt-3.5-turbo-0125,"You are given two integers $l$ and $r$ ($l \le r$). Your task is to calculate the sum of numbers from $l$ to $r$ (including $l$ and $r$) such that each number contains at most $k$ different digits, and print this sum modulo $998244353$.
+
+For example, if $k = 1$ then you have to calculate all numbers from $l$ to $r$ such that each number is formed using only one digit. For $l = 10, r = 50$ the answer is $11 + 22 + 33 + 44 = 110$.
+
+
+-----Input-----
+
+The only line of the input contains three integers $l$, $r$ and $k$ ($1 \le l \le r < 10^{18}, 1 \le k \le 10$) — the borders of the segment and the maximum number of different digits.
+
+
+-----Output-----
+
+Print one integer — the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits, modulo $998244353$.
+
+
+-----Examples-----
+Input
+10 50 2
+
+Output
+1230
+
+Input
+1 2345 10
+
+Output
+2750685
+
+Input
+101 154 2
+
+Output
+2189
+
+
+
+-----Note-----
+
+For the first example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{50 \cdot 51}{2} - \frac{9 \cdot 10}{2} = 1230$. This example also explained in the problem statement but for $k = 1$.
+
+For the second example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{2345 \cdot 2346}{2} = 2750685$.
+
+For the third example the answer is $101 + 110 + 111 + 112 + 113 + 114 + 115 + 116 + 117 + 118 + 119 + 121 + 122 + 131 + 133 + 141 + 144 + 151 = 2189$.","MOD = 998244353
+
+def contains_at_most_k_unique_digits(n, k):
+    return len(set(str(n))) <= k
+
+def sum_of_numbers_with_k_unique_digits(l, r, k):
+    total_sum = 0
+    for num in range(l, r + 1):
+        if contains_at_most_k_unique_digits(num, k):
+            total_sum = (total_sum + num) % MOD
+    return total_sum
+
+# Read input
+l, r, k = map(int, input().split())
+
+# Calculate and print the result
+print(sum_of_numbers_with_k_unique_digits(l, r, k))
+",,post,False,0.6561543553018364,"Correctness: True, Confidence: 100
+
+Explanation: The given Python program defines two functions `func_1` and `func_2` which correctly check if a number contains at most `k` different digits and calculate the sum of numbers from `l` to `r` that satisfy this condition. The program then takes input, calls `func_2`, and prints the result. The logic implemented in the functions aligns with the problem description provided. The program handles all potential cases as described in the problem statement.",True,,pilot_apps1.json
+0267,apps,gpt-4o,gpt-3.5-turbo-0125,"You are given two integers $l$ and $r$ ($l \le r$). Your task is to calculate the sum of numbers from $l$ to $r$ (including $l$ and $r$) such that each number contains at most $k$ different digits, and print this sum modulo $998244353$.
+
+For example, if $k = 1$ then you have to calculate all numbers from $l$ to $r$ such that each number is formed using only one digit. For $l = 10, r = 50$ the answer is $11 + 22 + 33 + 44 = 110$.
+
+
+-----Input-----
+
+The only line of the input contains three integers $l$, $r$ and $k$ ($1 \le l \le r < 10^{18}, 1 \le k \le 10$) — the borders of the segment and the maximum number of different digits.
+
+
+-----Output-----
+
+Print one integer — the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits, modulo $998244353$.
+
+
+-----Examples-----
+Input
+10 50 2
+
+Output
+1230
+
+Input
+1 2345 10
+
+Output
+2750685
+
+Input
+101 154 2
+
+Output
+2189
+
+
+
+-----Note-----
+
+For the first example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{50 \cdot 51}{2} - \frac{9 \cdot 10}{2} = 1230$. This example also explained in the problem statement but for $k = 1$.
+
+For the second example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{2345 \cdot 2346}{2} = 2750685$.
+
+For the third example the answer is $101 + 110 + 111 + 112 + 113 + 114 + 115 + 116 + 117 + 118 + 119 + 121 + 122 + 131 + 133 + 141 + 144 + 151 = 2189$.","MOD = 998244353
+
+def contains_at_most_k_unique_digits(n, k):
+    return len(set(str(n))) <= k
+
+def sum_of_numbers_with_k_unique_digits(l, r, k):
+    total_sum = 0
+    for num in range(l, r + 1):
+        if contains_at_most_k_unique_digits(num, k):
+            total_sum = (total_sum + num) % MOD
+    return total_sum
+
+# Read input
+l, r, k = map(int, input().split())
+
+# Calculate and print the result
+print(sum_of_numbers_with_k_unique_digits(l, r, k))
+",,post,False,0.5605285261090085,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly calculates the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits. The functions `func_1` and `func_2` are implemented as described in the problem statement. The program iterates through each number in the range $l$ to $r$, checks if the number satisfies the condition of having at most $k$ different digits, and then adds it to the total sum modulo $998244353$. The program handles all potential cases and produces the correct output for the given problem description.",True,,pilot_apps1.json
+0267,apps,gpt-4o,gpt-3.5-turbo-0125,"You are given two integers $l$ and $r$ ($l \le r$). Your task is to calculate the sum of numbers from $l$ to $r$ (including $l$ and $r$) such that each number contains at most $k$ different digits, and print this sum modulo $998244353$.
+
+For example, if $k = 1$ then you have to calculate all numbers from $l$ to $r$ such that each number is formed using only one digit. For $l = 10, r = 50$ the answer is $11 + 22 + 33 + 44 = 110$.
+
+
+-----Input-----
+
+The only line of the input contains three integers $l$, $r$ and $k$ ($1 \le l \le r < 10^{18}, 1 \le k \le 10$) — the borders of the segment and the maximum number of different digits.
+
+
+-----Output-----
+
+Print one integer — the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits, modulo $998244353$.
+
+
+-----Examples-----
+Input
+10 50 2
+
+Output
+1230
+
+Input
+1 2345 10
+
+Output
+2750685
+
+Input
+101 154 2
+
+Output
+2189
+
+
+
+-----Note-----
+
+For the first example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{50 \cdot 51}{2} - \frac{9 \cdot 10}{2} = 1230$. This example also explained in the problem statement but for $k = 1$.
+
+For the second example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{2345 \cdot 2346}{2} = 2750685$.
+
+For the third example the answer is $101 + 110 + 111 + 112 + 113 + 114 + 115 + 116 + 117 + 118 + 119 + 121 + 122 + 131 + 133 + 141 + 144 + 151 = 2189$.","MOD = 998244353
+
+def contains_at_most_k_unique_digits(n, k):
+    return len(set(str(n))) <= k
+
+def sum_of_numbers_with_k_unique_digits(l, r, k):
+    total_sum = 0
+    for num in range(l, r + 1):
+        if contains_at_most_k_unique_digits(num, k):
+            total_sum = (total_sum + num) % MOD
+    return total_sum
+
+# Read input
+l, r, k = map(int, input().split())
+
+# Calculate and print the result
+print(sum_of_numbers_with_k_unique_digits(l, r, k))
+",,post,False,0.6673609771918285,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly calculates the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits. The function `func_1` checks if a number meets the criteria of having at most $k$ different digits, and the function `func_2` iterates through the range from $l$ to $r$ and adds the numbers that meet the criteria to the total sum. The modulo operation is correctly applied to the final sum. The program covers all potential cases and works as expected based on the problem description.",True,,pilot_apps1.json
+0267,apps,gpt-4o,gpt-3.5-turbo-0125,"You are given two integers $l$ and $r$ ($l \le r$). Your task is to calculate the sum of numbers from $l$ to $r$ (including $l$ and $r$) such that each number contains at most $k$ different digits, and print this sum modulo $998244353$.
+
+For example, if $k = 1$ then you have to calculate all numbers from $l$ to $r$ such that each number is formed using only one digit. For $l = 10, r = 50$ the answer is $11 + 22 + 33 + 44 = 110$.
+
+
+-----Input-----
+
+The only line of the input contains three integers $l$, $r$ and $k$ ($1 \le l \le r < 10^{18}, 1 \le k \le 10$) — the borders of the segment and the maximum number of different digits.
+
+
+-----Output-----
+
+Print one integer — the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits, modulo $998244353$.
+
+
+-----Examples-----
+Input
+10 50 2
+
+Output
+1230
+
+Input
+1 2345 10
+
+Output
+2750685
+
+Input
+101 154 2
+
+Output
+2189
+
+
+
+-----Note-----
+
+For the first example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{50 \cdot 51}{2} - \frac{9 \cdot 10}{2} = 1230$. This example also explained in the problem statement but for $k = 1$.
+
+For the second example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{2345 \cdot 2346}{2} = 2750685$.
+
+For the third example the answer is $101 + 110 + 111 + 112 + 113 + 114 + 115 + 116 + 117 + 118 + 119 + 121 + 122 + 131 + 133 + 141 + 144 + 151 = 2189$.","MOD = 998244353
+
+def contains_at_most_k_unique_digits(n, k):
+    return len(set(str(n))) <= k
+
+def sum_of_numbers_with_k_unique_digits(l, r, k):
+    total_sum = 0
+    for num in range(l, r + 1):
+        if contains_at_most_k_unique_digits(num, k):
+            total_sum = (total_sum + num) % MOD
+    return total_sum
+
+# Read input
+l, r, k = map(int, input().split())
+
+# Calculate and print the result
+print(sum_of_numbers_with_k_unique_digits(l, r, k))
+",,post,False,0.6561543553018364,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly implements the logic described in the problem statement. It calculates the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits and prints the result modulo $998244353$. The functions `func_1` and `func_2` correctly check if a number satisfies the condition of having at most $k$ different digits and calculate the total sum accordingly. The program reads the input, calls the `func_2` function, and prints the result, which is the expected output based on the problem description. Since the program follows the problem description for all potential cases, the correctness is True with a high confidence level of 100.",True,,pilot_apps1.json
+0267,apps,gpt-4o,gpt-3.5-turbo-0125,"You are given two integers $l$ and $r$ ($l \le r$). Your task is to calculate the sum of numbers from $l$ to $r$ (including $l$ and $r$) such that each number contains at most $k$ different digits, and print this sum modulo $998244353$.
+
+For example, if $k = 1$ then you have to calculate all numbers from $l$ to $r$ such that each number is formed using only one digit. For $l = 10, r = 50$ the answer is $11 + 22 + 33 + 44 = 110$.
+
+
+-----Input-----
+
+The only line of the input contains three integers $l$, $r$ and $k$ ($1 \le l \le r < 10^{18}, 1 \le k \le 10$) — the borders of the segment and the maximum number of different digits.
+
+
+-----Output-----
+
+Print one integer — the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits, modulo $998244353$.
+
+
+-----Examples-----
+Input
+10 50 2
+
+Output
+1230
+
+Input
+1 2345 10
+
+Output
+2750685
+
+Input
+101 154 2
+
+Output
+2189
+
+
+
+-----Note-----
+
+For the first example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{50 \cdot 51}{2} - \frac{9 \cdot 10}{2} = 1230$. This example also explained in the problem statement but for $k = 1$.
+
+For the second example the answer is just the sum of numbers from $l$ to $r$ which equals to $\frac{2345 \cdot 2346}{2} = 2750685$.
+
+For the third example the answer is $101 + 110 + 111 + 112 + 113 + 114 + 115 + 116 + 117 + 118 + 119 + 121 + 122 + 131 + 133 + 141 + 144 + 151 = 2189$.","MOD = 998244353
+
+def contains_at_most_k_unique_digits(n, k):
+    return len(set(str(n))) <= k
+
+def sum_of_numbers_with_k_unique_digits(l, r, k):
+    total_sum = 0
+    for num in range(l, r + 1):
+        if contains_at_most_k_unique_digits(num, k):
+            total_sum = (total_sum + num) % MOD
+    return total_sum
+
+# Read input
+l, r, k = map(int, input().split())
+
+# Calculate and print the result
+print(sum_of_numbers_with_k_unique_digits(l, r, k))
+",,post,False,0.24097655744142368,"Correctness: True, Confidence: 100
+
+Explanation: The provided Python program correctly implements the given problem description. It calculates the sum of numbers from $l$ to $r$ such that each number contains at most $k$ different digits. The functions `func_1` and `func_2` are used to check if a number meets the condition of having at most $k$ different digits and to calculate the total sum accordingly. The program iterates through the range of numbers from $l$ to $r$ and adds the numbers that satisfy the condition. The modulo operation is correctly applied to the total sum. All the provided examples are correctly calculated by the program, and there are no potential cases identified where the program would not work as expected based on the problem description. Hence, the correctness is True with high confidence.",True,,pilot_apps1.json
+0108,apps,llama3-70b,gpt-3.5-turbo-0125,"You are given a string s consisting of |s| small english letters.
+
+In one move you can replace any character of this string to the next character in alphabetical order (a will be replaced with b, s will be replaced with t, etc.). You cannot replace letter z with any other letter.
+
+Your target is to make some number of moves (not necessary minimal) to get string abcdefghijklmnopqrstuvwxyz (english alphabet) as a subsequence. Subsequence of the string is the string that is obtained by deleting characters at some positions. You need to print the string that will be obtained from the given string and will be contain english alphabet as a subsequence or say that it is impossible.
+
+
+-----Input-----
+
+The only one line of the input consisting of the string s consisting of |s| (1 ≤ |s| ≤ 10^5) small english letters.
+
+
+-----Output-----
+
+If you can get a string that can be obtained from the given string and will contain english alphabet as a subsequence, print it. Otherwise print «-1» (without quotes).
+
+
+-----Examples-----
+Input
+aacceeggiikkmmooqqssuuwwyy
+
+Output
+abcdefghijklmnopqrstuvwxyz
+
+Input
+thereisnoanswer
+
+Output
+-1","s = input()
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+res = ''
+for char in alphabet:
+    while char in s:
+        res += char
+        s = s.replace(char, chr(ord(char) + 1), 1)
+if len(res) == 26:
+    print(res)
+else:
+    print(-1)
+",,post,False,0.6387384383874084,"Correctness: True, Confidence: 100
+
+I am confident that the program is correct for all potential cases. The program iterates through each character in the alphabet and replaces occurrences of that character in the input string with the next character in alphabetical order. It then checks if the resulting string contains all 26 English letters in order. If it does, it prints the resulting string, otherwise, it prints -1. The logic of the program aligns with the problem description and it handles the case where it is impossible to obtain the English alphabet as a subsequence.",True,,pilot_apps1.json
+0108,apps,llama3-70b,gpt-3.5-turbo-0125,"You are given a string s consisting of |s| small english letters.
+
+In one move you can replace any character of this string to the next character in alphabetical order (a will be replaced with b, s will be replaced with t, etc.). You cannot replace letter z with any other letter.
+
+Your target is to make some number of moves (not necessary minimal) to get string abcdefghijklmnopqrstuvwxyz (english alphabet) as a subsequence. Subsequence of the string is the string that is obtained by deleting characters at some positions. You need to print the string that will be obtained from the given string and will be contain english alphabet as a subsequence or say that it is impossible.
+
+
+-----Input-----
+
+The only one line of the input consisting of the string s consisting of |s| (1 ≤ |s| ≤ 10^5) small english letters.
+
+
+-----Output-----
+
+If you can get a string that can be obtained from the given string and will contain english alphabet as a subsequence, print it. Otherwise print «-1» (without quotes).
+
+
+-----Examples-----
+Input
+aacceeggiikkmmooqqssuuwwyy
+
+Output
+abcdefghijklmnopqrstuvwxyz
+
+Input
+thereisnoanswer
+
+Output
+-1","s = input()
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+res = ''
+for char in alphabet:
+    while char in s:
+        res += char
+        s = s.replace(char, chr(ord(char) + 1), 1)
+if len(res) == 26:
+    print(res)
+else:
+    print(-1)
+",,post,False,0.6387384383874084,"Correctness: True, Confidence: 100
+
+Explanation: The program iterates through each character of the alphabet and replaces occurrences of that character in the input string with the next character in alphabetical order. It then checks if the resulting string has all 26 alphabets in order. If it does, it prints the resulting string, otherwise it prints -1. The logic seems to correctly handle the problem description for all potential cases, ensuring that the resulting string contains the English alphabet as a subsequence.",True,,pilot_apps1.json
+0108,apps,llama3-70b,gpt-3.5-turbo-0125,"You are given a string s consisting of |s| small english letters.
+
+In one move you can replace any character of this string to the next character in alphabetical order (a will be replaced with b, s will be replaced with t, etc.). You cannot replace letter z with any other letter.
+
+Your target is to make some number of moves (not necessary minimal) to get string abcdefghijklmnopqrstuvwxyz (english alphabet) as a subsequence. Subsequence of the string is the string that is obtained by deleting characters at some positions. You need to print the string that will be obtained from the given string and will be contain english alphabet as a subsequence or say that it is impossible.
+
+
+-----Input-----
+
+The only one line of the input consisting of the string s consisting of |s| (1 ≤ |s| ≤ 10^5) small english letters.
+
+
+-----Output-----
+
+If you can get a string that can be obtained from the given string and will contain english alphabet as a subsequence, print it. Otherwise print «-1» (without quotes).
+
+
+-----Examples-----
+Input
+aacceeggiikkmmooqqssuuwwyy
+
+Output
+abcdefghijklmnopqrstuvwxyz
+
+Input
+thereisnoanswer
+
+Output
+-1","s = input()
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+res = ''
+for char in alphabet:
+    while char in s:
+        res += char
+        s = s.replace(char, chr(ord(char) + 1), 1)
+if len(res) == 26:
+    print(res)
+else:
+    print(-1)
+",,post,False,0.6342747105459687,"Correctness: True, Confidence: 100
+
+Explanation: The program iterates through each character of the alphabet and replaces occurrences in the input string with the next character in the alphabet. It then checks if the resulting string contains all the characters from 'a' to 'z' in order. If it does, it prints the resulting string, otherwise, it prints -1. The program follows the problem description accurately and provides the correct output for the given problem. It covers all potential cases and works as expected.",True,,pilot_apps1.json
+0108,apps,llama3-70b,gpt-3.5-turbo-0125,"You are given a string s consisting of |s| small english letters.
+
+In one move you can replace any character of this string to the next character in alphabetical order (a will be replaced with b, s will be replaced with t, etc.). You cannot replace letter z with any other letter.
+
+Your target is to make some number of moves (not necessary minimal) to get string abcdefghijklmnopqrstuvwxyz (english alphabet) as a subsequence. Subsequence of the string is the string that is obtained by deleting characters at some positions. You need to print the string that will be obtained from the given string and will be contain english alphabet as a subsequence or say that it is impossible.
+
+
+-----Input-----
+
+The only one line of the input consisting of the string s consisting of |s| (1 ≤ |s| ≤ 10^5) small english letters.
+
+
+-----Output-----
+
+If you can get a string that can be obtained from the given string and will contain english alphabet as a subsequence, print it. Otherwise print «-1» (without quotes).
+
+
+-----Examples-----
+Input
+aacceeggiikkmmooqqssuuwwyy
+
+Output
+abcdefghijklmnopqrstuvwxyz
+
+Input
+thereisnoanswer
+
+Output
+-1","s = input()
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+res = ''
+for char in alphabet:
+    while char in s:
+        res += char
+        s = s.replace(char, chr(ord(char) + 1), 1)
+if len(res) == 26:
+    print(res)
+else:
+    print(-1)
+",,post,False,0.6342747105459687,"Correctness: True, Confidence: 100
+
+Explanation: The program iterates through each character of the alphabet and replaces occurrences of that character in the input string with the next character in the alphabet. It then checks if the resulting string contains all the characters of the alphabet in order. If it does, it prints the result, otherwise, it prints -1. The logic of the program seems correct and it covers all potential cases as described in the problem statement.",True,,pilot_apps1.json
+0108,apps,llama3-70b,gpt-3.5-turbo-0125,"You are given a string s consisting of |s| small english letters.
+
+In one move you can replace any character of this string to the next character in alphabetical order (a will be replaced with b, s will be replaced with t, etc.). You cannot replace letter z with any other letter.
+
+Your target is to make some number of moves (not necessary minimal) to get string abcdefghijklmnopqrstuvwxyz (english alphabet) as a subsequence. Subsequence of the string is the string that is obtained by deleting characters at some positions. You need to print the string that will be obtained from the given string and will be contain english alphabet as a subsequence or say that it is impossible.
+
+
+-----Input-----
+
+The only one line of the input consisting of the string s consisting of |s| (1 ≤ |s| ≤ 10^5) small english letters.
+
+
+-----Output-----
+
+If you can get a string that can be obtained from the given string and will contain english alphabet as a subsequence, print it. Otherwise print «-1» (without quotes).
+
+
+-----Examples-----
+Input
+aacceeggiikkmmooqqssuuwwyy
+
+Output
+abcdefghijklmnopqrstuvwxyz
+
+Input
+thereisnoanswer
+
+Output
+-1","s = input()
+alphabet = 'abcdefghijklmnopqrstuvwxyz'
+res = ''
+for char in alphabet:
+    while char in s:
+        res += char
+        s = s.replace(char, chr(ord(char) + 1), 1)
+if len(res) == 26:
+    print(res)
+else:
+    print(-1)
+",,post,False,0.6560167577291784,"Correctness: True
+Confidence: 100
+
+Explanation: The program iterates through the alphabet and replaces each character in the input string with the next character in alphabetical order until it forms the English alphabet as a subsequence. If the length of the resulting string is 26 (the length of the English alphabet), it prints the string. Otherwise, it prints -1. The program follows the problem description accurately and works correctly for all potential cases.",True,,pilot_apps1.json
+0108,apps,gpt-4o,gpt-3.5-turbo-0125,"You are given a string s consisting of |s| small english letters.
+
+In one move you can replace any character of this string to the next character in alphabetical order (a will be replaced with b, s will be replaced with t, etc.). You cannot replace letter z with any other letter.
+
+Your target is to make some number of moves (not necessary minimal) to get string abcdefghijklmnopqrstuvwxyz (english alphabet) as a subsequence. Subsequence of the string is the string that is obtained by deleting characters at some positions. You need to print the string that will be obtained from the given string and will be contain english alphabet as a subsequence or say that it is impossible.
+
+
+-----Input-----
+
+The only one line of the input consisting of the string s consisting of |s| (1 ≤ |s| ≤ 10^5) small english letters.
+
+
+-----Output-----
+
+If you can get a string that can be obtained from the given string and will contain english alphabet as a subsequence, print it. Otherwise print «-1» (without quotes).
+
+
+-----Examples-----
+Input
+aacceeggiikkmmooqqssuuwwyy
+
+Output
+abcdefghijklmnopqrstuvwxyz
+
+Input
+thereisnoanswer
+
+Output
+-1","s = input()
+
+# Target alphabet sequence
+target = ""abcdefghijklmnopqrstuvwxyz""
+target_len = len(target)
+i, j = 0, 0
+
+# Iterate over the input string and try to match the target sequence
+while i < len(s) and j < target_len:
+    if s[i] == target[j]:
+        j += 1
+    i += 1
+
+# If we have matched the entire target sequence, print the target
+if j == target_len:
+    print(target)
+else:
+    print(-1)
+",,post,False,0.6130307130170308,"Correctness: True, Confidence: 100
+
+Explanation: The provided program correctly iterates through the input string and checks if the characters match the target string 'abcdefghijklmnopqrstuvwxyz'. It increments the index for both strings accordingly. If the program reaches the end of the target string, it prints the target string, otherwise, it prints -1. The logic in the program aligns with the problem description, and it covers all potential cases where the target string can be obtained from the input string.",True,,pilot_apps1.json
+0108,apps,gpt-4o,gpt-3.5-turbo-0125,"You are given a string s consisting of |s| small english letters.
+
+In one move you can replace any character of this string to the next character in alphabetical order (a will be replaced with b, s will be replaced with t, etc.). You cannot replace letter z with any other letter.
+
+Your target is to make some number of moves (not necessary minimal) to get string abcdefghijklmnopqrstuvwxyz (english alphabet) as a subsequence. Subsequence of the string is the string that is obtained by deleting characters at some positions. You need to print the string that will be obtained from the given string and will be contain english alphabet as a subsequence or say that it is impossible.
+
+
+-----Input-----
+
+The only one line of the input consisting of the string s consisting of |s| (1 ≤ |s| ≤ 10^5) small english letters.
+
+
+-----Output-----
+
+If you can get a string that can be obtained from the given string and will contain english alphabet as a subsequence, print it. Otherwise print «-1» (without quotes).
+
+
+-----Examples-----
+Input
+aacceeggiikkmmooqqssuuwwyy
+
+Output
+abcdefghijklmnopqrstuvwxyz
+
+Input
+thereisnoanswer
+
+Output
+-1","s = input()
+
+# Target alphabet sequence
+target = ""abcdefghijklmnopqrstuvwxyz""
+target_len = len(target)
+i, j = 0, 0
+
+# Iterate over the input string and try to match the target sequence
+while i < len(s) and j < target_len:
+    if s[i] == target[j]:
+        j += 1
+    i += 1
+
+# If we have matched the entire target sequence, print the target
+if j == target_len:
+    print(target)
+else:
+    print(-1)
+",,post,False,0.2598439813012735,"Correctness: True
+Confidence: 100
+
+Explanation: The program iterates through both the input string `s` and the target string 'abcdefghijklmnopqrstuvwxyz' to check if the characters match. If they do, it moves to the next character in the target string. If it successfully iterates through both strings and matches all characters, it prints out the target string. Otherwise, it prints -1. The program follows the problem description accurately and handles all potential cases correctly.",True,,pilot_apps1.json
+0108,apps,gpt-4o,gpt-3.5-turbo-0125,"You are given a string s consisting of |s| small english letters.
+
+In one move you can replace any character of this string to the next character in alphabetical order (a will be replaced with b, s will be replaced with t, etc.). You cannot replace letter z with any other letter.
+
+Your target is to make some number of moves (not necessary minimal) to get string abcdefghijklmnopqrstuvwxyz (english alphabet) as a subsequence. Subsequence of the string is the string that is obtained by deleting characters at some positions. You need to print the string that will be obtained from the given string and will be contain english alphabet as a subsequence or say that it is impossible.
+
+
+-----Input-----
+
+The only one line of the input consisting of the string s consisting of |s| (1 ≤ |s| ≤ 10^5) small english letters.
+
+
+-----Output-----
+
+If you can get a string that can be obtained from the given string and will contain english alphabet as a subsequence, print it. Otherwise print «-1» (without quotes).
+
+
+-----Examples-----
+Input
+aacceeggiikkmmooqqssuuwwyy
+
+Output
+abcdefghijklmnopqrstuvwxyz
+
+Input
+thereisnoanswer
+
+Output
+-1","s = input()
+
+# Target alphabet sequence
+target = ""abcdefghijklmnopqrstuvwxyz""
+target_len = len(target)
+i, j = 0, 0
+
+# Iterate over the input string and try to match the target sequence
+while i < len(s) and j < target_len:
+    if s[i] == target[j]:
+        j += 1
+    i += 1
+
+# If we have matched the entire target sequence, print the target
+if j == target_len:
+    print(target)
+else:
+    print(-1)
+",,post,False,0.4910122391647526,"Correctness: True, Confidence: 100
+
+Explanation: The program iterates through the input string and the target alphabet string at the same time, checking if the characters match. If all characters match and the target alphabet is fully traversed, it prints the target alphabet. Otherwise, it prints -1. This logic correctly follows the problem description and will work for all cases where it is possible to obtain the target alphabet as a subsequence.",True,,pilot_apps1.json
+0108,apps,gpt-4o,gpt-3.5-turbo-0125,"You are given a string s consisting of |s| small english letters.
+
+In one move you can replace any character of this string to the next character in alphabetical order (a will be replaced with b, s will be replaced with t, etc.). You cannot replace letter z with any other letter.
+
+Your target is to make some number of moves (not necessary minimal) to get string abcdefghijklmnopqrstuvwxyz (english alphabet) as a subsequence. Subsequence of the string is the string that is obtained by deleting characters at some positions. You need to print the string that will be obtained from the given string and will be contain english alphabet as a subsequence or say that it is impossible.
+
+
+-----Input-----
+
+The only one line of the input consisting of the string s consisting of |s| (1 ≤ |s| ≤ 10^5) small english letters.
+
+
+-----Output-----
+
+If you can get a string that can be obtained from the given string and will contain english alphabet as a subsequence, print it. Otherwise print «-1» (without quotes).
+
+
+-----Examples-----
+Input
+aacceeggiikkmmooqqssuuwwyy
+
+Output
+abcdefghijklmnopqrstuvwxyz
+
+Input
+thereisnoanswer
+
+Output
+-1","s = input()
+
+# Target alphabet sequence
+target = ""abcdefghijklmnopqrstuvwxyz""
+target_len = len(target)
+i, j = 0, 0
+
+# Iterate over the input string and try to match the target sequence
+while i < len(s) and j < target_len:
+    if s[i] == target[j]:
+        j += 1
+    i += 1
+
+# If we have matched the entire target sequence, print the target
+if j == target_len:
+    print(target)
+else:
+    print(-1)
+",,post,False,0.47307259236012905,"Correctness: True
+Confidence: 100
+
+Explanation: The program correctly reads the input string and compares it to the target string 'abcdefghijklmnopqrstuvwxyz'. It iterates through the characters of the input string and the target string, checking if they match. If they do, it increments the index for the target string. If the program reaches the end of the target string, it prints the target string. If not, it prints -1. The logic is sound and covers all cases as described in the problem statement.",True,,pilot_apps1.json
+0108,apps,gpt-4o,gpt-3.5-turbo-0125,"You are given a string s consisting of |s| small english letters.
+
+In one move you can replace any character of this string to the next character in alphabetical order (a will be replaced with b, s will be replaced with t, etc.). You cannot replace letter z with any other letter.
+
+Your target is to make some number of moves (not necessary minimal) to get string abcdefghijklmnopqrstuvwxyz (english alphabet) as a subsequence. Subsequence of the string is the string that is obtained by deleting characters at some positions. You need to print the string that will be obtained from the given string and will be contain english alphabet as a subsequence or say that it is impossible.
+
+
+-----Input-----
+
+The only one line of the input consisting of the string s consisting of |s| (1 ≤ |s| ≤ 10^5) small english letters.
+
+
+-----Output-----
+
+If you can get a string that can be obtained from the given string and will contain english alphabet as a subsequence, print it. Otherwise print «-1» (without quotes).
+
+
+-----Examples-----
+Input
+aacceeggiikkmmooqqssuuwwyy
+
+Output
+abcdefghijklmnopqrstuvwxyz
+
+Input
+thereisnoanswer
+
+Output
+-1","s = input()
+
+# Target alphabet sequence
+target = ""abcdefghijklmnopqrstuvwxyz""
+target_len = len(target)
+i, j = 0, 0
+
+# Iterate over the input string and try to match the target sequence
+while i < len(s) and j < target_len:
+    if s[i] == target[j]:
+        j += 1
+    i += 1
+
+# If we have matched the entire target sequence, print the target
+if j == target_len:
+    print(target)
+else:
+    print(-1)
+",,post,False,0.2598439813012735,"Correctness: True, Confidence: 100
+
+Explanation: The program iterates through the input string `s` and the target string 'abcdefghijklmnopqrstuvwxyz' simultaneously, checking if the characters match. If the program reaches the end of the target string, it means that the input string contains the English alphabet as a subsequence. The logic of the program aligns with the problem description, and it covers all potential cases.",True,,pilot_apps1.json
+0157,apps,llama3-70b,gpt-3.5-turbo-0125,"Nikolay has a lemons, b apples and c pears. He decided to cook a compote. According to the recipe the fruits should be in the ratio 1: 2: 4. It means that for each lemon in the compote should be exactly 2 apples and exactly 4 pears. You can't crumble up, break up or cut these fruits into pieces. These fruits — lemons, apples and pears — should be put in the compote as whole fruits.
+
+Your task is to determine the maximum total number of lemons, apples and pears from which Nikolay can cook the compote. It is possible that Nikolay can't use any fruits, in this case print 0. 
+
+
+-----Input-----
+
+The first line contains the positive integer a (1 ≤ a ≤ 1000) — the number of lemons Nikolay has. 
+
+The second line contains the positive integer b (1 ≤ b ≤ 1000) — the number of apples Nikolay has. 
+
+The third line contains the positive integer c (1 ≤ c ≤ 1000) — the number of pears Nikolay has.
+
+
+-----Output-----
+
+Print the maximum total number of lemons, apples and pears from which Nikolay can cook the compote.
+
+
+-----Examples-----
+Input
+2
+5
+7
+
+Output
+7
+
+Input
+4
+7
+13
+
+Output
+21
+
+Input
+2
+3
+2
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example Nikolay can use 1 lemon, 2 apples and 4 pears, so the answer is 1 + 2 + 4 = 7.
+
+In the second example Nikolay can use 3 lemons, 6 apples and 12 pears, so the answer is 3 + 6 + 12 = 21.
+
+In the third example Nikolay don't have enough pears to cook any compote, so the answer is 0.","a = int(input())
+b = int(input())
+c = int(input())
+
+min_lemon = min(a, b//2, c//4)
+print(min_lemon + min_lemon*2 + min_lemon*4)
+",,post,True,0.6348969547773153,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly calculates the maximum total number of lemons, apples, and pears from which Nikolay can cook the compote by finding the minimum of the ratio of each fruit type and then multiplying it by the respective values in the ratio. The logic used in the program aligns with the problem description for all possible cases.",True,,pilot_apps1.json
+0157,apps,llama3-70b,gpt-3.5-turbo-0125,"Nikolay has a lemons, b apples and c pears. He decided to cook a compote. According to the recipe the fruits should be in the ratio 1: 2: 4. It means that for each lemon in the compote should be exactly 2 apples and exactly 4 pears. You can't crumble up, break up or cut these fruits into pieces. These fruits — lemons, apples and pears — should be put in the compote as whole fruits.
+
+Your task is to determine the maximum total number of lemons, apples and pears from which Nikolay can cook the compote. It is possible that Nikolay can't use any fruits, in this case print 0. 
+
+
+-----Input-----
+
+The first line contains the positive integer a (1 ≤ a ≤ 1000) — the number of lemons Nikolay has. 
+
+The second line contains the positive integer b (1 ≤ b ≤ 1000) — the number of apples Nikolay has. 
+
+The third line contains the positive integer c (1 ≤ c ≤ 1000) — the number of pears Nikolay has.
+
+
+-----Output-----
+
+Print the maximum total number of lemons, apples and pears from which Nikolay can cook the compote.
+
+
+-----Examples-----
+Input
+2
+5
+7
+
+Output
+7
+
+Input
+4
+7
+13
+
+Output
+21
+
+Input
+2
+3
+2
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example Nikolay can use 1 lemon, 2 apples and 4 pears, so the answer is 1 + 2 + 4 = 7.
+
+In the second example Nikolay can use 3 lemons, 6 apples and 12 pears, so the answer is 3 + 6 + 12 = 21.
+
+In the third example Nikolay don't have enough pears to cook any compote, so the answer is 0.","a = int(input())
+b = int(input())
+c = int(input())
+
+min_lemon = min(a, b//2, c//4)
+print(min_lemon + min_lemon*2 + min_lemon*4)
+",,post,True,0.6402107211647393,"Correctness: True, Confidence: 100
+
+Explanation: The program takes the minimum of the number of lemons, apples divided by 2, and pears divided by 4, which ensures that the ratio of 1:2:4 is maintained. Then it calculates the total number of fruits by multiplying the minimum value by 1, 2, and 4 respectively. This logic correctly follows the problem description for all potential cases.",True,,pilot_apps1.json
+0157,apps,llama3-70b,gpt-3.5-turbo-0125,"Nikolay has a lemons, b apples and c pears. He decided to cook a compote. According to the recipe the fruits should be in the ratio 1: 2: 4. It means that for each lemon in the compote should be exactly 2 apples and exactly 4 pears. You can't crumble up, break up or cut these fruits into pieces. These fruits — lemons, apples and pears — should be put in the compote as whole fruits.
+
+Your task is to determine the maximum total number of lemons, apples and pears from which Nikolay can cook the compote. It is possible that Nikolay can't use any fruits, in this case print 0. 
+
+
+-----Input-----
+
+The first line contains the positive integer a (1 ≤ a ≤ 1000) — the number of lemons Nikolay has. 
+
+The second line contains the positive integer b (1 ≤ b ≤ 1000) — the number of apples Nikolay has. 
+
+The third line contains the positive integer c (1 ≤ c ≤ 1000) — the number of pears Nikolay has.
+
+
+-----Output-----
+
+Print the maximum total number of lemons, apples and pears from which Nikolay can cook the compote.
+
+
+-----Examples-----
+Input
+2
+5
+7
+
+Output
+7
+
+Input
+4
+7
+13
+
+Output
+21
+
+Input
+2
+3
+2
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example Nikolay can use 1 lemon, 2 apples and 4 pears, so the answer is 1 + 2 + 4 = 7.
+
+In the second example Nikolay can use 3 lemons, 6 apples and 12 pears, so the answer is 3 + 6 + 12 = 21.
+
+In the third example Nikolay don't have enough pears to cook any compote, so the answer is 0.","a = int(input())
+b = int(input())
+c = int(input())
+
+min_lemon = min(a, b//2, c//4)
+print(min_lemon + min_lemon*2 + min_lemon*4)
+",,post,True,0.6247660964332108,"Correctness: True, Confidence: 100
+
+Explanation: The given program correctly calculates the maximum total number of lemons, apples, and pears that Nikolay can use to cook the compote. It calculates the minimum number of fruits based on the ratio 1:2:4 and then multiplies this minimum value by 1, 2, and 4 respectively to get the total number of each fruit. This logic ensures that the fruits are in the correct ratio and that Nikolay uses the maximum number of fruits possible. The program handles all potential cases as described in the problem statement.",True,,pilot_apps1.json
+0157,apps,llama3-70b,gpt-3.5-turbo-0125,"Nikolay has a lemons, b apples and c pears. He decided to cook a compote. According to the recipe the fruits should be in the ratio 1: 2: 4. It means that for each lemon in the compote should be exactly 2 apples and exactly 4 pears. You can't crumble up, break up or cut these fruits into pieces. These fruits — lemons, apples and pears — should be put in the compote as whole fruits.
+
+Your task is to determine the maximum total number of lemons, apples and pears from which Nikolay can cook the compote. It is possible that Nikolay can't use any fruits, in this case print 0. 
+
+
+-----Input-----
+
+The first line contains the positive integer a (1 ≤ a ≤ 1000) — the number of lemons Nikolay has. 
+
+The second line contains the positive integer b (1 ≤ b ≤ 1000) — the number of apples Nikolay has. 
+
+The third line contains the positive integer c (1 ≤ c ≤ 1000) — the number of pears Nikolay has.
+
+
+-----Output-----
+
+Print the maximum total number of lemons, apples and pears from which Nikolay can cook the compote.
+
+
+-----Examples-----
+Input
+2
+5
+7
+
+Output
+7
+
+Input
+4
+7
+13
+
+Output
+21
+
+Input
+2
+3
+2
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example Nikolay can use 1 lemon, 2 apples and 4 pears, so the answer is 1 + 2 + 4 = 7.
+
+In the second example Nikolay can use 3 lemons, 6 apples and 12 pears, so the answer is 3 + 6 + 12 = 21.
+
+In the third example Nikolay don't have enough pears to cook any compote, so the answer is 0.","a = int(input())
+b = int(input())
+c = int(input())
+
+min_lemon = min(a, b//2, c//4)
+print(min_lemon + min_lemon*2 + min_lemon*4)
+",,post,True,0.2594594112442251,"Correctness: True, Confidence: 100
+
+Explanation: The provided program correctly calculates the maximum total number of lemons, apples, and pears that Nikolay can use to cook the compote. It calculates the minimum of lemons, apples divided by 2, and pears divided by 4 to ensure that Nikolay can maintain the 1:2:4 ratio. Then it calculates the total number of fruits by multiplying the minimum by the respective ratios and summing them up. The logic in the code aligns with the problem description for all potential cases, ensuring the correctness of the program.",True,,pilot_apps1.json
+0157,apps,llama3-70b,gpt-3.5-turbo-0125,"Nikolay has a lemons, b apples and c pears. He decided to cook a compote. According to the recipe the fruits should be in the ratio 1: 2: 4. It means that for each lemon in the compote should be exactly 2 apples and exactly 4 pears. You can't crumble up, break up or cut these fruits into pieces. These fruits — lemons, apples and pears — should be put in the compote as whole fruits.
+
+Your task is to determine the maximum total number of lemons, apples and pears from which Nikolay can cook the compote. It is possible that Nikolay can't use any fruits, in this case print 0. 
+
+
+-----Input-----
+
+The first line contains the positive integer a (1 ≤ a ≤ 1000) — the number of lemons Nikolay has. 
+
+The second line contains the positive integer b (1 ≤ b ≤ 1000) — the number of apples Nikolay has. 
+
+The third line contains the positive integer c (1 ≤ c ≤ 1000) — the number of pears Nikolay has.
+
+
+-----Output-----
+
+Print the maximum total number of lemons, apples and pears from which Nikolay can cook the compote.
+
+
+-----Examples-----
+Input
+2
+5
+7
+
+Output
+7
+
+Input
+4
+7
+13
+
+Output
+21
+
+Input
+2
+3
+2
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example Nikolay can use 1 lemon, 2 apples and 4 pears, so the answer is 1 + 2 + 4 = 7.
+
+In the second example Nikolay can use 3 lemons, 6 apples and 12 pears, so the answer is 3 + 6 + 12 = 21.
+
+In the third example Nikolay don't have enough pears to cook any compote, so the answer is 0.","a = int(input())
+b = int(input())
+c = int(input())
+
+min_lemon = min(a, b//2, c//4)
+print(min_lemon + min_lemon*2 + min_lemon*4)
+",,post,True,0.3631038662014142,"Correctness: True, Confidence: 100
+
+Explanation: The given program correctly calculates the maximum total number of lemons, apples, and pears that Nikolay can use to cook the compote based on the provided problem description. It calculates the minimum of lemons, apples divided by 2, and pears divided by 4, which ensures that Nikolay uses the fruits in the ratio of 1:2:4. The program then calculates the total number of fruits by adding the minimum number of each type of fruit. Since the program follows the problem description for all potential cases, and all examples provided work correctly, we can be confident in its correctness.",True,,pilot_apps1.json
+0157,apps,gpt-4o,gpt-3.5-turbo-0125,"Nikolay has a lemons, b apples and c pears. He decided to cook a compote. According to the recipe the fruits should be in the ratio 1: 2: 4. It means that for each lemon in the compote should be exactly 2 apples and exactly 4 pears. You can't crumble up, break up or cut these fruits into pieces. These fruits — lemons, apples and pears — should be put in the compote as whole fruits.
+
+Your task is to determine the maximum total number of lemons, apples and pears from which Nikolay can cook the compote. It is possible that Nikolay can't use any fruits, in this case print 0. 
+
+
+-----Input-----
+
+The first line contains the positive integer a (1 ≤ a ≤ 1000) — the number of lemons Nikolay has. 
+
+The second line contains the positive integer b (1 ≤ b ≤ 1000) — the number of apples Nikolay has. 
+
+The third line contains the positive integer c (1 ≤ c ≤ 1000) — the number of pears Nikolay has.
+
+
+-----Output-----
+
+Print the maximum total number of lemons, apples and pears from which Nikolay can cook the compote.
+
+
+-----Examples-----
+Input
+2
+5
+7
+
+Output
+7
+
+Input
+4
+7
+13
+
+Output
+21
+
+Input
+2
+3
+2
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example Nikolay can use 1 lemon, 2 apples and 4 pears, so the answer is 1 + 2 + 4 = 7.
+
+In the second example Nikolay can use 3 lemons, 6 apples and 12 pears, so the answer is 3 + 6 + 12 = 21.
+
+In the third example Nikolay don't have enough pears to cook any compote, so the answer is 0.","# Read input values
+a = int(input())
+b = int(input())
+c = int(input())
+
+# Calculate the maximum number of lemons that can be used
+# It must satisfy the condition that there are 2 apples for each lemon
+# and 4 pears for each lemon.
+max_lemons = min(a, b // 2, c // 4)
+
+# Calculate the total number of fruits used in the compote
+total_fruits = max_lemons * 1 + max_lemons * 2 + max_lemons * 4
+
+# Print the result
+print(total_fruits)
+",,post,True,0.641567826125708,"Correctness: True, Confidence: 100
+
+Explanation: The provided program correctly calculates the maximum total number of lemons, apples, and pears that Nikolay can use to cook the compote based on the given ratios. The logic of the code is sound and it follows the problem description accurately. For every input within the specified constraints, the program outputs the correct result.",True,,pilot_apps1.json
+0157,apps,gpt-4o,gpt-3.5-turbo-0125,"Nikolay has a lemons, b apples and c pears. He decided to cook a compote. According to the recipe the fruits should be in the ratio 1: 2: 4. It means that for each lemon in the compote should be exactly 2 apples and exactly 4 pears. You can't crumble up, break up or cut these fruits into pieces. These fruits — lemons, apples and pears — should be put in the compote as whole fruits.
+
+Your task is to determine the maximum total number of lemons, apples and pears from which Nikolay can cook the compote. It is possible that Nikolay can't use any fruits, in this case print 0. 
+
+
+-----Input-----
+
+The first line contains the positive integer a (1 ≤ a ≤ 1000) — the number of lemons Nikolay has. 
+
+The second line contains the positive integer b (1 ≤ b ≤ 1000) — the number of apples Nikolay has. 
+
+The third line contains the positive integer c (1 ≤ c ≤ 1000) — the number of pears Nikolay has.
+
+
+-----Output-----
+
+Print the maximum total number of lemons, apples and pears from which Nikolay can cook the compote.
+
+
+-----Examples-----
+Input
+2
+5
+7
+
+Output
+7
+
+Input
+4
+7
+13
+
+Output
+21
+
+Input
+2
+3
+2
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example Nikolay can use 1 lemon, 2 apples and 4 pears, so the answer is 1 + 2 + 4 = 7.
+
+In the second example Nikolay can use 3 lemons, 6 apples and 12 pears, so the answer is 3 + 6 + 12 = 21.
+
+In the third example Nikolay don't have enough pears to cook any compote, so the answer is 0.","# Read input values
+a = int(input())
+b = int(input())
+c = int(input())
+
+# Calculate the maximum number of lemons that can be used
+# It must satisfy the condition that there are 2 apples for each lemon
+# and 4 pears for each lemon.
+max_lemons = min(a, b // 2, c // 4)
+
+# Calculate the total number of fruits used in the compote
+total_fruits = max_lemons * 1 + max_lemons * 2 + max_lemons * 4
+
+# Print the result
+print(total_fruits)
+",,post,True,0.2583106108927327,"Correctness: True, Confidence: 100
+
+Explanation: The provided program correctly calculates the maximum total number of lemons, apples, and pears Nikolay can use to cook the compote. It uses the minimum of the ratios of lemons, apples, and pears to determine the maximum number of compotes that can be made, and then calculates the total number of fruits accordingly. The logic aligns with the problem description for all potential cases.",True,,pilot_apps1.json
+0157,apps,gpt-4o,gpt-3.5-turbo-0125,"Nikolay has a lemons, b apples and c pears. He decided to cook a compote. According to the recipe the fruits should be in the ratio 1: 2: 4. It means that for each lemon in the compote should be exactly 2 apples and exactly 4 pears. You can't crumble up, break up or cut these fruits into pieces. These fruits — lemons, apples and pears — should be put in the compote as whole fruits.
+
+Your task is to determine the maximum total number of lemons, apples and pears from which Nikolay can cook the compote. It is possible that Nikolay can't use any fruits, in this case print 0. 
+
+
+-----Input-----
+
+The first line contains the positive integer a (1 ≤ a ≤ 1000) — the number of lemons Nikolay has. 
+
+The second line contains the positive integer b (1 ≤ b ≤ 1000) — the number of apples Nikolay has. 
+
+The third line contains the positive integer c (1 ≤ c ≤ 1000) — the number of pears Nikolay has.
+
+
+-----Output-----
+
+Print the maximum total number of lemons, apples and pears from which Nikolay can cook the compote.
+
+
+-----Examples-----
+Input
+2
+5
+7
+
+Output
+7
+
+Input
+4
+7
+13
+
+Output
+21
+
+Input
+2
+3
+2
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example Nikolay can use 1 lemon, 2 apples and 4 pears, so the answer is 1 + 2 + 4 = 7.
+
+In the second example Nikolay can use 3 lemons, 6 apples and 12 pears, so the answer is 3 + 6 + 12 = 21.
+
+In the third example Nikolay don't have enough pears to cook any compote, so the answer is 0.","# Read input values
+a = int(input())
+b = int(input())
+c = int(input())
+
+# Calculate the maximum number of lemons that can be used
+# It must satisfy the condition that there are 2 apples for each lemon
+# and 4 pears for each lemon.
+max_lemons = min(a, b // 2, c // 4)
+
+# Calculate the total number of fruits used in the compote
+total_fruits = max_lemons * 1 + max_lemons * 2 + max_lemons * 4
+
+# Print the result
+print(total_fruits)
+",,post,True,0.3996054180263385,"Correctness: True, Confidence: 100
+
+Explanation: The code correctly calculates the maximum number of lemons, apples, and pears that Nikolay can use to cook the compote based on the given ratios. It considers the minimum of the available fruits to ensure that the ratio is maintained and calculates the total number of fruits accordingly. The logic in the code aligns with the problem description for all potential cases.",True,,pilot_apps1.json
+0157,apps,gpt-4o,gpt-3.5-turbo-0125,"Nikolay has a lemons, b apples and c pears. He decided to cook a compote. According to the recipe the fruits should be in the ratio 1: 2: 4. It means that for each lemon in the compote should be exactly 2 apples and exactly 4 pears. You can't crumble up, break up or cut these fruits into pieces. These fruits — lemons, apples and pears — should be put in the compote as whole fruits.
+
+Your task is to determine the maximum total number of lemons, apples and pears from which Nikolay can cook the compote. It is possible that Nikolay can't use any fruits, in this case print 0. 
+
+
+-----Input-----
+
+The first line contains the positive integer a (1 ≤ a ≤ 1000) — the number of lemons Nikolay has. 
+
+The second line contains the positive integer b (1 ≤ b ≤ 1000) — the number of apples Nikolay has. 
+
+The third line contains the positive integer c (1 ≤ c ≤ 1000) — the number of pears Nikolay has.
+
+
+-----Output-----
+
+Print the maximum total number of lemons, apples and pears from which Nikolay can cook the compote.
+
+
+-----Examples-----
+Input
+2
+5
+7
+
+Output
+7
+
+Input
+4
+7
+13
+
+Output
+21
+
+Input
+2
+3
+2
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example Nikolay can use 1 lemon, 2 apples and 4 pears, so the answer is 1 + 2 + 4 = 7.
+
+In the second example Nikolay can use 3 lemons, 6 apples and 12 pears, so the answer is 3 + 6 + 12 = 21.
+
+In the third example Nikolay don't have enough pears to cook any compote, so the answer is 0.","# Read input values
+a = int(input())
+b = int(input())
+c = int(input())
+
+# Calculate the maximum number of lemons that can be used
+# It must satisfy the condition that there are 2 apples for each lemon
+# and 4 pears for each lemon.
+max_lemons = min(a, b // 2, c // 4)
+
+# Calculate the total number of fruits used in the compote
+total_fruits = max_lemons * 1 + max_lemons * 2 + max_lemons * 4
+
+# Print the result
+print(total_fruits)
+",,post,True,0.180180549746627,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly calculates the maximum total number of lemons, apples, and pears from which Nikolay can cook the compote by finding the minimum of the number of lemons, apples divided by 2, and pears divided by 4. It then multiplies this minimum value with the respective ratios and calculates the total number of fruits. The logic aligns with the problem description for all potential cases, ensuring that the compote is made with the correct ratios of fruits.",True,,pilot_apps1.json
+0157,apps,gpt-4o,gpt-3.5-turbo-0125,"Nikolay has a lemons, b apples and c pears. He decided to cook a compote. According to the recipe the fruits should be in the ratio 1: 2: 4. It means that for each lemon in the compote should be exactly 2 apples and exactly 4 pears. You can't crumble up, break up or cut these fruits into pieces. These fruits — lemons, apples and pears — should be put in the compote as whole fruits.
+
+Your task is to determine the maximum total number of lemons, apples and pears from which Nikolay can cook the compote. It is possible that Nikolay can't use any fruits, in this case print 0. 
+
+
+-----Input-----
+
+The first line contains the positive integer a (1 ≤ a ≤ 1000) — the number of lemons Nikolay has. 
+
+The second line contains the positive integer b (1 ≤ b ≤ 1000) — the number of apples Nikolay has. 
+
+The third line contains the positive integer c (1 ≤ c ≤ 1000) — the number of pears Nikolay has.
+
+
+-----Output-----
+
+Print the maximum total number of lemons, apples and pears from which Nikolay can cook the compote.
+
+
+-----Examples-----
+Input
+2
+5
+7
+
+Output
+7
+
+Input
+4
+7
+13
+
+Output
+21
+
+Input
+2
+3
+2
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example Nikolay can use 1 lemon, 2 apples and 4 pears, so the answer is 1 + 2 + 4 = 7.
+
+In the second example Nikolay can use 3 lemons, 6 apples and 12 pears, so the answer is 3 + 6 + 12 = 21.
+
+In the third example Nikolay don't have enough pears to cook any compote, so the answer is 0.","# Read input values
+a = int(input())
+b = int(input())
+c = int(input())
+
+# Calculate the maximum number of lemons that can be used
+# It must satisfy the condition that there are 2 apples for each lemon
+# and 4 pears for each lemon.
+max_lemons = min(a, b // 2, c // 4)
+
+# Calculate the total number of fruits used in the compote
+total_fruits = max_lemons * 1 + max_lemons * 2 + max_lemons * 4
+
+# Print the result
+print(total_fruits)
+",,post,True,0.2577454780955923,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly calculates the maximum total number of lemons, apples, and pears from which Nikolay can cook the compote by finding the minimum of the number of lemons, apples divided by 2, and pears divided by 4. Then it calculates the total number of fruits by multiplying the max_lemons with the respective ratios. The program follows the problem description for all potential cases and the examples provided.",True,,pilot_apps1.json
+0015,apps,llama3-70b,gpt-3.5-turbo-0125,"Vasya likes everything infinite. Now he is studying the properties of a sequence s, such that its first element is equal to a (s_1 = a), and the difference between any two neighbouring elements is equal to c (s_{i} - s_{i} - 1 = c). In particular, Vasya wonders if his favourite integer b appears in this sequence, that is, there exists a positive integer i, such that s_{i} = b. Of course, you are the person he asks for a help.
+
+
+-----Input-----
+
+The first line of the input contain three integers a, b and c ( - 10^9 ≤ a, b, c ≤ 10^9) — the first element of the sequence, Vasya's favorite number and the difference between any two neighbouring elements of the sequence, respectively.
+
+
+-----Output-----
+
+If b appears in the sequence s print ""YES"" (without quotes), otherwise print ""NO"" (without quotes).
+
+
+-----Examples-----
+Input
+1 7 3
+
+Output
+YES
+
+Input
+10 10 0
+
+Output
+YES
+
+Input
+1 -4 5
+
+Output
+NO
+
+Input
+0 60 50
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first sample, the sequence starts from integers 1, 4, 7, so 7 is its element.
+
+In the second sample, the favorite integer of Vasya is equal to the first element of the sequence.
+
+In the third sample all elements of the sequence are greater than Vasya's favorite integer.
+
+In the fourth sample, the sequence starts from 0, 50, 100, and all the following elements are greater than Vasya's favorite integer.","a, b, c = map(int, input().split())
+if c == 0:
+    if a == b:
+        print(""YES"")
+    else:
+        print(""NO"")
+else:
+    if (b - a) % c == 0 and (b - a) / c >= 0:
+        print(""YES"")
+    else:
+        print(""NO"")
+",,post,True,0.3511844482324171,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly follows the problem description for all potential cases. It checks if the difference between the favorite number b and the first element a is divisible by the common difference c, and if the result is non-negative. The program handles the case when the common difference c is 0 separately to avoid division by zero. Overall, the logic in the program aligns with the requirements of the problem description.",True,,pilot_apps1.json
+0015,apps,llama3-70b,gpt-3.5-turbo-0125,"Vasya likes everything infinite. Now he is studying the properties of a sequence s, such that its first element is equal to a (s_1 = a), and the difference between any two neighbouring elements is equal to c (s_{i} - s_{i} - 1 = c). In particular, Vasya wonders if his favourite integer b appears in this sequence, that is, there exists a positive integer i, such that s_{i} = b. Of course, you are the person he asks for a help.
+
+
+-----Input-----
+
+The first line of the input contain three integers a, b and c ( - 10^9 ≤ a, b, c ≤ 10^9) — the first element of the sequence, Vasya's favorite number and the difference between any two neighbouring elements of the sequence, respectively.
+
+
+-----Output-----
+
+If b appears in the sequence s print ""YES"" (without quotes), otherwise print ""NO"" (without quotes).
+
+
+-----Examples-----
+Input
+1 7 3
+
+Output
+YES
+
+Input
+10 10 0
+
+Output
+YES
+
+Input
+1 -4 5
+
+Output
+NO
+
+Input
+0 60 50
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first sample, the sequence starts from integers 1, 4, 7, so 7 is its element.
+
+In the second sample, the favorite integer of Vasya is equal to the first element of the sequence.
+
+In the third sample all elements of the sequence are greater than Vasya's favorite integer.
+
+In the fourth sample, the sequence starts from 0, 50, 100, and all the following elements are greater than Vasya's favorite integer.","a, b, c = map(int, input().split())
+if c == 0:
+    if a == b:
+        print(""YES"")
+    else:
+        print(""NO"")
+else:
+    if (b - a) % c == 0 and (b - a) / c >= 0:
+        print(""YES"")
+    else:
+        print(""NO"")
+",,post,True,0.6275972577851486,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly follows the problem description and handles all potential cases. It checks if the difference between the favorite number b and the first element a is divisible by the difference between neighboring elements c, and also ensures that the result is non-negative. The program prints ""YES"" if b appears in the sequence and ""NO"" otherwise, which aligns with the problem requirements. The logic provided covers all possible scenarios and the examples provided in the problem description.",True,,pilot_apps1.json
+0015,apps,llama3-70b,gpt-3.5-turbo-0125,"Vasya likes everything infinite. Now he is studying the properties of a sequence s, such that its first element is equal to a (s_1 = a), and the difference between any two neighbouring elements is equal to c (s_{i} - s_{i} - 1 = c). In particular, Vasya wonders if his favourite integer b appears in this sequence, that is, there exists a positive integer i, such that s_{i} = b. Of course, you are the person he asks for a help.
+
+
+-----Input-----
+
+The first line of the input contain three integers a, b and c ( - 10^9 ≤ a, b, c ≤ 10^9) — the first element of the sequence, Vasya's favorite number and the difference between any two neighbouring elements of the sequence, respectively.
+
+
+-----Output-----
+
+If b appears in the sequence s print ""YES"" (without quotes), otherwise print ""NO"" (without quotes).
+
+
+-----Examples-----
+Input
+1 7 3
+
+Output
+YES
+
+Input
+10 10 0
+
+Output
+YES
+
+Input
+1 -4 5
+
+Output
+NO
+
+Input
+0 60 50
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first sample, the sequence starts from integers 1, 4, 7, so 7 is its element.
+
+In the second sample, the favorite integer of Vasya is equal to the first element of the sequence.
+
+In the third sample all elements of the sequence are greater than Vasya's favorite integer.
+
+In the fourth sample, the sequence starts from 0, 50, 100, and all the following elements are greater than Vasya's favorite integer.","a, b, c = map(int, input().split())
+if c == 0:
+    if a == b:
+        print(""YES"")
+    else:
+        print(""NO"")
+else:
+    if (b - a) % c == 0 and (b - a) / c >= 0:
+        print(""YES"")
+    else:
+        print(""NO"")
+",,post,True,0.20047633120668787,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly follows the problem description and handles all potential cases. It checks if the difference between Vasya's favorite number and the first element of the sequence is divisible by the difference between neighboring elements, and if the result is non-negative. The program covers all scenarios as described in the problem statement and provides the correct output.",True,,pilot_apps1.json
+0015,apps,llama3-70b,gpt-3.5-turbo-0125,"Vasya likes everything infinite. Now he is studying the properties of a sequence s, such that its first element is equal to a (s_1 = a), and the difference between any two neighbouring elements is equal to c (s_{i} - s_{i} - 1 = c). In particular, Vasya wonders if his favourite integer b appears in this sequence, that is, there exists a positive integer i, such that s_{i} = b. Of course, you are the person he asks for a help.
+
+
+-----Input-----
+
+The first line of the input contain three integers a, b and c ( - 10^9 ≤ a, b, c ≤ 10^9) — the first element of the sequence, Vasya's favorite number and the difference between any two neighbouring elements of the sequence, respectively.
+
+
+-----Output-----
+
+If b appears in the sequence s print ""YES"" (without quotes), otherwise print ""NO"" (without quotes).
+
+
+-----Examples-----
+Input
+1 7 3
+
+Output
+YES
+
+Input
+10 10 0
+
+Output
+YES
+
+Input
+1 -4 5
+
+Output
+NO
+
+Input
+0 60 50
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first sample, the sequence starts from integers 1, 4, 7, so 7 is its element.
+
+In the second sample, the favorite integer of Vasya is equal to the first element of the sequence.
+
+In the third sample all elements of the sequence are greater than Vasya's favorite integer.
+
+In the fourth sample, the sequence starts from 0, 50, 100, and all the following elements are greater than Vasya's favorite integer.","a, b, c = map(int, input().split())
+if c == 0:
+    if a == b:
+        print(""YES"")
+    else:
+        print(""NO"")
+else:
+    if (b - a) % c == 0 and (b - a) / c >= 0:
+        print(""YES"")
+    else:
+        print(""NO"")
+",,post,True,0.9437063864687517,"Correctness: True, Confidence: 100
+
+Explanation: 
+The program correctly follows the problem description for all potential cases. It checks if the difference between the favorite number b and the first element a is divisible by the difference between neighboring elements c. It also ensures that the result is non-negative. The program covers all possible scenarios mentioned in the problem description and provides the correct output.",True,,pilot_apps1.json
+0015,apps,llama3-70b,gpt-3.5-turbo-0125,"Vasya likes everything infinite. Now he is studying the properties of a sequence s, such that its first element is equal to a (s_1 = a), and the difference between any two neighbouring elements is equal to c (s_{i} - s_{i} - 1 = c). In particular, Vasya wonders if his favourite integer b appears in this sequence, that is, there exists a positive integer i, such that s_{i} = b. Of course, you are the person he asks for a help.
+
+
+-----Input-----
+
+The first line of the input contain three integers a, b and c ( - 10^9 ≤ a, b, c ≤ 10^9) — the first element of the sequence, Vasya's favorite number and the difference between any two neighbouring elements of the sequence, respectively.
+
+
+-----Output-----
+
+If b appears in the sequence s print ""YES"" (without quotes), otherwise print ""NO"" (without quotes).
+
+
+-----Examples-----
+Input
+1 7 3
+
+Output
+YES
+
+Input
+10 10 0
+
+Output
+YES
+
+Input
+1 -4 5
+
+Output
+NO
+
+Input
+0 60 50
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first sample, the sequence starts from integers 1, 4, 7, so 7 is its element.
+
+In the second sample, the favorite integer of Vasya is equal to the first element of the sequence.
+
+In the third sample all elements of the sequence are greater than Vasya's favorite integer.
+
+In the fourth sample, the sequence starts from 0, 50, 100, and all the following elements are greater than Vasya's favorite integer.","a, b, c = map(int, input().split())
+if c == 0:
+    if a == b:
+        print(""YES"")
+    else:
+        print(""NO"")
+else:
+    if (b - a) % c == 0 and (b - a) / c >= 0:
+        print(""YES"")
+    else:
+        print(""NO"")
+",,post,True,0.44471927260772326,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly follows the problem description for all potential cases. It checks if the difference between the favorite number and the first element of the sequence is divisible by the difference between neighboring elements, and if the result is non-negative. The logic covers all scenarios outlined in the problem description and provides the correct output accordingly.",True,,pilot_apps1.json
+0015,apps,gpt-4o,gpt-3.5-turbo-0125,"Vasya likes everything infinite. Now he is studying the properties of a sequence s, such that its first element is equal to a (s_1 = a), and the difference between any two neighbouring elements is equal to c (s_{i} - s_{i} - 1 = c). In particular, Vasya wonders if his favourite integer b appears in this sequence, that is, there exists a positive integer i, such that s_{i} = b. Of course, you are the person he asks for a help.
+
+
+-----Input-----
+
+The first line of the input contain three integers a, b and c ( - 10^9 ≤ a, b, c ≤ 10^9) — the first element of the sequence, Vasya's favorite number and the difference between any two neighbouring elements of the sequence, respectively.
+
+
+-----Output-----
+
+If b appears in the sequence s print ""YES"" (without quotes), otherwise print ""NO"" (without quotes).
+
+
+-----Examples-----
+Input
+1 7 3
+
+Output
+YES
+
+Input
+10 10 0
+
+Output
+YES
+
+Input
+1 -4 5
+
+Output
+NO
+
+Input
+0 60 50
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first sample, the sequence starts from integers 1, 4, 7, so 7 is its element.
+
+In the second sample, the favorite integer of Vasya is equal to the first element of the sequence.
+
+In the third sample all elements of the sequence are greater than Vasya's favorite integer.
+
+In the fourth sample, the sequence starts from 0, 50, 100, and all the following elements are greater than Vasya's favorite integer.","a, b, c = map(int, input().split())
+
+if b == a:
+    print(""YES"")
+elif c == 0:
+    print(""NO"")
+else:
+    if (b - a) % c == 0 and (b - a) / c >= 0:
+        print(""YES"")
+    else:
+        print(""NO"")
+",,post,True,0.6141510922649245,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly determines if Vasya's favorite number b appears in the sequence based on the provided conditions. It checks if b is equal to a, if c is equal to 0, or if the difference between b and a is divisible by c and the result is non-negative. The program covers all the cases mentioned in the problem description and provides the correct output for each case.",True,,pilot_apps1.json
+0015,apps,gpt-4o,gpt-3.5-turbo-0125,"Vasya likes everything infinite. Now he is studying the properties of a sequence s, such that its first element is equal to a (s_1 = a), and the difference between any two neighbouring elements is equal to c (s_{i} - s_{i} - 1 = c). In particular, Vasya wonders if his favourite integer b appears in this sequence, that is, there exists a positive integer i, such that s_{i} = b. Of course, you are the person he asks for a help.
+
+
+-----Input-----
+
+The first line of the input contain three integers a, b and c ( - 10^9 ≤ a, b, c ≤ 10^9) — the first element of the sequence, Vasya's favorite number and the difference between any two neighbouring elements of the sequence, respectively.
+
+
+-----Output-----
+
+If b appears in the sequence s print ""YES"" (without quotes), otherwise print ""NO"" (without quotes).
+
+
+-----Examples-----
+Input
+1 7 3
+
+Output
+YES
+
+Input
+10 10 0
+
+Output
+YES
+
+Input
+1 -4 5
+
+Output
+NO
+
+Input
+0 60 50
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first sample, the sequence starts from integers 1, 4, 7, so 7 is its element.
+
+In the second sample, the favorite integer of Vasya is equal to the first element of the sequence.
+
+In the third sample all elements of the sequence are greater than Vasya's favorite integer.
+
+In the fourth sample, the sequence starts from 0, 50, 100, and all the following elements are greater than Vasya's favorite integer.","a, b, c = map(int, input().split())
+
+if b == a:
+    print(""YES"")
+elif c == 0:
+    print(""NO"")
+else:
+    if (b - a) % c == 0 and (b - a) / c >= 0:
+        print(""YES"")
+    else:
+        print(""NO"")
+",,post,True,0.24428040117987593,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly checks if Vasya's favorite number b appears in the sequence based on the given conditions. It covers all possible scenarios as described in the problem statement. The logic of the program is sound and provides the correct output for all test cases.",True,,pilot_apps1.json
+0015,apps,gpt-4o,gpt-3.5-turbo-0125,"Vasya likes everything infinite. Now he is studying the properties of a sequence s, such that its first element is equal to a (s_1 = a), and the difference between any two neighbouring elements is equal to c (s_{i} - s_{i} - 1 = c). In particular, Vasya wonders if his favourite integer b appears in this sequence, that is, there exists a positive integer i, such that s_{i} = b. Of course, you are the person he asks for a help.
+
+
+-----Input-----
+
+The first line of the input contain three integers a, b and c ( - 10^9 ≤ a, b, c ≤ 10^9) — the first element of the sequence, Vasya's favorite number and the difference between any two neighbouring elements of the sequence, respectively.
+
+
+-----Output-----
+
+If b appears in the sequence s print ""YES"" (without quotes), otherwise print ""NO"" (without quotes).
+
+
+-----Examples-----
+Input
+1 7 3
+
+Output
+YES
+
+Input
+10 10 0
+
+Output
+YES
+
+Input
+1 -4 5
+
+Output
+NO
+
+Input
+0 60 50
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first sample, the sequence starts from integers 1, 4, 7, so 7 is its element.
+
+In the second sample, the favorite integer of Vasya is equal to the first element of the sequence.
+
+In the third sample all elements of the sequence are greater than Vasya's favorite integer.
+
+In the fourth sample, the sequence starts from 0, 50, 100, and all the following elements are greater than Vasya's favorite integer.","a, b, c = map(int, input().split())
+
+if b == a:
+    print(""YES"")
+elif c == 0:
+    print(""NO"")
+else:
+    if (b - a) % c == 0 and (b - a) / c >= 0:
+        print(""YES"")
+    else:
+        print(""NO"")
+",,post,True,0.8328655849005963,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly follows the problem description for all potential cases. It checks if Vasya's favorite number is equal to the first element of the sequence, if the difference between the favorite number and the first element is divisible by the difference between neighboring elements, and if the result of the division is non-negative. The program covers all cases mentioned in the problem description and provides the correct output for each.",True,,pilot_apps1.json
+0015,apps,gpt-4o,gpt-3.5-turbo-0125,"Vasya likes everything infinite. Now he is studying the properties of a sequence s, such that its first element is equal to a (s_1 = a), and the difference between any two neighbouring elements is equal to c (s_{i} - s_{i} - 1 = c). In particular, Vasya wonders if his favourite integer b appears in this sequence, that is, there exists a positive integer i, such that s_{i} = b. Of course, you are the person he asks for a help.
+
+
+-----Input-----
+
+The first line of the input contain three integers a, b and c ( - 10^9 ≤ a, b, c ≤ 10^9) — the first element of the sequence, Vasya's favorite number and the difference between any two neighbouring elements of the sequence, respectively.
+
+
+-----Output-----
+
+If b appears in the sequence s print ""YES"" (without quotes), otherwise print ""NO"" (without quotes).
+
+
+-----Examples-----
+Input
+1 7 3
+
+Output
+YES
+
+Input
+10 10 0
+
+Output
+YES
+
+Input
+1 -4 5
+
+Output
+NO
+
+Input
+0 60 50
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first sample, the sequence starts from integers 1, 4, 7, so 7 is its element.
+
+In the second sample, the favorite integer of Vasya is equal to the first element of the sequence.
+
+In the third sample all elements of the sequence are greater than Vasya's favorite integer.
+
+In the fourth sample, the sequence starts from 0, 50, 100, and all the following elements are greater than Vasya's favorite integer.","a, b, c = map(int, input().split())
+
+if b == a:
+    print(""YES"")
+elif c == 0:
+    print(""NO"")
+else:
+    if (b - a) % c == 0 and (b - a) / c >= 0:
+        print(""YES"")
+    else:
+        print(""NO"")
+",,post,True,0.3953525952237109,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly checks if Vasya's favorite number b appears in the sequence based on the given conditions. It handles the case where b is equal to a, where c is equal to 0, and where the difference between b and a is divisible by c and the result is non-negative. The program covers all possible scenarios mentioned in the problem description and provides the correct output for each case.",True,,pilot_apps1.json
+0015,apps,gpt-4o,gpt-3.5-turbo-0125,"Vasya likes everything infinite. Now he is studying the properties of a sequence s, such that its first element is equal to a (s_1 = a), and the difference between any two neighbouring elements is equal to c (s_{i} - s_{i} - 1 = c). In particular, Vasya wonders if his favourite integer b appears in this sequence, that is, there exists a positive integer i, such that s_{i} = b. Of course, you are the person he asks for a help.
+
+
+-----Input-----
+
+The first line of the input contain three integers a, b and c ( - 10^9 ≤ a, b, c ≤ 10^9) — the first element of the sequence, Vasya's favorite number and the difference between any two neighbouring elements of the sequence, respectively.
+
+
+-----Output-----
+
+If b appears in the sequence s print ""YES"" (without quotes), otherwise print ""NO"" (without quotes).
+
+
+-----Examples-----
+Input
+1 7 3
+
+Output
+YES
+
+Input
+10 10 0
+
+Output
+YES
+
+Input
+1 -4 5
+
+Output
+NO
+
+Input
+0 60 50
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first sample, the sequence starts from integers 1, 4, 7, so 7 is its element.
+
+In the second sample, the favorite integer of Vasya is equal to the first element of the sequence.
+
+In the third sample all elements of the sequence are greater than Vasya's favorite integer.
+
+In the fourth sample, the sequence starts from 0, 50, 100, and all the following elements are greater than Vasya's favorite integer.","a, b, c = map(int, input().split())
+
+if b == a:
+    print(""YES"")
+elif c == 0:
+    print(""NO"")
+else:
+    if (b - a) % c == 0 and (b - a) / c >= 0:
+        print(""YES"")
+    else:
+        print(""NO"")
+",,post,True,0.6141510922649245,"Correctness: True, Confidence: 100
+
+Explanation: The given program correctly checks if Vasya's favorite number b appears in the sequence s according to the problem description. It covers all the cases mentioned in the problem description and provides the correct output for each case. The logic used in the program is sound and aligns with the requirements of the problem.",True,,pilot_apps1.json
+0112,apps,llama3-70b,gpt-3.5-turbo-0125,"Absent-minded Masha got set of n cubes for her birthday.
+
+At each of 6 faces of each cube, there is exactly one digit from 0 to 9. Masha became interested what is the largest natural x such she can make using her new cubes all integers from 1 to x.
+
+To make a number Masha can rotate her cubes and put them in a row. After that, she looks at upper faces of cubes from left to right and reads the number.
+
+The number can't contain leading zeros. It's not required to use all cubes to build a number.
+
+Pay attention: Masha can't make digit 6 from digit 9 and vice-versa using cube rotations.
+
+
+-----Input-----
+
+In first line integer n is given (1 ≤ n ≤ 3) — the number of cubes, Masha got for her birthday.
+
+Each of next n lines contains 6 integers a_{i}_{j} (0 ≤ a_{i}_{j} ≤ 9) — number on j-th face of i-th cube.
+
+
+-----Output-----
+
+Print single integer — maximum number x such Masha can make any integers from 1 to x using her cubes or 0 if Masha can't make even 1.
+
+
+-----Examples-----
+Input
+3
+0 1 2 3 4 5
+6 7 8 9 0 1
+2 3 4 5 6 7
+
+Output
+87
+Input
+3
+0 1 3 5 6 8
+1 2 4 5 7 8
+2 3 4 6 7 9
+
+Output
+98
+
+
+-----Note-----
+
+In the first test case, Masha can build all numbers from 1 to 87, but she can't make 88 because there are no two cubes with digit 8.","n = int(input())
+cubes = [list(map(int, input().split())) for _ in range(n)]
+
+digits = set()
+for cube in cubes:
+    digits.update(str(digit) for digit in cube)
+
+if '0' in digits:
+    digits.remove('0')
+
+max_num = int(''.join(sorted(digits, reverse=True)))
+print(max_num)
+",,post,False,0.6155586872498251,"Correctness: False, Confidence: 100
+
+The given program does not handle the case where Masha can't make even the number 1. This is because the program removes '0' from the set of digits and then constructs the maximum number from the remaining digits. In cases where there are no digits other than '0', the program will output 0, which is incorrect according to the problem description.",False,,pilot_apps1.json
+0112,apps,llama3-70b,gpt-3.5-turbo-0125,"Absent-minded Masha got set of n cubes for her birthday.
+
+At each of 6 faces of each cube, there is exactly one digit from 0 to 9. Masha became interested what is the largest natural x such she can make using her new cubes all integers from 1 to x.
+
+To make a number Masha can rotate her cubes and put them in a row. After that, she looks at upper faces of cubes from left to right and reads the number.
+
+The number can't contain leading zeros. It's not required to use all cubes to build a number.
+
+Pay attention: Masha can't make digit 6 from digit 9 and vice-versa using cube rotations.
+
+
+-----Input-----
+
+In first line integer n is given (1 ≤ n ≤ 3) — the number of cubes, Masha got for her birthday.
+
+Each of next n lines contains 6 integers a_{i}_{j} (0 ≤ a_{i}_{j} ≤ 9) — number on j-th face of i-th cube.
+
+
+-----Output-----
+
+Print single integer — maximum number x such Masha can make any integers from 1 to x using her cubes or 0 if Masha can't make even 1.
+
+
+-----Examples-----
+Input
+3
+0 1 2 3 4 5
+6 7 8 9 0 1
+2 3 4 5 6 7
+
+Output
+87
+Input
+3
+0 1 3 5 6 8
+1 2 4 5 7 8
+2 3 4 6 7 9
+
+Output
+98
+
+
+-----Note-----
+
+In the first test case, Masha can build all numbers from 1 to 87, but she can't make 88 because there are no two cubes with digit 8.","n = int(input())
+cubes = [list(map(int, input().split())) for _ in range(n)]
+
+digits = set()
+for cube in cubes:
+    digits.update(str(digit) for digit in cube)
+
+if '0' in digits:
+    digits.remove('0')
+
+max_num = int(''.join(sorted(digits, reverse=True)))
+print(max_num)
+",,post,False,0.6155586872498251,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly reads the input, extracts the digits from the cubes, removes '0' if present, sorts the digits in descending order, and then converts them to an integer to find the maximum number Masha can make. The logic of the program aligns with the problem description and handles all potential cases.",True,,pilot_apps1.json
+0112,apps,llama3-70b,gpt-3.5-turbo-0125,"Absent-minded Masha got set of n cubes for her birthday.
+
+At each of 6 faces of each cube, there is exactly one digit from 0 to 9. Masha became interested what is the largest natural x such she can make using her new cubes all integers from 1 to x.
+
+To make a number Masha can rotate her cubes and put them in a row. After that, she looks at upper faces of cubes from left to right and reads the number.
+
+The number can't contain leading zeros. It's not required to use all cubes to build a number.
+
+Pay attention: Masha can't make digit 6 from digit 9 and vice-versa using cube rotations.
+
+
+-----Input-----
+
+In first line integer n is given (1 ≤ n ≤ 3) — the number of cubes, Masha got for her birthday.
+
+Each of next n lines contains 6 integers a_{i}_{j} (0 ≤ a_{i}_{j} ≤ 9) — number on j-th face of i-th cube.
+
+
+-----Output-----
+
+Print single integer — maximum number x such Masha can make any integers from 1 to x using her cubes or 0 if Masha can't make even 1.
+
+
+-----Examples-----
+Input
+3
+0 1 2 3 4 5
+6 7 8 9 0 1
+2 3 4 5 6 7
+
+Output
+87
+Input
+3
+0 1 3 5 6 8
+1 2 4 5 7 8
+2 3 4 6 7 9
+
+Output
+98
+
+
+-----Note-----
+
+In the first test case, Masha can build all numbers from 1 to 87, but she can't make 88 because there are no two cubes with digit 8.","n = int(input())
+cubes = [list(map(int, input().split())) for _ in range(n)]
+
+digits = set()
+for cube in cubes:
+    digits.update(str(digit) for digit in cube)
+
+if '0' in digits:
+    digits.remove('0')
+
+max_num = int(''.join(sorted(digits, reverse=True)))
+print(max_num)
+",,post,False,0.6138654233931019,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly reads the input, extracts all unique digits from the cubes, removes '0' if present, sorts the digits in descending order, and constructs the maximum number possible. The logic implemented in the code aligns with the problem description, and for all possible inputs provided in the examples, the program produces the correct output.",True,,pilot_apps1.json
+0112,apps,llama3-70b,gpt-3.5-turbo-0125,"Absent-minded Masha got set of n cubes for her birthday.
+
+At each of 6 faces of each cube, there is exactly one digit from 0 to 9. Masha became interested what is the largest natural x such she can make using her new cubes all integers from 1 to x.
+
+To make a number Masha can rotate her cubes and put them in a row. After that, she looks at upper faces of cubes from left to right and reads the number.
+
+The number can't contain leading zeros. It's not required to use all cubes to build a number.
+
+Pay attention: Masha can't make digit 6 from digit 9 and vice-versa using cube rotations.
+
+
+-----Input-----
+
+In first line integer n is given (1 ≤ n ≤ 3) — the number of cubes, Masha got for her birthday.
+
+Each of next n lines contains 6 integers a_{i}_{j} (0 ≤ a_{i}_{j} ≤ 9) — number on j-th face of i-th cube.
+
+
+-----Output-----
+
+Print single integer — maximum number x such Masha can make any integers from 1 to x using her cubes or 0 if Masha can't make even 1.
+
+
+-----Examples-----
+Input
+3
+0 1 2 3 4 5
+6 7 8 9 0 1
+2 3 4 5 6 7
+
+Output
+87
+Input
+3
+0 1 3 5 6 8
+1 2 4 5 7 8
+2 3 4 6 7 9
+
+Output
+98
+
+
+-----Note-----
+
+In the first test case, Masha can build all numbers from 1 to 87, but she can't make 88 because there are no two cubes with digit 8.","n = int(input())
+cubes = [list(map(int, input().split())) for _ in range(n)]
+
+digits = set()
+for cube in cubes:
+    digits.update(str(digit) for digit in cube)
+
+if '0' in digits:
+    digits.remove('0')
+
+max_num = int(''.join(sorted(digits, reverse=True)))
+print(max_num)
+",,post,False,0.3119753452908441,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly reads the input, extracts all the unique digits from the cubes (excluding 0), sorts them in descending order, and then converts them to an integer to find the maximum number Masha can make. The logic of the program aligns with the problem description, and it covers all potential cases where Masha can construct numbers from 1 to x using the given cubes.",True,,pilot_apps1.json
+0112,apps,llama3-70b,gpt-3.5-turbo-0125,"Absent-minded Masha got set of n cubes for her birthday.
+
+At each of 6 faces of each cube, there is exactly one digit from 0 to 9. Masha became interested what is the largest natural x such she can make using her new cubes all integers from 1 to x.
+
+To make a number Masha can rotate her cubes and put them in a row. After that, she looks at upper faces of cubes from left to right and reads the number.
+
+The number can't contain leading zeros. It's not required to use all cubes to build a number.
+
+Pay attention: Masha can't make digit 6 from digit 9 and vice-versa using cube rotations.
+
+
+-----Input-----
+
+In first line integer n is given (1 ≤ n ≤ 3) — the number of cubes, Masha got for her birthday.
+
+Each of next n lines contains 6 integers a_{i}_{j} (0 ≤ a_{i}_{j} ≤ 9) — number on j-th face of i-th cube.
+
+
+-----Output-----
+
+Print single integer — maximum number x such Masha can make any integers from 1 to x using her cubes or 0 if Masha can't make even 1.
+
+
+-----Examples-----
+Input
+3
+0 1 2 3 4 5
+6 7 8 9 0 1
+2 3 4 5 6 7
+
+Output
+87
+Input
+3
+0 1 3 5 6 8
+1 2 4 5 7 8
+2 3 4 6 7 9
+
+Output
+98
+
+
+-----Note-----
+
+In the first test case, Masha can build all numbers from 1 to 87, but she can't make 88 because there are no two cubes with digit 8.","n = int(input())
+cubes = [list(map(int, input().split())) for _ in range(n)]
+
+digits = set()
+for cube in cubes:
+    digits.update(str(digit) for digit in cube)
+
+if '0' in digits:
+    digits.remove('0')
+
+max_num = int(''.join(sorted(digits, reverse=True)))
+print(max_num)
+",,post,False,0.6138654233931019,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly reads the input, extracts all unique digits from the cubes excluding '0', sorts them in descending order, and then constructs the maximum number possible. The program follows the problem description for all cases and handles them correctly.",True,,pilot_apps1.json
+0112,apps,gpt-4o,gpt-3.5-turbo-0125,"Absent-minded Masha got set of n cubes for her birthday.
+
+At each of 6 faces of each cube, there is exactly one digit from 0 to 9. Masha became interested what is the largest natural x such she can make using her new cubes all integers from 1 to x.
+
+To make a number Masha can rotate her cubes and put them in a row. After that, she looks at upper faces of cubes from left to right and reads the number.
+
+The number can't contain leading zeros. It's not required to use all cubes to build a number.
+
+Pay attention: Masha can't make digit 6 from digit 9 and vice-versa using cube rotations.
+
+
+-----Input-----
+
+In first line integer n is given (1 ≤ n ≤ 3) — the number of cubes, Masha got for her birthday.
+
+Each of next n lines contains 6 integers a_{i}_{j} (0 ≤ a_{i}_{j} ≤ 9) — number on j-th face of i-th cube.
+
+
+-----Output-----
+
+Print single integer — maximum number x such Masha can make any integers from 1 to x using her cubes or 0 if Masha can't make even 1.
+
+
+-----Examples-----
+Input
+3
+0 1 2 3 4 5
+6 7 8 9 0 1
+2 3 4 5 6 7
+
+Output
+87
+Input
+3
+0 1 3 5 6 8
+1 2 4 5 7 8
+2 3 4 6 7 9
+
+Output
+98
+
+
+-----Note-----
+
+In the first test case, Masha can build all numbers from 1 to 87, but she can't make 88 because there are no two cubes with digit 8.","def find_max_x(n, cubes):
+    from itertools import product
+
+    # Create a set for each cube's faces
+    cube_faces = [set(cube) for cube in cubes]
+
+    def can_form_number(num):
+        digits = list(str(num))
+        used_cubes = [False] * n
+
+        for digit in digits:
+            found = False
+            for i in range(n):
+                if not used_cubes[i] and digit in cube_faces[i]:
+                    used_cubes[i] = True
+                    found = True
+                    break
+            if not found:
+                return False
+        return True
+
+    x = 0
+    while can_form_number(x + 1):
+        x += 1
+
+    return x
+
+if __name__ == ""__main__"":
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    cubes = []
+    index = 1
+    
+    for i in range(n):
+        cubes.append(data[index:index + 6])
+        index += 6
+
+    print(find_max_x(n, cubes))
+",,post,False,0.7100608062558657,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly implements the logic described in the problem description. It iterates through numbers starting from 1 and checks if Masha can form each number using the given cubes. The function `can_form_number` checks if a number can be formed using the cubes by iterating through the digits of the number and checking if there is a cube available with that digit. The program then increments `x` until it reaches the maximum number that can be formed. The input is correctly parsed, and the function is called with the provided input. The program output is the maximum number x that Masha can form. There are no cases identified where the program does not work as expected based on the problem description.",True,,pilot_apps1.json
+0112,apps,gpt-4o,gpt-3.5-turbo-0125,"Absent-minded Masha got set of n cubes for her birthday.
+
+At each of 6 faces of each cube, there is exactly one digit from 0 to 9. Masha became interested what is the largest natural x such she can make using her new cubes all integers from 1 to x.
+
+To make a number Masha can rotate her cubes and put them in a row. After that, she looks at upper faces of cubes from left to right and reads the number.
+
+The number can't contain leading zeros. It's not required to use all cubes to build a number.
+
+Pay attention: Masha can't make digit 6 from digit 9 and vice-versa using cube rotations.
+
+
+-----Input-----
+
+In first line integer n is given (1 ≤ n ≤ 3) — the number of cubes, Masha got for her birthday.
+
+Each of next n lines contains 6 integers a_{i}_{j} (0 ≤ a_{i}_{j} ≤ 9) — number on j-th face of i-th cube.
+
+
+-----Output-----
+
+Print single integer — maximum number x such Masha can make any integers from 1 to x using her cubes or 0 if Masha can't make even 1.
+
+
+-----Examples-----
+Input
+3
+0 1 2 3 4 5
+6 7 8 9 0 1
+2 3 4 5 6 7
+
+Output
+87
+Input
+3
+0 1 3 5 6 8
+1 2 4 5 7 8
+2 3 4 6 7 9
+
+Output
+98
+
+
+-----Note-----
+
+In the first test case, Masha can build all numbers from 1 to 87, but she can't make 88 because there are no two cubes with digit 8.","def find_max_x(n, cubes):
+    from itertools import product
+
+    # Create a set for each cube's faces
+    cube_faces = [set(cube) for cube in cubes]
+
+    def can_form_number(num):
+        digits = list(str(num))
+        used_cubes = [False] * n
+
+        for digit in digits:
+            found = False
+            for i in range(n):
+                if not used_cubes[i] and digit in cube_faces[i]:
+                    used_cubes[i] = True
+                    found = True
+                    break
+            if not found:
+                return False
+        return True
+
+    x = 0
+    while can_form_number(x + 1):
+        x += 1
+
+    return x
+
+if __name__ == ""__main__"":
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    cubes = []
+    index = 1
+    
+    for i in range(n):
+        cubes.append(data[index:index + 6])
+        index += 6
+
+    print(find_max_x(n, cubes))
+",,post,False,0.11702639515649359,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly implements the logic described in the problem statement. It iterates through numbers starting from 1 and checks if Masha can form that number using the given cubes. It uses a set to keep track of the faces of each cube and checks if the required digits are present on the cubes. The program stops when Masha can no longer form the next number, which is the desired behavior according to the problem description. The program handles all potential cases and there are no scenarios identified where it does not work as expected.",True,,pilot_apps1.json
+0112,apps,gpt-4o,gpt-3.5-turbo-0125,"Absent-minded Masha got set of n cubes for her birthday.
+
+At each of 6 faces of each cube, there is exactly one digit from 0 to 9. Masha became interested what is the largest natural x such she can make using her new cubes all integers from 1 to x.
+
+To make a number Masha can rotate her cubes and put them in a row. After that, she looks at upper faces of cubes from left to right and reads the number.
+
+The number can't contain leading zeros. It's not required to use all cubes to build a number.
+
+Pay attention: Masha can't make digit 6 from digit 9 and vice-versa using cube rotations.
+
+
+-----Input-----
+
+In first line integer n is given (1 ≤ n ≤ 3) — the number of cubes, Masha got for her birthday.
+
+Each of next n lines contains 6 integers a_{i}_{j} (0 ≤ a_{i}_{j} ≤ 9) — number on j-th face of i-th cube.
+
+
+-----Output-----
+
+Print single integer — maximum number x such Masha can make any integers from 1 to x using her cubes or 0 if Masha can't make even 1.
+
+
+-----Examples-----
+Input
+3
+0 1 2 3 4 5
+6 7 8 9 0 1
+2 3 4 5 6 7
+
+Output
+87
+Input
+3
+0 1 3 5 6 8
+1 2 4 5 7 8
+2 3 4 6 7 9
+
+Output
+98
+
+
+-----Note-----
+
+In the first test case, Masha can build all numbers from 1 to 87, but she can't make 88 because there are no two cubes with digit 8.","def find_max_x(n, cubes):
+    from itertools import product
+
+    # Create a set for each cube's faces
+    cube_faces = [set(cube) for cube in cubes]
+
+    def can_form_number(num):
+        digits = list(str(num))
+        used_cubes = [False] * n
+
+        for digit in digits:
+            found = False
+            for i in range(n):
+                if not used_cubes[i] and digit in cube_faces[i]:
+                    used_cubes[i] = True
+                    found = True
+                    break
+            if not found:
+                return False
+        return True
+
+    x = 0
+    while can_form_number(x + 1):
+        x += 1
+
+    return x
+
+if __name__ == ""__main__"":
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    cubes = []
+    index = 1
+    
+    for i in range(n):
+        cubes.append(data[index:index + 6])
+        index += 6
+
+    print(find_max_x(n, cubes))
+",,post,False,0.7101362755287206,"Correctness: True, Confidence: 90
+
+Explanation: The program iterates through all numbers starting from 1 and checks if Masha can form that number using the given cubes. It correctly handles the case where Masha can't form a number due to the absence of a specific digit on any cube. The logic of checking if a number can be formed is implemented correctly by iterating through the digits of the number and checking if each digit can be found on any of the cubes. The program terminates when Masha can't form the next number, which is the correct approach to finding the maximum number she can form. The program also considers the constraint that Masha can't make digit 6 from digit 9 and vice-versa using cube rotations. Overall, the program seems to be correctly implemented according to the problem description.",True,,pilot_apps1.json
+0112,apps,gpt-4o,gpt-3.5-turbo-0125,"Absent-minded Masha got set of n cubes for her birthday.
+
+At each of 6 faces of each cube, there is exactly one digit from 0 to 9. Masha became interested what is the largest natural x such she can make using her new cubes all integers from 1 to x.
+
+To make a number Masha can rotate her cubes and put them in a row. After that, she looks at upper faces of cubes from left to right and reads the number.
+
+The number can't contain leading zeros. It's not required to use all cubes to build a number.
+
+Pay attention: Masha can't make digit 6 from digit 9 and vice-versa using cube rotations.
+
+
+-----Input-----
+
+In first line integer n is given (1 ≤ n ≤ 3) — the number of cubes, Masha got for her birthday.
+
+Each of next n lines contains 6 integers a_{i}_{j} (0 ≤ a_{i}_{j} ≤ 9) — number on j-th face of i-th cube.
+
+
+-----Output-----
+
+Print single integer — maximum number x such Masha can make any integers from 1 to x using her cubes or 0 if Masha can't make even 1.
+
+
+-----Examples-----
+Input
+3
+0 1 2 3 4 5
+6 7 8 9 0 1
+2 3 4 5 6 7
+
+Output
+87
+Input
+3
+0 1 3 5 6 8
+1 2 4 5 7 8
+2 3 4 6 7 9
+
+Output
+98
+
+
+-----Note-----
+
+In the first test case, Masha can build all numbers from 1 to 87, but she can't make 88 because there are no two cubes with digit 8.","def find_max_x(n, cubes):
+    from itertools import product
+
+    # Create a set for each cube's faces
+    cube_faces = [set(cube) for cube in cubes]
+
+    def can_form_number(num):
+        digits = list(str(num))
+        used_cubes = [False] * n
+
+        for digit in digits:
+            found = False
+            for i in range(n):
+                if not used_cubes[i] and digit in cube_faces[i]:
+                    used_cubes[i] = True
+                    found = True
+                    break
+            if not found:
+                return False
+        return True
+
+    x = 0
+    while can_form_number(x + 1):
+        x += 1
+
+    return x
+
+if __name__ == ""__main__"":
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    cubes = []
+    index = 1
+    
+    for i in range(n):
+        cubes.append(data[index:index + 6])
+        index += 6
+
+    print(find_max_x(n, cubes))
+",,post,False,0.015109856496440501,"Correctness: True, Confidence: 100
+
+Explanation: The program iterates through all possible numbers starting from 1 and checks if Masha can form that number using the given cubes. It does this by checking if each digit in the number can be formed using the faces of the cubes. The logic seems correct and follows the problem description accurately. Additionally, the program handles the case where Masha can't form any number (returns 0) as specified in the problem description. Overall, the program seems to be functioning correctly for all potential cases.",True,,pilot_apps1.json
+0112,apps,gpt-4o,gpt-3.5-turbo-0125,"Absent-minded Masha got set of n cubes for her birthday.
+
+At each of 6 faces of each cube, there is exactly one digit from 0 to 9. Masha became interested what is the largest natural x such she can make using her new cubes all integers from 1 to x.
+
+To make a number Masha can rotate her cubes and put them in a row. After that, she looks at upper faces of cubes from left to right and reads the number.
+
+The number can't contain leading zeros. It's not required to use all cubes to build a number.
+
+Pay attention: Masha can't make digit 6 from digit 9 and vice-versa using cube rotations.
+
+
+-----Input-----
+
+In first line integer n is given (1 ≤ n ≤ 3) — the number of cubes, Masha got for her birthday.
+
+Each of next n lines contains 6 integers a_{i}_{j} (0 ≤ a_{i}_{j} ≤ 9) — number on j-th face of i-th cube.
+
+
+-----Output-----
+
+Print single integer — maximum number x such Masha can make any integers from 1 to x using her cubes or 0 if Masha can't make even 1.
+
+
+-----Examples-----
+Input
+3
+0 1 2 3 4 5
+6 7 8 9 0 1
+2 3 4 5 6 7
+
+Output
+87
+Input
+3
+0 1 3 5 6 8
+1 2 4 5 7 8
+2 3 4 6 7 9
+
+Output
+98
+
+
+-----Note-----
+
+In the first test case, Masha can build all numbers from 1 to 87, but she can't make 88 because there are no two cubes with digit 8.","def find_max_x(n, cubes):
+    from itertools import product
+
+    # Create a set for each cube's faces
+    cube_faces = [set(cube) for cube in cubes]
+
+    def can_form_number(num):
+        digits = list(str(num))
+        used_cubes = [False] * n
+
+        for digit in digits:
+            found = False
+            for i in range(n):
+                if not used_cubes[i] and digit in cube_faces[i]:
+                    used_cubes[i] = True
+                    found = True
+                    break
+            if not found:
+                return False
+        return True
+
+    x = 0
+    while can_form_number(x + 1):
+        x += 1
+
+    return x
+
+if __name__ == ""__main__"":
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    cubes = []
+    index = 1
+    
+    for i in range(n):
+        cubes.append(data[index:index + 6])
+        index += 6
+
+    print(find_max_x(n, cubes))
+",,post,False,0.710448573345404,"Correctness: True, Confidence: 100
+
+Explanation: The program correctly implements the logic described in the problem statement. It iterates through numbers starting from 1 and checks if each digit can be formed using the available cubes. The can_form_number function correctly checks if a number can be formed using the given cubes. The program terminates when it can no longer form the next number, which is the maximum number Masha can make. The program handles all potential cases and edge cases described in the problem statement.",True,,pilot_apps1.json
