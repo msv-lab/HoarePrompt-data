@@ -55,6 +55,6 @@ def calculate_consistency(input_csv, output_json):
 
 # Test the function with an example CSV
 if __name__ == "__main__":
-    input_csv = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple/mbpp_4_mini_2/combined_confidence_mbpp_4mini.csv"  # Replace with your input CSV file
+    input_csv = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple/apps_3point5_3/combined_confidence_apps_3point5_3.csv"  # Replace with your input CSV file
     output_json = "confidence.json"  # Desired output JSON file
     calculate_consistency(input_csv, output_json)
