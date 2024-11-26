@@ -1,0 +1,19 @@
+[
+    {
+        "task_id": "Mbpp/748",
+        "specification": "Write a function to put spaces between words starting with capital letters in a given string.",
+        "generated_code": "def capital_words_spaces(s):\n    result = []\n    for i, char in enumerate(s):\n        if char.isupper() and i != 0:\n            result.append(' ')\n        result.append(char)\n    return ''.join(result)\n\n# Test cases\nassert capital_words_spaces(\"Python\") == 'Python'\nassert capital_words_spaces(\"PythonProgrammingExamples\") == 'Python Programming Examples'\nassert capital_words_spaces(\"GetReadyToBeCodingFreak\") == 'Get Ready To Be Coding Freak'\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 0.22727272727272727,
+        "assertion_passed": true,
+        "counterexample": {
+            "test_type": "plus",
+            "input": [
+                "MyNameIsAIAndIAmHereToHelpYou"
+            ],
+            "expected": "My Name Is AI And IAm Here To Help You",
+            "got": "My Name Is A I And I Am Here To Help You"
+        },
+        "comment": "canonical_solution uncertain"
+    }
+]

@@ -1,0 +1,115 @@
+[
+    {
+        "task_id": "Mbpp/468",
+        "specification": "Write a function to find the maximum product formed by multiplying numbers of an increasing subsequence of that array.",
+        "generated_code": "def max_product(arr):\n    n = len(arr)\n    if n == 0:\n        return 0\n    \n    max_product = arr[:]\n    \n    for i in range(1, n):\n        for j in range(i):\n            if arr[i] > arr[j]:\n                max_product[i] = max(max_product[i], max_product[j] * arr[i])\n    \n    return max(max_product)\n\n# Test cases\nassert max_product([3, 100, 4, 5, 150, 6]) == 3000\nassert max_product([4, 42, 55, 68, 80]) == 50265600\nassert max_product([10, 22, 9, 33, 21, 50, 41, 60]) == 2460\n",
+        "base_accuracy": 0.0,
+        "plus_accuracy": 0.0,
+        "assertion_passed": false,
+        "counterexample": {
+            "test_type": "base",
+            "input": [
+                [
+                    3,
+                    100,
+                    4,
+                    5,
+                    150,
+                    6
+                ]
+            ],
+            "expected": 3000,
+            "got": null
+        },
+        "comment": "wrong description"
+    },
+    {
+        "task_id": "Mbpp/590",
+        "specification": "Write a function to convert rectangular coordinates to polar coordinates.",
+        "generated_code": "import cmath\nimport math\n\ndef polar_rect(r, theta):\n    # Convert polar to rectangular coordinates (Cartesian)\n    x = r * math.cos(theta)\n    y = r * math.sin(theta)\n    rect_coords = (x, y)\n    \n    # Convert polar to complex form\n    complex_coord = cmath.rect(r, theta)\n    \n    return (rect_coords, complex_coord)\n\n# Test cases\nassert polar_rect(3, 4) == ((-2.040410426703386, -2.270407485923784), (-2.040410426703386 - 2.270407485923784j))\nassert polar_rect(4, 7) == ((3.3070366009540713, -2.6274877036563123), (3.3070366009540713 - 2.6274877036563123j))\nassert polar_rect(15, 17) == ((13.74978939308599, 7.275184502974975), (13.74978939308599 + 7.275184502974975j))\n\n",
+        "base_accuracy": 0.0,
+        "plus_accuracy": 0.0,
+        "assertion_passed": false,
+        "counterexample": "(non-serializable) {'test_type': 'base', 'inputs': [3, 4], 'expected': ((5.0, 0.9272952180016122), (-2+2.4492935982947064e-16j)), 'got': None}",
+        "comment": "wrong description"
+    },
+    {
+        "task_id": "Mbpp/597",
+        "specification": "Write a function to find kth element from the given two arrays.",
+        "generated_code": "def find_kth(arr1, arr2, k):\n    i = j = 0\n    merged = []\n    \n    # Merge the two sorted arrays\n    while i < len(arr1) and j < len(arr2):\n        if arr1[i] < arr2[j]:\n            merged.append(arr1[i])\n            i += 1\n        else:\n            merged.append(arr2[j])\n            j += 1\n    \n    # If there are remaining elements in arr1\n    while i < len(arr1):\n        merged.append(arr1[i])\n        i += 1\n    \n    # If there are remaining elements in arr2\n    while j < len(arr2):\n        merged.append(arr2[j])\n        j += 1\n    \n    # Return the k-th element (1-indexed)\n    return merged[k-1]\n\n# Tests\nassert find_kth([2, 3, 6, 7, 9], [1, 4, 8, 10], 5) == 6\nassert find_kth([100, 112, 256, 349, 770], [72, 86, 113, 119, 265, 445, 892], 7) == 256\nassert find_kth([3, 4, 7, 8, 10], [2, 5, 9, 11], 6) == 8\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 0.375,
+        "assertion_passed": true,
+        "counterexample": {
+            "test_type": "plus",
+            "input": [
+                [
+                    1,
+                    2,
+                    3
+                ],
+                [
+                    true,
+                    true,
+                    false
+                ],
+                3
+            ],
+            "expected": true,
+            "got": false
+        },
+        "comment": "wrong description"
+    },
+    {
+        "task_id": "Mbpp/615",
+        "specification": "Write a function that takes a tuple of tuples and returns a list where each element is the average of the corresponding values from each tuple. For each position, compute the average of values from all tuples at that position.",
+        "generated_code": "def average_tuple(tuples_of_tuples):\n    averages = []\n    for t in tuples_of_tuples:\n        avg = sum(t) / len(t)\n        averages.append(avg)\n    return averages\n\n# Test cases\nassert average_tuple(((10, 10, 10, 12), (30, 45, 56, 45), (81, 80, 39, 32), (1, 2, 3, 4))) == [10.5, 44.0, 58.0, 2.5]\nassert average_tuple(((1, 1, -5), (30, -15, 56), (81, -60, -39), (-10, 2, 3))) == [-1.0, 23.666666666666668, -6.0, -1.6666666666666667]\nassert average_tuple(((100, 100, 100, 120), (300, 450, 560, 450), (810, 800, 390, 320), (10, 20, 30, 40))) == [105.0, 440.0, 580.0, 25.0]\n",
+        "base_accuracy": 0.0,
+        "plus_accuracy": 0.013605442176870748,
+        "assertion_passed": false,
+        "counterexample": {
+            "test_type": "base",
+            "input": [
+                [
+                    [
+                        10,
+                        10,
+                        10,
+                        12
+                    ],
+                    [
+                        30,
+                        45,
+                        56,
+                        45
+                    ],
+                    [
+                        81,
+                        80,
+                        39,
+                        32
+                    ],
+                    [
+                        1,
+                        2,
+                        3,
+                        4
+                    ]
+                ]
+            ],
+            "expected": [
+                30.5,
+                34.25,
+                27.0,
+                23.25
+            ],
+            "got": [
+                10.5,
+                44.0,
+                58.0,
+                2.5
+            ]
+        },
+        "comment": "wrong description"
+    }
+]

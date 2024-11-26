@@ -1,0 +1,147 @@
+[
+    {
+        "task_id": "Mbpp/106",
+        "specification": "Write a function to append the given list to the given tuples.",
+        "generated_code": "def add_lists(lst, tpl):\n    return tpl + tuple(lst)\n\n# Test cases\nassert add_lists([5, 6, 7], (9, 10)) == (9, 10, 5, 6, 7)\nassert add_lists([6, 7, 8], (10, 11)) == (10, 11, 6, 7, 8)\nassert add_lists([7, 8, 9], (11, 12)) == (11, 12, 7, 8, 9)\n",
+        "base_accuracy": 0.0,
+        "plus_accuracy": 0.0,
+        "assertion_passed": true,
+        "counterexample": {
+            "test_type": "base",
+            "input": [
+                [
+                    5,
+                    6,
+                    7
+                ],
+                [
+                    9,
+                    10
+                ]
+            ],
+            "expected": null,
+            "got": null
+        },
+        "comment": "tuple"
+    },
+    {
+        "task_id": "Mbpp/278",
+        "specification": "Write a function to find the number of elements that occurs before the tuple element in the given tuple.",
+        "generated_code": "def count_first_elements(tup):\n    count = 0\n    for elem in tup:\n        if isinstance(elem, tuple):\n            break\n        count += 1\n    return count\n\n# Test cases\nassert count_first_elements((1, 5, 7, (4, 6), 10)) == 3\nassert count_first_elements((2, 9, (5, 7), 11)) == 2\nassert count_first_elements((11, 15, 5, 8, (2, 3), 8)) == 4\n",
+        "base_accuracy": 0.0,
+        "plus_accuracy": 0.0,
+        "assertion_passed": true,
+        "counterexample": {
+            "test_type": "base",
+            "input": [
+                [
+                    1,
+                    5,
+                    7,
+                    [
+                        4,
+                        6
+                    ],
+                    10
+                ]
+            ],
+            "expected": 4,
+            "got": 5
+        },
+        "comment": "tuple"
+    },
+    {
+        "task_id": "Mbpp/310",
+        "specification": "Write a function to convert a given string to a tuple of characters.",
+        "generated_code": "def string_to_tuple(s: str) -> tuple:\n    return tuple(s)\n\n# Tests\nassert string_to_tuple(\"python 3.0\") == ('p', 'y', 't', 'h', 'o', 'n', '3', '.', '0')\nassert string_to_tuple(\"item1\") == ('i', 't', 'e', 'm', '1')\nassert string_to_tuple(\"15.10\") == ('1', '5', '.', '1', '0')\n",
+        "base_accuracy": 0.6666666666666666,
+        "plus_accuracy": 0.5398230088495575,
+        "assertion_passed": false,
+        "counterexample": {
+            "test_type": "base",
+            "input": [
+                "python 3.0"
+            ],
+            "expected": [
+                "p",
+                "y",
+                "t",
+                "h",
+                "o",
+                "n",
+                "3",
+                ".",
+                "0"
+            ],
+            "got": [
+                "p",
+                "y",
+                "t",
+                "h",
+                "o",
+                "n",
+                " ",
+                "3",
+                ".",
+                "0"
+            ]
+        },
+        "comment": "tuple"
+    },
+    {
+        "task_id": "Mbpp/580",
+        "specification": "Write a function to remove uneven elements in the nested mixed tuple.",
+        "generated_code": "def extract_even(data):\n    if isinstance(data, int):  # If the element is an integer\n        return data if data % 2 == 0 else None  # Return the element if it's even, otherwise None\n    elif isinstance(data, tuple):  # If the element is a tuple\n        result = tuple(filter(None, (extract_even(item) for item in data)))  # Recursively process each item in the tuple\n        return result if result else None  # Return the processed tuple if it's not empty, otherwise None\n    return None  # For any other type, return None (though this shouldn't happen in the given problem context)\n\n# Testing the function\nassert extract_even((4, 5, (7, 6, (2, 4)), 6, 8)) == (4, (6, (2, 4)), 6, 8)\nassert extract_even((5, 6, (8, 7, (4, 8)), 7, 9)) == (6, (8, (4, 8)))\nassert extract_even((5, 6, (9, 8, (4, 6)), 8, 10)) == (6, (8, (4, 6)), 8, 10)\n",
+        "base_accuracy": 0.0,
+        "plus_accuracy": 0.0,
+        "assertion_passed": true,
+        "counterexample": {
+            "test_type": "base",
+            "input": [
+                [
+                    4,
+                    5,
+                    [
+                        7,
+                        6,
+                        [
+                            2,
+                            4
+                        ]
+                    ],
+                    6,
+                    8
+                ]
+            ],
+            "expected": null,
+            "got": null
+        },
+        "comment": "tuple"
+    },
+    {
+        "task_id": "Mbpp/720",
+        "specification": "Write a function to add a dictionary to the tuple. The output should be a tuple.",
+        "generated_code": "def add_dict_to_tuple(input_tuple, input_dict):\n    return input_tuple + (input_dict,)\n\n# Test cases\nassert add_dict_to_tuple((4, 5, 6), {\"MSAM\" : 1, \"is\" : 2, \"best\" : 3} ) == (4, 5, 6, {'MSAM': 1, 'is': 2, 'best': 3})\nassert add_dict_to_tuple((1, 2, 3), {\"UTS\" : 2, \"is\" : 3, \"Worst\" : 4} ) == (1, 2, 3, {'UTS': 2, 'is': 3, 'Worst': 4})\nassert add_dict_to_tuple((8, 9, 10), {\"POS\" : 3, \"is\" : 4, \"Okay\" : 5} ) == (8, 9, 10, {'POS': 3, 'is': 4, 'Okay': 5})\n",
+        "base_accuracy": 0.0,
+        "plus_accuracy": 0.0,
+        "assertion_passed": true,
+        "counterexample": {
+            "test_type": "base",
+            "input": [
+                [
+                    4,
+                    5,
+                    6
+                ],
+                {
+                    "MSAM": 1,
+                    "is": 2,
+                    "best": 3
+                }
+            ],
+            "expected": null,
+            "got": null
+        },
+        "comment": "tuple"
+    }
+]

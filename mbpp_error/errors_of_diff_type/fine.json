@@ -1,0 +1,181 @@
+[
+    {
+        "task_id": "Mbpp/2",
+        "specification": "Write a function to find the shared elements from the given two lists.",
+        "generated_code": "def similar_elements(list1, list2):\n    # Convert both lists to sets and find their intersection\n    common_elements = set(list1) & set(list2)\n    # Convert the result back to a tuple and return\n    return tuple(sorted(common_elements))\n\n# Test cases\nassert similar_elements((3, 4, 5, 6), (5, 7, 4, 10)) == (4, 5)\nassert similar_elements((1, 2, 3, 4), (5, 4, 3, 7)) == (3, 4)\nassert similar_elements((11, 12, 14, 13), (17, 15, 14, 13)) == (13, 14)\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": true,
+        "counterexample": null
+    },
+    {
+        "task_id": "Mbpp/252",
+        "specification": "Write a python function to convert complex numbers to polar coordinates.",
+        "generated_code": "import cmath\n\ndef convert(num):\n    return cmath.polar(complex(num))\n\n# Test cases\nassert convert(1) == (1.0, 0.0)\nassert convert(4) == (4.0, 0.0)\nassert convert(5) == (5.0, 0.0)\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": true,
+        "counterexample": null,
+        "comment": "canonical_solution wrong"
+    },
+    {
+        "task_id": "Mbpp/294",
+        "specification": "Write a function to find the maximum value in a given heterogeneous list.",
+        "generated_code": "def max_val(lst):\n    # Filter only numeric values from the list\n    numeric_values = [x for x in lst if isinstance(x, (int, float))]\n    # Return the maximum value among the numeric values\n    return max(numeric_values)\n\n# Test cases\nassert max_val(['Python', 3, 2, 4, 5, 'version']) == 5\nassert max_val(['Python', 15, 20, 25]) == 25\nassert max_val(['Python', 30, 20, 40, 50, 'version']) == 50\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": true,
+        "counterexample": null,
+        "comment": "canonical_solution wrong"
+    },
+    {
+        "task_id": "Mbpp/451",
+        "specification": "Write a function to remove all whitespaces from the given string.",
+        "generated_code": "def remove_whitespaces(s: str) -> str:\n    return ''.join(s.split())\n\n# Test cases to ensure the function works as expected\nassert remove_whitespaces(' Google    Flutter ') == 'GoogleFlutter'\nassert remove_whitespaces(' Google    Dart ') == 'GoogleDart'\nassert remove_whitespaces(' iOS    Swift ') == 'iOSSwift'\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": true,
+        "counterexample": null,
+        "comment": "canonical_solution wrong"
+    },
+    {
+        "task_id": "Mbpp/459",
+        "specification": "Write a function to remove uppercase substrings from a given string.",
+        "generated_code": "def remove_uppercase(s):\n    # Using list comprehension to filter out uppercase characters\n    result = ''.join([char for char in s if not char.isupper()])\n    return result\n\n# Test cases\nassert remove_uppercase('cAstyoUrFavoRitETVshoWs') == 'cstyoravoitshos'\nassert remove_uppercase('wAtchTheinTernEtrAdIo') == 'wtchheinerntrdo'\nassert remove_uppercase('VoicESeaRchAndreComMendaTionS') == 'oiceachndreomendaion'\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": true,
+        "counterexample": null,
+        "comment": "canonical_solution wrong"
+    },
+    {
+        "task_id": "Mbpp/558",
+        "specification": "Write a python function to find the sum of the per-digit difference between two integers.",
+        "generated_code": "def digit_distance_nums(num1, num2):\n    # Convert numbers to strings\n    str1, str2 = str(num1), str(num2)\n    \n    # Pad the shorter string with leading zeros\n    max_len = max(len(str1), len(str2))\n    str1, str2 = str1.zfill(max_len), str2.zfill(max_len)\n    \n    # Calculate the sum of absolute differences of corresponding digits\n    total_diff = sum(abs(int(d1) - int(d2)) for d1, d2 in zip(str1, str2))\n    \n    return total_diff\n\n# Provided test cases\nassert digit_distance_nums(1, 2) == 1\nassert digit_distance_nums(23, 56) == 6\nassert digit_distance_nums(123, 256) == 7\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": true,
+        "counterexample": null,
+        "comment": "canonical_solution wrong"
+    },
+    {
+        "task_id": "Mbpp/594",
+        "specification": "Write a function to find the difference of the first even and first odd number of a given list.",
+        "generated_code": "def diff_even_odd(nums):\n    first_even = None\n    first_odd = None\n    \n    for num in nums:\n        if first_even is None and num % 2 == 0:\n            first_even = num\n        if first_odd is None and num % 2 != 0:\n            first_odd = num\n        if first_even is not None and first_odd is not None:\n            break\n    \n    if first_even is None or first_odd is None:\n        raise ValueError(\"The list must contain at least one even and one odd number.\")\n    \n    return abs(first_even - first_odd)\n\n# Test cases\nassert diff_even_odd([1,3,5,7,4,1,6,8])==3\nassert diff_even_odd([1,2,3,4,5,6,7,8,9,10])==1\nassert diff_even_odd([1,5,7,9,10])==9\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": true,
+        "counterexample": null,
+        "comment": "canonical_solution wrong"
+    },
+    {
+        "task_id": "Mbpp/620",
+        "specification": "Write a function to find the size of the largest subset of a list of numbers so that every pair is divisible.",
+        "generated_code": "def largest_subset(nums):\n    if not nums:\n        return 0\n\n    nums.sort()\n    dp = [1] * len(nums)\n    \n    for i in range(len(nums)):\n        for j in range(i):\n            if nums[i] % nums[j] == 0:\n                dp[i] = max(dp[i], dp[j] + 1)\n    \n    return max(dp)\n\n# Testing the function with the provided test cases\nassert largest_subset([1, 3, 6, 13, 17, 18]) == 4\nassert largest_subset([10, 5, 3, 15, 20]) == 3\nassert largest_subset([18, 1, 3, 6, 13, 17]) == 4\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": true,
+        "counterexample": null,
+        "comment": "canonical_solution wrong"
+    },
+    {
+        "task_id": "Mbpp/635",
+        "specification": "Write a function to sort the given list.",
+        "generated_code": "import heapq\n\ndef heap_sort(nums):\n    # Create a min heap from the list\n    heapq.heapify(nums)\n    \n    # Extract elements from the heap in sorted order\n    sorted_nums = [heapq.heappop(nums) for _ in range(len(nums))]\n    \n    return sorted_nums\n\n# Tests\nassert heap_sort([1, 3, 5, 7, 9, 2, 4, 6, 8, 0]) == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\nassert heap_sort([25, 35, 22, 85, 14, 65, 75, 25, 58]) == [14, 22, 25, 25, 35, 58, 65, 75, 85]\nassert heap_sort([7, 1, 9, 5]) == [1, 5, 7, 9]\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": true,
+        "counterexample": null
+    },
+    {
+        "task_id": "Mbpp/639",
+        "specification": "Write a function to sum the length of the names of a given list of names after removing the names that start with a lowercase letter.",
+        "generated_code": "def sample_nam(names):\n    # Filter out names that start with a lowercase letter\n    filtered_names = [name for name in names if not name[0].islower()]\n    # Sum the lengths of the remaining names\n    total_length = sum(len(name) for name in filtered_names)\n    return total_length\n\n# Tests\nassert sample_nam(['sally', 'Dylan', 'rebecca', 'Diana', 'Joanne', 'keith']) == 16\nassert sample_nam([\"php\", \"res\", \"Python\", \"abcd\", \"Java\", \"aaa\"]) == 10\nassert sample_nam([\"abcd\", \"Python\", \"abba\", \"aba\"]) == 6\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": true,
+        "counterexample": null,
+        "comment": "canonical_solution wrong"
+    },
+    {
+        "task_id": "Mbpp/722",
+        "specification": "The input is given as - a dictionary with a student name as a key and a tuple of float (student_height, student_weight) as a value, - minimal height, - minimal weight. Write a function to filter students that have height and weight above the minimum.",
+        "generated_code": "def filter_data(student_dict, min_height, min_weight):\n    return {name: (height, weight) for name, (height, weight) in student_dict.items() if height >= min_height and weight >= min_weight}\n\n# Test cases\nassert filter_data({'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)},6.0,70) == {'Cierra Vega': (6.2, 70)}\nassert filter_data({'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)},5.9,67) == {'Cierra Vega': (6.2, 70),'Kierra Gentry': (6.0, 68)}\nassert filter_data({'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)},5.7,64) == {'Cierra Vega': (6.2, 70),'Alden Cantrell': (5.9, 65),'Kierra Gentry': (6.0, 68),'Pierre Cox': (5.8, 66)}\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": true,
+        "counterexample": null
+    },
+    {
+        "task_id": "Mbpp/737",
+        "specification": "Write a function to check whether the given string is starting with a vowel or not using regex.",
+        "generated_code": "import re\n\ndef check_str(s):\n    # Define the regular expression pattern to check if the string starts with a vowel\n    pattern = r'^[aeiouAEIOU]'\n    # Use re.match to check if the string matches the pattern\n    return re.match(pattern, s) is not None\n\n# Tests\nassert check_str(\"annie\")\nassert not check_str(\"dawood\")\nassert check_str(\"Else\")\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": true,
+        "counterexample": null,
+        "comment": "bool"
+    },
+    {
+        "task_id": "Mbpp/759",
+        "specification": "Write a function to check whether a given string is a decimal number with a precision of 2.",
+        "generated_code": "import re\n\ndef is_decimal(s: str) -> bool:\n    # Regex pattern to match a number with exactly two decimal places\n    pattern = r'^\\d+\\.\\d{2}$'\n    return bool(re.match(pattern, s))\n\n# Testing the provided test cases\nassert is_decimal('123.11') == True\nassert is_decimal('e666.86') == False\nassert is_decimal('3.124587') == False\nassert is_decimal('1.11') == True\nassert is_decimal('1.1.11') == False\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": true,
+        "comment": "canonical_solution wrong"
+    },
+    {
+        "task_id": "Mbpp/769",
+        "specification": "Write a python function to get the difference between two lists.",
+        "generated_code": "def Diff(list1, list2):\n    # Convert lists to sets and find their symmetric difference\n    set1 = set(list1)\n    set2 = set(list2)\n    diff_elements = set1.symmetric_difference(set2)\n    \n    # Convert the set back to a list and sort it to ensure the order matches the expected results\n    result_list = list(diff_elements)\n    result_list.sort(key=lambda x: (list1 + list2).index(x))\n    \n    return result_list\n\n# Test cases\nassert Diff([10, 15, 20, 25, 30, 35, 40], [25, 40, 35]) == [10, 20, 30, 15]\nassert Diff([1,2,3,4,5], [6,7,1]) == [2,3,4,5,6,7]\nassert Diff([1,2,3], [6,7,1]) == [2,3,6,7]\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": true,
+        "counterexample": null,
+        "comment": "compare no order"
+    },
+    {
+        "task_id": "Mbpp/787",
+        "specification": "Write a function that matches a string that has an a followed by three 'b'.",
+        "generated_code": "import re\n\ndef text_match_three(text):\n    pattern = r'a[b]{3}'\n    match = re.search(pattern, text)\n    return bool(match)\n\n# Test cases\nassert not text_match_three(\"ac\")\nassert not text_match_three(\"dc\")\nassert text_match_three(\"abbbba\")\nassert text_match_three(\"caacabbbba\")\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": true,
+        "counterexample": null,
+        "comment": "bool"
+    },
+    {
+        "task_id": "Mbpp/806",
+        "specification": "Write a function to find maximum run of uppercase characters in the given string.",
+        "generated_code": "def max_run_uppercase(s):\n    max_run = 0\n    current_run = 0\n    \n    for char in s:\n        if char.isupper():\n            current_run += 1\n            if current_run > max_run:\n                max_run = current_run\n        else:\n            current_run = 0\n    \n    return max_run\n\n# Test cases\nassert max_run_uppercase('GeMKSForGERksISBESt') == 5\nassert max_run_uppercase('PrECIOusMOVemENTSYT') == 6\nassert max_run_uppercase('GooGLEFluTTER') == 4\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": true,
+        "counterexample": null,
+        "comment": "canonical_solution wrong"
+    },
+    {
+        "task_id": "Mbpp/430",
+        "specification": "Write a function to find the directrix of a parabola.",
+        "generated_code": "def parabola_directrix(a, b, c):\n    directrix = c - (b**2 / (4 * a)) - (1 / (4 * a))\n    return int(directrix)\n\n# Test cases\nassert parabola_directrix(5, 3, 2) == -198\nassert parabola_directrix(9, 8, 4) == -2336\nassert parabola_directrix(2, 4, 6) == -130\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": true,
+        "counterexample": null,
+        "comment": "canonical_solution wrong"
+    },
+    {
+        "task_id": "Mbpp/462",
+        "specification": "Write a function to find all possible combinations of the elements of a given list.",
+        "generated_code": "from itertools import combinations\n\ndef combinations_list(elements):\n    result = []\n    for r in range(len(elements) + 1):\n        for combo in combinations(elements, r):\n            result.append(list(combo))\n    return result\n\n# Test cases\nassert combinations_list(['orange', 'red', 'green', 'blue']) == [\n    [], ['orange'], ['red'], ['red', 'orange'], ['green'], ['green', 'orange'], \n    ['green', 'red'], ['green', 'red', 'orange'], ['blue'], ['blue', 'orange'], \n    ['blue', 'red'], ['blue', 'red', 'orange'], ['blue', 'green'], \n    ['blue', 'green', 'orange'], ['blue', 'green', 'red'], ['blue', 'green', 'red', 'orange']\n]\nassert combinations_list(['red', 'green', 'blue', 'white', 'black', 'orange']) == [\n    [], ['red'], ['green'], ['green', 'red'], ['blue'], ['blue', 'red'], \n    ['blue', 'green'], ['blue', 'green', 'red'], ['white'], ['white', 'red'], \n    ['white', 'green'], ['white', 'green', 'red'], ['white', 'blue'], \n    ['white', 'blue', 'red'], ['white', 'blue', 'green'], ['white', 'blue', 'green', 'red'], \n    ['black'], ['black', 'red'], ['black', 'green'], ['black', 'green', 'red'], \n    ['black', 'blue'], ['black', 'blue', 'red'], ['black', 'blue', 'green'], \n    ['black', 'blue', 'green', 'red'], ['black', 'white'], ['black', 'white', 'red'], \n    ['black', 'white', 'green'], ['black', 'white', 'green', 'red'], \n    ['black', 'white', 'blue'], ['black', 'white', 'blue', 'red'], \n    ['black', 'white', 'blue', 'green'], ['black', 'white', 'blue', 'green', 'red'], \n    ['orange'], ['orange', 'red'], ['orange', 'green'], ['orange', 'green', 'red'], \n    ['orange', 'blue'], ['orange', 'blue', 'red'], ['orange', 'blue', 'green'], \n    ['orange', 'blue', 'green', 'red'], ['orange', 'white'], ['orange', 'white', 'red'], \n    ['orange', 'white', 'green'], ['orange', 'white', 'green', 'red'], \n    ['orange', 'white', 'blue'], ['orange', 'white', 'blue', 'red'], \n    ['orange', 'white', 'blue', 'green'], ['orange', 'white', 'blue', 'green', 'red'], \n    ['orange', 'black'], ['orange', 'black', 'red'], ['orange', 'black', 'green'], \n    ['orange', 'black', 'green', 'red'], ['orange', 'black', 'blue'], \n    ['orange', 'black', 'blue', 'red'], ['orange', 'black', 'blue', 'green'], \n    ['orange', 'black', 'blue', 'green', 'red'], ['orange', 'black', 'white'], \n    ['orange', 'black', 'white', 'red'], ['orange', 'black', 'white', 'green'], \n    ['orange', 'black', 'white', 'green', 'red'], ['orange', 'black', 'white', 'blue'], \n    ['orange', 'black', 'white', 'blue', 'red'], ['orange', 'black', 'white', 'blue', 'green'], \n    ['orange', 'black', 'white', 'blue', 'green', 'red']\n]\nassert combinations_list(['red', 'green', 'black', 'orange']) == [\n    [], ['red'], ['green'], ['green', 'red'], ['black'], ['black', 'red'], \n    ['black', 'green'], ['black', 'green', 'red'], ['orange'], ['orange', 'red'], \n    ['orange', 'green'], ['orange', 'green', 'red'], ['orange', 'black'], \n    ['orange', 'black', 'red'], ['orange', 'black', 'green'], \n    ['orange', 'black', 'green', 'red']\n]\n",
+        "base_accuracy": 1.0,
+        "plus_accuracy": 1.0,
+        "assertion_passed": false,
+        "counterexample": {
+            "test_type": "assertion",
+            "error": ""
+        },
+        "comment": "compare no order"
+    }
+]
