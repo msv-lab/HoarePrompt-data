@@ -1,0 +1,315 @@
+DEBUG - Start Task 1870
+DEBUG - Dataset: code_contests
+DEBUG - model_created: human
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: AtCoDeer the deer found two rectangles lying on the table, each with height 1 and width W. If we consider the surface of the desk as a two-dimensional plane, the first rectangle covers the vertical range of [0,1] and the horizontal range of [a,a+W], and the second rectangle covers the vertical range of [1,2] and the horizontal range of [b,b+W], as shown in the following figure:
+
+<image>
+
+AtCoDeer will move the second rectangle horizontally so that it connects with the first rectangle. Find the minimum distance it needs to be moved.
+
+Constraints
+
+* All input values are integers.
+* 1≤W≤10^5
+* 1≤a,b≤10^5
+
+Input
+
+The input is given from Standard Input in the following format:
+
+
+W a b
+
+
+Output
+
+Print the minimum distance the second rectangle needs to be moved.
+
+Examples
+
+Input
+
+3 2 6
+
+
+Output
+
+1
+
+
+Input
+
+3 1 3
+
+
+Output
+
+0
+
+
+Input
+
+5 10 1
+
+
+Output
+
+4
+DEBUG - Correctness: True
+DEBUG - Start Task 2503
+DEBUG - Dataset: code_contests
+DEBUG - model_created: human
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: You a captain of a ship. Initially you are standing in a point (x_1, y_1) (obviously, all positions in the sea can be described by cartesian plane) and you want to travel to a point (x_2, y_2). 
+
+You know the weather forecast — the string s of length n, consisting only of letters U, D, L and R. The letter corresponds to a direction of wind. Moreover, the forecast is periodic, e.g. the first day wind blows to the side s_1, the second day — s_2, the n-th day — s_n and (n+1)-th day — s_1 again and so on. 
+
+Ship coordinates change the following way:
+
+  * if wind blows the direction U, then the ship moves from (x, y) to (x, y + 1); 
+  * if wind blows the direction D, then the ship moves from (x, y) to (x, y - 1); 
+  * if wind blows the direction L, then the ship moves from (x, y) to (x - 1, y); 
+  * if wind blows the direction R, then the ship moves from (x, y) to (x + 1, y). 
+
+
+
+The ship can also either go one of the four directions or stay in place each day. If it goes then it's exactly 1 unit of distance. Transpositions of the ship and the wind add up. If the ship stays in place, then only the direction of wind counts. For example, if wind blows the direction U and the ship moves the direction L, then from point (x, y) it will move to the point (x - 1, y + 1), and if it goes the direction U, then it will move to the point (x, y + 2).
+
+You task is to determine the minimal number of days required for the ship to reach the point (x_2, y_2).
+
+Input
+
+The first line contains two integers x_1, y_1 (0 ≤ x_1, y_1 ≤ 10^9) — the initial coordinates of the ship.
+
+The second line contains two integers x_2, y_2 (0 ≤ x_2, y_2 ≤ 10^9) — the coordinates of the destination point.
+
+It is guaranteed that the initial coordinates and destination point coordinates are different.
+
+The third line contains a single integer n (1 ≤ n ≤ 10^5) — the length of the string s.
+
+The fourth line contains the string s itself, consisting only of letters U, D, L and R.
+
+Output
+
+The only line should contain the minimal number of days required for the ship to reach the point (x_2, y_2).
+
+If it's impossible then print "-1".
+
+Examples
+
+Input
+
+
+0 0
+4 6
+3
+UUU
+
+
+Output
+
+
+5
+
+
+Input
+
+
+0 3
+0 0
+3
+UDD
+
+
+Output
+
+
+3
+
+
+Input
+
+
+0 0
+0 1
+1
+L
+
+
+Output
+
+
+-1
+
+Note
+
+In the first example the ship should perform the following sequence of moves: "RRRRU". Then its coordinates will change accordingly: (0, 0) → (1, 1) → (2, 2) → (3, 3) → (4, 4) → (4, 6).
+
+In the second example the ship should perform the following sequence of moves: "DD" (the third day it should stay in place). Then its coordinates will change accordingly: (0, 3) → (0, 3) → (0, 1) → (0, 0).
+
+In the third example the ship can never reach the point (0, 1).
+DEBUG - Correctness: True
+DEBUG - Start Task 4355
+DEBUG - Dataset: code_contests
+DEBUG - model_created: human
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: INTERCAL is the oldest of esoteric programming languages. One of its many weird features is the method of character-based output, known as Turing Tape method. It converts an array of unsigned 8-bit integers into a sequence of characters to print, using the following method.
+
+The integers of the array are processed one by one, starting from the first. Processing i-th element of the array is done in three steps:
+
+1. The 8-bit binary notation of the ASCII-code of the previous printed character is reversed. When the first element of the array is processed, the result of this step is considered to be 0.
+
+2. The i-th element of the array is subtracted from the result of the previous step modulo 256.
+
+3. The binary notation of the result of the previous step is reversed again to produce ASCII-code of the i-th character to be printed.
+
+You are given the text printed using this method. Restore the array used to produce this text.
+
+Input
+
+The input will consist of a single line text which contains the message printed using the described method. String text will contain between 1 and 100 characters, inclusive. ASCII-code of each character of text will be between 32 (space) and 126 (tilde), inclusive.
+
+Output
+
+Output the initial array, which was used to produce text, one integer per line.
+
+Examples
+
+Input
+
+Hello, World!
+
+
+Output
+
+238
+108
+112
+0
+64
+194
+48
+26
+244
+168
+24
+16
+162
+
+Note
+
+Let's have a closer look at the beginning of the example. The first character is "H" with ASCII-code 72 = 010010002. Its reverse is 000100102 = 18, and this number should become the result of the second step of processing. The result of the first step is considered to be 0, so the first element of the array has to be (0 - 18) mod 256 = 238, where a mod b is the remainder of division of a by b.
+DEBUG - Correctness: False
+DEBUG - Start Task 1210
+DEBUG - Dataset: code_contests
+DEBUG - model_created: human
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: Today is Wednesday, the third day of the week. What's more interesting is that tomorrow is the last day of the year 2015.
+
+Limak is a little polar bear. He enjoyed this year a lot. Now, he is so eager to the coming year 2016.
+
+Limak wants to prove how responsible a bear he is. He is going to regularly save candies for the entire year 2016! He considers various saving plans. He can save one candy either on some fixed day of the week or on some fixed day of the month.
+
+Limak chose one particular plan. He isn't sure how many candies he will save in the 2016 with his plan. Please, calculate it and tell him.
+
+Input
+
+The only line of the input is in one of the following two formats: 
+
+  * "x of week" where x (1 ≤ x ≤ 7) denotes the day of the week. The 1-st day is Monday and the 7-th one is Sunday. 
+  * "x of month" where x (1 ≤ x ≤ 31) denotes the day of the month. 
+
+Output
+
+Print one integer — the number of candies Limak will save in the year 2016.
+
+Examples
+
+Input
+
+4 of week
+
+
+Output
+
+52
+
+
+Input
+
+30 of month
+
+
+Output
+
+11
+
+Note
+
+Polar bears use the Gregorian calendar. It is the most common calendar and you likely use it too. You can read about it on Wikipedia if you want to – <https://en.wikipedia.org/wiki/Gregorian_calendar>. The week starts with Monday.
+
+In the first sample Limak wants to save one candy on each Thursday (the 4-th day of the week). There are 52 Thursdays in the 2016. Thus, he will save 52 candies in total.
+
+In the second sample Limak wants to save one candy on the 30-th day of each month. There is the 30-th day in exactly 11 months in the 2016 — all months but February. It means that Limak will save 11 candies in total.
+DEBUG - Correctness: False
+DEBUG - Start Task 3085
+DEBUG - Dataset: code_contests
+DEBUG - model_created: human
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: You have a sequence a with n elements 1, 2, 3, ..., k - 1, k, k - 1, k - 2, ..., k - (n - k) (k ≤ n < 2k).
+
+Let's call as inversion in a a pair of indices i < j such that a[i] > a[j].
+
+Suppose, you have some permutation p of size k and you build a sequence b of size n in the following manner: b[i] = p[a[i]].
+
+Your goal is to find such permutation p that the total number of inversions in b doesn't exceed the total number of inversions in a, and b is lexicographically maximum.
+
+Small reminder: the sequence of k integers is called a permutation if it contains all integers from 1 to k exactly once.
+
+Another small reminder: a sequence s is lexicographically smaller than another sequence t, if either s is a prefix of t, or for the first i such that s_i ≠ t_i, s_i < t_i holds (in the first position that these sequences are different, s has smaller number than t).
+
+Input
+
+The first line contains a single integer t (1 ≤ t ≤ 1000) — the number of test cases.
+
+The first and only line of each test case contains two integers n and k (k ≤ n < 2k; 1 ≤ k ≤ 10^5) — the length of the sequence a and its maximum.
+
+It's guaranteed that the total sum of k over test cases doesn't exceed 10^5.
+
+Output
+
+For each test case, print k integers — the permutation p which maximizes b lexicographically without increasing the total number of inversions.
+
+It can be proven that p exists and is unique.
+
+Example
+
+Input
+
+
+4
+1 1
+2 2
+3 2
+4 3
+
+
+Output
+
+
+1 
+1 2 
+2 1 
+1 3 2 
+
+Note
+
+In the first test case, the sequence a = [1], there is only one permutation p = [1].
+
+In the second test case, the sequence a = [1, 2]. There is no inversion in a, so there is only one permutation p = [1, 2] which doesn't increase the number of inversions.
+
+In the third test case, a = [1, 2, 1] and has 1 inversion. If we use p = [2, 1], then b = [p[a[1]], p[a[2]], p[a[3]]] = [2, 1, 2] and also has 1 inversion.
+
+In the fourth test case, a = [1, 2, 3, 2], and since p = [1, 3, 2] then b = [1, 3, 2, 3]. Both a and b have 1 inversion and b is the lexicographically maximum.
+DEBUG - Correctness: False

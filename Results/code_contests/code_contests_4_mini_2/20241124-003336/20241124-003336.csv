@@ -1,0 +1,574 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,naive no fsl correctness,data file
+1870,code_contests,human,gpt-4o-mini-2024-07-18,"AtCoDeer the deer found two rectangles lying on the table, each with height 1 and width W. If we consider the surface of the desk as a two-dimensional plane, the first rectangle covers the vertical range of [0,1] and the horizontal range of [a,a+W], and the second rectangle covers the vertical range of [1,2] and the horizontal range of [b,b+W], as shown in the following figure:
+
+<image>
+
+AtCoDeer will move the second rectangle horizontally so that it connects with the first rectangle. Find the minimum distance it needs to be moved.
+
+Constraints
+
+* All input values are integers.
+* 1≤W≤10^5
+* 1≤a,b≤10^5
+
+Input
+
+The input is given from Standard Input in the following format:
+
+
+W a b
+
+
+Output
+
+Print the minimum distance the second rectangle needs to be moved.
+
+Examples
+
+Input
+
+3 2 6
+
+
+Output
+
+1
+
+
+Input
+
+3 1 3
+
+
+Output
+
+0
+
+
+Input
+
+5 10 1
+
+
+Output
+
+4","# -*- coding: utf-8 -*-
+
+W, a, c= map(int,raw_input().split())
+
+b = a + W
+d = c + W
+
+if b < c:
+    ans = c - b
+elif d < a:
+    ans = a - d
+else:
+    ans = 0
+    
+print(ans)",,True,post,True,True,False,False,code_contests9.json
+2503,code_contests,human,gpt-4o-mini-2024-07-18,"You a captain of a ship. Initially you are standing in a point (x_1, y_1) (obviously, all positions in the sea can be described by cartesian plane) and you want to travel to a point (x_2, y_2). 
+
+You know the weather forecast — the string s of length n, consisting only of letters U, D, L and R. The letter corresponds to a direction of wind. Moreover, the forecast is periodic, e.g. the first day wind blows to the side s_1, the second day — s_2, the n-th day — s_n and (n+1)-th day — s_1 again and so on. 
+
+Ship coordinates change the following way:
+
+  * if wind blows the direction U, then the ship moves from (x, y) to (x, y + 1); 
+  * if wind blows the direction D, then the ship moves from (x, y) to (x, y - 1); 
+  * if wind blows the direction L, then the ship moves from (x, y) to (x - 1, y); 
+  * if wind blows the direction R, then the ship moves from (x, y) to (x + 1, y). 
+
+
+
+The ship can also either go one of the four directions or stay in place each day. If it goes then it's exactly 1 unit of distance. Transpositions of the ship and the wind add up. If the ship stays in place, then only the direction of wind counts. For example, if wind blows the direction U and the ship moves the direction L, then from point (x, y) it will move to the point (x - 1, y + 1), and if it goes the direction U, then it will move to the point (x, y + 2).
+
+You task is to determine the minimal number of days required for the ship to reach the point (x_2, y_2).
+
+Input
+
+The first line contains two integers x_1, y_1 (0 ≤ x_1, y_1 ≤ 10^9) — the initial coordinates of the ship.
+
+The second line contains two integers x_2, y_2 (0 ≤ x_2, y_2 ≤ 10^9) — the coordinates of the destination point.
+
+It is guaranteed that the initial coordinates and destination point coordinates are different.
+
+The third line contains a single integer n (1 ≤ n ≤ 10^5) — the length of the string s.
+
+The fourth line contains the string s itself, consisting only of letters U, D, L and R.
+
+Output
+
+The only line should contain the minimal number of days required for the ship to reach the point (x_2, y_2).
+
+If it's impossible then print ""-1"".
+
+Examples
+
+Input
+
+
+0 0
+4 6
+3
+UUU
+
+
+Output
+
+
+5
+
+
+Input
+
+
+0 3
+0 0
+3
+UDD
+
+
+Output
+
+
+3
+
+
+Input
+
+
+0 0
+0 1
+1
+L
+
+
+Output
+
+
+-1
+
+Note
+
+In the first example the ship should perform the following sequence of moves: ""RRRRU"". Then its coordinates will change accordingly: (0, 0) → (1, 1) → (2, 2) → (3, 3) → (4, 4) → (4, 6).
+
+In the second example the ship should perform the following sequence of moves: ""DD"" (the third day it should stay in place). Then its coordinates will change accordingly: (0, 3) → (0, 3) → (0, 1) → (0, 0).
+
+In the third example the ship can never reach the point (0, 1).","#!/usr/bin/env python2
+""""""
+This file is part of https://github.com/cheran-senthil/PyRival
+Copyright 2019 Cheran Senthilkumar <hello@cheran.io>
+
+""""""
+from __future__ import division, print_function
+
+import itertools
+import math
+import os
+import sys
+from atexit import register
+from io import BytesIO
+
+
+class dict(dict):
+    """"""dict() -> new empty dictionary""""""
+
+    def items(self):
+        """"""D.items() -> a set-like object providing a view on D's items""""""
+        return dict.iteritems(self)
+
+    def keys(self):
+        """"""D.keys() -> a set-like object providing a view on D's keys""""""
+        return dict.iterkeys(self)
+
+    def values(self):
+        """"""D.values() -> an object providing a view on D's values""""""
+        return dict.itervalues(self)
+
+
+def gcd(x, y):
+    """"""greatest common divisor of x and y""""""
+    while y:
+        x, y = y, x % y
+    return x
+
+
+range = xrange
+
+filter = itertools.ifilter
+map = itertools.imap
+zip = itertools.izip
+
+sys.stdin = BytesIO(os.read(0, os.fstat(0).st_size))
+sys.stdout = BytesIO()
+register(lambda: os.write(1, sys.stdout.getvalue()))
+
+input = lambda: sys.stdin.readline().rstrip('\r\n')
+
+
+def main():
+    x1, y1 = map(int, input().split())
+    x2, y2 = map(int, input().split())
+
+    if (x1 == x2)  and (y1 == y2):
+        print(0)
+        return
+
+    n = int(input())
+    s = input()
+
+    pref_sums = [[0, 0] for _ in range(n)]
+
+    u, r = 0, 0
+    if s[0] == 'U':
+        u = 1
+    if s[0] == 'D':
+        u = -1
+    if s[0] == 'R':
+        r = 1
+    if s[0] == 'L':
+        r = -1
+
+    pref_sums[0] = [r, u]
+    new_x, new_y = x1 + r, y1 + u
+
+    dist = abs(new_x - x2) + abs(new_y - y2) - 1
+    if dist <= 0:
+        print(1)
+        return
+
+    min_dist = dist
+    for i in range(1, n):
+        u, r = 0, 0
+        if s[i] == 'U':
+            u = 1
+        if s[i] == 'D':
+            u = -1
+        if s[i] == 'R':
+            r = 1
+        if s[i] == 'L':
+            r = -1
+
+        pref_sums[i] = [pref_sums[i - 1][0] + r, pref_sums[i - 1][1] + u]
+        new_x, new_y = x1 + pref_sums[i][0], y1 + pref_sums[i][1]
+        dist = abs(new_x - x2) + abs(new_y - y2) - i - 1
+
+        if dist <= 0:
+            print(i + 1)
+            return
+
+        if dist < min_dist:
+            min_dist = dist
+
+    moves_toward = abs(x1 - x2) + abs(y1 - y2) - (abs(new_x - x2) + abs(new_y - y2) - n)
+
+    if moves_toward <= 0:
+        print(-1)
+        return
+
+    cycles = (abs(x1 - x2) + abs(y1 - y2) - min_dist) // moves_toward
+    res = n * cycles
+
+    x1, y1 = x1 + cycles * pref_sums[-1][0], y1 + cycles * pref_sums[-1][1]
+
+    if abs(x1 - x2) + abs(y1 - y2) - n * cycles <= 0:
+        print(res)
+        return
+
+    for i in range(n):
+        new_x, new_y = x1 + pref_sums[i][0], y1 + pref_sums[i][1]
+        dist = abs(new_x - x2) + abs(new_y - y2) - i - n * cycles - 1
+        if dist <= 0:
+            print(res + i + 1)
+            return
+
+    return
+
+
+
+if __name__ == '__main__':
+    main()
+",,True,post,False,False,False,False,code_contests9.json
+4355,code_contests,human,gpt-4o-mini-2024-07-18,"INTERCAL is the oldest of esoteric programming languages. One of its many weird features is the method of character-based output, known as Turing Tape method. It converts an array of unsigned 8-bit integers into a sequence of characters to print, using the following method.
+
+The integers of the array are processed one by one, starting from the first. Processing i-th element of the array is done in three steps:
+
+1. The 8-bit binary notation of the ASCII-code of the previous printed character is reversed. When the first element of the array is processed, the result of this step is considered to be 0.
+
+2. The i-th element of the array is subtracted from the result of the previous step modulo 256.
+
+3. The binary notation of the result of the previous step is reversed again to produce ASCII-code of the i-th character to be printed.
+
+You are given the text printed using this method. Restore the array used to produce this text.
+
+Input
+
+The input will consist of a single line text which contains the message printed using the described method. String text will contain between 1 and 100 characters, inclusive. ASCII-code of each character of text will be between 32 (space) and 126 (tilde), inclusive.
+
+Output
+
+Output the initial array, which was used to produce text, one integer per line.
+
+Examples
+
+Input
+
+Hello, World!
+
+
+Output
+
+238
+108
+112
+0
+64
+194
+48
+26
+244
+168
+24
+16
+162
+
+Note
+
+Let's have a closer look at the beginning of the example. The first character is ""H"" with ASCII-code 72 = 010010002. Its reverse is 000100102 = 18, and this number should become the result of the second step of processing. The result of the first step is considered to be 0, so the first element of the array has to be (0 - 18) mod 256 = 238, where a mod b is the remainder of division of a by b.","#!/usr/local/bin/python
+
+# 
+
+import math
+import sys
+
+table = {
+	'>':8,
+	'<':9,
+	'+':10,
+	'-':11,
+	'.':12,
+	',':13,
+	'[':14,
+	']':15
+}
+
+input = sys.stdin.readline().rstrip()
+
+prev = 0
+for c in input:
+	s = ""{0:0>{1}}"".format(bin(ord(c))[2:], 8)
+	binary = s[::-1]
+	integer = int(binary, 2)
+	print (prev - integer) % 256
+	prev = integer
+",,False,post,True,False,False,False,code_contests9.json
+1210,code_contests,human,gpt-4o-mini-2024-07-18,"Today is Wednesday, the third day of the week. What's more interesting is that tomorrow is the last day of the year 2015.
+
+Limak is a little polar bear. He enjoyed this year a lot. Now, he is so eager to the coming year 2016.
+
+Limak wants to prove how responsible a bear he is. He is going to regularly save candies for the entire year 2016! He considers various saving plans. He can save one candy either on some fixed day of the week or on some fixed day of the month.
+
+Limak chose one particular plan. He isn't sure how many candies he will save in the 2016 with his plan. Please, calculate it and tell him.
+
+Input
+
+The only line of the input is in one of the following two formats: 
+
+  * ""x of week"" where x (1 ≤ x ≤ 7) denotes the day of the week. The 1-st day is Monday and the 7-th one is Sunday. 
+  * ""x of month"" where x (1 ≤ x ≤ 31) denotes the day of the month. 
+
+Output
+
+Print one integer — the number of candies Limak will save in the year 2016.
+
+Examples
+
+Input
+
+4 of week
+
+
+Output
+
+52
+
+
+Input
+
+30 of month
+
+
+Output
+
+11
+
+Note
+
+Polar bears use the Gregorian calendar. It is the most common calendar and you likely use it too. You can read about it on Wikipedia if you want to – <https://en.wikipedia.org/wiki/Gregorian_calendar>. The week starts with Monday.
+
+In the first sample Limak wants to save one candy on each Thursday (the 4-th day of the week). There are 52 Thursdays in the 2016. Thus, he will save 52 candies in total.
+
+In the second sample Limak wants to save one candy on the 30-th day of each month. There is the 30-th day in exactly 11 months in the 2016 — all months but February. It means that Limak will save 11 candies in total.","s = raw_input()
+print (52 + (int(s[0]) / -2 == -3)) if s[5] == 'w' else (12 - (int(s[0]) == 3) - (int(s[:2]) == 31) * 4)",,False,post,False,False,False,False,code_contests9.json
+3085,code_contests,human,gpt-4o-mini-2024-07-18,"You have a sequence a with n elements 1, 2, 3, ..., k - 1, k, k - 1, k - 2, ..., k - (n - k) (k ≤ n < 2k).
+
+Let's call as inversion in a a pair of indices i < j such that a[i] > a[j].
+
+Suppose, you have some permutation p of size k and you build a sequence b of size n in the following manner: b[i] = p[a[i]].
+
+Your goal is to find such permutation p that the total number of inversions in b doesn't exceed the total number of inversions in a, and b is lexicographically maximum.
+
+Small reminder: the sequence of k integers is called a permutation if it contains all integers from 1 to k exactly once.
+
+Another small reminder: a sequence s is lexicographically smaller than another sequence t, if either s is a prefix of t, or for the first i such that s_i ≠ t_i, s_i < t_i holds (in the first position that these sequences are different, s has smaller number than t).
+
+Input
+
+The first line contains a single integer t (1 ≤ t ≤ 1000) — the number of test cases.
+
+The first and only line of each test case contains two integers n and k (k ≤ n < 2k; 1 ≤ k ≤ 10^5) — the length of the sequence a and its maximum.
+
+It's guaranteed that the total sum of k over test cases doesn't exceed 10^5.
+
+Output
+
+For each test case, print k integers — the permutation p which maximizes b lexicographically without increasing the total number of inversions.
+
+It can be proven that p exists and is unique.
+
+Example
+
+Input
+
+
+4
+1 1
+2 2
+3 2
+4 3
+
+
+Output
+
+
+1 
+1 2 
+2 1 
+1 3 2 
+
+Note
+
+In the first test case, the sequence a = [1], there is only one permutation p = [1].
+
+In the second test case, the sequence a = [1, 2]. There is no inversion in a, so there is only one permutation p = [1, 2] which doesn't increase the number of inversions.
+
+In the third test case, a = [1, 2, 1] and has 1 inversion. If we use p = [2, 1], then b = [p[a[1]], p[a[2]], p[a[3]]] = [2, 1, 2] and also has 1 inversion.
+
+In the fourth test case, a = [1, 2, 3, 2], and since p = [1, 3, 2] then b = [1, 3, 2, 3]. Both a and b have 1 inversion and b is the lexicographically maximum.","import sys
+testing = len(sys.argv) == 4 and sys.argv[3] == ""myTest""
+if testing:
+    cmd = sys.stdout
+    from time import time
+    start_time = int(round(time() * 1000)) 
+    input = open(sys.argv[1], 'r').readline
+    sys.stdout = open(sys.argv[2], 'w')
+else:
+    input = sys.stdin.readline
+
+# from math import ceil
+# from collections import defaultdict as dd
+# from heapq import *
+############ ---- I/O Functions ---- ############
+def intin():
+    return(int(input()))
+def intlin():
+    return(list(map(int,input().split())))
+def chrin():
+    s = input()
+    return(list(s[:len(s) - 1]))
+def strin():
+    s = input()
+    return s[:len(s) - 1]
+def intlout(l):
+    print("" "".join(map(str, l)))
+    
+def getSum( BITree, index):
+    sum = 0 # Initialize result 
+     
+    # Traverse ancestors of BITree[index] 
+    while (index > 0): 
+ 
+        # Add current element of BITree to sum 
+        sum += BITree[index] 
+ 
+        # Move index to parent node in getSum View 
+        index -= index & (-index) 
+ 
+    return sum
+ 
+# Updates a node in Binary Index Tree (BITree) 
+# at given index in BITree. The given value
+# 'val' is added to BITree[i] and all of its
+# ancestors in tree. 
+def updateBIT(BITree, n, index, val):
+ 
+    # Traverse all ancestors and add 'val' 
+    while (index <= n): 
+ 
+        # Add 'val' to current node of BI Tree 
+        BITree[index] += val 
+ 
+        # Update index to that of parent
+        # in update View 
+        index += index & (-index) 
+ 
+# Returns count of inversions of size three 
+def getInvCount(arr, n):
+ 
+    invcount = 0 # Initialize result 
+ 
+    # Find maximum element in arrays 
+    maxElement = max(arr)
+ 
+    # Create a BIT with size equal to 
+    # maxElement+1 (Extra one is used 
+    # so that elements can be directly 
+    # be used as index)
+    BIT = [0] * (maxElement + 1) 
+    for i in range(1, maxElement + 1): 
+        BIT[i] = 0
+    for i in range(n - 1, -1, -1):
+ 
+        invcount += getSum(BIT, arr[i] - 1) 
+        updateBIT(BIT, maxElement, arr[i], 1) 
+    return invcount 
+
+def main():
+    n,k = intlin()
+    if n == k:
+        return range(1,k+1)
+    if n == k+1:
+        return range(1,k+1-2) + [k,k-1]
+    a = range(1,k+1) + range(k-1,2*k-n-1,-1)
+    maxInv = getInvCount(a,n)
+    for i in xrange(2*k-n, k):
+        a[k-1] = i
+        a[k-2] = k
+        a[k] = k
+        curInv = getInvCount(a,n)
+        if curInv <= maxInv:
+            ans = range(1,k+1)
+            ans[k-1] = i
+            ans[i-1] = k
+            return ans
+
+
+if __name__ == ""__main__"":
+    for _ in xrange(intin()):
+        print(main())
+        # print(""YES"" if main() else ""NO"")
+    # main()
+
+    if testing:
+        sys.stdout = cmd
+        print(int(round(time() * 1000))  - start_time)",,False,post,False,False,False,True,code_contests9.json

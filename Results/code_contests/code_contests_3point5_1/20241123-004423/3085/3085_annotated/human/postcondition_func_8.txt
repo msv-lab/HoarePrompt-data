@@ -1,0 +1,9 @@
+The function `func_9` does not accept any parameters but relies on the return values of another function `func_2`. It handles multiple cases based on the values of `n` and `k`, where `n` and `k` are integers. 
+
+Case 1: If `n` equals `k`, the function returns a range starting from 1 up to and including the value of `k`.
+
+Case 2: If `n` equals `k + 1`, the function returns a range from 1 up to `k - 1` concatenated with `k` and `k - 1`.
+
+Case 3: If `2 * k - n` is greater than or equal to `k`, the loop does not execute. Otherwise, a range from 1 to `k` is returned where the `k`-th element is assigned the value of the last `i` and the `i`-th element is assigned the value of `k`.
+
+The function does not handle the case when the preconditions of `n` and `k` are not met or provide an appropriate error message for such scenarios.

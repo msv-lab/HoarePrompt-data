@@ -1,0 +1,263 @@
+DEBUG - Start Task 0261
+DEBUG - Dataset: code_contests
+DEBUG - model_created: human
+DEBUG - model_run: gpt-3.5-turbo-0125
+DEBUG - description: Dawid has four bags of candies. The i-th of them contains a_i candies. Also, Dawid has two friends. He wants to give each bag to one of his two friends. Is it possible to distribute the bags in such a way that each friend receives the same amount of candies in total?
+
+Note, that you can't keep bags for yourself or throw them away, each bag should be given to one of the friends.
+
+Input
+
+The only line contains four integers a_1, a_2, a_3 and a_4 (1 ≤ a_i ≤ 100) — the numbers of candies in each bag.
+
+Output
+
+Output YES if it's possible to give the bags to Dawid's friends so that both friends receive the same amount of candies, or NO otherwise. Each character can be printed in any case (either uppercase or lowercase).
+
+Examples
+
+Input
+
+
+1 7 11 5
+
+
+Output
+
+
+YES
+
+
+Input
+
+
+7 3 2 5
+
+
+Output
+
+
+NO
+
+Note
+
+In the first sample test, Dawid can give the first and the third bag to the first friend, and the second and the fourth bag to the second friend. This way, each friend will receive 12 candies.
+
+In the second sample test, it's impossible to distribute the bags.
+DEBUG - Correctness: False
+DEBUG - Start Task 3559
+DEBUG - Dataset: code_contests
+DEBUG - model_created: human
+DEBUG - model_run: gpt-3.5-turbo-0125
+DEBUG - description: While resting on the ship after the "Russian Code Cup" a boy named Misha invented an interesting game. He promised to give his quadrocopter to whoever will be the first one to make a rectangular table of size n × m, consisting of positive integers such that the sum of the squares of numbers for each row and each column was also a square.
+
+Since checking the correctness of the table manually is difficult, Misha asks you to make each number in the table to not exceed 108.
+
+Input
+
+The first line contains two integers n and m (1 ≤ n, m ≤ 100) — the size of the table. 
+
+Output
+
+Print the table that meets the condition: n lines containing m integers, separated by spaces. If there are multiple possible answers, you are allowed to print anyone. It is guaranteed that there exists at least one correct answer.
+
+Examples
+
+Input
+
+1 1
+
+
+Output
+
+1
+
+Input
+
+1 2
+
+
+Output
+
+3 4
+DEBUG - Correctness: True
+DEBUG - Start Task 2132
+DEBUG - Dataset: code_contests
+DEBUG - model_created: human
+DEBUG - model_run: gpt-3.5-turbo-0125
+DEBUG - description: Consider the following equation: 
+
+<image> where sign [a] represents the integer part of number a.
+
+Let's find all integer z (z > 0), for which this equation is unsolvable in positive integers. The phrase "unsolvable in positive integers" means that there are no such positive integers x and y (x, y > 0), for which the given above equation holds.
+
+Let's write out all such z in the increasing order: z1, z2, z3, and so on (zi < zi + 1). Your task is: given the number n, find the number zn.
+
+Input
+
+The first line contains a single integer n (1 ≤ n ≤ 40).
+
+Output
+
+Print a single integer — the number zn modulo 1000000007 (109 + 7). It is guaranteed that the answer exists.
+
+Examples
+
+Input
+
+1
+
+
+Output
+
+1
+
+Input
+
+2
+
+
+Output
+
+3
+
+Input
+
+3
+
+
+Output
+
+15
+DEBUG - Correctness: True
+DEBUG - Start Task 1379
+DEBUG - Dataset: code_contests
+DEBUG - model_created: human
+DEBUG - model_run: gpt-3.5-turbo-0125
+DEBUG - description: Firecrackers scare Nian the monster, but they're wayyyyy too noisy! Maybe fireworks make a nice complement.
+
+Little Tommy is watching a firework show. As circular shapes spread across the sky, a splendid view unfolds on the night of Lunar New Year's eve.
+
+A wonder strikes Tommy. How many regions are formed by the circles on the sky? We consider the sky as a flat plane. A region is a connected part of the plane with positive area, whose bound consists of parts of bounds of the circles and is a curve or several curves without self-intersections, and that does not contain any curve other than its boundaries. Note that exactly one of the regions extends infinitely.
+
+Input
+
+The first line of input contains one integer n (1 ≤ n ≤ 3), denoting the number of circles.
+
+The following n lines each contains three space-separated integers x, y and r ( - 10 ≤ x, y ≤ 10, 1 ≤ r ≤ 10), describing a circle whose center is (x, y) and the radius is r. No two circles have the same x, y and r at the same time.
+
+Output
+
+Print a single integer — the number of regions on the plane.
+
+Examples
+
+Input
+
+3
+0 0 1
+2 0 1
+4 0 1
+
+
+Output
+
+4
+
+
+Input
+
+3
+0 0 2
+3 0 2
+6 0 2
+
+
+Output
+
+6
+
+
+Input
+
+3
+0 0 2
+2 0 2
+1 1 2
+
+
+Output
+
+8
+
+Note
+
+For the first example,
+
+<image>
+
+For the second example,
+
+<image>
+
+For the third example,
+
+<image>
+DEBUG - Correctness: True
+DEBUG - Start Task 3841
+DEBUG - Dataset: code_contests
+DEBUG - model_created: human
+DEBUG - model_run: gpt-3.5-turbo-0125
+DEBUG - description: Since Sonya is interested in robotics too, she decided to construct robots that will read and recognize numbers.
+
+Sonya has drawn n numbers in a row, a_i is located in the i-th position. She also has put a robot at each end of the row (to the left of the first number and to the right of the last number). Sonya will give a number to each robot (they can be either same or different) and run them. When a robot is running, it is moving toward to another robot, reading numbers in the row. When a robot is reading a number that is equal to the number that was given to that robot, it will turn off and stay in the same position.
+
+Sonya does not want robots to break, so she will give such numbers that robots will stop before they meet. That is, the girl wants them to stop at different positions so that the first robot is to the left of the second one.
+
+For example, if the numbers [1, 5, 4, 1, 3] are written, and Sonya gives the number 1 to the first robot and the number 4 to the second one, the first robot will stop in the 1-st position while the second one in the 3-rd position. In that case, robots will not meet each other. As a result, robots will not be broken. But if Sonya gives the number 4 to the first robot and the number 5 to the second one, they will meet since the first robot will stop in the 3-rd position while the second one is in the 2-nd position.
+
+Sonya understands that it does not make sense to give a number that is not written in the row because a robot will not find this number and will meet the other robot.
+
+Sonya is now interested in finding the number of different pairs that she can give to robots so that they will not meet. In other words, she wants to know the number of pairs (p, q), where she will give p to the first robot and q to the second one. Pairs (p_i, q_i) and (p_j, q_j) are different if p_i≠ p_j or q_i≠ q_j.
+
+Unfortunately, Sonya is busy fixing robots that broke after a failed launch. That is why she is asking you to find the number of pairs that she can give to robots so that they will not meet.
+
+Input
+
+The first line contains a single integer n (1≤ n≤ 10^5) — the number of numbers in a row.
+
+The second line contains n integers a_1, a_2, …, a_n (1≤ a_i≤ 10^5) — the numbers in a row.
+
+Output
+
+Print one number — the number of possible pairs that Sonya can give to robots so that they will not meet.
+
+Examples
+
+Input
+
+5
+1 5 4 1 3
+
+
+Output
+
+9
+
+
+Input
+
+7
+1 2 1 1 1 3 2
+
+
+Output
+
+7
+
+Note
+
+In the first example, Sonya can give pairs (1, 1), (1, 3), (1, 4), (1, 5), (4, 1), (4, 3), (5, 1), (5, 3), and (5, 4).
+
+In the second example, Sonya can give pairs (1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3), and (3, 2).
+DEBUG - Correctness: True

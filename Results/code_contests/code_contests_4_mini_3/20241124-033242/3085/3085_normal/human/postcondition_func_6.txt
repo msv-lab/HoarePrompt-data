@@ -1,0 +1,1 @@
+The function accepts a Binary Indexed Tree (`BITree`), an integer `n`, an integer `index`, and an integer `val`. It updates the `BITree` by adding `val` to the position `index` and all positions that are affected by the cumulative sum defined by the index manipulation (using `index & -index`) until `index` exceeds `n`. The function does not return any value.

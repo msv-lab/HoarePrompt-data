@@ -1,0 +1,1 @@
+The function accepts an integer `v` and returns the value of `par[v]`. If `par[v]` is not equal to `v`, it recursively updates `par[v]` to the value returned by `func_2(par[v])`, effectively performing path compression in a disjoint set data structure. Thus, it finds and returns the representative element of the set that `v` belongs to.

@@ -1,0 +1,434 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,naive no fsl correctness,data file
+2628,code_contests,human,gpt-4o-mini-2024-07-18,"You are given a string S consisting of `0` and `1`. Find the maximum integer K not greater than |S| such that we can turn all the characters of S into `0` by repeating the following operation some number of times.
+
+* Choose a contiguous segment [l,r] in S whose length is at least K (that is, r-l+1\geq K must be satisfied). For each integer i such that l\leq i\leq r, do the following: if S_i is `0`, replace it with `1`; if S_i is `1`, replace it with `0`.
+
+Constraints
+
+* 1\leq |S|\leq 10^5
+* S_i(1\leq i\leq N) is either `0` or `1`.
+
+Input
+
+Input is given from Standard Input in the following format:
+
+
+S
+
+
+Output
+
+Print the maximum integer K such that we can turn all the characters of S into `0` by repeating the operation some number of times.
+
+Examples
+
+Input
+
+010
+
+
+Output
+
+2
+
+
+Input
+
+100000000
+
+
+Output
+
+8
+
+
+Input
+
+00001111
+
+
+Output
+
+4","S=raw_input()
+s0=s1=0
+for c in S:
+    if c=='0':s0+=1
+    else: s1+=1
+print(max(s0,s1))",,False,post,False,False,False,False,code_contests7.json
+3787,code_contests,human,gpt-4o-mini-2024-07-18,"We have a string S consisting of lowercase English letters.
+
+If the length of S is at most K, print S without change.
+
+If the length of S exceeds K, extract the first K characters in S, append `...` to the end of them, and print the result.
+
+Constraints
+
+* K is an integer between 1 and 100 (inclusive).
+* S is a string consisting of lowercase English letters.
+* The length of S is between 1 and 100 (inclusive).
+
+Input
+
+Input is given from Standard Input in the following format:
+
+
+K
+S
+
+
+Output
+
+Print a string as stated in Problem Statement.
+
+Examples
+
+Input
+
+7
+nikoandsolstice
+
+
+Output
+
+nikoand...
+
+
+Input
+
+40
+ferelibenterhominesidquodvoluntcredunt
+
+
+Output
+
+ferelibenterhominesidquodvoluntcredunt","#!/usr/bin/env python2
+
+import sys
+
+input = iter(sys.stdin.readlines()).next
+
+def main():
+   K = int(input())
+   S = input().strip()
+   if len(S) <= K:
+      print(S)
+   else:
+      print(S[:K] + '...')
+
+   return 0
+
+if __name__ == '__main__':
+   sys.setrecursionlimit(10000)
+   main()
+",,True,post,True,True,True,False,code_contests7.json
+0694,code_contests,human,gpt-4o-mini-2024-07-18,"Draw a frame which has a height of H cm and a width of W cm. For example, the following figure shows a frame which has a height of 6 cm and a width of 10 cm.
+
+
+
+........#
+........#
+........#
+........#
+
+
+
+Constraints
+
+* 3 ≤ H ≤ 300
+* 3 ≤ W ≤ 300
+
+Input
+
+The input consists of multiple datasets. Each dataset consists of two integers H and W separated by a single space.
+
+The input ends with two 0 (when both H and W are zero).
+
+Output
+
+For each dataset, print the frame made of '#' and '.'.
+
+Print a blank line after each dataset.
+
+Example
+
+Input
+
+3 4
+5 6
+3 3
+0 0
+
+
+Output
+
+####
+#..#
+####
+
+######
+#....#
+#....#
+#....#
+######
+
+###
+#.#
+###","while True:
+  h, w = map(int, raw_input().split())
+  if (h == 0 and w == 0):
+    break
+  for i in range(0,h):
+    for j in range(0,w):
+      if i == 0 or j == 0 or i == h-1 or j == w-1:
+        print (""#"")
+      else: 
+        print (""."")
+    print
+  ",,False,post,False,False,False,False,code_contests7.json
+2797,code_contests,human,gpt-4o-mini-2024-07-18,"Kris works in a large company ""Blake Technologies"". As a best engineer of the company he was assigned a task to develop a printer that will be able to print horizontal and vertical strips. First prototype is already built and Kris wants to tests it. He wants you to implement the program that checks the result of the printing.
+
+Printer works with a rectangular sheet of paper of size n × m. Consider the list as a table consisting of n rows and m columns. Rows are numbered from top to bottom with integers from 1 to n, while columns are numbered from left to right with integers from 1 to m. Initially, all cells are painted in color 0.
+
+Your program has to support two operations: 
+
+  1. Paint all cells in row ri in color ai; 
+  2. Paint all cells in column ci in color ai. 
+
+
+
+If during some operation i there is a cell that have already been painted, the color of this cell also changes to ai.
+
+Your program has to print the resulting table after k operation.
+
+Input
+
+The first line of the input contains three integers n, m and k (1 ≤ n, m ≤ 5000, n·m ≤ 100 000, 1 ≤ k ≤ 100 000) — the dimensions of the sheet and the number of operations, respectively.
+
+Each of the next k lines contains the description of exactly one query: 
+
+  * 1 ri ai (1 ≤ ri ≤ n, 1 ≤ ai ≤ 109), means that row ri is painted in color ai; 
+  * 2 ci ai (1 ≤ ci ≤ m, 1 ≤ ai ≤ 109), means that column ci is painted in color ai. 
+
+Output
+
+Print n lines containing m integers each — the resulting table after all operations are applied.
+
+Examples
+
+Input
+
+3 3 3
+1 1 3
+2 2 1
+1 2 2
+
+
+Output
+
+3 1 3 
+2 2 2 
+0 1 0 
+
+
+Input
+
+5 3 5
+1 1 1
+1 3 1
+1 5 1
+2 1 1
+2 3 1
+
+
+Output
+
+1 1 1 
+1 0 1 
+1 1 1 
+1 0 1 
+1 1 1 
+
+Note
+
+The figure below shows all three operations for the first sample step by step. The cells that were painted on the corresponding step are marked gray. 
+
+<image>","n,m,k=map(int,raw_input().split())
+l=[[0 for j in range(m)] for i in range(n)]
+""""""for i in range(n):
+        for j in range(m):
+            print l[i][j],
+        print""""""
+while k>0:
+    k-=1
+    a,b,c=map(int,raw_input().split())
+    if a==1:
+        for i in range(m):
+            l[b-1][i]=c
+    else:
+        for i in range(n):
+            l[i][b-1]=c
+
+print('\n'.join([''.join(['{:2}'.format(item) for item in row]) 
+      for row in l]))",,False,post,False,False,False,False,code_contests7.json
+3099,code_contests,human,gpt-4o-mini-2024-07-18,"It's hard times now. Today Petya needs to score 100 points on Informatics exam. The tasks seem easy to Petya, but he thinks he lacks time to finish them all, so he asks you to help with one..
+
+There is a glob pattern in the statements (a string consisting of lowercase English letters, characters ""?"" and ""*""). It is known that character ""*"" occurs no more than once in the pattern.
+
+Also, n query strings are given, it is required to determine for each of them if the pattern matches it or not.
+
+Everything seemed easy to Petya, but then he discovered that the special pattern characters differ from their usual meaning.
+
+A pattern matches a string if it is possible to replace each character ""?"" with one good lowercase English letter, and the character ""*"" (if there is one) with any, including empty, string of bad lowercase English letters, so that the resulting string is the same as the given string.
+
+The good letters are given to Petya. All the others are bad.
+
+Input
+
+The first line contains a string with length from 1 to 26 consisting of distinct lowercase English letters. These letters are good letters, all the others are bad.
+
+The second line contains the pattern — a string s of lowercase English letters, characters ""?"" and ""*"" (1 ≤ |s| ≤ 105). It is guaranteed that character ""*"" occurs in s no more than once.
+
+The third line contains integer n (1 ≤ n ≤ 105) — the number of query strings.
+
+n lines follow, each of them contains single non-empty string consisting of lowercase English letters — a query string.
+
+It is guaranteed that the total length of all query strings is not greater than 105.
+
+Output
+
+Print n lines: in the i-th of them print ""YES"" if the pattern matches the i-th query string, and ""NO"" otherwise.
+
+You can choose the case (lower or upper) for each letter arbitrary.
+
+Examples
+
+Input
+
+ab
+a?a
+2
+aaa
+aab
+
+
+Output
+
+YES
+NO
+
+
+Input
+
+abc
+a?a?a*
+4
+abacaba
+abaca
+apapa
+aaaaax
+
+
+Output
+
+NO
+YES
+NO
+YES
+
+Note
+
+In the first example we can replace ""?"" with good letters ""a"" and ""b"", so we can see that the answer for the first query is ""YES"", and the answer for the second query is ""NO"", because we can't match the third letter.
+
+Explanation of the second example. 
+
+  * The first query: ""NO"", because character ""*"" can be replaced with a string of bad letters only, but the only way to match the query string is to replace it with the string ""ba"", in which both letters are good. 
+  * The second query: ""YES"", because characters ""?"" can be replaced with corresponding good letters, and character ""*"" can be replaced with empty string, and the strings will coincide. 
+  * The third query: ""NO"", because characters ""?"" can't be replaced with bad letters. 
+  * The fourth query: ""YES"", because characters ""?"" can be replaced with good letters ""a"", and character ""*"" can be replaced with a string of bad letters ""x"". ","gls = raw_input()
+
+good_letters = set(c for c in gls)
+
+p = raw_input()
+plen = len(p)
+
+n = input()
+
+if '*' not in p:
+    for _ in range(n):
+        q = raw_input()
+        qlen = len(q)
+        if qlen != plen:
+            print(""NO"")
+            continue
+
+        y = True
+        for i in range(plen):
+            if p[i] == '?':
+                if q[i] not in good_letters:
+                    print(""NO"")
+                    y = False
+                    break
+
+            elif p[i] != q[i]:
+                print(""NO"")
+                y = False
+                break
+
+        if y:
+            print(""YES"")
+
+else:
+    p0, p1 = p.split(""*"")
+    p1 = p1[::-1]
+    p0len = len(p0)
+    p1len = len(p1)
+
+    for _ in range(n):
+        q = raw_input()
+        qlen = len(q)
+        if qlen < plen - 1:
+            print(""NO"")
+            continue
+
+        y0 = True
+        for i in range(p0len):
+            if p0[i] == '?':
+                if q[i] not in good_letters:
+                    print(""NO"")
+                    y0 = False
+                    break
+
+            elif p0[i] != q[i]:
+                print(""NO"")
+                y0 = False
+                break
+
+        if y0 == False: continue
+        y1 = True
+        qr = q[::-1]
+        for i in range(p1len):
+            if p1[i] == '?':
+                if qr[i] not in good_letters:
+                    print(""NO"")
+                    y1 = False
+                    break
+
+            elif p1[i] != qr[i]:
+                print(""NO"")
+                y1 = False
+                break
+
+        if y1 == False: continue
+
+        t = None
+        if p1len == 0:
+            t = q[p0len:]
+        else:
+            t = q[p0len:-p1len]
+
+        if len(set(t).intersection(good_letters)) > 0:
+            print(""NO"")
+            continue
+        if y0 and y1:
+            print(""YES"")
+",,False,post,True,False,False,False,code_contests7.json
