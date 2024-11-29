@@ -8,40 +8,83 @@ def calculate_consistency(input_csv, output_json):
     print("Columns in the DataFrame:", df.columns.tolist())
     print("Data type of 'naive no fsl correctness':", df['naive no fsl correctness'].dtype)
 
+    # Ensure 'original correctness' and 'naive no fsl correctness' are treated as booleans
+    df['original correctness'] = df['original correctness'].astype(bool)
+    df['naive no fsl correctness'] = df['naive no fsl correctness'].astype(bool)
+
+    # Add a column to mark correct and incorrect responses
+    df['is_correct'] = df['original correctness'] == df['naive no fsl correctness']
+
     # Grouping by 'unique_id'
     grouped = df.groupby('unique_id')
 
-    # Function to calculate consistency for 'naive no fsl correctness'
-    def calculate_group_consistency(group):
+    # Function to calculate consistency for a specific column
+    def calculate_group_consistency(group, column):
         # Ensure the group contains the column
-        if 'naive no fsl correctness' not in group.columns:
-            raise KeyError("'naive no fsl correctness' column is missing in the group.")
-        
+        if column not in group.columns:
+            raise KeyError(f"'{column}' column is missing in the group.")
+
         # Calculate the most common value's count and consistency
-        most_common_value_count = group['naive no fsl correctness'].value_counts().max()
+        most_common_value_count = group[column].value_counts().max()
         total_count = len(group)
         return most_common_value_count / total_count
 
     # Calculate consistency for each group and store it in a list
     consistencies = []
     for unique_id, group in grouped:
-        consistency = calculate_group_consistency(group)
+        group_consistency = calculate_group_consistency(group, 'naive no fsl correctness')
         consistencies.append({
             "unique_id": unique_id,
-            "consistency": consistency
+            "consistency": group_consistency
         })
 
-    # Calculate average and median consistency
+    # Separate analysis for correct and incorrect responses
+    correct_groups = grouped.filter(lambda x: x['is_correct'].all())
+    incorrect_groups = grouped.filter(lambda x: ~x['is_correct'].all())
+
+    correct_consistencies = []
+    incorrect_consistencies = []
+
+    for unique_id, group in grouped:
+        if group['is_correct'].all():
+            correct_consistency = calculate_group_consistency(group, 'naive no fsl correctness')
+            correct_consistencies.append({
+                "unique_id": unique_id,
+                "consistency": correct_consistency
+            })
+        elif not group['is_correct'].all():
+            incorrect_consistency = calculate_group_consistency(group, 'naive no fsl correctness')
+            incorrect_consistencies.append({
+                "unique_id": unique_id,
+                "consistency": incorrect_consistency
+            })
+
+    # Calculate average and median consistency for overall, correct, and incorrect responses
     consistency_values = [entry["consistency"] for entry in consistencies]
-    average_consistency = sum(consistency_values) / len(consistency_values)
-    median_consistency = sorted(consistency_values)[len(consistency_values) // 2]
+    correct_values = [entry["consistency"] for entry in correct_consistencies]
+    incorrect_values = [entry["consistency"] for entry in incorrect_consistencies]
+
+    average_consistency = sum(consistency_values) / len(consistency_values) if consistency_values else 0
+    median_consistency = sorted(consistency_values)[len(consistency_values) // 2] if consistency_values else 0
+
+    average_correct_consistency = sum(correct_values) / len(correct_values) if correct_values else 0
+    median_correct_consistency = sorted(correct_values)[len(correct_values) // 2] if correct_values else 0
+
+    average_incorrect_consistency = sum(incorrect_values) / len(incorrect_values) if incorrect_values else 0
+    median_incorrect_consistency = sorted(incorrect_values)[len(incorrect_values) // 2] if incorrect_values else 0
 
     # Prepare results
     results = {
         "group_consistencies": consistencies,
+        "correct_consistencies": correct_consistencies,
+        "incorrect_consistencies": incorrect_consistencies,
         "summary": {
             "average_consistency": average_consistency,
-            "median_consistency": median_consistency
+            "median_consistency": median_consistency,
+            "average_correct_consistency": average_correct_consistency,
+            "median_correct_consistency": median_correct_consistency,
+            "average_incorrect_consistency": average_incorrect_consistency,
+            "median_incorrect_consistency": median_incorrect_consistency
         }
     }
 
@@ -55,6 +98,6 @@ def calculate_consistency(input_csv, output_json):
 
 # Test the function with an example CSV
 if __name__ == "__main__":
-    input_csv = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple/apps_3point5_3/combined_confidence_apps_3point5_3.csv"  # Replace with your input CSV file
-    output_json = "confidence.json"  # Desired output JSON file
+    input_csv = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple/mbpp_3point5_1/combined_confidence_mbpp_3point5.csv"  # Replace with your input CSV file
+    output_json = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple/mbpp_3point5_1/confidence.json"  # Desired output JSON file
     calculate_consistency(input_csv, output_json)
