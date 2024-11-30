@@ -1,0 +1,573 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,annotated correctness simple,naive no fsl correctness,data file
+0232,apps,llama3-70b,gpt-3.5-turbo-0125,"There is unrest in the Galactic Senate. Several thousand solar systems have declared their intentions to leave the Republic. Master Heidi needs to select the Jedi Knights who will go on peacekeeping missions throughout the galaxy. It is well-known that the success of any peacekeeping mission depends on the colors of the lightsabers of the Jedi who will go on that mission. 
+
+Heidi has n Jedi Knights standing in front of her, each one with a lightsaber of one of m possible colors. She knows that for the mission to be the most effective, she needs to select some contiguous interval of knights such that there are exactly k_1 knights with lightsabers of the first color, k_2 knights with lightsabers of the second color, ..., k_{m} knights with lightsabers of the m-th color. Help her find out if this is possible.
+
+
+-----Input-----
+
+The first line of the input contains n (1 ≤ n ≤ 100) and m (1 ≤ m ≤ n). The second line contains n integers in the range {1, 2, ..., m} representing colors of the lightsabers of the subsequent Jedi Knights. The third line contains m integers k_1, k_2, ..., k_{m} (with $1 \leq \sum_{i = 1}^{m} k_{i} \leq n$) – the desired counts of lightsabers of each color from 1 to m.
+
+
+-----Output-----
+
+Output YES if an interval with prescribed color counts exists, or output NO if there is none.
+
+
+-----Example-----
+Input
+5 2
+1 1 2 2 1
+1 2
+
+Output
+YES","n, m = map(int, input().split())
+colors = list(map(int, input().split()))
+counts = list(map(int, input().split()))
+
+color_counts = {}
+for color in colors:
+    if color not in color_counts:
+        color_counts[color] = 0
+    color_counts[color] += 1
+
+found = False
+for i in range(n):
+    window_counts = {}
+    for j in range(i, n):
+        color = colors[j]
+        if color not in window_counts:
+            window_counts[color] = 0
+        window_counts[color] += 1
+        if all(count == target for count, target in zip(sorted(window_counts.values()), counts)):
+            found = True
+            break
+    if found:
+        break
+
+print(""YES"" if found else ""NO"")
+",,True,post,False,True,True,True,True,pilot_apps2.json
+0232,apps,gpt-4o,gpt-3.5-turbo-0125,"There is unrest in the Galactic Senate. Several thousand solar systems have declared their intentions to leave the Republic. Master Heidi needs to select the Jedi Knights who will go on peacekeeping missions throughout the galaxy. It is well-known that the success of any peacekeeping mission depends on the colors of the lightsabers of the Jedi who will go on that mission. 
+
+Heidi has n Jedi Knights standing in front of her, each one with a lightsaber of one of m possible colors. She knows that for the mission to be the most effective, she needs to select some contiguous interval of knights such that there are exactly k_1 knights with lightsabers of the first color, k_2 knights with lightsabers of the second color, ..., k_{m} knights with lightsabers of the m-th color. Help her find out if this is possible.
+
+
+-----Input-----
+
+The first line of the input contains n (1 ≤ n ≤ 100) and m (1 ≤ m ≤ n). The second line contains n integers in the range {1, 2, ..., m} representing colors of the lightsabers of the subsequent Jedi Knights. The third line contains m integers k_1, k_2, ..., k_{m} (with $1 \leq \sum_{i = 1}^{m} k_{i} \leq n$) – the desired counts of lightsabers of each color from 1 to m.
+
+
+-----Output-----
+
+Output YES if an interval with prescribed color counts exists, or output NO if there is none.
+
+
+-----Example-----
+Input
+5 2
+1 1 2 2 1
+1 2
+
+Output
+YES","def can_find_interval(n, m, colors, k):
+    # We will create a sliding window to find the interval
+    from collections import defaultdict
+    
+    # Desired counts for each color
+    desired_counts = dict(zip(range(1, m+1), k))
+    
+    # Current counts in the sliding window
+    current_counts = defaultdict(int)
+    
+    # Initialize two pointers for the sliding window
+    left = 0
+    
+    for right in range(n):
+        current_counts[colors[right]] += 1
+        
+        # Check if current window meets the condition
+        while all(current_counts[color] >= desired_counts[color] for color in desired_counts):
+            if all(current_counts[color] == desired_counts[color] for color in desired_counts):
+                return ""YES""
+            current_counts[colors[left]] -= 1
+            left += 1
+    
+    return ""NO""
+
+# Read input
+n, m = map(int, input().split())
+colors = list(map(int, input().split()))
+k = list(map(int, input().split()))
+
+# Output the result
+print(can_find_interval(n, m, colors, k))
+",,True,post,True,True,True,True,True,pilot_apps2.json
+0022,apps,llama3-70b,gpt-3.5-turbo-0125,"Let's call a string ""s-palindrome"" if it is symmetric about the middle of the string. For example, the string ""oHo"" is ""s-palindrome"", but the string ""aa"" is not. The string ""aa"" is not ""s-palindrome"", because the second half of it is not a mirror reflection of the first half.
+
+ [Image] English alphabet 
+
+You are given a string s. Check if the string is ""s-palindrome"".
+
+
+-----Input-----
+
+The only line contains the string s (1 ≤ |s| ≤ 1000) which consists of only English letters.
+
+
+-----Output-----
+
+Print ""TAK"" if the string s is ""s-palindrome"" and ""NIE"" otherwise.
+
+
+-----Examples-----
+Input
+oXoxoXo
+
+Output
+TAK
+
+Input
+bod
+
+Output
+TAK
+
+Input
+ER
+
+Output
+NIE","s = input()
+n = len(s)
+is_spalindrome = True
+for i in range(n // 2):
+    if s[i] != s[n - i - 1]:
+        is_spalindrome = False
+        break
+print(""TAK"" if is_spalindrome else ""NIE"")
+",,True,post,False,True,True,True,True,pilot_apps2.json
+0022,apps,gpt-4o,gpt-3.5-turbo-0125,"Let's call a string ""s-palindrome"" if it is symmetric about the middle of the string. For example, the string ""oHo"" is ""s-palindrome"", but the string ""aa"" is not. The string ""aa"" is not ""s-palindrome"", because the second half of it is not a mirror reflection of the first half.
+
+ [Image] English alphabet 
+
+You are given a string s. Check if the string is ""s-palindrome"".
+
+
+-----Input-----
+
+The only line contains the string s (1 ≤ |s| ≤ 1000) which consists of only English letters.
+
+
+-----Output-----
+
+Print ""TAK"" if the string s is ""s-palindrome"" and ""NIE"" otherwise.
+
+
+-----Examples-----
+Input
+oXoxoXo
+
+Output
+TAK
+
+Input
+bod
+
+Output
+TAK
+
+Input
+ER
+
+Output
+NIE","def is_s_palindrome(s):
+    n = len(s)
+    for i in range(n // 2):
+        if s[i] != s[n - 1 - i]:
+            return False
+    return True
+
+# Read input
+s = input().strip()
+
+# Check if the string is ""s-palindrome""
+if is_s_palindrome(s):
+    print(""TAK"")
+else:
+    print(""NIE"")
+",,False,post,False,True,True,True,True,pilot_apps2.json
+0067,apps,llama3-70b,gpt-3.5-turbo-0125,"Nauuo is a girl who loves writing comments.
+
+One day, she posted a comment on Codeforces, wondering whether she would get upvotes or downvotes.
+
+It's known that there were $x$ persons who would upvote, $y$ persons who would downvote, and there were also another $z$ persons who would vote, but you don't know whether they would upvote or downvote. Note that each of the $x+y+z$ people would vote exactly one time.
+
+There are three different results: if there are more people upvote than downvote, the result will be ""+""; if there are more people downvote than upvote, the result will be ""-""; otherwise the result will be ""0"".
+
+Because of the $z$ unknown persons, the result may be uncertain (i.e. there are more than one possible results). More formally, the result is uncertain if and only if there exist two different situations of how the $z$ persons vote, that the results are different in the two situations.
+
+Tell Nauuo the result or report that the result is uncertain.
+
+
+-----Input-----
+
+The only line contains three integers $x$, $y$, $z$ ($0\le x,y,z\le100$), corresponding to the number of persons who would upvote, downvote or unknown.
+
+
+-----Output-----
+
+If there is only one possible result, print the result : ""+"", ""-"" or ""0"".
+
+Otherwise, print ""?"" to report that the result is uncertain.
+
+
+-----Examples-----
+Input
+3 7 0
+
+Output
+-
+Input
+2 0 1
+
+Output
++
+Input
+1 1 0
+
+Output
+0
+Input
+0 0 1
+
+Output
+?
+
+
+-----Note-----
+
+In the first example, Nauuo would definitely get three upvotes and seven downvotes, so the only possible result is ""-"".
+
+In the second example, no matter the person unknown downvotes or upvotes, Nauuo would get more upvotes than downvotes. So the only possible result is ""+"".
+
+In the third example, Nauuo would definitely get one upvote and one downvote, so the only possible result is ""0"".
+
+In the fourth example, if the only one person upvoted, the result would be ""+"", otherwise, the result would be ""-"". There are two possible results, so the result is uncertain.","x, y, z = map(int, input().split())
+if x > y + z:
+    print(""+"")
+elif x < y:
+    print(""-"")
+elif x == y:
+    if z == 0:
+        print(""0"")
+    else:
+        print(""?"")
+else:
+    print(""?"")
+",,True,post,False,True,True,True,True,pilot_apps2.json
+0067,apps,gpt-4o,gpt-3.5-turbo-0125,"Nauuo is a girl who loves writing comments.
+
+One day, she posted a comment on Codeforces, wondering whether she would get upvotes or downvotes.
+
+It's known that there were $x$ persons who would upvote, $y$ persons who would downvote, and there were also another $z$ persons who would vote, but you don't know whether they would upvote or downvote. Note that each of the $x+y+z$ people would vote exactly one time.
+
+There are three different results: if there are more people upvote than downvote, the result will be ""+""; if there are more people downvote than upvote, the result will be ""-""; otherwise the result will be ""0"".
+
+Because of the $z$ unknown persons, the result may be uncertain (i.e. there are more than one possible results). More formally, the result is uncertain if and only if there exist two different situations of how the $z$ persons vote, that the results are different in the two situations.
+
+Tell Nauuo the result or report that the result is uncertain.
+
+
+-----Input-----
+
+The only line contains three integers $x$, $y$, $z$ ($0\le x,y,z\le100$), corresponding to the number of persons who would upvote, downvote or unknown.
+
+
+-----Output-----
+
+If there is only one possible result, print the result : ""+"", ""-"" or ""0"".
+
+Otherwise, print ""?"" to report that the result is uncertain.
+
+
+-----Examples-----
+Input
+3 7 0
+
+Output
+-
+Input
+2 0 1
+
+Output
++
+Input
+1 1 0
+
+Output
+0
+Input
+0 0 1
+
+Output
+?
+
+
+-----Note-----
+
+In the first example, Nauuo would definitely get three upvotes and seven downvotes, so the only possible result is ""-"".
+
+In the second example, no matter the person unknown downvotes or upvotes, Nauuo would get more upvotes than downvotes. So the only possible result is ""+"".
+
+In the third example, Nauuo would definitely get one upvote and one downvote, so the only possible result is ""0"".
+
+In the fourth example, if the only one person upvoted, the result would be ""+"", otherwise, the result would be ""-"". There are two possible results, so the result is uncertain.","x, y, z = map(int, input().split())
+
+# Calculate the minimum and maximum possible upvotes
+min_upvotes = x
+max_upvotes = x + z
+
+# Calculate the minimum and maximum possible downvotes
+min_downvotes = y
+max_downvotes = y + z
+
+if max_upvotes < min_downvotes:
+    print(""-"")
+elif max_downvotes < min_upvotes:
+    print(""+"")
+else:
+    print(""?"")
+",,True,post,False,True,True,True,True,pilot_apps2.json
+0240,apps,llama3-70b,gpt-3.5-turbo-0125,"Vasya decided to pass a very large integer n to Kate. First, he wrote that number as a string, then he appended to the right integer k — the number of digits in n. 
+
+Magically, all the numbers were shuffled in arbitrary order while this note was passed to Kate. The only thing that Vasya remembers, is a non-empty substring of n (a substring of n is a sequence of consecutive digits of the number n).
+
+Vasya knows that there may be more than one way to restore the number n. Your task is to find the smallest possible initial integer n. Note that decimal representation of number n contained no leading zeroes, except the case the integer n was equal to zero itself (in this case a single digit 0 was used).
+
+
+-----Input-----
+
+The first line of the input contains the string received by Kate. The number of digits in this string does not exceed 1 000 000.
+
+The second line contains the substring of n which Vasya remembers. This string can contain leading zeroes. 
+
+It is guaranteed that the input data is correct, and the answer always exists.
+
+
+-----Output-----
+
+Print the smalles integer n which Vasya could pass to Kate.
+
+
+-----Examples-----
+Input
+003512
+021
+
+Output
+30021
+
+Input
+199966633300
+63
+
+Output
+3036366999","s = input()
+t = input()
+
+def smallest_n(s, t):
+    t_set = set(t)
+    n = ''
+    for c in s:
+        if c in t_set:
+            n += c
+    n += t
+    return int(n)
+
+print(smallest_n(s, t))
+",,True,post,False,True,True,True,False,pilot_apps2.json
+0240,apps,gpt-4o,gpt-3.5-turbo-0125,"Vasya decided to pass a very large integer n to Kate. First, he wrote that number as a string, then he appended to the right integer k — the number of digits in n. 
+
+Magically, all the numbers were shuffled in arbitrary order while this note was passed to Kate. The only thing that Vasya remembers, is a non-empty substring of n (a substring of n is a sequence of consecutive digits of the number n).
+
+Vasya knows that there may be more than one way to restore the number n. Your task is to find the smallest possible initial integer n. Note that decimal representation of number n contained no leading zeroes, except the case the integer n was equal to zero itself (in this case a single digit 0 was used).
+
+
+-----Input-----
+
+The first line of the input contains the string received by Kate. The number of digits in this string does not exceed 1 000 000.
+
+The second line contains the substring of n which Vasya remembers. This string can contain leading zeroes. 
+
+It is guaranteed that the input data is correct, and the answer always exists.
+
+
+-----Output-----
+
+Print the smalles integer n which Vasya could pass to Kate.
+
+
+-----Examples-----
+Input
+003512
+021
+
+Output
+30021
+
+Input
+199966633300
+63
+
+Output
+3036366999","def find_smallest_possible_n(s, sub):
+    n_len = len(s) - len(sub)
+
+    def is_valid_number(num_str, sub):
+        return sub in num_str and len(num_str) == n_len
+
+    def generate_possible_numbers(chars, sub):
+        from itertools import permutations
+        for perm in permutations(chars):
+            candidate = ''.join(perm)
+            if is_valid_number(candidate, sub):
+                yield candidate
+
+    from collections import Counter
+    s_counter = Counter(s)
+    sub_counter = Counter(sub)
+
+    for char in sub_counter:
+        s_counter[char] -= sub_counter[char]
+
+    remaining_chars = ''.join([char * s_counter[char] for char in s_counter])
+
+    possible_numbers = generate_possible_numbers(remaining_chars, sub)
+    smallest_number = min(possible_numbers, key=int)
+
+    return smallest_number
+
+if __name__ == ""__main__"":
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    s = data[0]
+    sub = data[1]
+    
+    result = find_smallest_possible_n(s, sub)
+    print(result)
+",,False,post,False,False,False,True,False,pilot_apps2.json
+0271,apps,llama3-70b,gpt-3.5-turbo-0125,"Vasya has a non-negative integer n. He wants to round it to nearest integer, which ends up with 0. If n already ends up with 0, Vasya considers it already rounded.
+
+For example, if n = 4722 answer is 4720. If n = 5 Vasya can round it to 0 or to 10. Both ways are correct.
+
+For given n find out to which integer will Vasya round it.
+
+
+-----Input-----
+
+The first line contains single integer n (0 ≤ n ≤ 10^9) — number that Vasya has.
+
+
+-----Output-----
+
+Print result of rounding n. Pay attention that in some cases answer isn't unique. In that case print any correct answer.
+
+
+-----Examples-----
+Input
+5
+
+Output
+0
+
+Input
+113
+
+Output
+110
+
+Input
+1000000000
+
+Output
+1000000000
+
+Input
+5432359
+
+Output
+5432360
+
+
+
+-----Note-----
+
+In the first example n = 5. Nearest integers, that ends up with zero are 0 and 10. Any of these answers is correct, so you can print 0 or 10.","n = int(input())
+if n % 10 == 0:
+    print(n)
+else:
+    if n % 10 <= 5:
+        print(n - (n % 10))
+    else:
+        print(n + (10 - n % 10))
+",,True,post,True,True,True,True,True,pilot_apps2.json
+0271,apps,gpt-4o,gpt-3.5-turbo-0125,"Vasya has a non-negative integer n. He wants to round it to nearest integer, which ends up with 0. If n already ends up with 0, Vasya considers it already rounded.
+
+For example, if n = 4722 answer is 4720. If n = 5 Vasya can round it to 0 or to 10. Both ways are correct.
+
+For given n find out to which integer will Vasya round it.
+
+
+-----Input-----
+
+The first line contains single integer n (0 ≤ n ≤ 10^9) — number that Vasya has.
+
+
+-----Output-----
+
+Print result of rounding n. Pay attention that in some cases answer isn't unique. In that case print any correct answer.
+
+
+-----Examples-----
+Input
+5
+
+Output
+0
+
+Input
+113
+
+Output
+110
+
+Input
+1000000000
+
+Output
+1000000000
+
+Input
+5432359
+
+Output
+5432360
+
+
+
+-----Note-----
+
+In the first example n = 5. Nearest integers, that ends up with zero are 0 and 10. Any of these answers is correct, so you can print 0 or 10.","n = int(input())
+
+# Find the remainder when n is divided by 10
+remainder = n % 10
+
+# If the remainder is less than or equal to 5, round down
+# Otherwise, round up
+if remainder <= 5:
+    result = n - remainder
+else:
+    result = n + (10 - remainder)
+
+print(result)
+",,True,post,True,True,True,True,True,pilot_apps2.json

@@ -1,0 +1,6 @@
+The function `func_1` accepts an integer `n` in the range of 0 to 99. It then returns the string representation of `n` based on the following cases:
+- Case 1: If `n` corresponds to a single-digit number, it returns the string representation from the 'ones' list.
+- Case 2: If `n` is between 11 and 19, it returns the string representation from the 'teens' list.
+- Case 3: If `n` represents a number in the tens place, it returns the string representation of the tens place digit.
+- Case 4: If `n` is a two-digit number, it returns the string representation where the tens place is obtained from the 'tens' list and the ones place is obtained from the 'ones' list, separated by a hyphen.
+The functionality does not cover cases where `n` is outside the specified range, and additional logic could be added to handle such scenarios.
