@@ -95,10 +95,10 @@ if __name__ == "__main__":
 
 
     # data file path they are hardcoded to the once we have generated in the past
-    apps_llama_file = data_folder / "apps_llama3-70b-8192_20240920.json"
-    apps_gpt_file = data_folder / "apps_gpt-4o-2024-05-13_20240922.json"
-    mbpp_llama_file = data_folder / "mbppplus_llama3-70b-8192_20240922.json"
-    mbpp_gpt_file = data_folder / "mbppplus_gpt-4o-2024-05-13_20240922.json"
+    apps_llama_file = data_folder / "apps_llama3-70b_final_stdformat.json"
+    apps_gpt_file = data_folder / "apps_gpt-4o_final_stdformat.json"
+    mbpp_llama_file = data_folder / "mbppplus_llama3point1-70b_final_stdformat.json"
+    mbpp_gpt_file = data_folder / "mbppplus_gpt-4o_final_stdformat.json"
     
     # Load the data from the files
     apps_llama_data = load_data(apps_llama_file)
@@ -122,11 +122,14 @@ if __name__ == "__main__":
 
     #save they created sample to a file named pilot_num.json
     #check if there is pilot.json and increase a counter until it does not exist
-    counter = 1
-    while (data_folder / f"pilot{counter}.json").exists():
-        counter += 1
-    output_file = data_folder / f"pilot{counter}_size_{sample_size}.json"
-    save_to_json(combined_data, output_file)
+    # counter = 1
+    # while (data_folder / f"pilot{counter}.json").exists():
+    #     counter += 1
+    # output_file = data_folder / f"pilot{counter}_size_{sample_size}.json"
+    output_file = data_folder / f"pilot_apps_final_size_{sample_size}.json"
+    save_to_json(matched_apps_tasks, output_file)
+    output_file = data_folder / f"pilot_mbpp_final_size_{sample_size}.json"
+    save_to_json(matched_mbpp_tasks, output_file)
 
     print(f"Selected {len(matched_apps_tasks) // 2} matched tasks from APPs and {len(matched_mbpp_tasks) // 2} matched tasks from MBPP.")
     print(f"Results saved to {output_file}")

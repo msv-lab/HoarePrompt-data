@@ -1,0 +1,1352 @@
+[
+    {
+        "task_id": "119",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "t, s, x = map(int, input().split())\nif (x - t) % s == 0 or (x - t) % s == 1:\n    print(\"YES\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "119",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "t, s, x = map(int, input().split())\n\nif x == t:\n    print(\"YES\")\nelif x > t:\n    if (x - t) % s == 0:\n        print(\"YES\")\n    elif (x - t - 1) % s == 0 and x != t + 1:\n        print(\"YES\")\n    else:\n        print(\"NO\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "246",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\nrectangles = []\nfor _ in range(n):\n    x1, y1, x2, y2 = map(int, input().split())\n    rectangles.append((x1, y1, x2, y2))\n\nmin_x = min(x1 for x1, _, _, _ in rectangles)\nmax_x = max(x2 for _, _, _, x2 in rectangles)\nmin_y = min(y1 for _, _, _, y2 in rectangles)\nmax_y = max(y2 for _, _, _, _ in rectangles)\n\nsquare_size = max_x - min_x\nif max_y - min_y != square_size:\n    print(\"NO\")\nelse:\n    points = set()\n    for x1, y1, x2, y2 in rectangles:\n        for x in range(x1, x2):\n            for y in range(y1, y2):\n                points.add((x, y))\n    if len(points) == square_size ** 2:\n        print(\"YES\")\n    else:\n        print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "246",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "# Use Standard Input format\nimport sys\ninput = sys.stdin.read\n\n# Reading input\ndata = input().split()\nn = int(data[0])\nrectangles = []\nindex = 1\nfor _ in range(n):\n    x1 = int(data[index])\n    y1 = int(data[index+1])\n    x2 = int(data[index+2])\n    y2 = int(data[index+3])\n    rectangles.append((x1, y1, x2, y2))\n    index += 4\n\n# Determine the bounding box\nmin_x = min(rect[0] for rect in rectangles)\nmin_y = min(rect[1] for rect in rectangles)\nmax_x = max(rect[2] for rect in rectangles)\nmax_y = max(rect[3] for rect in rectangles)\n\n# Calculate the area of the bounding box\nbounding_box_area = (max_x - min_x) * (max_y - min_y)\n\n# Check if bounding box is a square\nis_square = (max_x - min_x) == (max_y - min_y)\n\n# Calculate the sum of the areas of the rectangles\ntotal_area = sum((rect[2] - rect[0]) * (rect[3] - rect[1]) for rect in rectangles)\n\n# Determine if the rectangles form a square\nif is_square and total_area == bounding_box_area:\n    print(\"YES\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "63",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\na = list(map(int, input().split()))\nwhile len(a) > 1:\n    if min(a) == 0:\n        a.remove(0)\n    else:\n        x = min(a)\n        a = [i - x for i in a]\nif a:\n    print(\"BitLGM\" if a[0] % 2 == 0 else \"BitAryo\")\nelse:\n    print(\"BitAryo\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "63",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "s = input()\nn = len(s)\nind = -1\nf = False\nfor i in range(n):\n    if s[i] == '[':\n        f = True\n    elif s[i] == ':':\n        if f:\n            ind = i\n            break\nbind = -1\nf = False\nfor i in range(n-1, -1, -1):\n    if s[i] == ']':\n        f = True\n    elif s[i] == ':':\n        if f:\n            bind = i\n            break\nif ind == -1 or bind == -1 or ind >= bind:\n    print(-1)\nelse:\n    ans = 4\n    for i in range(ind + 1, bind):\n        if s[i] == '|':\n            ans += 1\n    print(ans)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "239",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, m, k = map(int, input().split())\na = list(map(int, input().split()))\n\ndp = [0] * (n + 1)\nmx = 0\n\nfor i in range(1, n + 1):\n    dp[i] = max(dp[i - 1], sum(a[:i]) - k * ((i + m - 1) // m))\n    mx = max(mx, dp[i])\n\nprint(mx)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "239",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "import sys\nimport math\n\ndef max_subarray_cost(n, m, k, a):\n    # Initialize variables\n    max_cost = 0\n    current_sum = 0\n    min_prefix = 0\n    \n    # Iterate over the array\n    for i in range(n):\n        current_sum += a[i]\n        if i + 1 >= m:\n            current_cost = current_sum - k * math.ceil((i + 1) / m)\n            max_cost = max(max_cost, current_cost - min_prefix)\n            min_prefix = min(min_prefix, current_cost)\n    \n    return max_cost\n\n# Read input\ninput = sys.stdin.read\ndata = input().split()\nn, m, k = int(data[0]), int(data[1]), int(data[2])\na = list(map(int, data[3:]))\n\n# Calculate and print the result\nprint(max_subarray_cost(n, m, k, a))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "227",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "N = int(input())\nsizes = list(map(int, input().split()))\n\nsizes.sort(reverse=True)\n\nalice, bob = 0, 0\ndecider = True\n\nfor size in sizes:\n    if decider:\n        alice += size\n    else:\n        bob += size\n    decider = not decider\n\nprint(alice, bob)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "227",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def optimal_pie_distribution():\n    import sys\n    input = sys.stdin.read\n    data = input().split()\n    \n    N = int(data[0])\n    slices = list(map(int, data[1:]))\n    \n    # Initialize sums for Alice and Bob\n    alice_sum = 0\n    bob_sum = 0\n    \n    # Initialize who has the decider token\n    # 0 means Bob has the token, 1 means Alice has the token\n    decider = 0\n    \n    # Iterate over the slices\n    for i in range(N):\n        if decider == 0:\n            # Bob decides\n            if i < N - 1 and slices[i] < slices[i + 1]:\n                # Give the slice to Alice and keep the decider token\n                alice_sum += slices[i]\n                decider = 0\n            else:\n                # Take the slice for Bob and pass the decider token to Alice\n                bob_sum += slices[i]\n                decider = 1\n        else:\n            # Alice decides\n            if i < N - 1 and slices[i] < slices[i + 1]:\n                # Give the slice to Bob and keep the decider token\n                bob_sum += slices[i]\n                decider = 1\n            else:\n                # Take the slice for Alice and pass the decider token to Bob\n                alice_sum += slices[i]\n                decider = 0\n    \n    print(alice_sum, bob_sum)\n\n# Run the function\noptimal_pie_distribution()\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "108",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "s = input()\nwhile '00' in s:\n    s = s.replace('00', '0')\nwhile '11' in s:\n    s = s.replace('11', '1')\nif s == '1' or s == '':\n    print('no')\nelse:\n    print('yes')\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "108",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "s = input()\n\n# We need to find a subsequence that represents a number divisible by 64.\n# In binary, 64 is represented as 1000000. Thus, we need to find at least one '1'\n# followed by six '0's in the string.\n\n# Check if there is at least one '1' in the string\nif '1' not in s:\n    print(\"no\")\nelse:\n    # Find the first '1' and check if there are at least six '0's after it\n    index_of_first_one = s.find('1')\n    remaining_string = s[index_of_first_one+1:]\n    count_of_zeros = remaining_string.count('0')\n    \n    if count_of_zeros >= 6:\n        print(\"yes\")\n    else:\n        print(\"no\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "298",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "import math\n\nn, m, k = map(int, input().split())\n\nif (n*m) % k:\n    print(\"NO\")\n    exit()\n\ndef gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n\ndef euk(a, b):\n    if b == 0:\n        return 1, 0\n    else:\n        x, y = euk(b, a % b)\n        return y, x - (a // b) * y\n\ndef bezout(a, b):\n    x, y = euk(a, b)\n    return x, y, x*a + y*b\n\nn1, m1, g = bezout(n, m)\nif abs(n1*m) >= g:\n    print(\"YES\")\n    print(0, 0)\n    print(0, n1*m//g)\n    print(m1*m//g, 0)\nelse:\n    print(\"NO\")",
+        "counter_example": null
+    },
+    {
+        "task_id": "298",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, m, k = map(int, input().split())\n\n# Calculate the area required for the triangle\narea = n * m / k\n\n# Check if the area is an integer\nif area != int(area):\n    print(\"NO\")\nelse:\n    area = int(area)\n    # We find a way to create a triangle with this area\n    if area == 0:\n        print(\"NO\")\n    else:\n        # We can set one point at (0, 0) and the others in a way to form the required area\n        print(\"YES\")\n        print(\"0 0\")\n        if 2 * area <= n:\n            print(f\"{2 * area} 1\")\n            print(f\"0 1\")\n        elif 2 * area <= m:\n            print(f\"1 {2 * area}\")\n            print(f\"1 0\")\n        else:\n            print(f\"{n} {m // 2}\")\n            print(f\"0 {m // 2}\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "133",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\na = list(map(int, input().split()))\na.sort()\nans = 360\ntot = 0\nfor i in range(n):\n    tot += a[i]\n    ans = min(ans, abs(tot - (360 - tot)))\nprint(ans)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "133",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "# Use Standard Input format\n\n# Read input\nn = int(input())\nangles = list(map(int, input().split()))\n\n# Calculate the total sum of the angles\ntotal_sum = sum(angles)\n\n# Initialize variables to find the minimum difference\nmin_diff = float('inf')\n\n# Iterate over all possible starting points for the first sector\nfor i in range(n):\n    current_sum = 0\n    for j in range(n):\n        current_sum += angles[(i + j) % n]\n        # Calculate the difference between the two sectors\n        diff = abs(total_sum - 2 * current_sum)\n        # Update the minimum difference\n        if diff < min_diff:\n            min_diff = diff\n\nprint(min_diff)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "33",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\ncurr_lat = 90\nfor _ in range(n):\n    t, dir = input().split()\n    t = int(t)\n    if dir == \"North\":\n        curr_lat += t / 111.195\n    elif dir == \"South\":\n        curr_lat -= t / 111.195\n    else:\n        continue\n    if curr_lat < -90 or curr_lat > 90:\n        print(\"NO\")\n        exit()\n    if curr_lat == -90 and dir != \"North\":\n        print(\"NO\")\n        exit()\n    if curr_lat == 90 and dir != \"South\":\n        print(\"NO\")\n        exit()\nprint(\"YES\" if curr_lat == 90 else \"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "33",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\nposition = 0  # Start at the North Pole\n\nvalid = True\n\nfor _ in range(n):\n    t, dir = input().split()\n    t = int(t)\n    \n    if dir == \"North\":\n        if position - t < 0:\n            valid = False\n        position -= t\n    elif dir == \"South\":\n        if position + t > 20000:\n            valid = False\n        position += t\n    elif dir in (\"West\", \"East\"):\n        if position == 0 or position == 20000:\n            valid = False\n    \n    if position < 0 or position > 20000:\n        valid = False\n\nif position != 0:\n    valid = False\n\nif valid:\n    print(\"YES\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "114",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, k = map(int, input().split())\nx = 10 ** k\nwhile n % x != 0:\n    n += 1\nprint(n)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "114",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "import math\n\ndef k_rounding(n, k):\n    # Calculate the minimum number that ends with at least k zeros\n    multiplier = 10**k\n    # Find the smallest number x that is a multiple of n and also ends with k zeros\n    x = (n * (multiplier // math.gcd(n, multiplier)))\n    return x\n\n# Read input\nn, k = map(int, input().split())\n# Print the k-rounding of n\nprint(k_rounding(n, k))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "163",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, k = map(int, input().split())\nbuckets = list(map(int, input().split()))\n\nhours = float('inf')\nfor bucket in buckets:\n    if k % bucket == 0:\n        hours = min(hours, k // bucket)\n\nprint(hours)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "163",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "# Read the input values for n and k\nn, k = map(int, input().split())\n\n# Read the list of bucket sizes\na = list(map(int, input().split()))\n\n# Initialize minimum hours to a large number\nmin_hours = float('inf')\n\n# Iterate through each bucket size\nfor bucket_size in a:\n    # Check if the bucket size divides the garden length evenly\n    if k % bucket_size == 0:\n        # Calculate the number of hours needed with this bucket size\n        hours = k // bucket_size\n        # Update the minimum hours if this is less than the current minimum\n        min_hours = min(min_hours, hours)\n\n# Print the minimum number of hours\nprint(min_hours)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "250",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, l, x, y = map(int, input().split())\nmarks = set(map(int, input().split()))\n\nneed_x, need_y = False, False\nfor i in range(n):\n    for j in range(i, n):\n        if marks[j] - marks[i] == x:\n            need_x = True\n        if marks[j] - marks[i] == y:\n            need_y = True\n\nadditional_marks = []\nif not need_x:\n    additional_marks.append(x)\nif not need_y:\n    additional_marks.append(y)\n\nfor i in marks:\n    for j in additional_marks:\n        if i + j <= l and i + j not in marks:\n            additional_marks.append(i + j)\n\nprint(len(additional_marks))\nprint(' '.join(map(str, additional_marks)))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "250",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "# Read input values\nn, l, x, y = map(int, input().split())\nmarks = list(map(int, input().split()))\n\n# Initialize sets for easier lookup of required distances\nmarks_set = set(marks)\nx_found = False\ny_found = False\n\n# Check if x and y distances can be measured\nfor mark in marks:\n    if (mark + x) in marks_set or (mark - x) in marks_set:\n        x_found = True\n    if (mark + y) in marks_set or (mark - y) in marks_set:\n        y_found = True\n    if x_found and y_found:\n        break\n\n# If both x and y distances can already be measured, no new marks are needed\nif x_found and y_found:\n    print(0)\nelse:\n    # Try to find a mark that can measure both x and y distances if added\n    new_marks = set()\n    for mark in marks:\n        if not x_found:\n            # Check if a mark that is x distance from the current mark can also measure y distance\n            if (mark + x + y) in marks_set or (mark + x - y) in marks_set or (mark - x + y) in marks_set:\n                new_marks.add(mark + x)\n            elif (mark - x + y) in marks_set or (mark - x - y) in marks_set:\n                new_marks.add(mark - x)\n        if not y_found:\n            # Check if a mark that is y distance from the current mark can also measure x distance\n            if (mark + y + x) in marks_set or (mark + y - x) in marks_set or (mark - y + x) in marks_set:\n                new_marks.add(mark + y)\n            elif (mark - y + x) in marks_set or (mark - y - x) in marks_set:\n                new_marks.add(mark - y)\n    \n    # If we found a mark that can measure both distances, add only that mark\n    if new_marks:\n        print(1)\n        print(new_marks.pop())\n    else:\n        # Otherwise, add both x and y marks if necessary\n        result = []\n        if not x_found:\n            result.append(x)\n        if not y_found:\n            result.append(y)\n        print(len(result))\n        print(\" \".join(map(str, result)))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "282",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "a, b = map(int, input().split())\ndef factorial(n):\n    res = 1\n    for i in range(1, n+1):\n        res *= i\n    return res\n\nres = factorial(b) // factorial(a)\nprint(res % 10)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "282",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def last_digit_of_quotient(a, b):\n    if b - a >= 5:\n        return 0\n    else:\n        result = 1\n        for i in range(a + 1, b + 1):\n            result *= i\n            result %= 10  # We only care about the last digit\n        return result\n\n# Reading input in the standard input format\na, b = map(int, input().split())\nprint(last_digit_of_quotient(a, b))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "207",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "m, a, b = map(int, input().split())\ndp = [0]*(m+1)\ndp[0] = 1\nfor i in range(m+1):\n    if i+a <= m:\n        dp[i+a] += dp[i]\n    if i-b >= 0:\n        dp[i] += dp[i-b]\nprint(sum(dp))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "207",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def gcd(x, y):\n    while y:\n        x, y = y, x % y\n    return x\n\ndef sum_frog_reachable_positions(m, a, b):\n    g = gcd(a, b)\n    if g != 1:\n        # If gcd(a, b) != 1, we can reduce the problem by the gcd factor\n        return sum_frog_reachable_positions(m // g, a // g, b // g) * g\n    \n    # We now have gcd(a, b) == 1\n    # The sum of reachable positions for all i from 0 to m\n    # f(i) = i + 1 for i >= a + b - gcd(a, b) - 1\n    k = a + b - 1\n    \n    if m < k:\n        return (m + 1) * (m + 2) // 2\n    \n    sum_k = k * (k + 1) // 2\n    sum_m = (m * (m + 1) // 2) - ((k * (k - 1)) // 2)\n    \n    return sum_k + sum_m\n\n# Reading input\nm, a, b = map(int, input().split())\n\n# Calculating the result\nresult = sum_frog_reachable_positions(m, a, b)\n\n# Printing the result\nprint(result)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "176",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "a, b = map(int, input().split())\n\nwhile a > 0 and b > 0:\n    if a >= 2 * b:\n        a -= 2 * b\n    elif b >= 2 * a:\n        b -= 2 * a\n\nprint(a, b)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "176",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "# Read the input\na, b = map(int, input().split())\n\n# Process the values of a and b based on the given rules\nwhile a != 0 and b != 0:\n    if a >= 2 * b:\n        a %= 2 * b\n    elif b >= 2 * a:\n        b %= 2 * a\n    else:\n        break\n\n# Output the final values of a and b\nprint(a, b)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "66",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\narr = list(map(int, input().split()))\nmin_val = min(arr)\nmin_indices = [i for i, x in enumerate(arr) if x == min_val]\nmin_indices.sort()\nmin_distance = float('inf')\nfor i in range(1, len(min_indices)):\n    min_distance = min(min_distance, min_indices[i] - min_indices[i-1])\nprint(min_distance)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "66",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "# Use Standard Input format\n\nn = int(input())\narr = list(map(int, input().split()))\n\n# Find the minimum value in the array\nmin_value = min(arr)\n\n# List to store indices of the minimum value\nmin_indices = [i for i, x in enumerate(arr) if x == min_value]\n\n# Calculate the minimum distance between consecutive minimum value indices\nmin_distance = min(min_indices[i+1] - min_indices[i] for i in range(len(min_indices) - 1))\n\nprint(min_distance)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "198",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "import math\n\nMOD = 998244353\n\ndef mul(a, b):\n    return (a * b) % MOD\n\ndef power(a, b):\n    res = 1\n    while b > 0:\n        if b & 1:\n            res = mul(res, a)\n        a = mul(a, a)\n        b >>= 1\n    return res\n\ndef inv(a):\n    return power(a, MOD - 2)\n\nn = int(input())\na = [list(map(int, input().split())) for _ in range(n)]\n\nres = 1\nfor i in range(n):\n    cnt = 1\n    for j in range(i + 1, n):\n        if a[i][0] <= a[j][1]:\n            cnt = mul(cnt, a[j][1] - a[i][0] + 1)\n    res = mul(res, cnt)\n\nfor i in range(n):\n    res = mul(res, inv(a[i][1] - a[i][0] + 1))\n\nprint(res)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "198",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "import sys\ninput = sys.stdin.read\nfrom functools import lru_cache\n\nMOD = 998244353\n\ndef mod_inv(a, mod):\n    return pow(a, mod - 2, mod)\n\ndef calculate_probability(n, ranges):\n    total_probability = 1\n    for i in range(n):\n        li, ri = ranges[i]\n        for j in range(i+1, n):\n            lj, rj = ranges[j]\n            # Calculate the probability that there is no inversion between i and j\n            prob_no_inversion = 0\n            count_i = ri - li + 1\n            count_j = rj - lj + 1\n            total_count = count_i * count_j\n\n            for x in range(li, ri + 1):\n                if x > rj:\n                    prob_no_inversion += count_j\n                elif x >= lj:\n                    prob_no_inversion += rj - x + 1\n\n            prob_no_inversion %= MOD\n            total_count %= MOD\n\n            prob_no_inversion = prob_no_inversion * mod_inv(total_count, MOD) % MOD\n            total_probability = total_probability * prob_no_inversion % MOD\n\n    return total_probability\n\ndef main():\n    data = input().strip().split()\n    n = int(data[0])\n    ranges = []\n    index = 1\n    for _ in range(n):\n        l = int(data[index])\n        r = int(data[index + 1])\n        ranges.append((l, r))\n        index += 2\n    \n    result = calculate_probability(n, ranges)\n    print(result)\n\nif __name__ == \"__main__\":\n    main()\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "296",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\nif n == 2:\n    print(\"NO\")\nelse:\n    print(\"YES\")\n    k = 2\n    print(k)\n    print(\"1\", n // 2)\n    print(\"1\", n)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "296",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "import math\n\ndef find_sequence(n):\n    if n <= 2:\n        return \"NO\"\n    \n    divisors = []\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            divisors.append(i)\n            if i != n // i:\n                divisors.append(n // i)\n    \n    if not divisors:\n        return \"NO\"\n    \n    k = len(divisors)\n    fractions = [(1, d) for d in divisors]\n    \n    return f\"YES\\n{k}\\n\" + \"\\n\".join(f\"{a} {b}\" for a, b in fractions)\n\n# Reading input\nn = int(input().strip())\nresult = find_sequence(n)\nprint(result)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "83",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, k = map(int, input().split())\nmarks = list(map(int, input().split()))\n\ntotal = sum(marks)\nneed = k * (n + x) - total\n\nwhile need > 0:\n    x += 1\n    need -= k\n\nprint(x)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "83",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "import math\n\n# Read the input values\nn, k = map(int, input().split())\nmarks = list(map(int, input().split()))\n\n# Calculate the current sum of marks and the number of marks\ncurrent_sum = sum(marks)\ncurrent_count = n\n\n# Iterate to find the minimum number of additional marks needed\nwhile True:\n    # Calculate the average with the current sum and count\n    current_average = current_sum / current_count\n    \n    # If the average rounded up is at least 'k', we have our answer\n    if math.ceil(current_average) >= k:\n        print(current_count - n)\n        break\n    \n    # Otherwise, add a maximum mark (k) and continue\n    current_sum += k\n    current_count += 1\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "210",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "x, y = map(int, input().split())\nn = int(input())\n\nMOD = 10**9 + 7\n\nif n == 1:\n    print(x % MOD)\nelif n == 2:\n    print(y % MOD)\nelse:\n    a, b = x, y\n    for _ in range(3, n + 1):\n        a, b = b, (b * 2 - a) % MOD\n    print(b)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "210",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "MOD = 1000000007\n\n# Read inputs\nx, y = map(int, input().split())\nn = int(input())\n\n# Calculating the term based on the periodicity of 6\nterms = [x, y, y - x, -x, -y, x - y]\nresult = terms[(n - 1) % 6] % MOD\n\n# Adjusting for negative results to ensure positive modulo results\nif result < 0:\n    result += MOD\n\nprint(result)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "229",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\na = list(map(int, input().split()))\nalice_turn = True\nwhile True:\n    max_stones = max(a)\n    if max_stones == 0:\n        break\n    piles_to_remove = n // 2\n    piles_removed = 0\n    for i in range(n):\n        if a[i] > 0 and piles_removed < piles_to_remove:\n            a[i] -= 1\n            piles_removed += 1\n    alice_turn = not alice_turn\nif alice_turn:\n    print(\"Bob\")\nelse:\n    print(\"Alice\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "229",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def determine_winner(n, piles):\n    # Check if all piles have the same number of stones\n    if all(pile == piles[0] for pile in piles):\n        # If all piles are the same, Alice will always lose because Bob can mirror Alice's moves\n        return \"Bob\"\n    else:\n        # If not all piles are the same, Alice can always find a way to guarantee a win\n        return \"Alice\"\n\n# Read input\nn = int(input())\npiles = list(map(int, input().split()))\n\n# Determine and print the winner\nprint(determine_winner(n, piles))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "251",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "import math\n\nn = int(input())\ncakes = []\nfor _ in range(n):\n    r, h = map(int, input().split())\n    cakes.append((math.pi * r * r * h, r, h))\n\ncakes.sort(reverse=True)\n\ndp = [0.0] * n\ndp[0] = cakes[0][0]\n\nfor i in range(1, n):\n    dp[i] = cakes[i][0]\n    for j in range(i):\n        if cakes[i][1] < cakes[j][1] and cakes[i][2] < cakes[j][2]:\n            dp[i] = max(dp[i], dp[j] + cakes[i][0])\n\nprint(dp[-1])\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "251",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "import sys\nimport math\ninput = sys.stdin.read\n\ndef max_cake_volume(n, cakes):\n    volumes = [(math.pi * r * r * h) for r, h in cakes]\n    dp = [0] * n\n    \n    for i in range(n):\n        dp[i] = volumes[i]\n        for j in range(i):\n            if volumes[j] < volumes[i]:\n                dp[i] = max(dp[i], dp[j] + volumes[i])\n                \n    return max(dp)\n\ndef main():\n    data = input().split()\n    n = int(data[0])\n    cakes = [(int(data[2 * i + 1]), int(data[2 * i + 2])) for i in range(n)]\n    result = max_cake_volume(n, cakes)\n    print(f\"{result:.6f}\")\n\nif __name__ == \"__main__\":\n    main()\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "73",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\nkuro = input()\nshiro = input()\nkatie = input()\n\ndef max_beauty(s, n):\n    max_len = len(s)\n    for i in range(len(s)):\n        for j in range(i + 1, len(s) + 1):\n            sub = s[i:j]\n            beauty = s.count(sub)\n            if beauty > max_len:\n                max_len = beauty\n    return max_len\n\nkuro_beauty = max_beauty(kuro, n)\nshiro_beauty = max_beauty(shiro, n)\nkatie_beauty = max_beauty(katie, n)\n\nmax_beauty = max(kuro_beauty, shiro_beauty, katie_beauty)\n\nif kuro_beauty == max_beauty and shiro_beauty != max_beauty and katie_beauty != max_beauty:\n    print(\"Kuro\")\nelif shiro_beauty == max_beauty and kuro_beauty != max_beauty and katie_beauty != max_beauty:\n    print(\"Shiro\")\nelif katie_beauty == max_beauty and kuro_beauty != max_beauty and shiro_beauty != max_beauty:\n    print(\"Katie\")\nelse:\n    print(\"Draw\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "73",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def calculate_max_beauty(ribbon, n):\n    from collections import Counter\n\n    # Count the frequency of each character in the ribbon\n    freq = Counter(ribbon)\n    \n    # Find the maximum frequency of any character in the ribbon\n    max_freq = max(freq.values())\n    \n    # If the length of the ribbon is more than the maximum frequency plus n changes,\n    # we can make all characters the same\n    if len(ribbon) == max_freq and n == 1:\n        return max_freq - 1\n    else:\n        return min(len(ribbon), max_freq + n)\n\ndef main():\n    import sys\n    input = sys.stdin.read\n    data = input().split()\n    \n    n = int(data[0])\n    ribbons = data[1:]\n    \n    kuro_ribbon = ribbons[0]\n    shiro_ribbon = ribbons[1]\n    katie_ribbon = ribbons[2]\n    \n    # Calculate the maximum beauty for each ribbon\n    kuro_beauty = calculate_max_beauty(kuro_ribbon, n)\n    shiro_beauty = calculate_max_beauty(shiro_ribbon, n)\n    katie_beauty = calculate_max_beauty(katie_ribbon, n)\n    \n    # Determine the winner\n    beauties = [kuro_beauty, shiro_beauty, katie_beauty]\n    max_beauty = max(beauties)\n    \n    if beauties.count(max_beauty) > 1:\n        print(\"Draw\")\n    else:\n        if max_beauty == kuro_beauty:\n            print(\"Kuro\")\n        elif max_beauty == shiro_beauty:\n            print(\"Shiro\")\n        else:\n            print(\"Katie\")\n\nif __name__ == \"__main__\":\n    main()\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "223",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "import math\n\nn = int(input())\norig_n = n\nmin_ops = float('inf')\n\nfor i in range(len(str(n)), -1, -1):\n    for j in range(i, len(str(n))+1):\n        num_str = str(n)[:i] + str(n)[j:]\n        if num_str and num_str[0] != '0':\n            num = int(num_str)\n            root = math.sqrt(num)\n            if root == int(root):\n                min_ops = min(min_ops, len(str(orig_n)) - len(num_str))\n\nif min_ops == float('inf'):\n    print(-1)\nelse:\n    print(min_ops)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "223",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "import math\n\ndef is_square(x):\n    root = int(math.isqrt(x))\n    return root * root == x\n\ndef min_operations_to_square(n):\n    n_str = str(n)\n    length = len(n_str)\n    min_operations = float('inf')\n\n    # Generate all subsequences of n_str\n    for i in range(1, 1 << length):\n        subsequence = ''.join(n_str[j] for j in range(length) if (i & (1 << j)))\n        if subsequence and is_square(int(subsequence)):\n            min_operations = min(min_operations, length - len(subsequence))\n\n    return -1 if min_operations == float('inf') else min_operations\n\nif __name__ == \"__main__\":\n    n = int(input().strip())\n    print(min_operations_to_square(n))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "145",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\nticket = list(map(int, input()))\n\ndef can_divide(ticket):\n    total_sum = sum(ticket)\n    if total_sum % 2 != 0:\n        return False\n    target_sum = total_sum // 2\n    curr_sum = 0\n    segments = 0\n    for digit in ticket:\n        curr_sum += digit\n        if curr_sum == target_sum:\n            segments += 1\n            curr_sum = 0\n    return segments >= 2\n\nif can_divide(ticket):\n    print(\"YES\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "145",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def is_lucky_ticket(n, ticket):\n    # Helper function to calculate the sum of a segment\n    def segment_sum(start, end):\n        return sum(int(ticket[i]) for i in range(start, end + 1))\n\n    # Loop to test all possible segment sums\n    for segment_length in range(1, n):\n        target_sum = segment_sum(0, segment_length - 1)\n        current_sum = 0\n        segment_count = 0\n\n        for i in range(n):\n            current_sum += int(ticket[i])\n            if current_sum == target_sum:\n                current_sum = 0\n                segment_count += 1\n\n        if current_sum == 0 and segment_count > 1:\n            return \"YES\"\n\n    return \"NO\"\n\n# Read input\nn = int(input())\nticket = input()\n\n# Print result\nprint(is_lucky_ticket(n, ticket))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "214",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, m = map(int, input().split())\nmem = {}\nfor _ in range(m):\n    k, f = map(int, input().split())\n    mem[k] = f\n\ngcd = None\nfor k, f in mem.items():\n    if gcd is None:\n        gcd = k\n    else:\n        gcd = math.gcd(gcd, k)\n\nif gcd == 1:\n    print(-1)\nelse:\n    for k, f in mem.items():\n        n_floor = (n - 1) // (k // gcd) + 1\n        if n_floor == f:\n            print(n_floor)\n            break\n    else:\n        print(-1)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "214",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def find_floor(n, m, flats_memory):\n    possible_floors = set()\n    for k, f in flats_memory:\n        possible_floors.add((k - 1) // f)\n    \n    if len(possible_floors) == 1:\n        flats_per_floor = list(possible_floors)[0] + 1\n        return (n - 1) // flats_per_floor + 1\n    else:\n        return -1\n\n# Read input\nn, m = map(int, input().split())\nflats_memory = [tuple(map(int, input().split())) for _ in range(m)]\n\n# Find and print the floor number of the n-th flat\nprint(find_floor(n, m, flats_memory))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "260",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, t = map(int, input().split())\nbuses = []\nfor _ in range(n):\n    s, d = map(int, input().split())\n    buses.append((s, d))\n\nmin_time = float('inf')\nans = -1\nfor i, (s, d) in enumerate(buses):\n    time = (t - s) % d\n    if time < min_time:\n        min_time = time\n        ans = i + 1\nprint(ans)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "260",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "# Function to find the bus route Serval will take\ndef find_bus_route(n, t, bus_routes):\n    min_wait_time = float('inf')\n    chosen_route = -1\n\n    for i in range(n):\n        s_i, d_i = bus_routes[i]\n\n        # Calculate the first bus time after or at t\n        if s_i >= t:\n            wait_time = s_i - t\n        else:\n            if (t - s_i) % d_i == 0:\n                wait_time = 0\n            else:\n                wait_time = d_i - (t - s_i) % d_i\n\n        if wait_time < min_wait_time:\n            min_wait_time = wait_time\n            chosen_route = i + 1\n\n    return chosen_route\n\n# Read input\nimport sys\ninput = sys.stdin.read\ndata = input().split()\n\nn = int(data[0])\nt = int(data[1])\nbus_routes = []\n\nfor i in range(n):\n    s_i = int(data[2 + i * 2])\n    d_i = int(data[2 + i * 2 + 1])\n    bus_routes.append((s_i, d_i))\n\n# Find and print the bus route Serval will take\nprint(find_bus_route(n, t, bus_routes))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "141",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, m = map(int, input().split())\nantennas = []\nfor _ in range(n):\n    x, s = map(int, input().split())\n    antennas.append((x, s))\nantennas.sort()\n\ndp = [float('inf')] * (m + 1)\ndp[0] = 0\nfor x, s in antennas:\n    for i in range(m, x - s - 1, -1):\n        dp[i] = min(dp[i], dp[max(0, i - x - s)] + (i - x + s))\nprint(dp[m])\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "141",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def min_coins_to_cover_street(n, m, antennas):\n    # Initialize a list to store the minimum coins required to cover each position upto m\n    dp = [float('inf')] * (m + 1)\n    dp[0] = 0  # no coins needed to cover position 0\n\n    # Sort antennas by their positions\n    antennas.sort()\n\n    # Process each antenna\n    for x, s in antennas:\n        # Calculate the range the current antenna covers initially\n        left = max(0, x - s)\n        right = min(m, x + s)\n\n        # Update the dp table for positions covered by the initial range of the current antenna\n        for j in range(left, right + 1):\n            dp[j] = min(dp[j], dp[max(0, left - 1)])\n\n        # Expand the range of the current antenna by incrementing its scope\n        for j in range(right + 1, m + 1):\n            dp[j] = min(dp[j], dp[max(0, j - (2 * x))] + (j - right))\n\n    # If the last position is still inf, it means it's not covered\n    return dp[m] if dp[m] != float('inf') else -1\n\n# Read input\nimport sys\ninput = sys.stdin.read\ndata = input().split()\nn = int(data[0])\nm = int(data[1])\n\nantennas = []\nfor i in range(n):\n    x = int(data[2 + 2 * i])\n    s = int(data[2 + 2 * i + 1])\n    antennas.append((x, s))\n\n# Compute and print the result\nprint(min_coins_to_cover_street(n, m, antennas))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "126",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "l1, s1, r1, p1 = map(int, input().split())\nl2, s2, r2, p2 = map(int, input().split())\nl3, s3, r3, p3 = map(int, input().split())\nl4, s4, r4, p4 = map(int, input().split())\n\nif (l1 and p1) or (s1 and p1) or (r1 and p1) or \\\n   (l2 and p2) or (s2 and p2) or (r2 and p2) or \\\n   (l3 and p3) or (s3 and p3) or (r3 and p3) or \\\n   (l4 and p4) or (s4 and p4) or (r4 and p4) or \\\n   (l1 and p4) or (s1 and p4) or (r1 and p4) or \\\n   (l2 and p1) or (s2 and p1) or (r2 and p1) or \\\n   (l3 and p2) or (s3 and p2) or (r3 and p2) or \\\n   (l4 and p3) or (s4 and p3) or (r4 and p3):\n    print(\"YES\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "126",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "# Reading input\ntraffic_lights = []\nfor _ in range(4):\n    traffic_lights.append(list(map(int, input().split())))\n\n# Check for possible accidents\naccident_possible = False\nfor i in range(4):\n    l, s, r, p = traffic_lights[i]\n    if p == 1:\n        # Check if any vehicle light in the same part is green\n        if l == 1 or s == 1 or r == 1:\n            accident_possible = True\n            break\n        # Check if any vehicle light in the corresponding parts is green\n        for j in range(3):\n            if traffic_lights[(i + j) % 4][j] == 1:\n                accident_possible = True\n                break\n        if accident_possible:\n            break\n\n# Output the result\nif accident_possible:\n    print(\"YES\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "226",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "a1, a2, a3, a4 = map(int, input().split())\ntotal = a1 + a2 + a3 + a4\nif total % 2 == 0:\n    half = total // 2\n    if (a1 + a2 == half or a1 + a3 == half or a1 + a4 == half or\n        a2 + a3 == half or a2 + a4 == half or a3 + a4 == half):\n        print(\"YES\")\n    else:\n        print(\"NO\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "226",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "candies = list(map(int, input().split()))\n\n# Check all possible ways to split the candies into two equal parts\npossible = (candies[0] + candies[1] == candies[2] + candies[3]) or \\\n           (candies[0] + candies[2] == candies[1] + candies[3]) or \\\n           (candies[0] + candies[3] == candies[1] + candies[2]) or \\\n           (candies[0] + candies[1] + candies[2] == candies[3]) or \\\n           (candies[0] + candies[1] + candies[3] == candies[2]) or \\\n           (candies[0] + candies[2] + candies[3] == candies[1]) or \\\n           (candies[1] + candies[2] + candies[3] == candies[0])\n\nif possible:\n    print(\"YES\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "292",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "a, b = map(int, input().split())\nyears = 0\nwhile a <= b:\n    a *= 3\n    b *= 2\n    years += 1\nprint(years)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "292",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "a, b = map(int, input().split())\n\nyears = 0\n\nwhile a <= b:\n    a *= 3\n    b *= 2\n    years += 1\n\nprint(years)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "208",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\na = list(map(int, input().split()))\n\nodd_count = 0\nfor x in a:\n    if x % 2 == 1:\n        odd_count += 1\n\nif odd_count < 2:\n    print(\"No\")\nelse:\n    print(\"Yes\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "208",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\na = list(map(int, input().split()))\n\n# Check if the whole sequence length is odd, starts with an odd number, and ends with an odd number\nif n % 2 == 1 and a[0] % 2 == 1 and a[-1] % 2 == 1:\n    print(\"Yes\")\nelse:\n    print(\"No\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "276",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "import math\n\ndef golden_to_decimal(s):\n    q = (math.sqrt(5) + 1) / 2\n    decimal = 0\n    for i, c in enumerate(reversed(s)):\n        decimal += int(c) * (q ** i)\n    return decimal\n\na = input()\nb = input()\n\ndecimal_a = golden_to_decimal(a)\ndecimal_b = golden_to_decimal(b)\n\nif decimal_a > decimal_b:\n    print('>')\nelif decimal_a < decimal_b:\n    print('<')\nelse:\n    print('=')\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "276",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def golden_system_value(s):\n    q = (5 ** 0.5 + 1) / 2\n    value = 0\n    n = len(s)\n    for i in range(n):\n        if s[i] == '1':\n            value += q ** (n - i - 1)\n    return value\n\ns1 = input().strip()\ns2 = input().strip()\n\nvalue1 = golden_system_value(s1)\nvalue2 = golden_system_value(s2)\n\nif value1 > value2:\n    print(\">\")\nelif value1 < value2:\n    print(\"<\")\nelse:\n    print(\"=\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "142",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "W = int(input())\ncnt = list(map(int, input().split()))\ndp = [0] * (W + 1)\nfor i in range(1, 9):\n    for j in range(W, i - 1, -1):\n        dp[j] = max(dp[j], dp[j - i] + i * cnt[i - 1])\nprint(dp[W])\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "142",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "W = int(input())\ncnt = list(map(int, input().split()))\n\n# weights from 1 to 8\nweights = [i for i in range(1, 9)]\n\n# Initialize the max weight achievable to 0\nmax_weight = 0\n\n# Iterate through each weight from 8 to 1\nfor i in range(7, -1, -1):\n    if W >= weights[i]:\n        # Calculate the maximum number of items of this weight we can use\n        num_items = min(W // weights[i], cnt[i])\n        # Update the total weight\n        max_weight += num_items * weights[i]\n        # Decrease the weight limit\n        W -= num_items * weights[i]\n\nprint(max_weight)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "43",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\ns = input()\ncount = 0\nfor i in range(2**n):\n    t = bin(i)[2:].zfill(n)\n    if all(t[i:i+len(s)] == s or t[i+len(s):] + t[:i] == s for i in range(n)):\n        count += 1\nprint(count)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "43",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def count_distinct_cyclical_strings(n, s):\n    # Function to check if string s is a substring of t or any of its cyclic permutations\n    def is_cyclic_substring(t, s):\n        t_extended = t + t\n        return s in t_extended[:n + len(s) - 1]\n\n    # Generate all binary strings of length n\n    from itertools import product\n    all_binary_strings = [''.join(p) for p in product('01', repeat=n)]\n    \n    # Count the number of distinct binary strings that contain s as a substring\n    count = 0\n    for t in all_binary_strings:\n        if is_cyclic_substring(t, s):\n            count += 1\n    \n    return count\n\n# Reading input\nn = int(input())\ns = input()\n\n# Printing the result\nprint(count_distinct_cyclical_strings(n, s))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "153",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, m, k = map(int, input().split())\nx, s = map(int, input().split())\na = list(map(int, input().split()))\nb = list(map(int, input().split()))\nc = list(map(int, input().split()))\nd = list(map(int, input().split()))\n\nans = float('inf')\nfor i in range(m + 1):\n    if i == m:\n        t = x\n    else:\n        t = a[i]\n    if b[i] > s:\n        continue\n    s_left = s - b[i]\n    j = 0\n    while j < k and s_left >= d[j]:\n        s_left -= d[j]\n        j += 1\n    j -= 1\n    cnt = 0\n    if j != -1:\n        cnt = c[j]\n    ans = min(ans, (n - cnt + t - 1) // t * t)\n\nprint(ans)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "153",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def min_time_to_prepare_potions(n, m, k, x, s, a, b, c, d):\n    min_time = n * x\n\n    # Try using only the second type of spell\n    for i in range(k):\n        if d[i] <= s:\n            remaining_potions = max(0, n - c[i])\n            time_with_spell = remaining_potions * x\n            min_time = min(min_time, time_with_spell)\n    \n    # Try using only the first type of spell\n    for i in range(m):\n        if b[i] <= s:\n            time_with_spell = n * a[i]\n            min_time = min(min_time, time_with_spell)\n\n    # Try using both types of spells\n    for i in range(m):\n        if b[i] <= s:\n            remaining_manapoints = s - b[i]\n            for j in range(k):\n                if d[j] <= remaining_manapoints:\n                    remaining_potions = max(0, n - c[j])\n                    time_with_both_spells = remaining_potions * a[i]\n                    min_time = min(min_time, time_with_both_spells)\n                else:\n                    break\n\n    return min_time\n\nif __name__ == \"__main__\":\n    import sys\n    input = sys.stdin.read\n    data = input().split()\n    \n    n = int(data[0])\n    m = int(data[1])\n    k = int(data[2])\n    x = int(data[3])\n    s = int(data[4])\n    \n    a = list(map(int, data[5:5+m]))\n    b = list(map(int, data[5+m:5+2*m]))\n    c = list(map(int, data[5+2*m:5+2*m+k]))\n    d = list(map(int, data[5+2*m+k:5+2*m+2*k]))\n\n    result = min_time_to_prepare_potions(n, m, k, x, s, a, b, c, d)\n    print(result)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "188",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\na = []\nfor i in range(n):\n    a.append(int(input()))\nd = {}\nfor i in a:\n    if i in d:\n        d[i] += 1\n    else:\n        d[i] = 1\nc = 0\na1, a2 = -1, -1\nfor i in d:\n    if d[i] == n//2:\n        if c == 0:\n            a1 = i\n            c += 1\n        else:\n            a2 = i\n            break\nif a1 != -1 and a2 != -1:\n    print(\"YES\")\n    print(a1, a2)\nelse:\n    print(\"NO\")",
+        "counter_example": null
+    },
+    {
+        "task_id": "188",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\ncards = [int(input()) for _ in range(n)]\n\nfrom collections import Counter\n\n# Count the frequency of each number on the cards\ncount = Counter(cards)\n\n# Find all unique numbers and sort them by their frequency\nunique_numbers = sorted(count.keys(), key=lambda x: count[x])\n\n# Check if we can find two distinct numbers such that each appears n/2 times\nif len(unique_numbers) < 2:\n    print(\"NO\")\nelse:\n    # Check if the two most frequent numbers each appear exactly n/2 times\n    if count[unique_numbers[-1]] == n // 2 and count[unique_numbers[-2]] == n // 2:\n        print(\"YES\")\n        print(unique_numbers[-1], unique_numbers[-2])\n    else:\n        print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "183",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "a, b, c = map(int, input().split())\nx, y, z = map(int, input().split())\n\ndef gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n\nif (a >= x and b >= y and c >= z):\n    print(\"Yes\")\nelse:\n    total = a + b + c\n    need = x + y + z\n    if total < need:\n        print(\"No\")\n    else:\n        if need % 2 == 0:\n            if (a + b + c - x) % 2 == 0 and (a + b + c - y) % 2 == 0 and (a + b + c - z) % 2 == 0:\n                print(\"Yes\")\n            else:\n                print(\"No\")\n        else:\n            if (a + b + c - x) % 2 != 0 and (a + b + c - y) % 2 != 0 and (a + b + c - z) % 2 != 0:\n                print(\"Yes\")\n            else:\n                print(\"No\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "183",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "# Read input values\na, b, c = map(int, input().split())\nx, y, z = map(int, input().split())\n\n# Calculate the deficit/surplus for each color\ndeficit_blue = max(0, x - a)\ndeficit_violet = max(0, y - b)\ndeficit_orange = max(0, z - c)\n\n# Calculate how many extra spheres we have\nextra_blue = max(0, a - x)\nextra_violet = max(0, b - y)\nextra_orange = max(0, c - z)\n\n# Each surplus sphere can potentially be used to create another sphere\n# Transforming two surplus spheres into one needed sphere\n# Thus, the number of effective extra spheres is half of the surplus count (integer division)\nextra_spheres = (extra_blue // 2) + (extra_violet // 2) + (extra_orange // 2)\n\n# Calculate the total deficit\ntotal_deficit = deficit_blue + deficit_violet + deficit_orange\n\n# Check if the total surplus is enough to cover the total deficit\nif extra_spheres >= total_deficit:\n    print(\"Yes\")\nelse:\n    print(\"No\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "54",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\ns = input()\nb = list(map(int, input().split()))\n\ns_sorted = sorted(s)\nb_sorted = sorted(b, reverse=True)\n\nt = ''\nfor i in range(n//2):\n    t += s_sorted[i]\n    t += s_sorted[n-i-1]\n\nmax_beauty = 0\nfor i in range(n):\n    if s[i] == t[i]:\n        max_beauty += b_sorted[i]\n\nprint(max_beauty)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "54",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "# Read input\nn = int(input())\ns = input().strip()\nbeauty = list(map(int, input().strip().split()))\n\n# Sort the string and beauty values\ns_sorted = sorted(s)\nbeauty_sorted = sorted(beauty, reverse=True)\n\n# Calculate maximum possible beauty\nmax_beauty = 0\nfor i in range(n):\n    max_beauty += beauty_sorted[i]\n\nprint(max_beauty)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "284",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "def is_prime(num):\n    if num < 2:\n        return False\n    for i in range(2, int(num ** 0.5) + 1):\n        if num % i == 0:\n            return False\n    return True\n\nn = int(input())\nfor m in range(1, 1001):\n    if not is_prime(n * m + 1):\n        print(m)\n        break\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "284",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def is_prime(x):\n    if x <= 1:\n        return False\n    if x <= 3:\n        return True\n    if x % 2 == 0 or x % 3 == 0:\n        return False\n    i = 5\n    while i * i <= x:\n        if x % i == 0 or x % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n\nn = int(input())\n\nfor m in range(1, 1001):\n    if not is_prime(n * m + 1):\n        print(m)\n        break\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "80",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "def gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n\ndef expected_length(m):\n    MOD = 10**9 + 7\n    res = 0\n    for i in range(1, m + 1):\n        res += pow(i, MOD - 2, MOD)\n    return res\n\nm = int(input())\nprint(expected_length(m))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "80",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "MOD = 10**9 + 7\n\ndef mod_inv(a, p):\n    return pow(a, p - 2, p)\n\ndef expected_length(m):\n    if m == 1:\n        return 1\n    \n    # Calculate the sum of lengths\n    length_sum = 0\n    for i in range(1, m + 1):\n        length_sum += mod_inv(i, MOD)\n        length_sum %= MOD\n    \n    # The expected length is m * length_sum % MOD\n    result = (m * length_sum) % MOD\n    \n    return result\n\n# Read input\nm = int(input().strip())\n\n# Print the result\nprint(expected_length(m))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "160",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "import math\n\ndef gcd(a, b):\n    while b:\n        a, b = b, a % b\n    return a\n\nn = int(input())\narr = list(map(int, input().split()))\n\nk = 0\nans = [arr[0]]\nfor i in range(1, n):\n    if gcd(arr[i-1], arr[i]) != 1:\n        k += 1\n        for j in range(1, 10**9 + 1):\n            if gcd(arr[i-1], j) == 1 and gcd(j, arr[i]) == 1:\n                ans.append(j)\n                break\n    ans.append(arr[i])\n\nprint(k)\nprint(' '.join(map(str, ans)))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "160",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "import math\n\ndef is_coprime(a, b):\n    return math.gcd(a, b) == 1\n\n# Read input\nn = int(input())\na = list(map(int, input().split()))\n\n# Initialize result array and the count of added elements\nresult = [a[0]]\ncount = 0\n\n# Iterate through the array to check adjacent pairs\nfor i in range(1, n):\n    if not is_coprime(result[-1], a[i]):\n        # Insert a number to make the pair co-prime\n        # We can always insert 1 because 1 is co-prime with any number\n        result.append(1)\n        count += 1\n    result.append(a[i])\n\n# Print the results\nprint(count)\nprint(\" \".join(map(str, result)))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "85",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\nans = 0\nfor i in range(1, n // 2 + 1):\n    if (i + (n - i)) % 10 ** (len(str(i + (n - i))) - 1) == 0:\n        ans += 1\nprint(ans)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "85",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\n\n# The maximum number of nines at the end is determined by the largest factor of 10^i less than or equal to n\nmax_9s = 0\nwhile (n + 1) % 10 == 0:\n    max_9s += 1\n    n //= 10\n\n# For each i from 1 to 10^max_9s, there are (n // 10^max_9s) pairs (i, n - i) that sum to something ending with max_9s nines\npairs = (n + 1) * max_9s\nprint(pairs)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "233",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, m = map(int, input().split())\ncolors = list(map(int, input().split()))\ncounts = list(map(int, input().split()))\n\ncolor_counts = {}\nfor color in colors:\n    if color not in color_counts:\n        color_counts[color] = 0\n    color_counts[color] += 1\n\nfound = False\nfor i in range(n):\n    window_counts = {}\n    for j in range(i, n):\n        color = colors[j]\n        if color not in window_counts:\n            window_counts[color] = 0\n        window_counts[color] += 1\n        if all(count == target for count, target in zip(sorted(window_counts.values()), counts)):\n            found = True\n            break\n    if found:\n        break\n\nprint(\"YES\" if found else \"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "233",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def can_find_interval(n, m, colors, k):\n    # We will create a sliding window to find the interval\n    from collections import defaultdict\n    \n    # Desired counts for each color\n    desired_counts = dict(zip(range(1, m+1), k))\n    \n    # Current counts in the sliding window\n    current_counts = defaultdict(int)\n    \n    # Initialize two pointers for the sliding window\n    left = 0\n    \n    for right in range(n):\n        current_counts[colors[right]] += 1\n        \n        # Check if current window meets the condition\n        while all(current_counts[color] >= desired_counts[color] for color in desired_counts):\n            if all(current_counts[color] == desired_counts[color] for color in desired_counts):\n                return \"YES\"\n            current_counts[colors[left]] -= 1\n            left += 1\n    \n    return \"NO\"\n\n# Read input\nn, m = map(int, input().split())\ncolors = list(map(int, input().split()))\nk = list(map(int, input().split()))\n\n# Output the result\nprint(can_find_interval(n, m, colors, k))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "196",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "A, B, C, N = map(int, input().split())\ntotal_visited = A + B - C\nif total_visited > N or C > A or C > B:\n    print(-1)\nelse:\n    print(N - total_visited)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "196",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "# Read input values\nA, B, C, N = map(int, input().split())\n\n# Calculate the number of students who only visited BugDonalds and BeaverKing\nonly_bugdonalds = A - C\nonly_beaverking = B - C\nboth = C\n\n# Check for invalid conditions\nif only_bugdonalds < 0 or only_beaverking < 0 or both < 0:\n    print(-1)\nelif only_bugdonalds + only_beaverking + both >= N:\n    print(-1)\nelse:\n    # Calculate the number of students who didn't pass the exam\n    failed_students = N - (only_bugdonalds + only_beaverking + both)\n    if failed_students > 0:\n        print(failed_students)\n    else:\n        print(-1)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "65",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, k = map(int, input().split())\ns = input()\n\ncolor_count = {}\nfor c in s:\n    if c in color_count:\n        color_count[c] += 1\n    else:\n        color_count[c] = 1\n\nmax_color_count = max(color_count.values())\nif max_color_count <= k:\n    print(\"YES\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "65",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "# Read input values\nn, k = map(int, input().split())\ns = input()\n\n# Count the occurrences of each balloon color\ncolor_count = {}\nfor color in s:\n    if color in color_count:\n        color_count[color] += 1\n    else:\n        color_count[color] = 1\n\n# Check if any color count exceeds the number of friends\ncan_distribute = True\nfor count in color_count.values():\n    if count > k:\n        can_distribute = False\n        break\n\n# Print the result\nif can_distribute:\n    print(\"YES\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "95",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\nk = input()\nx = 0\nfor i, c in enumerate(reversed(k)):\n    x += int(c) * (n ** i)\nprint(x)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "95",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def convert_to_decimal(n, k):\n    decimal_value = 0\n    k_str = str(k)\n    power = 0\n    \n    for digit in reversed(k_str):\n        decimal_value += int(digit) * (n ** power)\n        power += 1\n        \n    return decimal_value\n\nif __name__ == \"__main__\":\n    n = int(input().strip())\n    k = input().strip()\n    result = convert_to_decimal(n, k)\n    print(result)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "132",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\nx = list(map(int, input().split()))\ny = list(map(int, input().split()))\n\nif sum(x) != sum(y):\n    print(\"No\")\nelse:\n    x.sort()\n    y.sort()\n    if x == y:\n        print(\"Yes\")\n    else:\n        print(\"No\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "132",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\nx = list(map(int, input().split()))\ny = list(map(int, input().split()))\n\ntotal_x = sum(x)\ntotal_y = sum(y)\n\n# Check if the total number of stones has decreased or remained the same\nif total_y > total_x:\n    print(\"No\")\nelse:\n    print(\"Yes\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "17",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "cnt1, cnt2, cnt3, cnt4 = map(int, [input() for _ in range(4)])\n\nif cnt3 > cnt1:\n    print(0)\nelse:\n    print(1)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "17",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "cnt1 = int(input())\ncnt2 = int(input())\ncnt3 = int(input())\ncnt4 = int(input())\n\n# To form a regular bracket sequence:\n# 1. The total number of opening brackets must equal the total number of closing brackets.\n# 2. At any point in the sequence, the number of closing brackets should not exceed the number of opening brackets.\n\n# Total opening brackets = cnt1 + cnt2\n# Total closing brackets = cnt3 + cnt4\n\n# For the sequence to be regular:\n# cnt1 + cnt2 must equal cnt3 + cnt4\n# Also, we need cnt2 >= cnt3 to ensure that the closing brackets never exceed the opening brackets at any point\n\nif cnt1 + cnt2 == cnt3 + cnt4 and cnt2 >= cnt3:\n    print(1)\nelse:\n    print(0)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "220",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, m, s, d = map(int, input().split())\nobstacles = list(map(int, input().split()))\n\nobstacles.sort()\ni = 0\nx = 0\nwhile x < m:\n    if i < n and obstacles[i] <= x + s:\n        while i < n and obstacles[i] <= x + s:\n            i += 1\n        if i == n or obstacles[i] > x + d:\n            print(\"IMPOSSIBLE\")\n            exit()\n        else:\n            print(\"RUN\", obstacles[i] - x)\n            x = obstacles[i]\n    else:\n        if x + s > m:\n            print(\"IMPOSSIBLE\")\n            exit()\n        else:\n            print(\"RUN\", s)\n            x += s\n    while i < n and obstacles[i] <= x + d:\n        i += 1\n    if i < n:\n        print(\"JUMP\", obstacles[i] - x)\n        x = obstacles[i]\n    else:\n        print(\"RUN\", m - x)\n        break\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "220",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def can_reach_finish(n, m, s, d, obstacles):\n    obstacles.sort()\n    \n    # Check if the athlete can make it to the finish line\n    if obstacles[0] < s:\n        return \"IMPOSSIBLE\"\n    \n    result = []\n    current_position = 0\n    \n    for i in range(n):\n        if (obstacles[i] - current_position) < s:\n            return \"IMPOSSIBLE\"\n        \n        # Run to the obstacle - s\n        run_length = obstacles[i] - s - current_position\n        if run_length > 0:\n            result.append(f\"RUN {run_length}\")\n            current_position += run_length\n        \n        # Find the furthest obstacle we can jump over\n        jump_end = obstacles[i]\n        while i + 1 < n and obstacles[i + 1] <= jump_end + d:\n            jump_end = obstacles[i + 1]\n            i += 1\n        \n        # Check if the jump is within the permissible distance\n        jump_length = jump_end - current_position\n        if jump_length > d:\n            return \"IMPOSSIBLE\"\n        \n        result.append(f\"JUMP {jump_length}\")\n        current_position += jump_length\n        \n        if current_position >= m:\n            return \"IMPOSSIBLE\"\n    \n    if current_position < m:\n        result.append(f\"RUN {m - current_position}\")\n    \n    return \"\\n\".join(result)\n\nif __name__ == \"__main__\":\n    import sys\n    input = sys.stdin.read\n    data = input().split()\n    \n    n = int(data[0])\n    m = int(data[1])\n    s = int(data[2])\n    d = int(data[3])\n    obstacles = list(map(int, data[4:]))\n    \n    result = can_reach_finish(n, m, s, d, obstacles)\n    print(result)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "21",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "t = input().split(\":\")\nh, m = int(t[0]), int(t[1])\nif h == 23 and m == 59:\n    print(1)\nelif h * 100 + m == int(str(h * 100 + m)[::-1]):\n    print(0)\nelse:\n    while True:\n        m += 1\n        if m == 60:\n            h += 1\n            m = 0\n        if h == 24:\n            h = 0\n        if h * 100 + m == int(str(h * 100 + m)[::-1]):\n            print(m - int(t[1]))\n            break\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "21",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def is_palindrome(time):\n    return time == time[::-1]\n\ndef add_minute(hh, mm):\n    mm += 1\n    if mm == 60:\n        mm = 0\n        hh += 1\n        if hh == 24:\n            hh = 0\n    return hh, mm\n\ndef format_time(hh, mm):\n    return f\"{hh:02}:{mm:02}\"\n\ndef min_minutes_to_palindrome(hh, mm):\n    minutes = 0\n    while True:\n        time = format_time(hh, mm)\n        if is_palindrome(time):\n            return minutes\n        hh, mm = add_minute(hh, mm)\n        minutes += 1\n\nif __name__ == \"__main__\":\n    time = input().strip()\n    hh, mm = map(int, time.split(':'))\n    print(min_minutes_to_palindrome(hh, mm))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "211",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\na = list(map(int, input().split()))\nprefix_sum = [0] * (n + 1)\nfor i in range(n):\n    prefix_sum[i + 1] = prefix_sum[i] + a[i]\n\nif prefix_sum[n] == 0:\n    print(\"NO\")\nelse:\n    print(\"YES\")\n    k = 1\n    l = 1\n    for r in range(1, n + 1):\n        if prefix_sum[r] != 0 and prefix_sum[r] != prefix_sum[n]:\n            print(k, l, r)\n            k += 1\n            l = r\n    print(k, l, n)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "211",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\nA = list(map(int, input().split()))\n\n# Check if the entire array sums to zero\ntotal_sum = sum(A)\n\nif total_sum != 0:\n    print(\"YES\")\n    print(\"1\")\n    print(\"1\", n)\nelse:\n    # Check if there is any non-zero element in the array\n    for i in range(n):\n        if A[i] != 0:\n            print(\"YES\")\n            print(\"2\")\n            print(\"1\", i + 1)\n            print(i + 2, n)\n            break\n    else:\n        print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "253",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\na = list(map(int, input().split()))\nprefix_sum = [0] * (n + 1)\nfor i in range(n):\n    prefix_sum[i + 1] = prefix_sum[i] + a[i]\n\nmax_score = 0\nfor i in range(n):\n    for j in range(i, n):\n        total = prefix_sum[j + 1] - prefix_sum[i]\n        if j - i > 0:\n            total -= min(a[i:j + 1])\n        max_score = max(max_score, total)\n\nprint(max_score)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "253",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\na = list(map(int, input().split()))\n\n# Function to find the maximum sum of a subarray\ndef max_subarray_sum(nums):\n    max_so_far = float('-inf')\n    current_max = 0\n    \n    for num in nums:\n        current_max += num\n        if max_so_far < current_max:\n            max_so_far = current_max\n        if current_max < 0:\n            current_max = 0\n    return max_so_far\n\n# We need to find the segment where removing the smallest single card results in the maximum sum\nmax_score = float('-inf')\n\nfor i in range(n):\n    left_sum = sum(a[:i])\n    right_sum = sum(a[i+1:])\n    current_score = left_sum + right_sum\n    \n    if current_score > max_score:\n        max_score = current_score\n\n# If all possible segments result in removing all cards, the score is 0\nif max_score < 0:\n    max_score = 0\n\nprint(max_score)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "180",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, x, pos = map(int, input().split())\nMOD = 10**9 + 7\n\ndef comb(n, k):\n    if k > n - k: k = n - k\n    res = 1\n    for i in range(1, k + 1):\n        res = res * (n - i + 1) // i\n    return res % MOD\n\nres = comb(pos, x - 1) * comb(n - pos - 1, x)\nprint(res % MOD)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "180",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "MOD = 10**9 + 7\n\ndef factorial(n):\n    result = 1\n    for i in range(2, n + 1):\n        result = (result * i) % MOD\n    return result\n\ndef count_permutations(n, x, pos):\n    less_than_x = x - 1\n    greater_than_x = n - x\n    \n    left_size = pos\n    right_size = n - pos - 1\n    \n    if left_size > less_than_x or right_size > greater_than_x:\n        return 0\n    \n    less_pos = factorial(less_than_x) // factorial(less_than_x - left_size)\n    greater_pos = factorial(greater_than_x) // factorial(greater_than_x - right_size)\n    \n    remaining = n - 1 - left_size - right_size\n    remaining_factorial = factorial(remaining)\n    \n    result = (less_pos * greater_pos) % MOD\n    result = (result * remaining_factorial) % MOD\n    \n    return result\n\nif __name__ == \"__main__\":\n    import sys\n    input = sys.stdin.read\n    n, x, pos = map(int, input().split())\n    print(count_permutations(n, x, pos))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "151",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "def min_tax(n):\n    def max_divisor(x):\n        for i in range(x-1, 0, -1):\n            if x % i == 0:\n                return i\n    if n == 2:\n        return 1\n    ans = float('inf')\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            x = max_divisor(i) + max_divisor(n//i)\n            ans = min(ans, x)\n    return ans\n\nn = int(input())\nprint(min_tax(n))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "151",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "import math\n\ndef find_minimum_tax(n):\n    if n % 2 == 0:\n        return n // 2\n    sqrt_n = int(math.sqrt(n))\n    for i in range(2, sqrt_n + 1):\n        if n % i == 0:\n            return n // i\n    return 1\n\n# Read input\nn = int(input().strip())\n\n# Output the result\nprint(find_minimum_tax(n))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "50",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "k = int(input())\nn = 1\nwhile True:\n    s = str(n)\n    if len(s) >= k:\n        print(s[k-1])\n        break\n    k -= len(s)\n    n += 1\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "50",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "k = int(input())\n\n# Step 1: Determine the length of the number where the k-th digit lies\nlength = 1\ncount = 9\nstart = 1\n\nwhile k > length * count:\n    k -= length * count\n    length += 1\n    count *= 10\n    start *= 10\n\n# Step 2: Determine the exact number and digit within that number\nnumber = start + (k - 1) // length\ndigit_index = (k - 1) % length\n\n# Step 3: Convert the number to string and get the digit\nresult = str(number)[digit_index]\n\nprint(result)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "285",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\nfor a in range(n // 1234567 + 1):\n    for b in range((n - a * 1234567) // 123456 + 1):\n        c = (n - a * 1234567 - b * 123456) // 1234\n        if a * 1234567 + b * 123456 + c * 1234 == n:\n            print(\"YES\")\n            exit()\nprint(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "285",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def can_spend_all_coins(n):\n    # Define the cost of houses, cars, and computers\n    house_cost = 1234567\n    car_cost = 123456\n    computer_cost = 1234\n    \n    # Iterate over the possible number of houses\n    for a in range(n // house_cost + 1):\n        remaining_after_houses = n - a * house_cost\n        # Iterate over the possible number of cars\n        for b in range(remaining_after_houses // car_cost + 1):\n            remaining_after_cars = remaining_after_houses - b * car_cost\n            # Check if the remaining coins can be exactly spent on computers\n            if remaining_after_cars % computer_cost == 0:\n                return \"YES\"\n    \n    return \"NO\"\n\n# Read input\nn = int(input().strip())\n\n# Get the result\nresult = can_spend_all_coins(n)\n\n# Print the result\nprint(result)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "6",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, pos, l, r = map(int, input().split())\nans = 0\nif pos < l:\n    ans += l - pos\nif pos > r:\n    ans += pos - r\nans += min(pos - 1, n - r) + max(0, l - 1)\nprint(ans)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "6",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "# Read input\nn, pos, l, r = map(int, input().split())\n\n# Check the initial conditions\nif l == 1 and r == n:\n    # No tabs need to be closed\n    print(0)\nelif l == 1:\n    # Only need to close the tabs to the right\n    print(abs(pos - r) + 1)\nelif r == n:\n    # Only need to close the tabs to the left\n    print(abs(pos - l) + 1)\nelse:\n    # Need to close tabs on both sides\n    move_to_l = abs(pos - l)\n    move_to_r = abs(pos - r)\n    close_both_sides = min(move_to_l + (r - l + 2), move_to_r + (r - l + 2))\n    print(close_both_sides)\n\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "122",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "board = [input() for _ in range(4)]\n\ndef check_win(player, x, y, dx, dy):\n    count = 0\n    for i in range(4):\n        nx, ny = x + i * dx, y + i * dy\n        if 0 <= nx < 4 and 0 <= ny < 4:\n            if board[nx][ny] == player:\n                count += 1\n            else:\n                break\n        else:\n            break\n    return count >= 3\n\ndef can_win():\n    for i in range(4):\n        for j in range(4):\n            if board[i][j] == '.':\n                board[i][j] = 'x'\n                for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (-1, 1), (1, -1), (1, 1)]:\n                    if check_win('x', i, j, dx, dy):\n                        return True\n                board[i][j] = '.'\n    return False\n\nprint(\"YES\" if can_win() else \"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "122",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def can_win(board):\n    # Check all possible lines\n    lines = []\n\n    # Rows\n    for row in board:\n        lines.append(row)\n\n    # Columns\n    for col in range(4):\n        lines.append([board[row][col] for row in range(4)])\n\n    # Diagonals\n    lines.append([board[i][i] for i in range(4)])\n    lines.append([board[i][3 - i] for i in range(4)])\n\n    for line in lines:\n        if line.count('x') == 2 and line.count('.') == 2:\n            # Check all possible 3-in-a-row combinations within the 4-length line\n            for i in range(3):\n                if line[i:i+3].count('x') == 2 and line[i:i+3].count('.') == 1:\n                    return \"YES\"\n    \n    return \"NO\"\n\n# Read the board from standard input\nboard = []\nfor _ in range(4):\n    board.append(list(input().strip()))\n\nprint(can_win(board))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "152",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "s = input()\nvowels = set('aeiou')\nans = []\ntmp = []\nfor c in s:\n    if c in vowels or (tmp and tmp[-1] == c):\n        tmp.append(c)\n    else:\n        if len(tmp) >= 3 and len(set(tmp)) > 1:\n            ans.append(' '.join(tmp[:-3]))\n            tmp = tmp[-3:]\n        else:\n            ans.append(''.join(tmp))\n            tmp = [c]\nans.append(''.join(tmp))\nprint(' '.join(ans))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "152",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def is_vowel(c):\n    return c in 'aeiou'\n\ndef has_typo(block):\n    if len(block) < 3:\n        return False\n    first_consonant = block[0]\n    for c in block:\n        if c != first_consonant:\n            return True\n    return False\n\ndef correct_typo(word):\n    n = len(word)\n    result = []\n    i = 0\n\n    while i < n:\n        start = i\n        while i < n and not is_vowel(word[i]):\n            i += 1\n        if i - start >= 3 and has_typo(word[start:i]):\n            result.append(word[start:start+2])\n            start += 2\n            while start < i:\n                result.append(word[start:start+1])\n                start += 1\n        else:\n            result.append(word[start:i])\n        while i < n and is_vowel(word[i]):\n            i += 1\n        result.append(word[start:i])\n        \n    return ' '.join(result)\n\nif __name__ == \"__main__\":\n    word = input().strip()\n    print(correct_typo(word))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "91",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "import math\n\nn, k, S = map(int, input().split())\na = list(map(int, input().split()))\n\ndp = [[0]*(k+1) for _ in range(S+1)]\ndp[0][0] = 1\n\nfor i in range(1, S+1):\n    for j in range(k+1):\n        dp[i][j] = dp[i][j]\n        for x in range(n):\n            if i >= a[x] and j >= 1:\n                dp[i][j] += dp[i-a[x]][j-1]\n            if i >= math.factorial(a[x]) and j >= 1:\n                dp[i][j] += dp[i-math.factorial(a[x])][j-1]\n\nprint(dp[S][k])\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "91",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "from functools import lru_cache\nimport math\n\ndef count_ways(n, k, S, a):\n    # Memoization for the recursive function\n    @lru_cache(None)\n    def solve(index, remaining_k, remaining_sum):\n        if remaining_sum == 0:\n            return 1\n        if index == n or remaining_sum < 0:\n            return 0\n        \n        # Don't take current cube\n        result = solve(index + 1, remaining_k, remaining_sum)\n        \n        # Take current cube without factorial\n        result += solve(index + 1, remaining_k, remaining_sum - a[index])\n        \n        # Take current cube with factorial if we have stickers left\n        if remaining_k > 0:\n            result += solve(index + 1, remaining_k - 1, remaining_sum - math.factorial(a[index]))\n            \n        return result\n    \n    return solve(0, k, S)\n\n# Read input\nn, k, S = map(int, input().split())\na = list(map(int, input().split()))\n\n# Get the number of ways\nresult = count_ways(n, k, S, a)\n\nprint(result)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "261",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "m, k = map(int, input().split())\n\ndef count_ones(n):\n    count = 0\n    while n:\n        count += n & 1\n        n >>= 1\n    return count\n\ndef find_n(m, k):\n    n = 1\n    while True:\n        count = sum(1 for i in range(n + 1, 2 * n + 1) if count_ones(i) == k)\n        if count == m:\n            return n\n        n += 1\n\nprint(find_n(m, k))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "261",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def count_set_bits(x):\n    return bin(x).count('1')\n\ndef find_n_for_m_k(m, k):\n    n = 1\n    while True:\n        count = 0\n        for i in range(n + 1, 2 * n + 1):\n            if count_set_bits(i) == k:\n                count += 1\n        if count == m:\n            print(n)\n            return\n        n += 1\n\n# Read input values for m and k\nm, k = map(int, input().split())\n\n# Find and print the required number n\nfind_n_for_m_k(m, k)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "230",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\na = list(map(int, input().split()))\na.sort()\nmid = a[n // 2]\nres = 0\nfor x in a:\n    res += abs(x - mid)\nif res % 2 == 0:\n    print(\"YES\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "230",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def can_make_equal(arr):\n    # Get unique elements\n    unique_elements = list(set(arr))\n    \n    # If there's only 1 unique element, it's already all equal\n    if len(unique_elements) == 1:\n        return \"YES\"\n    \n    # If there are more than 3 unique elements, it's impossible\n    if len(unique_elements) > 3:\n        return \"NO\"\n    \n    # If there are exactly 3 unique elements\n    if len(unique_elements) == 3:\n        unique_elements.sort()\n        # Check if the middle element is the average of the other two\n        if unique_elements[1] - unique_elements[0] == unique_elements[2] - unique_elements[1]:\n            return \"YES\"\n        else:\n            return \"NO\"\n    \n    # If there are exactly 2 unique elements, it's always possible\n    return \"YES\"\n\n# Read input from standard input\nimport sys\ninput = sys.stdin.read\n\ndata = input().split()\nn = int(data[0])\narray = list(map(int, data[1:n+1]))\n\nprint(can_make_equal(array))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "49",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, m, k = map(int, input().split())\ncount = {}\nfor i in range(1, n + 1):\n    for j in range(1, m + 1):\n        num = i * j\n        if num not in count:\n            count[num] = 0\n        count[num] += 1\nsorted_count = sorted(count.items(), reverse=True)\nans = 0\nfor num, cnt in sorted_count:\n    k -= cnt\n    if k <= 0:\n        ans = num\n        break\nprint(ans)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "49",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def findKthLargest(n, m, k):\n    def count_less_equal(x):\n        count = 0\n        for i in range(1, n + 1):\n            count += min(x // i, m)\n        return count\n    \n    low, high = 1, n * m\n    while low < high:\n        mid = (low + high) // 2\n        if count_less_equal(mid) < k:\n            low = mid + 1\n        else:\n            high = mid\n    return low\n\n# Read input\nn, m, k = map(int, input().strip().split())\n\n# Find and print the k-th largest number in the n x m multiplication table\nprint(findKthLargest(n, m, k))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "266",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, m = map(int, input().split())\nfriends = []\nfor _ in range(n):\n    f_i = list(map(int, input().split()))\n    friends.append(set(f_i[1:]))\n\npizzas = []\nfor _ in range(m):\n    c_j, r_j = map(int, input().split())\n    a_jt = set(map(int, input().split()[1:]))\n    pizzas.append((c_j, a_jt))\n\nans = (-1, -1)\nmax_pleased = 0\nmin_price = float('inf')\n\nfor i in range(m):\n    for j in range(i+1, m):\n        pleased = 0\n        for f in friends:\n            if f.issubset(pizzas[i][1]) or f.issubset(pizzas[j][1]):\n                pleased += 1\n        if pleased > max_pleased:\n            max_pleased = pleased\n            min_price = pizzas[i][0] + pizzas[j][0]\n            ans = (i+1, j+1)\n        elif pleased == max_pleased:\n            if pizzas[i][0] + pizzas[j][0] < min_price:\n                min_price = pizzas[i][0] + pizzas[j][0]\n                ans = (i+1, j+1)\n\nprint(*ans)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "266",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def max_pleased_friends(n, m, friends, pizzas):\n    from itertools import combinations\n    from collections import defaultdict\n\n    # Convert each friend's favorite ingredients to a set\n    friend_favorites = [set(fav) for fav in friends]\n    \n    # Convert each pizza's ingredients to a set\n    pizza_ingredients = [set(ing) for ing in pizzas]\n\n    # Function to count how many friends are pleased with the given two pizzas\n    def count_pleased(p1, p2):\n        combined_ingredients = pizza_ingredients[p1] | pizza_ingredients[p2]\n        return sum(1 for fav in friend_favorites if fav <= combined_ingredients)\n\n    # Initialize the best solution\n    best_count = 0\n    best_cost = float('inf')\n    best_pair = None\n\n    # Iterate over all combinations of two pizzas\n    for (i, pi), (j, pj) in combinations(enumerate(pizzas), 2):\n        pleased_count = count_pleased(i, j)\n        total_cost = pi[0] + pj[0]\n        if (pleased_count > best_count) or (pleased_count == best_count and total_cost < best_cost):\n            best_count = pleased_count\n            best_cost = total_cost\n            best_pair = (i + 1, j + 1)\n\n    return best_pair\n\nif __name__ == \"__main__\":\n    import sys\n    input = sys.stdin.read\n    data = input().split()\n    \n    n = int(data[0])\n    m = int(data[1])\n    \n    index = 2\n    friends = []\n    for _ in range(n):\n        f_i = int(data[index])\n        b_i = list(map(int, data[index+1:index+1+f_i]))\n        friends.append(b_i)\n        index += 1 + f_i\n    \n    pizzas = []\n    for _ in range(m):\n        c_j = int(data[index])\n        r_j = int(data[index+1])\n        a_j = list(map(int, data[index+2:index+2+r_j]))\n        pizzas.append((c_j, a_j))\n        index += 2 + r_j\n    \n    result = max_pleased_friends(n, m, friends, pizzas)\n    print(result[0], result[1])\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "13",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\ns = input()\n\ngolden = [i for i, x in enumerate(s) if x == 'G']\n\nmax_beauty = 0\ncurr_beauty = 0\nleft = 0\n\nfor right in range(n):\n    if s[right] == 'G':\n        curr_beauty += 1\n    else:\n        max_beauty = max(max_beauty, curr_beauty)\n        curr_beauty = 0\n        while left < right and s[left] != 'G':\n            left += 1\n        if left < right:\n            curr_beauty += 1\n\nmax_beauty = max(max_beauty, curr_beauty)\n\nmax_beauty_one_swap = 0\nfor i in range(n - 1):\n    if s[i] == 'G' and s[i + 1] == 'S':\n        beauty = 1\n        for j in range(i - 1, -1, -1):\n            if s[j] == 'G':\n                beauty += 1\n            else:\n                break\n        for j in range(i + 2, n):\n            if s[j] == 'G':\n                beauty += 1\n            else:\n                break\n        max_beauty_one_swap = max(max_beauty_one_swap, beauty)\n\nprint(max(max_beauty, max_beauty_one_swap))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "13",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def max_beauty_after_swap(n, trophies):\n    segments = []\n    i = 0\n    \n    while i < n:\n        if trophies[i] == 'G':\n            start = i\n            while i < n and trophies[i] == 'G':\n                i += 1\n            segments.append((start, i - 1))\n        else:\n            i += 1\n    \n    if not segments:\n        return 0\n    \n    max_length = max(end - start + 1 for start, end in segments)\n    \n    if len(segments) == 1:\n        return max_length\n    \n    for i in range(1, len(segments)):\n        prev_start, prev_end = segments[i - 1]\n        curr_start, curr_end = segments[i]\n        if curr_start - prev_end == 2:\n            max_length = max(max_length, (curr_end - curr_start + 1) + (prev_end - prev_start + 1) + 1)\n    \n    return min(max_length + 1, n)\n\n# Read input\nimport sys\ninput = sys.stdin.read\ndata = input().split()\nn = int(data[0])\ntrophies = data[1]\n\n# Print output\nprint(max_beauty_after_swap(n, trophies))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "94",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "def is_bffl(puzzle1, puzzle2):\n    for i in range(4):\n        if puzzle1[i] == 'X':\n            x1 = i\n        if puzzle2[i] == 'X':\n            x2 = i\n    puzzle1[x1], puzzle2[x2] = puzzle2[x2], puzzle1[x1]\n    return sorted(puzzle1) == sorted(puzzle2)\n\npuzzle1 = [input() + input()]\npuzzle2 = [input() + input()]\n\npuzzle1 = ''.join(puzzle1).replace('\\n', '')\npuzzle2 = ''.join(puzzle2).replace('\\n', '')\n\nif is_bffl(puzzle1, puzzle2):\n    print(\"YES\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "94",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "from collections import deque\n\ndef puzzle_to_string(puzzle):\n    return puzzle[0] + puzzle[1]\n\ndef bfs(start):\n    queue = deque([start])\n    visited = set([start])\n    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]  # Up, Down, Left, Right\n    while queue:\n        current = queue.popleft()\n        empty_pos = current.index('X')\n        empty_row, empty_col = divmod(empty_pos, 2)\n        for dr, dc in directions:\n            new_row, new_col = empty_row + dr, empty_col + dc\n            if 0 <= new_row < 2 and 0 <= new_col < 2:\n                new_pos = new_row * 2 + new_col\n                new_state = list(current)\n                new_state[empty_pos], new_state[new_pos] = new_state[new_pos], new_state[empty_pos]\n                new_state_str = ''.join(new_state)\n                if new_state_str not in visited:\n                    visited.add(new_state_str)\n                    queue.append(new_state_str)\n    return visited\n\n# Read input\nbessie_puzzle = [input().strip() for _ in range(2)]\nelsie_puzzle = [input().strip() for _ in range(2)]\n\n# Convert puzzles to string representation\nbessie_start = puzzle_to_string(bessie_puzzle)\nelsie_start = puzzle_to_string(elsie_puzzle)\n\n# Perform BFS for both puzzles\nbessie_reachable = bfs(bessie_start)\nelsie_reachable = bfs(elsie_start)\n\n# Check if there is any common state\nif bessie_reachable & elsie_reachable:\n    print(\"YES\")\nelse:\n    print(\"NO\")\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "283",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n, d = map(int, input().split())\ns = input()\n\ndp = [float('inf')] * (n + 1)\ndp[1] = 0\n\nfor i in range(1, n + 1):\n    if s[i - 1] == '1':\n        for j in range(1, d + 1):\n            if i - j >= 1:\n                dp[i] = min(dp[i], dp[i - j] + 1)\n\nif dp[n] == float('inf'):\n    print(-1)\nelse:\n    print(dp[n])\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "283",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def min_jumps_to_home(n, d, s):\n    # Initialize the jumps count and the current position\n    jumps = 0\n    position = 0\n\n    # While the frog hasn't reached the last position\n    while position < n - 1:\n        # Find the farthest position the frog can jump to within the range [position + 1, position + d]\n        next_position = position\n        for i in range(position + 1, min(position + d + 1, n)):\n            if s[i] == '1':\n                next_position = i\n        # If the frog cannot move forward, return -1\n        if next_position == position:\n            return -1\n        # Move to the next position and increment the jump count\n        position = next_position\n        jumps += 1\n\n    return jumps\n\n# Read input\nn, d = map(int, input().split())\ns = input()\n\n# Print the result\nprint(min_jumps_to_home(n, d, s))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "75",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "def is_prime(num):\n    if num < 2:\n        return False\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            return False\n    return True\n\nn = int(input())\nprimes = []\nfor i in range(2, n):\n    if is_prime(i):\n        primes.append(i)\n\nfor k in range(1, 4):\n    for p1 in primes:\n        if k == 1:\n            if p1 == n:\n                print(k)\n                print(p1)\n                exit()\n        else:\n            for p2 in primes:\n                if k == 2:\n                    if p1 + p2 == n:\n                        print(k)\n                        print(p1, p2)\n                        exit()\n                else:\n                    for p3 in primes:\n                        if p1 + p2 + p3 == n:\n                            print(k)\n                            print(p1, p2, p3)\n                            exit()\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "75",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def is_prime(n):\n    if n <= 1:\n        return False\n    if n <= 3:\n        return True\n    if n % 2 == 0 or n % 3 == 0:\n        return False\n    i = 5\n    while i * i <= n:\n        if n % i == 0 or n % (i + 2) == 0:\n            return False\n        i += 6\n    return True\n\ndef find_primes(limit):\n    sieve = [True] * (limit + 1)\n    sieve[0] = sieve[1] = False\n    p = 2\n    while p * p <= limit:\n        if sieve[p]:\n            for i in range(p * p, limit + 1, p):\n                sieve[i] = False\n        p += 1\n    primes = [p for p, is_prime in enumerate(sieve) if is_prime]\n    return primes\n\ndef find_three_prime_sum(n):\n    if is_prime(n):\n        return (1, [n])\n    if is_prime(n - 2):\n        return (2, [2, n - 2])\n    \n    limit = 10**6\n    primes = find_primes(limit)\n    prime_set = set(primes)\n\n    for i in primes:\n        for j in primes:\n            if i + j >= n:\n                break\n            if (n - i - j) in prime_set:\n                return (3, [i, j, n - i - j])\n    return None\n\nimport sys\ninput = sys.stdin.read\nn = int(input().strip())\n\nresult = find_three_prime_sum(n)\nif result:\n    k, primes = result\n    print(k)\n    print(\" \".join(map(str, primes)))\nelse:\n    print(-1)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "241",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "s = input()\nt = input()\n\ndef smallest_n(s, t):\n    t_set = set(t)\n    n = ''\n    for c in s:\n        if c in t_set:\n            n += c\n    n += t\n    return int(n)\n\nprint(smallest_n(s, t))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "241",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def find_smallest_possible_n(s, sub):\n    n_len = len(s) - len(sub)\n\n    def is_valid_number(num_str, sub):\n        return sub in num_str and len(num_str) == n_len\n\n    def generate_possible_numbers(chars, sub):\n        from itertools import permutations\n        for perm in permutations(chars):\n            candidate = ''.join(perm)\n            if is_valid_number(candidate, sub):\n                yield candidate\n\n    from collections import Counter\n    s_counter = Counter(s)\n    sub_counter = Counter(sub)\n\n    for char in sub_counter:\n        s_counter[char] -= sub_counter[char]\n\n    remaining_chars = ''.join([char * s_counter[char] for char in s_counter])\n\n    possible_numbers = generate_possible_numbers(remaining_chars, sub)\n    smallest_number = min(possible_numbers, key=int)\n\n    return smallest_number\n\nif __name__ == \"__main__\":\n    import sys\n    input = sys.stdin.read\n    data = input().split()\n    s = data[0]\n    sub = data[1]\n    \n    result = find_smallest_possible_n(s, sub)\n    print(result)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "217",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\na = list(map(int, input().split()))\na.sort(reverse=True)\nb, c = 0, 0\nfor i in range(n):\n    if i % 2 == 0:\n        b += a[i]\n    else:\n        c += a[i]\nprint(b - c)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "217",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "# Read the input values\nn = int(input())\na = list(map(int, input().split()))\n\n# Calculate the maximum possible value of B - C\n# To maximize B - C, we should include all positive numbers in B and all negative numbers in C\nB = sum(x for x in a if x > 0)\nC = sum(x for x in a if x < 0)\n\n# The maximum value of B - C\nresult = B - C\n\n# Print the result\nprint(result)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "104",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\na = list(map(int, input().split()))\n\nmax_erase = 0\nfor i in range(n):\n    for j in range(i + 1, n + 1):\n        if all(a[k] - a[i] == k - i for k in range(i, j)):\n            max_erase = max(max_erase, j - i - 1)\n\nprint(max_erase)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "104",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "n = int(input())\na = list(map(int, input().split()))\n\nmax_erase = 0\n\nfor i in range(1, n):\n    max_erase = max(max_erase, a[i] - a[i-1] - 1)\n\nprint(max_erase)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "206",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "def count_zeros(n, b):\n    count = 0\n    i = b\n    while i <= n:\n        count += n // i\n        i *= b\n    return count\n\nn, b = map(int, input().split())\nprint(count_zeros(n, b))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "206",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def prime_factors(b):\n    \"\"\" Return the prime factors of b as a dictionary where keys are the prime factors and values are their powers \"\"\"\n    factors = {}\n    d = 2\n    while b > 1:\n        while (b % d) == 0:\n            if d in factors:\n                factors[d] += 1\n            else:\n                factors[d] = 1\n            b //= d\n        d += 1\n        if d * d > b:\n            if b > 1:\n                if b in factors:\n                    factors[b] += 1\n                else:\n                    factors[b] = 1\n            break\n    return factors\n\ndef count_factors(n, p):\n    \"\"\" Return the number of times prime p is a factor in n! \"\"\"\n    count = 0\n    power = p\n    while power <= n:\n        count += n // power\n        power *= p\n    return count\n\ndef trailing_zeros_in_base_factorial(n, b):\n    \"\"\" Calculate the number of trailing zero digits in the b-ary representation of n! \"\"\"\n    factors = prime_factors(b)\n    min_zeros = float('inf')\n    \n    for prime, power in factors.items():\n        count = count_factors(n, prime) // power\n        if count < min_zeros:\n            min_zeros = count\n    \n    return min_zeros\n\n# Reading input\nimport sys\ninput = sys.stdin.read\ndata = input().strip().split()\nn = int(data[0])\nb = int(data[1])\n\n# Calculating the result\nresult = trailing_zeros_in_base_factorial(n, b)\n\n# Printing the result\nprint(result)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "168",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "a = input()\nb = input()\n\ni = 0\nj = 0\nans = []\n\nwhile i < len(a) and j < len(b):\n    if a[i] == b[j]:\n        ans.append(a[i])\n        i += 1\n        j += 1\n    else:\n        i += 1\n\nif len(ans) == 0:\n    print('-')\nelse:\n    print(''.join(ans))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "168",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "def min_removal_subsequence(a, b):\n    # dp[i][j] will be the length of longest common subsequence of a[0:i] and b[0:j]\n    dp = [[0] * (len(b) + 1) for _ in range(len(a) + 1)]\n\n    # Fill dp array\n    for i in range(1, len(a) + 1):\n        for j in range(1, len(b) + 1):\n            if a[i - 1] == b[j - 1]:\n                dp[i][j] = dp[i - 1][j - 1] + 1\n            else:\n                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])\n\n    # Reconstruct the longest common subsequence from the dp table\n    i, j = len(a), len(b)\n    lcs = []\n    while i > 0 and j > 0:\n        if a[i - 1] == b[j - 1]:\n            lcs.append(a[i - 1])\n            i -= 1\n            j -= 1\n        elif dp[i - 1][j] >= dp[i][j - 1]:\n            i -= 1\n        else:\n            j -= 1\n\n    lcs.reverse()\n    lcs_string = ''.join(lcs)\n\n    # If the LCS is empty, return \"-\"\n    if not lcs_string:\n        return \"-\"\n    else:\n        return lcs_string\n\n# Read input\na = input().strip()\nb = input().strip()\n\n# Compute and print the result\nprint(min_removal_subsequence(a, b))\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "117",
+        "dataset": "apps",
+        "model": "llama3-70b",
+        "correct": false,
+        "description": null,
+        "generated_code": "l1, r1, l2, r2, k = map(int, input().split())\n\n# Calculate the intersection of Sonya's and Filya's time segments\nstart = max(l1, l2)\nend = min(r1, r2)\n\n# If Sonya prinks during their common time, subtract 1 minute\nif start <= k <= end:\n    end -= 1\n\n# Calculate the number of minutes they can spend together\nminutes_together = max(0, end - start + 1)\n\nprint(minutes_together)\n",
+        "counter_example": null
+    },
+    {
+        "task_id": "117",
+        "dataset": "apps",
+        "model": "gpt-4o",
+        "correct": false,
+        "description": null,
+        "generated_code": "# Read the input values\nl1, r1, l2, r2, k = map(int, input().split())\n\n# Calculate the overlapping interval\nstart = max(l1, l2)\nend = min(r1, r2)\n\n# Determine the number of minutes they can spend together\nif start > end:\n    print(0)\nelse:\n    overlap = end - start + 1\n    if start <= k <= end:\n        overlap -= 1\n    print(overlap)\n",
+        "counter_example": null
+    }
+]
