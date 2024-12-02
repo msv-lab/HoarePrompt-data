@@ -1,5 +1,31 @@
 import subprocess
 
+def compare_outputs(expected: str, got: str, ignore_order: bool = False, ignore_case: bool = False) -> bool:
+    def normalize_output_sorted(output: str):
+        lines = output.strip().splitlines()
+        normalized_lines = []
+        for line in lines:
+            words = line.strip().split()
+            if ignore_case:
+                words = [word.lower() for word in words]
+            normalized_lines.append(" ".join(sorted(words)))
+        return sorted(normalized_lines)
+    
+    def normalize_output(output: str):
+        lines = output.strip().splitlines()
+        normalized_lines = []
+        for line in lines:
+            words = line.strip().split()
+            if ignore_case:
+                words = [word.lower() for word in words]
+            normalized_lines.append(" ".join(words))
+        return normalized_lines
+    
+    if ignore_order:
+        return normalize_output_sorted(expected) == normalize_output_sorted(got)
+    else:
+        return normalize_output(expected) == normalize_output(got)
+
 # Function to execute the generated Python code with the given input data
 def execute_code(code_str: str, input_data: str):
     try:
@@ -15,7 +41,7 @@ def execute_code(code_str: str, input_data: str):
         return '', str(e)
 
 # We pass the expected output for an input to compare it with the output of running the genrated code
-def execute_tests(inputs, outputs, generated_code):
+def execute_tests(inputs, outputs, generated_code, order_ignore, case_ignore):
     passed_tests = 0
     total_tests = len(inputs)
     failure_example = None
@@ -29,7 +55,7 @@ def execute_tests(inputs, outputs, generated_code):
                 failure_example = {"input": input_data, "expected": expected_output, "got": stderr.strip()}
         else:
             # Compare the output of the code with the expected output
-            if stdout.strip() == expected_output.strip():
+            if compare_outputs(stdout.strip(), expected_output.strip(), order_ignore, case_ignore):
                 passed_tests += 1
             else:
                 # If the output does not match, record the failure
