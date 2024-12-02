@@ -5,6 +5,7 @@ from pathlib import Path
 from datetime import datetime
 from model import get_model, Model
 from apps_test import execute_tests
+from order_analysis import analyze_order_sensitivity, analyze_case_sensitivity
 
 # The prompt that defines the basic structure used to instruct the LLM for code generation
 SYSTEM_PROMPT = '''
@@ -217,6 +218,8 @@ def get_code(data_dir: Path, model: Model, output_file: Path, limit=150):
 
         test_case = problem_data["input_output"]
         prompt = problem_data["question"]
+        order_ignored = analyze_order_sensitivity(prompt, model)
+        case_ignored = analyze_case_sensitivity(prompt, model)
         starter_code = problem_data["starter_code"]
 
         # If either the prompt or test case is missing, skip this problem
@@ -236,7 +239,7 @@ def get_code(data_dir: Path, model: Model, output_file: Path, limit=150):
         test_outputs = test_case["outputs"]
 
         # Execute tests on the generated code and calculate the pass rate, we give as argument the inputs the ouputs that are expeted and the generated code we need to test
-        passed_tests, total_tests, counterexample = execute_tests(test_inputs, test_outputs, generated_code)
+        passed_tests, total_tests, counterexample = execute_tests(test_inputs, test_outputs, generated_code, order_ignored, case_ignored)
         pass_rate = passed_tests / total_tests if total_tests > 0 else 0
 
         result = {
@@ -246,7 +249,9 @@ def get_code(data_dir: Path, model: Model, output_file: Path, limit=150):
             'pass_rate': pass_rate,
             'passed_tests': passed_tests,
             'total_tests': total_tests,
-            'counterexample': counterexample
+            'counterexample': counterexample,
+            'order_ignored': order_ignored,
+            'case_ignored': case_ignored
         }
         results.append(result)
         print("*" * 100)
