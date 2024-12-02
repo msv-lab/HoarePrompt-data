@@ -282,7 +282,8 @@ if __name__ == "__main__":
     data_dir = Path("APPS") / "test"
     output_dir = Path(args.save) if args.save else Path('data')
 
-    model_name = "meta/llama-3.1-70b-instruct"
+    model_name = "gpt-4o-2024-05-13"
+    # model_name = "llama3-70b-8192"
     model = get_model(model_name, 0.7)
 
     timestamp = datetime.now().strftime("%Y%m%d")
