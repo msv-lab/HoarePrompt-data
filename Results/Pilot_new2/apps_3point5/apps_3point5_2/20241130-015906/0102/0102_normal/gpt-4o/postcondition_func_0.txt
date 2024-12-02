@@ -1,0 +1,5 @@
+The function `func_1` accepts an integer `n` between 0 and 99. It then returns different strings based on the value of `n` as follows: 
+- If n is between 0 and 9, the function returns the string representing the integer value of n in the list 'ones'.
+- If n is between 11 and 19, the function returns the string from the 'teens' list at index n-10.
+- If n is between 10 and 99 inclusive and n % 10 equals 0, the function returns the string from the 'tens' list at the index n//10.
+- If n is between 10 and 99 inclusive and n % 10 does not equal 0, the function returns the combination of the string in the 'tens' list at index n // 10 and the string in the 'ones' list at index n % 10, separated by a hyphen '-'.

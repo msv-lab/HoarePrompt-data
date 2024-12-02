@@ -28,8 +28,8 @@ def find_and_concat_csvs(directory, output_file):
         print("No CSV files found.")
 
 # Directory to search for CSV files
-input_directory = "/home/jim/HoarePrompt-data/Results/Pilot_new2/apps_4_mini_5"  # Replace with your directory path
-output_csv = "/home/jim/HoarePrompt-data/Results/Pilot_new2/apps_4_mini_5/combined_apps_4_mini_5.csv"         # Replace with your desired output file name
+input_directory = "/home/jim/HoarePrompt-data/Results/Pilot_new2/mbpp_3point5"  # Replace with your directory path
+output_csv = "/home/jim/HoarePrompt-data/Results/Pilot_new2/mbpp_3point5/combined_mbpp_3point5.csv"         # Replace with your desired output file name
 
 # Call the function
 find_and_concat_csvs(input_directory, output_csv)
