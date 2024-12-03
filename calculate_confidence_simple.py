@@ -39,25 +39,40 @@ def calculate_consistency(input_csv, output_json):
         })
 
     # Separate analysis for correct and incorrect responses
-    correct_groups = grouped.filter(lambda x: x['is_correct'].all())
-    incorrect_groups = grouped.filter(lambda x: ~x['is_correct'].all())
+    # correct_groups = grouped.filter(lambda x: x['is_correct'].all())
+    # incorrect_groups = grouped.filter(lambda x: ~x['is_correct'].all())
+
+    # Define thresholds for majority
+    threshold = 0.5  # Majority rule: more than 50% correct responses
+
+    # Separate analysis for majority-correct and majority-incorrect responses
+    majority_correct_groups = grouped.filter(lambda x: x['is_correct'].mean() > threshold)
+    majority_incorrect_groups = grouped.filter(lambda x: x['is_correct'].mean() <= threshold)
+
 
     correct_consistencies = []
     incorrect_consistencies = []
 
     for unique_id, group in grouped:
-        if group['is_correct'].all():
+        # Calculate the proportion of correct responses
+        correct_proportion = group['is_correct'].mean()
+        
+        # Majority threshold
+        threshold = 0.5  # Can be adjusted as needed
+        
+        if correct_proportion > threshold:
             correct_consistency = calculate_group_consistency(group, 'naive no fsl correctness')
             correct_consistencies.append({
                 "unique_id": unique_id,
                 "consistency": correct_consistency
             })
-        elif not group['is_correct'].all():
+        else:  # Majority incorrect or exactly at threshold
             incorrect_consistency = calculate_group_consistency(group, 'naive no fsl correctness')
             incorrect_consistencies.append({
                 "unique_id": unique_id,
                 "consistency": incorrect_consistency
             })
+
 
     # Calculate average and median consistency for overall, correct, and incorrect responses
     consistency_values = [entry["consistency"] for entry in consistencies]
@@ -98,6 +113,6 @@ def calculate_consistency(input_csv, output_json):
 
 # Test the function with an example CSV
 if __name__ == "__main__":
-    input_csv = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple/mbpp_3point5_1/combined_confidence_mbpp_3point5.csv"  # Replace with your input CSV file
-    output_json = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple/mbpp_3point5_1/confidence.json"  # Desired output JSON file
+    input_csv = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple/mbpp_4_mini_2/combined_confidence_mbpp_4mini.csv"  # Replace with your input CSV file
+    output_json = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple/mbpp_4_mini_2/confidence_new.json"  # Desired output JSON file
     calculate_consistency(input_csv, output_json)
