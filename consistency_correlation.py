@@ -98,3 +98,4 @@ if __name__ == "__main__":
 # A positive correlation means that when consistency is high, naive no FSL correctness tends to perform better relative to the other classifiers.
 # A negative correlation means that when consistency is high, naive no FSL correctness tends to perform worse relative to the other classifiers.
 # A near-zero correlation means that the relationship between consistency and performance difference is weak or non-existent.
+#pearsons correlation
