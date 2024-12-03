@@ -34,8 +34,10 @@ csv_data.to_csv(augmented_csv_path, index=False)
 csv_1 = csv_data[csv_data['consistency'] != 1.0]
 csv_2 = csv_data[~csv_data['consistency'].isin([1.0, 0.9])]
 csv_3 = csv_data[~csv_data['consistency'].isin([1.0, 0.9, 0.8])]
+csv_4 = csv_data[~csv_data['consistency'].isin([1.0, 0.9, 0.8, 0.7])]
 
 # Save filtered CSVs
 csv_1.to_csv(os.path.join(output_folder, "filtered_consistency_1.csv"), index=False)
 csv_2.to_csv(os.path.join(output_folder, "filtered_consistency_1_09.csv"), index=False)
 csv_3.to_csv(os.path.join(output_folder, "filtered_consistency_1_09_08.csv"), index=False)
+csv_4.to_csv(os.path.join(output_folder, "filtered_consistency_1_09_08_07.csv"), index=False)
