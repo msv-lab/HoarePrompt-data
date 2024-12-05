@@ -19,7 +19,7 @@ csv_data = pd.read_csv(csv_file)
 
 # Create unique_id and map consistency
 def generate_unique_id(row):
-    task_id = str(row["Task ID"]).zfill(4)
+    task_id = str(row["Task ID"])
     return f"{task_id}_{row['model_created']}"
 
 csv_data['unique_id'] = csv_data.apply(generate_unique_id, axis=1)
