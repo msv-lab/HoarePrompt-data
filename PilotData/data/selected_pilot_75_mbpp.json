@@ -7,7 +7,8 @@
         "generated_code": "def cube_Sum(n):\n    return sum(i**3 for i in range(2, n*2+1, 2))\n",
         "correct": true,
         "task_id": "179",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to find the cube sum of first n even natural numbers.",
@@ -17,7 +18,8 @@
         "generated_code": "def cube_Sum(n):\n    even_numbers = [2 * i for i in range(1, n + 1)]\n    cube_sum = sum(x ** 3 for x in even_numbers)\n    return cube_sum\n\n# Tests\nassert cube_Sum(2) == 72\nassert cube_Sum(3) == 288\nassert cube_Sum(4) == 800\n",
         "correct": true,
         "task_id": "179",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to get the angle of a complex number.",
@@ -27,7 +29,8 @@
         "generated_code": "import cmath\n\ndef angle_complex(real, imag):\n    complex_num = complex(real, imag)\n    return cmath.phase(complex_num)\n",
         "correct": false,
         "task_id": "68",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to get the angle of a complex number.",
@@ -37,7 +40,8 @@
         "generated_code": "import cmath\n\ndef angle_complex(real, imag):\n    # Create the complex number\n    complex_number = complex(real, imag)\n    # Return the phase (angle) of the complex number\n    return cmath.phase(complex_number)\n\n# Test cases\nimport math\n\nassert math.isclose(angle_complex(0,1j), 1.5707963267948966, rel_tol=0.001)\nassert math.isclose(angle_complex(2,1j), 0.4636476090008061, rel_tol=0.001)\nassert math.isclose(angle_complex(0,2j), 1.5707963267948966, rel_tol=0.001)\n",
         "correct": false,
         "task_id": "68",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function that takes in a positive integer n and finds the sum of even index binomial coefficients.",
@@ -47,7 +51,8 @@
         "generated_code": "import math\n\ndef even_binomial_Coeff_Sum(n):\n    sum = 0\n    for i in range(n + 1):\n        if i % 2 == 0:\n            sum += math.comb(n, i)\n    return sum\n",
         "correct": true,
         "task_id": "134",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a python function that takes in a positive integer n and finds the sum of even index binomial coefficients.",
@@ -57,7 +62,8 @@
         "generated_code": "import math\n\ndef even_binomial_Coeff_Sum(n):\n    # Sum of binomial coefficients at even indices is given by 2^(n-1)\n    return 2**(n-1)\n\n# Test cases\nassert even_binomial_Coeff_Sum(4) == 8\nassert even_binomial_Coeff_Sum(6) == 32\nassert even_binomial_Coeff_Sum(2) == 2\n",
         "correct": true,
         "task_id": "134",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the median of two sorted lists of same size.",
@@ -67,7 +73,8 @@
         "generated_code": "def get_median(list1, list2, size):\n    merged_list = sorted(list1 + list2)\n    middle_index = size - 1\n    if size % 2 == 0:\n        median = (merged_list[middle_index] + merged_list[middle_index + 1]) / 2\n    else:\n        median = merged_list[middle_index]\n    return median\n",
         "correct": false,
         "task_id": "276",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the median of two sorted lists of same size.",
@@ -77,7 +84,8 @@
         "generated_code": "def get_median(list1, list2, n):\n    # Merge the two sorted lists\n    merged_list = sorted(list1 + list2)\n    \n    # Calculate the median\n    mid = len(merged_list) // 2\n    \n    if len(merged_list) % 2 == 0:\n        # Even number of elements\n        median = (merged_list[mid - 1] + merged_list[mid]) / 2\n    else:\n        # Odd number of elements (although this case won't happen given the problem constraints)\n        median = merged_list[mid]\n    \n    return median\n\n# Test cases\nassert get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0\nassert get_median([2, 4, 8, 9], [7, 13, 19, 28], 4) == 8.5\nassert get_median([3, 6, 14, 23, 36, 42], [2, 18, 27, 39, 49, 55], 6) == 25.0\n",
         "correct": false,
         "task_id": "276",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to find the maximum difference between any two elements in a given array.",
@@ -87,7 +95,8 @@
         "generated_code": "def max_Abs_Diff(arr):\n    return max(arr) - min(arr)\n",
         "correct": true,
         "task_id": "85",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to find the maximum difference between any two elements in a given array.",
@@ -97,7 +106,8 @@
         "generated_code": "def max_Abs_Diff(arr):\n    # Find the minimum and maximum values in the array\n    min_val = min(arr)\n    max_val = max(arr)\n    \n    # Calculate the maximum absolute difference\n    max_diff = max_val - min_val\n    \n    return max_diff\n\n# Test cases\nassert max_Abs_Diff((2, 1, 5, 3)) == 4\nassert max_Abs_Diff((9, 3, 2, 5, 1)) == 8\nassert max_Abs_Diff((3, 2, 1)) == 2\n",
         "correct": true,
         "task_id": "85",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the list of maximum length in a list of lists.",
@@ -107,7 +117,8 @@
         "generated_code": "def max_length(list_of_lists):\n    max_len = max(len(sublist) for sublist in list_of_lists)\n    max_sublists = [sublist for sublist in list_of_lists if len(sublist) == max_len]\n    return (max_len, max_sublists[0])\n",
         "correct": false,
         "task_id": "146",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the list of maximum length in a list of lists.",
@@ -117,7 +128,8 @@
         "generated_code": "def max_length(list_of_lists):\n    max_len = 0\n    max_list = []\n    \n    for lst in list_of_lists:\n        if len(lst) > max_len:\n            max_len = len(lst)\n            max_list = lst\n            \n    return (max_len, max_list)\n\n# Test cases\nassert max_length([[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]]) == (3, [13, 15, 17])\nassert max_length([[1], [5, 7], [10, 12, 14, 15]]) == (4, [10, 12, 14, 15])\nassert max_length([[5], [15, 20, 25]]) == (3, [15, 20, 25])\n",
         "correct": true,
         "task_id": "146",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to flatten a given nested list structure.",
@@ -127,7 +139,8 @@
         "generated_code": "def flatten_list(nested_list):\n  flat_list = []\n  for i in nested_list:\n    if type(i) == list:\n      flat_list.extend(flatten_list(i))\n    else:\n      flat_list.append(i)\n  return flat_list\n",
         "correct": true,
         "task_id": "151",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to flatten a given nested list structure.",
@@ -137,7 +150,8 @@
         "generated_code": "def flatten_list(nested_list):\n    flat_list = []\n    \n    for item in nested_list:\n        if isinstance(item, list):\n            flat_list.extend(flatten_list(item))\n        else:\n            flat_list.append(item)\n    \n    return flat_list\n\n# Testing the function with the provided test cases\nassert flatten_list([0, 10, [20, 30], 40, 50, [60, 70, 80], [90, 100, 110, 120]]) == [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]\nassert flatten_list([[10, 20], [40], [30, 56, 25], [10, 20], [33], [40]]) == [10, 20, 40, 30, 56, 25, 10, 20, 33, 40]\nassert flatten_list([[1,2,3], [4,5,6], [10,11,12], [7,8,9]]) == [1, 2, 3, 4, 5, 6, 10, 11, 12, 7, 8, 9]\n",
         "correct": true,
         "task_id": "151",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to sort each sublist of strings in a given list of lists.",
@@ -147,7 +161,8 @@
         "generated_code": "def sort_sublists(list_of_lists):\n    return [sorted(sublist, key=str.lower) for sublist in list_of_lists]\n",
         "correct": false,
         "task_id": "57",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to sort each sublist of strings in a given list of lists.",
@@ -157,7 +172,8 @@
         "generated_code": "def sort_sublists(list_of_lists):\n    return [sorted(sublist) for sublist in list_of_lists]\n\n# Tests\nassert sort_sublists(([\"green\", \"orange\"], [\"black\", \"white\"], [\"white\", \"black\", \"orange\"])) == [['green', 'orange'], ['black', 'white'], ['black', 'orange', 'white']]\nassert sort_sublists(([\" red \",\"green\" ],[\"blue \",\" black\"],[\" orange\",\"brown\"])) == [[' red ', 'green'], [' black', 'blue '], [' orange', 'brown']]\nassert sort_sublists(([\"zilver\",\"gold\"], [\"magnesium\",\"aluminium\"], [\"steel\", \"bronze\"])) == [['gold', 'zilver'], ['aluminium', 'magnesium'], ['bronze', 'steel']]\n",
         "correct": true,
         "task_id": "57",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the second smallest number in a list.",
@@ -167,7 +183,8 @@
         "generated_code": "def second_smallest(nums):\n    unique_nums = list(set(nums))\n    if len(unique_nums) < 2:\n        return None\n    return sorted(unique_nums)[1]\n",
         "correct": true,
         "task_id": "320",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the second smallest number in a list.",
@@ -177,7 +194,8 @@
         "generated_code": "def second_smallest(nums):\n    unique_nums = sorted(set(nums))\n    return unique_nums[1] if len(unique_nums) > 1 else None\n\n# Test cases\nassert second_smallest([1, 2, -8, -2, 0, -2]) == -2\nassert second_smallest([1, 1, -0.5, 0, 2, -2, -2]) == -0.5\nassert second_smallest([2,2]) == None\nassert second_smallest([2,2,2]) == None\n",
         "correct": true,
         "task_id": "320",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the shared elements from the given two lists.",
@@ -187,7 +205,8 @@
         "generated_code": "def similar_elements(test_tup1, test_tup2):\n  return tuple(set(test_tup1) & set(test_tup2))\n",
         "correct": true,
         "task_id": "1",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the shared elements from the given two lists.",
@@ -197,7 +216,8 @@
         "generated_code": "def similar_elements(list1, list2):\n    # Convert both lists to sets and find their intersection\n    common_elements = set(list1) & set(list2)\n    # Convert the result back to a tuple and return\n    return tuple(sorted(common_elements))\n\n# Test cases\nassert similar_elements((3, 4, 5, 6), (5, 7, 4, 10)) == (4, 5)\nassert similar_elements((1, 2, 3, 4), (5, 4, 3, 7)) == (3, 4)\nassert similar_elements((11, 12, 14, 13), (17, 15, 14, 13)) == (13, 14)\n",
         "correct": true,
         "task_id": "1",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to remove lowercase substrings from a given string.",
@@ -207,7 +227,8 @@
         "generated_code": "def remove_lowercase(s):\n    result = ''\n    for char in s:\n        if char.isupper():\n            result += char\n    return result\n",
         "correct": true,
         "task_id": "222",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to remove lowercase substrings from a given string.",
@@ -217,7 +238,8 @@
         "generated_code": "def remove_lowercase(s: str) -> str:\n    return ''.join([char for char in s if char.isupper()])\n\n# Testing the function\nassert remove_lowercase(\"PYTHon\") == 'PYTH'\nassert remove_lowercase(\"FInD\") == 'FID'\nassert remove_lowercase(\"STRinG\") == 'STRG'\n",
         "correct": true,
         "task_id": "222",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the n'th lucas number.",
@@ -227,7 +249,8 @@
         "generated_code": "def find_lucas(n):\n    if n == 0:\n        return 2\n    elif n == 1:\n        return 1\n    else:\n        a, b = 2, 1\n        for _ in range(2, n + 1):\n            a, b = b, a + b\n        return b\n",
         "correct": true,
         "task_id": "161",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to find the n'th lucas number.",
@@ -237,7 +260,8 @@
         "generated_code": "def find_lucas(n):\n    if n == 0:\n        return 2\n    elif n == 1:\n        return 1\n    else:\n        a, b = 2, 1\n        for _ in range(2, n + 1):\n            a, b = b, a + b\n        return b\n\n# Test cases\nassert find_lucas(9) == 76\nassert find_lucas(4) == 7\nassert find_lucas(3) == 4\n",
         "correct": true,
         "task_id": "161",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function that checks if a strings contains 'z', except at the start and end of the word.",
@@ -247,7 +271,8 @@
         "generated_code": "def text_match_wordz_middle(s):\n    words = s.split()\n    for word in words:\n        if len(word) > 1 and 'z' in word[1:-1]:\n            return True\n    return False\n",
         "correct": true,
         "task_id": "290",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function that checks if a strings contains 'z', except at the start and end of the word.",
@@ -257,7 +282,8 @@
         "generated_code": "def text_match_wordz_middle(s):\n    # Check if 'z' is in the string and not at the start or end\n    if 'z' in s[1:-1]:\n        return True\n    return False\n\n# Test cases\nassert text_match_wordz_middle(\"pythonzabc.\") == True\nassert text_match_wordz_middle(\"zxyabc.\") == False\nassert text_match_wordz_middle(\"  lang  .\") == False\n",
         "correct": true,
         "task_id": "290",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to extract the elementwise and tuples from the given two tuples.",
@@ -267,7 +293,8 @@
         "generated_code": "def and_tuples(tup1, tup2):\n    return tuple(x & y for x, y in zip(tup1, tup2))\n",
         "correct": true,
         "task_id": "186",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to extract the elementwise and tuples from the given two tuples.",
@@ -277,7 +304,8 @@
         "generated_code": "def and_tuples(tuple1, tuple2):\n    return tuple(a & b for a, b in zip(tuple1, tuple2))\n\n# Testing the function with the provided test cases\nassert and_tuples((10, 4, 6, 9), (5, 2, 3, 3)) == (0, 0, 2, 1)\nassert and_tuples((1, 2, 3, 4), (5, 6, 7, 8)) == (1, 2, 3, 0)\nassert and_tuples((8, 9, 11, 12), (7, 13, 14, 17)) == (0, 9, 10, 0)\n",
         "correct": true,
         "task_id": "186",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to merge three lists into a single sorted list.",
@@ -287,7 +315,8 @@
         "generated_code": "def merge_sorted_list(list1, list2, list3):\n    return sorted(list1 + list2 + list3)\n",
         "correct": true,
         "task_id": "59",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to merge three lists into a single sorted list.",
@@ -297,7 +326,8 @@
         "generated_code": "def merge_sorted_list(list1, list2, list3):\n    # Combine all three lists into one\n    combined_list = list1 + list2 + list3\n    # Sort the combined list\n    sorted_list = sorted(combined_list)\n    return sorted_list\n\n# Provided test cases\nassert merge_sorted_list([25, 24, 15, 4, 5, 29, 110],[19, 20, 11, 56, 25, 233, 154],[24, 26, 54, 48]) == [4, 5, 11, 15, 19, 20, 24, 24, 25, 25, 26, 29, 48, 54, 56, 110, 154, 233]\nassert merge_sorted_list([1, 3, 5, 6, 8, 9], [2, 5, 7, 11], [1, 4, 7, 8, 12]) == [1, 1, 2, 3, 4, 5, 5, 6, 7, 7, 8, 8, 9, 11, 12]\nassert merge_sorted_list([18, 14, 10, 9, 8, 7, 9, 3, 2, 4, 1],[25, 35, 22, 85, 14, 65, 75, 25, 58],[12, 74, 9, 50, 61, 41]) == [1, 2, 3, 4, 7, 8, 9, 9, 9, 10, 12, 14, 14, 18, 22, 25, 25, 35, 41, 50, 58, 61, 65, 74, 75, 85]\n",
         "correct": true,
         "task_id": "59",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to find even numbers from a list of numbers.",
@@ -307,7 +337,8 @@
         "generated_code": "def Split(numbers):\n    return [num for num in numbers if num % 2 == 0]\n",
         "correct": true,
         "task_id": "281",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to find even numbers from a list of numbers.",
@@ -317,7 +348,8 @@
         "generated_code": "def Split(numbers):\n    # Use a list comprehension to filter and return only even numbers\n    return [num for num in numbers if num % 2 == 0]\n\n# Test cases to validate the implementation\nassert Split([1,2,3,4,5]) == [2, 4]\nassert Split([4,5,6,7,8,0,1]) == [4, 6, 8, 0]\nassert Split([8,12,15,19]) == [8, 12]\n",
         "correct": true,
         "task_id": "281",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to extract only the rear index element of each string in the given tuple.",
@@ -327,7 +359,8 @@
         "generated_code": "def extract_rear(strings):\n    return [s[-1] for s in strings]\n",
         "correct": true,
         "task_id": "182",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to extract only the rear index element of each string in the given tuple.",
@@ -337,7 +370,8 @@
         "generated_code": "def extract_rear(tup):\n    return [s[-1] for s in tup]\n\n# Test cases\nassert extract_rear(('Mers', 'for', 'Vers')) == ['s', 'r', 's']\nassert extract_rear(('Avenge', 'for', 'People')) == ['e', 'r', 'e']\nassert extract_rear(('Gotta', 'get', 'go')) == ['a', 't', 'o']\n",
         "correct": true,
         "task_id": "182",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to check whether all the characters are same or not.",
@@ -347,7 +381,8 @@
         "generated_code": "def all_Characters_Same(s):\n    return len(set(s)) == 1\n",
         "correct": false,
         "task_id": "309",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to check whether all the characters are same or not.",
@@ -357,7 +392,8 @@
         "generated_code": "def all_Characters_Same(s):\n    if not s:  # If the string is empty, return True (edge case)\n        return True\n    first_char = s[0]\n    for char in s:\n        if char != first_char:\n            return False\n    return True\n\n# Tests\nassert all_Characters_Same(\"python\") == False\nassert all_Characters_Same(\"aaa\") == True\nassert all_Characters_Same(\"data\") == False\n",
         "correct": true,
         "task_id": "309",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a python function to find the sum of non-repeated elements in a given list.",
@@ -367,7 +403,8 @@
         "generated_code": "def find_sum(lst):\n    return sum(i for i in lst if lst.count(i) == 1)\n",
         "correct": false,
         "task_id": "337",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to find the sum of non-repeated elements in a given list.",
@@ -377,7 +414,8 @@
         "generated_code": "def find_sum(lst):\n    return sum(set(lst))\n\n# Provided test cases\nassert find_sum([1,2,3,1,1,4,5,6]) == 21\nassert find_sum([1,10,9,4,2,10,10,45,4]) == 71\nassert find_sum([12,10,9,45,2,10,10,45,10]) == 78\n",
         "correct": true,
         "task_id": "337",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to check if the given expression is balanced or not.",
@@ -387,7 +425,8 @@
         "generated_code": "def check_expression(expression: str) -> bool:\n    stack = []\n    brackets = {\"(\": \")\", \"{\": \"}\", \"[\": \"]\"}\n    \n    for char in expression:\n        if char in brackets:\n            stack.append(char)\n        elif char in brackets.values():\n            if not stack or brackets[stack.pop()] != char:\n                return False\n    \n    return not stack\n",
         "correct": false,
         "task_id": "333",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to check if the given expression is balanced or not.",
@@ -397,7 +436,8 @@
         "generated_code": "def check_expression(expr):\n    stack = []\n    matching_pairs = {')': '(', ']': '[', '}': '{'}\n    \n    for char in expr:\n        if char in matching_pairs.values():\n            stack.append(char)\n        elif char in matching_pairs:\n            if stack == [] or stack.pop() != matching_pairs[char]:\n                return False\n    return stack == []\n\n# Testing the function with the provided test cases\nassert check_expression(\"{()}[{}]\") == True\nassert check_expression(\"{()}[{]\") == False\nassert check_expression(\"{()}[{}][]({})\") == True\n",
         "correct": false,
         "task_id": "333",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a python function to get the first element of each sublist.",
@@ -407,7 +447,8 @@
         "generated_code": "def Extract(sublists):\n    return [sublist[0] for sublist in sublists]\n",
         "correct": true,
         "task_id": "209",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to get the first element of each sublist.",
@@ -417,7 +458,8 @@
         "generated_code": "def Extract(lst):\n    return [sublist[0] for sublist in lst]\n\n# Test cases to validate the solution\nassert Extract([[1, 2], [3, 4, 5], [6, 7, 8, 9]]) == [1, 3, 6]\nassert Extract([[1,2,3],[4, 5]]) == [1,4]\nassert Extract([[9,8,1],[1,2]]) == [9,1]\n",
         "correct": true,
         "task_id": "209",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function that returns the number of integer elements in a given list.",
@@ -427,7 +469,8 @@
         "generated_code": "def count_integer(lst):\n    return sum(isinstance(x, int) for x in lst)\n",
         "correct": true,
         "task_id": "117",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function that returns the number of integer elements in a given list.",
@@ -437,7 +480,8 @@
         "generated_code": "def count_integer(lst):\n    return sum(1 for x in lst if isinstance(x, int))\n\n# Provided test cases\nassert count_integer([1, 2, 'abc', 1.2]) == 2\nassert count_integer([1, 2, 3]) == 3\nassert count_integer([1, 1.2, 4, 5.1]) == 2\n",
         "correct": true,
         "task_id": "117",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).",
@@ -447,7 +491,8 @@
         "generated_code": "def sequential_search(array, element):\n    try:\n        index = array.index(element)\n        return (True, index)\n    except ValueError:\n        return (False, -1)\n",
         "correct": true,
         "task_id": "138",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).",
@@ -457,7 +502,8 @@
         "generated_code": "def sequential_search(arr, element):\n    for index, value in enumerate(arr):\n        if value == element:\n            return (True, index)\n    return (False, -1)\n\n# Test cases\nassert sequential_search([11,23,58,31,56,77,43,12,65,19],31) == (True, 3)\nassert sequential_search([12, 32, 45, 62, 35, 47, 44, 61],61) == (True, 7)\nassert sequential_search([9, 10, 17, 19, 22, 39, 48, 56],48) == (True, 6)\n",
         "correct": true,
         "task_id": "138",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a python function to remove the characters which have odd index values of a given string.",
@@ -467,7 +513,8 @@
         "generated_code": "def odd_values_string(s):\n    return ''.join(s[i] for i in range(0, len(s), 2))\n",
         "correct": true,
         "task_id": "99",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to remove the characters which have odd index values of a given string.",
@@ -477,7 +524,8 @@
         "generated_code": "def odd_values_string(s):\n    return ''.join([s[i] for i in range(len(s)) if i % 2 == 0])\n\n# Test cases to validate the solution\nassert odd_values_string('abcdef') == 'ace'\nassert odd_values_string('python') == 'pto'\nassert odd_values_string('data') == 'dt'\nassert odd_values_string('lambs') == 'lms'\n",
         "correct": true,
         "task_id": "99",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that takes in two numbers and returns a tuple with the second number and then the first number.",
@@ -487,7 +535,8 @@
         "generated_code": "def swap_numbers(a, b):\n  return (b, a)\n",
         "correct": true,
         "task_id": "119",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that takes in two numbers and returns a tuple with the second number and then the first number.",
@@ -497,7 +546,8 @@
         "generated_code": "def swap_numbers(a, b):\n    return (b, a)\n\n# Testing the function with provided test cases\nassert swap_numbers(10, 20) == (20, 10)\nassert swap_numbers(15, 17) == (17, 15)\nassert swap_numbers(100, 200) == (200, 100)\n",
         "correct": true,
         "task_id": "119",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to convert degrees to radians.",
@@ -507,7 +557,8 @@
         "generated_code": "import math\ndef radian_degree(deg):\n    return deg * math.pi / 180\n",
         "correct": true,
         "task_id": "264",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to convert degrees to radians.",
@@ -517,7 +568,8 @@
         "generated_code": "import math\n\ndef radian_degree(degrees):\n    return degrees * (math.pi / 180)\n\n# Test cases\nassert radian_degree(90) == 1.5707963267948966\nassert radian_degree(60) == 1.0471975511965976\nassert radian_degree(120) == 2.0943951023931953\n",
         "correct": false,
         "task_id": "264",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the occurrence and position of the substrings within a string. Return None if there is no match.",
@@ -527,7 +579,8 @@
         "generated_code": "def occurance_substring(string, substring):\n    start = string.find(substring)\n    if start == -1:\n        return None\n    end = start + len(substring)\n    return (substring, start, end - 1)\n",
         "correct": false,
         "task_id": "335",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the occurrence and position of the substrings within a string. Return None if there is no match.",
@@ -537,7 +590,8 @@
         "generated_code": "def occurance_substring(main_string, sub_string):\n    start_pos = main_string.find(sub_string)\n    if start_pos == -1:\n        return None\n    end_pos = start_pos + len(sub_string)\n    return (sub_string, start_pos, end_pos)\n\n# Test cases\nassert occurance_substring('python programming, python language', 'python') == ('python', 0, 6)\nassert occurance_substring('python programming,programming language', 'programming') == ('programming', 7, 18)\nassert occurance_substring('python programming,programming language', 'language') == ('language', 31, 39)\nassert occurance_substring('c++ programming, c++ language', 'python') == None\n",
         "correct": true,
         "task_id": "335",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that returns the list in a list of lists whose sum of elements is the highest.",
@@ -547,7 +601,8 @@
         "generated_code": "def max_sum_list(lists):\n    return max(lists, key=sum)",
         "correct": true,
         "task_id": "360",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that returns the list in a list of lists whose sum of elements is the highest.",
@@ -557,7 +612,8 @@
         "generated_code": "def max_sum_list(list_of_lists):\n    # Initialize variables to track the maximum sum and the corresponding list\n    max_sum = float('-inf')\n    max_list = []\n    \n    # Iterate through each sublist\n    for sublist in list_of_lists:\n        # Calculate the sum of the current sublist\n        current_sum = sum(sublist)\n        \n        # If the current sum is greater than the maximum sum found so far\n        if current_sum > max_sum:\n            # Update the maximum sum and the corresponding list\n            max_sum = current_sum\n            max_list = sublist\n    \n    # Return the list with the highest sum\n    return max_list\n\n# Tests\nassert max_sum_list([[1,2,3], [4,5,6], [10,11,12], [7,8,9]]) == [10, 11, 12]\nassert max_sum_list([[3,2,1], [6,5,4], [12,11,10]]) == [12, 11, 10]\nassert max_sum_list([[2,3,1]]) == [2, 3, 1]\n",
         "correct": true,
         "task_id": "360",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a python function to find the index of smallest triangular number with n digits.",
@@ -567,7 +623,8 @@
         "generated_code": "def find_Index(n):\n    import math\n    idx = 1\n    while True:\n        triangular_num = (idx * (idx + 1)) // 2\n        if len(str(triangular_num)) >= n:\n            return idx\n        idx += 1\n",
         "correct": false,
         "task_id": "307",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a python function to find the index of smallest triangular number with n digits.",
@@ -577,7 +634,8 @@
         "generated_code": "def find_Index(n):\n    k = 1\n    while True:\n        triangular_number = k * (k + 1) // 2\n        if len(str(triangular_number)) == n:\n            return k\n        k += 1\n\n# Test cases\nassert find_Index(2) == 4\nassert find_Index(3) == 14\nassert find_Index(4) == 45\n",
         "correct": false,
         "task_id": "307",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a python function to remove first and last occurrence of a given character from the string.",
@@ -587,7 +645,8 @@
         "generated_code": "def remove_Occ(s, char):\n    first_occurrence = s.find(char)\n    last_occurrence = s.rfind(char)\n    \n    if first_occurrence != -1 and last_occurrence != -1:\n        if first_occurrence == last_occurrence:\n            return s.replace(char, '', 1)\n        else:\n            return s[:first_occurrence] + s[first_occurrence+1:last_occurrence] + s[last_occurrence+1:]\n    else:\n        return s\n",
         "correct": true,
         "task_id": "8",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to remove first and last occurrence of a given character from the string.",
@@ -597,7 +656,8 @@
         "generated_code": "def remove_Occ(s: str, ch: str) -> str:\n    first_index = s.find(ch)\n    last_index = s.rfind(ch)\n    \n    if first_index == -1 or last_index == -1 or first_index == last_index:\n        return s  # No removal needed if ch is not found or only one occurrence\n    \n    # Create a new string without the first and last occurrence of ch\n    return s[:first_index] + s[first_index + 1:last_index] + s[last_index + 1:]\n\n# Testing the function with the provided test cases\nassert remove_Occ(\"hello\", \"l\") == \"heo\"\nassert remove_Occ(\"abcda\", \"a\") == \"bcd\"\nassert remove_Occ(\"PHP\", \"P\") == \"H\"\n",
         "correct": false,
         "task_id": "8",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to find the volume of a triangular prism.",
@@ -607,7 +667,8 @@
         "generated_code": "def find_Volume(b, h, l):\n  return (b * h / 2) * l\n",
         "correct": false,
         "task_id": "10",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to find the volume of a triangular prism.",
@@ -617,7 +678,8 @@
         "generated_code": "def find_Volume(base, height, length):\n    base_area = 0.5 * base * height\n    volume = base_area * length\n    return volume\n\n# Tests\nassert find_Volume(10, 8, 6) == 240\nassert find_Volume(3, 2, 2) == 6\nassert find_Volume(1, 2, 1) == 1\n",
         "correct": false,
         "task_id": "10",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the volume of a cone.",
@@ -627,7 +689,8 @@
         "generated_code": "import math\ndef volume_cone(radius, height):\n    return (1.0/3)*math.pi*radius*radius*height\n",
         "correct": true,
         "task_id": "159",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the volume of a cone.",
@@ -637,7 +700,8 @@
         "generated_code": "import math\n\ndef volume_cone(radius, height):\n    return (1/3) * math.pi * (radius ** 2) * height\n\n# Tests\nassert math.isclose(volume_cone(5, 12), 314.15926535897927, rel_tol=0.001)\nassert math.isclose(volume_cone(10, 15), 1570.7963267948965, rel_tol=0.001)\nassert math.isclose(volume_cone(19, 17), 6426.651371693521, rel_tol=0.001)\n",
         "correct": true,
         "task_id": "159",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that takes a tuple of tuples and returns a list where each element is the average of the corresponding values from each tuple. For each position, compute the average of values from all tuples at that position.",
@@ -647,7 +711,8 @@
         "generated_code": "def average_tuple(tuples):\n    return [sum(val) / len(tuples) for val in zip(*tuples)]\n",
         "correct": true,
         "task_id": "271",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that takes a tuple of tuples and returns a list where each element is the average of the corresponding values from each tuple. For each position, compute the average of values from all tuples at that position.",
@@ -657,7 +722,8 @@
         "generated_code": "def average_tuple(tuples):\n    # Length of the first tuple (assuming all tuples are of the same length)\n    num_elements = len(tuples[0])\n    \n    # List to store the averages\n    averages = []\n    \n    # Iterate over each position in the tuples\n    for i in range(num_elements):\n        # Extract the i-th element from each tuple and compute the average\n        elements_at_position = [t[i] for t in tuples]\n        avg = sum(elements_at_position) / len(tuples)\n        averages.append(avg)\n    \n    return averages\n\n# Test cases\nassert average_tuple(((10, 10, 10, 12), (30, 45, 56, 45), (81, 80, 39, 32), (1, 2, 3, 4))) == [30.5, 34.25, 27.0, 23.25]\nassert average_tuple(((1, 1, -5), (30, -15, 56), (81, -60, -39), (-10, 2, 3))) == [25.5, -18.0, 3.75]\nassert average_tuple(((100, 100, 100, 120), (300, 450, 560, 450), (810, 800, 390, 320), (10, 20, 30, 40))) == [305.0, 342.5, 270.0, 232.5]\n",
         "correct": false,
         "task_id": "271",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to check whether the given month number contains 30 days or not. Months are given as number from 1 to 12.",
@@ -667,7 +733,8 @@
         "generated_code": "def check_monthnumber_number(month):\n    thirty_days_months = [4, 6, 9, 11]\n    return month in thirty_days_months\n",
         "correct": true,
         "task_id": "325",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to check whether the given month number contains 30 days or not. Months are given as number from 1 to 12.",
@@ -677,7 +744,8 @@
         "generated_code": "def check_monthnumber_number(month: int) -> bool:\n    # Define the set of months that have 30 days\n    months_with_30_days = {4, 6, 9, 11}\n    # Check if the given month is in the set\n    return month in months_with_30_days\n\n# Test cases to validate the solution\nassert check_monthnumber_number(6) == True\nassert check_monthnumber_number(2) == False\nassert check_monthnumber_number(12) == False\n",
         "correct": true,
         "task_id": "325",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.",
@@ -687,7 +755,8 @@
         "generated_code": "def list_split(lst, n):\n    return [lst[i::n] for i in range(n)]\n",
         "correct": true,
         "task_id": "125",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.",
@@ -697,7 +766,8 @@
         "generated_code": "def list_split(lst, n):\n    result = [[] for _ in range(n)]\n    for i, element in enumerate(lst):\n        result[i % n].append(element)\n    return result\n\n# Test cases\nassert list_split(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'], 3) == [['a', 'd', 'g', 'j', 'm'], ['b', 'e', 'h', 'k', 'n'], ['c', 'f', 'i', 'l']]\nassert list_split([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], 3) == [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14], [3, 6, 9, 12]]\nassert list_split(['python', 'java', 'C', 'C++', 'DBMS', 'SQL'], 2) == [['python', 'C', 'DBMS'], ['java', 'C++', 'SQL']]\n",
         "correct": true,
         "task_id": "125",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to check if all the elements in tuple have same data type or not.",
@@ -707,7 +777,8 @@
         "generated_code": "def check_type(tup):\n    return len(set(type(x) for x in tup)) == 1\n",
         "correct": true,
         "task_id": "96",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to check if all the elements in tuple have same data type or not.",
@@ -717,7 +788,8 @@
         "generated_code": "def check_type(tup):\n    if not tup:\n        return True  # An empty tuple can be considered as having the same type for all elements.\n    \n    first_type = type(tup[0])\n    for element in tup:\n        if type(element) != first_type:\n            return False\n    return True\n\n# Test cases\nassert check_type((5, 6, 7, 3, 5, 6)) == True\nassert check_type((1, 2, \"4\")) == False\nassert check_type((3, 2, 1, 4, 5)) == True\n",
         "correct": true,
         "task_id": "96",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to check whether the given month number contains 31 days or not.",
@@ -727,7 +799,8 @@
         "generated_code": "def check_monthnumb_number(n):\n    months_31_days = [1, 3, 5, 7, 8, 10, 12]\n    return n in months_31_days\n",
         "correct": true,
         "task_id": "204",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to check whether the given month number contains 31 days or not.",
@@ -737,7 +810,8 @@
         "generated_code": "def check_monthnumb_number(month):\n    # List of months with 31 days\n    months_with_31_days = {1, 3, 5, 7, 8, 10, 12}\n    return month in months_with_31_days\n\n# Test cases\nassert check_monthnumb_number(5) == True\nassert check_monthnumb_number(2) == False\nassert check_monthnumb_number(6) == False\nassert check_monthnumb_number(1) == True\nassert check_monthnumb_number(12) == True\nassert check_monthnumb_number(11) == False\n",
         "correct": true,
         "task_id": "204",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to check whether the given number is undulating or not.",
@@ -747,7 +821,8 @@
         "generated_code": "def is_undulating(n):\n    n = str(n)\n    undulating = True\n    for i in range(1, len(n) - 1):\n        if (n[i-1] < n[i] and n[i] < n[i+1]) or (n[i-1] > n[i] and n[i] > n[i+1]):\n            pass\n        else:\n            undulating = False\n            break\n    return undulating\n",
         "correct": false,
         "task_id": "45",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to check whether the given number is undulating or not.",
@@ -757,7 +832,8 @@
         "generated_code": "def is_undulating(n):\n    s = str(n)\n    if len(s) < 3:\n        return False\n    first_digit = s[0]\n    second_digit = s[1]\n    if first_digit == second_digit:\n        return False\n    \n    for i in range(2, len(s)):\n        if i % 2 == 0 and s[i] != first_digit:\n            return False\n        if i % 2 == 1 and s[i] != second_digit:\n            return False\n            \n    return True\n\n# Test cases\nassert is_undulating(1212121) == True\nassert is_undulating(1991) == False\nassert is_undulating(121) == True\n",
         "correct": false,
         "task_id": "45",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a python function that takes in a tuple and an element and counts the occcurences of the element in the tuple.",
@@ -767,7 +843,8 @@
         "generated_code": "def count_X(tup, elem):\n    return tup.count(elem)\n",
         "correct": true,
         "task_id": "114",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function that takes in a tuple and an element and counts the occcurences of the element in the tuple.",
@@ -777,7 +854,8 @@
         "generated_code": "def count_X(tup, element):\n    return tup.count(element)\n\n# Tests\nassert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),4) == 0\nassert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),10) == 3\nassert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),8) == 4\n",
         "correct": true,
         "task_id": "114",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to sort a list of elements.",
@@ -787,7 +865,8 @@
         "generated_code": "def pancake_sort(arr):\n    n = len(arr)\n    for size in range(n, 0, -1):\n        max_index = arr.index(max(arr[:size]))\n        if max_index != size-1:\n            if max_index != 0:\n                arr[:max_index+1] = arr[:max_index+1][::-1]\n            arr[:size] = arr[:size][::-1]\n    return arr\n",
         "correct": true,
         "task_id": "83",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to sort a list of elements.",
@@ -797,7 +876,8 @@
         "generated_code": "def pancake_sort(arr):\n    def flip(end):\n        start = 0\n        while start < end:\n            arr[start], arr[end] = arr[end], arr[start]\n            start += 1\n            end -= 1\n    \n    def find_max_index(n):\n        max_index = 0\n        for i in range(1, n):\n            if arr[i] > arr[max_index]:\n                max_index = i\n        return max_index\n    \n    n = len(arr)\n    for curr_size in range(n, 1, -1):\n        max_index = find_max_index(curr_size)\n        if max_index != curr_size - 1:\n            flip(max_index)\n            flip(curr_size - 1)\n    \n    return arr\n\n# Test cases\nassert pancake_sort([15, 79, 25, 38, 69]) == [15, 25, 38, 69, 79]\nassert pancake_sort([98, 12, 54, 36, 85]) == [12, 36, 54, 85, 98]\nassert pancake_sort([41, 42, 32, 12, 23]) == [12, 23, 32, 41, 42]\n",
         "correct": true,
         "task_id": "83",
-        "depth": 1
+        "depth": 1,
+        "functions": 3
     },
     {
         "description": "Write a function to check whether a specified list is sorted or not.",
@@ -807,7 +887,8 @@
         "generated_code": "def issort_list(nums):\n    return nums == sorted(nums)\n",
         "correct": true,
         "task_id": "236",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to check whether a specified list is sorted or not.",
@@ -817,7 +898,8 @@
         "generated_code": "def issort_list(lst):\n    for i in range(len(lst) - 1):\n        if lst[i] > lst[i + 1]:\n            return False\n    return True\n\n# Test cases\nassert issort_list([1, 2, 4, 6, 8, 10, 12, 14, 16, 17]) == True\nassert issort_list([1, 2, 4, 6, 8, 10, 12, 14, 20, 17]) == False\nassert issort_list([1, 2, 4, 6, 8, 10, 15, 14, 20]) == False\n",
         "correct": true,
         "task_id": "236",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function that takes in two tuples and subtracts the elements of the first tuple by the elements of the second tuple with the same index.",
@@ -827,7 +909,8 @@
         "generated_code": "def substract_elements(tup1, tup2):\n    return tuple(a - b for a, b in zip(tup1, tup2))\n",
         "correct": true,
         "task_id": "133",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that takes in two tuples and subtracts the elements of the first tuple by the elements of the second tuple with the same index.",
@@ -837,7 +920,8 @@
         "generated_code": "def substract_elements(tup1, tup2):\n    return tuple(a - b for a, b in zip(tup1, tup2))\n\n# Test cases\nassert substract_elements((10, 4, 5), (2, 5, 18)) == (8, -1, -13)\nassert substract_elements((11, 2, 3), (24, 45 ,16)) == (-13, -43, -13)\nassert substract_elements((7, 18, 9), (10, 11, 12)) == (-3, 7, -3)\n",
         "correct": true,
         "task_id": "133",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that takes as input a tuple of numbers (t_1,...,t_{N+1}) and returns a tuple of length N where the i-th element of the tuple is equal to t_i * t_{i+1}.",
@@ -847,7 +931,8 @@
         "generated_code": "def multiply_elements(numbers):\n    return tuple(a * b for a, b in zip(numbers, numbers[1:]))\n",
         "correct": true,
         "task_id": "297",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that takes as input a tuple of numbers (t_1,...,t_{N+1}) and returns a tuple of length N where the i-th element of the tuple is equal to t_i * t_{i+1}.",
@@ -857,7 +942,8 @@
         "generated_code": "def multiply_elements(t):\n    return tuple(t[i] * t[i+1] for i in range(len(t) - 1))\n\n# Test cases\nassert multiply_elements((1, 5, 7, 8, 10)) == (5, 35, 56, 80)\nassert multiply_elements((2, 4, 5, 6, 7)) == (8, 20, 30, 42)\nassert multiply_elements((12, 13, 14, 9, 15)) == (156, 182, 126, 135)\nassert multiply_elements((12,)) == ()\n",
         "correct": true,
         "task_id": "297",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to count the number of occurence of the string 'std' in a given string.",
@@ -867,7 +953,8 @@
         "generated_code": "def count_occurance(s):\n    return s.count(\"std\")\n",
         "correct": true,
         "task_id": "95",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to count the number of occurence of the string 'std' in a given string.",
@@ -877,7 +964,8 @@
         "generated_code": "def count_occurance(s: str) -> int:\n    return s.count('std')\n\n# Test cases to validate the solution\nassert count_occurance(\"letstdlenstdporstd\") == 3\nassert count_occurance(\"truststdsolensporsd\") == 1\nassert count_occurance(\"makestdsostdworthit\") == 2\nassert count_occurance(\"stds\") == 1\nassert count_occurance(\"\") == 0\n",
         "correct": true,
         "task_id": "95",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to check whether the given list contains consecutive numbers or not.",
@@ -887,7 +975,8 @@
         "generated_code": "def check_Consecutive(lst):\n    lst.sort()\n    return all(lst[i] - lst[i-1] == 1 for i in range(1, len(lst))) and len(lst) == len(set(lst))\n",
         "correct": true,
         "task_id": "216",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to check whether the given list contains consecutive numbers or not.",
@@ -897,7 +986,8 @@
         "generated_code": "def check_Consecutive(lst):\n    if not lst:  # If the list is empty, it cannot be consecutive\n        return False\n    \n    lst_sorted = sorted(lst)\n    \n    for i in range(len(lst_sorted) - 1):\n        if lst_sorted[i + 1] - lst_sorted[i] != 1:\n            return False\n    \n    return True\n\n# Test cases\nassert check_Consecutive([1, 2, 3, 4, 5]) == True\nassert check_Consecutive([1, 2, 3, 5, 6]) == False\nassert check_Consecutive([1, 2, 1]) == False\n",
         "correct": true,
         "task_id": "216",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to multiply all the numbers in a list and divide with the length of the list.",
@@ -907,7 +997,8 @@
         "generated_code": "def multiply_num(numbers):\n    product = 1\n    for num in numbers:\n        product *= num\n    return product / len(numbers)\n",
         "correct": true,
         "task_id": "51",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to multiply all the numbers in a list and divide with the length of the list.",
@@ -917,7 +1008,8 @@
         "generated_code": "def multiply_num(numbers):\n    product = 1\n    for num in numbers:\n        product *= num\n    result = product / len(numbers)\n    return result\n\n# Test cases\nimport math\n\nassert math.isclose(multiply_num((8, 2, 3, -1, 7)), -67.2, rel_tol=0.001)\nassert math.isclose(multiply_num((-10, -20, -30)), -2000.0, rel_tol=0.001)\nassert math.isclose(multiply_num((19, 15, 18)), 1710.0, rel_tol=0.001)\n",
         "correct": true,
         "task_id": "51",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to find the ascii value of a character.",
@@ -927,7 +1019,8 @@
         "generated_code": "def ascii_value(char: str) -> int:\n    \"\"\"\n    Returns the ASCII value of a given character.\n    \n    Parameters:\n    char (str): A single character.\n    \n    Returns:\n    int: The ASCII value of the character.\n    \"\"\"\n    return ord(char)\n",
         "correct": true,
         "task_id": "129",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the ascii value of a character.",
@@ -937,7 +1030,8 @@
         "generated_code": "def ascii_value(char):\n    return ord(char)\n\n# Tests\nassert ascii_value('A') == 65\nassert ascii_value('R') == 82\nassert ascii_value('S') == 83\n",
         "correct": true,
         "task_id": "129",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to count the occurence of all elements of list in a tuple.",
@@ -947,7 +1041,8 @@
         "generated_code": "def count_Occurrence(tup, lst):\n    return sum(tup.count(element) for element in lst)\n",
         "correct": true,
         "task_id": "197",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to count the occurence of all elements of list in a tuple.",
@@ -957,7 +1052,8 @@
         "generated_code": "def count_Occurrence(tup, elements):\n    count = sum(tup.count(element) for element in elements)\n    return count\n\n# Test cases\nassert count_Occurrence(('a', 'a', 'c', 'b', 'd'), ['a', 'b']) == 3\nassert count_Occurrence((1, 2, 3, 1, 4, 6, 7, 1, 4), [1, 4, 7]) == 6\nassert count_Occurrence((1, 2, 3, 4, 5, 6), [1, 2]) == 2\n",
         "correct": true,
         "task_id": "197",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to convert a list to a tuple.",
@@ -967,7 +1063,8 @@
         "generated_code": "def list_tuple(input_list):\n    return tuple(input_list)\n",
         "correct": true,
         "task_id": "248",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to convert a list to a tuple.",
@@ -977,7 +1074,8 @@
         "generated_code": "def list_tuple(lst):\n    return tuple(lst)\n\n# Provided test cases\nassert list_tuple([5, 10, 7, 4, 15, 3]) == (5, 10, 7, 4, 15, 3)\nassert list_tuple([2, 4, 5, 6, 2, 3, 4, 4, 7]) == (2, 4, 5, 6, 2, 3, 4, 4, 7)\nassert list_tuple([58, 44, 56]) == (58, 44, 56)\n",
         "correct": true,
         "task_id": "248",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to check whether every odd index contains odd numbers of a given list.",
@@ -987,7 +1085,8 @@
         "generated_code": "def odd_position(lst):\n    for i in range(len(lst)):\n        if i % 2 != 0 and lst[i] % 2 == 0:\n            return False\n    return True\n",
         "correct": true,
         "task_id": "336",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a python function to check whether every odd index contains odd numbers of a given list.",
@@ -997,7 +1096,8 @@
         "generated_code": "def odd_position(lst):\n    # Iterate through the list, checking only elements at odd indices\n    for i in range(1, len(lst), 2):\n        if lst[i] % 2 == 0:\n            return False\n    return True\n\n# Testing the function with the provided test cases\nassert odd_position([2, 1, 4, 3, 6, 7, 6, 3]) == True\nassert odd_position([4, 1, 2]) == True\nassert odd_position([1, 2, 3]) == False\n",
         "correct": true,
         "task_id": "336",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function that takes in a list and an integer L and splits the given list into two parts where the length of the first part of the list is L, and returns the resulting lists in a tuple.",
@@ -1007,7 +1107,8 @@
         "generated_code": "def split_two_parts(lst, L):\n    return lst[:L], lst[L:]\n",
         "correct": true,
         "task_id": "123",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that takes in a list and an integer L and splits the given list into two parts where the length of the first part of the list is L, and returns the resulting lists in a tuple.",
@@ -1017,7 +1118,8 @@
         "generated_code": "def split_two_parts(lst, L):\n    return (lst[:L], lst[L:])\n\n# Tests\nassert split_two_parts([1,1,2,3,4,4,5,1],3) == ([1, 1, 2], [3, 4, 4, 5, 1])\nassert split_two_parts(['a', 'b', 'c', 'd'],2) == (['a', 'b'], ['c', 'd'])\nassert split_two_parts(['p', 'y', 't', 'h', 'o', 'n'],4) == (['p', 'y', 't', 'h'], ['o', 'n'])\n",
         "correct": true,
         "task_id": "123",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to check whether the given number is armstrong or not.",
@@ -1027,7 +1129,8 @@
         "generated_code": "def armstrong_number(num):\n    num_str = str(num)\n    num_len = len(num_str)\n    sum = 0\n    for digit in num_str:\n        sum += int(digit) ** num_len\n    return sum == num\n",
         "correct": true,
         "task_id": "258",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to check whether the given number is armstrong or not.",
@@ -1037,7 +1140,8 @@
         "generated_code": "def armstrong_number(n):\n    # Convert the number to string to easily iterate through its digits\n    num_str = str(n)\n    # Calculate the number of digits\n    num_len = len(num_str)\n    # Calculate the sum of the digits each raised to the power of the number of digits\n    armstrong_sum = sum(int(digit) ** num_len for digit in num_str)\n    # Compare the sum to the original number\n    return armstrong_sum == n\n\n# Tests\nassert armstrong_number(153) == True\nassert armstrong_number(259) == False\nassert armstrong_number(4458) == False\n",
         "correct": true,
         "task_id": "258",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function which given a matrix represented as a list of lists returns the max of the n'th column.",
@@ -1047,7 +1151,8 @@
         "generated_code": "def max_of_nth(matrix, n):\n    return max(row[n-1] for row in matrix)\n",
         "correct": false,
         "task_id": "268",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function which given a matrix represented as a list of lists returns the max of the n'th column.",
@@ -1057,7 +1162,8 @@
         "generated_code": "def max_of_nth(matrix, n):\n    # Extract the nth column (0-indexed)\n    nth_column = [row[n] for row in matrix]\n    # Return the maximum value from the nth column\n    return max(nth_column)\n\n# Test cases\nassert max_of_nth([[5, 6, 7], [1, 3, 5], [8, 9, 19]], 2) == 19\nassert max_of_nth([[6, 7, 8], [2, 4, 6], [9, 10, 20]], 1) == 10\nassert max_of_nth([[7, 8, 9], [3, 5, 7], [10, 11, 21]], 1) == 11\n",
         "correct": true,
         "task_id": "268",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find whether a given array of integers contains any duplicate element.",
@@ -1067,7 +1173,8 @@
         "generated_code": "def test_duplicate(arr):\n    return len(arr) != len(set(arr))\n",
         "correct": true,
         "task_id": "14",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find whether a given array of integers contains any duplicate element.",
@@ -1077,7 +1184,8 @@
         "generated_code": "def test_duplicate(arr):\n    seen = set()\n    for num in arr:\n        if num in seen:\n            return True\n        seen.add(num)\n    return False\n\n# Test cases\nassert test_duplicate([1, 2, 3, 4, 5]) == False\nassert test_duplicate([1, 2, 3, 4, 4]) == True\nassert test_duplicate([1, 1, 2, 2, 3, 3, 4, 4, 5]) == True\n",
         "correct": true,
         "task_id": "14",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a python function takes in an integer and check whether the frequency of each digit in the integer is less than or equal to the digit itself.",
@@ -1087,7 +1195,8 @@
         "generated_code": "def validate(n):\n    str_n = str(n)\n    for digit in str_n:\n        if str_n.count(digit) > int(digit):\n            return False\n    return True",
         "correct": true,
         "task_id": "141",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a python function takes in an integer and check whether the frequency of each digit in the integer is less than or equal to the digit itself.",
@@ -1097,7 +1206,8 @@
         "generated_code": "def validate(n):\n    digit_str = str(n)\n    frequency = {}\n    \n    # Calculate frequency of each digit\n    for digit in digit_str:\n        if digit in frequency:\n            frequency[digit] += 1\n        else:\n            frequency[digit] = 1\n    \n    # Check the condition for each digit\n    for digit, count in frequency.items():\n        if count > int(digit):\n            return False\n    \n    return True\n\n# Tests\nassert validate(1234) == True\nassert validate(51241) == False\nassert validate(321) == True\n",
         "correct": true,
         "task_id": "141",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to round every number of a given list of numbers and print the total sum multiplied by the length of the list.",
@@ -1107,7 +1217,8 @@
         "generated_code": "def round_and_sum(numbers):\n    rounded_numbers = [round(num) for num in numbers]\n    total_sum = sum(rounded_numbers)\n    return total_sum * len(numbers)\n",
         "correct": true,
         "task_id": "178",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to round every number of a given list of numbers and print the total sum multiplied by the length of the list.",
@@ -1117,7 +1228,8 @@
         "generated_code": "def round_and_sum(numbers):\n    rounded_numbers = [round(num) for num in numbers]\n    total_sum = sum(rounded_numbers)\n    result = total_sum * len(numbers)\n    return result\n\n# Tests\nassert round_and_sum([22.4, 4.0, -16.22, -9.10, 11.00, -12.22, 14.20, -5.20, 17.50]) == 243\nassert round_and_sum([5, 2, 9, 24.3, 29]) == 345\nassert round_and_sum([25.0, 56.7, 89.2]) == 513\n",
         "correct": true,
         "task_id": "178",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that takes in a dictionary and integer n and filters the dictionary to only include entries with values greater than or equal to n.",
@@ -1127,7 +1239,8 @@
         "generated_code": "def dict_filter(d, n):\n    return {k: v for k, v in d.items() if v >= n}\n",
         "correct": true,
         "task_id": "136",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that takes in a dictionary and integer n and filters the dictionary to only include entries with values greater than or equal to n.",
@@ -1137,7 +1250,8 @@
         "generated_code": "def dict_filter(d: dict, n: int) -> dict:\n    return {k: v for k, v in d.items() if v >= n}\n\n# Test cases\nassert dict_filter({'Cierra Vega': 175, 'Alden Cantrell': 180, 'Kierra Gentry': 165, 'Pierre Cox': 190}, 170) == {'Cierra Vega': 175, 'Alden Cantrell': 180, 'Pierre Cox': 190}\nassert dict_filter({'Cierra Vega': 175, 'Alden Cantrell': 180, 'Kierra Gentry': 165, 'Pierre Cox': 190}, 180) == {'Alden Cantrell': 180, 'Pierre Cox': 190}\nassert dict_filter({'Cierra Vega': 175, 'Alden Cantrell': 180, 'Kierra Gentry': 165, 'Pierre Cox': 190}, 190) == {'Pierre Cox': 190}\n",
         "correct": true,
         "task_id": "136",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the size of the largest subset of a list of numbers so that every pair is divisible.",
@@ -1147,7 +1261,8 @@
         "generated_code": "def largest_subset(nums):\n    if not nums:\n        return 0\n\n    nums.sort()\n    dp = [1] * len(nums)\n\n    for i in range(1, len(nums)):\n        for j in range(i):\n            if nums[i] % nums[j] == 0:\n                dp[i] = max(dp[i], dp[j] + 1)\n\n    return max(dp)\n",
         "correct": true,
         "task_id": "275",
-        "depth": 2
+        "depth": 2,
+        "functions": 1
     },
     {
         "description": "Write a function to find the size of the largest subset of a list of numbers so that every pair is divisible.",
@@ -1157,7 +1272,8 @@
         "generated_code": "def largest_subset(nums):\n    if not nums:\n        return 0\n\n    nums.sort()\n    dp = [1] * len(nums)\n    \n    for i in range(len(nums)):\n        for j in range(i):\n            if nums[i] % nums[j] == 0:\n                dp[i] = max(dp[i], dp[j] + 1)\n    \n    return max(dp)\n\n# Testing the function with the provided test cases\nassert largest_subset([1, 3, 6, 13, 17, 18]) == 4\nassert largest_subset([10, 5, 3, 15, 20]) == 3\nassert largest_subset([18, 1, 3, 6, 13, 17]) == 4\n",
         "correct": true,
         "task_id": "275",
-        "depth": 2
+        "depth": 2,
+        "functions": 1
     },
     {
         "description": "Write a function to locate the right insertion point for a specified value in sorted order.",
@@ -1167,7 +1283,8 @@
         "generated_code": "def right_insertion(sorted_list, value):\n    for i in range(len(sorted_list)):\n        if sorted_list[i] >= value:\n            return i\n    return len(sorted_list)\n",
         "correct": false,
         "task_id": "344",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to locate the right insertion point for a specified value in sorted order.",
@@ -1177,7 +1294,8 @@
         "generated_code": "import bisect\n\ndef right_insertion(sorted_list, value):\n    return bisect.bisect_right(sorted_list, value)\n\n# Test cases\nassert right_insertion([1,2,4,5],6)==4\nassert right_insertion([1,2,4,5],3)==2\nassert right_insertion([1,2,4,5],7)==4\n",
         "correct": true,
         "task_id": "344",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to find the minimum difference between any two elements in a given array.",
@@ -1187,7 +1305,8 @@
         "generated_code": "def find_min_diff(arr, target):\n    arr = sorted(arr)\n    min_diff = float('inf')\n    for i in range(len(arr) - 1):\n        diff = abs(arr[i] - arr[i + 1])\n        if diff < min_diff:\n            min_diff = diff\n    return min_diff\n",
         "correct": true,
         "task_id": "326",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a python function to find the minimum difference between any two elements in a given array.",
@@ -1197,7 +1316,8 @@
         "generated_code": "def find_min_diff(arr, n):\n    if n < 2:\n        return 0  # If array has less than 2 elements, no valid difference can be found\n    \n    arr = sorted(arr)\n    min_diff = float('inf')\n    \n    for i in range(n - 1):\n        diff = arr[i+1] - arr[i]\n        if diff < min_diff:\n            min_diff = diff\n            \n    return min_diff\n\n# Testing the function based on the provided assertions\nassert find_min_diff((1,5,3,19,18,25),6) == 1\nassert find_min_diff((4,3,2,6),4) == 1\nassert find_min_diff((30,5,20,9),4) == 4\n",
         "correct": true,
         "task_id": "326",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to filter odd numbers.",
@@ -1207,7 +1327,8 @@
         "generated_code": "def filter_oddnumbers(nums):\n  return [num for num in nums if num % 2 != 0]\n",
         "correct": true,
         "task_id": "184",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to filter odd numbers.",
@@ -1217,7 +1338,8 @@
         "generated_code": "def filter_oddnumbers(nums):\n    return [num for num in nums if num % 2 != 0]\n\n# Test cases\nassert filter_oddnumbers([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == [1, 3, 5, 7, 9]\nassert filter_oddnumbers([10, 20, 45, 67, 84, 93]) == [45, 67, 93]\nassert filter_oddnumbers([5, 7, 9, 8, 6, 4, 3]) == [5, 7, 9, 3]\n",
         "correct": true,
         "task_id": "184",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the nth newman\u2013shanks\u2013williams prime number.",
@@ -1227,7 +1349,8 @@
         "generated_code": "def is_prime(n):\n    \"\"\"Check if a number is prime.\"\"\"\n    if n < 2:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\ndef newman_prime(n):\n    \"\"\"Find the nth Newman-Shanks-Williams prime number.\"\"\"\n    if n == 1:\n        return 7  # The first NSW prime is 7\n    \n    # Initialize the count of NSW primes and the current number\n    count = 1\n    num = 7\n    \n    while True:\n        # Check if the current number is a prime number\n        if is_prime(num):\n            # Check if the current prime number is congruent to 1 or 5 modulo 6\n            if num % 6 in [1, 5]:\n                # Increment the count of NSW primes\n                count += 1\n                \n                # If we have found the nth NSW prime, return it\n                if count == n:\n                    return num\n        \n        # Move on to the next number\n        num += 1\n",
         "correct": false,
         "task_id": "121",
-        "depth": 1
+        "depth": 1,
+        "functions": 2
     },
     {
         "description": "Write a function to find the nth newman\u2013shanks\u2013williams prime number.",
@@ -1237,7 +1360,8 @@
         "generated_code": "def newman_prime(n):\n    if n == 0 or n == 1:\n        return 1\n    \n    S0, S1 = 1, 1\n    for i in range(2, n+1):\n        S_next = 2 * S1 + S0\n        S0, S1 = S1, S_next\n    return S1\n\n# Test cases\nassert newman_prime(3) == 7\nassert newman_prime(4) == 17\nassert newman_prime(5) == 41\n",
         "correct": true,
         "task_id": "121",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a python function to find smallest number in a list.",
@@ -1247,7 +1371,8 @@
         "generated_code": "def smallest_num(nums):\n    return min(nums)\n",
         "correct": true,
         "task_id": "21",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to find smallest number in a list.",
@@ -1257,7 +1382,8 @@
         "generated_code": "def smallest_num(lst):\n    return min(lst)\n\n# Tests\nassert smallest_num([10, 20, 1, 45, 99]) == 1\nassert smallest_num([1, 2, 3]) == 1\nassert smallest_num([45, 46, 50, 60]) == 45\n",
         "correct": true,
         "task_id": "21",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to find whether the parity of a given number is odd.",
@@ -1267,7 +1393,8 @@
         "generated_code": "def find_Parity(n):\n    return n % 2 != 0\n",
         "correct": true,
         "task_id": "171",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to find whether the parity of a given number is odd.",
@@ -1277,7 +1404,8 @@
         "generated_code": "def find_Parity(n):\n    return n % 2 != 0\n\n# Test cases\nassert find_Parity(12) == False\nassert find_Parity(7) == True\nassert find_Parity(10) == False\n",
         "correct": true,
         "task_id": "171",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the index of the first occurrence of a given number in a sorted array.",
@@ -1287,7 +1415,8 @@
         "generated_code": "def find_first_occurrence(arr, num):\n    for i, x in enumerate(arr):\n        if x == num:\n            return i\n    return -1  # return -1 if num is not found in the array\n",
         "correct": true,
         "task_id": "302",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to find the index of the first occurrence of a given number in a sorted array.",
@@ -1297,7 +1426,8 @@
         "generated_code": "def find_first_occurrence(arr, target):\n    low, high = 0, len(arr) - 1\n    result = -1\n    while low <= high:\n        mid = (low + high) // 2\n        if arr[mid] == target:\n            result = mid\n            high = mid - 1  # Look on the left side of mid\n        elif arr[mid] < target:\n            low = mid + 1\n        else:\n            high = mid - 1\n    return result\n\n# Test cases\nassert find_first_occurrence([2, 5, 5, 5, 6, 6, 8, 9, 9, 9], 5) == 1\nassert find_first_occurrence([2, 3, 5, 5, 6, 6, 8, 9, 9, 9], 5) == 2\nassert find_first_occurrence([1, 2, 4, 5, 6, 6, 8, 9, 9, 9], 6) == 4\n",
         "correct": true,
         "task_id": "302",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function that takes in two lists and replaces the last element of the first list with the elements of the second list.",
@@ -1307,7 +1437,8 @@
         "generated_code": "def replace_list(list1, list2):\n    if list1:\n        list1[-1:] = list2\n    else:\n        list1 = list2\n    return list1\n",
         "correct": true,
         "task_id": "109",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that takes in two lists and replaces the last element of the first list with the elements of the second list.",
@@ -1317,7 +1448,8 @@
         "generated_code": "def replace_list(list1, list2):\n    return list1[:-1] + list2\n\n# Test cases\nassert replace_list([1, 3, 5, 7, 9, 10],[2, 4, 6, 8]) == [1, 3, 5, 7, 9, 2, 4, 6, 8]\nassert replace_list([1, 2, 3, 4, 5],[5, 6, 7, 8]) == [1, 2, 3, 4, 5, 6, 7, 8]\nassert replace_list([\"red\", \"blue\", \"green\"],[\"yellow\"]) == [\"red\", \"blue\", \"yellow\"]\n",
         "correct": true,
         "task_id": "109",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to check whether the two numbers differ at one bit position only or not.",
@@ -1327,7 +1459,8 @@
         "generated_code": "def differ_At_One_Bit_Pos(num1, num2):\n    return bin(num1 ^ num2).count('1') == 1\n",
         "correct": false,
         "task_id": "4",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to check whether the two numbers differ at one bit position only or not.",
@@ -1337,7 +1470,8 @@
         "generated_code": "def differ_At_One_Bit_Pos(a, b):\n    xor_result = a ^ b\n    return xor_result != 0 and (xor_result & (xor_result - 1)) == 0\n\n# Tests\nassert differ_At_One_Bit_Pos(13, 9) == True\nassert differ_At_One_Bit_Pos(15, 8) == False\nassert differ_At_One_Bit_Pos(2, 4) == False\nassert differ_At_One_Bit_Pos(2, 3) == True\nassert differ_At_One_Bit_Pos(5, 1) == True\nassert differ_At_One_Bit_Pos(1, 5) == True\n",
         "correct": true,
         "task_id": "4",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a python function to find the last position of an element in a sorted array.",
@@ -1347,7 +1481,8 @@
         "generated_code": "def last(arr, target):\n    for i in range(len(arr) - 1, -1, -1):\n        if arr[i] == target:\n            return i\n    return -1\n",
         "correct": false,
         "task_id": "350",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a python function to find the last position of an element in a sorted array.",
@@ -1357,7 +1492,8 @@
         "generated_code": "def last(arr, x):\n    # Iterate through the array from the end to the start\n    for i in range(len(arr) - 1, -1, -1):\n        if arr[i] == x:\n            return i\n    # If the element is not found, return -1 (not specified in tests but good practice)\n    return -1\n\n# Tests\nassert last([1,2,3],1) == 0\nassert last([1,1,1,2,3,4],1) == 2\nassert last([2,2,3,3,6,8,9],3) == 3\n",
         "correct": false,
         "task_id": "350",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to convert rectangular coordinates to polar coordinates.",
@@ -1367,7 +1503,8 @@
         "generated_code": "import math\n\ndef polar_rect(x, y):\n    r = math.hypot(x, y)\n    phi = math.atan2(y, x)\n    return (r, phi)\n",
         "correct": true,
         "task_id": "251",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to convert rectangular coordinates to polar coordinates.",
@@ -1377,7 +1514,8 @@
         "generated_code": "import math\n\ndef polar_rect(x, y):\n    r = math.sqrt(x**2 + y**2)\n    theta = math.atan2(y, x)\n    return (r, theta)\n\n# Test cases\nassert polar_rect(3, 4) == (5.0, 0.9272952180016122)\nassert polar_rect(4, 7) == (8.06225774829855, 1.0516502125483738)\nassert polar_rect(15, 17) == (22.67156809750927, 0.8478169733934057)\n",
         "correct": true,
         "task_id": "251",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to get the sum of the digits of a non-negative integer.",
@@ -1387,7 +1525,8 @@
         "generated_code": "def sum_digits(n):\n    return sum(int(digit) for digit in str(n))\n",
         "correct": true,
         "task_id": "235",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to get the sum of the digits of a non-negative integer.",
@@ -1397,7 +1536,8 @@
         "generated_code": "def sum_digits(n: int) -> int:\n    total = 0\n    while n > 0:\n        total += n % 10\n        n //= 10\n    return total\n\n# Testing the function with the provided test cases\nassert sum_digits(345) == 12\nassert sum_digits(12) == 3\nassert sum_digits(97) == 16\n",
         "correct": true,
         "task_id": "235",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to remove all whitespaces from a string.",
@@ -1407,7 +1547,8 @@
         "generated_code": "def remove_all_spaces(input_str):\n    return input_str.replace(\" \", \"\")\n",
         "correct": true,
         "task_id": "356",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to remove all whitespaces from a string.",
@@ -1417,7 +1558,8 @@
         "generated_code": "def remove_all_spaces(s):\n    return s.replace(\" \", \"\")\n\n# Test cases\nassert remove_all_spaces('python  program') == 'pythonprogram'\nassert remove_all_spaces('python   programming    language') == 'pythonprogramminglanguage'\nassert remove_all_spaces('python                     program') == 'pythonprogram'\nassert remove_all_spaces('   python                     program') == 'pythonprogram'\n",
         "correct": true,
         "task_id": "356",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that takes in a list and element and checks whether all items in the list are equal to the given element.",
@@ -1427,7 +1569,8 @@
         "generated_code": "def check_element(lst, element):\n    return all(item == element for item in lst)\n",
         "correct": true,
         "task_id": "142",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function that takes in a list and element and checks whether all items in the list are equal to the given element.",
@@ -1437,7 +1580,8 @@
         "generated_code": "def check_element(lst, element):\n    for item in lst:\n        if item != element:\n            return False\n    return True\n\n# Test cases\nassert check_element([\"green\", \"orange\", \"black\", \"white\"], 'blue') == False\nassert check_element([1, 2, 3, 4], 7) == False\nassert check_element([\"green\", \"green\", \"green\", \"green\"], 'green') == True\n",
         "correct": true,
         "task_id": "142",
-        "depth": 1
+        "depth": 1,
+        "functions": 1
     },
     {
         "description": "Write a function to add the given tuple to the given list.",
@@ -1447,7 +1591,8 @@
         "generated_code": "def add_tuple(input_list, input_tuple):\n  return input_list + list(input_tuple)\n",
         "correct": true,
         "task_id": "315",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to add the given tuple to the given list.",
@@ -1457,7 +1602,8 @@
         "generated_code": "def add_tuple(lst, tpl):\n    return lst + list(tpl)\n\n# Test cases\nassert add_tuple([5, 6, 7], (9, 10)) == [5, 6, 7, 9, 10]\nassert add_tuple([6, 7, 8], (10, 11)) == [6, 7, 8, 10, 11]\nassert add_tuple([7, 8, 9], (11, 12)) == [7, 8, 9, 11, 12]\n",
         "correct": true,
         "task_id": "315",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to convert a snake case string to camel case string.",
@@ -1467,7 +1613,8 @@
         "generated_code": "def snake_to_camel(snake_case_str):\n    words = snake_case_str.split('_')\n    camel_case_str = ''.join(word.capitalize() for word in words)\n    return camel_case_str\n",
         "correct": false,
         "task_id": "55",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to convert a snake case string to camel case string.",
@@ -1477,7 +1624,8 @@
         "generated_code": "def snake_to_camel(snake_str):\n    components = snake_str.split('_')\n    return ''.join(x.capitalize() for x in components)\n\n# Tests\nassert snake_to_camel('python_program') == 'PythonProgram'\nassert snake_to_camel('python_language') == 'PythonLanguage'\nassert snake_to_camel('programming_language') == 'ProgrammingLanguage'\n",
         "correct": false,
         "task_id": "55",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the area of a rectangle.",
@@ -1487,7 +1635,8 @@
         "generated_code": "def rectangle_area(length, width):\n    return length * width\n",
         "correct": true,
         "task_id": "207",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     },
     {
         "description": "Write a function to find the area of a rectangle.",
@@ -1497,6 +1646,7 @@
         "generated_code": "def rectangle_area(length, width):\n    return length * width\n\n# Test the function with the provided assertions\nassert rectangle_area(10, 20) == 200\nassert rectangle_area(10, 5) == 50\nassert rectangle_area(4, 2) == 8\n",
         "correct": true,
         "task_id": "207",
-        "depth": 0
+        "depth": 0,
+        "functions": 1
     }
 ]

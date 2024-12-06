@@ -1,4 +1,4 @@
-Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,annotated correctness simple,naive no fsl correctness,data file,unique_id,consistency
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,annotated correctness simple,naive no fsl correctness,data file,unique_id,consistency,functions
 62,apps,llama3-70b,gpt-4o-mini-2024-07-18,"After seeing the ""ALL YOUR BASE ARE BELONG TO US"" meme for the first time, numbers X and Y realised that they have different bases, which complicated their relations.
 
 You're given a number X represented in base b_{x} and a number Y represented in base b_{y}. Compare those two numbers.
@@ -76,7 +76,7 @@ elif x > y:
     print('>')
 else:
     print('=')
-",,False,post,True,True,True,True,True,selected_pilot_75_apps.json,62_llama3-70b,1.0
+",,False,post,True,True,True,True,True,selected_pilot_75_apps.json,62_llama3-70b,1.0,1
 62,apps,gpt-4o,gpt-4o-mini-2024-07-18,"After seeing the ""ALL YOUR BASE ARE BELONG TO US"" meme for the first time, numbers X and Y realised that they have different bases, which complicated their relations.
 
 You're given a number X represented in base b_{x} and a number Y represented in base b_{y}. Compare those two numbers.
@@ -157,7 +157,7 @@ elif decimal_x > decimal_y:
     print('>')
 else:
     print('=')
-",,False,post,True,True,False,True,True,selected_pilot_75_apps.json,62_gpt-4o,1.0
+",,False,post,True,True,False,True,True,selected_pilot_75_apps.json,62_gpt-4o,1.0,1
 121,apps,llama3-70b,gpt-4o-mini-2024-07-18,"The process of mammoth's genome decoding in Berland comes to its end!
 
 One of the few remaining tasks is to restore unrecognized nucleotides in a found chain s. Each nucleotide is coded with a capital letter of English alphabet: 'A', 'C', 'G' or 'T'. Unrecognized nucleotides are coded by a question mark '?'. Thus, s is a string consisting of letters 'A', 'C', 'G', 'T' and characters '?'.
@@ -242,7 +242,7 @@ if any(count.values()):
     print('===')
 else:
     print(res)
-",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,121_llama3-70b,0.9
+",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,121_llama3-70b,0.9,0
 121,apps,gpt-4o,gpt-4o-mini-2024-07-18,"The process of mammoth's genome decoding in Berland comes to its end!
 
 One of the few remaining tasks is to restore unrecognized nucleotides in a found chain s. Each nucleotide is coded with a capital letter of English alphabet: 'A', 'C', 'G' or 'T'. Unrecognized nucleotides are coded by a question mark '?'. Thus, s is a string consisting of letters 'A', 'C', 'G', 'T' and characters '?'.
@@ -338,7 +338,7 @@ In the third and the fourth examples it is impossible to decode the genom.","def
     print("""".join(result))
 
 decode_genome()
-",,False,post,True,False,True,True,False,selected_pilot_75_apps.json,121_gpt-4o,0.8
+",,False,post,True,False,True,True,False,selected_pilot_75_apps.json,121_gpt-4o,0.8,1
 130,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Ivan is collecting coins. There are only $N$ different collectible coins, Ivan has $K$ of them. He will be celebrating his birthday soon, so all his $M$ freinds decided to gift him coins. They all agreed to three terms:  Everyone must gift as many coins as others. All coins given to Ivan must be different. Not less than $L$ coins from gifts altogether, must be new in Ivan's collection.
 
 But his friends don't know which coins have Ivan already got in his collection. They don't want to spend money so they want to buy minimum quantity of coins, that satisfy all terms, irrespective of the Ivan's collection. Help them to find this minimum number of coins or define it's not possible to meet all the terms.
@@ -377,7 +377,7 @@ if M >= N - K + 1 and M >= L:
     print(1)
 else:
     print(-1)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,130_llama3-70b,0.9
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,130_llama3-70b,0.9,0
 130,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Ivan is collecting coins. There are only $N$ different collectible coins, Ivan has $K$ of them. He will be celebrating his birthday soon, so all his $M$ freinds decided to gift him coins. They all agreed to three terms:  Everyone must gift as many coins as others. All coins given to Ivan must be different. Not less than $L$ coins from gifts altogether, must be new in Ivan's collection.
 
 But his friends don't know which coins have Ivan already got in his collection. They don't want to spend money so they want to buy minimum quantity of coins, that satisfy all terms, irrespective of the Ivan's collection. Help them to find this minimum number of coins or define it's not possible to meet all the terms.
@@ -430,7 +430,7 @@ if M * min_x <= N - K:
     print(min_x)
 else:
     print(-1)
-",,False,post,False,True,False,True,False,selected_pilot_75_apps.json,130_gpt-4o,0.6
+",,False,post,False,True,False,True,False,selected_pilot_75_apps.json,130_gpt-4o,0.6,0
 200,apps,llama3-70b,gpt-4o-mini-2024-07-18,"The Fair Nut likes kvass very much. On his birthday parents presented him $n$ kegs of kvass. There are $v_i$ liters of kvass in the $i$-th keg. Each keg has a lever. You can pour your glass by exactly $1$ liter pulling this lever. The Fair Nut likes this drink very much, so he wants to pour his glass by $s$ liters of kvass. But he wants to do it, so kvass level in the least keg is as much as possible.
 
 Help him find out how much kvass can be in the least keg or define it's not possible to pour his glass by $s$ liters of kvass.
@@ -497,7 +497,7 @@ if sum(min(low, x) for x in v) != s:
     print(-1)
 else:
     print(low)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,200_llama3-70b,0.8
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,200_llama3-70b,0.8,0
 200,apps,gpt-4o,gpt-4o-mini-2024-07-18,"The Fair Nut likes kvass very much. On his birthday parents presented him $n$ kegs of kvass. There are $v_i$ liters of kvass in the $i$-th keg. Each keg has a lever. You can pour your glass by exactly $1$ liter pulling this lever. The Fair Nut likes this drink very much, so he wants to pour his glass by $s$ liters of kvass. But he wants to do it, so kvass level in the least keg is as much as possible.
 
 Help him find out how much kvass can be in the least keg or define it's not possible to pour his glass by $s$ liters of kvass.
@@ -579,7 +579,7 @@ else:
         min_keg_volume -= (remaining_kvass + n - 1) // n
     
     print(min_keg_volume)
-",,False,post,True,False,True,True,False,selected_pilot_75_apps.json,200_gpt-4o,0.9
+",,False,post,True,False,True,True,False,selected_pilot_75_apps.json,200_gpt-4o,0.9,0
 17,apps,llama3-70b,gpt-4o-mini-2024-07-18,"A string is called bracket sequence if it does not contain any characters other than ""("" and "")"". A bracket sequence is called regular if it it is possible to obtain correct arithmetic expression by inserting characters ""+"" and ""1"" into this sequence. For example, """", ""(())"" and ""()()"" are regular bracket sequences; ""))"" and "")(("" are bracket sequences (but not regular ones), and ""(a)"" and ""(1)+(1)"" are not bracket sequences at all.
 
 You have a number of strings; each string is a bracket sequence of length $2$. So, overall you have $cnt_1$ strings ""(("", $cnt_2$ strings ""()"", $cnt_3$ strings "")("" and $cnt_4$ strings ""))"". You want to write all these strings in some order, one after another; after that, you will get a long bracket sequence of length $2(cnt_1 + cnt_2 + cnt_3 + cnt_4)$. You wonder: is it possible to choose some order of the strings you have such that you will get a regular bracket sequence? Note that you may not remove any characters or strings, and you may not add anything either.
@@ -635,7 +635,7 @@ if cnt3 > cnt1:
     print(0)
 else:
     print(1)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,17_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,17_llama3-70b,1.0,0
 17,apps,gpt-4o,gpt-4o-mini-2024-07-18,"A string is called bracket sequence if it does not contain any characters other than ""("" and "")"". A bracket sequence is called regular if it it is possible to obtain correct arithmetic expression by inserting characters ""+"" and ""1"" into this sequence. For example, """", ""(())"" and ""()()"" are regular bracket sequences; ""))"" and "")(("" are bracket sequences (but not regular ones), and ""(a)"" and ""(1)+(1)"" are not bracket sequences at all.
 
 You have a number of strings; each string is a bracket sequence of length $2$. So, overall you have $cnt_1$ strings ""(("", $cnt_2$ strings ""()"", $cnt_3$ strings "")("" and $cnt_4$ strings ""))"". You want to write all these strings in some order, one after another; after that, you will get a long bracket sequence of length $2(cnt_1 + cnt_2 + cnt_3 + cnt_4)$. You wonder: is it possible to choose some order of the strings you have such that you will get a regular bracket sequence? Note that you may not remove any characters or strings, and you may not add anything either.
@@ -705,7 +705,7 @@ if cnt1 + cnt2 == cnt3 + cnt4 and cnt2 >= cnt3:
     print(1)
 else:
     print(0)
-",,True,post,False,False,False,True,False,selected_pilot_75_apps.json,17_gpt-4o,0.8
+",,True,post,False,False,False,True,False,selected_pilot_75_apps.json,17_gpt-4o,0.8,0
 27,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Wet Shark asked Rat Kwesh to generate three positive real numbers x, y and z, from 0.1 to 200.0, inclusive. Wet Krash wants to impress Wet Shark, so all generated numbers will have exactly one digit after the decimal point.
 
 Wet Shark knows Rat Kwesh will want a lot of cheese. So he will give the Rat an opportunity to earn a lot of cheese. He will hand the three numbers x, y and z to Rat Kwesh, and Rat Kwesh will pick one of the these twelve options:  a_1 = x^{y}^{z};  a_2 = x^{z}^{y};  a_3 = (x^{y})^{z};  a_4 = (x^{z})^{y};  a_5 = y^{x}^{z};  a_6 = y^{z}^{x};  a_7 = (y^{x})^{z};  a_8 = (y^{z})^{x};  a_9 = z^{x}^{y};  a_10 = z^{y}^{x};  a_11 = (z^{x})^{y};  a_12 = (z^{y})^{x}. 
@@ -762,7 +762,7 @@ a12 = (z ** y) ** x
 a = [a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12]
 b = ['x^y^z', 'x^z^y', '(x^y)^z', '(x^z)^y', 'y^x^z', 'y^z^x', '(y^x)^z', '(y^z)^x', 'z^x^y', 'z^y^x', '(z^x)^y', '(z^y)^x']
 
-print(b[a.index(max(a))])",,False,post,False,False,True,True,True,selected_pilot_75_apps.json,27_llama3-70b,0.5
+print(b[a.index(max(a))])",,False,post,False,False,True,True,True,selected_pilot_75_apps.json,27_llama3-70b,0.5,0
 27,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Wet Shark asked Rat Kwesh to generate three positive real numbers x, y and z, from 0.1 to 200.0, inclusive. Wet Krash wants to impress Wet Shark, so all generated numbers will have exactly one digit after the decimal point.
 
 Wet Shark knows Rat Kwesh will want a lot of cheese. So he will give the Rat an opportunity to earn a lot of cheese. He will hand the three numbers x, y and z to Rat Kwesh, and Rat Kwesh will pick one of the these twelve options:  a_1 = x^{y}^{z};  a_2 = x^{z}^{y};  a_3 = (x^{y})^{z};  a_4 = (x^{z})^{y};  a_5 = y^{x}^{z};  a_6 = y^{z}^{x};  a_7 = (y^{x})^{z};  a_8 = (y^{z})^{x};  a_9 = z^{x}^{y};  a_10 = z^{y}^{x};  a_11 = (z^{x})^{y};  a_12 = (z^{y})^{x}. 
@@ -828,7 +828,7 @@ def main():
 
 if __name__ == ""__main__"":
     main()
-",,True,post,False,True,False,False,True,selected_pilot_75_apps.json,27_gpt-4o,0.9
+",,True,post,False,True,False,False,True,selected_pilot_75_apps.json,27_gpt-4o,0.9,1
 71,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Polycarp is crazy about round numbers. He especially likes the numbers divisible by 10^{k}.
 
 In the given number of n Polycarp wants to remove the least number of digits to get a number that is divisible by 10^{k}. For example, if k = 3, in the number 30020 it is enough to delete a single digit (2). In this case, the result is 3000 that is divisible by 10^3 = 1000.
@@ -879,7 +879,7 @@ while n % (10 ** k) != 0:
     w += 1
     n //= 10
 print(w)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,71_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,71_llama3-70b,1.0,0
 71,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Polycarp is crazy about round numbers. He especially likes the numbers divisible by 10^{k}.
 
 In the given number of n Polycarp wants to remove the least number of digits to get a number that is divisible by 10^{k}. For example, if k = 3, in the number 30020 it is enough to delete a single digit (2). In this case, the result is 3000 that is divisible by 10^3 = 1000.
@@ -946,7 +946,7 @@ if count_zeros == k:
 else:
     # If not enough zeros, we need to remove all digits except one
     print(len(n) - 1)
-",,False,post,True,False,False,False,False,selected_pilot_75_apps.json,71_gpt-4o,1.0
+",,False,post,True,False,False,False,False,selected_pilot_75_apps.json,71_gpt-4o,1.0,0
 190,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Salem gave you $n$ sticks with integer positive lengths $a_1, a_2, \ldots, a_n$.
 
 For every stick, you can change its length to any other positive integer length (that is, either shrink or stretch it). The cost of changing the stick's length from $a$ to $b$ is $|a - b|$, where $|x|$ means the absolute value of $x$.
@@ -1017,7 +1017,7 @@ for i in range(mid + 1, 101):
         min_t = i
 
 print(min_t, min_cost)
-",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,190_llama3-70b,0.9
+",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,190_llama3-70b,0.9,0
 190,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Salem gave you $n$ sticks with integer positive lengths $a_1, a_2, \ldots, a_n$.
 
 For every stick, you can change its length to any other positive integer length (that is, either shrink or stretch it). The cost of changing the stick's length from $a$ to $b$ is $|a - b|$, where $|x|$ means the absolute value of $x$.
@@ -1082,7 +1082,7 @@ for t in range(1, 101):
         best_t = t
 
 print(best_t, min_cost)
-",,True,post,True,False,True,True,True,selected_pilot_75_apps.json,190_gpt-4o,0.8
+",,True,post,True,False,True,True,True,selected_pilot_75_apps.json,190_gpt-4o,0.8,0
 285,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Kolya is developing an economy simulator game. His most favourite part of the development process is in-game testing. Once he was entertained by the testing so much, that he found out his game-coin score become equal to 0.
 
 Kolya remembers that at the beginning of the game his game-coin score was equal to n and that he have bought only some houses (for 1 234 567 game-coins each), cars (for 123 456 game-coins each) and computers (for 1 234 game-coins each).
@@ -1125,7 +1125,7 @@ for a in range(n // 1234567 + 1):
             print(""YES"")
             exit()
 print(""NO"")
-",,True,post,True,False,True,True,False,selected_pilot_75_apps.json,285_llama3-70b,0.5
+",,True,post,True,False,True,True,False,selected_pilot_75_apps.json,285_llama3-70b,0.5,0
 285,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Kolya is developing an economy simulator game. His most favourite part of the development process is in-game testing. Once he was entertained by the testing so much, that he found out his game-coin score become equal to 0.
 
 Kolya remembers that at the beginning of the game his game-coin score was equal to n and that he have bought only some houses (for 1 234 567 game-coins each), cars (for 123 456 game-coins each) and computers (for 1 234 game-coins each).
@@ -1186,7 +1186,7 @@ result = can_spend_all_coins(n)
 
 # Print the result
 print(result)
-",,True,post,True,True,True,True,True,selected_pilot_75_apps.json,285_gpt-4o,1.0
+",,True,post,True,True,True,True,True,selected_pilot_75_apps.json,285_gpt-4o,1.0,1
 224,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Let's define a function $f(p)$ on a permutation $p$ as follows. Let $g_i$ be the greatest common divisor (GCD) of elements $p_1$, $p_2$, ..., $p_i$ (in other words, it is the GCD of the prefix of length $i$). Then $f(p)$ is the number of distinct elements among $g_1$, $g_2$, ..., $g_n$.
 
 Let $f_{max}(n)$ be the maximum value of $f(p)$ among all permutations $p$ of integers $1$, $2$, ..., $n$.
@@ -1250,7 +1250,7 @@ def count_permutations(n, f_max_n):
 n = int(input())
 f_max_n = f_max(n)
 print(count_permutations(n, f_max_n))
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,224_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,224_llama3-70b,1.0,3
 224,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Let's define a function $f(p)$ on a permutation $p$ as follows. Let $g_i$ be the greatest common divisor (GCD) of elements $p_1$, $p_2$, ..., $p_i$ (in other words, it is the GCD of the prefix of length $i$). Then $f(p)$ is the number of distinct elements among $g_1$, $g_2$, ..., $g_n$.
 
 Let $f_{max}(n)$ be the maximum value of $f(p)$ among all permutations $p$ of integers $1$, $2$, ..., $n$.
@@ -1309,7 +1309,7 @@ else:
 
 # Print the result
 print(result)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,224_gpt-4o,0.9
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,224_gpt-4o,0.9,1
 1,apps,llama3-70b,gpt-4o-mini-2024-07-18,"An accordion is a string (yes, in the real world accordions are musical instruments, but let's forget about it for a while) which can be represented as a concatenation of: an opening bracket (ASCII code $091$), a colon (ASCII code $058$), some (possibly zero) vertical line characters (ASCII code $124$), another colon, and a closing bracket (ASCII code $093$). The length of the accordion is the number of characters in it.
 
 For example, [::], [:||:] and [:|||:] are accordions having length $4$, $6$ and $7$. (:|:), {:||:}, [:], ]:||:[ are not accordions. 
@@ -1368,7 +1368,7 @@ else:
         if s[i] == '|':
             ans += 1
     print(ans)
-",,False,post,True,False,True,True,False,selected_pilot_75_apps.json,1_llama3-70b,0.6
+",,False,post,True,False,True,True,False,selected_pilot_75_apps.json,1_llama3-70b,0.6,0
 1,apps,gpt-4o,gpt-4o-mini-2024-07-18,"An accordion is a string (yes, in the real world accordions are musical instruments, but let's forget about it for a while) which can be represented as a concatenation of: an opening bracket (ASCII code $091$), a colon (ASCII code $058$), some (possibly zero) vertical line characters (ASCII code $124$), another colon, and a closing bracket (ASCII code $093$). The length of the accordion is the number of characters in it.
 
 For example, [::], [:||:] and [:|||:] are accordions having length $4$, $6$ and $7$. (:|:), {:||:}, [:], ]:||:[ are not accordions. 
@@ -1445,7 +1445,7 @@ else:
         # The length of the accordion is 4 (for '[::]') plus the number of '|' characters
         result = 4 + pipe_count
         print(result)
-",,True,post,True,True,True,True,False,selected_pilot_75_apps.json,1_gpt-4o,0.7
+",,True,post,True,True,True,True,False,selected_pilot_75_apps.json,1_gpt-4o,0.7,0
 132,apps,llama3-70b,gpt-4o-mini-2024-07-18,"There is a beautiful garden of stones in Innopolis.
 
 Its most beautiful place is the $n$ piles with stones numbered from $1$ to $n$.
@@ -1521,7 +1521,7 @@ else:
         print(""Yes"")
     else:
         print(""No"")
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,132_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,132_llama3-70b,1.0,0
 132,apps,gpt-4o,gpt-4o-mini-2024-07-18,"There is a beautiful garden of stones in Innopolis.
 
 Its most beautiful place is the $n$ piles with stones numbered from $1$ to $n$.
@@ -1596,7 +1596,7 @@ if total_y > total_x:
     print(""No"")
 else:
     print(""Yes"")
-",,True,post,True,False,False,False,False,selected_pilot_75_apps.json,132_gpt-4o,1.0
+",,True,post,True,False,False,False,False,selected_pilot_75_apps.json,132_gpt-4o,1.0,0
 217,apps,llama3-70b,gpt-4o-mini-2024-07-18,"You are given a sequence a consisting of n integers. You may partition this sequence into two sequences b and c in such a way that every element belongs exactly to one of these sequences. 
 
 Let B be the sum of elements belonging to b, and C be the sum of elements belonging to c (if some of these sequences is empty, then its sum is 0). What is the maximum possible value of B - C?
@@ -1645,7 +1645,7 @@ for i in range(n):
     else:
         c += a[i]
 print(b - c)
-",,True,post,False,False,False,False,False,selected_pilot_75_apps.json,217_llama3-70b,0.9
+",,True,post,False,False,False,False,False,selected_pilot_75_apps.json,217_llama3-70b,0.9,0
 217,apps,gpt-4o,gpt-4o-mini-2024-07-18,"You are given a sequence a consisting of n integers. You may partition this sequence into two sequences b and c in such a way that every element belongs exactly to one of these sequences. 
 
 Let B be the sum of elements belonging to b, and C be the sum of elements belonging to c (if some of these sequences is empty, then its sum is 0). What is the maximum possible value of B - C?
@@ -1698,7 +1698,7 @@ result = B - C
 
 # Print the result
 print(result)
-",,True,post,True,True,True,False,True,selected_pilot_75_apps.json,217_gpt-4o,0.8
+",,True,post,True,True,True,False,True,selected_pilot_75_apps.json,217_gpt-4o,0.8,0
 296,apps,llama3-70b,gpt-4o-mini-2024-07-18,"You are given a positive integer $n$.
 
 Find a sequence of fractions $\frac{a_i}{b_i}$, $i = 1 \ldots k$ (where $a_i$ and $b_i$ are positive integers) for some $k$ such that:
@@ -1751,7 +1751,7 @@ else:
     print(k)
     print(""1"", n // 2)
     print(""1"", n)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,296_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,296_llama3-70b,1.0,0
 296,apps,gpt-4o,gpt-4o-mini-2024-07-18,"You are given a positive integer $n$.
 
 Find a sequence of fractions $\frac{a_i}{b_i}$, $i = 1 \ldots k$ (where $a_i$ and $b_i$ are positive integers) for some $k$ such that:
@@ -1820,7 +1820,7 @@ def find_sequence(n):
 n = int(input().strip())
 result = find_sequence(n)
 print(result)
-",,True,post,False,False,False,False,False,selected_pilot_75_apps.json,296_gpt-4o,1.0
+",,True,post,False,False,False,False,False,selected_pilot_75_apps.json,296_gpt-4o,1.0,1
 41,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Is it rated?
 
 Here it is. The Ultimate Question of Competitive Programming, Codeforces, and Everything. And you are here to answer it.
@@ -1921,7 +1921,7 @@ elif unrated:
     print(""unrated"")
 else:
     print(""maybe"")
-",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,41_llama3-70b,1.0
+",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,41_llama3-70b,1.0,0
 41,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Is it rated?
 
 Here it is. The Ultimate Question of Competitive Programming, Codeforces, and Everything. And you are here to answer it.
@@ -2024,7 +2024,7 @@ elif is_unrated:
     print(""unrated"")
 else:
     print(""maybe"")
-",,False,post,True,True,True,True,False,selected_pilot_75_apps.json,41_gpt-4o,0.6
+",,False,post,True,True,True,True,False,selected_pilot_75_apps.json,41_gpt-4o,0.6,0
 255,apps,llama3-70b,gpt-4o-mini-2024-07-18,"You are given a string $s$ of length $n$ consisting of lowercase Latin letters. You may apply some operations to this string: in one operation you can delete some contiguous substring of this string, if all letters in the substring you delete are equal. For example, after deleting substring bbbb from string abbbbaccdd we get the string aaccdd.
 
 Calculate the minimum number of operations to delete the whole string $s$.
@@ -2061,7 +2061,7 @@ for i in range(1, n):
     if s[i] != s[i-1]:
         ans += 1
 print(ans)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,255_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,255_llama3-70b,1.0,0
 255,apps,gpt-4o,gpt-4o-mini-2024-07-18,"You are given a string $s$ of length $n$ consisting of lowercase Latin letters. You may apply some operations to this string: in one operation you can delete some contiguous substring of this string, if all letters in the substring you delete are equal. For example, after deleting substring bbbb from string abbbbaccdd we get the string aaccdd.
 
 Calculate the minimum number of operations to delete the whole string $s$.
@@ -2103,7 +2103,7 @@ for i in range(1, n):
         operations += 1
 
 print(operations)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,255_gpt-4o,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,255_gpt-4o,1.0,0
 188,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Petya and Vasya decided to play a game. They have n cards (n is an even number). A single integer is written on each card.
 
 Before the game Petya will choose an integer and after that Vasya will choose another integer (different from the number that Petya chose). During the game each player takes all the cards with number he chose. For example, if Petya chose number 5 before the game he will take all cards on which 5 is written and if Vasya chose number 10 before the game he will take all cards on which 10 is written.
@@ -2203,7 +2203,7 @@ if a1 != -1 and a2 != -1:
     print(""YES"")
     print(a1, a2)
 else:
-    print(""NO"")",,False,post,True,False,False,False,True,selected_pilot_75_apps.json,188_llama3-70b,1.0
+    print(""NO"")",,False,post,True,False,False,False,True,selected_pilot_75_apps.json,188_llama3-70b,1.0,0
 188,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Petya and Vasya decided to play a game. They have n cards (n is an even number). A single integer is written on each card.
 
 Before the game Petya will choose an integer and after that Vasya will choose another integer (different from the number that Petya chose). During the game each player takes all the cards with number he chose. For example, if Petya chose number 5 before the game he will take all cards on which 5 is written and if Vasya chose number 10 before the game he will take all cards on which 10 is written.
@@ -2300,7 +2300,7 @@ else:
         print(unique_numbers[-1], unique_numbers[-2])
     else:
         print(""NO"")
-",,False,post,True,False,False,False,False,selected_pilot_75_apps.json,188_gpt-4o,1.0
+",,False,post,True,False,False,False,False,selected_pilot_75_apps.json,188_gpt-4o,1.0,0
 216,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Polycarp loves lowercase letters and dislikes uppercase ones. Once he got a string s consisting only of lowercase and uppercase Latin letters.
 
 Let A be a set of positions in the string. Let's call it pretty if following conditions are met:  letters on positions from A in the string are all distinct and lowercase;  there are no uppercase letters in the string which are situated between positions from A (i.e. there is no such j that s[j] is an uppercase letter, and a_1 < j < a_2 for some a_1 and a_2 from A). 
@@ -2354,7 +2354,7 @@ In the third example the given string s does not contain any lowercase letters, 
 s = input()
 lowercase = [i for i, c in enumerate(s) if c.islower()]
 print(len(lowercase))
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,216_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,216_llama3-70b,1.0,0
 216,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Polycarp loves lowercase letters and dislikes uppercase ones. Once he got a string s consisting only of lowercase and uppercase Latin letters.
 
 Let A be a set of positions in the string. Let's call it pretty if following conditions are met:  letters on positions from A in the string are all distinct and lowercase;  there are no uppercase letters in the string which are situated between positions from A (i.e. there is no such j that s[j] is an uppercase letter, and a_1 < j < a_2 for some a_1 and a_2 from A). 
@@ -2425,7 +2425,7 @@ for char in s:
 max_count = max(max_count, current_count)
 
 print(max_count)
-",,False,post,True,False,False,True,True,selected_pilot_75_apps.json,216_gpt-4o,0.8
+",,False,post,True,False,False,True,True,selected_pilot_75_apps.json,216_gpt-4o,0.8,0
 167,apps,llama3-70b,gpt-4o-mini-2024-07-18,"There is a matrix A of size x × y filled with integers. For every $i \in [ 1 . . x ]$, $j \in [ 1 . . y ]$ A_{i}, j = y(i - 1) + j. Obviously, every integer from [1..xy] occurs exactly once in this matrix. 
 
 You have traversed some path in this matrix. Your path can be described as a sequence of visited cells a_1, a_2, ..., a_{n} denoting that you started in the cell containing the number a_1, then moved to the cell with the number a_2, and so on.
@@ -2502,7 +2502,7 @@ for x in range(1, 1000001):
             print(x, y)
             exit()
 print(""NO"")
-",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,167_llama3-70b,1.0
+",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,167_llama3-70b,1.0,1
 35,apps,llama3-70b,gpt-4o-mini-2024-07-18,"It's New Year's Eve soon, so Ivan decided it's high time he started setting the table. Ivan has bought two cakes and cut them into pieces: the first cake has been cut into a pieces, and the second one — into b pieces.
 
 Ivan knows that there will be n people at the celebration (including himself), so Ivan has set n plates for the cakes. Now he is thinking about how to distribute the cakes between the plates. Ivan wants to do it in such a way that all following conditions are met:  Each piece of each cake is put on some plate;  Each plate contains at least one piece of cake;  No plate contains pieces of both cakes. 
@@ -2548,7 +2548,7 @@ while True:
         break
     x -= 1
 print(x)
-",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,35_llama3-70b,0.9
+",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,35_llama3-70b,0.9,0
 35,apps,gpt-4o,gpt-4o-mini-2024-07-18,"It's New Year's Eve soon, so Ivan decided it's high time he started setting the table. Ivan has bought two cakes and cut them into pieces: the first cake has been cut into a pieces, and the second one — into b pieces.
 
 Ivan knows that there will be n people at the celebration (including himself), so Ivan has set n plates for the cakes. Now he is thinking about how to distribute the cakes between the plates. Ivan wants to do it in such a way that all following conditions are met:  Each piece of each cake is put on some plate;  Each plate contains at least one piece of cake;  No plate contains pieces of both cakes. 
@@ -2607,7 +2607,7 @@ n, a, b = map(int, input().split())
 
 # Compute and print the result
 print(max_min_pieces(n, a, b))
-",,False,post,True,False,False,False,False,selected_pilot_75_apps.json,35_gpt-4o,1.0
+",,False,post,True,False,False,False,False,selected_pilot_75_apps.json,35_gpt-4o,1.0,2
 254,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Mishka is decorating the Christmas tree. He has got three garlands, and all of them will be put on the tree. After that Mishka will switch these garlands on.
 
 When a garland is switched on, it periodically changes its state — sometimes it is lit, sometimes not. Formally, if i-th garland is switched on during x-th second, then it is lit only during seconds x, x + k_{i}, x + 2k_{i}, x + 3k_{i} and so on.
@@ -2661,7 +2661,7 @@ if lcm % k1 == 0 and lcm % k2 == 0 and lcm % k3 == 0:
     print(""YES"")
 else:
     print(""NO"")
-",,True,post,False,False,True,False,False,selected_pilot_75_apps.json,254_llama3-70b,1.0
+",,True,post,False,False,True,False,False,selected_pilot_75_apps.json,254_llama3-70b,1.0,1
 254,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Mishka is decorating the Christmas tree. He has got three garlands, and all of them will be put on the tree. After that Mishka will switch these garlands on.
 
 When a garland is switched on, it periodically changes its state — sometimes it is lit, sometimes not. Formally, if i-th garland is switched on during x-th second, then it is lit only during seconds x, x + k_{i}, x + 2k_{i}, x + 3k_{i} and so on.
@@ -2716,7 +2716,7 @@ if gcd_all == 1:
     print(""YES"")
 else:
     print(""NO"")
-",,True,post,False,False,False,False,False,selected_pilot_75_apps.json,254_gpt-4o,1.0
+",,True,post,False,False,False,False,False,selected_pilot_75_apps.json,254_gpt-4o,1.0,0
 140,apps,llama3-70b,gpt-4o-mini-2024-07-18,"You are given a directed graph consisting of n vertices and m edges (each edge is directed, so it can be traversed in only one direction). You are allowed to remove at most one edge from it.
 
 Can you make this graph acyclic by removing at most one edge from it? A directed graph is called acyclic iff it doesn't contain any cycle (a non-empty path that starts and ends in the same vertex).
@@ -2798,7 +2798,7 @@ if has_cycle:
     print(""NO"")
 else:
     print(""YES"")
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,140_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,140_llama3-70b,1.0,1
 140,apps,gpt-4o,gpt-4o-mini-2024-07-18,"You are given a directed graph consisting of n vertices and m edges (each edge is directed, so it can be traversed in only one direction). You are allowed to remove at most one edge from it.
 
 Can you make this graph acyclic by removing at most one edge from it? A directed graph is called acyclic iff it doesn't contain any cycle (a non-empty path that starts and ends in the same vertex).
@@ -2895,7 +2895,7 @@ edges = [(int(data[i]), int(data[i+1])) for i in range(2, len(data), 2)]
 # Solve the problem
 result = can_make_acyclic(n, m, edges)
 print(result)
-",,False,post,True,False,False,True,False,selected_pilot_75_apps.json,140_gpt-4o,0.8
+",,False,post,True,False,False,True,False,selected_pilot_75_apps.json,140_gpt-4o,0.8,2
 40,apps,llama3-70b,gpt-4o-mini-2024-07-18,"A string is a palindrome if it reads the same from the left to the right and from the right to the left. For example, the strings ""kek"", ""abacaba"", ""r"" and ""papicipap"" are palindromes, while the strings ""abb"" and ""iq"" are not.
 
 A substring $s[l \ldots r]$ ($1 \leq l \leq r \leq |s|$) of a string $s = s_{1}s_{2} \ldots s_{|s|}$ is the string $s_{l}s_{l + 1} \ldots s_{r}$.
@@ -2953,7 +2953,7 @@ for i in range(n):
         if substr != substr[::-1]:
             max_len = max(max_len, len(substr))
 print(max_len if max_len > 0 else 0)
-",,True,post,True,True,True,True,True,selected_pilot_75_apps.json,40_llama3-70b,0.6
+",,True,post,True,True,True,True,True,selected_pilot_75_apps.json,40_llama3-70b,0.6,0
 40,apps,gpt-4o,gpt-4o-mini-2024-07-18,"A string is a palindrome if it reads the same from the left to the right and from the right to the left. For example, the strings ""kek"", ""abacaba"", ""r"" and ""papicipap"" are palindromes, while the strings ""abb"" and ""iq"" are not.
 
 A substring $s[l \ldots r]$ ($1 \leq l \leq r \leq |s|$) of a string $s = s_{1}s_{2} \ldots s_{|s|}$ is the string $s_{l}s_{l + 1} \ldots s_{r}$.
@@ -3019,7 +3019,7 @@ else:
             print(len(s) - 1)
         else:
             print(0)
-",,False,post,True,False,True,True,False,selected_pilot_75_apps.json,40_gpt-4o,0.8
+",,False,post,True,False,True,True,False,selected_pilot_75_apps.json,40_gpt-4o,0.8,1
 68,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Nauuo is a girl who loves writing comments.
 
 One day, she posted a comment on Codeforces, wondering whether she would get upvotes or downvotes.
@@ -3088,7 +3088,7 @@ elif x == y:
         print(""?"")
 else:
     print(""?"")
-",,True,post,False,True,True,True,False,selected_pilot_75_apps.json,68_llama3-70b,0.7
+",,True,post,False,True,True,True,False,selected_pilot_75_apps.json,68_llama3-70b,0.7,0
 68,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Nauuo is a girl who loves writing comments.
 
 One day, she posted a comment on Codeforces, wondering whether she would get upvotes or downvotes.
@@ -3161,7 +3161,7 @@ elif max_downvotes < min_upvotes:
     print(""+"")
 else:
     print(""?"")
-",,True,post,False,True,True,True,False,selected_pilot_75_apps.json,68_gpt-4o,0.8
+",,True,post,False,True,True,True,False,selected_pilot_75_apps.json,68_gpt-4o,0.8,0
 2,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Anton has the integer x. He is interested what positive integer, which doesn't exceed x, has the maximum sum of digits.
 
 Your task is to help Anton and to find the integer that interests him. If there are several such integers, determine the biggest of them. 
@@ -3206,7 +3206,7 @@ for i in range(1, x + 1):
         max_num = i
 
 print(max_num)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,2_llama3-70b,0.8
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,2_llama3-70b,0.8,0
 2,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Anton has the integer x. He is interested what positive integer, which doesn't exceed x, has the maximum sum of digits.
 
 Your task is to help Anton and to find the integer that interests him. If there are several such integers, determine the biggest of them. 
@@ -3264,7 +3264,7 @@ if sum_candidate > sum_x:
     print(candidate)
 else:
     print(x)
-",,False,post,False,False,True,False,False,selected_pilot_75_apps.json,2_gpt-4o,0.9
+",,False,post,False,False,True,False,False,selected_pilot_75_apps.json,2_gpt-4o,0.9,1
 211,apps,llama3-70b,gpt-4o-mini-2024-07-18,"One spring day on his way to university Lesha found an array A. Lesha likes to split arrays into several parts. This time Lesha decided to split the array A into several, possibly one, new arrays so that the sum of elements in each of the new arrays is not zero. One more condition is that if we place the new arrays one after another they will form the old array A.
 
 Lesha is tired now so he asked you to split the array. Help Lesha!
@@ -3342,7 +3342,7 @@ else:
             k += 1
             l = r
     print(k, l, n)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,211_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,211_llama3-70b,1.0,0
 211,apps,gpt-4o,gpt-4o-mini-2024-07-18,"One spring day on his way to university Lesha found an array A. Lesha likes to split arrays into several parts. This time Lesha decided to split the array A into several, possibly one, new arrays so that the sum of elements in each of the new arrays is not zero. One more condition is that if we place the new arrays one after another they will form the old array A.
 
 Lesha is tired now so he asked you to split the array. Help Lesha!
@@ -3423,7 +3423,7 @@ else:
             break
     else:
         print(""NO"")
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,211_gpt-4o,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,211_gpt-4o,1.0,0
 164,apps,llama3-70b,gpt-4o-mini-2024-07-18,"On the way to Rio de Janeiro Ostap kills time playing with a grasshopper he took with him in a special box. Ostap builds a line of length n such that some cells of this line are empty and some contain obstacles. Then, he places his grasshopper to one of the empty cells and a small insect in another empty cell. The grasshopper wants to eat the insect.
 
 Ostap knows that grasshopper is able to jump to any empty cell that is exactly k cells away from the current (to the left or to the right). Note that it doesn't matter whether intermediate cells are empty or not as the grasshopper makes a jump over them. For example, if k = 1 the grasshopper can jump to a neighboring cell only, and if k = 2 the grasshopper can jump over a single cell.
@@ -3497,7 +3497,7 @@ else:
         print(""YES"")
     else:
         print(""NO"")
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,164_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,164_llama3-70b,1.0,0
 164,apps,gpt-4o,gpt-4o-mini-2024-07-18,"On the way to Rio de Janeiro Ostap kills time playing with a grasshopper he took with him in a special box. Ostap builds a line of length n such that some cells of this line are empty and some contain obstacles. Then, he places his grasshopper to one of the empty cells and a small insect in another empty cell. The grasshopper wants to eat the insect.
 
 Ostap knows that grasshopper is able to jump to any empty cell that is exactly k cells away from the current (to the left or to the right). Note that it doesn't matter whether intermediate cells are empty or not as the grasshopper makes a jump over them. For example, if k = 1 the grasshopper can jump to a neighboring cell only, and if k = 2 the grasshopper can jump over a single cell.
@@ -3582,7 +3582,7 @@ if reachable:
     print(""YES"")
 else:
     print(""NO"")
-",,False,post,True,False,True,True,False,selected_pilot_75_apps.json,164_gpt-4o,0.9
+",,False,post,True,False,True,True,False,selected_pilot_75_apps.json,164_gpt-4o,0.9,0
 102,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Vasya has n burles. One bottle of Ber-Cola costs a burles and one Bars bar costs b burles. He can buy any non-negative integer number of bottles of Ber-Cola and any non-negative integer number of Bars bars.
 
 Find out if it's possible to buy some amount of bottles of Ber-Cola and Bars bars and spend exactly n burles.
@@ -3664,7 +3664,7 @@ for x in range(n // a + 1):
         exit()
 
 print('NO')
-",,True,post,True,False,True,True,True,selected_pilot_75_apps.json,102_llama3-70b,0.6
+",,True,post,True,False,True,True,True,selected_pilot_75_apps.json,102_llama3-70b,0.6,0
 102,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Vasya has n burles. One bottle of Ber-Cola costs a burles and one Bars bar costs b burles. He can buy any non-negative integer number of bottles of Ber-Cola and any non-negative integer number of Bars bars.
 
 Find out if it's possible to buy some amount of bottles of Ber-Cola and Bars bars and spend exactly n burles.
@@ -3755,7 +3755,7 @@ In third example it's impossible to but Ber-Cola and Bars bars in order to spend
 
 if __name__ == ""__main__"":
     main()
-",,True,post,True,True,True,True,True,selected_pilot_75_apps.json,102_gpt-4o,1.0
+",,True,post,True,True,True,True,True,selected_pilot_75_apps.json,102_gpt-4o,1.0,1
 243,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Mr. Santa asks all the great programmers of the world to solve a trivial problem. He gives them an integer m and asks for the number of positive integers n, such that the factorial of n ends with exactly m zeroes. Are you among those great programmers who can solve this problem?
 
 
@@ -3803,7 +3803,7 @@ while True:
     n += 1
 print(len(ans))
 print(' '.join(map(str, ans)))
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,243_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,243_llama3-70b,1.0,0
 243,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Mr. Santa asks all the great programmers of the world to solve a trivial problem. He gives them an integer m and asks for the number of positive integers n, such that the factorial of n ends with exactly m zeroes. Are you among those great programmers who can solve this problem?
 
 
@@ -3881,7 +3881,7 @@ if result:
     print(' '.join(map(str, result)))
 else:
     print(0)
-",,False,post,True,False,False,True,False,selected_pilot_75_apps.json,243_gpt-4o,0.8
+",,False,post,True,False,False,True,False,selected_pilot_75_apps.json,243_gpt-4o,0.8,2
 284,apps,llama3-70b,gpt-4o-mini-2024-07-18,"PolandBall is a young, clever Ball. He is interested in prime numbers. He has stated a following hypothesis: ""There exists such a positive integer n that for each positive integer m number n·m + 1 is a prime number"".
 
 Unfortunately, PolandBall is not experienced yet and doesn't know that his hypothesis is incorrect. Could you prove it wrong? Write a program that finds a counterexample for any n.
@@ -3929,7 +3929,7 @@ for m in range(1, 1001):
     if not is_prime(n * m + 1):
         print(m)
         break
-",,True,post,True,True,True,True,False,selected_pilot_75_apps.json,284_llama3-70b,0.6
+",,True,post,True,True,True,True,False,selected_pilot_75_apps.json,284_llama3-70b,0.6,1
 284,apps,gpt-4o,gpt-4o-mini-2024-07-18,"PolandBall is a young, clever Ball. He is interested in prime numbers. He has stated a following hypothesis: ""There exists such a positive integer n that for each positive integer m number n·m + 1 is a prime number"".
 
 Unfortunately, PolandBall is not experienced yet and doesn't know that his hypothesis is incorrect. Could you prove it wrong? Write a program that finds a counterexample for any n.
@@ -3984,7 +3984,7 @@ for m in range(1, 1001):
     if not is_prime(n * m + 1):
         print(m)
         break
-",,False,post,True,True,True,True,True,selected_pilot_75_apps.json,284_gpt-4o,0.6
+",,False,post,True,True,True,True,True,selected_pilot_75_apps.json,284_gpt-4o,0.6,1
 156,apps,llama3-70b,gpt-4o-mini-2024-07-18,"You might have heard about the next game in Lara Croft series coming out this year. You also might have watched its trailer. Though you definitely missed the main idea about its plot, so let me lift the veil of secrecy.
 
 Lara is going to explore yet another dangerous dungeon. Game designers decided to use good old 2D environment. The dungeon can be represented as a rectangle matrix of n rows and m columns. Cell (x, y) is the cell in the x-th row in the y-th column. Lara can move between the neighbouring by side cells in all four directions.
@@ -4035,7 +4035,7 @@ elif k < n * 2 - 2:
     print(n - (k - n + 1) % (n - 1) - 1, (k - n + 1) // (n - 1) + 1)
 else:
     print(1, 2)
-",,True,post,False,False,False,True,False,selected_pilot_75_apps.json,156_llama3-70b,0.8
+",,True,post,False,False,False,True,False,selected_pilot_75_apps.json,156_llama3-70b,0.8,0
 156,apps,gpt-4o,gpt-4o-mini-2024-07-18,"You might have heard about the next game in Lara Croft series coming out this year. You also might have watched its trailer. Though you definitely missed the main idea about its plot, so let me lift the veil of secrecy.
 
 Lara is going to explore yet another dangerous dungeon. Game designers decided to use good old 2D environment. The dungeon can be represented as a rectangle matrix of n rows and m columns. Cell (x, y) is the cell in the x-th row in the y-th column. Lara can move between the neighbouring by side cells in all four directions.
@@ -4109,7 +4109,7 @@ n, m, k = int(data[0]), int(data[1]), int(data[2])
 
 # Find Lara's position
 find_lara_position(n, m, k)
-",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,156_gpt-4o,0.6
+",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,156_gpt-4o,0.6,1
 10,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Yet another round on DecoForces is coming! Grandpa Maks wanted to participate in it but someone has stolen his precious sofa! And how can one perform well with such a major loss?
 
 Fortunately, the thief had left a note for Grandpa Maks. This note got Maks to the sofa storehouse. Still he had no idea which sofa belongs to him as they all looked the same!
@@ -4214,7 +4214,7 @@ for i, sofa in enumerate(sofas):
         break
 else:
     print(-1)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,10_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,10_llama3-70b,1.0,1
 10,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Yet another round on DecoForces is coming! Grandpa Maks wanted to participate in it but someone has stolen his precious sofa! And how can one perform well with such a major loss?
 
 Fortunately, the thief had left a note for Grandpa Maks. This note got Maks to the sofa storehouse. Still he had no idea which sofa belongs to him as they all looked the same!
@@ -4339,7 +4339,7 @@ for i in range(d):
 
 # Print the result
 print(target_sofa)
-",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,10_gpt-4o,1.0
+",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,10_gpt-4o,1.0,0
 182,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Vasya started working in a machine vision company of IT City. Vasya's team creates software and hardware for identification of people by their face.
 
 One of the project's know-how is a camera rotating around its optical axis on shooting. People see an eye-catching gadget — a rotating camera — come up to it to see it better, look into it. And the camera takes their photo at that time. What could be better for high quality identification?
@@ -4390,7 +4390,7 @@ if x == 0:
     print(0)
 else:
     print((x + 90 - 1) // 90 % 4)
-",,True,post,False,False,False,False,False,selected_pilot_75_apps.json,182_llama3-70b,1.0
+",,True,post,False,False,False,False,False,selected_pilot_75_apps.json,182_llama3-70b,1.0,0
 182,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Vasya started working in a machine vision company of IT City. Vasya's team creates software and hardware for identification of people by their face.
 
 One of the project's know-how is a camera rotating around its optical axis on shooting. People see an eye-catching gadget — a rotating camera — come up to it to see it better, look into it. And the camera takes their photo at that time. What could be better for high quality identification?
@@ -4445,7 +4445,7 @@ normalized_angle = x % 360
 turns = (360 - normalized_angle) // 90 % 4
 
 print(turns)
-",,False,post,False,True,False,False,False,selected_pilot_75_apps.json,182_gpt-4o,1.0
+",,False,post,False,True,False,False,False,selected_pilot_75_apps.json,182_gpt-4o,1.0,0
 143,apps,llama3-70b,gpt-4o-mini-2024-07-18,"A New Year party is not a New Year party without lemonade! As usual, you are expecting a lot of guests, and buying lemonade has already become a pleasant necessity.
 
 Your favorite store sells lemonade in bottles of n different volumes at different costs. A single bottle of type i has volume 2^{i} - 1 liters and costs c_{i} roubles. The number of bottles of each type in the store can be considered infinite.
@@ -4515,7 +4515,7 @@ for i in range(1, L + 1):
             dp[i] = min(dp[i], dp[i - vol] + costs[j])
 
 print(dp[L] if dp[L] != float('inf') else -1)
-",,False,post,False,False,True,False,False,selected_pilot_75_apps.json,143_llama3-70b,0.9
+",,False,post,False,False,True,False,False,selected_pilot_75_apps.json,143_llama3-70b,0.9,0
 143,apps,gpt-4o,gpt-4o-mini-2024-07-18,"A New Year party is not a New Year party without lemonade! As usual, you are expecting a lot of guests, and buying lemonade has already become a pleasant necessity.
 
 Your favorite store sells lemonade in bottles of n different volumes at different costs. A single bottle of type i has volume 2^{i} - 1 liters and costs c_{i} roubles. The number of bottles of each type in the store can be considered infinite.
@@ -4604,7 +4604,7 @@ if __name__ == ""__main__"":
     costs = list(map(int, data[2:2 + n]))
     
     print(min_cost_to_buy_lemonade(n, L, costs))
-",,False,post,True,True,True,True,False,selected_pilot_75_apps.json,143_gpt-4o,0.7
+",,False,post,True,True,True,True,False,selected_pilot_75_apps.json,143_gpt-4o,0.7,1
 29,apps,llama3-70b,gpt-4o-mini-2024-07-18,"The All-Berland National Olympiad in Informatics has just ended! Now Vladimir wants to upload the contest from the Olympiad as a gym to a popular Codehorses website.
 
 Unfortunately, the archive with Olympiad's data is a mess. For example, the files with tests are named arbitrary without any logic.
@@ -4691,7 +4691,7 @@ for i, file in enumerate(regular, start=len(examples) + 1):
 print(len(script))
 for line in script:
     print(line)
-",,True,post,False,True,True,False,False,selected_pilot_75_apps.json,29_llama3-70b,0.9
+",,True,post,False,True,True,False,False,selected_pilot_75_apps.json,29_llama3-70b,0.9,0
 29,apps,gpt-4o,gpt-4o-mini-2024-07-18,"The All-Berland National Olympiad in Informatics has just ended! Now Vladimir wants to upload the contest from the Olympiad as a gym to a popular Codehorses website.
 
 Unfortunately, the archive with Olympiad's data is a mess. For example, the files with tests are named arbitrary without any logic.
@@ -4814,7 +4814,7 @@ moves = rename_files(n, files)
 print(len(moves))
 for move in moves:
     print(move)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,29_gpt-4o,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,29_gpt-4o,1.0,1
 145,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Recently Vasya found a golden ticket — a sequence which consists of $n$ digits $a_1a_2\dots a_n$. Vasya considers a ticket to be lucky if it can be divided into two or more non-intersecting segments with equal sums. For example, ticket $350178$ is lucky since it can be divided into three segments $350$, $17$ and $8$: $3+5+0=1+7=8$. Note that each digit of sequence should belong to exactly one segment.
 
 Help Vasya! Tell him if the golden ticket he found is lucky or not.
@@ -4874,7 +4874,7 @@ if can_divide(ticket):
     print(""YES"")
 else:
     print(""NO"")
-",,False,post,False,True,False,True,True,selected_pilot_75_apps.json,145_llama3-70b,0.6
+",,False,post,False,True,False,True,True,selected_pilot_75_apps.json,145_llama3-70b,0.6,1
 145,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Recently Vasya found a golden ticket — a sequence which consists of $n$ digits $a_1a_2\dots a_n$. Vasya considers a ticket to be lucky if it can be divided into two or more non-intersecting segments with equal sums. For example, ticket $350178$ is lucky since it can be divided into three segments $350$, $17$ and $8$: $3+5+0=1+7=8$. Note that each digit of sequence should belong to exactly one segment.
 
 Help Vasya! Tell him if the golden ticket he found is lucky or not.
@@ -4941,7 +4941,7 @@ ticket = input()
 
 # Print result
 print(is_lucky_ticket(n, ticket))
-",,False,post,True,False,False,True,False,selected_pilot_75_apps.json,145_gpt-4o,1.0
+",,False,post,True,False,False,True,False,selected_pilot_75_apps.json,145_gpt-4o,1.0,2
 56,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Jamie is preparing a Codeforces round. He has got an idea for a problem, but does not know how to solve it. Help him write a solution to the following problem:
 
 Find k integers such that the sum of two to the power of each number equals to the number n and the largest integer in the answer is as small as possible. As there may be multiple answers, you are asked to output the lexicographically largest one. 
@@ -5034,7 +5034,7 @@ else:
         a.sort(reverse=True)
         print(""Yes"")
         print(' '.join(map(str, a)))
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,56_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,56_llama3-70b,1.0,0
 56,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Jamie is preparing a Codeforces round. He has got an idea for a problem, but does not know how to solve it. Help him write a solution to the following problem:
 
 Find k integers such that the sum of two to the power of each number equals to the number n and the largest integer in the answer is as small as possible. As there may be multiple answers, you are asked to output the lexicographically largest one. 
@@ -5142,7 +5142,7 @@ k = int(data[1])
 
 # Finding and printing the sequence
 print(find_sequence(n, k))
-",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,56_gpt-4o,0.8
+",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,56_gpt-4o,0.8,1
 85,apps,llama3-70b,gpt-4o-mini-2024-07-18,"There are n shovels in Polycarp's shop. The i-th shovel costs i burles, that is, the first shovel costs 1 burle, the second shovel costs 2 burles, the third shovel costs 3 burles, and so on. Polycarps wants to sell shovels in pairs.
 
 Visitors are more likely to buy a pair of shovels if their total cost ends with several 9s. Because of this, Polycarp wants to choose a pair of shovels to sell in such a way that the sum of their costs ends with maximum possible number of nines. For example, if he chooses shovels with costs 12345 and 37454, their total cost is 49799, it ends with two nines.
@@ -5197,7 +5197,7 @@ for i in range(1, n // 2 + 1):
     if (i + (n - i)) % 10 ** (len(str(i + (n - i))) - 1) == 0:
         ans += 1
 print(ans)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,85_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,85_llama3-70b,1.0,0
 85,apps,gpt-4o,gpt-4o-mini-2024-07-18,"There are n shovels in Polycarp's shop. The i-th shovel costs i burles, that is, the first shovel costs 1 burle, the second shovel costs 2 burles, the third shovel costs 3 burles, and so on. Polycarps wants to sell shovels in pairs.
 
 Visitors are more likely to buy a pair of shovels if their total cost ends with several 9s. Because of this, Polycarp wants to choose a pair of shovels to sell in such a way that the sum of their costs ends with maximum possible number of nines. For example, if he chooses shovels with costs 12345 and 37454, their total cost is 49799, it ends with two nines.
@@ -5257,7 +5257,7 @@ while (n + 1) % 10 == 0:
 # For each i from 1 to 10^max_9s, there are (n // 10^max_9s) pairs (i, n - i) that sum to something ending with max_9s nines
 pairs = (n + 1) * max_9s
 print(pairs)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,85_gpt-4o,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,85_gpt-4o,1.0,0
 298,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Vasya has got three integers $n$, $m$ and $k$. He'd like to find three integer points $(x_1, y_1)$, $(x_2, y_2)$, $(x_3, y_3)$, such that $0 \le x_1, x_2, x_3 \le n$, $0 \le y_1, y_2, y_3 \le m$ and the area of the triangle formed by these points is equal to $\frac{nm}{k}$.
 
 Help Vasya! Find such points (if it's possible). If there are multiple solutions, print any of them.
@@ -5330,7 +5330,7 @@ if abs(n1*m) >= g:
     print(0, n1*m//g)
     print(m1*m//g, 0)
 else:
-    print(""NO"")",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,298_llama3-70b,0.9
+    print(""NO"")",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,298_llama3-70b,0.9,3
 298,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Vasya has got three integers $n$, $m$ and $k$. He'd like to find three integer points $(x_1, y_1)$, $(x_2, y_2)$, $(x_3, y_3)$, such that $0 \le x_1, x_2, x_3 \le n$, $0 \le y_1, y_2, y_3 \le m$ and the area of the triangle formed by these points is equal to $\frac{nm}{k}$.
 
 Help Vasya! Find such points (if it's possible). If there are multiple solutions, print any of them.
@@ -5398,7 +5398,7 @@ else:
         else:
             print(f""{n} {m // 2}"")
             print(f""0 {m // 2}"")
-",,False,post,False,False,True,False,False,selected_pilot_75_apps.json,298_gpt-4o,1.0
+",,False,post,False,False,True,False,False,selected_pilot_75_apps.json,298_gpt-4o,1.0,0
 289,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Famous Brazil city Rio de Janeiro holds a tennis tournament and Ostap Bender doesn't want to miss this event. There will be n players participating, and the tournament will follow knockout rules from the very first game. That means, that if someone loses a game he leaves the tournament immediately.
 
 Organizers are still arranging tournament grid (i.e. the order games will happen and who is going to play with whom) but they have already fixed one rule: two players can play against each other only if the number of games one of them has already played differs by no more than one from the number of games the other one has already played. Of course, both players had to win all their games in order to continue participating in the tournament.
@@ -5453,7 +5453,7 @@ In the second sample, player 1 can consequently beat players 2 and 3.
 
 In the third sample, player 1 can't play with each other player as after he plays with players 2 and 3 he can't play against player 4, as he has 0 games played, while player 1 already played 2. Thus, the answer is 2 and to achieve we make pairs (1, 2) and (3, 4) and then clash the winners.","n = int(input())
 print(n.bit_length() - 1)
-",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,289_llama3-70b,0.8
+",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,289_llama3-70b,0.8,0
 289,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Famous Brazil city Rio de Janeiro holds a tennis tournament and Ostap Bender doesn't want to miss this event. There will be n players participating, and the tournament will follow knockout rules from the very first game. That means, that if someone loses a game he leaves the tournament immediately.
 
 Organizers are still arranging tournament grid (i.e. the order games will happen and who is going to play with whom) but they have already fixed one rule: two players can play against each other only if the number of games one of them has already played differs by no more than one from the number of games the other one has already played. Of course, both players had to win all their games in order to continue participating in the tournament.
@@ -5514,7 +5514,7 @@ In the third sample, player 1 can't play with each other player as after he play
 max_games = n.bit_length() - 1
 
 print(max_games)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,289_gpt-4o,0.8
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,289_gpt-4o,0.8,0
 110,apps,llama3-70b,gpt-4o-mini-2024-07-18,"While Grisha was celebrating New Year with Ded Moroz, Misha gifted Sasha a small rectangular pond of size n × m, divided into cells of size 1 × 1, inhabited by tiny evil fishes (no more than one fish per cell, otherwise they'll strife!).
 
 The gift bundle also includes a square scoop of size r × r, designed for fishing. If the lower-left corner of the scoop-net is located at cell (x, y), all fishes inside the square (x, y)...(x + r - 1, y + r - 1) get caught. Note that the scoop-net should lie completely inside the pond when used.
@@ -5554,7 +5554,7 @@ Output
 In the first example you can put the fishes in cells (2, 1), (2, 2), (2, 3). In this case, for any of four possible positions of the scoop-net (highlighted with light green), the number of fishes inside is equal to two, and so is the expected value. [Image]","n, m, r, k = map(int, input().split())
 ans = min(k, (n - r + 1) * (m - r + 1))
 print(ans / ((n - r + 1) * (m - r + 1)))
-",,False,post,False,True,False,False,False,selected_pilot_75_apps.json,110_llama3-70b,0.9
+",,False,post,False,True,False,False,False,selected_pilot_75_apps.json,110_llama3-70b,0.9,0
 110,apps,gpt-4o,gpt-4o-mini-2024-07-18,"While Grisha was celebrating New Year with Ded Moroz, Misha gifted Sasha a small rectangular pond of size n × m, divided into cells of size 1 × 1, inhabited by tiny evil fishes (no more than one fish per cell, otherwise they'll strife!).
 
 The gift bundle also includes a square scoop of size r × r, designed for fishing. If the lower-left corner of the scoop-net is located at cell (x, y), all fishes inside the square (x, y)...(x + r - 1, y + r - 1) get caught. Note that the scoop-net should lie completely inside the pond when used.
@@ -5620,7 +5620,7 @@ n, m, r, k = map(int, input().split())
 
 # Print the result
 print(f""{max_expected_fishes(n, m, r, k):.10f}"")
-",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,110_gpt-4o,0.8
+",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,110_gpt-4o,0.8,2
 250,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Valery is a PE teacher at a school in Berland. Soon the students are going to take a test in long jumps, and Valery has lost his favorite ruler! 
 
 However, there is no reason for disappointment, as Valery has found another ruler, its length is l centimeters. The ruler already has n marks, with which he can make measurements. We assume that the marks are numbered from 1 to n in the order they appear from the beginning of the ruler to its end. The first point coincides with the beginning of the ruler and represents the origin. The last mark coincides with the end of the ruler, at distance l from the origin. This ruler can be repesented by an increasing sequence a_1, a_2, ..., a_{n}, where a_{i} denotes the distance of the i-th mark from the origin (a_1 = 0, a_{n} = l).
@@ -5702,7 +5702,7 @@ for i in marks:
 
 print(len(additional_marks))
 print(' '.join(map(str, additional_marks)))
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,250_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,250_llama3-70b,1.0,0
 250,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Valery is a PE teacher at a school in Berland. Soon the students are going to take a test in long jumps, and Valery has lost his favorite ruler! 
 
 However, there is no reason for disappointment, as Valery has found another ruler, its length is l centimeters. The ruler already has n marks, with which he can make measurements. We assume that the marks are numbered from 1 to n in the order they appear from the beginning of the ruler to its end. The first point coincides with the beginning of the ruler and represents the origin. The last mark coincides with the end of the ruler, at distance l from the origin. This ruler can be repesented by an increasing sequence a_1, a_2, ..., a_{n}, where a_{i} denotes the distance of the i-th mark from the origin (a_1 = 0, a_{n} = l).
@@ -5811,7 +5811,7 @@ else:
             result.append(y)
         print(len(result))
         print("" "".join(map(str, result)))
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,250_gpt-4o,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,250_gpt-4o,1.0,0
 222,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Long story short, shashlik is Miroslav's favorite food. Shashlik is prepared on several skewers simultaneously. There are two states for each skewer: initial and turned over.
 
 This time Miroslav laid out $n$ skewers parallel to each other, and enumerated them with consecutive integers from $1$ to $n$ in order from left to right. For better cooking, he puts them quite close to each other, so when he turns skewer number $i$, it leads to turning $k$ closest skewers from each side of the skewer $i$, that is, skewers number $i - k$, $i - k + 1$, ..., $i - 1$, $i + 1$, ..., $i + k - 1$, $i + k$ (if they exist). 
@@ -5861,7 +5861,7 @@ for i in range(l):
     res.append(i * (k * 2 + 1) + 1)
 print(l)
 print(' '.join(map(str, res)))
-",,True,post,False,False,True,False,False,selected_pilot_75_apps.json,222_llama3-70b,0.7
+",,True,post,False,False,True,False,False,selected_pilot_75_apps.json,222_llama3-70b,0.7,0
 222,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Long story short, shashlik is Miroslav's favorite food. Shashlik is prepared on several skewers simultaneously. There are two states for each skewer: initial and turned over.
 
 This time Miroslav laid out $n$ skewers parallel to each other, and enumerated them with consecutive integers from $1$ to $n$ in order from left to right. For better cooking, he puts them quite close to each other, so when he turns skewer number $i$, it leads to turning $k$ closest skewers from each side of the skewer $i$, that is, skewers number $i - k$, $i - k + 1$, ..., $i - 1$, $i + 1$, ..., $i + k - 1$, $i + k$ (if they exist). 
@@ -5921,7 +5921,7 @@ n, k = map(int, input().split())
 
 # Execute function
 turn_skewers(n, k)
-",,True,post,False,False,True,False,False,selected_pilot_75_apps.json,222_gpt-4o,1.0
+",,True,post,False,False,True,False,False,selected_pilot_75_apps.json,222_gpt-4o,1.0,1
 104,apps,llama3-70b,gpt-4o-mini-2024-07-18,"JATC and his friend Giraffe are currently in their room, solving some problems. Giraffe has written on the board an array $a_1$, $a_2$, ..., $a_n$ of integers, such that $1 \le a_1 < a_2 < \ldots < a_n \le 10^3$, and then went to the bathroom.
 
 JATC decided to prank his friend by erasing some consecutive elements in the array. Since he doesn't want for the prank to go too far, he will only erase in a way, such that Giraffe can still restore the array using the information from the remaining elements. Because Giraffe has created the array, he's also aware that it's an increasing array and all the elements are integers in the range $[1, 10^3]$.
@@ -5980,7 +5980,7 @@ for i in range(n):
             max_erase = max(max_erase, j - i - 1)
 
 print(max_erase)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,104_llama3-70b,0.6
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,104_llama3-70b,0.6,0
 104,apps,gpt-4o,gpt-4o-mini-2024-07-18,"JATC and his friend Giraffe are currently in their room, solving some problems. Giraffe has written on the board an array $a_1$, $a_2$, ..., $a_n$ of integers, such that $1 \le a_1 < a_2 < \ldots < a_n \le 10^3$, and then went to the bathroom.
 
 JATC decided to prank his friend by erasing some consecutive elements in the array. Since he doesn't want for the prank to go too far, he will only erase in a way, such that Giraffe can still restore the array using the information from the remaining elements. Because Giraffe has created the array, he's also aware that it's an increasing array and all the elements are integers in the range $[1, 10^3]$.
@@ -6038,7 +6038,7 @@ for i in range(1, n):
     max_erase = max(max_erase, a[i] - a[i-1] - 1)
 
 print(max_erase)
-",,True,post,False,False,False,True,True,selected_pilot_75_apps.json,104_gpt-4o,0.9
+",,True,post,False,False,False,True,True,selected_pilot_75_apps.json,104_gpt-4o,0.9,0
 154,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Polycarp takes part in a math show. He is given n tasks, each consists of k subtasks, numbered 1 through k. It takes him t_{j} minutes to solve the j-th subtask of any task. Thus, time required to solve a subtask depends only on its index, but not on the task itself. Polycarp can solve subtasks in any order.
 
 By solving subtask of arbitrary problem he earns one point. Thus, the number of points for task is equal to the number of solved subtasks in it. Moreover, if Polycarp completely solves the task (solves all k of its subtasks), he recieves one extra point. Thus, total number of points he recieves for the complete solution of the task is k + 1.
@@ -6089,7 +6089,7 @@ for i in range(1, k + 1):
         if j >= t[i - 1]:
             dp[i][j] = max(dp[i][j], dp[i - 1][j - t[i - 1]] + 1)
 print(sum(dp[i][M] for i in range(k + 1)) + sum(1 for i in range(k + 1) if dp[i][M] == i))
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,154_llama3-70b,0.9
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,154_llama3-70b,0.9,0
 154,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Polycarp takes part in a math show. He is given n tasks, each consists of k subtasks, numbered 1 through k. It takes him t_{j} minutes to solve the j-th subtask of any task. Thus, time required to solve a subtask depends only on its index, but not on the task itself. Polycarp can solve subtasks in any order.
 
 By solving subtask of arbitrary problem he earns one point. Thus, the number of points for task is equal to the number of solved subtasks in it. Moreover, if Polycarp completely solves the task (solves all k of its subtasks), he recieves one extra point. Thus, total number of points he recieves for the complete solution of the task is k + 1.
@@ -6176,7 +6176,7 @@ t = list(map(int, data[3:3+k]))
 # Get the result and print it
 result = max_points(n, k, M, t)
 print(result)
-",,True,post,False,True,True,True,False,selected_pilot_75_apps.json,154_gpt-4o,0.5
+",,True,post,False,True,True,True,False,selected_pilot_75_apps.json,154_gpt-4o,0.5,1
 33,apps,llama3-70b,gpt-4o-mini-2024-07-18,"In this problem we assume the Earth to be a completely round ball and its surface a perfect sphere. The length of the equator and any meridian is considered to be exactly 40 000 kilometers. Thus, travelling from North Pole to South Pole or vice versa takes exactly 20 000 kilometers.
 
 Limak, a polar bear, lives on the North Pole. Close to the New Year, he helps somebody with delivering packages all around the world. Instead of coordinates of places to visit, Limak got a description how he should move, assuming that he starts from the North Pole. The description consists of n parts. In the i-th part of his journey, Limak should move t_{i} kilometers in the direction represented by a string dir_{i} that is one of: ""North"", ""South"", ""West"", ""East"".
@@ -6281,7 +6281,7 @@ for _ in range(n):
         print(""NO"")
         exit()
 print(""YES"" if curr_lat == 90 else ""NO"")
-",,False,post,False,True,False,False,False,selected_pilot_75_apps.json,33_llama3-70b,0.9
+",,False,post,False,True,False,False,False,selected_pilot_75_apps.json,33_llama3-70b,0.9,0
 33,apps,gpt-4o,gpt-4o-mini-2024-07-18,"In this problem we assume the Earth to be a completely round ball and its surface a perfect sphere. The length of the equator and any meridian is considered to be exactly 40 000 kilometers. Thus, travelling from North Pole to South Pole or vice versa takes exactly 20 000 kilometers.
 
 Limak, a polar bear, lives on the North Pole. Close to the New Year, he helps somebody with delivering packages all around the world. Instead of coordinates of places to visit, Limak got a description how he should move, assuming that he starts from the North Pole. The description consists of n parts. In the i-th part of his journey, Limak should move t_{i} kilometers in the direction represented by a string dir_{i} that is one of: ""North"", ""South"", ""West"", ""East"".
@@ -6396,7 +6396,7 @@ if valid:
     print(""YES"")
 else:
     print(""NO"")
-",,False,post,True,False,False,False,False,selected_pilot_75_apps.json,33_gpt-4o,0.9
+",,False,post,True,False,False,False,False,selected_pilot_75_apps.json,33_gpt-4o,0.9,0
 158,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Nikolay has a lemons, b apples and c pears. He decided to cook a compote. According to the recipe the fruits should be in the ratio 1: 2: 4. It means that for each lemon in the compote should be exactly 2 apples and exactly 4 pears. You can't crumble up, break up or cut these fruits into pieces. These fruits — lemons, apples and pears — should be put in the compote as whole fruits.
 
 Your task is to determine the maximum total number of lemons, apples and pears from which Nikolay can cook the compote. It is possible that Nikolay can't use any fruits, in this case print 0. 
@@ -6455,7 +6455,7 @@ c = int(input())
 
 min_lemon = min(a, b//2, c//4)
 print(min_lemon + min_lemon*2 + min_lemon*4)
-",,True,post,True,True,True,True,True,selected_pilot_75_apps.json,158_llama3-70b,1.0
+",,True,post,True,True,True,True,True,selected_pilot_75_apps.json,158_llama3-70b,1.0,0
 158,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Nikolay has a lemons, b apples and c pears. He decided to cook a compote. According to the recipe the fruits should be in the ratio 1: 2: 4. It means that for each lemon in the compote should be exactly 2 apples and exactly 4 pears. You can't crumble up, break up or cut these fruits into pieces. These fruits — lemons, apples and pears — should be put in the compote as whole fruits.
 
 Your task is to determine the maximum total number of lemons, apples and pears from which Nikolay can cook the compote. It is possible that Nikolay can't use any fruits, in this case print 0. 
@@ -6523,7 +6523,7 @@ total_fruits = max_lemons * 1 + max_lemons * 2 + max_lemons * 4
 
 # Print the result
 print(total_fruits)
-",,True,post,True,True,True,True,True,selected_pilot_75_apps.json,158_gpt-4o,0.9
+",,True,post,True,True,True,True,True,selected_pilot_75_apps.json,158_gpt-4o,0.9,0
 287,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Let's define a split of $n$ as a nonincreasing sequence of positive integers, the sum of which is $n$. 
 
 For example, the following sequences are splits of $8$: $[4, 4]$, $[3, 3, 2]$, $[2, 2, 1, 1, 1, 1]$, $[5, 2, 1]$.
@@ -6584,7 +6584,7 @@ for i in range(1, int(n**0.5) + 1):
     if i * i == n:
         res -= 1
 print(res)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,287_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,287_llama3-70b,1.0,0
 287,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Let's define a split of $n$ as a nonincreasing sequence of positive integers, the sum of which is $n$. 
 
 For example, the following sequences are splits of $8$: $[4, 4]$, $[3, 3, 2]$, $[2, 2, 1, 1, 1, 1]$, $[5, 2, 1]$.
@@ -6662,7 +6662,7 @@ def count_divisors(num):
     return count
 
 print(count_divisors(n))
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,287_gpt-4o,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,287_gpt-4o,1.0,1
 199,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Pasha has a wooden stick of some positive integer length n. He wants to perform exactly three cuts to get four parts of the stick. Each part must have some positive integer length and the sum of these lengths will obviously be n. 
 
 Pasha likes rectangles but hates squares, so he wonders, how many ways are there to split a stick into four parts so that it's possible to form a rectangle using these parts, but is impossible to form a square.
@@ -6709,7 +6709,7 @@ Four ways to divide the stick in the second sample are {1, 1, 9, 9}, {2, 2, 8, 8
 
 n = int(input())
 print(count_ways(n))
-",,True,post,False,False,False,True,False,selected_pilot_75_apps.json,199_llama3-70b,1.0
+",,True,post,False,False,False,True,False,selected_pilot_75_apps.json,199_llama3-70b,1.0,1
 199,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Pasha has a wooden stick of some positive integer length n. He wants to perform exactly three cuts to get four parts of the stick. Each part must have some positive integer length and the sum of these lengths will obviously be n. 
 
 Pasha likes rectangles but hates squares, so he wonders, how many ways are there to split a stick into four parts so that it's possible to form a rectangle using these parts, but is impossible to form a square.
@@ -6762,7 +6762,7 @@ def count_ways(n):
     return count
 
 print(count_ways(n))
-",,True,post,False,False,True,True,False,selected_pilot_75_apps.json,199_gpt-4o,1.0
+",,True,post,False,False,True,True,False,selected_pilot_75_apps.json,199_gpt-4o,1.0,1
 69,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Vasya has got a robot which is situated on an infinite Cartesian plane, initially in the cell $(0, 0)$. Robot can perform the following four kinds of operations:   U — move from $(x, y)$ to $(x, y + 1)$;  D — move from $(x, y)$ to $(x, y - 1)$;  L — move from $(x, y)$ to $(x - 1, y)$;  R — move from $(x, y)$ to $(x + 1, y)$. 
 
 Vasya also has got a sequence of $n$ operations. Vasya wants to modify this sequence so after performing it the robot will end up in $(x, y)$.
@@ -6853,7 +6853,7 @@ else:
         else:
             res += 1
     print(res)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,69_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,69_llama3-70b,1.0,0
 69,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Vasya has got a robot which is situated on an infinite Cartesian plane, initially in the cell $(0, 0)$. Robot can perform the following four kinds of operations:   U — move from $(x, y)$ to $(x, y + 1)$;  D — move from $(x, y)$ to $(x, y - 1)$;  L — move from $(x, y)$ to $(x - 1, y)$;  R — move from $(x, y)$ to $(x + 1, y)$. 
 
 Vasya also has got a sequence of $n$ operations. Vasya wants to modify this sequence so after performing it the robot will end up in $(x, y)$.
@@ -6971,7 +6971,7 @@ x, y = map(int, input().split())
 # Get the result
 result = min_subsegment_length_to_target(n, operations, x, y)
 print(result)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,69_gpt-4o,0.6
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,69_gpt-4o,0.6,1
 221,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Two positive integers a and b have a sum of s and a bitwise XOR of x. How many possible values are there for the ordered pair (a, b)?
 
 
@@ -7017,7 +7017,7 @@ for a in range(1, s):
     if a ^ b == x:
         count += 1
 print(count)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,221_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,221_llama3-70b,1.0,0
 221,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Two positive integers a and b have a sum of s and a bitwise XOR of x. How many possible values are there for the ordered pair (a, b)?
 
 
@@ -7058,7 +7058,7 @@ In the first sample, we have the following solutions: (2, 7), (3, 6), (6, 3), (7
 
 In the second sample, the only solutions are (1, 2) and (2, 1).","a = b ^ x
 b = a ^ x
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,221_gpt-4o,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,221_gpt-4o,1.0,0
 193,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Memory is now interested in the de-evolution of objects, specifically triangles. He starts with an equilateral triangle of side length x, and he wishes to perform operations to obtain an equilateral triangle of side length y.
 
 In a single second, he can modify the length of a single side of the current triangle such that it remains a non-degenerate triangle (triangle of positive area). At any moment of time, the length of each side should be integer.
@@ -7107,7 +7107,7 @@ In the third sample test, Memory can do: $(22,22,22) \rightarrow(7,22,22) \right
 
 $(7,4,4) \rightarrow(4,4,4)$.","x, y = map(int, input().split())
 print(abs(x - y))
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,193_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,193_llama3-70b,1.0,0
 193,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Memory is now interested in the de-evolution of objects, specifically triangles. He starts with an equilateral triangle of side length x, and he wishes to perform operations to obtain an equilateral triangle of side length y.
 
 In a single second, he can modify the length of a single side of the current triangle such that it remains a non-degenerate triangle (triangle of positive area). At any moment of time, the length of each side should be integer.
@@ -7163,7 +7163,7 @@ $(7,4,4) \rightarrow(4,4,4)$.","x, y = map(int, input().split())
 # and one additional step if there is a remainder.
 
 print((x - y) // 2 + (x - y) % 2)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,193_gpt-4o,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,193_gpt-4o,1.0,0
 81,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Today on Informatics class Nastya learned about GCD and LCM (see links below). Nastya is very intelligent, so she solved all the tasks momentarily and now suggests you to solve one of them as well.
 
 We define a pair of integers (a, b) good, if GCD(a, b) = x and LCM(a, b) = y, where GCD(a, b) denotes the greatest common divisor of a and b, and LCM(a, b) denotes the least common multiple of a and b.
@@ -7225,7 +7225,7 @@ for a in range(l, r + 1):
             count += 1
 
 print(count)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,81_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,81_llama3-70b,1.0,2
 81,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Today on Informatics class Nastya learned about GCD and LCM (see links below). Nastya is very intelligent, so she solved all the tasks momentarily and now suggests you to solve one of them as well.
 
 We define a pair of integers (a, b) good, if GCD(a, b) = x and LCM(a, b) = y, where GCD(a, b) denotes the greatest common divisor of a and b, and LCM(a, b) denotes the least common multiple of a and b.
@@ -7296,7 +7296,7 @@ if __name__ == ""__main__"":
     input = sys.stdin.read
     l, r, x, y = map(int, input().strip().split())
     print(count_good_pairs(l, r, x, y))
-",,True,post,True,False,True,True,True,selected_pilot_75_apps.json,81_gpt-4o,0.7
+",,True,post,True,False,True,True,True,selected_pilot_75_apps.json,81_gpt-4o,0.7,1
 258,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Takahashi wants to grill N pieces of meat on a grilling net, which can be seen as a two-dimensional plane. The coordinates of the i-th piece of meat are \left(x_i, y_i\right), and its hardness is c_i.
 Takahashi can use one heat source to grill the meat. If he puts the heat source at coordinates \left(X, Y\right), where X and Y are real numbers, the i-th piece of meat will be ready to eat in c_i \times \sqrt{\left(X - x_i\right)^2 + \left(Y-y_i\right)^2} seconds.
 Takahashi wants to eat K pieces of meat. Find the time required to have K or more pieces of meat ready if he put the heat source to minimize this time.
@@ -7354,7 +7354,7 @@ def solve():
     return ans
 
 print(solve())
-",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,258_llama3-70b,1.0
+",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,258_llama3-70b,1.0,3
 258,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Takahashi wants to grill N pieces of meat on a grilling net, which can be seen as a two-dimensional plane. The coordinates of the i-th piece of meat are \left(x_i, y_i\right), and its hardness is c_i.
 Takahashi can use one heat source to grill the meat. If he puts the heat source at coordinates \left(X, Y\right), where X and Y are real numbers, the i-th piece of meat will be ready to eat in c_i \times \sqrt{\left(X - x_i\right)^2 + \left(Y-y_i\right)^2} seconds.
 Takahashi wants to eat K pieces of meat. Find the time required to have K or more pieces of meat ready if he put the heat source to minimize this time.
@@ -7445,7 +7445,7 @@ def main():
 
 if __name__ == ""__main__"":
     main()
-",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,258_gpt-4o,1.0
+",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,258_gpt-4o,1.0,3
 13,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Vova has won $n$ trophies in different competitions. Each trophy is either golden or silver. The trophies are arranged in a row.
 
 The beauty of the arrangement is the length of the longest subsegment consisting of golden trophies. Vova wants to swap two trophies (not necessarily adjacent ones) to make the arrangement as beautiful as possible — that means, to maximize the length of the longest such subsegment.
@@ -7534,7 +7534,7 @@ for i in range(n - 1):
         max_beauty_one_swap = max(max_beauty_one_swap, beauty)
 
 print(max(max_beauty, max_beauty_one_swap))
-",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,13_llama3-70b,0.8
+",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,13_llama3-70b,0.8,0
 13,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Vova has won $n$ trophies in different competitions. Each trophy is either golden or silver. The trophies are arranged in a row.
 
 The beauty of the arrangement is the length of the longest subsegment consisting of golden trophies. Vova wants to swap two trophies (not necessarily adjacent ones) to make the arrangement as beautiful as possible — that means, to maximize the length of the longest such subsegment.
@@ -7622,7 +7622,7 @@ trophies = data[1]
 
 # Print output
 print(max_beauty_after_swap(n, trophies))
-",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,13_gpt-4o,0.8
+",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,13_gpt-4o,0.8,1
 72,apps,llama3-70b,gpt-4o-mini-2024-07-18,"On the Literature lesson Sergei noticed an awful injustice, it seems that some students are asked more often than others.
 
 Seating in the class looks like a rectangle, where n rows with m pupils in each. 
@@ -7680,7 +7680,7 @@ min_asked = max(1, max_asked - (n - 1))
 sergei_asked = (k + x - 1) // (2 * n) + ((k + x - 1) % (2 * n) >= n - x + 1)
 
 print(max_asked, min_asked, sergei_asked)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,72_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,72_llama3-70b,1.0,0
 72,apps,gpt-4o,gpt-4o-mini-2024-07-18,"On the Literature lesson Sergei noticed an awful injustice, it seems that some students are asked more often than others.
 
 Seating in the class looks like a rectangle, where n rows with m pupils in each. 
@@ -7783,7 +7783,7 @@ for _ in range(remaining_questions):
                 row += 2
 
 print(max_questions, min_questions, sergei_questions)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,72_gpt-4o,0.8
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,72_gpt-4o,0.8,0
 94,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Bessie the cow and her best friend Elsie each received a sliding puzzle on Pi Day. Their puzzles consist of a 2 × 2 grid and three tiles labeled 'A', 'B', and 'C'. The three tiles sit on top of the grid, leaving one grid cell empty. To make a move, Bessie or Elsie can slide a tile adjacent to the empty cell into the empty cell as shown below: $\rightarrow$ 
 
 In order to determine if they are truly Best Friends For Life (BFFLs), Bessie and Elsie would like to know if there exists a sequence of moves that takes their puzzles to the same configuration (moves can be performed in both puzzles). Two puzzles are considered to be in the same configuration if each tile is on top of the same grid cell in both puzzles. Since the tiles are labeled with letters, rotations and reflections are not allowed.
@@ -7843,7 +7843,7 @@ if is_bffl(puzzle1, puzzle2):
     print(""YES"")
 else:
     print(""NO"")
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,94_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,94_llama3-70b,1.0,1
 94,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Bessie the cow and her best friend Elsie each received a sliding puzzle on Pi Day. Their puzzles consist of a 2 × 2 grid and three tiles labeled 'A', 'B', and 'C'. The three tiles sit on top of the grid, leaving one grid cell empty. To make a move, Bessie or Elsie can slide a tile adjacent to the empty cell into the empty cell as shown below: $\rightarrow$ 
 
 In order to determine if they are truly Best Friends For Life (BFFLs), Bessie and Elsie would like to know if there exists a sequence of moves that takes their puzzles to the same configuration (moves can be performed in both puzzles). Two puzzles are considered to be in the same configuration if each tile is on top of the same grid cell in both puzzles. Since the tiles are labeled with letters, rotations and reflections are not allowed.
@@ -7926,7 +7926,7 @@ if bessie_reachable & elsie_reachable:
     print(""YES"")
 else:
     print(""NO"")
-",,True,post,True,False,True,False,False,selected_pilot_75_apps.json,94_gpt-4o,0.9
+",,True,post,True,False,True,False,False,selected_pilot_75_apps.json,94_gpt-4o,0.9,2
 128,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Summer holidays! Someone is going on trips, someone is visiting grandparents, but someone is trying to get a part-time job. This summer Noora decided that she wants to earn some money, and took a job in a shop as an assistant.
 
 Shop, where Noora is working, has a plan on the following n days. For each day sales manager knows exactly, that in i-th day k_{i} products will be put up for sale and exactly l_{i} clients will come to the shop that day. Also, the manager is sure, that everyone, who comes to the shop, buys exactly one product or, if there aren't any left, leaves the shop without buying anything. Moreover, due to the short shelf-life of the products, manager established the following rule: if some part of the products left on the shelves at the end of the day, that products aren't kept on the next day and are sent to the dump.
@@ -7989,7 +7989,7 @@ for i in range(n):
         sold += min(days[i][0], days[i][1])
 
 print(sold)
-",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,128_llama3-70b,0.7
+",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,128_llama3-70b,0.7,0
 128,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Summer holidays! Someone is going on trips, someone is visiting grandparents, but someone is trying to get a part-time job. This summer Noora decided that she wants to earn some money, and took a job in a shop as an assistant.
 
 Shop, where Noora is working, has a plan on the following n days. For each day sales manager knows exactly, that in i-th day k_{i} products will be put up for sale and exactly l_{i} clients will come to the shop that day. Also, the manager is sure, that everyone, who comes to the shop, buys exactly one product or, if there aren't any left, leaves the shop without buying anything. Moreover, due to the short shelf-life of the products, manager established the following rule: if some part of the products left on the shelves at the end of the day, that products aren't kept on the next day and are sent to the dump.
@@ -8066,7 +8066,7 @@ result = max_sold_products(n, f, days)
 
 # Print the result
 print(result)
-",,True,post,True,True,True,True,True,selected_pilot_75_apps.json,128_gpt-4o,0.8
+",,True,post,True,True,True,True,True,selected_pilot_75_apps.json,128_gpt-4o,0.8,1
 65,apps,llama3-70b,gpt-4o-mini-2024-07-18,"One day Kefa found n baloons. For convenience, we denote color of i-th baloon as s_{i} — lowercase letter of the Latin alphabet. Also Kefa has k friends. Friend will be upset, If he get two baloons of the same color. Kefa want to give out all baloons to his friends. Help Kefa to find out, can he give out all his baloons, such that no one of his friens will be upset — print «YES», if he can, and «NO», otherwise. Note, that Kefa's friend will not upset, if he doesn't get baloons at all.
 
 
@@ -8120,7 +8120,7 @@ if max_color_count <= k:
     print(""YES"")
 else:
     print(""NO"")
-",,True,post,True,False,True,True,False,selected_pilot_75_apps.json,65_llama3-70b,1.0
+",,True,post,True,False,True,True,False,selected_pilot_75_apps.json,65_llama3-70b,1.0,0
 65,apps,gpt-4o,gpt-4o-mini-2024-07-18,"One day Kefa found n baloons. For convenience, we denote color of i-th baloon as s_{i} — lowercase letter of the Latin alphabet. Also Kefa has k friends. Friend will be upset, If he get two baloons of the same color. Kefa want to give out all baloons to his friends. Help Kefa to find out, can he give out all his baloons, such that no one of his friens will be upset — print «YES», if he can, and «NO», otherwise. Note, that Kefa's friend will not upset, if he doesn't get baloons at all.
 
 
@@ -8183,7 +8183,7 @@ if can_distribute:
     print(""YES"")
 else:
     print(""NO"")
-",,True,post,True,False,True,True,True,selected_pilot_75_apps.json,65_gpt-4o,0.7
+",,True,post,True,False,True,True,True,selected_pilot_75_apps.json,65_gpt-4o,0.7,0
 225,apps,llama3-70b,gpt-4o-mini-2024-07-18,"One day, the Grasshopper was jumping on the lawn and found a piece of paper with a string. Grasshopper became interested what is the minimum jump ability he should have in order to be able to reach the far end of the string, jumping only on vowels of the English alphabet. Jump ability is the maximum possible length of his jump. 
 
 Formally, consider that at the begginning the Grasshopper is located directly in front of the leftmost character of the string. His goal is to reach the position right after the rightmost character of the string. In one jump the Grasshopper could jump to the right any distance from 1 to the value of his jump ability. [Image] The picture corresponds to the first example. 
@@ -8226,7 +8226,7 @@ for i in range(n):
 if last_vowel != n - 1:
     max_jump = max(max_jump, (n - last_vowel) // 2 + 1)
 print(max_jump)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,225_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,225_llama3-70b,1.0,0
 225,apps,gpt-4o,gpt-4o-mini-2024-07-18,"One day, the Grasshopper was jumping on the lawn and found a piece of paper with a string. Grasshopper became interested what is the minimum jump ability he should have in order to be able to reach the far end of the string, jumping only on vowels of the English alphabet. Jump ability is the maximum possible length of his jump. 
 
 Formally, consider that at the begginning the Grasshopper is located directly in front of the leftmost character of the string. His goal is to reach the position right after the rightmost character of the string. In one jump the Grasshopper could jump to the right any distance from 1 to the value of his jump ability. [Image] The picture corresponds to the first example. 
@@ -8269,7 +8269,7 @@ Output
 
 s = input()
 print(min_jump_ability(s))
-",,False,post,True,False,False,True,False,selected_pilot_75_apps.json,225_gpt-4o,0.5
+",,False,post,True,False,False,True,False,selected_pilot_75_apps.json,225_gpt-4o,0.5,1
 6,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Luba is surfing the Internet. She currently has n opened tabs in her browser, indexed from 1 to n from left to right. The mouse cursor is currently located at the pos-th tab. Luba needs to use the tabs with indices from l to r (inclusive) for her studies, and she wants to close all the tabs that don't belong to this segment as fast as possible.
 
 Each second Luba can either try moving the cursor to the left or to the right (if the cursor is currently at the tab i, then she can move it to the tab max(i - 1, a) or to the tab min(i + 1, b)) or try closing all the tabs to the left or to the right of the cursor (if the cursor is currently at the tab i, she can close all the tabs with indices from segment [a, i - 1] or from segment [i + 1, b]). In the aforementioned expressions a and b denote the minimum and maximum index of an unclosed tab, respectively. For example, if there were 7 tabs initially and tabs 1, 2 and 7 are closed, then a = 3, b = 6.
@@ -8322,7 +8322,7 @@ if pos > r:
     ans += pos - r
 ans += min(pos - 1, n - r) + max(0, l - 1)
 print(ans)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,6_llama3-70b,0.9
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,6_llama3-70b,0.9,0
 6,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Luba is surfing the Internet. She currently has n opened tabs in her browser, indexed from 1 to n from left to right. The mouse cursor is currently located at the pos-th tab. Luba needs to use the tabs with indices from l to r (inclusive) for her studies, and she wants to close all the tabs that don't belong to this segment as fast as possible.
 
 Each second Luba can either try moving the cursor to the left or to the right (if the cursor is currently at the tab i, then she can move it to the tab max(i - 1, a) or to the tab min(i + 1, b)) or try closing all the tabs to the left or to the right of the cursor (if the cursor is currently at the tab i, she can close all the tabs with indices from segment [a, i - 1] or from segment [i + 1, b]). In the aforementioned expressions a and b denote the minimum and maximum index of an unclosed tab, respectively. For example, if there were 7 tabs initially and tabs 1, 2 and 7 are closed, then a = 3, b = 6.
@@ -8387,7 +8387,7 @@ else:
     close_both_sides = min(move_to_l + (r - l + 2), move_to_r + (r - l + 2))
     print(close_both_sides)
 
-",,False,post,True,False,False,True,False,selected_pilot_75_apps.json,6_gpt-4o,0.9
+",,False,post,True,False,False,True,False,selected_pilot_75_apps.json,6_gpt-4o,0.9,0
 207,apps,llama3-70b,gpt-4o-mini-2024-07-18,"A frog is initially at position $0$ on the number line. The frog has two positive integers $a$ and $b$. From a position $k$, it can either jump to position $k+a$ or $k-b$.
 
 Let $f(x)$ be the number of distinct integers the frog can reach if it never jumps on an integer outside the interval $[0, x]$. The frog doesn't need to visit all these integers in one trip, that is, an integer is counted if the frog can somehow reach it if it starts from $0$.
@@ -8447,7 +8447,7 @@ for i in range(m+1):
     if i-b >= 0:
         dp[i] += dp[i-b]
 print(sum(dp))
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,207_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,207_llama3-70b,1.0,0
 207,apps,gpt-4o,gpt-4o-mini-2024-07-18,"A frog is initially at position $0$ on the number line. The frog has two positive integers $a$ and $b$. From a position $k$, it can either jump to position $k+a$ or $k-b$.
 
 Let $f(x)$ be the number of distinct integers the frog can reach if it never jumps on an integer outside the interval $[0, x]$. The frog doesn't need to visit all these integers in one trip, that is, an integer is counted if the frog can somehow reach it if it starts from $0$.
@@ -8530,7 +8530,7 @@ result = sum_frog_reachable_positions(m, a, b)
 
 # Printing the result
 print(result)
-",,True,post,False,False,True,True,False,selected_pilot_75_apps.json,207_gpt-4o,0.8
+",,True,post,False,False,True,True,False,selected_pilot_75_apps.json,207_gpt-4o,0.8,2
 101,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Innocentius has a problem — his computer monitor has broken. Now some of the pixels are ""dead"", that is, they are always black. As consequence, Innocentius can't play the usual computer games. He is recently playing the following game with his younger brother Polycarpus.
 
 Innocentius is touch-typing a program that paints a white square one-pixel wide frame on the black screen. As the monitor is broken, some pixels that should be white remain black. Polycarpus should look at what the program displayed on the screen and guess the position and size of the frame Innocentius has painted. Polycarpus doesn't like the game but Innocentius persuaded brother to play as ""the game is good for the imagination and attention"".
@@ -8627,7 +8627,7 @@ else:
                 pixels[i][j] = '.'
     for row in pixels:
         print(''.join(row))
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,101_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,101_llama3-70b,1.0,0
 101,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Innocentius has a problem — his computer monitor has broken. Now some of the pixels are ""dead"", that is, they are always black. As consequence, Innocentius can't play the usual computer games. He is recently playing the following game with his younger brother Polycarpus.
 
 Innocentius is touch-typing a program that paints a white square one-pixel wide frame on the black screen. As the monitor is broken, some pixels that should be white remain black. Polycarpus should look at what the program displayed on the screen and guess the position and size of the frame Innocentius has painted. Polycarpus doesn't like the game but Innocentius persuaded brother to play as ""the game is good for the imagination and attention"".
@@ -8751,7 +8751,7 @@ if result == -1:
 else:
     for row in result:
         print(''.join(row))
-",,True,post,False,False,False,True,False,selected_pilot_75_apps.json,101_gpt-4o,1.0
+",,True,post,False,False,False,True,False,selected_pilot_75_apps.json,101_gpt-4o,1.0,1
 276,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Piegirl got bored with binary, decimal and other integer based counting systems. Recently she discovered some interesting properties about number $q = \frac{\sqrt{5} + 1}{2}$, in particular that q^2 = q + 1, and she thinks it would make a good base for her new unique system. She called it ""golden system"". In golden system the number is a non-empty string containing 0's and 1's as digits. The decimal value of expression a_0a_1...a_{n} equals to $\sum_{i = 0}^{n} a_{i} \cdot q^{n - i}$.
 
 Soon Piegirl found out that this system doesn't have same properties that integer base systems do and some operations can not be performed on it. She wasn't able to come up with a fast way of comparing two numbers. She is asking for your help.
@@ -8818,7 +8818,7 @@ elif decimal_a < decimal_b:
     print('<')
 else:
     print('=')
-",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,276_llama3-70b,0.8
+",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,276_llama3-70b,0.8,1
 276,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Piegirl got bored with binary, decimal and other integer based counting systems. Recently she discovered some interesting properties about number $q = \frac{\sqrt{5} + 1}{2}$, in particular that q^2 = q + 1, and she thinks it would make a good base for her new unique system. She called it ""golden system"". In golden system the number is a non-empty string containing 0's and 1's as digits. The decimal value of expression a_0a_1...a_{n} equals to $\sum_{i = 0}^{n} a_{i} \cdot q^{n - i}$.
 
 Soon Piegirl found out that this system doesn't have same properties that integer base systems do and some operations can not be performed on it. She wasn't able to come up with a fast way of comparing two numbers. She is asking for your help.
@@ -8885,7 +8885,7 @@ elif value1 < value2:
     print(""<"")
 else:
     print(""="")
-",,True,post,False,True,True,True,False,selected_pilot_75_apps.json,276_gpt-4o,0.6
+",,True,post,False,True,True,True,False,selected_pilot_75_apps.json,276_gpt-4o,0.6,1
 291,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Little Sofia is in fourth grade. Today in the geometry lesson she learned about segments and squares. On the way home, she decided to draw $n$ squares in the snow with a side length of $1$. For simplicity, we assume that Sofia lives on a plane and can draw only segments of length $1$, parallel to the coordinate axes, with vertices at integer points.
 
 In order to draw a segment, Sofia proceeds as follows. If she wants to draw a vertical segment with the coordinates of the ends $(x, y)$ and $(x, y+1)$. Then Sofia looks if there is already a drawn segment with the coordinates of the ends $(x', y)$ and $(x', y+1)$ for some $x'$. If such a segment exists, then Sofia quickly draws a new segment, using the old one as a guideline. If there is no such segment, then Sofia has to take a ruler and measure a new segment for a long time. Same thing happens when Sofia wants to draw a horizontal segment, but only now she checks for the existence of a segment with the same coordinates $x$, $x+1$ and the differing coordinate $y$.
@@ -8930,7 +8930,7 @@ Input
 Output
 4","n = int(input())
 print(2 * (n.bit_length() - 1) + 2)
-",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,291_llama3-70b,1.0
+",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,291_llama3-70b,1.0,0
 291,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Little Sofia is in fourth grade. Today in the geometry lesson she learned about segments and squares. On the way home, she decided to draw $n$ squares in the snow with a side length of $1$. For simplicity, we assume that Sofia lives on a plane and can draw only segments of length $1$, parallel to the coordinate axes, with vertices at integer points.
 
 In order to draw a segment, Sofia proceeds as follows. If she wants to draw a vertical segment with the coordinates of the ends $(x, y)$ and $(x, y+1)$. Then Sofia looks if there is already a drawn segment with the coordinates of the ends $(x', y)$ and $(x', y+1)$ for some $x'$. If such a segment exists, then Sofia quickly draws a new segment, using the old one as a guideline. If there is no such segment, then Sofia has to take a ruler and measure a new segment for a long time. Same thing happens when Sofia wants to draw a horizontal segment, but only now she checks for the existence of a segment with the same coordinates $x$, $x+1$ and the differing coordinate $y$.
@@ -8990,7 +8990,7 @@ n = int(input().strip())
 
 # Output the result
 print(min_segments(n))
-",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,291_gpt-4o,0.9
+",,False,post,False,False,True,True,False,selected_pilot_75_apps.json,291_gpt-4o,0.9,1
 115,apps,llama3-70b,gpt-4o-mini-2024-07-18,"You are given two matrices $A$ and $B$. Each matrix contains exactly $n$ rows and $m$ columns. Each element of $A$ is either $0$ or $1$; each element of $B$ is initially $0$.
 
 You may perform some operations with matrix $B$. During each operation, you choose any submatrix of $B$ having size $2 \times 2$, and replace every element in the chosen submatrix with $1$. In other words, you choose two integers $x$ and $y$ such that $1 \le x < n$ and $1 \le y < m$, and then set $B_{x, y}$, $B_{x, y + 1}$, $B_{x + 1, y}$ and $B_{x + 1, y + 1}$ to $1$.
@@ -9066,7 +9066,7 @@ else:
     print(len(ops))
     for op in ops:
         print(op[0], op[1])
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,115_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,115_llama3-70b,1.0,0
 115,apps,gpt-4o,gpt-4o-mini-2024-07-18,"You are given two matrices $A$ and $B$. Each matrix contains exactly $n$ rows and $m$ columns. Each element of $A$ is either $0$ or $1$; each element of $B$ is initially $0$.
 
 You may perform some operations with matrix $B$. During each operation, you choose any submatrix of $B$ having size $2 \times 2$, and replace every element in the chosen submatrix with $1$. In other words, you choose two integers $x$ and $y$ such that $1 \le x < n$ and $1 \le y < m$, and then set $B_{x, y}$, $B_{x, y + 1}$, $B_{x + 1, y}$ and $B_{x + 1, y + 1}$ to $1$.
@@ -9166,7 +9166,7 @@ if __name__ == ""__main__"":
         A.append(row)
     
     transform_matrix(n, m, A)
-",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,115_gpt-4o,1.0
+",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,115_gpt-4o,1.0,1
 292,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Bear Limak wants to become the largest of bears, or at least to become larger than his brother Bob.
 
 Right now, Limak and Bob weigh a and b respectively. It's guaranteed that Limak's weight is smaller than or equal to his brother's weight.
@@ -9220,7 +9220,7 @@ while a <= b:
     b *= 2
     years += 1
 print(years)
-",,True,post,True,True,True,True,False,selected_pilot_75_apps.json,292_llama3-70b,0.9
+",,True,post,True,True,True,True,False,selected_pilot_75_apps.json,292_llama3-70b,0.9,0
 292,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Bear Limak wants to become the largest of bears, or at least to become larger than his brother Bob.
 
 Right now, Limak and Bob weigh a and b respectively. It's guaranteed that Limak's weight is smaller than or equal to his brother's weight.
@@ -9277,7 +9277,7 @@ while a <= b:
     years += 1
 
 print(years)
-",,True,post,True,True,True,True,True,selected_pilot_75_apps.json,292_gpt-4o,0.7
+",,True,post,True,True,True,True,True,selected_pilot_75_apps.json,292_gpt-4o,0.7,0
 18,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Arpa is researching the Mexican wave.
 
 There are n spectators in the stadium, labeled from 1 to n. They start the Mexican wave at time 0. 
@@ -9324,7 +9324,7 @@ In the following a sitting spectator is represented as -, a standing spectator i
 
   At t = 0  ---------- $\Rightarrow$ number of standing spectators = 0.  At t = 1  ^--------- $\Rightarrow$ number of standing spectators = 1.  At t = 2  ^^-------- $\Rightarrow$ number of standing spectators = 2.  At t = 3  ^^^------- $\Rightarrow$ number of standing spectators = 3.  At t = 4  ^^^^------ $\Rightarrow$ number of standing spectators = 4.  At t = 5  ^^^^^----- $\Rightarrow$ number of standing spectators = 5.  At t = 6  -^^^^^---- $\Rightarrow$ number of standing spectators = 5.  At t = 7  --^^^^^--- $\Rightarrow$ number of standing spectators = 5.  At t = 8  ---^^^^^-- $\Rightarrow$ number of standing spectators = 5.  At t = 9  ----^^^^^- $\Rightarrow$ number of standing spectators = 5.  At t = 10 -----^^^^^ $\Rightarrow$ number of standing spectators = 5.  At t = 11 ------^^^^ $\Rightarrow$ number of standing spectators = 4.  At t = 12 -------^^^ $\Rightarrow$ number of standing spectators = 3.  At t = 13 --------^^ $\Rightarrow$ number of standing spectators = 2.  At t = 14 ---------^ $\Rightarrow$ number of standing spectators = 1.  At t = 15 ---------- $\Rightarrow$ number of standing spectators = 0.","n, k, t = map(int, input().split())
 print(min(t, k) if t <= n else k - (t - n) % k)
-",,False,post,True,True,True,True,True,selected_pilot_75_apps.json,18_llama3-70b,0.8
+",,False,post,True,True,True,True,True,selected_pilot_75_apps.json,18_llama3-70b,0.8,0
 18,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Arpa is researching the Mexican wave.
 
 There are n spectators in the stadium, labeled from 1 to n. They start the Mexican wave at time 0. 
@@ -9378,7 +9378,7 @@ elif t <= n:
     print(k)
 else:
     print(n + k - t)
-",,True,post,True,True,True,True,True,selected_pilot_75_apps.json,18_gpt-4o,0.8
+",,True,post,True,True,True,True,True,selected_pilot_75_apps.json,18_gpt-4o,0.8,0
 169,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Vasya has a pile, that consists of some number of stones. $n$ times he either took one stone from the pile or added one stone to the pile. The pile was non-empty before each operation of taking one stone from the pile.
 
 You are given $n$ operations which Vasya has made. Find the minimal possible number of stones that can be in the pile after making these operations.
@@ -9440,7 +9440,7 @@ if minus_count > plus_count:
     print(0)
 else:
     print(plus_count - minus_count)
-",,True,post,False,False,True,True,False,selected_pilot_75_apps.json,169_llama3-70b,1.0
+",,True,post,False,False,True,True,False,selected_pilot_75_apps.json,169_llama3-70b,1.0,0
 169,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Vasya has a pile, that consists of some number of stones. $n$ times he either took one stone from the pile or added one stone to the pile. The pile was non-empty before each operation of taking one stone from the pile.
 
 You are given $n$ operations which Vasya has made. Find the minimal possible number of stones that can be in the pile after making these operations.
@@ -9507,7 +9507,7 @@ for operation in s:
         stones = max(0, stones - 1)
 
 print(stones)
-",,True,post,True,False,True,True,False,selected_pilot_75_apps.json,169_gpt-4o,0.8
+",,True,post,True,False,True,True,False,selected_pilot_75_apps.json,169_gpt-4o,0.8,0
 279,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Pavel cooks barbecue. There are n skewers, they lay on a brazier in a row, each on one of n positions. Pavel wants each skewer to be cooked some time in every of n positions in two directions: in the one it was directed originally and in the reversed direction.
 
 Pavel has a plan: a permutation p and a sequence b_1, b_2, ..., b_{n}, consisting of zeros and ones. Each second Pavel move skewer on position i to position p_{i}, and if b_{i} equals 1 then he reverses it. So he hope that every skewer will visit every position in both directions.
@@ -9568,7 +9568,7 @@ for i in range(n):
         ans += 1
 
 print(ans)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,279_llama3-70b,0.9
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,279_llama3-70b,0.9,0
 279,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Pavel cooks barbecue. There are n skewers, they lay on a brazier in a row, each on one of n positions. Pavel wants each skewer to be cooked some time in every of n positions in two directions: in the one it was directed originally and in the reversed direction.
 
 Pavel has a plan: a permutation p and a sequence b_1, b_2, ..., b_{n}, consisting of zeros and ones. Each second Pavel move skewer on position i to position p_{i}, and if b_{i} equals 1 then he reverses it. So he hope that every skewer will visit every position in both directions.
@@ -9651,7 +9651,7 @@ In the second example Pavel can change any element of b to 1.","def solve():
 
 # Use Standard Input format
 solve()
-",,True,post,False,False,True,True,False,selected_pilot_75_apps.json,279_gpt-4o,0.6
+",,True,post,False,False,True,True,False,selected_pilot_75_apps.json,279_gpt-4o,0.6,1
 280,apps,llama3-70b,gpt-4o-mini-2024-07-18,"The on-board computer on Polycarp's car measured that the car speed at the beginning of some section of the path equals v_1 meters per second, and in the end it is v_2 meters per second. We know that this section of the route took exactly t seconds to pass.
 
 Assuming that at each of the seconds the speed is constant, and between seconds the speed can change at most by d meters per second in absolute value (i.e., the difference in the speed of any two adjacent seconds does not exceed d in absolute value), find the maximum possible length of the path section in meters.
@@ -9706,7 +9706,7 @@ for i in range(t-1, 0, -1):
     min_length += min_speed
 
 print(max_length)
-",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,280_llama3-70b,0.8
+",,False,post,False,False,False,True,False,selected_pilot_75_apps.json,280_llama3-70b,0.8,0
 280,apps,gpt-4o,gpt-4o-mini-2024-07-18,"The on-board computer on Polycarp's car measured that the car speed at the beginning of some section of the path equals v_1 meters per second, and in the end it is v_2 meters per second. We know that this section of the route took exactly t seconds to pass.
 
 Assuming that at each of the seconds the speed is constant, and between seconds the speed can change at most by d meters per second in absolute value (i.e., the difference in the speed of any two adjacent seconds does not exceed d in absolute value), find the maximum possible length of the path section in meters.
@@ -9767,7 +9767,7 @@ total_distance = sum(speeds)
 
 # Print the result
 print(total_distance)
-",,True,post,True,False,True,True,False,selected_pilot_75_apps.json,280_gpt-4o,0.8
+",,True,post,True,False,True,True,False,selected_pilot_75_apps.json,280_gpt-4o,0.8,0
 144,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Someone gave Alyona an array containing n positive integers a_1, a_2, ..., a_{n}. In one operation, Alyona can choose any element of the array and decrease it, i.e. replace with any positive integer that is smaller than the current one. Alyona can repeat this operation as many times as she wants. In particular, she may not apply any operation to the array at all.
 
 Formally, after applying some operations Alyona will get an array of n positive integers b_1, b_2, ..., b_{n} such that 1 ≤ b_{i} ≤ a_{i} for every 1 ≤ i ≤ n. Your task is to determine the maximum possible value of mex of this array.
@@ -9818,7 +9818,7 @@ for num in arr:
     elif num > mex:
         break
 print(mex)
-",,True,post,False,False,True,True,True,selected_pilot_75_apps.json,144_llama3-70b,1.0
+",,True,post,False,False,True,True,True,selected_pilot_75_apps.json,144_llama3-70b,1.0,0
 144,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Someone gave Alyona an array containing n positive integers a_1, a_2, ..., a_{n}. In one operation, Alyona can choose any element of the array and decrease it, i.e. replace with any positive integer that is smaller than the current one. Alyona can repeat this operation as many times as she wants. In particular, she may not apply any operation to the array at all.
 
 Formally, after applying some operations Alyona will get an array of n positive integers b_1, b_2, ..., b_{n} such that 1 ≤ b_{i} ≤ a_{i} for every 1 ≤ i ≤ n. Your task is to determine the maximum possible value of mex of this array.
@@ -9875,7 +9875,7 @@ for num in a:
 
 # Print the maximum possible value of mex
 print(mex)
-",,False,post,True,True,True,True,False,selected_pilot_75_apps.json,144_gpt-4o,0.9
+",,False,post,True,True,True,True,False,selected_pilot_75_apps.json,144_gpt-4o,0.9,0
 251,apps,llama3-70b,gpt-4o-mini-2024-07-18,"As you know, every birthday party has a cake! This time, Babaei is going to prepare the very special birthday party's cake.
 
 Simple cake is a cylinder of some radius and height. The volume of the simple cake is equal to the volume of corresponding cylinder. Babaei has n simple cakes and he is going to make a special cake placing some cylinders on each other.
@@ -9944,7 +9944,7 @@ for i in range(1, n):
             dp[i] = max(dp[i], dp[j] + cakes[i][0])
 
 print(dp[-1])
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,251_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,251_llama3-70b,1.0,0
 251,apps,gpt-4o,gpt-4o-mini-2024-07-18,"As you know, every birthday party has a cake! This time, Babaei is going to prepare the very special birthday party's cake.
 
 Simple cake is a cylinder of some radius and height. The volume of the simple cake is equal to the volume of corresponding cylinder. Babaei has n simple cakes and he is going to make a special cake placing some cylinders on each other.
@@ -10018,7 +10018,7 @@ def main():
 
 if __name__ == ""__main__"":
     main()
-",,False,post,False,True,True,True,True,selected_pilot_75_apps.json,251_gpt-4o,0.5
+",,False,post,False,True,True,True,True,selected_pilot_75_apps.json,251_gpt-4o,0.5,2
 293,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Amr bought a new video game ""Guess Your Way Out!"". The goal of the game is to find an exit from the maze that looks like a perfect binary tree of height h. The player is initially standing at the root of the tree and the exit from the tree is located at some leaf node. 
 
 Let's index all the leaf nodes from the left to the right from 1 to 2^{h}. The exit is located at some node n where 1 ≤ n ≤ 2^{h}, the player doesn't know where the exit is so he has to guess his way out!
@@ -10076,7 +10076,7 @@ while n > 1:
         ans += n // 2
     n //= 2
 print(ans)
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,293_llama3-70b,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,293_llama3-70b,1.0,0
 293,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Amr bought a new video game ""Guess Your Way Out!"". The goal of the game is to find an exit from the maze that looks like a perfect binary tree of height h. The player is initially standing at the root of the tree and the exit from the tree is located at some leaf node. 
 
 Let's index all the leaf nodes from the left to the right from 1 to 2^{h}. The exit is located at some node n where 1 ≤ n ≤ 2^{h}, the player doesn't know where the exit is so he has to guess his way out!
@@ -10155,7 +10155,7 @@ Following picture illustrates the sample test number 3. Nodes are labeled accord
 
 if __name__ == ""__main__"":
     main()
-",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,293_gpt-4o,1.0
+",,False,post,False,False,False,False,False,selected_pilot_75_apps.json,293_gpt-4o,1.0,1
 82,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Neko loves divisors. During the latest number theory lesson, he got an interesting exercise from his math teacher.
 
 Neko has two integers $a$ and $b$. His goal is to find a non-negative integer $k$ such that the least common multiple of $a+k$ and $b+k$ is the smallest possible. If there are multiple optimal integers $k$, he needs to choose the smallest one.
@@ -10218,7 +10218,7 @@ while True:
     k += 1
 
 print(k - 1)
-",,True,post,False,False,False,False,False,selected_pilot_75_apps.json,82_llama3-70b,1.0
+",,True,post,False,False,False,False,False,selected_pilot_75_apps.json,82_llama3-70b,1.0,2
 82,apps,gpt-4o,gpt-4o-mini-2024-07-18,"Neko loves divisors. During the latest number theory lesson, he got an interesting exercise from his math teacher.
 
 Neko has two integers $a$ and $b$. His goal is to find a non-negative integer $k$ such that the least common multiple of $a+k$ and $b+k$ is the smallest possible. If there are multiple optimal integers $k$, he needs to choose the smallest one.
@@ -10296,4 +10296,4 @@ if __name__ == ""__main__"":
     a = int(data[0])
     b = int(data[1])
     print(find_min_k(a, b))
-",,True,post,False,True,False,True,False,selected_pilot_75_apps.json,82_gpt-4o,0.9
+",,True,post,False,True,False,True,False,selected_pilot_75_apps.json,82_gpt-4o,0.9,3
