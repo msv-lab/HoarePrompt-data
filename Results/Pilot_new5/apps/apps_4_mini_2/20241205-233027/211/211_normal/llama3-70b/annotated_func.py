@@ -1,0 +1,26 @@
+#State of the program right berfore the function call: n is a positive integer (1 ≤ n ≤ 100), and A is a list of n integers where each integer a_i satisfies -1000 ≤ a_i ≤ 1000.
+def func():
+    n = int(input())
+    a = list(map(int, input().split()))
+    prefix_sum = [0] * (n + 1)
+    for i in range(n):
+        prefix_sum[i + 1] = prefix_sum[i] + a[i]
+        
+    #State of the program after the  for loop has been executed: `n` is a positive integer between 1 and 100, `A` is a list of `n` integers where each integer satisfies -1000 ≤ a_i ≤ 1000, `a` is a list of `n` integers based on user input, `prefix_sum` is a list where `prefix_sum[0]` is 0, `prefix_sum[k]` for k in [1, n] is equal to the sum of the first k elements of `a`, and `prefix_sum[k]` for k > n remains 0.
+    if (prefix_sum[n] == 0) :
+        print('NO')
+    else :
+        print('YES')
+        k = 1
+        l = 1
+        for r in range(1, n + 1):
+            if prefix_sum[r] != 0 and prefix_sum[r] != prefix_sum[n]:
+                print(k, l, r)
+                k += 1
+                l = r
+            
+        #State of the program after the  for loop has been executed: `n` is a positive integer between 1 and 100, `A` is a list of `n` integers, `a` is a list of `n` integers based on user input, `prefix_sum` is a list where `prefix_sum[0]` is 0, `prefix_sum[k]` for `k` in [1, `n`] is equal to the sum of the first `k` elements of `a`, `prefix_sum[n]` is not equal to 0, while `prefix_sum[k]` for `k` > `n` remains 0; `k` is the count of valid `r` values where `prefix_sum[r]` is not equal to 0 and not equal to `prefix_sum[n]`, `l` holds the last valid `r` value that satisfied the condition, `r` will be equal to `n + 1` after the loop finishes.
+        print(k, l, n)
+    #State of the program after the if-else block has been executed: *`n` is a positive integer between 1 and 100, `A` is a list of `n` integers where each integer satisfies -1000 ≤ a_i ≤ 1000, `a` is a list of `n` integers based on user input, and `prefix_sum` is a list where `prefix_sum[0]` is 0 and `prefix_sum[k]` for `k` in [1, `n`] is equal to the sum of the first `k` elements of `a`. If `prefix_sum[n]` is 0, the printed output is 'NO'. Otherwise, if `prefix_sum[n]` is not equal to 0, then `k` is the count of valid `r` values where `prefix_sum[r]` is not equal to 0 and not equal to `prefix_sum[n]`, `l` holds the last valid `r` value that satisfied the condition, and `r` is equal to `n + 1`; the values of `k` and `l` have been printed.
+#Overall this is what the function does:The function accepts a positive integer `n` (1 ≤ n ≤ 100) and a list `A` of `n` integers (where each integer satisfies -1000 ≤ a_i ≤ 1000). It calculates the prefix sum of the list `A`. If the total sum of the integers (i.e., `prefix_sum[n]`) is zero, it prints 'NO'. If the total sum is not zero, it prints 'YES', followed by the count of valid indices `k` where prefix sums are non-zero and not equal to the total sum, and the last valid index `l`. Finally, it prints `k`, `l`, and `n`. The function does not handle cases where the input format might be incorrect or where input values are out of the specified range.
+
