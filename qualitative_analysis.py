@@ -82,7 +82,8 @@ def main(input_csv):
         'Correctness', 
         'naive correctness', 
         'annotated correctness', 
-        'annotated correctness simple'
+        'annotated correctness simple',
+        'Correctness no fsl'
     ]
     base_truth = 'original correctness'
 

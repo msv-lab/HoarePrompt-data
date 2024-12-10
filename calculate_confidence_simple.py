@@ -11,9 +11,11 @@ def calculate_consistency(input_csv, output_json):
     # Ensure 'original correctness' and 'naive no fsl correctness' are treated as booleans
     df['original correctness'] = df['original correctness'].astype(bool)
     df['naive no fsl correctness'] = df['naive no fsl correctness'].astype(bool)
+    df['naive correctness'] = df['naive correctness'].astype(bool)
 
     # Add a column to mark correct and incorrect responses
     df['is_correct'] = df['original correctness'] == df['naive no fsl correctness']
+    df['is_correct_naive'] = df['original correctness'] == df['naive correctness']
 
     # Grouping by 'unique_id'
     grouped = df.groupby('unique_id')
@@ -32,9 +34,14 @@ def calculate_consistency(input_csv, output_json):
     # Calculate consistency for each group and store it in a list
     consistencies = []
     for unique_id, group in grouped:
-        group_consistency = calculate_group_consistency(group, 'naive no fsl correctness')
+        group_consistency_no_fsl = calculate_group_consistency(group, 'naive no fsl correctness')
+
+        group_consistency_fsl = calculate_group_consistency(group, 'naive correctness')
+        group_consistency = (group_consistency_no_fsl + group_consistency_fsl) / 2
         consistencies.append({
             "unique_id": unique_id,
+            "consistency_no_fsl": group_consistency_no_fsl,
+            "consistency_fsl": group_consistency_fsl,
             "consistency": group_consistency
         })
 
@@ -61,15 +68,24 @@ def calculate_consistency(input_csv, output_json):
         threshold = 0.5  # Can be adjusted as needed
         
         if correct_proportion > threshold:
-            correct_consistency = calculate_group_consistency(group, 'naive no fsl correctness')
+            correct_consistency_no_fsl = calculate_group_consistency(group, 'naive no fsl correctness')
+            correct_consistency_fsl = calculate_group_consistency(group, 'naive correctness')
+            correct_consistency = (correct_consistency_no_fsl + correct_consistency_fsl) / 2
+
             correct_consistencies.append({
                 "unique_id": unique_id,
+                "consistency_fsl": correct_consistency_fsl,
+                "consistency_no_fsl": correct_consistency_no_fsl,
                 "consistency": correct_consistency
             })
         else:  # Majority incorrect or exactly at threshold
-            incorrect_consistency = calculate_group_consistency(group, 'naive no fsl correctness')
+            incorrect_consistency_fsl = calculate_group_consistency(group, 'naive no fsl correctness')
+            incorrect_consistency_no_fsl = calculate_group_consistency(group, 'naive correctness')
+            incorrect_consistency = (incorrect_consistency_no_fsl + incorrect_consistency_fsl) / 2
             incorrect_consistencies.append({
                 "unique_id": unique_id,
+                "consistency_fsl": incorrect_consistency_fsl,
+                "consistency_no_fsl": incorrect_consistency_no_fsl,
                 "consistency": incorrect_consistency
             })
 
@@ -113,6 +129,6 @@ def calculate_consistency(input_csv, output_json):
 
 # Test the function with an example CSV
 if __name__ == "__main__":
-    input_csv = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple_pilot5/mbpp_4_mini_1/20241204-154922/combined_confidences.csv"  # Replace with your input CSV file
-    output_json = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple_pilot5/mbpp_4_mini_1/20241204-154922/confidence.json"  # Desired output JSON file
+    input_csv = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple_pilot6/apps_4_mini_1/20241210-105134/20241210-105134.csv"  # Replace with your input CSV file
+    output_json = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple_pilot6/apps_4_mini_1/20241210-105134/confidence.json"  # Desired output JSON file
     calculate_consistency(input_csv, output_json)

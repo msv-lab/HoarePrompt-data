@@ -46,11 +46,11 @@ def analyze_correctness_with_consistency(file_path):
     df = pd.read_csv(file_path)
     columns_to_preprocess = ['Correctness', 'naive correctness', 'original correctness', 
                              'annotated correctness', 'annotated correctness simple', 
-                             'naive no fsl correctness']
+                             'naive no fsl correctness', 'Correctness no fsl']
     valid_df = df.dropna(subset=columns_to_preprocess)
 
     # Initialize comparison variables
-    classifiers = ['Correctness', 'naive correctness', 'annotated correctness', 'annotated correctness simple']
+    classifiers = ['Correctness', 'naive correctness', 'annotated correctness', 'annotated correctness simple', 'Correctness no fsl']
     for classifier in classifiers:
         comparison_col = f"naive_no_fsl_vs_{classifier}"
         valid_df[comparison_col] = 0
@@ -70,7 +70,7 @@ def analyze_correctness_with_consistency(file_path):
 
     # Correlation analysis
     correlation_results = {}
-    correct_names = {"Correctness": "Function summary", "naive correctness": "Naive", "annotated correctness": "Complex tree", "annotated correctness simple": "Simple tree", "naive no fsl correctness": "Naive No FSL"}
+    correct_names = {"Correctness": "Function summary", "naive correctness": "Naive", "annotated correctness": "Complex tree", "annotated correctness simple": "Simple tree", "naive no fsl correctness": "Naive No FSL", 'Correctness no fsl': 'Function summary no FSL'}
     for classifier in classifiers:
         comparison_col = f"naive_no_fsl_vs_{classifier}"
         comparison_col_correct_name = f"naive_no_fsl_vs_{correct_names[classifier]}"
