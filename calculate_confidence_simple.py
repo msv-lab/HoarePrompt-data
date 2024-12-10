@@ -129,6 +129,6 @@ def calculate_consistency(input_csv, output_json):
 
 # Test the function with an example CSV
 if __name__ == "__main__":
-    input_csv = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple_pilot6/apps_4_mini_1/20241210-105134/20241210-105134.csv"  # Replace with your input CSV file
-    output_json = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple_pilot6/apps_4_mini_1/20241210-105134/confidence.json"  # Desired output JSON file
+    input_csv = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple_pilot7/apps_4_mini_1/20241210-131632/confidence.csv"  # Replace with your input CSV file
+    output_json = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple_pilot7/apps_4_mini_1/20241210-131632/confidence.json"  # Desired output JSON file
     calculate_consistency(input_csv, output_json)
