@@ -90,7 +90,7 @@ def compare_classifiers(df, classifiers, base_truth):
                 "count": a_outperforms_count,
                 "average_consistency": avg_consistency_a
             },
-            f"{classifier_b}({correct_names[classifier_a]})_outperforms_{classifier_a}({correct_names[classifier_b]})": {
+            f"{classifier_b}({correct_names[classifier_b]})_outperforms_{classifier_a}({correct_names[classifier_a]})": {
                 "rows": aggregated_b_outperforms_a,
                 "count": b_outperforms_count,
                 "average_consistency": avg_consistency_b
@@ -108,8 +108,8 @@ def main(input_csv):
 
     classifiers = [
         'naive no fsl correctness',
+         'naive correctness',
         'Correctness', 
-        'naive correctness', 
         'annotated correctness', 
         'annotated correctness simple'
     ]
