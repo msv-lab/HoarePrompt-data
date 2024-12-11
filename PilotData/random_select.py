@@ -60,7 +60,7 @@ def select_matched_tasks(data1, data2, model1, model2, dataset, sample_size=25):
                 "dataset": dataset,
                 "model": model1,
                 "correct": task1_correct,
-                "description": task.get("specification") or task.get("question"),
+                "description": task['description'],
                 "generated_code": task["generated_code"],
                 "counter_example": task1_ce
             })

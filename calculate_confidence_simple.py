@@ -14,8 +14,8 @@ def calculate_consistency(input_csv, output_json):
     df['naive correctness'] = df['naive correctness'].astype(bool)
 
     # Add a column to mark correct and incorrect responses
-    df['is_correct'] = df['original correctness'] == df['naive no fsl correctness']
-    df['is_correct_naive'] = df['original correctness'] == df['naive correctness']
+    df['is_correct_no_fsl'] = df['original correctness'] == df['naive no fsl correctness']
+    df['is_correct_fsl'] = df['original correctness'] == df['naive correctness']
 
     # Grouping by 'unique_id'
     grouped = df.groupby('unique_id')
@@ -52,9 +52,9 @@ def calculate_consistency(input_csv, output_json):
     # Define thresholds for majority
     threshold = 0.5  # Majority rule: more than 50% correct responses
 
-    # Separate analysis for majority-correct and majority-incorrect responses
-    majority_correct_groups = grouped.filter(lambda x: x['is_correct'].mean() > threshold)
-    majority_incorrect_groups = grouped.filter(lambda x: x['is_correct'].mean() <= threshold)
+    # # Separate analysis for majority-correct and majority-incorrect responses
+    # majority_correct_groups = grouped.filter(lambda x: x['is_correct'].mean() > threshold)
+    # majority_incorrect_groups = grouped.filter(lambda x: x['is_correct'].mean() <= threshold)
 
 
     correct_consistencies = []
@@ -62,8 +62,9 @@ def calculate_consistency(input_csv, output_json):
 
     for unique_id, group in grouped:
         # Calculate the proportion of correct responses
-        correct_proportion = group['is_correct'].mean()
-        
+        correct_proportion_no_fsl = group['is_correct_no_fsl'].mean()
+        correct_proportion_fsl = group['is_correct_fsl'].mean()
+        correct_proportion = (correct_proportion_no_fsl + correct_proportion_fsl) / 2
         # Majority threshold
         threshold = 0.5  # Can be adjusted as needed
         
@@ -71,7 +72,7 @@ def calculate_consistency(input_csv, output_json):
             correct_consistency_no_fsl = calculate_group_consistency(group, 'naive no fsl correctness')
             correct_consistency_fsl = calculate_group_consistency(group, 'naive correctness')
             correct_consistency = (correct_consistency_no_fsl + correct_consistency_fsl) / 2
-
+            # correct_consistency = correct_consistency_fsl
             correct_consistencies.append({
                 "unique_id": unique_id,
                 "consistency_fsl": correct_consistency_fsl,
@@ -82,6 +83,7 @@ def calculate_consistency(input_csv, output_json):
             incorrect_consistency_fsl = calculate_group_consistency(group, 'naive no fsl correctness')
             incorrect_consistency_no_fsl = calculate_group_consistency(group, 'naive correctness')
             incorrect_consistency = (incorrect_consistency_no_fsl + incorrect_consistency_fsl) / 2
+            # incorrect_consistency =incorrect_consistency_fsl
             incorrect_consistencies.append({
                 "unique_id": unique_id,
                 "consistency_fsl": incorrect_consistency_fsl,
@@ -115,7 +117,9 @@ def calculate_consistency(input_csv, output_json):
             "average_correct_consistency": average_correct_consistency,
             "median_correct_consistency": median_correct_consistency,
             "average_incorrect_consistency": average_incorrect_consistency,
-            "median_incorrect_consistency": median_incorrect_consistency
+            "median_incorrect_consistency": median_incorrect_consistency,
+            "total_correct": len(correct_values),
+            "total_incorrect": len(incorrect_values)
         }
     }
 
@@ -129,6 +133,6 @@ def calculate_consistency(input_csv, output_json):
 
 # Test the function with an example CSV
 if __name__ == "__main__":
-    input_csv = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple_pilot7/apps_4_mini_1/20241210-131632/confidence.csv"  # Replace with your input CSV file
-    output_json = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple_pilot7/apps_4_mini_1/20241210-131632/confidence.json"  # Desired output JSON file
+    input_csv = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple_pilot8/mbpp_4_mini_1/20241210-231902/20241210-231902.csv"  # Replace with your input CSV file
+    output_json = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple_pilot8/mbpp_4_mini_1/20241210-231902/confidence.json"  # Desired output JSON file
     calculate_consistency(input_csv, output_json)
