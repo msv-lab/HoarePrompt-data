@@ -1,0 +1,5 @@
+The function `func_1` processes a genome represented as a string `s` of length `n` (where \(4 \leq n \leq 255\)) and returns one of the following:
+- `None` if the length of the genome is not divisible by 4.
+- A character `'A'`, `'C'`, `'G'`, or `'T'` that appears more than `n // 4` times in the string `s` if such a character exists.
+- `n // 4` if the genome can be transformed such that the count of each nucleotide `'A'`, `'C'`, `'G'`, or `'T'` is at most `n // 4`, and all `'?'` characters in the string `s` are replaced with the appropriate nucleotides.
+- Prints the modified genome string and returns `None` if all nucleotides in `s` are balanced according to the condition `n // 4`.

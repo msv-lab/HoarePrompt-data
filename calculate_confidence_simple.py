@@ -1,4 +1,6 @@
 import pandas as pd
+import os
+import sys
 
 def calculate_consistency(input_csv, output_json):
     # Read the input CSV file
@@ -131,8 +133,19 @@ def calculate_consistency(input_csv, output_json):
     print(f"Results saved to {output_json}")
     print("Consistency Calculations Summary:", results["summary"])
 
-# Test the function with an example CSV
 if __name__ == "__main__":
-    input_csv = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple_pilot8/mbpp_4_mini_1/20241210-231902/20241210-231902.csv"  # Replace with your input CSV file
-    output_json = "/home/jim/HoarePrompt-data/Results/Pilot_confidence_simple_pilot8/mbpp_4_mini_1/20241210-231902/confidence.json"  # Desired output JSON file
+    if len(sys.argv) != 2:
+        print("Usage: python script_name.py <input_csv>")
+        sys.exit(1)
+
+    input_csv = sys.argv[1]
+
+    if not os.path.isfile(input_csv):
+        print(f"Error: The file '{input_csv}' does not exist.")
+        sys.exit(1)
+
+    # Determine the output file path in the same directory as the input CSV
+    output_dir = os.path.dirname(input_csv)
+    output_json = os.path.join(output_dir, "confidence.json")
+
     calculate_consistency(input_csv, output_json)

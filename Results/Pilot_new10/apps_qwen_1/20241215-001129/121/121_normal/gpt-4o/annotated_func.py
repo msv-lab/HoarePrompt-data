@@ -1,0 +1,41 @@
+#State of the program right berfore the function call: The function takes no input parameters. The input consists of two lines: the first line is an integer n (4 ≤ n ≤ 255) representing the length of the genome, and the second line is a string s of length n consisting of characters 'A', 'C', 'G', 'T', and '?' representing the coded genome.
+def func_1():
+    input = sys.stdin.read
+    data = input().split()
+    n = int(data[0])
+    s = data[1]
+    if (n % 4 != 0) :
+        print('===')
+        return
+        #The program returns None
+    #State of the program after the if block has been executed: `n` is an integer such that 4 ≤ n ≤ 255, `s` is the second element of the `data` list, `data` is a list of strings from the input split by whitespace, `input` is the concatenated string of the input values, and n is divisible by 4
+    target_count = n // 4
+    counts = {'A': 0, 'C': 0, 'G': 0, 'T': 0}
+    for char in s:
+        if char in counts:
+            counts[char] += 1
+        
+    #State of the program after the  for loop has been executed: `n` is an integer such that \(4 \leq n \leq 255\) and `n` is still divisible by 4, `s` is a non-empty string that is completely exhausted (i.e., `s` becomes an empty string), `data` is the same list, `input` is the same concatenated string, `target_count` is \(n // 4\), and `counts` is a dictionary with the count of each nucleotide ('A', 'C', 'G', 'T') found in the string `s`.
+    for char in counts:
+        if counts[char] > target_count:
+            print('===')
+            return
+        
+    #State of the program after the  for loop has been executed: `n` is an integer such that \(4 \leq n \leq 255\) and `n` is still divisible by 4, `s` is a non-empty string that is completely exhausted, `data` is the same list, `input` is the same concatenated string, `target_count` is \(n // 4\), and for all characters `char` in `counts`, the count of `char` is less than or equal to `target_count`. If there exists any character `char` in `counts` such that the count of `char` is greater than `target_count`, the function returns `target_count` which is \(n // 4\); otherwise, the function returns `None`.
+    result = list(s)
+    for i in range(n):
+        if result[i] == '?':
+            for char in counts:
+                if counts[char] < target_count:
+                    result[i] = char
+                    counts[char] += 1
+                    break
+        
+    #State of the program after the  for loop has been executed: `counts` is a dictionary where the sum of all values is exactly `target_count`, `result` is a list containing each character of `s` where the corresponding `counts[char]` is less than or equal to `target_count`, and `i` is `n` if the loop executed `n` times, otherwise `i` is `0`.
+    print(''.join(result))
+#Overall this is what the function does:The function `func_1` processes a genome represented as a string `s` of length `n` (where \(4 \leq n \leq 255\)) and returns one of the following:
+- `None` if the length of the genome is not divisible by 4.
+- A character `'A'`, `'C'`, `'G'`, or `'T'` that appears more than `n // 4` times in the string `s` if such a character exists.
+- `n // 4` if the genome can be transformed such that the count of each nucleotide `'A'`, `'C'`, `'G'`, or `'T'` is at most `n // 4`, and all `'?'` characters in the string `s` are replaced with the appropriate nucleotides.
+- Prints the modified genome string and returns `None` if all nucleotides in `s` are balanced according to the condition `n // 4`.
+
