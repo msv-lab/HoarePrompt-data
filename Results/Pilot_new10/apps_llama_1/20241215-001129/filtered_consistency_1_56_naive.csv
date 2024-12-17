@@ -1,0 +1,1095 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,annotated correctness simple,naive no fsl correctness,Correctness no fsl,data file,simple verify,complex verify,default verify,simple verify no fsl,complex verify no fsl,default verify no fsl,unique_id,consistency
+190,apps,llama3-70b,meta-llama/Llama-3.3-70B-Instruct,"Salem gave you $n$ sticks with integer positive lengths $a_1, a_2, \ldots, a_n$.
+
+For every stick, you can change its length to any other positive integer length (that is, either shrink or stretch it). The cost of changing the stick's length from $a$ to $b$ is $|a - b|$, where $|x|$ means the absolute value of $x$.
+
+A stick length $a_i$ is called almost good for some integer $t$ if $|a_i - t| \le 1$.
+
+Salem asks you to change the lengths of some sticks (possibly all or none), such that all sticks' lengths are almost good for some positive integer $t$ and the total cost of changing is minimum possible. The value of $t$ is not fixed in advance and you can choose it as any positive integer. 
+
+As an answer, print the value of $t$ and the minimum cost. If there are multiple optimal choices for $t$, print any of them.
+
+
+-----Input-----
+
+The first line contains a single integer $n$ ($1 \le n \le 1000$) — the number of sticks.
+
+The second line contains $n$ integers $a_i$ ($1 \le a_i \le 100$) — the lengths of the sticks.
+
+
+-----Output-----
+
+Print the value of $t$ and the minimum possible cost. If there are multiple optimal choices for $t$, print any of them.
+
+
+-----Examples-----
+Input
+3
+10 1 4
+
+Output
+3 7
+
+Input
+5
+1 1 2 2 3
+
+Output
+2 0
+
+
+
+-----Note-----
+
+In the first example, we can change $1$ into $2$ and $10$ into $4$ with cost $|1 - 2| + |10 - 4| = 1 + 6 = 7$ and the resulting lengths $[2, 4, 4]$ are almost good for $t = 3$.
+
+In the second example, the sticks lengths are already almost good for $t = 2$, so we don't have to do anything.","n = int(input())
+sticks = list(map(int, input().split()))
+
+sticks.sort()
+
+mid = sticks[n // 2]
+
+cost = sum(abs(x - mid) for x in sticks)
+t = mid
+
+min_cost = cost
+min_t = t
+
+for i in range(mid - 1, 0, -1):
+    cost = sum(min(abs(x - i), abs(x - (i + 1))) for x in sticks)
+    if cost < min_cost:
+        min_cost = cost
+        min_t = i
+
+for i in range(mid + 1, 101):
+    cost = sum(min(abs(x - i), abs(x - (i - 1))) for x in sticks)
+    if cost < min_cost:
+        min_cost = cost
+        min_t = i
+
+print(min_t, min_cost)
+",,False,post,False,True,True,True,False,False,selected_pilot_75_apps.json,True,False,True,True,True,True,190_llama3-70b,0.6666666666666666
+1,apps,llama3-70b,meta-llama/Llama-3.3-70B-Instruct,"An accordion is a string (yes, in the real world accordions are musical instruments, but let's forget about it for a while) which can be represented as a concatenation of: an opening bracket (ASCII code $091$), a colon (ASCII code $058$), some (possibly zero) vertical line characters (ASCII code $124$), another colon, and a closing bracket (ASCII code $093$). The length of the accordion is the number of characters in it.
+
+For example, [::], [:||:] and [:|||:] are accordions having length $4$, $6$ and $7$. (:|:), {:||:}, [:], ]:||:[ are not accordions. 
+
+You are given a string $s$. You want to transform it into an accordion by removing some (possibly zero) characters from it. Note that you may not insert new characters or reorder existing ones. Is it possible to obtain an accordion by removing characters from $s$, and if so, what is the maximum possible length of the result?
+
+
+-----Input-----
+
+The only line contains one string $s$ ($1 \le |s| \le 500000$). It consists of lowercase Latin letters and characters [, ], : and |.
+
+
+-----Output-----
+
+If it is not possible to obtain an accordion by removing some characters from $s$, print $-1$. Otherwise print maximum possible length of the resulting accordion.
+
+
+-----Examples-----
+Input
+|[a:b:|]
+
+Output
+4
+
+Input
+|]:[|:]
+
+Output
+-1","s = input()
+n = len(s)
+ind = -1
+f = False
+for i in range(n):
+    if s[i] == '[':
+        f = True
+    elif s[i] == ':':
+        if f:
+            ind = i
+            break
+bind = -1
+f = False
+for i in range(n-1,-1,-1):
+    if s[i] == ']':
+        f = True
+    elif s[i] == ':':
+        if f:
+            bind = i
+            break
+if ind == -1 or bind == -1:
+    print(-1)
+elif ind >= bind:
+    print(-1)
+else:
+    ans = 4
+    for i in range(ind+1,bind):
+        if s[i] == '|':
+            ans += 1
+    print(ans)
+",,False,post,True,True,False,False,False,False,selected_pilot_75_apps.json,False,False,False,False,True,False,1_llama3-70b,0.5
+1,apps,gpt-4o,meta-llama/Llama-3.3-70B-Instruct,"An accordion is a string (yes, in the real world accordions are musical instruments, but let's forget about it for a while) which can be represented as a concatenation of: an opening bracket (ASCII code $091$), a colon (ASCII code $058$), some (possibly zero) vertical line characters (ASCII code $124$), another colon, and a closing bracket (ASCII code $093$). The length of the accordion is the number of characters in it.
+
+For example, [::], [:||:] and [:|||:] are accordions having length $4$, $6$ and $7$. (:|:), {:||:}, [:], ]:||:[ are not accordions. 
+
+You are given a string $s$. You want to transform it into an accordion by removing some (possibly zero) characters from it. Note that you may not insert new characters or reorder existing ones. Is it possible to obtain an accordion by removing characters from $s$, and if so, what is the maximum possible length of the result?
+
+
+-----Input-----
+
+The only line contains one string $s$ ($1 \le |s| \le 500000$). It consists of lowercase Latin letters and characters [, ], : and |.
+
+
+-----Output-----
+
+If it is not possible to obtain an accordion by removing some characters from $s$, print $-1$. Otherwise print maximum possible length of the resulting accordion.
+
+
+-----Examples-----
+Input
+|[a:b:|]
+
+Output
+4
+
+Input
+|]:[|:]
+
+Output
+-1","s = input()
+n = len(s)
+
+# Find the first '['
+ind = -1
+for i in range(n):
+    if s[i] == '[':
+        ind = i
+        break
+
+# Find the last ']'
+bind = -1
+for i in range(n-1, -1, -1):
+    if s[i] == ']':
+        bind = i
+        break
+
+# Make sure we have a valid '[' and ']' and they are in correct order
+if ind == -1 or bind == -1 or ind >= bind:
+    print(-1)
+else:
+    # Find the first ':' after the first '['
+    start_colon = -1
+    for i in range(ind + 1, bind):
+        if s[i] == ':':
+            start_colon = i
+            break
+    
+    # Find the last ':' before the last ']'
+    end_colon = -1
+    for i in range(bind - 1, ind, -1):
+        if s[i] == ':':
+            end_colon = i
+            break
+    
+    # Make sure we have a valid ':' pair and they are in correct order
+    if start_colon == -1 or end_colon == -1 or start_colon >= end_colon:
+        print(-1)
+    else:
+        # Count '|' characters between the first ':' and the last ':'
+        pipe_count = 0
+        for i in range(start_colon + 1, end_colon):
+            if s[i] == '|':
+                pipe_count += 1
+        
+        # The length of the accordion is 4 (for '[::]') plus the number of '|' characters
+        result = 4 + pipe_count
+        print(result)
+",,True,post,True,False,False,False,False,False,selected_pilot_75_apps.json,True,False,True,False,True,False,1_gpt-4o,0.6666666666666666
+188,apps,gpt-4o,meta-llama/Llama-3.3-70B-Instruct,"Petya and Vasya decided to play a game. They have n cards (n is an even number). A single integer is written on each card.
+
+Before the game Petya will choose an integer and after that Vasya will choose another integer (different from the number that Petya chose). During the game each player takes all the cards with number he chose. For example, if Petya chose number 5 before the game he will take all cards on which 5 is written and if Vasya chose number 10 before the game he will take all cards on which 10 is written.
+
+The game is considered fair if Petya and Vasya can take all n cards, and the number of cards each player gets is the same.
+
+Determine whether Petya and Vasya can choose integer numbers before the game so that the game is fair. 
+
+
+-----Input-----
+
+The first line contains a single integer n (2 ≤ n ≤ 100) — number of cards. It is guaranteed that n is an even number.
+
+The following n lines contain a sequence of integers a_1, a_2, ..., a_{n} (one integer per line, 1 ≤ a_{i} ≤ 100) — numbers written on the n cards.
+
+
+-----Output-----
+
+If it is impossible for Petya and Vasya to choose numbers in such a way that the game will be fair, print ""NO"" (without quotes) in the first line. In this case you should not print anything more.
+
+In the other case print ""YES"" (without quotes) in the first line. In the second line print two distinct integers — number that Petya should choose and the number that Vasya should choose to make the game fair. If there are several solutions, print any of them.
+
+
+-----Examples-----
+Input
+4
+11
+27
+27
+11
+
+Output
+YES
+11 27
+
+Input
+2
+6
+6
+
+Output
+NO
+
+Input
+6
+10
+20
+30
+20
+10
+20
+
+Output
+NO
+
+Input
+6
+1
+1
+2
+2
+3
+3
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first example the game will be fair if, for example, Petya chooses number 11, and Vasya chooses number 27. Then the will take all cards — Petya will take cards 1 and 4, and Vasya will take cards 2 and 3. Thus, each of them will take exactly two cards.
+
+In the second example fair game is impossible because the numbers written on the cards are equal, but the numbers that Petya and Vasya should choose should be distinct.
+
+In the third example it is impossible to take all cards. Petya and Vasya can take at most five cards — for example, Petya can choose number 10 and Vasya can choose number 20. But for the game to be fair it is necessary to take 6 cards.","n = int(input())
+cards = [int(input()) for _ in range(n)]
+
+from collections import Counter
+
+# Count the frequency of each number on the cards
+count = Counter(cards)
+
+# Find all unique numbers and sort them by their frequency
+unique_numbers = sorted(count.keys(), key=lambda x: count[x])
+
+# Check if we can find two distinct numbers such that each appears n/2 times
+if len(unique_numbers) < 2:
+    print(""NO"")
+else:
+    # Check if the two most frequent numbers each appear exactly n/2 times
+    if count[unique_numbers[-1]] == n // 2 and count[unique_numbers[-2]] == n // 2:
+        print(""YES"")
+        print(unique_numbers[-1], unique_numbers[-2])
+    else:
+        print(""NO"")
+",,False,post,True,False,False,True,True,False,selected_pilot_75_apps.json,False,False,True,False,True,True,188_gpt-4o,0.6666666666666666
+68,apps,llama3-70b,meta-llama/Llama-3.3-70B-Instruct,"Nauuo is a girl who loves writing comments.
+
+One day, she posted a comment on Codeforces, wondering whether she would get upvotes or downvotes.
+
+It's known that there were $x$ persons who would upvote, $y$ persons who would downvote, and there were also another $z$ persons who would vote, but you don't know whether they would upvote or downvote. Note that each of the $x+y+z$ people would vote exactly one time.
+
+There are three different results: if there are more people upvote than downvote, the result will be ""+""; if there are more people downvote than upvote, the result will be ""-""; otherwise the result will be ""0"".
+
+Because of the $z$ unknown persons, the result may be uncertain (i.e. there are more than one possible results). More formally, the result is uncertain if and only if there exist two different situations of how the $z$ persons vote, that the results are different in the two situations.
+
+Tell Nauuo the result or report that the result is uncertain.
+
+
+-----Input-----
+
+The only line contains three integers $x$, $y$, $z$ ($0\le x,y,z\le100$), corresponding to the number of persons who would upvote, downvote or unknown.
+
+
+-----Output-----
+
+If there is only one possible result, print the result : ""+"", ""-"" or ""0"".
+
+Otherwise, print ""?"" to report that the result is uncertain.
+
+
+-----Examples-----
+Input
+3 7 0
+
+Output
+-
+Input
+2 0 1
+
+Output
++
+Input
+1 1 0
+
+Output
+0
+Input
+0 0 1
+
+Output
+?
+
+
+-----Note-----
+
+In the first example, Nauuo would definitely get three upvotes and seven downvotes, so the only possible result is ""-"".
+
+In the second example, no matter the person unknown downvotes or upvotes, Nauuo would get more upvotes than downvotes. So the only possible result is ""+"".
+
+In the third example, Nauuo would definitely get one upvote and one downvote, so the only possible result is ""0"".
+
+In the fourth example, if the only one person upvoted, the result would be ""+"", otherwise, the result would be ""-"". There are two possible results, so the result is uncertain.","x, y, z = map(int, input().split())
+if x > y + z:
+    print(""+"")
+elif x < y:
+    print(""-"")
+elif x == y:
+    if z == 0:
+        print(""0"")
+    else:
+        print(""?"")
+else:
+    print(""?"")
+",,True,post,False,False,False,False,True,True,selected_pilot_75_apps.json,False,True,True,False,True,True,68_llama3-70b,0.5
+2,apps,gpt-4o,meta-llama/Llama-3.3-70B-Instruct,"Anton has the integer x. He is interested what positive integer, which doesn't exceed x, has the maximum sum of digits.
+
+Your task is to help Anton and to find the integer that interests him. If there are several such integers, determine the biggest of them. 
+
+
+-----Input-----
+
+The first line contains the positive integer x (1 ≤ x ≤ 10^18) — the integer which Anton has. 
+
+
+-----Output-----
+
+Print the positive integer which doesn't exceed x and has the maximum sum of digits. If there are several such integers, print the biggest of them. Printed integer must not contain leading zeros.
+
+
+-----Examples-----
+Input
+100
+
+Output
+99
+
+Input
+48
+
+Output
+48
+
+Input
+521
+
+Output
+499","def sum_of_digits(n):
+    return sum(int(digit) for digit in str(n))
+
+x = int(input().strip())
+
+# Convert x to a string to manipulate digits
+x_str = str(x)
+n = len(x_str)
+
+# Generate a candidate number by replacing the last non-zero digit with zero and all following digits with 9
+if x_str[0] != '1':
+    candidate = int(x_str[0]) - 1
+    candidate = str(candidate) + '9' * (n - 1)
+else:
+    candidate = '9' * (n - 1)
+candidate = int(candidate)
+
+# Compare sum of digits of x and candidate
+sum_x = sum_of_digits(x)
+sum_candidate = sum_of_digits(candidate)
+
+if sum_candidate > sum_x:
+    print(candidate)
+else:
+    print(x)
+",,False,post,False,False,True,True,False,False,selected_pilot_75_apps.json,True,False,False,False,False,True,2_gpt-4o,0.6666666666666666
+182,apps,gpt-4o,meta-llama/Llama-3.3-70B-Instruct,"Vasya started working in a machine vision company of IT City. Vasya's team creates software and hardware for identification of people by their face.
+
+One of the project's know-how is a camera rotating around its optical axis on shooting. People see an eye-catching gadget — a rotating camera — come up to it to see it better, look into it. And the camera takes their photo at that time. What could be better for high quality identification?
+
+But not everything is so simple. The pictures from camera appear rotated too (on clockwise camera rotation frame the content becomes rotated counter-clockwise). But the identification algorithm can work only with faces that are just slightly deviated from vertical.
+
+Vasya was entrusted to correct the situation — to rotate a captured image so that image would be minimally deviated from vertical. Requirements were severe. Firstly, the picture should be rotated only on angle divisible by 90 degrees to not lose a bit of information about the image. Secondly, the frames from the camera are so huge and FPS is so big that adequate rotation speed is provided by hardware FPGA solution only. And this solution can rotate only by 90 degrees clockwise. Of course, one can apply 90 degrees turn several times but for the sake of performance the number of turns should be minimized.
+
+Help Vasya implement the program that by the given rotation angle of the camera can determine the minimum number of 90 degrees clockwise turns necessary to get a picture in which up direction deviation from vertical is minimum.
+
+The next figure contains frames taken from an unrotated camera, then from rotated 90 degrees clockwise, then from rotated 90 degrees counter-clockwise. Arrows show direction to ""true up"". [Image] 
+
+The next figure shows 90 degrees clockwise turn by FPGA hardware. [Image] 
+
+
+-----Input-----
+
+The only line of the input contains one integer x ( - 10^18 ≤ x ≤ 10^18) — camera angle in degrees. Positive value denotes clockwise camera rotation, negative — counter-clockwise.
+
+
+-----Output-----
+
+Output one integer — the minimum required number of 90 degrees clockwise turns.
+
+
+-----Examples-----
+Input
+60
+
+Output
+1
+
+Input
+-60
+
+Output
+3
+
+
+
+-----Note-----
+
+When the camera is rotated 60 degrees counter-clockwise (the second example), an image from it is rotated 60 degrees clockwise. One 90 degrees clockwise turn of the image result in 150 degrees clockwise total rotation and deviation from ""true up"" for one turn is 150 degrees. Two 90 degrees clockwise turns of the image result in 240 degrees clockwise total rotation and deviation from ""true up"" for two turns is 120 degrees because 240 degrees clockwise equal to 120 degrees counter-clockwise. Three 90 degrees clockwise turns of the image result in 330 degrees clockwise total rotation and deviation from ""true up"" for three turns is 30 degrees because 330 degrees clockwise equal to 30 degrees counter-clockwise.
+
+From 60, 150, 120 and 30 degrees deviations the smallest is 30, and it it achieved in three 90 degrees clockwise turns.","x = int(input())
+
+# Normalize the angle to be within the range of 0 to 360 degrees
+normalized_angle = x % 360
+
+# Calculate the minimum number of 90 degrees clockwise turns needed
+# to make the image as close to vertical as possible
+turns = (360 - normalized_angle) // 90 % 4
+
+print(turns)
+",,False,post,False,True,False,True,False,False,selected_pilot_75_apps.json,True,False,False,False,False,False,182_gpt-4o,0.5
+143,apps,llama3-70b,meta-llama/Llama-3.3-70B-Instruct,"A New Year party is not a New Year party without lemonade! As usual, you are expecting a lot of guests, and buying lemonade has already become a pleasant necessity.
+
+Your favorite store sells lemonade in bottles of n different volumes at different costs. A single bottle of type i has volume 2^{i} - 1 liters and costs c_{i} roubles. The number of bottles of each type in the store can be considered infinite.
+
+You want to buy at least L liters of lemonade. How many roubles do you have to spend?
+
+
+-----Input-----
+
+The first line contains two integers n and L (1 ≤ n ≤ 30; 1 ≤ L ≤ 10^9) — the number of types of bottles in the store and the required amount of lemonade in liters, respectively.
+
+The second line contains n integers c_1, c_2, ..., c_{n} (1 ≤ c_{i} ≤ 10^9) — the costs of bottles of different types.
+
+
+-----Output-----
+
+Output a single integer — the smallest number of roubles you have to pay in order to buy at least L liters of lemonade.
+
+
+-----Examples-----
+Input
+4 12
+20 30 70 90
+
+Output
+150
+
+Input
+4 3
+10000 1000 100 10
+
+Output
+10
+
+Input
+4 3
+10 100 1000 10000
+
+Output
+30
+
+Input
+5 787787787
+123456789 234567890 345678901 456789012 987654321
+
+Output
+44981600785557577
+
+
+
+-----Note-----
+
+In the first example you should buy one 8-liter bottle for 90 roubles and two 2-liter bottles for 30 roubles each. In total you'll get 12 liters of lemonade for just 150 roubles.
+
+In the second example, even though you need only 3 liters, it's cheaper to buy a single 8-liter bottle for 10 roubles.
+
+In the third example it's best to buy three 1-liter bottles for 10 roubles each, getting three liters for 30 roubles.","n, L = map(int, input().split())
+costs = list(map(int, input().split()))
+
+dp = [float('inf')] * (L + 1)
+dp[0] = 0
+
+for i in range(1, L + 1):
+    for j in range(n):
+        vol = 2 ** j - 1
+        if vol <= i:
+            dp[i] = min(dp[i], dp[i - vol] + costs[j])
+
+print(dp[L] if dp[L] != float('inf') else -1)
+",,False,post,False,False,True,True,True,True,selected_pilot_75_apps.json,False,True,True,True,True,True,143_llama3-70b,0.5
+298,apps,llama3-70b,meta-llama/Llama-3.3-70B-Instruct,"Vasya has got three integers $n$, $m$ and $k$. He'd like to find three integer points $(x_1, y_1)$, $(x_2, y_2)$, $(x_3, y_3)$, such that $0 \le x_1, x_2, x_3 \le n$, $0 \le y_1, y_2, y_3 \le m$ and the area of the triangle formed by these points is equal to $\frac{nm}{k}$.
+
+Help Vasya! Find such points (if it's possible). If there are multiple solutions, print any of them.
+
+
+-----Input-----
+
+The single line contains three integers $n$, $m$, $k$ ($1\le n, m \le 10^9$, $2 \le k \le 10^9$).
+
+
+-----Output-----
+
+If there are no such points, print ""NO"".
+
+Otherwise print ""YES"" in the first line. The next three lines should contain integers $x_i, y_i$ — coordinates of the points, one point per line. If there are multiple solutions, print any of them.
+
+You can print each letter in any case (upper or lower).
+
+
+-----Examples-----
+Input
+4 3 3
+
+Output
+YES
+1 0
+2 3
+4 1
+
+Input
+4 4 7
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first example area of the triangle should be equal to $\frac{nm}{k} = 4$. The triangle mentioned in the output is pictured below:  [Image] 
+
+In the second example there is no triangle with area $\frac{nm}{k} = \frac{16}{7}$.","import math
+
+n, m, k = map(int, input().split())
+
+if (n*m) % k:
+    print(""NO"")
+    exit()
+
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def euk(a, b):
+    if b == 0:
+        return 1, 0
+    else:
+        x, y = euk(b, a % b)
+        return y, x - (a // b) * y
+
+def bezout(a, b):
+    x, y = euk(a, b)
+    return x, y, x*a + y*b
+
+n1, m1, g = bezout(n, m)
+if abs(n1*m) >= g:
+    print(""YES"")
+    print(0, 0)
+    print(0, n1*m//g)
+    print(m1*m//g, 0)
+else:
+    print(""NO"")",,True,post,False,False,False,False,False,False,selected_pilot_75_apps.json,True,True,True,True,False,True,298_llama3-70b,0.5
+287,apps,llama3-70b,meta-llama/Llama-3.3-70B-Instruct,"Let's define a split of $n$ as a nonincreasing sequence of positive integers, the sum of which is $n$. 
+
+For example, the following sequences are splits of $8$: $[4, 4]$, $[3, 3, 2]$, $[2, 2, 1, 1, 1, 1]$, $[5, 2, 1]$.
+
+The following sequences aren't splits of $8$: $[1, 7]$, $[5, 4]$, $[11, -3]$, $[1, 1, 4, 1, 1]$.
+
+The weight of a split is the number of elements in the split that are equal to the first element. For example, the weight of the split $[1, 1, 1, 1, 1]$ is $5$, the weight of the split $[5, 5, 3, 3, 3]$ is $2$ and the weight of the split $[9]$ equals $1$.
+
+For a given $n$, find out the number of different weights of its splits.
+
+
+-----Input-----
+
+The first line contains one integer $n$ ($1 \leq n \leq 10^9$).
+
+
+-----Output-----
+
+Output one integer — the answer to the problem.
+
+
+-----Examples-----
+Input
+7
+
+Output
+4
+
+Input
+8
+
+Output
+5
+
+Input
+9
+
+Output
+5
+
+
+
+-----Note-----
+
+In the first sample, there are following possible weights of splits of $7$:
+
+Weight 1: [$\textbf 7$] 
+
+Weight 2: [$\textbf 3$, $\textbf 3$, 1] 
+
+Weight 3: [$\textbf 2$, $\textbf 2$, $\textbf 2$, 1] 
+
+Weight 7: [$\textbf 1$, $\textbf 1$, $\textbf 1$, $\textbf 1$, $\textbf 1$, $\textbf 1$, $\textbf 1$]","n = int(input())
+res = 0
+for i in range(1, int(n**0.5) + 1):
+    if n % i == 0:
+        res += 2
+    if i * i == n:
+        res -= 1
+print(res)
+",,False,post,False,True,False,False,False,False,selected_pilot_75_apps.json,True,False,True,True,True,True,287_llama3-70b,0.6666666666666666
+199,apps,gpt-4o,meta-llama/Llama-3.3-70B-Instruct,"Pasha has a wooden stick of some positive integer length n. He wants to perform exactly three cuts to get four parts of the stick. Each part must have some positive integer length and the sum of these lengths will obviously be n. 
+
+Pasha likes rectangles but hates squares, so he wonders, how many ways are there to split a stick into four parts so that it's possible to form a rectangle using these parts, but is impossible to form a square.
+
+Your task is to help Pasha and count the number of such ways. Two ways to cut the stick are considered distinct if there exists some integer x, such that the number of parts of length x in the first way differ from the number of parts of length x in the second way.
+
+
+-----Input-----
+
+The first line of the input contains a positive integer n (1 ≤ n ≤ 2·10^9) — the length of Pasha's stick.
+
+
+-----Output-----
+
+The output should contain a single integer — the number of ways to split Pasha's stick into four parts of positive integer length so that it's possible to make a rectangle by connecting the ends of these parts, but is impossible to form a square. 
+
+
+-----Examples-----
+Input
+6
+
+Output
+1
+
+Input
+20
+
+Output
+4
+
+
+
+-----Note-----
+
+There is only one way to divide the stick in the first sample {1, 1, 2, 2}.
+
+Four ways to divide the stick in the second sample are {1, 1, 9, 9}, {2, 2, 8, 8}, {3, 3, 7, 7} and {4, 4, 6, 6}. Note that {5, 5, 5, 5} doesn't work.","n = int(input())
+
+# Number of ways to split the stick into four parts such that it's possible to form a rectangle but not a square
+def count_ways(n):
+    if n < 6:
+        return 0
+    count = 0
+    for a in range(1, n // 4 + 1):
+        b = a
+        rem = n - 2 * (a + b)
+        if rem > 0 and rem % 2 == 0:
+            if a != rem // 2:
+                count += 1
+    return count
+
+print(count_ways(n))
+",,False,post,False,True,False,False,True,False,selected_pilot_75_apps.json,False,False,True,False,False,False,199_gpt-4o,0.6666666666666666
+221,apps,llama3-70b,meta-llama/Llama-3.3-70B-Instruct,"Two positive integers a and b have a sum of s and a bitwise XOR of x. How many possible values are there for the ordered pair (a, b)?
+
+
+-----Input-----
+
+The first line of the input contains two integers s and x (2 ≤ s ≤ 10^12, 0 ≤ x ≤ 10^12), the sum and bitwise xor of the pair of positive integers, respectively.
+
+
+-----Output-----
+
+Print a single integer, the number of solutions to the given conditions. If no solutions exist, print 0.
+
+
+-----Examples-----
+Input
+9 5
+
+Output
+4
+
+Input
+3 3
+
+Output
+2
+
+Input
+5 2
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first sample, we have the following solutions: (2, 7), (3, 6), (6, 3), (7, 2).
+
+In the second sample, the only solutions are (1, 2) and (2, 1).","s, x = map(int, input().split())
+count = 0
+for a in range(1, s):
+    b = s - a
+    if a ^ b == x:
+        count += 1
+print(count)
+",,False,post,False,True,False,False,False,False,selected_pilot_75_apps.json,True,False,False,False,False,False,221_llama3-70b,0.6666666666666666
+258,apps,gpt-4o,meta-llama/Llama-3.3-70B-Instruct,"Takahashi wants to grill N pieces of meat on a grilling net, which can be seen as a two-dimensional plane. The coordinates of the i-th piece of meat are \left(x_i, y_i\right), and its hardness is c_i.
+Takahashi can use one heat source to grill the meat. If he puts the heat source at coordinates \left(X, Y\right), where X and Y are real numbers, the i-th piece of meat will be ready to eat in c_i \times \sqrt{\left(X - x_i\right)^2 + \left(Y-y_i\right)^2} seconds.
+Takahashi wants to eat K pieces of meat. Find the time required to have K or more pieces of meat ready if he put the heat source to minimize this time.
+
+-----Constraints-----
+ - All values in input are integers.
+ - 1 \leq N \leq 60
+ - 1 \leq K \leq N
+ - -1000 \leq x_i , y_i \leq 1000
+ - \left(x_i, y_i\right) \neq \left(x_j, y_j\right) \left(i \neq j \right)
+ - 1 \leq c_i \leq 100
+
+-----Input-----
+Input is given from Standard Input in the following format:
+N K
+x_1 y_1 c_1
+\vdots
+x_N y_N c_N
+
+-----Output-----
+Print the answer.
+It will be considered correct if its absolute or relative error from our answer is at most 10^{-6}.
+
+-----Sample Input-----
+4 3
+-1 0 3
+0 0 3
+1 0 2
+1 1 40
+
+-----Sample Output-----
+2.4
+
+If we put the heat source at \left(-0.2, 0\right), the 1-st, 2-nd, and 3-rd pieces of meat will be ready to eat within 2.4 seconds. This is the optimal place to put the heat source.","import math
+import sys
+input = sys.stdin.read
+
+def is_feasible(meats, K, T):
+    N = len(meats)
+    for i in range(N):
+        for j in range(i + 1, N):
+            x1, y1, c1 = meats[i]
+            x2, y2, c2 = meats[j]
+            if c1 * T < c2 * T:
+                x1, y1, c1, x2, y2, c2 = x2, y2, c2, x1, y1, c1
+            d = c1 * T - c2 * T
+            if d < 0:
+                continue
+            d /= c1 * c2
+            cx = (x1 + x2) / 2
+            cy = (y1 + y2) / 2
+            dx = (x1 - x2) / 2
+            dy = (y1 - y2) / 2
+            d2 = dx * dx + dy * dy
+            if d * d2 > d2:
+                continue
+            mx = cx + dy * math.sqrt(d2 * d - d * d) / d2
+            my = cy - dx * math.sqrt(d2 * d - d * d) / d2
+            count = sum(c * math.sqrt((mx - x) ** 2 + (my - y) ** 2) <= T for x, y, c in meats)
+            if count >= K:
+                return True
+    return False
+
+def min_time_to_grill(N, K, meats):
+    low, high = 0, 1e9
+    while high - low > 1e-7:
+        mid = (low + high) / 2
+        if is_feasible(meats, K, mid):
+            high = mid
+        else:
+            low = mid
+    return high
+
+def main():
+    data = input().split()
+    N = int(data[0])
+    K = int(data[1])
+    meats = []
+    index = 2
+    for _ in range(N):
+        x = int(data[index])
+        y = int(data[index + 1])
+        c = int(data[index + 2])
+        meats.append((x, y, c))
+        index += 3
+    result = min_time_to_grill(N, K, meats)
+    print(f""{result:.6f}"")
+
+if __name__ == ""__main__"":
+    main()
+",,False,post,False,False,False,False,False,False,selected_pilot_75_apps.json,True,True,False,True,False,True,258_gpt-4o,0.6666666666666666
+65,apps,llama3-70b,meta-llama/Llama-3.3-70B-Instruct,"One day Kefa found n baloons. For convenience, we denote color of i-th baloon as s_{i} — lowercase letter of the Latin alphabet. Also Kefa has k friends. Friend will be upset, If he get two baloons of the same color. Kefa want to give out all baloons to his friends. Help Kefa to find out, can he give out all his baloons, such that no one of his friens will be upset — print «YES», if he can, and «NO», otherwise. Note, that Kefa's friend will not upset, if he doesn't get baloons at all.
+
+
+-----Input-----
+
+The first line contains two integers n and k (1 ≤ n, k ≤ 100) — the number of baloons and friends.
+
+Next line contains string s — colors of baloons.
+
+
+-----Output-----
+
+Answer to the task — «YES» or «NO» in a single line.
+
+You can choose the case (lower or upper) for each letter arbitrary.
+
+
+-----Examples-----
+Input
+4 2
+aabb
+
+Output
+YES
+
+Input
+6 3
+aacaab
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first sample Kefa can give 1-st and 3-rd baloon to the first friend, and 2-nd and 4-th to the second.
+
+In the second sample Kefa needs to give to all his friends baloons of color a, but one baloon will stay, thats why answer is «NO».","n, k = map(int, input().split())
+s = input()
+
+color_count = {}
+for c in s:
+    if c in color_count:
+        color_count[c] += 1
+    else:
+        color_count[c] = 1
+
+max_color_count = max(color_count.values())
+if max_color_count <= k:
+    print(""YES"")
+else:
+    print(""NO"")
+",,True,post,True,True,True,True,False,False,selected_pilot_75_apps_llama_temp.json,True,True,True,True,True,True,65_llama3-70b,0.6666666666666666
+101,apps,llama3-70b,meta-llama/Llama-3.3-70B-Instruct,"Innocentius has a problem — his computer monitor has broken. Now some of the pixels are ""dead"", that is, they are always black. As consequence, Innocentius can't play the usual computer games. He is recently playing the following game with his younger brother Polycarpus.
+
+Innocentius is touch-typing a program that paints a white square one-pixel wide frame on the black screen. As the monitor is broken, some pixels that should be white remain black. Polycarpus should look at what the program displayed on the screen and guess the position and size of the frame Innocentius has painted. Polycarpus doesn't like the game but Innocentius persuaded brother to play as ""the game is good for the imagination and attention"".
+
+Help Polycarpus, automatize his part in the gaming process. Write the code that finds such possible square frame that:  the frame's width is 1 pixel,  the frame doesn't go beyond the borders of the screen,  all white pixels of the monitor are located on the frame,  of all frames that satisfy the previous three conditions, the required frame must have the smallest size. 
+
+Formally, a square frame is represented by such pixels of the solid square, that are on the square's border, that is, are not fully surrounded by the other pixels of the square. For example, if the frame's size is d = 3, then it consists of 8 pixels, if its size is d = 2, then it contains 4 pixels and if d = 1, then the frame is reduced to a single pixel.
+
+
+-----Input-----
+
+The first line contains the resolution of the monitor as a pair of integers n, m (1 ≤ n, m ≤ 2000). The next n lines contain exactly m characters each — the state of the monitor pixels at the moment of the game. Character ""."" (period, ASCII code 46) corresponds to the black pixel, and character ""w"" (lowercase English letter w) corresponds to the white pixel. It is guaranteed that at least one pixel of the monitor is white.
+
+
+-----Output-----
+
+Print the monitor screen. Represent the sought frame by characters ""+"" (the ""plus"" character). The pixels that has become white during the game mustn't be changed. Print them as ""w"". If there are multiple possible ways to position the frame of the minimum size, print any of them.
+
+If the required frame doesn't exist, then print a single line containing number -1.
+
+
+-----Examples-----
+Input
+4 8
+..w..w..
+........
+........
+..w..w..
+
+Output
+..w++w..
+..+..+..
+..+..+..
+..w++w..
+
+Input
+5 6
+......
+.w....
+......
+..w...
+......
+
+Output
+......
++w+...
++.+...
+++w...
+......
+
+Input
+2 4
+....
+.w..
+
+Output
+....
+.w..
+
+Input
+2 6
+w..w.w
+...w..
+
+Output
+-1
+
+
+
+-----Note-----
+
+In the first sample the required size of the optimal frame equals 4. In the second sample the size of the optimal frame equals 3. In the third sample, the size of the optimal frame is 1. In the fourth sample, the required frame doesn't exist.","n, m = map(int, input().split())
+pixels = [list(input()) for _ in range(n)]
+
+white_pixels = [(i, j) for i in range(n) for j in range(m) if pixels[i][j] == 'w']
+
+min_x, min_y, max_x, max_y = float('inf'), float('inf'), float('-inf'), float('-inf')
+for x, y in white_pixels:
+    min_x, min_y = min(min_x, x), min(min_y, y)
+    max_x, max_y = max(max_x, x), max(max_y, y)
+
+frame_size = max(max_x - min_x, max_y - min_y) + 1
+
+if frame_size > max(n, m):
+    print(-1)
+else:
+    for i in range(n):
+        for j in range(m):
+            if (i == min_x or i == max_x or j == min_y or j == max_y) and pixels[i][j] == '.':
+                pixels[i][j] = '+'
+            elif pixels[i][j] == 'w':
+                continue
+            else:
+                pixels[i][j] = '.'
+    for row in pixels:
+        print(''.join(row))
+",,False,post,False,False,True,False,True,False,selected_pilot_75_apps_llama_temp.json,False,False,False,True,False,True,101_llama3-70b,0.5
+82,apps,llama3-70b,meta-llama/Llama-3.3-70B-Instruct,"Neko loves divisors. During the latest number theory lesson, he got an interesting exercise from his math teacher.
+
+Neko has two integers $a$ and $b$. His goal is to find a non-negative integer $k$ such that the least common multiple of $a+k$ and $b+k$ is the smallest possible. If there are multiple optimal integers $k$, he needs to choose the smallest one.
+
+Given his mathematical talent, Neko had no trouble getting Wrong Answer on this problem. Can you help him solve it?
+
+
+-----Input-----
+
+The only line contains two integers $a$ and $b$ ($1 \le a, b \le 10^9$).
+
+
+-----Output-----
+
+Print the smallest non-negative integer $k$ ($k \ge 0$) such that the lowest common multiple of $a+k$ and $b+k$ is the smallest possible.
+
+If there are many possible integers $k$ giving the same value of the least common multiple, print the smallest one.
+
+
+-----Examples-----
+Input
+6 10
+
+Output
+2
+Input
+21 31
+
+Output
+9
+Input
+5 10
+
+Output
+0
+
+
+-----Note-----
+
+In the first test, one should choose $k = 2$, as the least common multiple of $6 + 2$ and $10 + 2$ is $24$, which is the smallest least common multiple possible.","import math
+
+def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a
+
+def lcm(a, b):
+    return a * b // gcd(a, b)
+
+a, b = map(int, input().split())
+
+k = 0
+min_lcm = lcm(a, b)
+
+while True:
+    if lcm(a + k, b + k) < min_lcm:
+        min_lcm = lcm(a + k, b + k)
+    else:
+        break
+    k += 1
+
+print(k - 1)
+",,True,post,False,False,False,True,True,True,selected_pilot_75_apps_llama_temp.json,False,True,False,False,True,True,82_llama3-70b,0.6666666666666666

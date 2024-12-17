@@ -12,16 +12,11 @@ This document provides a detailed guide to process and analyze your pilot datase
      python test_confidence.py --input <your_dataset>.json --output consistency.json
      ```
 
-2. Alternatively, use the `test_fast.sh` script for this step.
-   - Note: The process takes approximately 4 hours per 100 items.
 
 ## Step 2: Obtain the Initial Results
 
 1. Ensure your dataset results are in a CSV format (`original.csv`).
-2. If the number of functions in the script is not included in the CSV, use `transfer_functions_num.py` to generate it for each row in the CSV:
-   ```
-   python transfer_functions_num.py --input original.csv --output updated_original.csv
-   ```
+
 
 ## Step 3: Generate Augmented Data and Subsets
 
@@ -37,7 +32,10 @@ This document provides a detailed guide to process and analyze your pilot datase
    - `filtered_1_09_08.json`
    - `filtered_1_09_08_07.json`
    - These subsets exclude rows with specific confidence levels (e.g., 1, 0.9, etc.).
-
+3. If the number of functions in the script is not included in the json, use `transfer_functions_num.py` to generate it for each row in the CSV:
+   ```
+   python transfer_functions_num.py - original.csv 
+   ```
 ## Step 4: Analyze the Results
 
 1. Use `postprocessing_new.py` from the experiments repository to generate an analysis report:
