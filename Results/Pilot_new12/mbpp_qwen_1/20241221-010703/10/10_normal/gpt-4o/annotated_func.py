@@ -1,0 +1,8 @@
+#State of the program right berfore the function call: base, height, and length are non-negative numbers representing the base, height, and length of the triangular prism, respectively.
+def func_1(base, height, length):
+    base_area = 0.5 * base * height
+    volume = base_area * length
+    return volume
+    #The program returns 0.5 * base * height * length
+#Overall this is what the function does:The function `func_1` accepts three parameters `base`, `height`, and `length`, which represent the base, height, and length of a triangular prism, respectively. It calculates the volume of the triangular prism using the formula \( \text{volume} = 0.5 \times \text{base} \times \text{height} \times \text{length} \). The function returns the computed volume. The function handles non-negative values for `base`, `height`, and `length`. If any of these parameters are negative, the function will still compute the volume using those values, which may not be physically meaningful for a triangular prism.
+

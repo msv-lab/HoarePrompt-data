@@ -1,0 +1,8 @@
+The function accepts two integers, `n` (an even integer between 2 and 10^9) and `m` (an integer within the same range), along with a non-negative integer `k` (0 <= k < n·m). It computes a modified value of `k` using modulo arithmetic (`k % (n * 2 - 2)`) and produces different outputs based on the resulting value of `k`. 
+
+Specifically:
+- If `k < n - 1`, it outputs the values `(k + 1, 1)`.
+- If `n - 1 <= k < n * 2 - 2`, it calculates and outputs `(n - (k - n + 1) % (n - 1) - 1, (k - n + 1) // (n - 1) + 1)`.
+- If `k >= n * 2 - 2`, it outputs `(1, 2)`.
+
+The output consists of two integers and is determined entirely based on the value of `k`, which factors in a wrapping behavior due to the modulo operation. The constraints ensure that the function handles edge cases well, as long as inputs adhere to the specified ranges. The code does not account for invalid input (e.g., inputs outside defined bounds), but given the problem context, it's assumed that inputs will always be valid.

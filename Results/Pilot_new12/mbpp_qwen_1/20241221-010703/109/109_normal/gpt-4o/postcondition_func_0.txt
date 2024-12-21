@@ -1,0 +1,9 @@
+The function `func_1` accepts two lists, `list1` and `list2`, and returns a new list. This new list contains all elements of `list1` except the last one, concatenated with all elements of `list2`. 
+
+Potential edge cases to consider:
+1. If either `list1` or `list2` is empty, the function still behaves correctly by only including elements from `list1` (excluding the last element) or `list2` as appropriate.
+2. If `list1` has only one element, that single element will be excluded from the returned list.
+3. If `list1` is empty, the returned list will only contain elements from `list2`.
+4. If `list2` is empty, the returned list will only contain elements from `list1` (excluding the last element if present).
+
+The function does not modify the original lists; it creates and returns a new list.

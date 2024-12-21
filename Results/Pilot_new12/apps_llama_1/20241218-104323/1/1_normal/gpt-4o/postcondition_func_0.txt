@@ -1,0 +1,6 @@
+The function reads a string `s` as input and performs pattern matching to extract specific characters. It searches for the first occurrence of '[' and the last occurrence of ']' in the string, as well as the first and last occurrences of ':' within the substring defined by '[' and ']'. If any of these characters are not found or are out of order, it prints -1. Otherwise, it counts the number of '|' characters between the first and last ':' characters and adds 4 to this count, printing the result. The function effectively validates the input string's format and calculates a value based on its contents, specifically: 
+- It requires the input string to contain '[' and ']' characters with '[' appearing before ']'. 
+- It requires at least two ':' characters within the substring defined by '[' and ']', with the first ':' appearing before the second ':'.
+- If the input string does not meet these requirements, it outputs -1, indicating an invalid format.
+- If the input string is valid, it outputs a value which is 4 plus the number of '|' characters between the first and last ':' characters.
+- The function handles edge cases such as missing or out-of-order characters by printing -1.

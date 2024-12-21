@@ -1,0 +1,11 @@
+#State of the program right berfore the function call: lst is a list, and n is a positive integer such that 0 < n <= len(lst).
+def func_1(lst, n):
+    result = [[] for _ in range(n)]
+    for (i, element) in enumerate(lst):
+        result[i % n].append(element)
+        
+    #State of the program after the  for loop has been executed: `lst` is a non-empty list, `n` is a positive integer such that \(0 < n \leq \text{len(lst)}\), `result` is a list of `n` sublists where each sublist contains elements from `lst` based on the modulo operation with `n`, `i` is the last index processed by the loop, and `element` is the element at index `i` in `lst`.
+    return result
+    #The program returns a list 'result' of 'n' sublists where each sublist contains elements from 'lst' based on the modulo operation with 'n'
+#Overall this is what the function does:The function `func_1` accepts a list `lst` and a positive integer `n`, and returns a list of `n` sublists where each sublist contains elements from `lst` based on the modulo operation with `n`. Specifically, it creates a list `result` of `n` empty sublists and then iterates over each element in `lst`. For each element, it appends the element to the sublist at the index determined by the modulo operation (`i % n`). This means that the first `n` elements of `lst` will be distributed among the `n` sublists, and this process wraps around `n` times, ensuring all elements from `lst` are included in the sublists. The function handles the case where `n` is less than or equal to the length of `lst`, and each element in `lst` will appear in exactly one of the sublists in `result`. If `n` were greater than the length of `lst`, the remaining sublists would be empty.
+

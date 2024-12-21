@@ -1,0 +1,9 @@
+#State of the program right berfore the function call: n and m are positive integers, k is a non-negative integer, and x and y are positive integers such that 1 <= x <= n and 1 <= y <= m.
+def func():
+    n, m, k, x, y = map(int, input().split())
+    max_asked = (k + (n - 1)) // (2 * n)
+    min_asked = max(1, max_asked - (n - 1))
+    sergei_asked = (k + x - 1) // (2 * n) + ((k + x - 1) % (2 * n) >= n - x + 1)
+    print(max_asked, min_asked, sergei_asked)
+#Overall this is what the function does:The function calculates and prints three values based on the input parameters n, m, k, x, and y. It computes `max_asked`, `min_asked`, and `sergei_asked` by applying mathematical formulas to the input values, where `max_asked` is the maximum number of times a question can be asked, `min_asked` is the minimum number of times a question must be asked, and `sergei_asked` is the number of times Sergei asks a question. The function accepts positive integers n and m, a non-negative integer k, and positive integers x and y within the ranges 1 to n and 1 to m, respectively, and returns no explicit value but instead prints the calculated values. The function does not perform any error checking on the input values, assuming they are provided in the correct format and within the specified ranges, and does not modify the input variables. After execution, the program's state is updated with the printed values, but the original input variables remain unchanged.
+

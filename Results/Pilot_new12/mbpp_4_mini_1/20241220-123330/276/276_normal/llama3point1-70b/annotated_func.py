@@ -1,0 +1,13 @@
+#State of the program right berfore the function call: list1 and list2 are both lists of integers of the same size, and size is a positive integer equal to the length of both lists.
+def func_1(list1, list2, size):
+    merged_list = sorted(list1 + list2)
+    middle_index = size - 1
+    if (size % 2 == 0) :
+        median = (merged_list[middle_index] + merged_list[middle_index + 1]) / 2
+    else :
+        median = merged_list[middle_index]
+    #State of the program after the if-else block has been executed: *`list1` and `list2` are lists of integers. If `size` is even, `merged_list` is a sorted list formed by combining `list1` and `list2`, and `median` is the average of `merged_list[size - 1]` and `merged_list[size]`. If `size` is odd, `merged_list` is a sorted list formed by combining `list1` and `list2`, and `median` is equal to `merged_list[size - 1]
+    return median
+    #The program returns the median, which is the average of `merged_list[size - 1]` and `merged_list[size]` if `size` is even, or `merged_list[size - 1]` if `size` is odd.
+#Overall this is what the function does:The function `func_1` takes in two lists of integers, `list1` and `list2`, which must be of the same size, along with a positive integer `size` that is equal to the length of both lists. It merges these two lists into one sorted list. It then calculates and returns the median of this merged list depending on whether the size is even or odd. If `size` is even, the median is returned as the average of the two middle elements; if `size` is odd, the median is the middle element of the sorted merged list. The current implementation does not handle the case where `list1` and `list2` are empty or contain invalid data types (not integers), nor does it validate that `size` accurately reflects the lengths of the lists, which could lead to potential errors.
+

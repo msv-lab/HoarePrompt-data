@@ -1,0 +1,7 @@
+The function `func_1` accepts two parameters: `string` and `substring`. `string` is a string, and `substring` is a non-empty string. The function searches for `substring` within `string`. If `substring` is not found, the function returns `None`. If `substring` is found, the function returns a tuple containing the `substring`, the index of where `substring` begins in `string` (inclusive), and the index right before the end of `substring` in `string` (exclusive).
+
+Potential edge cases include:
+- If `substring` is not found in `string`, the function correctly returns `None`.
+- If `substring` is found, the function returns the correct indices, ensuring that the second index is right before the end of `substring`.
+
+The function ensures that if `substring` is present in `string`, it provides the substring along with its starting and ending indices (excluding the end index). If `substring` is not found, it gracefully returns `None`.

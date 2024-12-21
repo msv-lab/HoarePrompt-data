@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: lst is a non-empty list of numbers.
+def func_1(lst):
+    return min(lst)
+    #The program returns the smallest number in the list `lst`
+#Overall this is what the function does:The function accepts a non-empty list of numbers and returns the smallest number in the list. If the list contains duplicate minimum values, it returns one of them. The function does not modify the original list. It handles lists with positive, negative, and zero values, as well as lists with a single element. However, it does not handle empty lists, as this would raise a ValueError. The function's return value is the smallest number in the list, or a ValueError if the list is empty. The state of the program after the function concludes is that the original list remains unchanged, and the smallest number in the list is returned as the result.
+

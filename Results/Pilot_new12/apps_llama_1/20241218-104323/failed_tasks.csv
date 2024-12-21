@@ -1,0 +1,23 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+167,gpt-4o,apps,meta-llama/Llama-3.3-70B-Instruct,"   1 2 3
+   4 5 6
+   7 8 9
+   ","Parse error: unexpected indent (<unknown>, line 1)",parse_error
+40,gpt-4o,apps,meta-llama/Llama-3.3-70B-Instruct,"def is_palindrome(s):
+    return s == s[::-1]
+
+s = input().strip()
+
+if len(s) <= 1:
+    print(0)
+else:
+    if not is_palindrome(s):
+        print(len(s))
+    else:
+        if not is_palindrome(s[1:]):
+            print(len(s) - 1)
+        elif not is_palindrome(s[:-1]):
+            print(len(s) - 1)
+        else:
+            print(0)
+",Error: failed to parse entailment checking response,hoareprompt

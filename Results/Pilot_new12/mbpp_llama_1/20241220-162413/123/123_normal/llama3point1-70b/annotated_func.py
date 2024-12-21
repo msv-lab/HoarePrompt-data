@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: lst is a list and L is a non-negative integer such that 0 <= L <= len(lst).
+def func_1(lst, L):
+    return lst[:L], lst[L:]
+    #The program returns a tuple containing two lists: the first list contains the first L elements of `lst`, and the second list contains the remaining elements of `lst`.
+#Overall this is what the function does:The function `func_1` accepts a list `lst` and a non-negative integer `L` as parameters, where `0 <= L <= len(lst)`, and returns a tuple containing two lists. The first list in the tuple includes the first `L` elements of the original list `lst`, and the second list includes the remaining elements of `lst`. This functionality covers all potential edge cases, including when `L` is `0` (in which case the first list in the tuple is empty and the second list contains all elements of `lst`), when `L` equals `len(lst)` (in which case the first list contains all elements of `lst` and the second list is empty), and any value of `L` between these extremes. The function effectively splits the input list `lst` into two parts based on the value of `L`, with no modification to the original list or its elements.
+

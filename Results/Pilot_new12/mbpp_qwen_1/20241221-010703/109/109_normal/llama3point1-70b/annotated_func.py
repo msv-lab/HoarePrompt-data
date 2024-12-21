@@ -1,0 +1,11 @@
+#State of the program right berfore the function call: list1 and list2 are lists.
+def func_1(list1, list2):
+    if list1 :
+        list1[-1:] = list2
+    else :
+        list1 = list2
+    #State of the program after the if-else block has been executed: *`list1` now ends with `list2` instead of its original last element if `list1` was not empty; otherwise, `list1` remains unchanged and is the same as `list2`. `list2` remains unchanged in both cases.
+    return list1
+    #`list1` now ends with `list2` instead of its original last element if `list1` was not empty; otherwise, `list1` remains unchanged and is the same as `list2`. `list2` remains unchanged
+#Overall this is what the function does:The function `func_1` accepts two parameters, `list1` and `list2`, which are both lists. If `list1` is not empty, the function replaces the last element of `list1` with `list2`. If `list1` is empty, it assigns `list2` to `list1`. In both cases, `list2` remains unchanged. After the function executes, `list1` will either end with `list2` if `list1` was not empty, or be equal to `list2` if `list1` was empty. `list2` remains unchanged throughout the function execution.
+

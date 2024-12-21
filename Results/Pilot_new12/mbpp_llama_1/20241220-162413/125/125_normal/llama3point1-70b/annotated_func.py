@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: lst is a list and n is a positive integer.
+def func_1(lst, n):
+    return [lst[i::n] for i in range(n)]
+    #The program returns a list of n sublists of 'lst', where each sublist contains every nth element of 'lst' starting from a different initial index from 0 to n-1.
+#Overall this is what the function does:The function `func_1` takes a list `lst` and a positive integer `n` as input, and returns a list of `n` sublists. Each sublist contains every `n`th element of `lst`, starting from a different initial index ranging from 0 to `n-1`. This means that the first sublist will contain elements at indices 0, `n`, 2`n`,..., the second sublist will contain elements at indices 1, `n+1`, 2`n+1`,..., and so on. The function handles edge cases where `n` is greater than the length of `lst`, in which case some sublists may be empty. If `n` is 1, the function returns a list containing `lst` itself as the only sublist. The function does not modify the original list `lst`.
+

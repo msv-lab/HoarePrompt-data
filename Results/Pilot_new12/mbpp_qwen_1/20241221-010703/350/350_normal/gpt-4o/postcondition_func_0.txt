@@ -1,0 +1,9 @@
+This function accepts a list `arr` of integers sorted in non-decreasing order and an integer `x`. It searches for the value `x` in the list `arr` starting from the end of the list. If `x` is found, it returns the index `i` of the first occurrence of `x` from the end of the list. If `x` is not found, it returns `None`. Specifically, the function handles the following cases:
+- If `x` is found at index `i`, it returns `i`.
+- If no exact match for `x` is found, it checks for the closest match before the last occurrence where `arr[i-1]` is not equal to `x` and `arr[i]` is equal to `x`, returning `i` in this case.
+- If no such close match exists, it returns `None`.
+
+Potential edge cases include:
+- An empty list `arr` in which case the function should return `None`.
+- The list `arr` contains duplicate values of `x`, in which case the function returns the index of the first occurrence of `x` from the end.
+- The value `x` is greater than all elements in `arr`, in which case the function should return `None`.

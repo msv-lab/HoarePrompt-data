@@ -1,0 +1,20 @@
+#State of the program right berfore the function call: arr is a list of integers that is sorted in non-decreasing order, and target is an integer.
+def func_1(arr, target):
+    low, high = 0, len(arr) - 1
+    result = -1
+    while low <= high:
+        mid = (low + high) // 2
+        
+        if arr[mid] == target:
+            result = mid
+            high = mid - 1
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+        
+    #State of the program after the loop has been executed: `low` is greater than `high`, `result` is the index of the `target` in the `arr` if the `target` exists, otherwise `result` is still -1, `mid` is the last calculated midpoint value.
+    return result
+    #`The program returns -1`
+#Overall this is what the function does:The function `func_1` accepts a sorted list of integers `arr` and an integer `target`. It performs a binary search to find the index of `target` in `arr`. If the `target` is found, it sets `result` to the index of `target` and continues searching to ensure no higher index of `target` exists. If the `target` is not found, `result` remains -1. After the loop, the function returns `result`, which will be the index of the `target` if found, or -1 if not found. This covers the case where the `target` might appear multiple times in `arr` and the function returns the index of the first occurrence. If `arr` is empty, the function will return -1 as no elements can match the `target`.
+

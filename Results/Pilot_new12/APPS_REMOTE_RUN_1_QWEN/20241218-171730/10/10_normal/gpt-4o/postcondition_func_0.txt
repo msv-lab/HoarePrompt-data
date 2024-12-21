@@ -1,0 +1,9 @@
+The function processes a set of sofas defined by their coordinates and determines if any of them match specific boundary count criteria. Specifically, it accepts parameters `d` (number of sofas), `n` and `m` (dimensions of the grid), and `x_1`, `y_1`, `x_2`, `y_2` (coordinates of two cells that share a side). It also takes `cnt_l`, `cnt_r`, `cnt_t`, and `cnt_b` (counts of left, right, top, and bottom boundaries, respectively).
+
+Upon execution, the function first reads the coordinates of the sofas and initializes count arrays. It then calculates the number of sofas that have a right, left, top, and bottom boundary that matches the given counts `cnt_l`, `cnt_r`, `cnt_t`, and `cnt_b`. The function searches for a sofa that satisfies these conditions exactly and returns its index plus one. If no sofa meets the criteria, it prints `-1`.
+
+Potential edge cases include:
+1. When `d` is zero, the function returns `-1` because there are no sofas to check.
+2. If the input coordinates `(x_1, y_1)` and `(x_2, y_2)` do not share a side, the function still processes all sofas but will ultimately return `-1` since no sofa can meet the boundary count criteria based on the given coordinates.
+
+The function does not handle errors beyond checking if the coordinates share a side, and it assumes valid input within the constraints provided.

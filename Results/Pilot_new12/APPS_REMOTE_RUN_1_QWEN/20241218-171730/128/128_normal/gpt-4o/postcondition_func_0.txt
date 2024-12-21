@@ -1,0 +1,11 @@
+The function `func_1` accepts three parameters: `n` (a non-negative integer), `f` (a non-negative integer), and `days` (a list of `n` tuples, each containing two non-negative integers `k_i` and `l_i`). It calculates the total sales based on two components: `regular_sales` and `potential_sales_increase`.
+
+1. For each tuple `(k, l)` in `days`, it calculates the regular sales for the day as the minimum of `k` and `l`, and stores these values in `regular_sales`.
+2. It also calculates the potential increase in sales for each day as `min(2 * k, l) - min(k, l)`, and stores these values in `potential_sales_increase`.
+3. After populating `regular_sales` and `potential_sales_increase`, it sums up the elements in `regular_sales` to get the total regular sales.
+4. It then sorts `potential_sales_increase` in descending order.
+5. Finally, it adds the sum of the first `f` elements in `potential_sales_increase` (where `f` is updated to `f - n`) to the total regular sales to get the final total sales.
+
+The function returns the total sales, which is the sum of regular sales and the potential increased sales from the top `f` days, after adjusting `f` to `f - n`.
+
+This function handles all potential edge cases within the given constraints, including when `n` is 1 or when `f` is 0. The function also ensures that `f` is non-negative by adjusting it to `f - n` if necessary.

@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: length and width are non-negative numbers.
+def func_1(length, width):
+    return length * width
+    #The program returns the product of length and width, which is a non-negative number
+#Overall this is what the function does:The function accepts two parameters, length and width, and returns their product. The function does not perform any error checking on the input parameters, so it will return the product of the two numbers regardless of whether they are non-negative or not. The product can be a negative number if either or both of the input parameters are negative. The function does not modify the input parameters in any way. If either or both of the input parameters are zero, the function will return zero. If the input parameters are not numbers, the function will raise a TypeError. The function's return value can be any number, not just non-negative numbers as the annotations suggest.
+

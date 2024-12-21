@@ -1,0 +1,7 @@
+#State of the program right berfore the function call: real and imag are both floating-point numbers representing the real and imaginary parts of a complex number.
+def func_1(real, imag):
+    complex_num = complex(real, imag)
+    return cmath.phase(complex_num)
+    #The program returns the phase of the complex number 'complex_num' which is formed by 'real' + 'imag'j.
+#Overall this is what the function does:The function accepts two floating-point numbers, `real` and `imag`, representing the real and imaginary parts of a complex number. It constructs a complex number from these parts and returns the phase (or argument) of the complex number, which is a floating-point value representing the angle in radians with respect to the positive real axis. The phase is computed using `cmath.phase()`, ensuring that the function properly handles all input values, including edge cases where the real or imaginary parts are zero. The function does not handle any specific errors or exceptional cases, such as non-numeric inputs; however, it does work correctly for all valid floating-point numbers.
+

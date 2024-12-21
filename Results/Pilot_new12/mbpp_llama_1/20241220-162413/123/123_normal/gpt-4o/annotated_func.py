@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: lst is a list and L is a non-negative integer such that 0 <= L <= len(lst).
+def func_1(lst, L):
+    return lst[:L], lst[L:]
+    #The program returns two lists: the first list contains the first L elements of 'lst', and the second list contains the remaining elements of 'lst' starting from index L to the end, where L is a non-negative integer such that 0 <= L <= len(lst).
+#Overall this is what the function does:The function splits a given list `lst` into two separate lists at a specified index `L`, where `L` is a non-negative integer between 0 and the length of `lst` (inclusive), and returns these two lists. The first returned list contains the first `L` elements of `lst`, and the second list contains the remaining elements of `lst` from index `L` to the end. This splitting operation does not modify the original list `lst` but instead creates two new lists based on the specified index. The function handles edge cases where `L` is 0 (returning an empty list as the first element and the entire original list as the second element) and where `L` equals the length of `lst` (returning the entire original list as the first element and an empty list as the second element).
+

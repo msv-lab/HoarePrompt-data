@@ -1,0 +1,8 @@
+#State of the program right berfore the function call: x and y are real numbers representing the rectangular coordinates.
+def func_1(x, y):
+    r = math.sqrt(x ** 2 + y ** 2)
+    theta = math.atan2(y, x)
+    return r, theta
+    #`The program returns r which is \(\sqrt{x^2 + y^2}\) and theta which is \(\mathit{math.atan2}(y, x)\)
+#Overall this is what the function does:The function `func_1` accepts two parameters `x` and `y`, which represent the rectangular coordinates of a point. It calculates the radius `r` as the Euclidean distance from the origin to the point, given by \(\sqrt{x^2 + y^2}\), and the angle `theta` as the angle formed between the positive x-axis and the line segment connecting the origin to the point, measured in radians using the `math.atan2(y, x)` function. The function returns these two values, `r` and `theta`, which represent the polar coordinates of the point. The function handles the case where `x` and `y` can be any real numbers, including zero and negative values. However, it does not handle the case where both `x` and `y` are zero, as `math.atan2(0, 0)` would raise an error due to division by zero. In such a case, the function should either return a specific value (like `(0, 0)`) or handle this edge case explicitly.
+

@@ -1,0 +1,2290 @@
+DEBUG - Start Task 62
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: After seeing the "ALL YOUR BASE ARE BELONG TO US" meme for the first time, numbers X and Y realised that they have different bases, which complicated their relations.
+
+You're given a number X represented in base b_{x} and a number Y represented in base b_{y}. Compare those two numbers.
+
+
+-----Input-----
+
+The first line of the input contains two space-separated integers n and b_{x} (1 ≤ n ≤ 10, 2 ≤ b_{x} ≤ 40), where n is the number of digits in the b_{x}-based representation of X. 
+
+The second line contains n space-separated integers x_1, x_2, ..., x_{n} (0 ≤ x_{i} < b_{x}) — the digits of X. They are given in the order from the most significant digit to the least significant one.
+
+The following two lines describe Y in the same way: the third line contains two space-separated integers m and b_{y} (1 ≤ m ≤ 10, 2 ≤ b_{y} ≤ 40, b_{x} ≠ b_{y}), where m is the number of digits in the b_{y}-based representation of Y, and the fourth line contains m space-separated integers y_1, y_2, ..., y_{m} (0 ≤ y_{i} < b_{y}) — the digits of Y.
+
+There will be no leading zeroes. Both X and Y will be positive. All digits of both numbers are given in the standard decimal numeral system.
+
+
+-----Output-----
+
+Output a single character (quotes for clarity):   '<' if X < Y  '>' if X > Y  '=' if X = Y 
+
+
+-----Examples-----
+Input
+6 2
+1 0 1 1 1 1
+2 10
+4 7
+
+Output
+=
+
+Input
+3 3
+1 0 2
+2 5
+2 4
+
+Output
+<
+
+Input
+7 16
+15 15 4 0 0 7 10
+7 9
+4 8 0 3 1 5 0
+
+Output
+>
+
+
+
+-----Note-----
+
+In the first sample, X = 101111_2 = 47_10 = Y.
+
+In the second sample, X = 102_3 = 21_5 and Y = 24_5 = 112_3, thus X < Y.
+
+In the third sample, $X = FF 4007 A_{16}$ and Y = 4803150_9. We may notice that X starts with much larger digits and b_{x} is much larger than b_{y}, so X is clearly larger than Y.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 62
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: After seeing the "ALL YOUR BASE ARE BELONG TO US" meme for the first time, numbers X and Y realised that they have different bases, which complicated their relations.
+
+You're given a number X represented in base b_{x} and a number Y represented in base b_{y}. Compare those two numbers.
+
+
+-----Input-----
+
+The first line of the input contains two space-separated integers n and b_{x} (1 ≤ n ≤ 10, 2 ≤ b_{x} ≤ 40), where n is the number of digits in the b_{x}-based representation of X. 
+
+The second line contains n space-separated integers x_1, x_2, ..., x_{n} (0 ≤ x_{i} < b_{x}) — the digits of X. They are given in the order from the most significant digit to the least significant one.
+
+The following two lines describe Y in the same way: the third line contains two space-separated integers m and b_{y} (1 ≤ m ≤ 10, 2 ≤ b_{y} ≤ 40, b_{x} ≠ b_{y}), where m is the number of digits in the b_{y}-based representation of Y, and the fourth line contains m space-separated integers y_1, y_2, ..., y_{m} (0 ≤ y_{i} < b_{y}) — the digits of Y.
+
+There will be no leading zeroes. Both X and Y will be positive. All digits of both numbers are given in the standard decimal numeral system.
+
+
+-----Output-----
+
+Output a single character (quotes for clarity):   '<' if X < Y  '>' if X > Y  '=' if X = Y 
+
+
+-----Examples-----
+Input
+6 2
+1 0 1 1 1 1
+2 10
+4 7
+
+Output
+=
+
+Input
+3 3
+1 0 2
+2 5
+2 4
+
+Output
+<
+
+Input
+7 16
+15 15 4 0 0 7 10
+7 9
+4 8 0 3 1 5 0
+
+Output
+>
+
+
+
+-----Note-----
+
+In the first sample, X = 101111_2 = 47_10 = Y.
+
+In the second sample, X = 102_3 = 21_5 and Y = 24_5 = 112_3, thus X < Y.
+
+In the third sample, $X = FF 4007 A_{16}$ and Y = 4803150_9. We may notice that X starts with much larger digits and b_{x} is much larger than b_{y}, so X is clearly larger than Y.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 121
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: The process of mammoth's genome decoding in Berland comes to its end!
+
+One of the few remaining tasks is to restore unrecognized nucleotides in a found chain s. Each nucleotide is coded with a capital letter of English alphabet: 'A', 'C', 'G' or 'T'. Unrecognized nucleotides are coded by a question mark '?'. Thus, s is a string consisting of letters 'A', 'C', 'G', 'T' and characters '?'.
+
+It is known that the number of nucleotides of each of the four types in the decoded genome of mammoth in Berland should be equal.
+
+Your task is to decode the genome and replace each unrecognized nucleotide with one of the four types so that the number of nucleotides of each of the four types becomes equal.
+
+
+-----Input-----
+
+The first line contains the integer n (4 ≤ n ≤ 255) — the length of the genome.
+
+The second line contains the string s of length n — the coded genome. It consists of characters 'A', 'C', 'G', 'T' and '?'.
+
+
+-----Output-----
+
+If it is possible to decode the genome, print it. If there are multiple answer, print any of them. If it is not possible, print three equals signs in a row: "===" (without quotes).
+
+
+-----Examples-----
+Input
+8
+AG?C??CT
+
+Output
+AGACGTCT
+
+Input
+4
+AGCT
+
+Output
+AGCT
+
+Input
+6
+????G?
+
+Output
+===
+
+Input
+4
+AA??
+
+Output
+===
+
+
+
+-----Note-----
+
+In the first example you can replace the first question mark with the letter 'A', the second question mark with the letter 'G', the third question mark with the letter 'T', then each nucleotide in the genome would be presented twice.
+
+In the second example the genome is already decoded correctly and each nucleotide is exactly once in it.
+
+In the third and the fourth examples it is impossible to decode the genom.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 121
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: The process of mammoth's genome decoding in Berland comes to its end!
+
+One of the few remaining tasks is to restore unrecognized nucleotides in a found chain s. Each nucleotide is coded with a capital letter of English alphabet: 'A', 'C', 'G' or 'T'. Unrecognized nucleotides are coded by a question mark '?'. Thus, s is a string consisting of letters 'A', 'C', 'G', 'T' and characters '?'.
+
+It is known that the number of nucleotides of each of the four types in the decoded genome of mammoth in Berland should be equal.
+
+Your task is to decode the genome and replace each unrecognized nucleotide with one of the four types so that the number of nucleotides of each of the four types becomes equal.
+
+
+-----Input-----
+
+The first line contains the integer n (4 ≤ n ≤ 255) — the length of the genome.
+
+The second line contains the string s of length n — the coded genome. It consists of characters 'A', 'C', 'G', 'T' and '?'.
+
+
+-----Output-----
+
+If it is possible to decode the genome, print it. If there are multiple answer, print any of them. If it is not possible, print three equals signs in a row: "===" (without quotes).
+
+
+-----Examples-----
+Input
+8
+AG?C??CT
+
+Output
+AGACGTCT
+
+Input
+4
+AGCT
+
+Output
+AGCT
+
+Input
+6
+????G?
+
+Output
+===
+
+Input
+4
+AA??
+
+Output
+===
+
+
+
+-----Note-----
+
+In the first example you can replace the first question mark with the letter 'A', the second question mark with the letter 'G', the third question mark with the letter 'T', then each nucleotide in the genome would be presented twice.
+
+In the second example the genome is already decoded correctly and each nucleotide is exactly once in it.
+
+In the third and the fourth examples it is impossible to decode the genom.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': False, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': False}
+DEBUG - Start Task 130
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Ivan is collecting coins. There are only $N$ different collectible coins, Ivan has $K$ of them. He will be celebrating his birthday soon, so all his $M$ freinds decided to gift him coins. They all agreed to three terms:  Everyone must gift as many coins as others. All coins given to Ivan must be different. Not less than $L$ coins from gifts altogether, must be new in Ivan's collection.
+
+But his friends don't know which coins have Ivan already got in his collection. They don't want to spend money so they want to buy minimum quantity of coins, that satisfy all terms, irrespective of the Ivan's collection. Help them to find this minimum number of coins or define it's not possible to meet all the terms.
+
+
+-----Input-----
+
+The only line of input contains 4 integers $N$, $M$, $K$, $L$ ($1 \le K \le N \le 10^{18}$; $1 \le M, \,\, L \le 10^{18}$) — quantity of different coins, number of Ivan's friends, size of Ivan's collection and quantity of coins, that must be new in Ivan's collection.
+
+
+-----Output-----
+
+Print one number — minimal number of coins one friend can gift to satisfy all the conditions. If it is impossible to satisfy all three conditions print "-1" (without quotes).
+
+
+-----Examples-----
+Input
+20 15 2 3
+
+Output
+1
+Input
+10 11 2 4
+
+Output
+-1
+
+
+-----Note-----
+
+In the first test, one coin from each friend is enough, as he will be presented with 15 different coins and 13 of them will definitely be new.
+
+In the second test, Ivan has 11 friends, but there are only 10 different coins. So all friends can't present him different coins.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': True, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': True, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': True}
+DEBUG - Start Task 130
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Ivan is collecting coins. There are only $N$ different collectible coins, Ivan has $K$ of them. He will be celebrating his birthday soon, so all his $M$ freinds decided to gift him coins. They all agreed to three terms:  Everyone must gift as many coins as others. All coins given to Ivan must be different. Not less than $L$ coins from gifts altogether, must be new in Ivan's collection.
+
+But his friends don't know which coins have Ivan already got in his collection. They don't want to spend money so they want to buy minimum quantity of coins, that satisfy all terms, irrespective of the Ivan's collection. Help them to find this minimum number of coins or define it's not possible to meet all the terms.
+
+
+-----Input-----
+
+The only line of input contains 4 integers $N$, $M$, $K$, $L$ ($1 \le K \le N \le 10^{18}$; $1 \le M, \,\, L \le 10^{18}$) — quantity of different coins, number of Ivan's friends, size of Ivan's collection and quantity of coins, that must be new in Ivan's collection.
+
+
+-----Output-----
+
+Print one number — minimal number of coins one friend can gift to satisfy all the conditions. If it is impossible to satisfy all three conditions print "-1" (without quotes).
+
+
+-----Examples-----
+Input
+20 15 2 3
+
+Output
+1
+Input
+10 11 2 4
+
+Output
+-1
+
+
+-----Note-----
+
+In the first test, one coin from each friend is enough, as he will be presented with 15 different coins and 13 of them will definitely be new.
+
+In the second test, Ivan has 11 friends, but there are only 10 different coins. So all friends can't present him different coins.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 200
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: The Fair Nut likes kvass very much. On his birthday parents presented him $n$ kegs of kvass. There are $v_i$ liters of kvass in the $i$-th keg. Each keg has a lever. You can pour your glass by exactly $1$ liter pulling this lever. The Fair Nut likes this drink very much, so he wants to pour his glass by $s$ liters of kvass. But he wants to do it, so kvass level in the least keg is as much as possible.
+
+Help him find out how much kvass can be in the least keg or define it's not possible to pour his glass by $s$ liters of kvass.
+
+
+-----Input-----
+
+The first line contains two integers $n$ and $s$ ($1 \le n \le 10^3$, $1 \le s \le 10^{12}$) — the number of kegs and glass volume.
+
+The second line contains $n$ integers $v_1, v_2, \ldots, v_n$ ($1 \le v_i \le 10^9$) — the volume of $i$-th keg.
+
+
+-----Output-----
+
+If the Fair Nut cannot pour his glass by $s$ liters of kvass, print $-1$. Otherwise, print a single integer — how much kvass in the least keg can be.
+
+
+-----Examples-----
+Input
+3 3
+4 3 5
+
+Output
+3
+
+Input
+3 4
+5 3 4
+
+Output
+2
+
+Input
+3 7
+1 2 3
+
+Output
+-1
+
+
+
+-----Note-----
+
+In the first example, the answer is $3$, the Fair Nut can take $1$ liter from the first keg and $2$ liters from the third keg. There are $3$ liters of kvass in each keg.
+
+In the second example, the answer is $2$, the Fair Nut can take $3$ liters from the first keg and $1$ liter from the second keg.
+
+In the third example, the Fair Nut can't pour his cup by $7$ liters, so the answer is $-1$.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 200
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: The Fair Nut likes kvass very much. On his birthday parents presented him $n$ kegs of kvass. There are $v_i$ liters of kvass in the $i$-th keg. Each keg has a lever. You can pour your glass by exactly $1$ liter pulling this lever. The Fair Nut likes this drink very much, so he wants to pour his glass by $s$ liters of kvass. But he wants to do it, so kvass level in the least keg is as much as possible.
+
+Help him find out how much kvass can be in the least keg or define it's not possible to pour his glass by $s$ liters of kvass.
+
+
+-----Input-----
+
+The first line contains two integers $n$ and $s$ ($1 \le n \le 10^3$, $1 \le s \le 10^{12}$) — the number of kegs and glass volume.
+
+The second line contains $n$ integers $v_1, v_2, \ldots, v_n$ ($1 \le v_i \le 10^9$) — the volume of $i$-th keg.
+
+
+-----Output-----
+
+If the Fair Nut cannot pour his glass by $s$ liters of kvass, print $-1$. Otherwise, print a single integer — how much kvass in the least keg can be.
+
+
+-----Examples-----
+Input
+3 3
+4 3 5
+
+Output
+3
+
+Input
+3 4
+5 3 4
+
+Output
+2
+
+Input
+3 7
+1 2 3
+
+Output
+-1
+
+
+
+-----Note-----
+
+In the first example, the answer is $3$, the Fair Nut can take $1$ liter from the first keg and $2$ liters from the third keg. There are $3$ liters of kvass in each keg.
+
+In the second example, the answer is $2$, the Fair Nut can take $3$ liters from the first keg and $1$ liter from the second keg.
+
+In the third example, the Fair Nut can't pour his cup by $7$ liters, so the answer is $-1$.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': False, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 17
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: A string is called bracket sequence if it does not contain any characters other than "(" and ")". A bracket sequence is called regular if it it is possible to obtain correct arithmetic expression by inserting characters "+" and "1" into this sequence. For example, "", "(())" and "()()" are regular bracket sequences; "))" and ")((" are bracket sequences (but not regular ones), and "(a)" and "(1)+(1)" are not bracket sequences at all.
+
+You have a number of strings; each string is a bracket sequence of length $2$. So, overall you have $cnt_1$ strings "((", $cnt_2$ strings "()", $cnt_3$ strings ")(" and $cnt_4$ strings "))". You want to write all these strings in some order, one after another; after that, you will get a long bracket sequence of length $2(cnt_1 + cnt_2 + cnt_3 + cnt_4)$. You wonder: is it possible to choose some order of the strings you have such that you will get a regular bracket sequence? Note that you may not remove any characters or strings, and you may not add anything either.
+
+
+-----Input-----
+
+The input consists of four lines, $i$-th of them contains one integer $cnt_i$ ($0 \le cnt_i \le 10^9$).
+
+
+-----Output-----
+
+Print one integer: $1$ if it is possible to form a regular bracket sequence by choosing the correct order of the given strings, $0$ otherwise.
+
+
+-----Examples-----
+Input
+3
+1
+4
+3
+
+Output
+1
+
+Input
+0
+0
+0
+0
+
+Output
+1
+
+Input
+1
+2
+3
+4
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example it is possible to construct a string "(())()(()((()()()())))", which is a regular bracket sequence.
+
+In the second example it is possible to construct a string "", which is a regular bracket sequence.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 17
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: A string is called bracket sequence if it does not contain any characters other than "(" and ")". A bracket sequence is called regular if it it is possible to obtain correct arithmetic expression by inserting characters "+" and "1" into this sequence. For example, "", "(())" and "()()" are regular bracket sequences; "))" and ")((" are bracket sequences (but not regular ones), and "(a)" and "(1)+(1)" are not bracket sequences at all.
+
+You have a number of strings; each string is a bracket sequence of length $2$. So, overall you have $cnt_1$ strings "((", $cnt_2$ strings "()", $cnt_3$ strings ")(" and $cnt_4$ strings "))". You want to write all these strings in some order, one after another; after that, you will get a long bracket sequence of length $2(cnt_1 + cnt_2 + cnt_3 + cnt_4)$. You wonder: is it possible to choose some order of the strings you have such that you will get a regular bracket sequence? Note that you may not remove any characters or strings, and you may not add anything either.
+
+
+-----Input-----
+
+The input consists of four lines, $i$-th of them contains one integer $cnt_i$ ($0 \le cnt_i \le 10^9$).
+
+
+-----Output-----
+
+Print one integer: $1$ if it is possible to form a regular bracket sequence by choosing the correct order of the given strings, $0$ otherwise.
+
+
+-----Examples-----
+Input
+3
+1
+4
+3
+
+Output
+1
+
+Input
+0
+0
+0
+0
+
+Output
+1
+
+Input
+1
+2
+3
+4
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example it is possible to construct a string "(())()(()((()()()())))", which is a regular bracket sequence.
+
+In the second example it is possible to construct a string "", which is a regular bracket sequence.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 27
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Wet Shark asked Rat Kwesh to generate three positive real numbers x, y and z, from 0.1 to 200.0, inclusive. Wet Krash wants to impress Wet Shark, so all generated numbers will have exactly one digit after the decimal point.
+
+Wet Shark knows Rat Kwesh will want a lot of cheese. So he will give the Rat an opportunity to earn a lot of cheese. He will hand the three numbers x, y and z to Rat Kwesh, and Rat Kwesh will pick one of the these twelve options:  a_1 = x^{y}^{z};  a_2 = x^{z}^{y};  a_3 = (x^{y})^{z};  a_4 = (x^{z})^{y};  a_5 = y^{x}^{z};  a_6 = y^{z}^{x};  a_7 = (y^{x})^{z};  a_8 = (y^{z})^{x};  a_9 = z^{x}^{y};  a_10 = z^{y}^{x};  a_11 = (z^{x})^{y};  a_12 = (z^{y})^{x}. 
+
+Let m be the maximum of all the a_{i}, and c be the smallest index (from 1 to 12) such that a_{c} = m. Rat's goal is to find that c, and he asks you to help him. Rat Kwesh wants to see how much cheese he gets, so he you will have to print the expression corresponding to that a_{c}.
+
+ 
+
+
+-----Input-----
+
+The only line of the input contains three space-separated real numbers x, y and z (0.1 ≤ x, y, z ≤ 200.0). Each of x, y and z is given with exactly one digit after the decimal point.
+
+
+-----Output-----
+
+Find the maximum value of expression among x^{y}^{z}, x^{z}^{y}, (x^{y})^{z}, (x^{z})^{y}, y^{x}^{z}, y^{z}^{x}, (y^{x})^{z}, (y^{z})^{x}, z^{x}^{y}, z^{y}^{x}, (z^{x})^{y}, (z^{y})^{x} and print the corresponding expression. If there are many maximums, print the one that comes first in the list. 
+
+x^{y}^{z} should be outputted as x^y^z (without brackets), and (x^{y})^{z} should be outputted as (x^y)^z (quotes for clarity). 
+
+
+-----Examples-----
+Input
+1.1 3.4 2.5
+
+Output
+z^y^x
+
+Input
+2.0 2.0 2.0
+
+Output
+x^y^z
+
+Input
+1.9 1.8 1.7
+
+Output
+(x^y)^z
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 27
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Wet Shark asked Rat Kwesh to generate three positive real numbers x, y and z, from 0.1 to 200.0, inclusive. Wet Krash wants to impress Wet Shark, so all generated numbers will have exactly one digit after the decimal point.
+
+Wet Shark knows Rat Kwesh will want a lot of cheese. So he will give the Rat an opportunity to earn a lot of cheese. He will hand the three numbers x, y and z to Rat Kwesh, and Rat Kwesh will pick one of the these twelve options:  a_1 = x^{y}^{z};  a_2 = x^{z}^{y};  a_3 = (x^{y})^{z};  a_4 = (x^{z})^{y};  a_5 = y^{x}^{z};  a_6 = y^{z}^{x};  a_7 = (y^{x})^{z};  a_8 = (y^{z})^{x};  a_9 = z^{x}^{y};  a_10 = z^{y}^{x};  a_11 = (z^{x})^{y};  a_12 = (z^{y})^{x}. 
+
+Let m be the maximum of all the a_{i}, and c be the smallest index (from 1 to 12) such that a_{c} = m. Rat's goal is to find that c, and he asks you to help him. Rat Kwesh wants to see how much cheese he gets, so he you will have to print the expression corresponding to that a_{c}.
+
+ 
+
+
+-----Input-----
+
+The only line of the input contains three space-separated real numbers x, y and z (0.1 ≤ x, y, z ≤ 200.0). Each of x, y and z is given with exactly one digit after the decimal point.
+
+
+-----Output-----
+
+Find the maximum value of expression among x^{y}^{z}, x^{z}^{y}, (x^{y})^{z}, (x^{z})^{y}, y^{x}^{z}, y^{z}^{x}, (y^{x})^{z}, (y^{z})^{x}, z^{x}^{y}, z^{y}^{x}, (z^{x})^{y}, (z^{y})^{x} and print the corresponding expression. If there are many maximums, print the one that comes first in the list. 
+
+x^{y}^{z} should be outputted as x^y^z (without brackets), and (x^{y})^{z} should be outputted as (x^y)^z (quotes for clarity). 
+
+
+-----Examples-----
+Input
+1.1 3.4 2.5
+
+Output
+z^y^x
+
+Input
+2.0 2.0 2.0
+
+Output
+x^y^z
+
+Input
+1.9 1.8 1.7
+
+Output
+(x^y)^z
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 71
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Polycarp is crazy about round numbers. He especially likes the numbers divisible by 10^{k}.
+
+In the given number of n Polycarp wants to remove the least number of digits to get a number that is divisible by 10^{k}. For example, if k = 3, in the number 30020 it is enough to delete a single digit (2). In this case, the result is 3000 that is divisible by 10^3 = 1000.
+
+Write a program that prints the minimum number of digits to be deleted from the given integer number n, so that the result is divisible by 10^{k}. The result should not start with the unnecessary leading zero (i.e., zero can start only the number 0, which is required to be written as exactly one digit).
+
+It is guaranteed that the answer exists.
+
+
+-----Input-----
+
+The only line of the input contains two integer numbers n and k (0 ≤ n ≤ 2 000 000 000, 1 ≤ k ≤ 9).
+
+It is guaranteed that the answer exists. All numbers in the input are written in traditional notation of integers, that is, without any extra leading zeros.
+
+
+-----Output-----
+
+Print w — the required minimal number of digits to erase. After removing the appropriate w digits from the number n, the result should have a value that is divisible by 10^{k}. The result can start with digit 0 in the single case (the result is zero and written by exactly the only digit 0).
+
+
+-----Examples-----
+Input
+30020 3
+
+Output
+1
+
+Input
+100 9
+
+Output
+2
+
+Input
+10203049 2
+
+Output
+3
+
+
+
+-----Note-----
+
+In the example 2 you can remove two digits: 1 and any 0. The result is number 0 which is divisible by any number.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 71
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Polycarp is crazy about round numbers. He especially likes the numbers divisible by 10^{k}.
+
+In the given number of n Polycarp wants to remove the least number of digits to get a number that is divisible by 10^{k}. For example, if k = 3, in the number 30020 it is enough to delete a single digit (2). In this case, the result is 3000 that is divisible by 10^3 = 1000.
+
+Write a program that prints the minimum number of digits to be deleted from the given integer number n, so that the result is divisible by 10^{k}. The result should not start with the unnecessary leading zero (i.e., zero can start only the number 0, which is required to be written as exactly one digit).
+
+It is guaranteed that the answer exists.
+
+
+-----Input-----
+
+The only line of the input contains two integer numbers n and k (0 ≤ n ≤ 2 000 000 000, 1 ≤ k ≤ 9).
+
+It is guaranteed that the answer exists. All numbers in the input are written in traditional notation of integers, that is, without any extra leading zeros.
+
+
+-----Output-----
+
+Print w — the required minimal number of digits to erase. After removing the appropriate w digits from the number n, the result should have a value that is divisible by 10^{k}. The result can start with digit 0 in the single case (the result is zero and written by exactly the only digit 0).
+
+
+-----Examples-----
+Input
+30020 3
+
+Output
+1
+
+Input
+100 9
+
+Output
+2
+
+Input
+10203049 2
+
+Output
+3
+
+
+
+-----Note-----
+
+In the example 2 you can remove two digits: 1 and any 0. The result is number 0 which is divisible by any number.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 190
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Salem gave you $n$ sticks with integer positive lengths $a_1, a_2, \ldots, a_n$.
+
+For every stick, you can change its length to any other positive integer length (that is, either shrink or stretch it). The cost of changing the stick's length from $a$ to $b$ is $|a - b|$, where $|x|$ means the absolute value of $x$.
+
+A stick length $a_i$ is called almost good for some integer $t$ if $|a_i - t| \le 1$.
+
+Salem asks you to change the lengths of some sticks (possibly all or none), such that all sticks' lengths are almost good for some positive integer $t$ and the total cost of changing is minimum possible. The value of $t$ is not fixed in advance and you can choose it as any positive integer. 
+
+As an answer, print the value of $t$ and the minimum cost. If there are multiple optimal choices for $t$, print any of them.
+
+
+-----Input-----
+
+The first line contains a single integer $n$ ($1 \le n \le 1000$) — the number of sticks.
+
+The second line contains $n$ integers $a_i$ ($1 \le a_i \le 100$) — the lengths of the sticks.
+
+
+-----Output-----
+
+Print the value of $t$ and the minimum possible cost. If there are multiple optimal choices for $t$, print any of them.
+
+
+-----Examples-----
+Input
+3
+10 1 4
+
+Output
+3 7
+
+Input
+5
+1 1 2 2 3
+
+Output
+2 0
+
+
+
+-----Note-----
+
+In the first example, we can change $1$ into $2$ and $10$ into $4$ with cost $|1 - 2| + |10 - 4| = 1 + 6 = 7$ and the resulting lengths $[2, 4, 4]$ are almost good for $t = 3$.
+
+In the second example, the sticks lengths are already almost good for $t = 2$, so we don't have to do anything.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': True}
+DEBUG - Start Task 190
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Salem gave you $n$ sticks with integer positive lengths $a_1, a_2, \ldots, a_n$.
+
+For every stick, you can change its length to any other positive integer length (that is, either shrink or stretch it). The cost of changing the stick's length from $a$ to $b$ is $|a - b|$, where $|x|$ means the absolute value of $x$.
+
+A stick length $a_i$ is called almost good for some integer $t$ if $|a_i - t| \le 1$.
+
+Salem asks you to change the lengths of some sticks (possibly all or none), such that all sticks' lengths are almost good for some positive integer $t$ and the total cost of changing is minimum possible. The value of $t$ is not fixed in advance and you can choose it as any positive integer. 
+
+As an answer, print the value of $t$ and the minimum cost. If there are multiple optimal choices for $t$, print any of them.
+
+
+-----Input-----
+
+The first line contains a single integer $n$ ($1 \le n \le 1000$) — the number of sticks.
+
+The second line contains $n$ integers $a_i$ ($1 \le a_i \le 100$) — the lengths of the sticks.
+
+
+-----Output-----
+
+Print the value of $t$ and the minimum possible cost. If there are multiple optimal choices for $t$, print any of them.
+
+
+-----Examples-----
+Input
+3
+10 1 4
+
+Output
+3 7
+
+Input
+5
+1 1 2 2 3
+
+Output
+2 0
+
+
+
+-----Note-----
+
+In the first example, we can change $1$ into $2$ and $10$ into $4$ with cost $|1 - 2| + |10 - 4| = 1 + 6 = 7$ and the resulting lengths $[2, 4, 4]$ are almost good for $t = 3$.
+
+In the second example, the sticks lengths are already almost good for $t = 2$, so we don't have to do anything.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 285
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Kolya is developing an economy simulator game. His most favourite part of the development process is in-game testing. Once he was entertained by the testing so much, that he found out his game-coin score become equal to 0.
+
+Kolya remembers that at the beginning of the game his game-coin score was equal to n and that he have bought only some houses (for 1 234 567 game-coins each), cars (for 123 456 game-coins each) and computers (for 1 234 game-coins each).
+
+Kolya is now interested, whether he could have spent all of his initial n game-coins buying only houses, cars and computers or there is a bug in the game. Formally, is there a triple of non-negative integers a, b and c such that a × 1 234 567 + b × 123 456 + c × 1 234 = n?
+
+Please help Kolya answer this question.
+
+
+-----Input-----
+
+The first line of the input contains a single integer n (1 ≤ n ≤ 10^9) — Kolya's initial game-coin score.
+
+
+-----Output-----
+
+Print "YES" (without quotes) if it's possible that Kolya spent all of his initial n coins buying only houses, cars and computers. Otherwise print "NO" (without quotes).
+
+
+-----Examples-----
+Input
+1359257
+
+Output
+YES
+Input
+17851817
+
+Output
+NO
+
+
+-----Note-----
+
+In the first sample, one of the possible solutions is to buy one house, one car and one computer, spending 1 234 567 + 123 456 + 1234 = 1 359 257 game-coins in total.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 285
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Kolya is developing an economy simulator game. His most favourite part of the development process is in-game testing. Once he was entertained by the testing so much, that he found out his game-coin score become equal to 0.
+
+Kolya remembers that at the beginning of the game his game-coin score was equal to n and that he have bought only some houses (for 1 234 567 game-coins each), cars (for 123 456 game-coins each) and computers (for 1 234 game-coins each).
+
+Kolya is now interested, whether he could have spent all of his initial n game-coins buying only houses, cars and computers or there is a bug in the game. Formally, is there a triple of non-negative integers a, b and c such that a × 1 234 567 + b × 123 456 + c × 1 234 = n?
+
+Please help Kolya answer this question.
+
+
+-----Input-----
+
+The first line of the input contains a single integer n (1 ≤ n ≤ 10^9) — Kolya's initial game-coin score.
+
+
+-----Output-----
+
+Print "YES" (without quotes) if it's possible that Kolya spent all of his initial n coins buying only houses, cars and computers. Otherwise print "NO" (without quotes).
+
+
+-----Examples-----
+Input
+1359257
+
+Output
+YES
+Input
+17851817
+
+Output
+NO
+
+
+-----Note-----
+
+In the first sample, one of the possible solutions is to buy one house, one car and one computer, spending 1 234 567 + 123 456 + 1234 = 1 359 257 game-coins in total.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 224
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Let's define a function $f(p)$ on a permutation $p$ as follows. Let $g_i$ be the greatest common divisor (GCD) of elements $p_1$, $p_2$, ..., $p_i$ (in other words, it is the GCD of the prefix of length $i$). Then $f(p)$ is the number of distinct elements among $g_1$, $g_2$, ..., $g_n$.
+
+Let $f_{max}(n)$ be the maximum value of $f(p)$ among all permutations $p$ of integers $1$, $2$, ..., $n$.
+
+Given an integers $n$, count the number of permutations $p$ of integers $1$, $2$, ..., $n$, such that $f(p)$ is equal to $f_{max}(n)$. Since the answer may be large, print the remainder of its division by $1000\,000\,007 = 10^9 + 7$.
+
+
+-----Input-----
+
+The only line contains the integer $n$ ($2 \le n \le 10^6$) — the length of the permutations.
+
+
+-----Output-----
+
+The only line should contain your answer modulo $10^9+7$.
+
+
+-----Examples-----
+Input
+2
+
+Output
+1
+Input
+3
+
+Output
+4
+Input
+6
+
+Output
+120
+
+
+-----Note-----
+
+Consider the second example: these are the permutations of length $3$:  $[1,2,3]$, $f(p)=1$.  $[1,3,2]$, $f(p)=1$.  $[2,1,3]$, $f(p)=2$.  $[2,3,1]$, $f(p)=2$.  $[3,1,2]$, $f(p)=2$.  $[3,2,1]$, $f(p)=2$. 
+
+The maximum value $f_{max}(3) = 2$, and there are $4$ permutations $p$ such that $f(p)=2$.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 224
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Let's define a function $f(p)$ on a permutation $p$ as follows. Let $g_i$ be the greatest common divisor (GCD) of elements $p_1$, $p_2$, ..., $p_i$ (in other words, it is the GCD of the prefix of length $i$). Then $f(p)$ is the number of distinct elements among $g_1$, $g_2$, ..., $g_n$.
+
+Let $f_{max}(n)$ be the maximum value of $f(p)$ among all permutations $p$ of integers $1$, $2$, ..., $n$.
+
+Given an integers $n$, count the number of permutations $p$ of integers $1$, $2$, ..., $n$, such that $f(p)$ is equal to $f_{max}(n)$. Since the answer may be large, print the remainder of its division by $1000\,000\,007 = 10^9 + 7$.
+
+
+-----Input-----
+
+The only line contains the integer $n$ ($2 \le n \le 10^6$) — the length of the permutations.
+
+
+-----Output-----
+
+The only line should contain your answer modulo $10^9+7$.
+
+
+-----Examples-----
+Input
+2
+
+Output
+1
+Input
+3
+
+Output
+4
+Input
+6
+
+Output
+120
+
+
+-----Note-----
+
+Consider the second example: these are the permutations of length $3$:  $[1,2,3]$, $f(p)=1$.  $[1,3,2]$, $f(p)=1$.  $[2,1,3]$, $f(p)=2$.  $[2,3,1]$, $f(p)=2$.  $[3,1,2]$, $f(p)=2$.  $[3,2,1]$, $f(p)=2$. 
+
+The maximum value $f_{max}(3) = 2$, and there are $4$ permutations $p$ such that $f(p)=2$.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 1
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: An accordion is a string (yes, in the real world accordions are musical instruments, but let's forget about it for a while) which can be represented as a concatenation of: an opening bracket (ASCII code $091$), a colon (ASCII code $058$), some (possibly zero) vertical line characters (ASCII code $124$), another colon, and a closing bracket (ASCII code $093$). The length of the accordion is the number of characters in it.
+
+For example, [::], [:||:] and [:|||:] are accordions having length $4$, $6$ and $7$. (:|:), {:||:}, [:], ]:||:[ are not accordions. 
+
+You are given a string $s$. You want to transform it into an accordion by removing some (possibly zero) characters from it. Note that you may not insert new characters or reorder existing ones. Is it possible to obtain an accordion by removing characters from $s$, and if so, what is the maximum possible length of the result?
+
+
+-----Input-----
+
+The only line contains one string $s$ ($1 \le |s| \le 500000$). It consists of lowercase Latin letters and characters [, ], : and |.
+
+
+-----Output-----
+
+If it is not possible to obtain an accordion by removing some characters from $s$, print $-1$. Otherwise print maximum possible length of the resulting accordion.
+
+
+-----Examples-----
+Input
+|[a:b:|]
+
+Output
+4
+
+Input
+|]:[|:]
+
+Output
+-1
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': False, 'simple': True, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 1
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: An accordion is a string (yes, in the real world accordions are musical instruments, but let's forget about it for a while) which can be represented as a concatenation of: an opening bracket (ASCII code $091$), a colon (ASCII code $058$), some (possibly zero) vertical line characters (ASCII code $124$), another colon, and a closing bracket (ASCII code $093$). The length of the accordion is the number of characters in it.
+
+For example, [::], [:||:] and [:|||:] are accordions having length $4$, $6$ and $7$. (:|:), {:||:}, [:], ]:||:[ are not accordions. 
+
+You are given a string $s$. You want to transform it into an accordion by removing some (possibly zero) characters from it. Note that you may not insert new characters or reorder existing ones. Is it possible to obtain an accordion by removing characters from $s$, and if so, what is the maximum possible length of the result?
+
+
+-----Input-----
+
+The only line contains one string $s$ ($1 \le |s| \le 500000$). It consists of lowercase Latin letters and characters [, ], : and |.
+
+
+-----Output-----
+
+If it is not possible to obtain an accordion by removing some characters from $s$, print $-1$. Otherwise print maximum possible length of the resulting accordion.
+
+
+-----Examples-----
+Input
+|[a:b:|]
+
+Output
+4
+
+Input
+|]:[|:]
+
+Output
+-1
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': True}
+DEBUG - Start Task 132
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: There is a beautiful garden of stones in Innopolis.
+
+Its most beautiful place is the $n$ piles with stones numbered from $1$ to $n$.
+
+EJOI participants have visited this place twice. 
+
+When they first visited it, the number of stones in piles was $x_1, x_2, \ldots, x_n$, correspondingly. One of the participants wrote down this sequence in a notebook. 
+
+They visited it again the following day, and the number of stones in piles was equal to $y_1, y_2, \ldots, y_n$. One of the participants also wrote it down in a notebook.
+
+It is well known that every member of the EJOI jury during the night either sits in the room $108$ or comes to the place with stones. Each jury member who comes there either takes one stone for himself or moves one stone from one pile to another. We can assume that there is an unlimited number of jury members. No one except the jury goes to the place with stones at night.
+
+Participants want to know whether their notes can be correct or they are sure to have made a mistake.
+
+
+-----Input-----
+
+The first line of the input file contains a single integer $n$, the number of piles with stones in the garden ($1 \leq n \leq 50$).
+
+The second line contains $n$ integers separated by spaces $x_1, x_2, \ldots, x_n$, the number of stones in piles recorded in the notebook when the participants came to the place with stones for the first time ($0 \leq x_i \leq 1000$).
+
+The third line contains $n$ integers separated by spaces $y_1, y_2, \ldots, y_n$, the number of stones in piles recorded in the notebook when the participants came to the place with stones for the second time ($0 \leq y_i \leq 1000$).
+
+
+-----Output-----
+
+If the records can be consistent output "Yes", otherwise output "No" (quotes for clarity).
+
+
+-----Examples-----
+Input
+5
+1 2 3 4 5
+2 1 4 3 5
+
+Output
+Yes
+
+Input
+5
+1 1 1 1 1
+1 0 1 0 1
+
+Output
+Yes
+
+Input
+3
+2 3 9
+1 7 9
+
+Output
+No
+
+
+
+-----Note-----
+
+In the first example, the following could have happened during the night: one of the jury members moved one stone from the second pile to the first pile, and the other jury member moved one stone from the fourth pile to the third pile.
+
+In the second example, the jury took stones from the second and fourth piles.
+
+It can be proved that it is impossible for the jury members to move and took stones to convert the first array into the second array.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 132
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: There is a beautiful garden of stones in Innopolis.
+
+Its most beautiful place is the $n$ piles with stones numbered from $1$ to $n$.
+
+EJOI participants have visited this place twice. 
+
+When they first visited it, the number of stones in piles was $x_1, x_2, \ldots, x_n$, correspondingly. One of the participants wrote down this sequence in a notebook. 
+
+They visited it again the following day, and the number of stones in piles was equal to $y_1, y_2, \ldots, y_n$. One of the participants also wrote it down in a notebook.
+
+It is well known that every member of the EJOI jury during the night either sits in the room $108$ or comes to the place with stones. Each jury member who comes there either takes one stone for himself or moves one stone from one pile to another. We can assume that there is an unlimited number of jury members. No one except the jury goes to the place with stones at night.
+
+Participants want to know whether their notes can be correct or they are sure to have made a mistake.
+
+
+-----Input-----
+
+The first line of the input file contains a single integer $n$, the number of piles with stones in the garden ($1 \leq n \leq 50$).
+
+The second line contains $n$ integers separated by spaces $x_1, x_2, \ldots, x_n$, the number of stones in piles recorded in the notebook when the participants came to the place with stones for the first time ($0 \leq x_i \leq 1000$).
+
+The third line contains $n$ integers separated by spaces $y_1, y_2, \ldots, y_n$, the number of stones in piles recorded in the notebook when the participants came to the place with stones for the second time ($0 \leq y_i \leq 1000$).
+
+
+-----Output-----
+
+If the records can be consistent output "Yes", otherwise output "No" (quotes for clarity).
+
+
+-----Examples-----
+Input
+5
+1 2 3 4 5
+2 1 4 3 5
+
+Output
+Yes
+
+Input
+5
+1 1 1 1 1
+1 0 1 0 1
+
+Output
+Yes
+
+Input
+3
+2 3 9
+1 7 9
+
+Output
+No
+
+
+
+-----Note-----
+
+In the first example, the following could have happened during the night: one of the jury members moved one stone from the second pile to the first pile, and the other jury member moved one stone from the fourth pile to the third pile.
+
+In the second example, the jury took stones from the second and fourth piles.
+
+It can be proved that it is impossible for the jury members to move and took stones to convert the first array into the second array.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 217
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: You are given a sequence a consisting of n integers. You may partition this sequence into two sequences b and c in such a way that every element belongs exactly to one of these sequences. 
+
+Let B be the sum of elements belonging to b, and C be the sum of elements belonging to c (if some of these sequences is empty, then its sum is 0). What is the maximum possible value of B - C?
+
+
+-----Input-----
+
+The first line contains one integer n (1 ≤ n ≤ 100) — the number of elements in a.
+
+The second line contains n integers a_1, a_2, ..., a_{n} ( - 100 ≤ a_{i} ≤ 100) — the elements of sequence a.
+
+
+-----Output-----
+
+Print the maximum possible value of B - C, where B is the sum of elements of sequence b, and C is the sum of elements of sequence c.
+
+
+-----Examples-----
+Input
+3
+1 -2 0
+
+Output
+3
+
+Input
+6
+16 23 16 15 42 8
+
+Output
+120
+
+
+
+-----Note-----
+
+In the first example we may choose b = {1, 0}, c = { - 2}. Then B = 1, C =  - 2, B - C = 3.
+
+In the second example we choose b = {16, 23, 16, 15, 42, 8}, c = {} (an empty sequence). Then B = 120, C = 0, B - C = 120.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 217
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: You are given a sequence a consisting of n integers. You may partition this sequence into two sequences b and c in such a way that every element belongs exactly to one of these sequences. 
+
+Let B be the sum of elements belonging to b, and C be the sum of elements belonging to c (if some of these sequences is empty, then its sum is 0). What is the maximum possible value of B - C?
+
+
+-----Input-----
+
+The first line contains one integer n (1 ≤ n ≤ 100) — the number of elements in a.
+
+The second line contains n integers a_1, a_2, ..., a_{n} ( - 100 ≤ a_{i} ≤ 100) — the elements of sequence a.
+
+
+-----Output-----
+
+Print the maximum possible value of B - C, where B is the sum of elements of sequence b, and C is the sum of elements of sequence c.
+
+
+-----Examples-----
+Input
+3
+1 -2 0
+
+Output
+3
+
+Input
+6
+16 23 16 15 42 8
+
+Output
+120
+
+
+
+-----Note-----
+
+In the first example we may choose b = {1, 0}, c = { - 2}. Then B = 1, C =  - 2, B - C = 3.
+
+In the second example we choose b = {16, 23, 16, 15, 42, 8}, c = {} (an empty sequence). Then B = 120, C = 0, B - C = 120.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': True}
+DEBUG - Start Task 296
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: You are given a positive integer $n$.
+
+Find a sequence of fractions $\frac{a_i}{b_i}$, $i = 1 \ldots k$ (where $a_i$ and $b_i$ are positive integers) for some $k$ such that:
+
+$$ \begin{cases} \text{$b_i$ divides $n$, $1 < b_i < n$ for $i = 1 \ldots k$} \\ \text{$1 \le a_i < b_i$ for $i = 1 \ldots k$} \\ \text{$\sum\limits_{i=1}^k \frac{a_i}{b_i} = 1 - \frac{1}{n}$} \end{cases} $$
+
+
+-----Input-----
+
+The input consists of a single integer $n$ ($2 \le n \le 10^9$).
+
+
+-----Output-----
+
+In the first line print "YES" if there exists such a sequence of fractions or "NO" otherwise.
+
+If there exists such a sequence, next lines should contain a description of the sequence in the following format.
+
+The second line should contain integer $k$ ($1 \le k \le 100\,000$) — the number of elements in the sequence. It is guaranteed that if such a sequence exists, then there exists a sequence of length at most $100\,000$.
+
+Next $k$ lines should contain fractions of the sequence with two integers $a_i$ and $b_i$ on each line.
+
+
+-----Examples-----
+Input
+2
+
+Output
+NO
+
+Input
+6
+
+Output
+YES
+2
+1 2
+1 3
+
+
+
+-----Note-----
+
+In the second example there is a sequence $\frac{1}{2}, \frac{1}{3}$ such that $\frac{1}{2} + \frac{1}{3} = 1 - \frac{1}{6}$.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 296
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: You are given a positive integer $n$.
+
+Find a sequence of fractions $\frac{a_i}{b_i}$, $i = 1 \ldots k$ (where $a_i$ and $b_i$ are positive integers) for some $k$ such that:
+
+$$ \begin{cases} \text{$b_i$ divides $n$, $1 < b_i < n$ for $i = 1 \ldots k$} \\ \text{$1 \le a_i < b_i$ for $i = 1 \ldots k$} \\ \text{$\sum\limits_{i=1}^k \frac{a_i}{b_i} = 1 - \frac{1}{n}$} \end{cases} $$
+
+
+-----Input-----
+
+The input consists of a single integer $n$ ($2 \le n \le 10^9$).
+
+
+-----Output-----
+
+In the first line print "YES" if there exists such a sequence of fractions or "NO" otherwise.
+
+If there exists such a sequence, next lines should contain a description of the sequence in the following format.
+
+The second line should contain integer $k$ ($1 \le k \le 100\,000$) — the number of elements in the sequence. It is guaranteed that if such a sequence exists, then there exists a sequence of length at most $100\,000$.
+
+Next $k$ lines should contain fractions of the sequence with two integers $a_i$ and $b_i$ on each line.
+
+
+-----Examples-----
+Input
+2
+
+Output
+NO
+
+Input
+6
+
+Output
+YES
+2
+1 2
+1 3
+
+
+
+-----Note-----
+
+In the second example there is a sequence $\frac{1}{2}, \frac{1}{3}$ such that $\frac{1}{2} + \frac{1}{3} = 1 - \frac{1}{6}$.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 41
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Is it rated?
+
+Here it is. The Ultimate Question of Competitive Programming, Codeforces, and Everything. And you are here to answer it.
+
+Another Codeforces round has been conducted. No two participants have the same number of points. For each participant, from the top to the bottom of the standings, their rating before and after the round is known.
+
+It's known that if at least one participant's rating has changed, then the round was rated for sure.
+
+It's also known that if the round was rated and a participant with lower rating took a better place in the standings than a participant with higher rating, then at least one round participant's rating has changed.
+
+In this problem, you should not make any other assumptions about the rating system.
+
+Determine if the current round is rated, unrated, or it's impossible to determine whether it is rated of not.
+
+
+-----Input-----
+
+The first line contains a single integer n (2 ≤ n ≤ 1000) — the number of round participants.
+
+Each of the next n lines contains two integers a_{i} and b_{i} (1 ≤ a_{i}, b_{i} ≤ 4126) — the rating of the i-th participant before and after the round, respectively. The participants are listed in order from the top to the bottom of the standings.
+
+
+-----Output-----
+
+If the round is rated for sure, print "rated". If the round is unrated for sure, print "unrated". If it's impossible to determine whether the round is rated or not, print "maybe".
+
+
+-----Examples-----
+Input
+6
+3060 3060
+2194 2194
+2876 2903
+2624 2624
+3007 2991
+2884 2884
+
+Output
+rated
+
+Input
+4
+1500 1500
+1300 1300
+1200 1200
+1400 1400
+
+Output
+unrated
+
+Input
+5
+3123 3123
+2777 2777
+2246 2246
+2246 2246
+1699 1699
+
+Output
+maybe
+
+
+
+-----Note-----
+
+In the first example, the ratings of the participants in the third and fifth places have changed, therefore, the round was rated.
+
+In the second example, no one's rating has changed, but the participant in the second place has lower rating than the participant in the fourth place. Therefore, if the round was rated, someone's rating would've changed for sure.
+
+In the third example, no one's rating has changed, and the participants took places in non-increasing order of their rating. Therefore, it's impossible to determine whether the round is rated or not.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': False}
+DEBUG - Start Task 41
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Is it rated?
+
+Here it is. The Ultimate Question of Competitive Programming, Codeforces, and Everything. And you are here to answer it.
+
+Another Codeforces round has been conducted. No two participants have the same number of points. For each participant, from the top to the bottom of the standings, their rating before and after the round is known.
+
+It's known that if at least one participant's rating has changed, then the round was rated for sure.
+
+It's also known that if the round was rated and a participant with lower rating took a better place in the standings than a participant with higher rating, then at least one round participant's rating has changed.
+
+In this problem, you should not make any other assumptions about the rating system.
+
+Determine if the current round is rated, unrated, or it's impossible to determine whether it is rated of not.
+
+
+-----Input-----
+
+The first line contains a single integer n (2 ≤ n ≤ 1000) — the number of round participants.
+
+Each of the next n lines contains two integers a_{i} and b_{i} (1 ≤ a_{i}, b_{i} ≤ 4126) — the rating of the i-th participant before and after the round, respectively. The participants are listed in order from the top to the bottom of the standings.
+
+
+-----Output-----
+
+If the round is rated for sure, print "rated". If the round is unrated for sure, print "unrated". If it's impossible to determine whether the round is rated or not, print "maybe".
+
+
+-----Examples-----
+Input
+6
+3060 3060
+2194 2194
+2876 2903
+2624 2624
+3007 2991
+2884 2884
+
+Output
+rated
+
+Input
+4
+1500 1500
+1300 1300
+1200 1200
+1400 1400
+
+Output
+unrated
+
+Input
+5
+3123 3123
+2777 2777
+2246 2246
+2246 2246
+1699 1699
+
+Output
+maybe
+
+
+
+-----Note-----
+
+In the first example, the ratings of the participants in the third and fifth places have changed, therefore, the round was rated.
+
+In the second example, no one's rating has changed, but the participant in the second place has lower rating than the participant in the fourth place. Therefore, if the round was rated, someone's rating would've changed for sure.
+
+In the third example, no one's rating has changed, and the participants took places in non-increasing order of their rating. Therefore, it's impossible to determine whether the round is rated or not.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': False, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 255
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: You are given a string $s$ of length $n$ consisting of lowercase Latin letters. You may apply some operations to this string: in one operation you can delete some contiguous substring of this string, if all letters in the substring you delete are equal. For example, after deleting substring bbbb from string abbbbaccdd we get the string aaccdd.
+
+Calculate the minimum number of operations to delete the whole string $s$.
+
+
+-----Input-----
+
+The first line contains one integer $n$ ($1 \le n \le 500$) — the length of string $s$.
+
+The second line contains the string $s$ ($|s| = n$) consisting of lowercase Latin letters.
+
+
+-----Output-----
+
+Output a single integer — the minimal number of operation to delete string $s$.
+
+
+-----Examples-----
+Input
+5
+abaca
+
+Output
+3
+Input
+8
+abcddcba
+
+Output
+4
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 255
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: You are given a string $s$ of length $n$ consisting of lowercase Latin letters. You may apply some operations to this string: in one operation you can delete some contiguous substring of this string, if all letters in the substring you delete are equal. For example, after deleting substring bbbb from string abbbbaccdd we get the string aaccdd.
+
+Calculate the minimum number of operations to delete the whole string $s$.
+
+
+-----Input-----
+
+The first line contains one integer $n$ ($1 \le n \le 500$) — the length of string $s$.
+
+The second line contains the string $s$ ($|s| = n$) consisting of lowercase Latin letters.
+
+
+-----Output-----
+
+Output a single integer — the minimal number of operation to delete string $s$.
+
+
+-----Examples-----
+Input
+5
+abaca
+
+Output
+3
+Input
+8
+abcddcba
+
+Output
+4
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 188
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Petya and Vasya decided to play a game. They have n cards (n is an even number). A single integer is written on each card.
+
+Before the game Petya will choose an integer and after that Vasya will choose another integer (different from the number that Petya chose). During the game each player takes all the cards with number he chose. For example, if Petya chose number 5 before the game he will take all cards on which 5 is written and if Vasya chose number 10 before the game he will take all cards on which 10 is written.
+
+The game is considered fair if Petya and Vasya can take all n cards, and the number of cards each player gets is the same.
+
+Determine whether Petya and Vasya can choose integer numbers before the game so that the game is fair. 
+
+
+-----Input-----
+
+The first line contains a single integer n (2 ≤ n ≤ 100) — number of cards. It is guaranteed that n is an even number.
+
+The following n lines contain a sequence of integers a_1, a_2, ..., a_{n} (one integer per line, 1 ≤ a_{i} ≤ 100) — numbers written on the n cards.
+
+
+-----Output-----
+
+If it is impossible for Petya and Vasya to choose numbers in such a way that the game will be fair, print "NO" (without quotes) in the first line. In this case you should not print anything more.
+
+In the other case print "YES" (without quotes) in the first line. In the second line print two distinct integers — number that Petya should choose and the number that Vasya should choose to make the game fair. If there are several solutions, print any of them.
+
+
+-----Examples-----
+Input
+4
+11
+27
+27
+11
+
+Output
+YES
+11 27
+
+Input
+2
+6
+6
+
+Output
+NO
+
+Input
+6
+10
+20
+30
+20
+10
+20
+
+Output
+NO
+
+Input
+6
+1
+1
+2
+2
+3
+3
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first example the game will be fair if, for example, Petya chooses number 11, and Vasya chooses number 27. Then the will take all cards — Petya will take cards 1 and 4, and Vasya will take cards 2 and 3. Thus, each of them will take exactly two cards.
+
+In the second example fair game is impossible because the numbers written on the cards are equal, but the numbers that Petya and Vasya should choose should be distinct.
+
+In the third example it is impossible to take all cards. Petya and Vasya can take at most five cards — for example, Petya can choose number 10 and Vasya can choose number 20. But for the game to be fair it is necessary to take 6 cards.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 188
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Petya and Vasya decided to play a game. They have n cards (n is an even number). A single integer is written on each card.
+
+Before the game Petya will choose an integer and after that Vasya will choose another integer (different from the number that Petya chose). During the game each player takes all the cards with number he chose. For example, if Petya chose number 5 before the game he will take all cards on which 5 is written and if Vasya chose number 10 before the game he will take all cards on which 10 is written.
+
+The game is considered fair if Petya and Vasya can take all n cards, and the number of cards each player gets is the same.
+
+Determine whether Petya and Vasya can choose integer numbers before the game so that the game is fair. 
+
+
+-----Input-----
+
+The first line contains a single integer n (2 ≤ n ≤ 100) — number of cards. It is guaranteed that n is an even number.
+
+The following n lines contain a sequence of integers a_1, a_2, ..., a_{n} (one integer per line, 1 ≤ a_{i} ≤ 100) — numbers written on the n cards.
+
+
+-----Output-----
+
+If it is impossible for Petya and Vasya to choose numbers in such a way that the game will be fair, print "NO" (without quotes) in the first line. In this case you should not print anything more.
+
+In the other case print "YES" (without quotes) in the first line. In the second line print two distinct integers — number that Petya should choose and the number that Vasya should choose to make the game fair. If there are several solutions, print any of them.
+
+
+-----Examples-----
+Input
+4
+11
+27
+27
+11
+
+Output
+YES
+11 27
+
+Input
+2
+6
+6
+
+Output
+NO
+
+Input
+6
+10
+20
+30
+20
+10
+20
+
+Output
+NO
+
+Input
+6
+1
+1
+2
+2
+3
+3
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first example the game will be fair if, for example, Petya chooses number 11, and Vasya chooses number 27. Then the will take all cards — Petya will take cards 1 and 4, and Vasya will take cards 2 and 3. Thus, each of them will take exactly two cards.
+
+In the second example fair game is impossible because the numbers written on the cards are equal, but the numbers that Petya and Vasya should choose should be distinct.
+
+In the third example it is impossible to take all cards. Petya and Vasya can take at most five cards — for example, Petya can choose number 10 and Vasya can choose number 20. But for the game to be fair it is necessary to take 6 cards.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 216
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Polycarp loves lowercase letters and dislikes uppercase ones. Once he got a string s consisting only of lowercase and uppercase Latin letters.
+
+Let A be a set of positions in the string. Let's call it pretty if following conditions are met:  letters on positions from A in the string are all distinct and lowercase;  there are no uppercase letters in the string which are situated between positions from A (i.e. there is no such j that s[j] is an uppercase letter, and a_1 < j < a_2 for some a_1 and a_2 from A). 
+
+Write a program that will determine the maximum number of elements in a pretty set of positions.
+
+
+-----Input-----
+
+The first line contains a single integer n (1 ≤ n ≤ 200) — length of string s.
+
+The second line contains a string s consisting of lowercase and uppercase Latin letters.
+
+
+-----Output-----
+
+Print maximum number of elements in pretty set of positions for string s.
+
+
+-----Examples-----
+Input
+11
+aaaaBaabAbA
+
+Output
+2
+
+Input
+12
+zACaAbbaazzC
+
+Output
+3
+
+Input
+3
+ABC
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example the desired positions might be 6 and 8 or 7 and 8. Positions 6 and 7 contain letters 'a', position 8 contains letter 'b'. The pair of positions 1 and 8 is not suitable because there is an uppercase letter 'B' between these position.
+
+In the second example desired positions can be 7, 8 and 11. There are other ways to choose pretty set consisting of three elements.
+
+In the third example the given string s does not contain any lowercase letters, so the answer is 0.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 216
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Polycarp loves lowercase letters and dislikes uppercase ones. Once he got a string s consisting only of lowercase and uppercase Latin letters.
+
+Let A be a set of positions in the string. Let's call it pretty if following conditions are met:  letters on positions from A in the string are all distinct and lowercase;  there are no uppercase letters in the string which are situated between positions from A (i.e. there is no such j that s[j] is an uppercase letter, and a_1 < j < a_2 for some a_1 and a_2 from A). 
+
+Write a program that will determine the maximum number of elements in a pretty set of positions.
+
+
+-----Input-----
+
+The first line contains a single integer n (1 ≤ n ≤ 200) — length of string s.
+
+The second line contains a string s consisting of lowercase and uppercase Latin letters.
+
+
+-----Output-----
+
+Print maximum number of elements in pretty set of positions for string s.
+
+
+-----Examples-----
+Input
+11
+aaaaBaabAbA
+
+Output
+2
+
+Input
+12
+zACaAbbaazzC
+
+Output
+3
+
+Input
+3
+ABC
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example the desired positions might be 6 and 8 or 7 and 8. Positions 6 and 7 contain letters 'a', position 8 contains letter 'b'. The pair of positions 1 and 8 is not suitable because there is an uppercase letter 'B' between these position.
+
+In the second example desired positions can be 7, 8 and 11. There are other ways to choose pretty set consisting of three elements.
+
+In the third example the given string s does not contain any lowercase letters, so the answer is 0.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 167
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: There is a matrix A of size x × y filled with integers. For every $i \in [ 1 . . x ]$, $j \in [ 1 . . y ]$ A_{i}, j = y(i - 1) + j. Obviously, every integer from [1..xy] occurs exactly once in this matrix. 
+
+You have traversed some path in this matrix. Your path can be described as a sequence of visited cells a_1, a_2, ..., a_{n} denoting that you started in the cell containing the number a_1, then moved to the cell with the number a_2, and so on.
+
+From the cell located in i-th line and j-th column (we denote this cell as (i, j)) you can move into one of the following cells: (i + 1, j) — only if i < x;  (i, j + 1) — only if j < y;  (i - 1, j) — only if i > 1;  (i, j - 1) — only if j > 1.
+
+Notice that making a move requires you to go to an adjacent cell. It is not allowed to stay in the same cell. You don't know x and y exactly, but you have to find any possible values for these numbers such that you could start in the cell containing the integer a_1, then move to the cell containing a_2 (in one step), then move to the cell containing a_3 (also in one step) and so on. Can you choose x and y so that they don't contradict with your sequence of moves?
+
+
+-----Input-----
+
+The first line contains one integer number n (1 ≤ n ≤ 200000) — the number of cells you visited on your path (if some cell is visited twice, then it's listed twice).
+
+The second line contains n integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ 10^9) — the integers in the cells on your path.
+
+
+-----Output-----
+
+If all possible values of x and y such that 1 ≤ x, y ≤ 10^9 contradict with the information about your path, print NO.
+
+Otherwise, print YES in the first line, and in the second line print the values x and y such that your path was possible with such number of lines and columns in the matrix. Remember that they must be positive integers not exceeding 10^9.
+
+
+-----Examples-----
+Input
+8
+1 2 3 6 9 8 5 2
+
+Output
+YES
+3 3
+
+Input
+6
+1 2 1 2 5 3
+
+Output
+NO
+
+Input
+2
+1 10
+
+Output
+YES
+4 9
+
+
+
+-----Note-----
+
+The matrix and the path on it in the first test looks like this: [Image] 
+
+Also there exist multiple correct answers for both the first and the third examples.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 167
+DEBUG - Task 167 skip due to parse error: unexpected indent (<unknown>, line 1)
+
+
+
+DEBUG - Start Task 35
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: It's New Year's Eve soon, so Ivan decided it's high time he started setting the table. Ivan has bought two cakes and cut them into pieces: the first cake has been cut into a pieces, and the second one — into b pieces.
+
+Ivan knows that there will be n people at the celebration (including himself), so Ivan has set n plates for the cakes. Now he is thinking about how to distribute the cakes between the plates. Ivan wants to do it in such a way that all following conditions are met:  Each piece of each cake is put on some plate;  Each plate contains at least one piece of cake;  No plate contains pieces of both cakes. 
+
+To make his guests happy, Ivan wants to distribute the cakes in such a way that the minimum number of pieces on the plate is maximized. Formally, Ivan wants to know the maximum possible number x such that he can distribute the cakes according to the aforementioned conditions, and each plate will contain at least x pieces of cake.
+
+Help Ivan to calculate this number x!
+
+
+-----Input-----
+
+The first line contains three integers n, a and b (1 ≤ a, b ≤ 100, 2 ≤ n ≤ a + b) — the number of plates, the number of pieces of the first cake, and the number of pieces of the second cake, respectively.
+
+
+-----Output-----
+
+Print the maximum possible number x such that Ivan can distribute the cake in such a way that each plate will contain at least x pieces of cake.
+
+
+-----Examples-----
+Input
+5 2 3
+
+Output
+1
+
+Input
+4 7 10
+
+Output
+3
+
+
+
+-----Note-----
+
+In the first example there is only one way to distribute cakes to plates, all of them will have 1 cake on it.
+
+In the second example you can have two plates with 3 and 4 pieces of the first cake and two plates both with 5 pieces of the second cake. Minimal number of pieces is 3.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': True, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': True}
+DEBUG - Start Task 35
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: It's New Year's Eve soon, so Ivan decided it's high time he started setting the table. Ivan has bought two cakes and cut them into pieces: the first cake has been cut into a pieces, and the second one — into b pieces.
+
+Ivan knows that there will be n people at the celebration (including himself), so Ivan has set n plates for the cakes. Now he is thinking about how to distribute the cakes between the plates. Ivan wants to do it in such a way that all following conditions are met:  Each piece of each cake is put on some plate;  Each plate contains at least one piece of cake;  No plate contains pieces of both cakes. 
+
+To make his guests happy, Ivan wants to distribute the cakes in such a way that the minimum number of pieces on the plate is maximized. Formally, Ivan wants to know the maximum possible number x such that he can distribute the cakes according to the aforementioned conditions, and each plate will contain at least x pieces of cake.
+
+Help Ivan to calculate this number x!
+
+
+-----Input-----
+
+The first line contains three integers n, a and b (1 ≤ a, b ≤ 100, 2 ≤ n ≤ a + b) — the number of plates, the number of pieces of the first cake, and the number of pieces of the second cake, respectively.
+
+
+-----Output-----
+
+Print the maximum possible number x such that Ivan can distribute the cake in such a way that each plate will contain at least x pieces of cake.
+
+
+-----Examples-----
+Input
+5 2 3
+
+Output
+1
+
+Input
+4 7 10
+
+Output
+3
+
+
+
+-----Note-----
+
+In the first example there is only one way to distribute cakes to plates, all of them will have 1 cake on it.
+
+In the second example you can have two plates with 3 and 4 pieces of the first cake and two plates both with 5 pieces of the second cake. Minimal number of pieces is 3.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 254
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Mishka is decorating the Christmas tree. He has got three garlands, and all of them will be put on the tree. After that Mishka will switch these garlands on.
+
+When a garland is switched on, it periodically changes its state — sometimes it is lit, sometimes not. Formally, if i-th garland is switched on during x-th second, then it is lit only during seconds x, x + k_{i}, x + 2k_{i}, x + 3k_{i} and so on.
+
+Mishka wants to switch on the garlands in such a way that during each second after switching the garlands on there would be at least one lit garland. Formally, Mishka wants to choose three integers x_1, x_2 and x_3 (not necessarily distinct) so that he will switch on the first garland during x_1-th second, the second one — during x_2-th second, and the third one — during x_3-th second, respectively, and during each second starting from max(x_1, x_2, x_3) at least one garland will be lit.
+
+Help Mishka by telling him if it is possible to do this!
+
+
+-----Input-----
+
+The first line contains three integers k_1, k_2 and k_3 (1 ≤ k_{i} ≤ 1500) — time intervals of the garlands.
+
+
+-----Output-----
+
+If Mishka can choose moments of time to switch on the garlands in such a way that each second after switching the garlands on at least one garland will be lit, print YES.
+
+Otherwise, print NO.
+
+
+-----Examples-----
+Input
+2 2 3
+
+Output
+YES
+
+Input
+4 2 3
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first example Mishka can choose x_1 = 1, x_2 = 2, x_3 = 1. The first garland will be lit during seconds 1, 3, 5, 7, ..., the second — 2, 4, 6, 8, ..., which already cover all the seconds after the 2-nd one. It doesn't even matter what x_3 is chosen. Our choice will lead third to be lit during seconds 1, 4, 7, 10, ..., though.
+
+In the second example there is no way to choose such moments of time, there always be some seconds when no garland is lit.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 254
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Mishka is decorating the Christmas tree. He has got three garlands, and all of them will be put on the tree. After that Mishka will switch these garlands on.
+
+When a garland is switched on, it periodically changes its state — sometimes it is lit, sometimes not. Formally, if i-th garland is switched on during x-th second, then it is lit only during seconds x, x + k_{i}, x + 2k_{i}, x + 3k_{i} and so on.
+
+Mishka wants to switch on the garlands in such a way that during each second after switching the garlands on there would be at least one lit garland. Formally, Mishka wants to choose three integers x_1, x_2 and x_3 (not necessarily distinct) so that he will switch on the first garland during x_1-th second, the second one — during x_2-th second, and the third one — during x_3-th second, respectively, and during each second starting from max(x_1, x_2, x_3) at least one garland will be lit.
+
+Help Mishka by telling him if it is possible to do this!
+
+
+-----Input-----
+
+The first line contains three integers k_1, k_2 and k_3 (1 ≤ k_{i} ≤ 1500) — time intervals of the garlands.
+
+
+-----Output-----
+
+If Mishka can choose moments of time to switch on the garlands in such a way that each second after switching the garlands on at least one garland will be lit, print YES.
+
+Otherwise, print NO.
+
+
+-----Examples-----
+Input
+2 2 3
+
+Output
+YES
+
+Input
+4 2 3
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first example Mishka can choose x_1 = 1, x_2 = 2, x_3 = 1. The first garland will be lit during seconds 1, 3, 5, 7, ..., the second — 2, 4, 6, 8, ..., which already cover all the seconds after the 2-nd one. It doesn't even matter what x_3 is chosen. Our choice will lead third to be lit during seconds 1, 4, 7, 10, ..., though.
+
+In the second example there is no way to choose such moments of time, there always be some seconds when no garland is lit.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': False, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': True}
+DEBUG - Start Task 140
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: You are given a directed graph consisting of n vertices and m edges (each edge is directed, so it can be traversed in only one direction). You are allowed to remove at most one edge from it.
+
+Can you make this graph acyclic by removing at most one edge from it? A directed graph is called acyclic iff it doesn't contain any cycle (a non-empty path that starts and ends in the same vertex).
+
+
+-----Input-----
+
+The first line contains two integers n and m (2 ≤ n ≤ 500, 1 ≤ m ≤ min(n(n - 1), 100000)) — the number of vertices and the number of edges, respectively.
+
+Then m lines follow. Each line contains two integers u and v denoting a directed edge going from vertex u to vertex v (1 ≤ u, v ≤ n, u ≠ v). Each ordered pair (u, v) is listed at most once (there is at most one directed edge from u to v).
+
+
+-----Output-----
+
+If it is possible to make this graph acyclic by removing at most one edge, print YES. Otherwise, print NO.
+
+
+-----Examples-----
+Input
+3 4
+1 2
+2 3
+3 2
+3 1
+
+Output
+YES
+
+Input
+5 6
+1 2
+2 3
+3 2
+3 1
+2 1
+4 5
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first example you can remove edge $2 \rightarrow 3$, and the graph becomes acyclic.
+
+In the second example you have to remove at least two edges (for example, $2 \rightarrow 1$ and $2 \rightarrow 3$) in order to make the graph acyclic.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 140
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: You are given a directed graph consisting of n vertices and m edges (each edge is directed, so it can be traversed in only one direction). You are allowed to remove at most one edge from it.
+
+Can you make this graph acyclic by removing at most one edge from it? A directed graph is called acyclic iff it doesn't contain any cycle (a non-empty path that starts and ends in the same vertex).
+
+
+-----Input-----
+
+The first line contains two integers n and m (2 ≤ n ≤ 500, 1 ≤ m ≤ min(n(n - 1), 100000)) — the number of vertices and the number of edges, respectively.
+
+Then m lines follow. Each line contains two integers u and v denoting a directed edge going from vertex u to vertex v (1 ≤ u, v ≤ n, u ≠ v). Each ordered pair (u, v) is listed at most once (there is at most one directed edge from u to v).
+
+
+-----Output-----
+
+If it is possible to make this graph acyclic by removing at most one edge, print YES. Otherwise, print NO.
+
+
+-----Examples-----
+Input
+3 4
+1 2
+2 3
+3 2
+3 1
+
+Output
+YES
+
+Input
+5 6
+1 2
+2 3
+3 2
+3 1
+2 1
+4 5
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first example you can remove edge $2 \rightarrow 3$, and the graph becomes acyclic.
+
+In the second example you have to remove at least two edges (for example, $2 \rightarrow 1$ and $2 \rightarrow 3$) in order to make the graph acyclic.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 40
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: A string is a palindrome if it reads the same from the left to the right and from the right to the left. For example, the strings "kek", "abacaba", "r" and "papicipap" are palindromes, while the strings "abb" and "iq" are not.
+
+A substring $s[l \ldots r]$ ($1 \leq l \leq r \leq |s|$) of a string $s = s_{1}s_{2} \ldots s_{|s|}$ is the string $s_{l}s_{l + 1} \ldots s_{r}$.
+
+Anna does not like palindromes, so she makes her friends call her Ann. She also changes all the words she reads in a similar way. Namely, each word $s$ is changed into its longest substring that is not a palindrome. If all the substrings of $s$ are palindromes, she skips the word at all.
+
+Some time ago Ann read the word $s$. What is the word she changed it into?
+
+
+-----Input-----
+
+The first line contains a non-empty string $s$ with length at most $50$ characters, containing lowercase English letters only.
+
+
+-----Output-----
+
+If there is such a substring in $s$ that is not a palindrome, print the maximum length of such a substring. Otherwise print $0$.
+
+Note that there can be multiple longest substrings that are not palindromes, but their length is unique.
+
+
+-----Examples-----
+Input
+mew
+
+Output
+3
+
+Input
+wuffuw
+
+Output
+5
+
+Input
+qqqqqqqq
+
+Output
+0
+
+
+
+-----Note-----
+
+"mew" is not a palindrome, so the longest substring of it that is not a palindrome, is the string "mew" itself. Thus, the answer for the first example is $3$.
+
+The string "uffuw" is one of the longest non-palindrome substrings (of length $5$) of the string "wuffuw", so the answer for the second example is $5$.
+
+All substrings of the string "qqqqqqqq" consist of equal characters so they are palindromes. This way, there are no non-palindrome substrings. Thus, the answer for the third example is $0$.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 40
+ERROR - Error: failed to parse entailment checking response

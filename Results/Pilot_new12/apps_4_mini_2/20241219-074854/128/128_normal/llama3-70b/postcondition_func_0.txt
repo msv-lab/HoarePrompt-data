@@ -1,0 +1,7 @@
+The function computes the total number of products that can be sold over a given number of days, considering a maximum number of days allowed for sell-out. It accepts input regarding the number of days (`n`), the maximum number of sell-out days (`f`), and for each day, the number of products available (`k`) and the number of clients expected (`l`). The function first collects this data and sorts the days based on the difference between clients and products available, in descending order. It calculates the total products sold, doubling the quantity sold on the first `f` days (if clients allow), and then limiting to the actual available products on the remaining days. Finally, the function prints the total sold products. 
+
+Potential edge cases include:
+- Scenarios where there are fewer days (`n`) than the specified sell-out days (`f`).
+- Cases where the number of products available or clients expected is zero, which means no sales can occur regardless of the number of days.
+
+The function does not return a value; instead, it directly outputs the total sold products. The parameters are taken from user input rather than passed as arguments to the function itself.

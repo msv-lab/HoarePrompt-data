@@ -1,0 +1,7 @@
+The function `func_1` accepts an integer `num` and checks if the sum of each digit in the string representation of `num`, raised to the power of its position index from right to left, equals `num`. If the condition is met, it returns `True`; otherwise, it returns `False`. 
+
+Potential edge cases to consider:
+1. If `num` is 0, the function should return `True` since \(0^0\) is often considered 1, and the sum would be 0.
+2. If `num` is negative, the function should handle this case appropriately, although the current implementation only works with positive integers.
+
+The function correctly calculates the sum of each digit in the string representation of `num`, raised to the power of its position index from right to left, but it does not explicitly handle the case where `num` is 0 or negative. Therefore, these edge cases should be included in the functionality description.

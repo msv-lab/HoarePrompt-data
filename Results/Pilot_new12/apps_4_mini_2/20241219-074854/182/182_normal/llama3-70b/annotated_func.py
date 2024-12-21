@@ -1,0 +1,11 @@
+#State of the program right berfore the function call: x is an integer such that -10^18 ≤ x ≤ 10^18, representing the camera angle in degrees, where positive values denote clockwise rotation and negative values denote counter-clockwise rotation.
+def func():
+    x = int(input())
+    x = x % 360
+    if (x == 0) :
+        print(0)
+    else :
+        print((x + 90 - 1) // 90 % 4)
+    #State of the program after the if-else block has been executed: *`x` is an integer such that -10^18 ≤ `x` ≤ 10^18. If `x` is equal to 0, the output value printed is 0. Otherwise, `x` is in the range from -359 to 359 (excluding 0), and the output of the print statement is `((x + 90 - 1) // 90 % 4)`, yielding values between 0 to 3.
+#Overall this is what the function does:The function reads an integer input representing a camera angle in degrees (stored in `x`), where `-10^18 ≤ x ≤ 10^18`. It normalizes `x` to lie within the range of 0 to 359 degrees by applying a modulo operation (x % 360). If the normalized angle (`x`) is 0, it prints `0`, indicating no rotation. For any other normalized angle, it calculates a value derived from `((x + 90 - 1) // 90 % 4)`, which translates the angle into a quadrant-like value (0 to 3). This value corresponds to a specific state of directional rotation based on the normalized angle, representing four possible orientations (0 for 0 degrees, 1 for 90 degrees, 2 for 180 degrees, and 3 for 270 degrees). The function does not return anything; it only prints the result. There are no edge cases handled for values exceeding the valid range for angles, nor does it manage input types that are not integers, leaving potential inputs outside of the specified domain unaddressed.
+

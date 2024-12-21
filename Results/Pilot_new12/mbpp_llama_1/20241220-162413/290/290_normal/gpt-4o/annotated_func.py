@@ -1,0 +1,10 @@
+#State of the program right berfore the function call: s is a string.
+def func_1(s):
+    if ('z' in s[1:-1]) :
+        return True
+        #The program returns True
+    #State of the program after the if block has been executed: s is a string, and 'z' is not in the substring of s excluding the first and last characters
+    return False
+    #The program returns False
+#Overall this is what the function does:The function `func_1` checks if the character 'z' exists in the substring of the input string `s`, excluding the first and last characters. It returns `True` if 'z' is found in this substring and `False` otherwise. The function accepts a string `s` as input and returns a boolean value indicating the presence or absence of 'z' in the specified substring. This functionality covers all potential cases, including edge cases where the input string is empty, has only one or two characters, or does not contain 'z' in the specified substring. The state of the program after execution is that the input string `s` remains unchanged, and a boolean value is returned based on the presence of 'z' in the substring.
+

@@ -1,0 +1,7 @@
+#State of the program right berfore the function call: n is an integer such that 1 <= n <= 12.
+def func_1(n):
+    months_31_days = [1, 3, 5, 7, 8, 10, 12]
+    return n in months_31_days
+    #The program returns True if the month 'n' has 31 days, False otherwise
+#Overall this is what the function does:The function accepts a month as an integer `n` and returns `True` if the month has 31 days, `False` otherwise. The function handles months from 1 to 12, where months 1, 3, 5, 7, 8, 10, and 12 have 31 days. The function does not perform any error checking on the input month `n`, so it assumes that `n` is within the range of 1 to 12. If `n` is outside this range, the function will still return a result, but it may not be meaningful. For example, if `n` is 0 or a negative number, the function will return `False`, and if `n` is 13 or greater, the function will also return `False`. The function's return value can be used to determine whether a given month has 31 days, but it does not account for any other month-related properties or errors.
+

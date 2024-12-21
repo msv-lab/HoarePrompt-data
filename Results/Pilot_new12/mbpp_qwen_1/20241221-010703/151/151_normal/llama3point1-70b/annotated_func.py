@@ -1,0 +1,14 @@
+#State of the program right berfore the function call: nested_list is a list that may contain integers or other lists (nested lists) as elements.
+def func_1(nested_list):
+    flat_list = []
+    for i in nested_list:
+        if type(i) == list:
+            flat_list.extend(func_1(i))
+        else:
+            flat_list.append(i)
+        
+    #State of the program after the  for loop has been executed: `nested_list` is a list that may contain integers or other lists (nested lists) as elements; `flat_list` is a flattened version of `nested_list` where all nested lists have been expanded into their elements using `func_1`.
+    return flat_list
+    #The program returns `flat_list`, which is a flattened version of `nested_list` where all nested lists have been expanded into their elements using `func_1`
+#Overall this is what the function does:The function `func_1` accepts a single parameter `nested_list`, which can be a list containing integers or other lists (nested lists). It recursively flattens `nested_list` by expanding all nested lists into their elements, resulting in a new list called `flat_list`. This process continues until all elements within the nested structure are integers. The function returns `flat_list`, which contains all the integer elements from the original `nested_list` in a flattened form. Potential edge cases include when `nested_list` is empty, contains only non-list elements, or contains a mix of integers and lists. The function handles these cases by appropriately traversing and expanding the nested structure.
+

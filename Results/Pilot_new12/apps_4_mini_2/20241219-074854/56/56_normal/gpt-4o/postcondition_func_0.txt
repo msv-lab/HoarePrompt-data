@@ -1,0 +1,13 @@
+The function accepts two parameters: `n`, a positive integer (1 ≤ n ≤ 10^18), and `k`, a positive integer (1 ≤ k ≤ 10^5). It performs the following actions: 
+
+1. If `k` is greater than `n`, it returns 'No'.
+2. It extracts the indices of the bits set in `n` (up to 60 bits) and stores them in a list called `bits`.
+3. If the length of `bits` exceeds `k`, it returns 'No'.
+4. If the length of `bits` is less than `k`, it appends additional bits by decrementing the smallest index until the length of `bits` equals `k`. This involves popping the smallest index and adding it back twice.
+5. Finally, it sorts the `bits` in descending order and returns 'Yes' followed by the elements of the sorted list joined by spaces.
+
+The function may also implicitly handle other cases where `k` can be equal to the number of bits set in `n`, allowing for the return of valid bit indices as output. If the situation arises where `k` can be satisfied without any need for additional bits (where `len(bits) < k`), then the inserted values will keep `bits`'s length exactly `k`. 
+
+In conclusion, the final output could be:
+- 'No' (if `k` > `n` or if the length of `bits` exceeds `k`),
+- 'Yes' followed by a space-separated list of `k` bit positions (if `k` ≤ `n` and `len(bits)` is exactly adjusted to equal `k`).

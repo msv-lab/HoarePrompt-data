@@ -1,0 +1,7 @@
+The function `func_1` accepts a string parameter `ticket`, which contains digits. It first computes the total sum of the digits in `ticket`. If this total sum is odd, the function immediately returns `False`. If the total sum is even, it calculates a target value which is half of the total sum. The function then iterates over the digits of `ticket`, accumulating a current sum. Each time the current sum matches the target sum, it resets and increments a segment counter. Finally, the function returns `True` if at least two such segments have been found; otherwise, it returns `False`. The function effectively checks if the digits can be divided into two or more segments, each summing to half of the total sum. 
+
+Edge cases include scenarios where:
+1. The input string has only two digits (the minimum allowed length).
+2. All digits may be the same, leading to unique segment configurations, or
+3. The string contains zeros that might affect the segment count but still adhere to the overall logic.
+The function does not handle cases where characters are not digits or if the string is unexpectedly empty, but it assumes valid input according to specified constraints.

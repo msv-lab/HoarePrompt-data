@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: x and y are integers such that 3 ≤ y < x ≤ 100000.
+def func():
+    x, y = map(int, input().split())
+    print(abs(x - y))
+#Overall this is what the function does:The function reads two integers, x and y, from user input, ensuring they meet the constraints that 3 ≤ y < x ≤ 100000. It computes and outputs the absolute difference between x and y. There is no handling of invalid input cases (e.g., if the input does not meet the constraints or is not an integer), so the function assumes that the caller provides valid input. The final state of the program includes the printed result of the absolute difference, which is an integer, and the function does not return a value.
+
