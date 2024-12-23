@@ -29,7 +29,7 @@ FILTERED_FILES=(
     "filtered_consistency_1_56_naive_no_fsl.csv"
     "filtered_consistency_1_56_naive.csv"
     "filtered_consistency_1_naive_no_fsl.csv"
-    "filtered_consistency_1.csv"
+    "filtered_consistency_1_naive.csv"
 )
 
 # Run postprocessing for each file

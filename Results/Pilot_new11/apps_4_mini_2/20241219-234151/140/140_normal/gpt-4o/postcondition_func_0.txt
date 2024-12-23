@@ -1,7 +1,0 @@
-The function accepts three parameters: an integer `n` representing the number of vertices in a directed graph, an integer `m` representing the number of directed edges, and a list `edges` of tuples where each tuple (u, v) indicates a directed edge from vertex u to vertex v. The function constructs a graph using these edges and checks for cycles in the graph.
-
-Initially, if the graph is found to be acyclic, it returns 'YES'. If a cycle is detected, the function attempts to remove each edge (u, v) and checks if the graph still remains acyclic after the removal. If it finds that removing any edge allows the graph to be acyclic, it will return 'YES'. 
-
-If all edges are checked and none allow the graph to be acyclic after their removal, the function returns 'NO', indicating that the graph contains cycles. 
-
-Thus, the final state indicates whether the directed graph is acyclic after considering the possibility of removing one directed edge, and the program will always return either 'YES' or 'NO' based on these conditions. It should also be noted that the function does not handle the case where the edges list is empty nor validate the input parameters for proper ranges explicitly, which could lead to unexpected behavior if invalid input is provided.

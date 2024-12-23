@@ -1,0 +1,73 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,annotated correctness simple,naive no fsl correctness,Correctness no fsl,simple verify,complex verify,default verify,simple verify no fsl,complex verify no fsl,default verify no fsl,data file,unique_id,consistency
+209,mbppplus,llama3point1-70b,meta-llama/Llama-3.3-70B-Instruct,Write a python function to get the first element of each sublist.,"def Extract(sublists):
+    return [sublist[0] for sublist in sublists]
+",,False,post,True,True,False,True,False,False,True,True,True,True,True,True,selected_pilot_75_mbpp.json,209_llama3point1-70b,0.5
+45,mbppplus,llama3point1-70b,meta-llama/Llama-3.3-70B-Instruct,Write a function to check whether the given number is undulating or not.,"def is_undulating(n):
+    n = str(n)
+    undulating = True
+    for i in range(1, len(n) - 1):
+        if (n[i-1] < n[i] and n[i] < n[i+1]) or (n[i-1] > n[i] and n[i] > n[i+1]):
+            pass
+        else:
+            undulating = False
+            break
+    return undulating
+",,True,post,False,True,False,True,True,True,True,False,False,True,True,True,selected_pilot_75_mbpp.json,45_llama3point1-70b,0.5
+83,mbppplus,llama3point1-70b,meta-llama/Llama-3.3-70B-Instruct,Write a function to sort a list of elements.,"def pancake_sort(arr):
+    n = len(arr)
+    for size in range(n, 0, -1):
+        max_index = arr.index(max(arr[:size]))
+        if max_index != size-1:
+            if max_index != 0:
+                arr[:max_index+1] = arr[:max_index+1][::-1]
+            arr[:size] = arr[:size][::-1]
+    return arr
+",,False,post,True,False,False,False,False,False,False,True,True,False,True,True,selected_pilot_75_mbpp.json,83_llama3point1-70b,0.5
+209,mbppplus,llama3point1-70b,meta-llama/Llama-3.3-70B-Instruct,Write a python function to get the first element of each sublist.,"def Extract(sublists):
+    return [sublist[0] for sublist in sublists]
+",,False,post,True,False,True,True,False,True,True,True,True,True,True,True,selected_pilot_75_mbpp.json,209_llama3point1-70b,0.5
+45,mbppplus,llama3point1-70b,meta-llama/Llama-3.3-70B-Instruct,Write a function to check whether the given number is undulating or not.,"def is_undulating(n):
+    n = str(n)
+    undulating = True
+    for i in range(1, len(n) - 1):
+        if (n[i-1] < n[i] and n[i] < n[i+1]) or (n[i-1] > n[i] and n[i] > n[i+1]):
+            pass
+        else:
+            undulating = False
+            break
+    return undulating
+",,True,post,False,True,False,True,True,True,True,True,True,True,True,True,selected_pilot_75_mbpp.json,45_llama3point1-70b,0.5
+83,mbppplus,llama3point1-70b,meta-llama/Llama-3.3-70B-Instruct,Write a function to sort a list of elements.,"def pancake_sort(arr):
+    n = len(arr)
+    for size in range(n, 0, -1):
+        max_index = arr.index(max(arr[:size]))
+        if max_index != size-1:
+            if max_index != 0:
+                arr[:max_index+1] = arr[:max_index+1][::-1]
+            arr[:size] = arr[:size][::-1]
+    return arr
+",,False,post,True,False,False,False,False,False,False,False,True,False,False,False,selected_pilot_75_mbpp.json,83_llama3point1-70b,0.5
+209,mbppplus,llama3point1-70b,meta-llama/Llama-3.3-70B-Instruct,Write a python function to get the first element of each sublist.,"def Extract(sublists):
+    return [sublist[0] for sublist in sublists]
+",,False,post,True,True,True,True,False,False,True,True,True,True,True,False,selected_pilot_75_mbpp.json,209_llama3point1-70b,0.5
+45,mbppplus,llama3point1-70b,meta-llama/Llama-3.3-70B-Instruct,Write a function to check whether the given number is undulating or not.,"def is_undulating(n):
+    n = str(n)
+    undulating = True
+    for i in range(1, len(n) - 1):
+        if (n[i-1] < n[i] and n[i] < n[i+1]) or (n[i-1] > n[i] and n[i] > n[i+1]):
+            pass
+        else:
+            undulating = False
+            break
+    return undulating
+",,True,post,False,False,True,True,False,True,False,False,False,False,False,False,selected_pilot_75_mbpp.json,45_llama3point1-70b,0.5
+83,mbppplus,llama3point1-70b,meta-llama/Llama-3.3-70B-Instruct,Write a function to sort a list of elements.,"def pancake_sort(arr):
+    n = len(arr)
+    for size in range(n, 0, -1):
+        max_index = arr.index(max(arr[:size]))
+        if max_index != size-1:
+            if max_index != 0:
+                arr[:max_index+1] = arr[:max_index+1][::-1]
+            arr[:size] = arr[:size][::-1]
+    return arr
+",,True,post,True,True,True,True,False,False,True,True,True,False,True,True,selected_pilot_75_mbpp.json,83_llama3point1-70b,0.5

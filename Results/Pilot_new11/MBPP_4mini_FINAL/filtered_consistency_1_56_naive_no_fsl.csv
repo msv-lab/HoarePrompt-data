@@ -1,0 +1,1420 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,annotated correctness simple,naive no fsl correctness,Correctness no fsl,simple verify,complex verify,default verify,simple verify no fsl,complex verify no fsl,default verify no fsl,data file,unique_id,consistency
+179,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to find the cube sum of first n even natural numbers.,"def cube_Sum(n):
+    return sum(i**3 for i in range(2, n*2+1, 2))
+",,True,post,True,False,False,True,False,True,False,True,True,False,True,True,selected_pilot_75_mbpp.json,179_llama3point1-70b,0.5
+179,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the cube sum of first n even natural numbers.,"def cube_Sum(n):
+    even_numbers = [2 * i for i in range(1, n + 1)]
+    cube_sum = sum(x ** 3 for x in even_numbers)
+    return cube_sum
+
+# Tests
+assert cube_Sum(2) == 72
+assert cube_Sum(3) == 288
+assert cube_Sum(4) == 800
+",,True,post,True,True,False,True,False,False,True,True,True,False,True,True,selected_pilot_75_mbpp.json,179_gpt-4o,0.6666666666666666
+68,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to get the angle of a complex number.,"import cmath
+
+def angle_complex(real, imag):
+    # Create the complex number
+    complex_number = complex(real, imag)
+    # Return the phase (angle) of the complex number
+    return cmath.phase(complex_number)
+
+# Test cases
+import math
+
+assert math.isclose(angle_complex(0,1j), 1.5707963267948966, rel_tol=0.001)
+assert math.isclose(angle_complex(2,1j), 0.4636476090008061, rel_tol=0.001)
+assert math.isclose(angle_complex(0,2j), 1.5707963267948966, rel_tol=0.001)
+",,True,post,False,False,True,True,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,68_gpt-4o,0.5
+134,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function that takes in a positive integer n and finds the sum of even index binomial coefficients.,"import math
+
+def even_binomial_Coeff_Sum(n):
+    # Sum of binomial coefficients at even indices is given by 2^(n-1)
+    return 2**(n-1)
+
+# Test cases
+assert even_binomial_Coeff_Sum(4) == 8
+assert even_binomial_Coeff_Sum(6) == 32
+assert even_binomial_Coeff_Sum(2) == 2
+",,False,post,True,False,False,False,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,134_gpt-4o,0.5
+276,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the median of two sorted lists of same size.,"def get_median(list1, list2, n):
+    # Merge the two sorted lists
+    merged_list = sorted(list1 + list2)
+    
+    # Calculate the median
+    mid = len(merged_list) // 2
+    
+    if len(merged_list) % 2 == 0:
+        # Even number of elements
+        median = (merged_list[mid - 1] + merged_list[mid]) / 2
+    else:
+        # Odd number of elements (although this case won't happen given the problem constraints)
+        median = merged_list[mid]
+    
+    return median
+
+# Test cases
+assert get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0
+assert get_median([2, 4, 8, 9], [7, 13, 19, 28], 4) == 8.5
+assert get_median([3, 6, 14, 23, 36, 42], [2, 18, 27, 39, 49, 55], 6) == 25.0
+",,False,post,False,False,True,True,False,False,False,False,False,True,True,False,selected_pilot_75_mbpp.json,276_gpt-4o,0.6666666666666666
+85,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to find the maximum difference between any two elements in a given array.,"def max_Abs_Diff(arr):
+    return max(arr) - min(arr)
+",,True,post,True,True,True,True,False,False,True,False,False,False,False,False,selected_pilot_75_mbpp.json,85_llama3point1-70b,0.5
+146,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the list of maximum length in a list of lists.,"def max_length(list_of_lists):
+    max_len = 0
+    max_list = []
+    
+    for lst in list_of_lists:
+        if len(lst) > max_len:
+            max_len = len(lst)
+            max_list = lst
+            
+    return (max_len, max_list)
+
+# Test cases
+assert max_length([[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]]) == (3, [13, 15, 17])
+assert max_length([[1], [5, 7], [10, 12, 14, 15]]) == (4, [10, 12, 14, 15])
+assert max_length([[5], [15, 20, 25]]) == (3, [15, 20, 25])
+",,False,post,True,False,False,False,False,False,True,True,False,True,False,False,selected_pilot_75_mbpp.json,146_gpt-4o,0.6666666666666666
+320,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the second smallest number in a list.,"def second_smallest(nums):
+    unique_nums = sorted(set(nums))
+    return unique_nums[1] if len(unique_nums) > 1 else None
+
+# Test cases
+assert second_smallest([1, 2, -8, -2, 0, -2]) == -2
+assert second_smallest([1, 1, -0.5, 0, 2, -2, -2]) == -0.5
+assert second_smallest([2,2]) == None
+assert second_smallest([2,2,2]) == None
+",,True,post,True,True,False,False,True,False,True,True,True,True,True,True,selected_pilot_75_mbpp.json,320_gpt-4o,0.5
+161,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function to find the n'th lucas number.,"def find_lucas(n):
+    if n == 0:
+        return 2
+    elif n == 1:
+        return 1
+    else:
+        a, b = 2, 1
+        for _ in range(2, n + 1):
+            a, b = b, a + b
+        return b
+",,False,post,True,True,False,True,False,False,True,False,False,True,False,False,selected_pilot_75_mbpp.json,161_llama3point1-70b,0.6666666666666666
+161,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the n'th lucas number.,"def find_lucas(n):
+    if n == 0:
+        return 2
+    elif n == 1:
+        return 1
+    else:
+        a, b = 2, 1
+        for _ in range(2, n + 1):
+            a, b = b, a + b
+        return b
+
+# Test cases
+assert find_lucas(9) == 76
+assert find_lucas(4) == 7
+assert find_lucas(3) == 4
+",,False,post,True,False,True,False,True,False,True,True,True,True,False,False,selected_pilot_75_mbpp.json,161_gpt-4o,0.6666666666666666
+290,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,"Write a function that checks if a strings contains 'z', except at the start and end of the word.","def text_match_wordz_middle(s):
+    words = s.split()
+    for word in words:
+        if len(word) > 1 and 'z' in word[1:-1]:
+            return True
+    return False
+",,False,post,True,True,True,True,False,False,True,True,True,False,False,False,selected_pilot_75_mbpp.json,290_llama3point1-70b,0.6666666666666666
+186,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to extract the elementwise and tuples from the given two tuples.,"def and_tuples(tuple1, tuple2):
+    return tuple(a & b for a, b in zip(tuple1, tuple2))
+
+# Testing the function with the provided test cases
+assert and_tuples((10, 4, 6, 9), (5, 2, 3, 3)) == (0, 0, 2, 1)
+assert and_tuples((1, 2, 3, 4), (5, 6, 7, 8)) == (1, 2, 3, 0)
+assert and_tuples((8, 9, 11, 12), (7, 13, 14, 17)) == (0, 9, 10, 0)
+",,False,post,True,False,True,False,True,False,False,False,False,True,True,False,selected_pilot_75_mbpp.json,186_gpt-4o,0.5
+182,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function to extract only the rear index element of each string in the given tuple.,"def extract_rear(strings):
+    return [s[-1] for s in strings]
+",,False,post,True,False,False,True,True,False,False,False,False,True,False,False,selected_pilot_75_mbpp.json,182_llama3point1-70b,0.6666666666666666
+99,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to remove the characters which have odd index values of a given string.,"def odd_values_string(s):
+    return ''.join(s[i] for i in range(0, len(s), 2))
+",,True,post,True,True,False,False,True,False,True,True,True,True,True,True,selected_pilot_75_mbpp.json,99_llama3point1-70b,0.5
+264,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to convert degrees to radians.,"import math
+
+def radian_degree(degrees):
+    return degrees * (math.pi / 180)
+
+# Test cases
+assert radian_degree(90) == 1.5707963267948966
+assert radian_degree(60) == 1.0471975511965976
+assert radian_degree(120) == 2.0943951023931953
+",,False,post,False,False,True,True,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,264_gpt-4o,0.6666666666666666
+307,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the index of smallest triangular number with n digits.,"def find_Index(n):
+    k = 1
+    while True:
+        triangular_number = k * (k + 1) // 2
+        if len(str(triangular_number)) == n:
+            return k
+        k += 1
+
+# Test cases
+assert find_Index(2) == 4
+assert find_Index(3) == 14
+assert find_Index(4) == 45
+",,False,post,False,False,True,True,False,False,True,True,False,False,False,False,selected_pilot_75_mbpp.json,307_gpt-4o,0.6666666666666666
+8,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s, char):
+    first_occurrence = s.find(char)
+    last_occurrence = s.rfind(char)
+    
+    if first_occurrence != -1 and last_occurrence != -1:
+        if first_occurrence == last_occurrence:
+            return s.replace(char, '', 1)
+        else:
+            return s[:first_occurrence] + s[first_occurrence+1:last_occurrence] + s[last_occurrence+1:]
+    else:
+        return s
+",,False,post,True,False,False,True,True,False,False,False,False,True,True,True,selected_pilot_75_mbpp.json,8_llama3point1-70b,0.6666666666666666
+8,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s: str, ch: str) -> str:
+    first_index = s.find(ch)
+    last_index = s.rfind(ch)
+    
+    if first_index == -1 or last_index == -1 or first_index == last_index:
+        return s  # No removal needed if ch is not found or only one occurrence
+    
+    # Create a new string without the first and last occurrence of ch
+    return s[:first_index] + s[first_index + 1:last_index] + s[last_index + 1:]
+
+# Testing the function with the provided test cases
+assert remove_Occ(""hello"", ""l"") == ""heo""
+assert remove_Occ(""abcda"", ""a"") == ""bcd""
+assert remove_Occ(""PHP"", ""P"") == ""H""
+",,False,post,False,False,True,False,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,8_gpt-4o,0.6666666666666666
+10,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to find the volume of a triangular prism.,"def find_Volume(b, h, l):
+  return (b * h / 2) * l
+",,True,post,False,True,True,True,True,False,True,True,False,True,True,False,selected_pilot_75_mbpp.json,10_llama3point1-70b,0.5
+159,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the volume of a cone.,"import math
+
+def volume_cone(radius, height):
+    return (1/3) * math.pi * (radius ** 2) * height
+
+# Tests
+assert math.isclose(volume_cone(5, 12), 314.15926535897927, rel_tol=0.001)
+assert math.isclose(volume_cone(10, 15), 1570.7963267948965, rel_tol=0.001)
+assert math.isclose(volume_cone(19, 17), 6426.651371693521, rel_tol=0.001)
+",,False,post,True,False,True,True,False,False,True,True,False,True,True,False,selected_pilot_75_mbpp.json,159_gpt-4o,0.6666666666666666
+45,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to check whether the given number is undulating or not.,"def is_undulating(n):
+    s = str(n)
+    if len(s) < 3:
+        return False
+    first_digit = s[0]
+    second_digit = s[1]
+    if first_digit == second_digit:
+        return False
+    
+    for i in range(2, len(s)):
+        if i % 2 == 0 and s[i] != first_digit:
+            return False
+        if i % 2 == 1 and s[i] != second_digit:
+            return False
+            
+    return True
+
+# Test cases
+assert is_undulating(1212121) == True
+assert is_undulating(1991) == False
+assert is_undulating(121) == True
+",,False,post,False,False,False,True,True,False,False,False,False,True,True,True,selected_pilot_75_mbpp.json,45_gpt-4o,0.6666666666666666
+133,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function that takes in two tuples and subtracts the elements of the first tuple by the elements of the second tuple with the same index.,"def substract_elements(tup1, tup2):
+    return tuple(a - b for a, b in zip(tup1, tup2))
+",,False,post,True,False,True,True,True,False,False,False,False,True,True,True,selected_pilot_75_mbpp.json,133_llama3point1-70b,0.6666666666666666
+133,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function that takes in two tuples and subtracts the elements of the first tuple by the elements of the second tuple with the same index.,"def substract_elements(tup1, tup2):
+    return tuple(a - b for a, b in zip(tup1, tup2))
+
+# Test cases
+assert substract_elements((10, 4, 5), (2, 5, 18)) == (8, -1, -13)
+assert substract_elements((11, 2, 3), (24, 45 ,16)) == (-13, -43, -13)
+assert substract_elements((7, 18, 9), (10, 11, 12)) == (-3, 7, -3)
+",,False,post,True,False,True,True,False,True,False,True,False,True,True,True,selected_pilot_75_mbpp.json,133_gpt-4o,0.6666666666666666
+216,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to check whether the given list contains consecutive numbers or not.,"def check_Consecutive(lst):
+    lst.sort()
+    return all(lst[i] - lst[i-1] == 1 for i in range(1, len(lst))) and len(lst) == len(set(lst))
+",,True,post,True,False,False,True,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,216_llama3point1-70b,0.5
+336,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to check whether every odd index contains odd numbers of a given list.,"def odd_position(lst):
+    for i in range(len(lst)):
+        if i % 2 != 0 and lst[i] % 2 == 0:
+            return False
+    return True
+",,True,post,True,False,False,False,True,False,False,False,False,True,True,True,selected_pilot_75_mbpp.json,336_llama3point1-70b,0.6666666666666666
+123,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,"Write a function that takes in a list and an integer L and splits the given list into two parts where the length of the first part of the list is L, and returns the resulting lists in a tuple.","def split_two_parts(lst, L):
+    return (lst[:L], lst[L:])
+
+# Tests
+assert split_two_parts([1,1,2,3,4,4,5,1],3) == ([1, 1, 2], [3, 4, 4, 5, 1])
+assert split_two_parts(['a', 'b', 'c', 'd'],2) == (['a', 'b'], ['c', 'd'])
+assert split_two_parts(['p', 'y', 't', 'h', 'o', 'n'],4) == (['p', 'y', 't', 'h'], ['o', 'n'])
+",,True,post,True,False,True,True,False,False,False,False,False,True,True,False,selected_pilot_75_mbpp.json,123_gpt-4o,0.6666666666666666
+141,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function takes in an integer and check whether the frequency of each digit in the integer is less than or equal to the digit itself.,"def validate(n):
+    digit_str = str(n)
+    frequency = {}
+    
+    # Calculate frequency of each digit
+    for digit in digit_str:
+        if digit in frequency:
+            frequency[digit] += 1
+        else:
+            frequency[digit] = 1
+    
+    # Check the condition for each digit
+    for digit, count in frequency.items():
+        if count > int(digit):
+            return False
+    
+    return True
+
+# Tests
+assert validate(1234) == True
+assert validate(51241) == False
+assert validate(321) == True
+",,True,post,True,False,False,True,False,False,False,True,False,True,False,False,selected_pilot_75_mbpp.json,141_gpt-4o,0.5
+275,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the size of the largest subset of a list of numbers so that every pair is divisible.,"def largest_subset(nums):
+    if not nums:
+        return 0
+
+    nums.sort()
+    dp = [1] * len(nums)
+    
+    for i in range(len(nums)):
+        for j in range(i):
+            if nums[i] % nums[j] == 0:
+                dp[i] = max(dp[i], dp[j] + 1)
+    
+    return max(dp)
+
+# Testing the function with the provided test cases
+assert largest_subset([1, 3, 6, 13, 17, 18]) == 4
+assert largest_subset([10, 5, 3, 15, 20]) == 3
+assert largest_subset([18, 1, 3, 6, 13, 17]) == 4
+",,False,post,True,False,True,False,True,False,True,True,False,True,True,True,selected_pilot_75_mbpp.json,275_gpt-4o,0.6666666666666666
+326,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the minimum difference between any two elements in a given array.,"def find_min_diff(arr, n):
+    if n < 2:
+        return 0  # If array has less than 2 elements, no valid difference can be found
+    
+    arr = sorted(arr)
+    min_diff = float('inf')
+    
+    for i in range(n - 1):
+        diff = arr[i+1] - arr[i]
+        if diff < min_diff:
+            min_diff = diff
+            
+    return min_diff
+
+# Testing the function based on the provided assertions
+assert find_min_diff((1,5,3,19,18,25),6) == 1
+assert find_min_diff((4,3,2,6),4) == 1
+assert find_min_diff((30,5,20,9),4) == 4
+",,True,post,True,False,False,True,False,False,False,True,False,False,False,False,selected_pilot_75_mbpp.json,326_gpt-4o,0.6666666666666666
+184,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function to filter odd numbers.,"def filter_oddnumbers(nums):
+  return [num for num in nums if num % 2 != 0]
+",,True,post,True,False,True,True,False,True,True,True,True,True,False,False,selected_pilot_75_mbpp.json,184_llama3point1-70b,0.6666666666666666
+121,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function to find the nth newman–shanks–williams prime number.,"def is_prime(n):
+    """"""Check if a number is prime.""""""
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def newman_prime(n):
+    """"""Find the nth Newman-Shanks-Williams prime number.""""""
+    if n == 1:
+        return 7  # The first NSW prime is 7
+    
+    # Initialize the count of NSW primes and the current number
+    count = 1
+    num = 7
+    
+    while True:
+        # Check if the current number is a prime number
+        if is_prime(num):
+            # Check if the current prime number is congruent to 1 or 5 modulo 6
+            if num % 6 in [1, 5]:
+                # Increment the count of NSW primes
+                count += 1
+                
+                # If we have found the nth NSW prime, return it
+                if count == n:
+                    return num
+        
+        # Move on to the next number
+        num += 1
+",,False,post,False,False,False,True,False,False,True,True,True,True,False,False,selected_pilot_75_mbpp.json,121_llama3point1-70b,0.6666666666666666
+235,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to get the sum of the digits of a non-negative integer.,"def sum_digits(n: int) -> int:
+    total = 0
+    while n > 0:
+        total += n % 10
+        n //= 10
+    return total
+
+# Testing the function with the provided test cases
+assert sum_digits(345) == 12
+assert sum_digits(12) == 3
+assert sum_digits(97) == 16
+",,True,post,True,False,True,False,False,False,True,False,False,True,True,False,selected_pilot_75_mbpp.json,235_gpt-4o,0.5
+356,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to remove all whitespaces from a string.,"def remove_all_spaces(s):
+    return s.replace("" "", """")
+
+# Test cases
+assert remove_all_spaces('python  program') == 'pythonprogram'
+assert remove_all_spaces('python   programming    language') == 'pythonprogramminglanguage'
+assert remove_all_spaces('python                     program') == 'pythonprogram'
+assert remove_all_spaces('   python                     program') == 'pythonprogram'
+",,False,post,True,True,False,True,True,False,False,False,False,True,False,True,selected_pilot_75_mbpp.json,356_gpt-4o,0.6666666666666666
+179,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to find the cube sum of first n even natural numbers.,"def cube_Sum(n):
+    return sum(i**3 for i in range(2, n*2+1, 2))
+",,True,post,True,True,False,False,False,True,True,True,True,True,True,False,selected_pilot_75_mbpp.json,179_llama3point1-70b,0.5
+179,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the cube sum of first n even natural numbers.,"def cube_Sum(n):
+    even_numbers = [2 * i for i in range(1, n + 1)]
+    cube_sum = sum(x ** 3 for x in even_numbers)
+    return cube_sum
+
+# Tests
+assert cube_Sum(2) == 72
+assert cube_Sum(3) == 288
+assert cube_Sum(4) == 800
+",,True,post,True,True,False,True,False,True,True,True,True,True,True,False,selected_pilot_75_mbpp.json,179_gpt-4o,0.6666666666666666
+68,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to get the angle of a complex number.,"import cmath
+
+def angle_complex(real, imag):
+    # Create the complex number
+    complex_number = complex(real, imag)
+    # Return the phase (angle) of the complex number
+    return cmath.phase(complex_number)
+
+# Test cases
+import math
+
+assert math.isclose(angle_complex(0,1j), 1.5707963267948966, rel_tol=0.001)
+assert math.isclose(angle_complex(2,1j), 0.4636476090008061, rel_tol=0.001)
+assert math.isclose(angle_complex(0,2j), 1.5707963267948966, rel_tol=0.001)
+",,False,post,False,False,True,True,True,False,False,False,False,True,True,True,selected_pilot_75_mbpp.json,68_gpt-4o,0.5
+134,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function that takes in a positive integer n and finds the sum of even index binomial coefficients.,"import math
+
+def even_binomial_Coeff_Sum(n):
+    # Sum of binomial coefficients at even indices is given by 2^(n-1)
+    return 2**(n-1)
+
+# Test cases
+assert even_binomial_Coeff_Sum(4) == 8
+assert even_binomial_Coeff_Sum(6) == 32
+assert even_binomial_Coeff_Sum(2) == 2
+",,False,post,True,False,False,False,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,134_gpt-4o,0.5
+276,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the median of two sorted lists of same size.,"def get_median(list1, list2, n):
+    # Merge the two sorted lists
+    merged_list = sorted(list1 + list2)
+    
+    # Calculate the median
+    mid = len(merged_list) // 2
+    
+    if len(merged_list) % 2 == 0:
+        # Even number of elements
+        median = (merged_list[mid - 1] + merged_list[mid]) / 2
+    else:
+        # Odd number of elements (although this case won't happen given the problem constraints)
+        median = merged_list[mid]
+    
+    return median
+
+# Test cases
+assert get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0
+assert get_median([2, 4, 8, 9], [7, 13, 19, 28], 4) == 8.5
+assert get_median([3, 6, 14, 23, 36, 42], [2, 18, 27, 39, 49, 55], 6) == 25.0
+",,False,post,False,True,True,True,False,False,True,True,False,True,True,False,selected_pilot_75_mbpp.json,276_gpt-4o,0.6666666666666666
+85,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to find the maximum difference between any two elements in a given array.,"def max_Abs_Diff(arr):
+    return max(arr) - min(arr)
+",,False,post,True,False,True,True,True,False,False,False,False,True,True,True,selected_pilot_75_mbpp.json,85_llama3point1-70b,0.5
+146,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the list of maximum length in a list of lists.,"def max_length(list_of_lists):
+    max_len = 0
+    max_list = []
+    
+    for lst in list_of_lists:
+        if len(lst) > max_len:
+            max_len = len(lst)
+            max_list = lst
+            
+    return (max_len, max_list)
+
+# Test cases
+assert max_length([[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]]) == (3, [13, 15, 17])
+assert max_length([[1], [5, 7], [10, 12, 14, 15]]) == (4, [10, 12, 14, 15])
+assert max_length([[5], [15, 20, 25]]) == (3, [15, 20, 25])
+",,False,post,True,False,True,False,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,146_gpt-4o,0.6666666666666666
+320,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the second smallest number in a list.,"def second_smallest(nums):
+    unique_nums = sorted(set(nums))
+    return unique_nums[1] if len(unique_nums) > 1 else None
+
+# Test cases
+assert second_smallest([1, 2, -8, -2, 0, -2]) == -2
+assert second_smallest([1, 1, -0.5, 0, 2, -2, -2]) == -0.5
+assert second_smallest([2,2]) == None
+assert second_smallest([2,2,2]) == None
+",,True,post,True,True,True,False,True,False,True,True,True,True,True,True,selected_pilot_75_mbpp.json,320_gpt-4o,0.5
+161,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function to find the n'th lucas number.,"def find_lucas(n):
+    if n == 0:
+        return 2
+    elif n == 1:
+        return 1
+    else:
+        a, b = 2, 1
+        for _ in range(2, n + 1):
+            a, b = b, a + b
+        return b
+",,False,post,True,True,False,False,True,False,True,False,False,True,False,False,selected_pilot_75_mbpp.json,161_llama3point1-70b,0.6666666666666666
+161,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the n'th lucas number.,"def find_lucas(n):
+    if n == 0:
+        return 2
+    elif n == 1:
+        return 1
+    else:
+        a, b = 2, 1
+        for _ in range(2, n + 1):
+            a, b = b, a + b
+        return b
+
+# Test cases
+assert find_lucas(9) == 76
+assert find_lucas(4) == 7
+assert find_lucas(3) == 4
+",,True,post,True,True,False,True,True,False,True,True,True,True,True,True,selected_pilot_75_mbpp.json,161_gpt-4o,0.6666666666666666
+290,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,"Write a function that checks if a strings contains 'z', except at the start and end of the word.","def text_match_wordz_middle(s):
+    words = s.split()
+    for word in words:
+        if len(word) > 1 and 'z' in word[1:-1]:
+            return True
+    return False
+",,False,post,True,True,True,True,False,False,True,True,True,True,False,False,selected_pilot_75_mbpp.json,290_llama3point1-70b,0.6666666666666666
+186,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to extract the elementwise and tuples from the given two tuples.,"def and_tuples(tuple1, tuple2):
+    return tuple(a & b for a, b in zip(tuple1, tuple2))
+
+# Testing the function with the provided test cases
+assert and_tuples((10, 4, 6, 9), (5, 2, 3, 3)) == (0, 0, 2, 1)
+assert and_tuples((1, 2, 3, 4), (5, 6, 7, 8)) == (1, 2, 3, 0)
+assert and_tuples((8, 9, 11, 12), (7, 13, 14, 17)) == (0, 9, 10, 0)
+",,False,post,True,False,False,False,False,False,True,True,True,False,False,False,selected_pilot_75_mbpp.json,186_gpt-4o,0.5
+182,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function to extract only the rear index element of each string in the given tuple.,"def extract_rear(strings):
+    return [s[-1] for s in strings]
+",,False,post,True,True,False,True,False,False,True,False,False,False,False,False,selected_pilot_75_mbpp.json,182_llama3point1-70b,0.6666666666666666
+99,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to remove the characters which have odd index values of a given string.,"def odd_values_string(s):
+    return ''.join(s[i] for i in range(0, len(s), 2))
+",,False,post,True,True,False,True,False,False,True,True,True,False,False,False,selected_pilot_75_mbpp.json,99_llama3point1-70b,0.5
+264,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to convert degrees to radians.,"import math
+
+def radian_degree(degrees):
+    return degrees * (math.pi / 180)
+
+# Test cases
+assert radian_degree(90) == 1.5707963267948966
+assert radian_degree(60) == 1.0471975511965976
+assert radian_degree(120) == 2.0943951023931953
+",,True,post,False,False,True,True,True,False,False,False,False,True,True,False,selected_pilot_75_mbpp.json,264_gpt-4o,0.6666666666666666
+307,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the index of smallest triangular number with n digits.,"def find_Index(n):
+    k = 1
+    while True:
+        triangular_number = k * (k + 1) // 2
+        if len(str(triangular_number)) == n:
+            return k
+        k += 1
+
+# Test cases
+assert find_Index(2) == 4
+assert find_Index(3) == 14
+assert find_Index(4) == 45
+",,False,post,False,False,True,True,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,307_gpt-4o,0.6666666666666666
+8,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s, char):
+    first_occurrence = s.find(char)
+    last_occurrence = s.rfind(char)
+    
+    if first_occurrence != -1 and last_occurrence != -1:
+        if first_occurrence == last_occurrence:
+            return s.replace(char, '', 1)
+        else:
+            return s[:first_occurrence] + s[first_occurrence+1:last_occurrence] + s[last_occurrence+1:]
+    else:
+        return s
+",,False,post,True,True,False,True,False,False,True,True,True,False,False,False,selected_pilot_75_mbpp.json,8_llama3point1-70b,0.6666666666666666
+8,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s: str, ch: str) -> str:
+    first_index = s.find(ch)
+    last_index = s.rfind(ch)
+    
+    if first_index == -1 or last_index == -1 or first_index == last_index:
+        return s  # No removal needed if ch is not found or only one occurrence
+    
+    # Create a new string without the first and last occurrence of ch
+    return s[:first_index] + s[first_index + 1:last_index] + s[last_index + 1:]
+
+# Testing the function with the provided test cases
+assert remove_Occ(""hello"", ""l"") == ""heo""
+assert remove_Occ(""abcda"", ""a"") == ""bcd""
+assert remove_Occ(""PHP"", ""P"") == ""H""
+",,False,post,False,False,True,False,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,8_gpt-4o,0.6666666666666666
+10,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to find the volume of a triangular prism.,"def find_Volume(b, h, l):
+  return (b * h / 2) * l
+",,True,post,False,True,True,True,True,False,True,True,False,True,True,False,selected_pilot_75_mbpp.json,10_llama3point1-70b,0.5
+159,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the volume of a cone.,"import math
+
+def volume_cone(radius, height):
+    return (1/3) * math.pi * (radius ** 2) * height
+
+# Tests
+assert math.isclose(volume_cone(5, 12), 314.15926535897927, rel_tol=0.001)
+assert math.isclose(volume_cone(10, 15), 1570.7963267948965, rel_tol=0.001)
+assert math.isclose(volume_cone(19, 17), 6426.651371693521, rel_tol=0.001)
+",,True,post,True,False,True,True,True,False,True,True,False,True,True,True,selected_pilot_75_mbpp.json,159_gpt-4o,0.6666666666666666
+45,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to check whether the given number is undulating or not.,"def is_undulating(n):
+    s = str(n)
+    if len(s) < 3:
+        return False
+    first_digit = s[0]
+    second_digit = s[1]
+    if first_digit == second_digit:
+        return False
+    
+    for i in range(2, len(s)):
+        if i % 2 == 0 and s[i] != first_digit:
+            return False
+        if i % 2 == 1 and s[i] != second_digit:
+            return False
+            
+    return True
+
+# Test cases
+assert is_undulating(1212121) == True
+assert is_undulating(1991) == False
+assert is_undulating(121) == True
+",,False,post,False,False,True,True,True,False,False,False,False,True,True,True,selected_pilot_75_mbpp.json,45_gpt-4o,0.6666666666666666
+133,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function that takes in two tuples and subtracts the elements of the first tuple by the elements of the second tuple with the same index.,"def substract_elements(tup1, tup2):
+    return tuple(a - b for a, b in zip(tup1, tup2))
+",,False,post,True,True,True,True,True,False,True,False,False,True,True,False,selected_pilot_75_mbpp.json,133_llama3point1-70b,0.6666666666666666
+133,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function that takes in two tuples and subtracts the elements of the first tuple by the elements of the second tuple with the same index.,"def substract_elements(tup1, tup2):
+    return tuple(a - b for a, b in zip(tup1, tup2))
+
+# Test cases
+assert substract_elements((10, 4, 5), (2, 5, 18)) == (8, -1, -13)
+assert substract_elements((11, 2, 3), (24, 45 ,16)) == (-13, -43, -13)
+assert substract_elements((7, 18, 9), (10, 11, 12)) == (-3, 7, -3)
+",,True,post,True,True,True,True,True,False,True,True,True,True,True,True,selected_pilot_75_mbpp.json,133_gpt-4o,0.6666666666666666
+216,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to check whether the given list contains consecutive numbers or not.,"def check_Consecutive(lst):
+    lst.sort()
+    return all(lst[i] - lst[i-1] == 1 for i in range(1, len(lst))) and len(lst) == len(set(lst))
+",,False,post,True,False,False,True,False,False,False,True,False,False,True,True,selected_pilot_75_mbpp.json,216_llama3point1-70b,0.5
+336,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to check whether every odd index contains odd numbers of a given list.,"def odd_position(lst):
+    for i in range(len(lst)):
+        if i % 2 != 0 and lst[i] % 2 == 0:
+            return False
+    return True
+",,True,post,True,False,False,False,False,False,False,True,False,False,False,False,selected_pilot_75_mbpp.json,336_llama3point1-70b,0.6666666666666666
+123,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,"Write a function that takes in a list and an integer L and splits the given list into two parts where the length of the first part of the list is L, and returns the resulting lists in a tuple.","def split_two_parts(lst, L):
+    return (lst[:L], lst[L:])
+
+# Tests
+assert split_two_parts([1,1,2,3,4,4,5,1],3) == ([1, 1, 2], [3, 4, 4, 5, 1])
+assert split_two_parts(['a', 'b', 'c', 'd'],2) == (['a', 'b'], ['c', 'd'])
+assert split_two_parts(['p', 'y', 't', 'h', 'o', 'n'],4) == (['p', 'y', 't', 'h'], ['o', 'n'])
+",,True,post,True,True,True,True,False,True,True,True,True,False,False,True,selected_pilot_75_mbpp.json,123_gpt-4o,0.6666666666666666
+141,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function takes in an integer and check whether the frequency of each digit in the integer is less than or equal to the digit itself.,"def validate(n):
+    digit_str = str(n)
+    frequency = {}
+    
+    # Calculate frequency of each digit
+    for digit in digit_str:
+        if digit in frequency:
+            frequency[digit] += 1
+        else:
+            frequency[digit] = 1
+    
+    # Check the condition for each digit
+    for digit, count in frequency.items():
+        if count > int(digit):
+            return False
+    
+    return True
+
+# Tests
+assert validate(1234) == True
+assert validate(51241) == False
+assert validate(321) == True
+",,True,post,True,False,True,False,False,False,True,True,True,False,False,False,selected_pilot_75_mbpp.json,141_gpt-4o,0.5
+275,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the size of the largest subset of a list of numbers so that every pair is divisible.,"def largest_subset(nums):
+    if not nums:
+        return 0
+
+    nums.sort()
+    dp = [1] * len(nums)
+    
+    for i in range(len(nums)):
+        for j in range(i):
+            if nums[i] % nums[j] == 0:
+                dp[i] = max(dp[i], dp[j] + 1)
+    
+    return max(dp)
+
+# Testing the function with the provided test cases
+assert largest_subset([1, 3, 6, 13, 17, 18]) == 4
+assert largest_subset([10, 5, 3, 15, 20]) == 3
+assert largest_subset([18, 1, 3, 6, 13, 17]) == 4
+",,False,post,True,True,True,True,False,False,True,True,True,False,False,False,selected_pilot_75_mbpp.json,275_gpt-4o,0.6666666666666666
+326,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the minimum difference between any two elements in a given array.,"def find_min_diff(arr, n):
+    if n < 2:
+        return 0  # If array has less than 2 elements, no valid difference can be found
+    
+    arr = sorted(arr)
+    min_diff = float('inf')
+    
+    for i in range(n - 1):
+        diff = arr[i+1] - arr[i]
+        if diff < min_diff:
+            min_diff = diff
+            
+    return min_diff
+
+# Testing the function based on the provided assertions
+assert find_min_diff((1,5,3,19,18,25),6) == 1
+assert find_min_diff((4,3,2,6),4) == 1
+assert find_min_diff((30,5,20,9),4) == 4
+",,False,post,True,False,False,False,True,False,False,False,False,True,True,True,selected_pilot_75_mbpp.json,326_gpt-4o,0.6666666666666666
+184,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function to filter odd numbers.,"def filter_oddnumbers(nums):
+  return [num for num in nums if num % 2 != 0]
+",,True,post,True,False,True,True,False,False,False,True,True,False,False,True,selected_pilot_75_mbpp.json,184_llama3point1-70b,0.6666666666666666
+121,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function to find the nth newman–shanks–williams prime number.,"def is_prime(n):
+    """"""Check if a number is prime.""""""
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def newman_prime(n):
+    """"""Find the nth Newman-Shanks-Williams prime number.""""""
+    if n == 1:
+        return 7  # The first NSW prime is 7
+    
+    # Initialize the count of NSW primes and the current number
+    count = 1
+    num = 7
+    
+    while True:
+        # Check if the current number is a prime number
+        if is_prime(num):
+            # Check if the current prime number is congruent to 1 or 5 modulo 6
+            if num % 6 in [1, 5]:
+                # Increment the count of NSW primes
+                count += 1
+                
+                # If we have found the nth NSW prime, return it
+                if count == n:
+                    return num
+        
+        # Move on to the next number
+        num += 1
+",,False,post,False,True,False,True,True,False,True,True,False,True,True,True,selected_pilot_75_mbpp.json,121_llama3point1-70b,0.6666666666666666
+235,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to get the sum of the digits of a non-negative integer.,"def sum_digits(n: int) -> int:
+    total = 0
+    while n > 0:
+        total += n % 10
+        n //= 10
+    return total
+
+# Testing the function with the provided test cases
+assert sum_digits(345) == 12
+assert sum_digits(12) == 3
+assert sum_digits(97) == 16
+",,True,post,True,True,True,True,True,True,True,True,True,True,True,True,selected_pilot_75_mbpp.json,235_gpt-4o,0.5
+356,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to remove all whitespaces from a string.,"def remove_all_spaces(s):
+    return s.replace("" "", """")
+
+# Test cases
+assert remove_all_spaces('python  program') == 'pythonprogram'
+assert remove_all_spaces('python   programming    language') == 'pythonprogramminglanguage'
+assert remove_all_spaces('python                     program') == 'pythonprogram'
+assert remove_all_spaces('   python                     program') == 'pythonprogram'
+",,False,post,True,True,False,True,True,False,True,False,False,True,False,False,selected_pilot_75_mbpp.json,356_gpt-4o,0.6666666666666666
+179,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to find the cube sum of first n even natural numbers.,"def cube_Sum(n):
+    return sum(i**3 for i in range(2, n*2+1, 2))
+",,True,post,True,True,False,False,True,True,True,True,True,True,True,True,selected_pilot_75_mbpp.json,179_llama3point1-70b,0.5
+179,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the cube sum of first n even natural numbers.,"def cube_Sum(n):
+    even_numbers = [2 * i for i in range(1, n + 1)]
+    cube_sum = sum(x ** 3 for x in even_numbers)
+    return cube_sum
+
+# Tests
+assert cube_Sum(2) == 72
+assert cube_Sum(3) == 288
+assert cube_Sum(4) == 800
+",,True,post,True,False,True,True,False,False,True,True,False,False,False,False,selected_pilot_75_mbpp.json,179_gpt-4o,0.6666666666666666
+68,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to get the angle of a complex number.,"import cmath
+
+def angle_complex(real, imag):
+    # Create the complex number
+    complex_number = complex(real, imag)
+    # Return the phase (angle) of the complex number
+    return cmath.phase(complex_number)
+
+# Test cases
+import math
+
+assert math.isclose(angle_complex(0,1j), 1.5707963267948966, rel_tol=0.001)
+assert math.isclose(angle_complex(2,1j), 0.4636476090008061, rel_tol=0.001)
+assert math.isclose(angle_complex(0,2j), 1.5707963267948966, rel_tol=0.001)
+",,False,post,False,False,True,True,False,False,False,False,False,False,True,False,selected_pilot_75_mbpp.json,68_gpt-4o,0.5
+134,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function that takes in a positive integer n and finds the sum of even index binomial coefficients.,"import math
+
+def even_binomial_Coeff_Sum(n):
+    # Sum of binomial coefficients at even indices is given by 2^(n-1)
+    return 2**(n-1)
+
+# Test cases
+assert even_binomial_Coeff_Sum(4) == 8
+assert even_binomial_Coeff_Sum(6) == 32
+assert even_binomial_Coeff_Sum(2) == 2
+",,False,post,True,False,False,False,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,134_gpt-4o,0.5
+276,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the median of two sorted lists of same size.,"def get_median(list1, list2, n):
+    # Merge the two sorted lists
+    merged_list = sorted(list1 + list2)
+    
+    # Calculate the median
+    mid = len(merged_list) // 2
+    
+    if len(merged_list) % 2 == 0:
+        # Even number of elements
+        median = (merged_list[mid - 1] + merged_list[mid]) / 2
+    else:
+        # Odd number of elements (although this case won't happen given the problem constraints)
+        median = merged_list[mid]
+    
+    return median
+
+# Test cases
+assert get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0
+assert get_median([2, 4, 8, 9], [7, 13, 19, 28], 4) == 8.5
+assert get_median([3, 6, 14, 23, 36, 42], [2, 18, 27, 39, 49, 55], 6) == 25.0
+",,False,post,False,False,True,True,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,276_gpt-4o,0.6666666666666666
+85,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to find the maximum difference between any two elements in a given array.,"def max_Abs_Diff(arr):
+    return max(arr) - min(arr)
+",,False,post,True,False,True,True,True,False,False,False,False,True,True,False,selected_pilot_75_mbpp.json,85_llama3point1-70b,0.5
+146,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the list of maximum length in a list of lists.,"def max_length(list_of_lists):
+    max_len = 0
+    max_list = []
+    
+    for lst in list_of_lists:
+        if len(lst) > max_len:
+            max_len = len(lst)
+            max_list = lst
+            
+    return (max_len, max_list)
+
+# Test cases
+assert max_length([[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]]) == (3, [13, 15, 17])
+assert max_length([[1], [5, 7], [10, 12, 14, 15]]) == (4, [10, 12, 14, 15])
+assert max_length([[5], [15, 20, 25]]) == (3, [15, 20, 25])
+",,True,post,True,False,False,False,False,True,False,False,False,False,False,False,selected_pilot_75_mbpp.json,146_gpt-4o,0.6666666666666666
+320,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the second smallest number in a list.,"def second_smallest(nums):
+    unique_nums = sorted(set(nums))
+    return unique_nums[1] if len(unique_nums) > 1 else None
+
+# Test cases
+assert second_smallest([1, 2, -8, -2, 0, -2]) == -2
+assert second_smallest([1, 1, -0.5, 0, 2, -2, -2]) == -0.5
+assert second_smallest([2,2]) == None
+assert second_smallest([2,2,2]) == None
+",,True,post,True,True,True,True,False,False,True,True,True,False,False,True,selected_pilot_75_mbpp.json,320_gpt-4o,0.5
+161,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function to find the n'th lucas number.,"def find_lucas(n):
+    if n == 0:
+        return 2
+    elif n == 1:
+        return 1
+    else:
+        a, b = 2, 1
+        for _ in range(2, n + 1):
+            a, b = b, a + b
+        return b
+",,False,post,True,True,False,True,False,False,True,True,False,True,True,True,selected_pilot_75_mbpp.json,161_llama3point1-70b,0.6666666666666666
+161,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the n'th lucas number.,"def find_lucas(n):
+    if n == 0:
+        return 2
+    elif n == 1:
+        return 1
+    else:
+        a, b = 2, 1
+        for _ in range(2, n + 1):
+            a, b = b, a + b
+        return b
+
+# Test cases
+assert find_lucas(9) == 76
+assert find_lucas(4) == 7
+assert find_lucas(3) == 4
+",,True,post,True,True,False,False,True,False,False,True,True,False,False,True,selected_pilot_75_mbpp.json,161_gpt-4o,0.6666666666666666
+290,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,"Write a function that checks if a strings contains 'z', except at the start and end of the word.","def text_match_wordz_middle(s):
+    words = s.split()
+    for word in words:
+        if len(word) > 1 and 'z' in word[1:-1]:
+            return True
+    return False
+",,True,post,True,False,True,True,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,290_llama3point1-70b,0.6666666666666666
+186,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to extract the elementwise and tuples from the given two tuples.,"def and_tuples(tuple1, tuple2):
+    return tuple(a & b for a, b in zip(tuple1, tuple2))
+
+# Testing the function with the provided test cases
+assert and_tuples((10, 4, 6, 9), (5, 2, 3, 3)) == (0, 0, 2, 1)
+assert and_tuples((1, 2, 3, 4), (5, 6, 7, 8)) == (1, 2, 3, 0)
+assert and_tuples((8, 9, 11, 12), (7, 13, 14, 17)) == (0, 9, 10, 0)
+",,False,post,True,False,False,False,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,186_gpt-4o,0.5
+182,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function to extract only the rear index element of each string in the given tuple.,"def extract_rear(strings):
+    return [s[-1] for s in strings]
+",,False,post,True,True,False,True,True,False,True,False,False,False,False,False,selected_pilot_75_mbpp.json,182_llama3point1-70b,0.6666666666666666
+264,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to convert degrees to radians.,"import math
+
+def radian_degree(degrees):
+    return degrees * (math.pi / 180)
+
+# Test cases
+assert radian_degree(90) == 1.5707963267948966
+assert radian_degree(60) == 1.0471975511965976
+assert radian_degree(120) == 2.0943951023931953
+",,True,post,False,False,True,True,True,False,False,False,False,True,True,True,selected_pilot_75_mbpp.json,264_gpt-4o,0.6666666666666666
+307,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the index of smallest triangular number with n digits.,"def find_Index(n):
+    k = 1
+    while True:
+        triangular_number = k * (k + 1) // 2
+        if len(str(triangular_number)) == n:
+            return k
+        k += 1
+
+# Test cases
+assert find_Index(2) == 4
+assert find_Index(3) == 14
+assert find_Index(4) == 45
+",,False,post,False,False,False,True,True,False,True,False,True,True,True,True,selected_pilot_75_mbpp.json,307_gpt-4o,0.6666666666666666
+8,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s, char):
+    first_occurrence = s.find(char)
+    last_occurrence = s.rfind(char)
+    
+    if first_occurrence != -1 and last_occurrence != -1:
+        if first_occurrence == last_occurrence:
+            return s.replace(char, '', 1)
+        else:
+            return s[:first_occurrence] + s[first_occurrence+1:last_occurrence] + s[last_occurrence+1:]
+    else:
+        return s
+",,True,post,True,True,True,True,False,False,True,True,True,False,False,False,selected_pilot_75_mbpp.json,8_llama3point1-70b,0.6666666666666666
+8,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s: str, ch: str) -> str:
+    first_index = s.find(ch)
+    last_index = s.rfind(ch)
+    
+    if first_index == -1 or last_index == -1 or first_index == last_index:
+        return s  # No removal needed if ch is not found or only one occurrence
+    
+    # Create a new string without the first and last occurrence of ch
+    return s[:first_index] + s[first_index + 1:last_index] + s[last_index + 1:]
+
+# Testing the function with the provided test cases
+assert remove_Occ(""hello"", ""l"") == ""heo""
+assert remove_Occ(""abcda"", ""a"") == ""bcd""
+assert remove_Occ(""PHP"", ""P"") == ""H""
+",,True,post,False,False,False,False,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,8_gpt-4o,0.6666666666666666
+10,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to find the volume of a triangular prism.,"def find_Volume(b, h, l):
+  return (b * h / 2) * l
+",,False,post,False,True,True,True,True,False,True,True,True,True,True,False,selected_pilot_75_mbpp.json,10_llama3point1-70b,0.5
+159,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the volume of a cone.,"import math
+
+def volume_cone(radius, height):
+    return (1/3) * math.pi * (radius ** 2) * height
+
+# Tests
+assert math.isclose(volume_cone(5, 12), 314.15926535897927, rel_tol=0.001)
+assert math.isclose(volume_cone(10, 15), 1570.7963267948965, rel_tol=0.001)
+assert math.isclose(volume_cone(19, 17), 6426.651371693521, rel_tol=0.001)
+",,False,post,True,True,True,True,False,False,True,True,False,True,False,False,selected_pilot_75_mbpp.json,159_gpt-4o,0.6666666666666666
+45,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to check whether the given number is undulating or not.,"def is_undulating(n):
+    s = str(n)
+    if len(s) < 3:
+        return False
+    first_digit = s[0]
+    second_digit = s[1]
+    if first_digit == second_digit:
+        return False
+    
+    for i in range(2, len(s)):
+        if i % 2 == 0 and s[i] != first_digit:
+            return False
+        if i % 2 == 1 and s[i] != second_digit:
+            return False
+            
+    return True
+
+# Test cases
+assert is_undulating(1212121) == True
+assert is_undulating(1991) == False
+assert is_undulating(121) == True
+",,True,post,False,False,True,True,False,False,False,False,False,False,False,True,selected_pilot_75_mbpp.json,45_gpt-4o,0.6666666666666666
+133,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function that takes in two tuples and subtracts the elements of the first tuple by the elements of the second tuple with the same index.,"def substract_elements(tup1, tup2):
+    return tuple(a - b for a, b in zip(tup1, tup2))
+",,False,post,True,True,True,True,True,False,True,False,False,True,True,True,selected_pilot_75_mbpp.json,133_llama3point1-70b,0.6666666666666666
+133,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function that takes in two tuples and subtracts the elements of the first tuple by the elements of the second tuple with the same index.,"def substract_elements(tup1, tup2):
+    return tuple(a - b for a, b in zip(tup1, tup2))
+
+# Test cases
+assert substract_elements((10, 4, 5), (2, 5, 18)) == (8, -1, -13)
+assert substract_elements((11, 2, 3), (24, 45 ,16)) == (-13, -43, -13)
+assert substract_elements((7, 18, 9), (10, 11, 12)) == (-3, 7, -3)
+",,True,post,True,False,True,True,False,False,False,True,False,False,False,False,selected_pilot_75_mbpp.json,133_gpt-4o,0.6666666666666666
+216,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to check whether the given list contains consecutive numbers or not.,"def check_Consecutive(lst):
+    lst.sort()
+    return all(lst[i] - lst[i-1] == 1 for i in range(1, len(lst))) and len(lst) == len(set(lst))
+",,False,post,True,False,False,True,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,216_llama3point1-70b,0.5
+336,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to check whether every odd index contains odd numbers of a given list.,"def odd_position(lst):
+    for i in range(len(lst)):
+        if i % 2 != 0 and lst[i] % 2 == 0:
+            return False
+    return True
+",,True,post,True,True,True,True,True,False,True,True,True,True,True,True,selected_pilot_75_mbpp.json,336_llama3point1-70b,0.6666666666666666
+123,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,"Write a function that takes in a list and an integer L and splits the given list into two parts where the length of the first part of the list is L, and returns the resulting lists in a tuple.","def split_two_parts(lst, L):
+    return (lst[:L], lst[L:])
+
+# Tests
+assert split_two_parts([1,1,2,3,4,4,5,1],3) == ([1, 1, 2], [3, 4, 4, 5, 1])
+assert split_two_parts(['a', 'b', 'c', 'd'],2) == (['a', 'b'], ['c', 'd'])
+assert split_two_parts(['p', 'y', 't', 'h', 'o', 'n'],4) == (['p', 'y', 't', 'h'], ['o', 'n'])
+",,True,post,True,False,True,True,True,True,True,True,True,True,True,True,selected_pilot_75_mbpp.json,123_gpt-4o,0.6666666666666666
+141,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function takes in an integer and check whether the frequency of each digit in the integer is less than or equal to the digit itself.,"def validate(n):
+    digit_str = str(n)
+    frequency = {}
+    
+    # Calculate frequency of each digit
+    for digit in digit_str:
+        if digit in frequency:
+            frequency[digit] += 1
+        else:
+            frequency[digit] = 1
+    
+    # Check the condition for each digit
+    for digit, count in frequency.items():
+        if count > int(digit):
+            return False
+    
+    return True
+
+# Tests
+assert validate(1234) == True
+assert validate(51241) == False
+assert validate(321) == True
+",,True,post,True,False,False,True,False,False,True,False,False,False,True,False,selected_pilot_75_mbpp.json,141_gpt-4o,0.5
+275,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the size of the largest subset of a list of numbers so that every pair is divisible.,"def largest_subset(nums):
+    if not nums:
+        return 0
+
+    nums.sort()
+    dp = [1] * len(nums)
+    
+    for i in range(len(nums)):
+        for j in range(i):
+            if nums[i] % nums[j] == 0:
+                dp[i] = max(dp[i], dp[j] + 1)
+    
+    return max(dp)
+
+# Testing the function with the provided test cases
+assert largest_subset([1, 3, 6, 13, 17, 18]) == 4
+assert largest_subset([10, 5, 3, 15, 20]) == 3
+assert largest_subset([18, 1, 3, 6, 13, 17]) == 4
+",,False,post,True,False,True,True,True,False,False,False,False,True,True,True,selected_pilot_75_mbpp.json,275_gpt-4o,0.6666666666666666
+326,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the minimum difference between any two elements in a given array.,"def find_min_diff(arr, n):
+    if n < 2:
+        return 0  # If array has less than 2 elements, no valid difference can be found
+    
+    arr = sorted(arr)
+    min_diff = float('inf')
+    
+    for i in range(n - 1):
+        diff = arr[i+1] - arr[i]
+        if diff < min_diff:
+            min_diff = diff
+            
+    return min_diff
+
+# Testing the function based on the provided assertions
+assert find_min_diff((1,5,3,19,18,25),6) == 1
+assert find_min_diff((4,3,2,6),4) == 1
+assert find_min_diff((30,5,20,9),4) == 4
+",,False,post,True,False,False,True,True,False,False,False,False,True,True,True,selected_pilot_75_mbpp.json,326_gpt-4o,0.6666666666666666
+184,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function to filter odd numbers.,"def filter_oddnumbers(nums):
+  return [num for num in nums if num % 2 != 0]
+",,True,post,True,False,True,False,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,184_llama3point1-70b,0.6666666666666666
+179,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to find the cube sum of first n even natural numbers.,"def cube_Sum(n):
+    return sum(i**3 for i in range(2, n*2+1, 2))
+",,True,post,True,True,True,True,True,True,True,True,True,True,True,True,selected_pilot_75_mbpp.json,179_llama3point1-70b,0.5
+179,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the cube sum of first n even natural numbers.,"def cube_Sum(n):
+    even_numbers = [2 * i for i in range(1, n + 1)]
+    cube_sum = sum(x ** 3 for x in even_numbers)
+    return cube_sum
+
+# Tests
+assert cube_Sum(2) == 72
+assert cube_Sum(3) == 288
+assert cube_Sum(4) == 800
+",,True,post,True,False,True,True,False,True,False,True,True,True,True,True,selected_pilot_75_mbpp.json,179_gpt-4o,0.6666666666666666
+68,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to get the angle of a complex number.,"import cmath
+
+def angle_complex(real, imag):
+    # Create the complex number
+    complex_number = complex(real, imag)
+    # Return the phase (angle) of the complex number
+    return cmath.phase(complex_number)
+
+# Test cases
+import math
+
+assert math.isclose(angle_complex(0,1j), 1.5707963267948966, rel_tol=0.001)
+assert math.isclose(angle_complex(2,1j), 0.4636476090008061, rel_tol=0.001)
+assert math.isclose(angle_complex(0,2j), 1.5707963267948966, rel_tol=0.001)
+",,True,post,False,False,True,True,True,True,False,True,True,True,True,True,selected_pilot_75_mbpp.json,68_gpt-4o,0.5
+134,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function that takes in a positive integer n and finds the sum of even index binomial coefficients.,"import math
+
+def even_binomial_Coeff_Sum(n):
+    # Sum of binomial coefficients at even indices is given by 2^(n-1)
+    return 2**(n-1)
+
+# Test cases
+assert even_binomial_Coeff_Sum(4) == 8
+assert even_binomial_Coeff_Sum(6) == 32
+assert even_binomial_Coeff_Sum(2) == 2
+",,False,post,True,False,False,False,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,134_gpt-4o,0.5
+276,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the median of two sorted lists of same size.,"def get_median(list1, list2, n):
+    # Merge the two sorted lists
+    merged_list = sorted(list1 + list2)
+    
+    # Calculate the median
+    mid = len(merged_list) // 2
+    
+    if len(merged_list) % 2 == 0:
+        # Even number of elements
+        median = (merged_list[mid - 1] + merged_list[mid]) / 2
+    else:
+        # Odd number of elements (although this case won't happen given the problem constraints)
+        median = merged_list[mid]
+    
+    return median
+
+# Test cases
+assert get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0
+assert get_median([2, 4, 8, 9], [7, 13, 19, 28], 4) == 8.5
+assert get_median([3, 6, 14, 23, 36, 42], [2, 18, 27, 39, 49, 55], 6) == 25.0
+",,False,post,False,False,False,False,True,False,True,False,False,True,True,False,selected_pilot_75_mbpp.json,276_gpt-4o,0.6666666666666666
+85,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to find the maximum difference between any two elements in a given array.,"def max_Abs_Diff(arr):
+    return max(arr) - min(arr)
+",,False,post,True,True,False,True,False,False,True,False,False,True,False,False,selected_pilot_75_mbpp.json,85_llama3point1-70b,0.5
+146,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the list of maximum length in a list of lists.,"def max_length(list_of_lists):
+    max_len = 0
+    max_list = []
+    
+    for lst in list_of_lists:
+        if len(lst) > max_len:
+            max_len = len(lst)
+            max_list = lst
+            
+    return (max_len, max_list)
+
+# Test cases
+assert max_length([[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]]) == (3, [13, 15, 17])
+assert max_length([[1], [5, 7], [10, 12, 14, 15]]) == (4, [10, 12, 14, 15])
+assert max_length([[5], [15, 20, 25]]) == (3, [15, 20, 25])
+",,False,post,True,False,True,False,True,False,False,False,False,True,True,True,selected_pilot_75_mbpp.json,146_gpt-4o,0.6666666666666666
+320,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the second smallest number in a list.,"def second_smallest(nums):
+    unique_nums = sorted(set(nums))
+    return unique_nums[1] if len(unique_nums) > 1 else None
+
+# Test cases
+assert second_smallest([1, 2, -8, -2, 0, -2]) == -2
+assert second_smallest([1, 1, -0.5, 0, 2, -2, -2]) == -0.5
+assert second_smallest([2,2]) == None
+assert second_smallest([2,2,2]) == None
+",,True,post,True,True,False,False,False,False,True,True,True,True,True,True,selected_pilot_75_mbpp.json,320_gpt-4o,0.5
+161,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function to find the n'th lucas number.,"def find_lucas(n):
+    if n == 0:
+        return 2
+    elif n == 1:
+        return 1
+    else:
+        a, b = 2, 1
+        for _ in range(2, n + 1):
+            a, b = b, a + b
+        return b
+",,True,post,True,True,False,False,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,161_llama3point1-70b,0.6666666666666666
+161,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the n'th lucas number.,"def find_lucas(n):
+    if n == 0:
+        return 2
+    elif n == 1:
+        return 1
+    else:
+        a, b = 2, 1
+        for _ in range(2, n + 1):
+            a, b = b, a + b
+        return b
+
+# Test cases
+assert find_lucas(9) == 76
+assert find_lucas(4) == 7
+assert find_lucas(3) == 4
+",,False,post,True,False,False,False,False,False,False,True,True,True,True,True,selected_pilot_75_mbpp.json,161_gpt-4o,0.6666666666666666
+290,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,"Write a function that checks if a strings contains 'z', except at the start and end of the word.","def text_match_wordz_middle(s):
+    words = s.split()
+    for word in words:
+        if len(word) > 1 and 'z' in word[1:-1]:
+            return True
+    return False
+",,False,post,True,False,True,True,True,False,True,False,True,True,True,False,selected_pilot_75_mbpp.json,290_llama3point1-70b,0.6666666666666666
+186,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to extract the elementwise and tuples from the given two tuples.,"def and_tuples(tuple1, tuple2):
+    return tuple(a & b for a, b in zip(tuple1, tuple2))
+
+# Testing the function with the provided test cases
+assert and_tuples((10, 4, 6, 9), (5, 2, 3, 3)) == (0, 0, 2, 1)
+assert and_tuples((1, 2, 3, 4), (5, 6, 7, 8)) == (1, 2, 3, 0)
+assert and_tuples((8, 9, 11, 12), (7, 13, 14, 17)) == (0, 9, 10, 0)
+",,False,post,True,False,False,False,False,False,True,True,False,False,True,True,selected_pilot_75_mbpp.json,186_gpt-4o,0.5
+182,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function to extract only the rear index element of each string in the given tuple.,"def extract_rear(strings):
+    return [s[-1] for s in strings]
+",,False,post,True,True,False,True,False,False,True,False,False,True,True,False,selected_pilot_75_mbpp.json,182_llama3point1-70b,0.6666666666666666
+99,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to remove the characters which have odd index values of a given string.,"def odd_values_string(s):
+    return ''.join(s[i] for i in range(0, len(s), 2))
+",,True,post,True,True,True,False,True,False,True,True,True,True,True,False,selected_pilot_75_mbpp.json,99_llama3point1-70b,0.5
+264,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to convert degrees to radians.,"import math
+
+def radian_degree(degrees):
+    return degrees * (math.pi / 180)
+
+# Test cases
+assert radian_degree(90) == 1.5707963267948966
+assert radian_degree(60) == 1.0471975511965976
+assert radian_degree(120) == 2.0943951023931953
+",,True,post,False,False,True,True,True,False,False,False,True,True,True,True,selected_pilot_75_mbpp.json,264_gpt-4o,0.6666666666666666
+307,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the index of smallest triangular number with n digits.,"def find_Index(n):
+    k = 1
+    while True:
+        triangular_number = k * (k + 1) // 2
+        if len(str(triangular_number)) == n:
+            return k
+        k += 1
+
+# Test cases
+assert find_Index(2) == 4
+assert find_Index(3) == 14
+assert find_Index(4) == 45
+",,True,post,False,True,True,True,False,True,True,True,True,True,True,False,selected_pilot_75_mbpp.json,307_gpt-4o,0.6666666666666666
+8,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s, char):
+    first_occurrence = s.find(char)
+    last_occurrence = s.rfind(char)
+    
+    if first_occurrence != -1 and last_occurrence != -1:
+        if first_occurrence == last_occurrence:
+            return s.replace(char, '', 1)
+        else:
+            return s[:first_occurrence] + s[first_occurrence+1:last_occurrence] + s[last_occurrence+1:]
+    else:
+        return s
+",,False,post,True,False,True,True,False,False,False,True,True,True,True,True,selected_pilot_75_mbpp.json,8_llama3point1-70b,0.6666666666666666
+8,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s: str, ch: str) -> str:
+    first_index = s.find(ch)
+    last_index = s.rfind(ch)
+    
+    if first_index == -1 or last_index == -1 or first_index == last_index:
+        return s  # No removal needed if ch is not found or only one occurrence
+    
+    # Create a new string without the first and last occurrence of ch
+    return s[:first_index] + s[first_index + 1:last_index] + s[last_index + 1:]
+
+# Testing the function with the provided test cases
+assert remove_Occ(""hello"", ""l"") == ""heo""
+assert remove_Occ(""abcda"", ""a"") == ""bcd""
+assert remove_Occ(""PHP"", ""P"") == ""H""
+",,False,post,False,False,True,True,True,False,False,True,False,True,True,False,selected_pilot_75_mbpp.json,8_gpt-4o,0.6666666666666666
+10,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to find the volume of a triangular prism.,"def find_Volume(b, h, l):
+  return (b * h / 2) * l
+",,False,post,False,False,False,True,False,False,True,False,False,True,False,False,selected_pilot_75_mbpp.json,10_llama3point1-70b,0.5
+159,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the volume of a cone.,"import math
+
+def volume_cone(radius, height):
+    return (1/3) * math.pi * (radius ** 2) * height
+
+# Tests
+assert math.isclose(volume_cone(5, 12), 314.15926535897927, rel_tol=0.001)
+assert math.isclose(volume_cone(10, 15), 1570.7963267948965, rel_tol=0.001)
+assert math.isclose(volume_cone(19, 17), 6426.651371693521, rel_tol=0.001)
+",,False,post,True,True,False,True,True,False,True,True,False,True,False,False,selected_pilot_75_mbpp.json,159_gpt-4o,0.6666666666666666
+45,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to check whether the given number is undulating or not.,"def is_undulating(n):
+    s = str(n)
+    if len(s) < 3:
+        return False
+    first_digit = s[0]
+    second_digit = s[1]
+    if first_digit == second_digit:
+        return False
+    
+    for i in range(2, len(s)):
+        if i % 2 == 0 and s[i] != first_digit:
+            return False
+        if i % 2 == 1 and s[i] != second_digit:
+            return False
+            
+    return True
+
+# Test cases
+assert is_undulating(1212121) == True
+assert is_undulating(1991) == False
+assert is_undulating(121) == True
+",,False,post,False,False,True,True,False,False,False,False,False,False,True,False,selected_pilot_75_mbpp.json,45_gpt-4o,0.6666666666666666
+133,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function that takes in two tuples and subtracts the elements of the first tuple by the elements of the second tuple with the same index.,"def substract_elements(tup1, tup2):
+    return tuple(a - b for a, b in zip(tup1, tup2))
+",,False,post,True,True,False,True,False,False,True,False,False,True,True,False,selected_pilot_75_mbpp.json,133_llama3point1-70b,0.6666666666666666
+133,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function that takes in two tuples and subtracts the elements of the first tuple by the elements of the second tuple with the same index.,"def substract_elements(tup1, tup2):
+    return tuple(a - b for a, b in zip(tup1, tup2))
+
+# Test cases
+assert substract_elements((10, 4, 5), (2, 5, 18)) == (8, -1, -13)
+assert substract_elements((11, 2, 3), (24, 45 ,16)) == (-13, -43, -13)
+assert substract_elements((7, 18, 9), (10, 11, 12)) == (-3, 7, -3)
+",,False,post,True,False,False,True,False,False,True,False,False,True,False,False,selected_pilot_75_mbpp.json,133_gpt-4o,0.6666666666666666
+216,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to check whether the given list contains consecutive numbers or not.,"def check_Consecutive(lst):
+    lst.sort()
+    return all(lst[i] - lst[i-1] == 1 for i in range(1, len(lst))) and len(lst) == len(set(lst))
+",,False,post,True,False,True,False,False,False,True,True,True,False,True,False,selected_pilot_75_mbpp.json,216_llama3point1-70b,0.5
+336,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to check whether every odd index contains odd numbers of a given list.,"def odd_position(lst):
+    for i in range(len(lst)):
+        if i % 2 != 0 and lst[i] % 2 == 0:
+            return False
+    return True
+",,True,post,True,True,False,False,True,True,False,False,True,True,True,True,selected_pilot_75_mbpp.json,336_llama3point1-70b,0.6666666666666666
+123,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,"Write a function that takes in a list and an integer L and splits the given list into two parts where the length of the first part of the list is L, and returns the resulting lists in a tuple.","def split_two_parts(lst, L):
+    return (lst[:L], lst[L:])
+
+# Tests
+assert split_two_parts([1,1,2,3,4,4,5,1],3) == ([1, 1, 2], [3, 4, 4, 5, 1])
+assert split_two_parts(['a', 'b', 'c', 'd'],2) == (['a', 'b'], ['c', 'd'])
+assert split_two_parts(['p', 'y', 't', 'h', 'o', 'n'],4) == (['p', 'y', 't', 'h'], ['o', 'n'])
+",,True,post,True,False,True,True,False,True,True,True,True,True,True,True,selected_pilot_75_mbpp.json,123_gpt-4o,0.6666666666666666
+141,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function takes in an integer and check whether the frequency of each digit in the integer is less than or equal to the digit itself.,"def validate(n):
+    digit_str = str(n)
+    frequency = {}
+    
+    # Calculate frequency of each digit
+    for digit in digit_str:
+        if digit in frequency:
+            frequency[digit] += 1
+        else:
+            frequency[digit] = 1
+    
+    # Check the condition for each digit
+    for digit, count in frequency.items():
+        if count > int(digit):
+            return False
+    
+    return True
+
+# Tests
+assert validate(1234) == True
+assert validate(51241) == False
+assert validate(321) == True
+",,False,post,True,False,True,True,False,False,False,True,True,False,False,False,selected_pilot_75_mbpp.json,141_gpt-4o,0.5
+275,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the size of the largest subset of a list of numbers so that every pair is divisible.,"def largest_subset(nums):
+    if not nums:
+        return 0
+
+    nums.sort()
+    dp = [1] * len(nums)
+    
+    for i in range(len(nums)):
+        for j in range(i):
+            if nums[i] % nums[j] == 0:
+                dp[i] = max(dp[i], dp[j] + 1)
+    
+    return max(dp)
+
+# Testing the function with the provided test cases
+assert largest_subset([1, 3, 6, 13, 17, 18]) == 4
+assert largest_subset([10, 5, 3, 15, 20]) == 3
+assert largest_subset([18, 1, 3, 6, 13, 17]) == 4
+",,False,post,True,True,True,True,True,False,True,True,True,True,True,True,selected_pilot_75_mbpp.json,275_gpt-4o,0.6666666666666666
+326,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the minimum difference between any two elements in a given array.,"def find_min_diff(arr, n):
+    if n < 2:
+        return 0  # If array has less than 2 elements, no valid difference can be found
+    
+    arr = sorted(arr)
+    min_diff = float('inf')
+    
+    for i in range(n - 1):
+        diff = arr[i+1] - arr[i]
+        if diff < min_diff:
+            min_diff = diff
+            
+    return min_diff
+
+# Testing the function based on the provided assertions
+assert find_min_diff((1,5,3,19,18,25),6) == 1
+assert find_min_diff((4,3,2,6),4) == 1
+assert find_min_diff((30,5,20,9),4) == 4
+",,False,post,True,False,False,True,True,False,False,True,True,True,True,True,selected_pilot_75_mbpp.json,326_gpt-4o,0.6666666666666666
+184,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function to filter odd numbers.,"def filter_oddnumbers(nums):
+  return [num for num in nums if num % 2 != 0]
+",,False,post,True,False,True,False,False,False,True,True,True,True,True,True,selected_pilot_75_mbpp.json,184_llama3point1-70b,0.6666666666666666
+121,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a function to find the nth newman–shanks–williams prime number.,"def is_prime(n):
+    """"""Check if a number is prime.""""""
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def newman_prime(n):
+    """"""Find the nth Newman-Shanks-Williams prime number.""""""
+    if n == 1:
+        return 7  # The first NSW prime is 7
+    
+    # Initialize the count of NSW primes and the current number
+    count = 1
+    num = 7
+    
+    while True:
+        # Check if the current number is a prime number
+        if is_prime(num):
+            # Check if the current prime number is congruent to 1 or 5 modulo 6
+            if num % 6 in [1, 5]:
+                # Increment the count of NSW primes
+                count += 1
+                
+                # If we have found the nth NSW prime, return it
+                if count == n:
+                    return num
+        
+        # Move on to the next number
+        num += 1
+",,False,post,False,False,False,True,False,False,True,False,False,True,True,False,selected_pilot_75_mbpp.json,121_llama3point1-70b,0.6666666666666666
+235,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to get the sum of the digits of a non-negative integer.,"def sum_digits(n: int) -> int:
+    total = 0
+    while n > 0:
+        total += n % 10
+        n //= 10
+    return total
+
+# Testing the function with the provided test cases
+assert sum_digits(345) == 12
+assert sum_digits(12) == 3
+assert sum_digits(97) == 16
+",,True,post,True,True,True,True,True,True,True,True,True,True,True,True,selected_pilot_75_mbpp.json,235_gpt-4o,0.5
+356,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to remove all whitespaces from a string.,"def remove_all_spaces(s):
+    return s.replace("" "", """")
+
+# Test cases
+assert remove_all_spaces('python  program') == 'pythonprogram'
+assert remove_all_spaces('python   programming    language') == 'pythonprogramminglanguage'
+assert remove_all_spaces('python                     program') == 'pythonprogram'
+assert remove_all_spaces('   python                     program') == 'pythonprogram'
+",,True,post,True,False,True,False,False,False,False,False,False,False,False,False,selected_pilot_75_mbpp.json,356_gpt-4o,0.6666666666666666

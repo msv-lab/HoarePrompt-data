@@ -1,0 +1,14 @@
+The function `func` accepts two integers `n` and `k`, and a string `line` representing the layout of cells. It determines if a grasshopper starting at a certain position can jump to a target position using jumps of size `k` without encountering obstacles ('#'). The function returns either 'YES' if the grasshopper can reach the target within `k` moves, or 'NO' if it cannot. The function also checks for valid input constraints, ensuring `2 ≤ n ≤ 100` and `1 ≤ k ≤ n - 1`.
+
+- The function first reads `n` and `k` from input, followed by the string `line`.
+- It then swaps the positions of 'G' and 'T' if 'G' is positioned after 'T' to ensure 'G' always comes before 'T'.
+- The function iterates through the range from `G_pos` to `T_pos` in steps of `k`, checking for obstacles.
+- If the grasshopper encounters an obstacle ('#'), the function breaks out of the loop and returns 'NO'.
+- If the grasshopper reaches the target position (`pos == T_pos`), the function sets `reachable` to `True` and returns 'YES'.
+- If the loop completes without finding the target or encountering an obstacle, the function returns 'NO'.
+
+Potential edge cases:
+- If `n` or `k` do not meet the specified constraints (i.e., `n < 2` or `k > n - 1`), the function should handle these cases and return an appropriate error message. However, the provided code does not explicitly check for these conditions, leading to undefined behavior for invalid inputs.
+
+Missing functionality:
+- The function should validate the input constraints for `n` and `k` before proceeding with the main logic to avoid potential errors or undefined behavior.

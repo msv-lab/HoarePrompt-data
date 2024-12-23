@@ -1,0 +1,437 @@
+DEBUG - Start Task 188
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: Petya and Vasya decided to play a game. They have n cards (n is an even number). A single integer is written on each card.
+
+Before the game Petya will choose an integer and after that Vasya will choose another integer (different from the number that Petya chose). During the game each player takes all the cards with number he chose. For example, if Petya chose number 5 before the game he will take all cards on which 5 is written and if Vasya chose number 10 before the game he will take all cards on which 10 is written.
+
+The game is considered fair if Petya and Vasya can take all n cards, and the number of cards each player gets is the same.
+
+Determine whether Petya and Vasya can choose integer numbers before the game so that the game is fair. 
+
+
+-----Input-----
+
+The first line contains a single integer n (2 ≤ n ≤ 100) — number of cards. It is guaranteed that n is an even number.
+
+The following n lines contain a sequence of integers a_1, a_2, ..., a_{n} (one integer per line, 1 ≤ a_{i} ≤ 100) — numbers written on the n cards.
+
+
+-----Output-----
+
+If it is impossible for Petya and Vasya to choose numbers in such a way that the game will be fair, print "NO" (without quotes) in the first line. In this case you should not print anything more.
+
+In the other case print "YES" (without quotes) in the first line. In the second line print two distinct integers — number that Petya should choose and the number that Vasya should choose to make the game fair. If there are several solutions, print any of them.
+
+
+-----Examples-----
+Input
+4
+11
+27
+27
+11
+
+Output
+YES
+11 27
+
+Input
+2
+6
+6
+
+Output
+NO
+
+Input
+6
+10
+20
+30
+20
+10
+20
+
+Output
+NO
+
+Input
+6
+1
+1
+2
+2
+3
+3
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first example the game will be fair if, for example, Petya chooses number 11, and Vasya chooses number 27. Then the will take all cards — Petya will take cards 1 and 4, and Vasya will take cards 2 and 3. Thus, each of them will take exactly two cards.
+
+In the second example fair game is impossible because the numbers written on the cards are equal, but the numbers that Petya and Vasya should choose should be distinct.
+
+In the third example it is impossible to take all cards. Petya and Vasya can take at most five cards — for example, Petya can choose number 10 and Vasya can choose number 20. But for the game to be fair it is necessary to take 6 cards.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 216
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: Polycarp loves lowercase letters and dislikes uppercase ones. Once he got a string s consisting only of lowercase and uppercase Latin letters.
+
+Let A be a set of positions in the string. Let's call it pretty if following conditions are met:  letters on positions from A in the string are all distinct and lowercase;  there are no uppercase letters in the string which are situated between positions from A (i.e. there is no such j that s[j] is an uppercase letter, and a_1 < j < a_2 for some a_1 and a_2 from A). 
+
+Write a program that will determine the maximum number of elements in a pretty set of positions.
+
+
+-----Input-----
+
+The first line contains a single integer n (1 ≤ n ≤ 200) — length of string s.
+
+The second line contains a string s consisting of lowercase and uppercase Latin letters.
+
+
+-----Output-----
+
+Print maximum number of elements in pretty set of positions for string s.
+
+
+-----Examples-----
+Input
+11
+aaaaBaabAbA
+
+Output
+2
+
+Input
+12
+zACaAbbaazzC
+
+Output
+3
+
+Input
+3
+ABC
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example the desired positions might be 6 and 8 or 7 and 8. Positions 6 and 7 contain letters 'a', position 8 contains letter 'b'. The pair of positions 1 and 8 is not suitable because there is an uppercase letter 'B' between these position.
+
+In the second example desired positions can be 7, 8 and 11. There are other ways to choose pretty set consisting of three elements.
+
+In the third example the given string s does not contain any lowercase letters, so the answer is 0.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 216
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: Polycarp loves lowercase letters and dislikes uppercase ones. Once he got a string s consisting only of lowercase and uppercase Latin letters.
+
+Let A be a set of positions in the string. Let's call it pretty if following conditions are met:  letters on positions from A in the string are all distinct and lowercase;  there are no uppercase letters in the string which are situated between positions from A (i.e. there is no such j that s[j] is an uppercase letter, and a_1 < j < a_2 for some a_1 and a_2 from A). 
+
+Write a program that will determine the maximum number of elements in a pretty set of positions.
+
+
+-----Input-----
+
+The first line contains a single integer n (1 ≤ n ≤ 200) — length of string s.
+
+The second line contains a string s consisting of lowercase and uppercase Latin letters.
+
+
+-----Output-----
+
+Print maximum number of elements in pretty set of positions for string s.
+
+
+-----Examples-----
+Input
+11
+aaaaBaabAbA
+
+Output
+2
+
+Input
+12
+zACaAbbaazzC
+
+Output
+3
+
+Input
+3
+ABC
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example the desired positions might be 6 and 8 or 7 and 8. Positions 6 and 7 contain letters 'a', position 8 contains letter 'b'. The pair of positions 1 and 8 is not suitable because there is an uppercase letter 'B' between these position.
+
+In the second example desired positions can be 7, 8 and 11. There are other ways to choose pretty set consisting of three elements.
+
+In the third example the given string s does not contain any lowercase letters, so the answer is 0.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 167
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: There is a matrix A of size x × y filled with integers. For every $i \in [ 1 . . x ]$, $j \in [ 1 . . y ]$ A_{i}, j = y(i - 1) + j. Obviously, every integer from [1..xy] occurs exactly once in this matrix. 
+
+You have traversed some path in this matrix. Your path can be described as a sequence of visited cells a_1, a_2, ..., a_{n} denoting that you started in the cell containing the number a_1, then moved to the cell with the number a_2, and so on.
+
+From the cell located in i-th line and j-th column (we denote this cell as (i, j)) you can move into one of the following cells: (i + 1, j) — only if i < x;  (i, j + 1) — only if j < y;  (i - 1, j) — only if i > 1;  (i, j - 1) — only if j > 1.
+
+Notice that making a move requires you to go to an adjacent cell. It is not allowed to stay in the same cell. You don't know x and y exactly, but you have to find any possible values for these numbers such that you could start in the cell containing the integer a_1, then move to the cell containing a_2 (in one step), then move to the cell containing a_3 (also in one step) and so on. Can you choose x and y so that they don't contradict with your sequence of moves?
+
+
+-----Input-----
+
+The first line contains one integer number n (1 ≤ n ≤ 200000) — the number of cells you visited on your path (if some cell is visited twice, then it's listed twice).
+
+The second line contains n integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ 10^9) — the integers in the cells on your path.
+
+
+-----Output-----
+
+If all possible values of x and y such that 1 ≤ x, y ≤ 10^9 contradict with the information about your path, print NO.
+
+Otherwise, print YES in the first line, and in the second line print the values x and y such that your path was possible with such number of lines and columns in the matrix. Remember that they must be positive integers not exceeding 10^9.
+
+
+-----Examples-----
+Input
+8
+1 2 3 6 9 8 5 2
+
+Output
+YES
+3 3
+
+Input
+6
+1 2 1 2 5 3
+
+Output
+NO
+
+Input
+2
+1 10
+
+Output
+YES
+4 9
+
+
+
+-----Note-----
+
+The matrix and the path on it in the first test looks like this: [Image] 
+
+Also there exist multiple correct answers for both the first and the third examples.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 167
+DEBUG - Task 167 skip due to parse error: unexpected indent (<unknown>, line 1)
+
+
+
+DEBUG - Start Task 35
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: It's New Year's Eve soon, so Ivan decided it's high time he started setting the table. Ivan has bought two cakes and cut them into pieces: the first cake has been cut into a pieces, and the second one — into b pieces.
+
+Ivan knows that there will be n people at the celebration (including himself), so Ivan has set n plates for the cakes. Now he is thinking about how to distribute the cakes between the plates. Ivan wants to do it in such a way that all following conditions are met:  Each piece of each cake is put on some plate;  Each plate contains at least one piece of cake;  No plate contains pieces of both cakes. 
+
+To make his guests happy, Ivan wants to distribute the cakes in such a way that the minimum number of pieces on the plate is maximized. Formally, Ivan wants to know the maximum possible number x such that he can distribute the cakes according to the aforementioned conditions, and each plate will contain at least x pieces of cake.
+
+Help Ivan to calculate this number x!
+
+
+-----Input-----
+
+The first line contains three integers n, a and b (1 ≤ a, b ≤ 100, 2 ≤ n ≤ a + b) — the number of plates, the number of pieces of the first cake, and the number of pieces of the second cake, respectively.
+
+
+-----Output-----
+
+Print the maximum possible number x such that Ivan can distribute the cake in such a way that each plate will contain at least x pieces of cake.
+
+
+-----Examples-----
+Input
+5 2 3
+
+Output
+1
+
+Input
+4 7 10
+
+Output
+3
+
+
+
+-----Note-----
+
+In the first example there is only one way to distribute cakes to plates, all of them will have 1 cake on it.
+
+In the second example you can have two plates with 3 and 4 pieces of the first cake and two plates both with 5 pieces of the second cake. Minimal number of pieces is 3.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 35
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: It's New Year's Eve soon, so Ivan decided it's high time he started setting the table. Ivan has bought two cakes and cut them into pieces: the first cake has been cut into a pieces, and the second one — into b pieces.
+
+Ivan knows that there will be n people at the celebration (including himself), so Ivan has set n plates for the cakes. Now he is thinking about how to distribute the cakes between the plates. Ivan wants to do it in such a way that all following conditions are met:  Each piece of each cake is put on some plate;  Each plate contains at least one piece of cake;  No plate contains pieces of both cakes. 
+
+To make his guests happy, Ivan wants to distribute the cakes in such a way that the minimum number of pieces on the plate is maximized. Formally, Ivan wants to know the maximum possible number x such that he can distribute the cakes according to the aforementioned conditions, and each plate will contain at least x pieces of cake.
+
+Help Ivan to calculate this number x!
+
+
+-----Input-----
+
+The first line contains three integers n, a and b (1 ≤ a, b ≤ 100, 2 ≤ n ≤ a + b) — the number of plates, the number of pieces of the first cake, and the number of pieces of the second cake, respectively.
+
+
+-----Output-----
+
+Print the maximum possible number x such that Ivan can distribute the cake in such a way that each plate will contain at least x pieces of cake.
+
+
+-----Examples-----
+Input
+5 2 3
+
+Output
+1
+
+Input
+4 7 10
+
+Output
+3
+
+
+
+-----Note-----
+
+In the first example there is only one way to distribute cakes to plates, all of them will have 1 cake on it.
+
+In the second example you can have two plates with 3 and 4 pieces of the first cake and two plates both with 5 pieces of the second cake. Minimal number of pieces is 3.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 254
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: Mishka is decorating the Christmas tree. He has got three garlands, and all of them will be put on the tree. After that Mishka will switch these garlands on.
+
+When a garland is switched on, it periodically changes its state — sometimes it is lit, sometimes not. Formally, if i-th garland is switched on during x-th second, then it is lit only during seconds x, x + k_{i}, x + 2k_{i}, x + 3k_{i} and so on.
+
+Mishka wants to switch on the garlands in such a way that during each second after switching the garlands on there would be at least one lit garland. Formally, Mishka wants to choose three integers x_1, x_2 and x_3 (not necessarily distinct) so that he will switch on the first garland during x_1-th second, the second one — during x_2-th second, and the third one — during x_3-th second, respectively, and during each second starting from max(x_1, x_2, x_3) at least one garland will be lit.
+
+Help Mishka by telling him if it is possible to do this!
+
+
+-----Input-----
+
+The first line contains three integers k_1, k_2 and k_3 (1 ≤ k_{i} ≤ 1500) — time intervals of the garlands.
+
+
+-----Output-----
+
+If Mishka can choose moments of time to switch on the garlands in such a way that each second after switching the garlands on at least one garland will be lit, print YES.
+
+Otherwise, print NO.
+
+
+-----Examples-----
+Input
+2 2 3
+
+Output
+YES
+
+Input
+4 2 3
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first example Mishka can choose x_1 = 1, x_2 = 2, x_3 = 1. The first garland will be lit during seconds 1, 3, 5, 7, ..., the second — 2, 4, 6, 8, ..., which already cover all the seconds after the 2-nd one. It doesn't even matter what x_3 is chosen. Our choice will lead third to be lit during seconds 1, 4, 7, 10, ..., though.
+
+In the second example there is no way to choose such moments of time, there always be some seconds when no garland is lit.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 254
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: gpt-4o-mini-2024-07-18
+DEBUG - description: Mishka is decorating the Christmas tree. He has got three garlands, and all of them will be put on the tree. After that Mishka will switch these garlands on.
+
+When a garland is switched on, it periodically changes its state — sometimes it is lit, sometimes not. Formally, if i-th garland is switched on during x-th second, then it is lit only during seconds x, x + k_{i}, x + 2k_{i}, x + 3k_{i} and so on.
+
+Mishka wants to switch on the garlands in such a way that during each second after switching the garlands on there would be at least one lit garland. Formally, Mishka wants to choose three integers x_1, x_2 and x_3 (not necessarily distinct) so that he will switch on the first garland during x_1-th second, the second one — during x_2-th second, and the third one — during x_3-th second, respectively, and during each second starting from max(x_1, x_2, x_3) at least one garland will be lit.
+
+Help Mishka by telling him if it is possible to do this!
+
+
+-----Input-----
+
+The first line contains three integers k_1, k_2 and k_3 (1 ≤ k_{i} ≤ 1500) — time intervals of the garlands.
+
+
+-----Output-----
+
+If Mishka can choose moments of time to switch on the garlands in such a way that each second after switching the garlands on at least one garland will be lit, print YES.
+
+Otherwise, print NO.
+
+
+-----Examples-----
+Input
+2 2 3
+
+Output
+YES
+
+Input
+4 2 3
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first example Mishka can choose x_1 = 1, x_2 = 2, x_3 = 1. The first garland will be lit during seconds 1, 3, 5, 7, ..., the second — 2, 4, 6, 8, ..., which already cover all the seconds after the 2-nd one. It doesn't even matter what x_3 is chosen. Our choice will lead third to be lit during seconds 1, 4, 7, 10, ..., though.
+
+In the second example there is no way to choose such moments of time, there always be some seconds when no garland is lit.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 140
+ERROR - Error: failed to parse entailment checking response

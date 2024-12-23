@@ -1,6 +1,0 @@
-#State of the program right berfore the function call: s is a non-empty string of length at most 50 characters, containing only lowercase English letters.
-def func_1(s):
-    return s == s[::-1]
-    #The program returns a boolean value (True or False) indicating whether the string 's' is a palindrome, where 's' is a non-empty string of length at most 50 characters, containing only lowercase English letters.
-#Overall this is what the function does:The function `func_1` determines whether a given non-empty string `s` of length at most 50 characters, containing only lowercase English letters, is a palindrome. It returns a boolean value (`True` or `False`) indicating the result of this check. The function's input string `s` remains unchanged throughout its execution, and it handles all possible cases of palindrome checks for strings within the specified constraints, including single-character strings (which are always palindromes), strings of even length, and strings of odd length, without any additional error handling for cases outside these specified constraints (e.g., empty strings, strings longer than 50 characters, or strings containing non-lowercase characters). If the string `s` meets the criteria of being a palindrome (i.e., it reads the same backward as forward), the function returns `True`; otherwise, it returns `False
-

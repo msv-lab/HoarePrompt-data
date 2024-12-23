@@ -1,0 +1,9 @@
+The function `func_1` accepts two non-negative integer parameters `a` and `b`, where \(1 \le a, b \le 10^9\). It calculates the greatest common divisor (GCD) of `a` and `b` using the Euclidean algorithm. The function iteratively updates `a` and `b` until `b` becomes zero, at which point `a` contains the GCD of the original values of `a` and `b`. The function then returns `a`.
+
+Potential edge cases and missing functionality:
+1. If either `a` or `b` is zero, the function still correctly calculates the GCD as follows:
+   - If `a` is zero, the GCD is `b`.
+   - If `b` is zero, the GCD is `a`.
+2. The function handles the case where both `a` and `b` are within the specified range \(1 \le a, b \le 10^9\) correctly.
+
+After the function concludes, the variable `a` contains the GCD of the original values of `a` and `b`, and `b` is guaranteed to be zero.
