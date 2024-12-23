@@ -1,0 +1,6 @@
+The function accepts a non-negative integer parameter `n`. It returns:
+- The value 2 if `n` is 0.
+- The value 1 if `n` is 1.
+- For values of `n` greater than 1, it returns the Fibonacci-like value at index `n + 1`, calculated iteratively using the Fibonacci sequence logic, where the value at index `n` is represented by `a` and the value at index `n + 1` is represented by `b`. 
+
+The function handles the base cases for `n = 0` and `n = 1` explicitly, ensuring correct outputs for these edge cases. In case of `n` being 2 or greater, it computes the next Fibonacci number starting from the first two Fibonacci-like numbers (2 and 1) and iteratively derives the subsequent values, hence returning the value for `b`. The function does not have guard clauses for negative integers, but is designed to operate effectively within the domain of non-negative integers only, as per the specified precondition.

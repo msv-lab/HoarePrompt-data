@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: list1 and list2 are both lists.
+def func_1(list1, list2):
+    return list1[:-1] + list2
+    #The program returns a list that contains all elements of `list1` except the last element, followed by all elements of `list2`
+#Overall this is what the function does:The function `func_1` accepts two lists, `list1` and `list2`, and returns a new list that includes all elements of `list1` except the last element, followed by all elements of `list2`. This function effectively concatenates `list2` to the end of a modified version of `list1`, where the last element of `list1` is removed. The function handles the case where `list1` is empty, in which case it simply returns `list2`. If `list2` is empty, the function returns a list that contains all elements of `list1` except the last one.
+

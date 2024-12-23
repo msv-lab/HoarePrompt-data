@@ -1,0 +1,6 @@
+The function `func_1` accepts a list `lst` of integers and returns `True` if the list is a consecutive sequence without any duplicates and the length of the list matches the number of unique elements. Specifically, the function first sorts the list `lst`. Then, it checks two conditions: (1) whether each element in the sorted list is exactly one more than the previous element, ensuring the sequence is consecutive; and (2) whether the length of the list is equal to the number of unique elements in the list, ensuring there are no duplicates. If both conditions are met, the function returns `True`; otherwise, it returns `False`.
+
+Potential edge cases include:
+- An empty list (`[]`) would return `False` because there are no elements to form a sequence.
+- A list with a single element `[x]` would also return `False` unless the list contains only one unique element.
+- The function assumes the input is a list of integers. If the input contains non-integer values, the function may behave unexpectedly or raise an error.

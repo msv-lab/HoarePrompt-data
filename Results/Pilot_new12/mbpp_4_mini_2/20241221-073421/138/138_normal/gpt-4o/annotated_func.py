@@ -1,0 +1,11 @@
+#State of the program right berfore the function call: arr is a list of elements, and element can be of any type.
+def func_1(arr, element):
+    for (index, value) in enumerate(arr):
+        if value == element:
+            return True, index
+        
+    #State of the program after the  for loop has been executed: `arr` is a list of elements, the function returns `True` and the index of the first occurrence of `element` in `arr` if it exists; if `element` is not found, the function returns `None` and `index` is equal to the length of `arr`, which means the loop executed for all elements in `arr`.
+    return False, -1
+    #The program returns False, indicating that the element was not found in the list 'arr', and -1, which signifies that the index is not applicable since the element does not exist.
+#Overall this is what the function does:The function accepts two parameters: `arr`, which is a list of elements of any type, and `element`, which can also be of any type. It iterates through `arr` to check for the presence of `element`. If `element` is found, the function returns a tuple containing `True` and the index of the first occurrence of `element`. If `element` is not found in the list after checking all elements, the function returns a tuple containing `False` and -1, indicating that the element does not exist in `arr`. The returned index is always either a valid index where the element is found or -1 if the element is not found. Edge cases such as an empty list are handled implicitly by returning `False` and -1, as the loop does not execute in that case. There is no potential issue with handling `None` values or any specific types of elements, as the equality check is done using `==`, which is defined for all types.
+

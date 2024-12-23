@@ -1,0 +1,8 @@
+#State of the program right berfore the function call: x and y are real numbers representing the rectangular coordinates.
+def func_1(x, y):
+    r = math.hypot(x, y)
+    phi = math.atan2(y, x)
+    return r, phi
+    #The program returns r which is the square root of (x^2 + y^2) and phi which is the angle in radians between the positive x-axis and the point (x, y)
+#Overall this is what the function does:The function `func_1` accepts two parameters, `x` and `y`, which represent rectangular coordinates. It calculates the radius `r` as the Euclidean distance from the origin to the point `(x, y)` using the formula `r = sqrt(x^2 + y^2)`, and the angle `phi` as the arctangent of `y/x` in radians. The function then returns both `r` and `phi`. The function correctly handles the case where `x` is zero, ensuring that the angle `phi` is calculated appropriately using `math.atan2(y, x)`. There are no apparent edge cases or missing functionalities in the provided code.
+

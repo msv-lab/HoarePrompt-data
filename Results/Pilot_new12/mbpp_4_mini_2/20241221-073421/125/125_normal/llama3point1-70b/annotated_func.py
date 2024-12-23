@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: lst is a list of elements and n is a positive integer greater than 0.
+def func_1(lst, n):
+    return [lst[i::n] for i in range(n)]
+    #The program returns a list of sublists from 'lst', where each sublist contains elements at indices that are n steps apart, starting from each index i in the range from 0 to n-1.
+#Overall this is what the function does:The function accepts a list `lst` and a positive integer `n`. It returns a list of sublists, where each sublist consists of elements from `lst` at indices that are `n` steps apart, starting from each index `i` in the range from 0 to `n-1`. The function handles cases where `lst` contains fewer elements than `n`, resulting in some sublists that may be empty if there are not enough elements to fill them. The function does not perform any validation on the inputs, such as checking if `lst` is indeed a list or if `n` is a positive integer, which could lead to potential errors if incorrect types are provided. Additionally, if `n` is greater than the length of `lst`, the sublists will mostly be empty since there will be no indices to extract from.
+

@@ -1,0 +1,12 @@
+#State of the program right berfore the function call: string is a non-empty string, and substring is a non-empty string.
+def func_1(string, substring):
+    start = string.find(substring)
+    if (start == -1) :
+        return None
+        #The program returns None, indicating that the value is not present as 'substring' is not found in 'string'
+    #State of the program after the if block has been executed: *`string` is a non-empty string, `substring` is a non-empty string, and `start` is the index of the first occurrence of `substring` in `string`, with `start` being greater than or equal to 0.
+    end = start + len(substring)
+    return substring, start, end - 1
+    #The program returns substring, start, and end - 1, where 'substring' is a non-empty string, 'start' is the index of the first occurrence of 'substring' in 'string', and 'end' is equal to 'start + len(substring)'.
+#Overall this is what the function does:The function accepts two parameters, `string` and `substring`, both non-empty strings. It searches for the first occurrence of `substring` within `string`. If `substring` is not found, the function returns None, indicating its absence. If `substring` is found, the function returns a tuple containing `substring`, the index of its first occurrence (`start`), and the index of its last occurrence in `string` (`end - 1`, calculated as the starting index plus the length of `substring` minus one). It is important to note that the function relies on the presence of both parameters being non-empty; if they are empty, this may lead to unexpected behavior. Additionally, the function does not consider overlapping occurrences of `substring`.
+

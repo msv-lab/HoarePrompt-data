@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: list1 and list2 are lists, and list1 is not empty.
+def func_1(list1, list2):
+    return list1[:-1] + list2
+    #The program returns a list that is the concatenation of all elements in `list1` except the last one and all elements in `list2`.
+#Overall this is what the function does:The function `func_1` accepts two parameters, `list1` and `list2`, where `list1` and `list2` are lists and `list1` is not empty. It returns a new list that is the concatenation of all elements in `list1` except the last one and all elements in `list2`. The function effectively removes the last element from `list1` before concatenating it with `list2`. If `list1` has only one element, it will return `list2`. The original lists `list1` and `list2` remain unchanged, as the function creates and returns a new list. The function does not handle cases where `list1` is empty, despite annotations suggesting `list1` is not empty, but given the provided code, it will not throw an error if `list1` is empty, instead, it will simply return `list2`. The function also does not perform any error checking on the types of `list1` and `list2`, so it assumes they are always lists.
+

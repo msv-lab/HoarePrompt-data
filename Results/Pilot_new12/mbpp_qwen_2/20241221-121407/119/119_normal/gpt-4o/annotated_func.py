@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: a and b are numbers (integers or floats).
+def func_1(a, b):
+    return b, a
+    #The program returns b and a
+#Overall this is what the function does:The function `func_1` accepts two parameters `a` and `b`, both of which are numbers (integers or floats). It returns a tuple containing `b` followed by `a`. This means that regardless of the types of `a` and `b`, the function will always return a tuple where the first element is `b` and the second element is `a`. There are no edge cases mentioned in the annotations or code that need special consideration, as the function behaves consistently for all valid inputs.
+

@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: tup is a tuple containing elements of any data type.
+def func_1(tup):
+    return len(set(type(x) for x in tup)) == 1
+    #The program returns True if all elements in the tuple 'tup' are of the same data type, otherwise it returns False.
+#Overall this is what the function does:The function accepts a tuple 'tup' that can contain elements of any data type. It evaluates whether all elements in the tuple are of the same data type by converting the elements to their types and using a set to check for uniqueness. The function returns True if all elements share the same data type, and False if they do not. It correctly accounts for edge cases such as an empty tuple, which will return True since there are no differing types. However, it does not handle the case where 'tup' is not a tuple; in such cases, it could raise an error. The program effectively serves to confirm the uniformity of types within a tuple.
+

@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: lst is a list and L is a non-negative integer such that 0 <= L <= len(lst).
+def func_1(lst, L):
+    return lst[:L], lst[L:]
+    #The program returns a tuple of two lists: the first list includes elements from index 0 up to but not including index L of 'lst', and the second list includes elements from index L to the end of 'lst'.
+#Overall this is what the function does:The function splits a given list `lst` into two separate lists at a specified index `L`, where `0 <= L <= len(lst)`, and returns them as a tuple. The first list in the tuple includes all elements from index 0 up to but not including index `L` of `lst`, and the second list includes all elements from index `L` to the end of `lst`. This functionality covers all potential edge cases, including when `L` is 0 (resulting in an empty first list and the original list as the second), when `L` equals the length of `lst` (resulting in the original list as the first and an empty list as the second), and all cases in between. The function does not modify the original list `lst` and does not handle cases where `L` is negative or greater than the length of `lst` beyond what is specified by the slicing operation's behavior, which would result in an empty list for the first element of the tuple if `L` is greater than the list's length.
+

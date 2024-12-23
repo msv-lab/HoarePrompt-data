@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: test_tup1 and test_tup2 are lists.
+def func_1(test_tup1, test_tup2):
+    return tuple(set(test_tup1) & set(test_tup2))
+    #The program returns a tuple containing the unique elements common to both test_tup1 and test_tup2 lists
+#Overall this is what the function does:The function accepts two parameters, test_tup1 and test_tup2, which are expected to be lists, and returns a tuple containing the unique elements common to both test_tup1 and test_tup2 lists. The function treats the input lists as sets, meaning the order of elements is ignored, and it removes any duplicate elements within each list before finding the intersection. The final state of the program is that test_tup1 and test_tup2 remain unchanged, while the function returns a new tuple containing the unique common elements. If either test_tup1 or test_tup2 is empty, the function will return an empty tuple. If test_tup1 and test_tup2 have no common elements, the function will also return an empty tuple. Note that the function does not perform any error checking to ensure that the inputs are actually lists, so passing in other types of objects may result in unexpected behavior or errors.
+

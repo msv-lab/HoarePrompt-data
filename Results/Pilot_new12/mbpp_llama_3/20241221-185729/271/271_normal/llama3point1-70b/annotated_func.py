@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: tuples is a tuple of tuples, where all inner tuples have the same length, and all elements in the inner tuples are numbers.
+def func_1(tuples):
+    return [(sum(val) / len(tuples)) for val in zip(*tuples)]
+    #The program returns a list of averages, where each average is the mean of the numbers in the same position across all inner tuples in 'tuples'.
+#Overall this is what the function does:The function calculates and returns a list of averages from the input tuple of tuples, where each average is the mean of the numbers in the same position across all inner tuples. It accepts a tuple of tuples with numbers as input and returns a list of averages. The function handles tuples with inner tuples of the same length and calculates the average for each position. If the input tuple is empty or any of the inner tuples are empty, the function will raise a ZeroDivisionError when trying to calculate the average. Additionally, if the input tuple contains inner tuples of different lengths, the function will truncate the result to the length of the shortest inner tuple due to the behavior of the zip function. The function does not perform any error checking or handling for non-numeric values in the input tuples, so it will raise a TypeError if it encounters a non-numeric value when trying to calculate the sum.
+

@@ -1,0 +1,8 @@
+#State of the program right berfore the function call: x and y are real numbers.
+def func_1(x, y):
+    r = math.sqrt(x ** 2 + y ** 2)
+    theta = math.atan2(y, x)
+    return r, theta
+    #The program returns a tuple containing two values: `r`, the non-negative distance from the origin to the point `(x, y)` calculated as `math.sqrt(x
+#Overall this is what the function does:The function `func_1` accepts two real number parameters, `x` and `y`, and returns a tuple containing two values: `r`, the non-negative distance from the origin to the point `(x, y)` calculated as the square root of the sum of the squares of `x` and `y`, and `theta`, the angle in radians from the positive x-axis to the point `(x, y)` calculated using `math.atan2(y, x)`. The function correctly handles all possible real number inputs for `x` and `y`, including zero and negative values, and returns the distance `r` as a non-negative value. The function does not modify the input parameters `x` and `y` and does not perform any error checking on the inputs, assuming they are always real numbers. The returned angle `theta` is in the range (-π, π] and the returned distance `r` is always non-negative.
+

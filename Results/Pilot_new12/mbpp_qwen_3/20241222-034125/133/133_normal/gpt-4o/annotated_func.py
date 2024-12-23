@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: tup1 and tup2 are tuples of the same length containing numerical values.
+def func_1(tup1, tup2):
+    return tuple(a - b for a, b in zip(tup1, tup2))
+    #The program returns a tuple where each element is the result of subtracting the corresponding elements of tup2 from tup1
+#Overall this is what the function does:The function `func_1` takes two tuples, `tup1` and `tup2`, as input parameters. It returns a new tuple where each element is the result of subtracting the corresponding element of `tup2` from `tup1`. This operation is performed for all pairs of elements from both tuples, assuming they have the same length. If the tuples are empty, the function still returns an empty tuple. There are no specified edge cases beyond ensuring the tuples are of the same length, and the function handles this requirement internally.
+

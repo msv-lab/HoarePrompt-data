@@ -1,0 +1,23 @@
+#State of the program right berfore the function call: string is a string and substring is a non-empty string.
+def func_1(string, substring):
+    start = string.find(substring)
+    if (start == -1) :
+        return None
+        #The program returns None
+    #State of the program after the if block has been executed: `string` is a string, `substring` is a non-empty string, `start` is the index of the first occurrence of `substring` in `string`, and `start` is not equal to -1
+    end = start + len(substring)
+    return substring, start, end - 1
+    #`substring`, the non-empty string found in `string`; `start`, the index of the first occurrence of `substring` in `string`; `end - 1`, which is the index right before the last character of `substring` in `string`
+#Overall this is what the function does:The function `func_1` accepts two parameters: `string` and `substring`. Both `string` and `substring` are strings. If `substring` is not found in `string`, the function returns `None`. Otherwise, the function returns a tuple containing three elements: the non-empty string `substring`, the index `start` of the first occurrence of `substring` in `string`, and the index `end - 1` which is the position just before the last character of `substring` in `string`.
+
+The function performs the following actions:
+1. It searches for the first occurrence of `substring` within `string` using the `find` method.
+2. If `substring` is not found (`start == -1`), the function returns `None`.
+3. If `substring` is found, the function calculates the end index as `start + len(substring) - 1` and returns a tuple containing `substring`, `start`, and `end - 1`.
+
+Potential edge cases and missing functionality:
+- The function correctly handles the case where `substring` is not found in `string` by returning `None`.
+- The function also correctly handles the case where `substring` is found in `string` and returns the required tuple.
+
+There are no apparent missing functionalities or edge cases in the provided code. The function accurately performs the described operations.
+

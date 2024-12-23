@@ -1,0 +1,7 @@
+#State of the program right berfore the function call: snake_str is a string containing lowercase letters, digits, and underscores, where an underscore is followed by an uppercase or lowercase letter.
+def func_1(snake_str):
+    components = snake_str.split('_')
+    return ''.join(x.capitalize() for x in components)
+    #The program returns a string where each word, originally separated by underscores in `snake_str`, now starts with a capital letter, and the rest of the characters remain as they were in `snake_str`, which can include lowercase letters, digits, and the rest of the characters from the original string
+#Overall this is what the function does:The function accepts a string parameter `snake_str` and returns a new string where each word, previously separated by underscores in `snake_str`, now starts with a capital letter. The rest of the characters in each word remain unchanged, including lowercase letters, digits, and other characters. The function handles strings with one or more underscores, as well as strings with no underscores, in which case the entire string is capitalized. It also handles empty strings, returning an empty string. The function does not perform any error checking on the input string, so it assumes that the input will always be a string, and it does not modify the original input string. The function's output will always be a string, regardless of the input.
+

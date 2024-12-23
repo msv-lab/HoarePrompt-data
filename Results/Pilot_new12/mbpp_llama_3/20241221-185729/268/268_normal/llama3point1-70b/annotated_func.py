@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: matrix is a 2D list of integers, and n is a non-negative integer such that 0 <= n < len(matrix[0]).
+def func_1(matrix, n):
+    return max(row[n - 1] for row in matrix)
+    #The program returns the maximum value of the elements at index n-1 in each row of the matrix, where n is a non-negative integer such that 0 <= n < len(matrix[0]) and the matrix is a 2D list of integers. If n is 0, it returns the maximum of the last elements of each row.
+#Overall this is what the function does:The function accepts a 2D list of integers `matrix` and a non-negative integer `n`, and returns the maximum value of the elements at index `n-1` in each row if `n` is greater than 0. If `n` is 0, it returns the maximum of the elements at the last index of each row. The function handles cases where `n` is within the valid range (0 <= n < len(matrix[0])) and assumes that the input matrix is not empty and all rows have the same number of elements. The function does not modify the input matrix and only returns a single maximum value. If the matrix is empty or rows have different lengths, the function's behavior is undefined. The function's return value is determined by the maximum value found in the specified column or the last column if `n` is 0.
+
