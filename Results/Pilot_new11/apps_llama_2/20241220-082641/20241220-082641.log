@@ -1,0 +1,132 @@
+DEBUG - Start Task 10
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Yet another round on DecoForces is coming! Grandpa Maks wanted to participate in it but someone has stolen his precious sofa! And how can one perform well with such a major loss?
+
+Fortunately, the thief had left a note for Grandpa Maks. This note got Maks to the sofa storehouse. Still he had no idea which sofa belongs to him as they all looked the same!
+
+The storehouse is represented as matrix n × m. Every sofa takes two neighbouring by some side cells. No cell is covered by more than one sofa. There can be empty cells.
+
+Sofa A is standing to the left of sofa B if there exist two such cells a and b that x_{a} < x_{b}, a is covered by A and b is covered by B. Sofa A is standing to the top of sofa B if there exist two such cells a and b that y_{a} < y_{b}, a is covered by A and b is covered by B. Right and bottom conditions are declared the same way. 
+
+Note that in all conditions A ≠ B. Also some sofa A can be both to the top of another sofa B and to the bottom of it. The same is for left and right conditions.
+
+The note also stated that there are cnt_{l} sofas to the left of Grandpa Maks's sofa, cnt_{r} — to the right, cnt_{t} — to the top and cnt_{b} — to the bottom.
+
+Grandpa Maks asks you to help him to identify his sofa. It is guaranteed that there is no more than one sofa of given conditions.
+
+Output the number of Grandpa Maks's sofa. If there is no such sofa that all the conditions are met for it then output -1.
+
+
+-----Input-----
+
+The first line contains one integer number d (1 ≤ d ≤ 10^5) — the number of sofas in the storehouse.
+
+The second line contains two integer numbers n, m (1 ≤ n, m ≤ 10^5) — the size of the storehouse.
+
+Next d lines contains four integer numbers x_1, y_1, x_2, y_2 (1 ≤ x_1, x_2 ≤ n, 1 ≤ y_1, y_2 ≤ m) — coordinates of the i-th sofa. It is guaranteed that cells (x_1, y_1) and (x_2, y_2) have common side, (x_1, y_1)  ≠  (x_2, y_2) and no cell is covered by more than one sofa.
+
+The last line contains four integer numbers cnt_{l}, cnt_{r}, cnt_{t}, cnt_{b} (0 ≤ cnt_{l}, cnt_{r}, cnt_{t}, cnt_{b} ≤ d - 1).
+
+
+-----Output-----
+
+Print the number of the sofa for which all the conditions are met. Sofas are numbered 1 through d as given in input. If there is no such sofa then print -1.
+
+
+-----Examples-----
+Input
+2
+3 2
+3 1 3 2
+1 2 2 2
+1 0 0 1
+
+Output
+1
+
+Input
+3
+10 10
+1 2 1 1
+5 5 6 5
+6 4 5 4
+2 1 2 0
+
+Output
+2
+
+Input
+2
+2 2
+2 1 1 1
+1 2 2 2
+1 0 0 0
+
+Output
+-1
+
+
+
+-----Note-----
+
+Let's consider the second example.   The first sofa has 0 to its left, 2 sofas to its right ((1, 1) is to the left of both (5, 5) and (5, 4)), 0 to its top and 2 to its bottom (both 2nd and 3rd sofas are below).  The second sofa has cnt_{l} = 2, cnt_{r} = 1, cnt_{t} = 2 and cnt_{b} = 0.  The third sofa has cnt_{l} = 2, cnt_{r} = 1, cnt_{t} = 1 and cnt_{b} = 1. 
+
+So the second one corresponds to the given conditions.
+
+In the third example   The first sofa has cnt_{l} = 1, cnt_{r} = 1, cnt_{t} = 0 and cnt_{b} = 1.  The second sofa has cnt_{l} = 1, cnt_{r} = 1, cnt_{t} = 1 and cnt_{b} = 0. 
+
+And there is no sofa with the set (1, 0, 0, 0) so the answer is -1.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 182
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Vasya started working in a machine vision company of IT City. Vasya's team creates software and hardware for identification of people by their face.
+
+One of the project's know-how is a camera rotating around its optical axis on shooting. People see an eye-catching gadget — a rotating camera — come up to it to see it better, look into it. And the camera takes their photo at that time. What could be better for high quality identification?
+
+But not everything is so simple. The pictures from camera appear rotated too (on clockwise camera rotation frame the content becomes rotated counter-clockwise). But the identification algorithm can work only with faces that are just slightly deviated from vertical.
+
+Vasya was entrusted to correct the situation — to rotate a captured image so that image would be minimally deviated from vertical. Requirements were severe. Firstly, the picture should be rotated only on angle divisible by 90 degrees to not lose a bit of information about the image. Secondly, the frames from the camera are so huge and FPS is so big that adequate rotation speed is provided by hardware FPGA solution only. And this solution can rotate only by 90 degrees clockwise. Of course, one can apply 90 degrees turn several times but for the sake of performance the number of turns should be minimized.
+
+Help Vasya implement the program that by the given rotation angle of the camera can determine the minimum number of 90 degrees clockwise turns necessary to get a picture in which up direction deviation from vertical is minimum.
+
+The next figure contains frames taken from an unrotated camera, then from rotated 90 degrees clockwise, then from rotated 90 degrees counter-clockwise. Arrows show direction to "true up". [Image] 
+
+The next figure shows 90 degrees clockwise turn by FPGA hardware. [Image] 
+
+
+-----Input-----
+
+The only line of the input contains one integer x ( - 10^18 ≤ x ≤ 10^18) — camera angle in degrees. Positive value denotes clockwise camera rotation, negative — counter-clockwise.
+
+
+-----Output-----
+
+Output one integer — the minimum required number of 90 degrees clockwise turns.
+
+
+-----Examples-----
+Input
+60
+
+Output
+1
+
+Input
+-60
+
+Output
+3
+
+
+
+-----Note-----
+
+When the camera is rotated 60 degrees counter-clockwise (the second example), an image from it is rotated 60 degrees clockwise. One 90 degrees clockwise turn of the image result in 150 degrees clockwise total rotation and deviation from "true up" for one turn is 150 degrees. Two 90 degrees clockwise turns of the image result in 240 degrees clockwise total rotation and deviation from "true up" for two turns is 120 degrees because 240 degrees clockwise equal to 120 degrees counter-clockwise. Three 90 degrees clockwise turns of the image result in 330 degrees clockwise total rotation and deviation from "true up" for three turns is 30 degrees because 330 degrees clockwise equal to 30 degrees counter-clockwise.
+
+From 60, 150, 120 and 30 degrees deviations the smallest is 30, and it it achieved in three 90 degrees clockwise turns.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 182

@@ -1,4 +1,4 @@
-Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,annotated correctness simple,naive no fsl correctness,Correctness no fsl,data file,simple verify,complex verify,default verify,simple verify no fsl,complex verify no fsl,default verify no fsl,unique_id,consistency
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,annotated correctness simple,naive no fsl correctness,Correctness no fsl,data file,simple verify,complex verify,default verify,simple_verify_no_fsl,complex_verify_no_fsl,default_verify_no_fsl,unique_id,consistency
 62,apps,llama3-70b,meta-llama/Llama-3.3-70B-Instruct,"After seeing the ""ALL YOUR BASE ARE BELONG TO US"" meme for the first time, numbers X and Y realised that they have different bases, which complicated their relations.
 
 You're given a number X represented in base b_{x} and a number Y represented in base b_{y}. Compare those two numbers.
@@ -10385,7 +10385,7 @@ for i in range(n - 1):
         max_beauty_one_swap = max(max_beauty_one_swap, beauty)
 
 print(max(max_beauty, max_beauty_one_swap))
-",,False,post,False,False,False,False,False,False,selected_pilot_75_apps_llama_temp.json,False,False,False,False,False,False,13_llama3-70b,1.0
+",,False,post,False,False,False,False,False,False,False,False,False,False,False,False,selected_pilot_75_apps_llama_temp.json,13_llama3-70b,1.0
 13,apps,gpt-4o,meta-llama/Llama-3.3-70B-Instruct,"Vova has won $n$ trophies in different competitions. Each trophy is either golden or silver. The trophies are arranged in a row.
 
 The beauty of the arrangement is the length of the longest subsegment consisting of golden trophies. Vova wants to swap two trophies (not necessarily adjacent ones) to make the arrangement as beautiful as possible — that means, to maximize the length of the longest such subsegment.
