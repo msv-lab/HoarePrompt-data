@@ -33,16 +33,23 @@ def calculate_depth_for_programs(data):
             entry["depth"] = -1  # Assign -1 if parsing fails
     return data
 
+
+#write a function to remove all rows with depth different than 1 or 2 
+def remove_outliers(data):
+    return [entry for entry in data if entry["depth"] in [1, 2]]
+
 # Hardcoded file paths
 data_folder = Path("/home/jim/HoarePrompt-data/PilotData/data")
-input_file = data_folder / "mbppplus_llama3point1-70b_final_stdformat.json"
-output_file = data_folder / "mbppplus_llama3point1-70b_final_stdformat_depth.json"
+input_file = data_folder / "sampled_elements_code_contests_all.json"
+output_file = data_folder / "sampled_elements_code_contests_cleaned.json"
 
 # Load the data
 data = load_data(input_file)
 
 # Calculate loop depth
 data_with_depth = calculate_depth_for_programs(data)
+data_with_depth = remove_outliers(data_with_depth)
+print(f"Found loop depth for {len(data_with_depth)} programs")
 
 # Save the updated data
 save_data(data_with_depth, output_file)
