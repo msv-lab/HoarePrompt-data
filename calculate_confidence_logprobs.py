@@ -32,6 +32,10 @@ def calculate_consistency(input_csv, output_json):
 
         # Initialize the sum
         weighted_sum = 0
+        most_common_value_count = group[column].value_counts().max()
+        total_count = len(group)
+        consistnecy_old= most_common_value_count / total_count
+
 
         # Iterate through rows to calculate the weighted sum
         for _, row in group.iterrows():
@@ -43,7 +47,7 @@ def calculate_consistency(input_csv, output_json):
         # Calculate consistency score
         num_rows = len(group)
         consistency_score = weighted_sum / num_rows if num_rows > 0 else 0
-        return consistency_score
+        return consistency_score, consistnecy_old
 
     # Calculate consistency for each group
     consistencies = []
@@ -52,10 +56,11 @@ def calculate_consistency(input_csv, output_json):
 
     for unique_id, group in grouped:
         # Calculate overall group consistency
-        group_consistency = calculate_group_consistency(group, 'naive no fsl correctness', 'logprobs')
+        group_consistency, group_consistency_old = calculate_group_consistency(group, 'naive no fsl correctness', 'logprobs')
         consistencies.append({
             "unique_id": unique_id,
-            "consistency": group_consistency
+            "consistency": group_consistency,
+            "consistency_old": group_consistency_old
         })
 
         # Separate analysis for correct and incorrect groups
@@ -63,22 +68,37 @@ def calculate_consistency(input_csv, output_json):
         threshold = 0.5  # Majority rule: more than 50% correct responses
 
         if correct_proportion > threshold:
-            correct_consistency = calculate_group_consistency(group, 'naive no fsl correctness', 'logprobs')
+            correct_consistency, correct_consistency_old = calculate_group_consistency(group, 'naive no fsl correctness', 'logprobs')
             correct_consistencies.append({
                 "unique_id": unique_id,
-                "consistency": correct_consistency
+                "consistency": correct_consistency,
+                "consistency_old": correct_consistency_old
             })
         else:
-            incorrect_consistency = calculate_group_consistency(group, 'naive no fsl correctness', 'logprobs')
+            incorrect_consistency , incorrect_consistency_old = calculate_group_consistency(group, 'naive no fsl correctness', 'logprobs')
             incorrect_consistencies.append({
                 "unique_id": unique_id,
-                "consistency": incorrect_consistency
+                "consistency": incorrect_consistency,
+                "consistency_old": incorrect_consistency_old    
             })
 
     # Calculate average and median consistency for overall, correct, and incorrect responses
     consistency_values = [entry["consistency"] for entry in consistencies]
     correct_values = [entry["consistency"] for entry in correct_consistencies]
     incorrect_values = [entry["consistency"] for entry in incorrect_consistencies]
+
+    consistency_values_old = [entry["consistency_old"] for entry in consistencies]
+    correct_values_old = [entry["consistency_old"] for entry in correct_consistencies]
+    incorrect_values_old = [entry["consistency_old"] for entry in incorrect_consistencies]
+
+    average_consistency_old = sum(consistency_values_old) / len(consistency_values_old) if consistency_values_old else 0
+    median_consistency_old = sorted(consistency_values_old)[len(consistency_values_old) // 2] if consistency_values_old else 0
+    
+    average_correct_consistency_old = sum(correct_values_old) / len(correct_values_old) if correct_values_old else 0
+    median_correct_consistency_old = sorted(correct_values_old)[len(correct_values_old) // 2] if correct_values_old else 0
+
+    average_incorrect_consistency_old = sum(incorrect_values_old) / len(incorrect_values_old) if incorrect_values_old else 0
+    median_incorrect_consistency_old = sorted(incorrect_values_old)[len(incorrect_values_old) // 2] if incorrect_values_old else 0
 
     average_consistency = sum(consistency_values) / len(consistency_values) if consistency_values else 0
     median_consistency = sorted(consistency_values)[len(consistency_values) // 2] if consistency_values else 0
@@ -101,6 +121,12 @@ def calculate_consistency(input_csv, output_json):
             "median_correct_consistency": median_correct_consistency,
             "average_incorrect_consistency": average_incorrect_consistency,
             "median_incorrect_consistency": median_incorrect_consistency,
+            "average_consistency_old": average_consistency_old,
+            "median_consistency_old": median_consistency_old,
+            "average_correct_consistency_old": average_correct_consistency_old,
+            "median_correct_consistency_old": median_correct_consistency_old,
+            "average_incorrect_consistency_old": average_incorrect_consistency_old,
+            "median_incorrect_consistency_old": median_incorrect_consistency_old,
             "total_correct": len(correct_values),
             "total_incorrect": len(incorrect_values)
         }
