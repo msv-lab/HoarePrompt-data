@@ -1,0 +1,1917 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+0091,human,code_contests,qwen2.5-7b-instruct,"""""""                         
+Beautiful is better than ugly.
+    Explicit is better than implicit.
+Simple is better than complex.
+    Complex is better than complicated.
+Flat is better than nested.
+    Sparse is better than dense.
+                    
+    * Readability counts *
+
+ // Author : raj1307 - Raj Singh
+ // Date   : 5.07.19
+
+""""""
+
+from __future__ import division, print_function
+import os,sys
+from io import BytesIO, IOBase
+
+if sys.version_info[0] < 3:
+    from __builtin__ import xrange as range
+    from future_builtins import ascii, filter, hex, map, oct, zip
+else:
+    _str = str
+    str = lambda x=b"""": x if type(x) is bytes else _str(x).encode()
+
+def ii(): return int(input())
+def si(): return input()
+def mi(): return map(int,input().strip().split("" ""))
+def li(): return list(mi())
+
+def dmain():
+    sys.setrecursionlimit(100000000)
+    threading.stack_size(40960000)
+    thread = threading.Thread(target=main)
+    thread.start()
+    
+#from collections import deque, Counter, OrderedDict,defaultdict
+#from heapq import nsmallest, nlargest, heapify,heappop ,heappush, heapreplace
+#from math import ceil,floor,log,sqrt,factorial,pow,pi
+#from bisect import bisect,bisect_left,bisect_right,insort,insort_left,insort_right
+#from decimal import *,threading
+#from itertools import permutations
+
+abc='abcdefghijklmnopqrstuvwxyz'
+abd={'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8, 'j': 9, 'k': 10, 'l': 11, 'm': 12, 'n': 13, 'o': 14, 'p': 15, 'q': 16, 'r': 17, 's': 18, 't': 19, 'u': 20, 'v': 21, 'w': 22, 'x': 23, 'y': 24, 'z': 25}
+mod,MOD=1000000007,998244353
+vow=['a','e','i','o','u']
+dx,dy=[-1,1,0,0],[0,0,1,-1]
+def getKey(item): return item[0] 
+def sort2(l):return sorted(l, key=getKey)
+def d2(n,m,num):return [[num for x in range(m)] for y in range(n)]
+def isPowerOfTwo (x): return (x and (not(x & (x - 1))) )
+def decimalToBinary(n): return bin(n).replace(""0b"","""")
+def ntl(n):return [i for i in str(n)]
+
+def powerMod(x,y,p):
+    res = 1
+    x %= p
+    while y > 0:
+        if y&1:
+            res = (res*x)%p
+        y = y>>1
+        x = (x*x)%p1
+    return res
+
+def gcd(x, y):
+    while y:
+        x, y = y, x % y
+    return x
+    
+def isPrime(n) : # Check Prime Number or not 
+    if (n <= 1) : return False
+    if (n <= 3) : return True
+    if (n % 2 == 0 or n % 3 == 0) : return False
+    i = 5
+    while(i * i <= n) : 
+        if (n % i == 0 or n % (i + 2) == 0) : 
+            return False
+        i = i + 6
+    return True
+
+
+# For getting input from input.txt file 
+#sys.stdin = open('input.txt', 'r')  
+  
+# Printing the Output to output.txt file 
+#sys.stdout = open('output.txt', 'w') 
+
+    
+
+def main():
+    
+    
+    
+    #for _ in range(ii()):
+    
+    n=ii()
+    s=si()
+    a=s.count('0')
+    b=s.count('1')
+    
+    if n==1:
+        print(1)
+        print(s)
+        exit()
+    
+    
+    if a!=b:
+        print(1)
+        print(s)
+        exit()
+    
+    
+    if s[0]=='0':
+        a-=1
+    else:
+        b-=1
+    
+    print(2)
+    for i in range(1,n):
+        
+        if a!=b:
+            print(s[:i],s[i:])
+            exit()
+        
+        
+        
+        if s[i]=='0':
+            a-=1
+        else:
+            b-=1
+            
+    
+    if a!=b:
+        print(s[:i],s[i:])
+        exit()
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+# region fastio
+
+BUFSIZE = 8192
+
+
+class FastIO(IOBase):
+    newlines = 0
+
+    def __init__(self, file):
+        self._fd = file.fileno()
+        self.buffer = BytesIO()
+        self.writable = ""x"" in file.mode or ""r"" not in file.mode
+        self.write = self.buffer.write if self.writable else None
+
+    def read(self):
+        if self.buffer.tell():
+            return self.buffer.read()
+        return os.read(self._fd, os.fstat(self._fd).st_size)
+
+    def readline(self):
+        while self.newlines == 0:
+            b = os.read(self._fd, max(os.fstat(self._fd).st_size, BUFSIZE))
+            self.newlines = b.count(b""\n"") + (not b)
+            ptr = self.buffer.tell()
+            self.buffer.seek(0, 2), self.buffer.write(b), self.buffer.seek(ptr)
+        self.newlines -= 1
+        return self.buffer.readline()
+
+    def flush(self):
+        if self.writable:
+            os.write(self._fd, self.buffer.getvalue())
+            self.buffer.truncate(0), self.buffer.seek(0)
+
+
+def print(*args, **kwargs):
+    """"""Prints the values to a stream, or to sys.stdout by default.""""""
+    sep, file = kwargs.pop(""sep"", b"" ""), kwargs.pop(""file"", sys.stdout)
+    at_start = True
+    for x in args:
+        if not at_start:
+            file.write(sep)
+        file.write(str(x))
+        at_start = False
+    file.write(kwargs.pop(""end"", b""\n""))
+    if kwargs.pop(""flush"", False):
+        file.flush()
+
+
+sys.stdin, sys.stdout = FastIO(sys.stdin), FastIO(sys.stdout)
+input = lambda: sys.stdin.readline().rstrip(b""\r\n"")
+
+# endregion
+
+if __name__ == ""__main__"":
+    main()
+    #dmain()","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-fcbb271f-ffcc-90cb-b2fa-aab81d401b2c', 'request_id': 'fcbb271f-ffcc-90cb-b2fa-aab81d401b2c'}",naive no fsl
+0377,human,code_contests,qwen2.5-7b-instruct,"n = int(input())
+v = [float(x) for x in raw_input().split()]
+v.sort()
+
+def mean(a, b):
+    return (a+b)/2
+
+result = v[0]
+
+for i in range(1, n):
+    result = mean(result, v[i])
+
+print(result)
+",Error: Connection error.,naive no fsl
+0430,human,code_contests,qwen2.5-7b-instruct,"#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+""""""Reference
+http://homepage1.nifty.com/gfk/circle-circle.htm
+""""""
+from __future__ import (division, absolute_import, print_function,
+                        unicode_literals)
+from sys import stdin
+import math
+
+RADIUS, RADIUS_2 = 1 + 1.0e-12, 2 + 1.0e-12
+
+num_data = int(stdin.readline())
+data = []
+for _ in range(num_data):
+    data.append(tuple(float(s) for s in stdin.readline().split(',')))
+
+cross_points = []
+for i in range(num_data):
+    x1, y1 = data[i]
+    for j in range(num_data):
+        if i == j:
+            continue
+        x2, y2 = data[j]
+
+        distance = math.hypot(x2-x1, y2-y1)
+        if distance <= RADIUS_2:
+            if x1 == x2 and y1 == y2:
+                cp1 = cp2 = (x1, y1)
+            else:
+                th = math.atan2(y2-y1, x2-x1)
+                al = math.acos(distance**2 / (2.0*distance))
+                cp1 = (x1 + math.cos(th + al), y1 + math.sin(th + al))
+                cp2 = (x1 + math.cos(th - al), y1 + math.sin(th - al))
+
+            if 0.0 <= cp1[0] <= 10.0 and 0.0 <= cp1[1] <= 10.0:
+                cross_points.append(cp1)
+            if 0.0 <= cp2[0] <= 10.0 and 0.0 <= cp2[1] <= 10.0:
+                cross_points.append(cp2)
+
+max_overlap = 0
+for cx, cy in cross_points:
+    count = 0
+    for x, y in data:
+        if math.hypot(cx-x, cy-y) <= RADIUS:
+            count += 1
+    if max_overlap < count:
+        max_overlap = count
+print(max_overlap)",Error: Connection error.,naive no fsl
+0443,human,code_contests,qwen2.5-7b-instruct,"#!/usr/bin/env python
+from __future__ import division, print_function
+
+import os
+import sys
+from io import BytesIO, IOBase
+
+if sys.version_info[0] < 3:
+    from __builtin__ import xrange as range
+    from future_builtins import ascii, filter, hex, map, oct, zip
+
+
+class DisjointSetUnion:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.size = [1] * n
+        self.num_sets = n
+
+    def find(self, a):
+        acopy = a
+        while a != self.parent[a]:
+            a = self.parent[a]
+        while acopy != a:
+            self.parent[acopy], acopy = a, self.parent[acopy]
+        return a
+
+    def union(self, a, b):
+        a, b = self.find(a), self.find(b)
+        if a != b:
+            if self.size[a] < self.size[b]:
+                a, b = b, a
+
+            self.num_sets -= 1
+            self.parent[b] = a
+            self.size[a] += self.size[b]
+
+    def set_size(self, a):
+        return self.size[self.find(a)]
+
+    def __len__(self):
+        return self.num_sets
+
+
+def main():
+    n, m = map(int, input().split())
+
+    dsu = DisjointSetUnion(n * m)
+
+    f_col = [-1] * n
+    f_row = [-1] * m
+
+    cols = set(range(n))
+    rows = set(range(m))
+
+    exists = True
+    black = False
+
+    white = 0
+    prev_row = '.' * m
+    for i in range(n):
+        row = input()
+        for j in range(m):
+            if row[j] == prev_row[j] == '#':
+                dsu.union((i * m) + j, ((i - 1) * m) + j)
+            if j and row[j] == row[j - 1] == '#':
+                dsu.union((i * m) + j, (i * m) + j - 1)
+
+            if row[j] == '#':
+                black = True
+                f_col[i] = f_col[i] if f_col[i] != -1 else j
+                f_row[j] = f_row[j] if f_row[j] != -1 else i
+                exists &= abs(f_col[i] - j) < 2
+                exists &= abs(f_row[j] - i) < 2
+                f_col[i] = j
+                f_row[j] = i
+                cols.discard(i)
+                rows.discard(j)
+            else:
+                white += 1
+
+        prev_row = row
+
+    if (((not cols) and (not rows)) or (not black)) and exists:
+        print(len(dsu) - white)
+    else:
+        print(-1)
+
+
+# region fastio
+
+BUFSIZE = 8192
+
+
+class FastIO(IOBase):
+    newlines = 0
+
+    def __init__(self, file):
+        self._fd = file.fileno()
+        self.buffer = BytesIO()
+        self.writable = ""x"" in file.mode or ""r"" not in file.mode
+        self.write = self.buffer.write if self.writable else None
+
+    def read(self):
+        while True:
+            b = os.read(self._fd, max(os.fstat(self._fd).st_size, BUFSIZE))
+            if not b:
+                break
+            ptr = self.buffer.tell()
+            self.buffer.seek(0, 2), self.buffer.write(b), self.buffer.seek(ptr)
+        self.newlines = 0
+        return self.buffer.read()
+
+    def readline(self):
+        while self.newlines == 0:
+            b = os.read(self._fd, max(os.fstat(self._fd).st_size, BUFSIZE))
+            self.newlines = b.count(b""\n"") + (not b)
+            ptr = self.buffer.tell()
+            self.buffer.seek(0, 2), self.buffer.write(b), self.buffer.seek(ptr)
+        self.newlines -= 1
+        return self.buffer.readline()
+
+    def flush(self):
+        if self.writable:
+            os.write(self._fd, self.buffer.getvalue())
+            self.buffer.truncate(0), self.buffer.seek(0)
+
+
+class IOWrapper(IOBase):
+    def __init__(self, file):
+        self.buffer = FastIO(file)
+        self.flush = self.buffer.flush
+        self.writable = self.buffer.writable
+        self.write = lambda s: self.buffer.write(s.encode(""ascii""))
+        self.read = lambda: self.buffer.read().decode(""ascii"")
+        self.readline = lambda: self.buffer.readline().decode(""ascii"")
+
+
+def print(*args, **kwargs):
+    """"""Prints the values to a stream, or to sys.stdout by default.""""""
+    sep, file = kwargs.pop(""sep"", "" ""), kwargs.pop(""file"", sys.stdout)
+    at_start = True
+    for x in args:
+        if not at_start:
+            file.write(sep)
+        file.write(str(x))
+        at_start = False
+    file.write(kwargs.pop(""end"", ""\n""))
+    if kwargs.pop(""flush"", False):
+        file.flush()
+
+
+if sys.version_info[0] < 3:
+    sys.stdin, sys.stdout = FastIO(sys.stdin), FastIO(sys.stdout)
+else:
+    sys.stdin, sys.stdout = IOWrapper(sys.stdin), IOWrapper(sys.stdout)
+
+input = lambda: sys.stdin.readline().rstrip(""\r\n"")
+
+# endregion
+
+if __name__ == ""__main__"":
+    main()
+",Error: Connection error.,naive no fsl
+0444,human,code_contests,qwen2.5-7b-instruct,"FAST_IO = 1
+if FAST_IO:
+    import io, sys, atexit
+    rr = iter(sys.stdin.read().splitlines()).next
+    sys.stdout = _OUTPUT_BUFFER = io.BytesIO()
+    @atexit.register
+    def write():
+        sys.__stdout__.write(_OUTPUT_BUFFER.getvalue())
+else:
+    rr = raw_input
+rri = lambda: int(rr())
+rrm = lambda: map(int, rr().split())
+                  
+def solve(arr, n, x, m):
+    ans = 1
+    before = [x,x]
+    for a, b in arr:
+        if a<=before[0] and before[0]<=b<=before[1]:
+            ans+=before[0] -a
+            before = [a, before[1]]
+        elif before[0]<=a<=before[1] and b>=before[1]:
+            ans += b-before[1]
+            before = [before[0], b]
+        elif a<=before[0] and b>=before[1]:
+            ans += before[0]-a
+            ans+= b-before[1]
+            before = [a, b]
+    return ans
+t  = rri()
+for _ in range(t):
+    n, x, m = rrm()
+    arr = []
+    for _ in range(m):
+        arr.append(rrm())
+    print(solve(arr, n, x, m))
+    ",Error: Connection error.,naive no fsl
+0447,human,code_contests,qwen2.5-7b-instruct,"#   Template by yumtam
+#   Author: babaiserror
+#   Created at: 2021-01-25 11:04
+
+from __future__ import division, print_function
+_interactive = False
+
+fact = [1]
+
+def mod_mul(a, b):
+    return (a*b) % MOD
+
+def mod_fact(n):
+    if len(fact) >= n:
+        return fact[n-1]
+    else:
+        i = len(fact) + 1
+        while i <= n:
+            fact.append(mod_mul(fact[-1],i))
+            i += 1
+        return fact[-1]
+
+def pow_mod(x, n):
+    y = 1
+    while n > 0:
+        if n % 2:
+            y = mod_mul(y,x)
+        n = n // 2
+        x = mod_mul(x,x)
+    return y
+
+def nCr(n, r):
+    if n == r: return 1
+    return mod_mul(mod_fact(n), pow_mod(mod_mul(mod_fact(r), mod_fact(n-r)), MOD-2))
+
+
+def main():
+    for _ in range(int(input())):
+        n,k = input_as_list()
+        freq = {}
+        A = input_as_list()
+        for elem in A:
+            if elem not in freq:
+                freq[elem] = 1
+            else:
+                freq[elem] += 1
+
+        ans = 0
+        for elem in sorted(freq.keys(), reverse=True):
+            if freq[elem] < k:
+                k -= freq[elem]
+            else:
+                ans = nCr(freq[elem], k)
+        print(ans)
+
+
+# Constants
+INF = float('inf')
+MOD = 10**9+7
+
+# Python3 equivalent names
+import os, sys, itertools
+if sys.version_info[0] < 3:
+    input = raw_input
+    range = xrange
+
+    filter = itertools.ifilter
+    map = itertools.imap
+    zip = itertools.izip
+
+# print-flush in interactive problems
+if _interactive:
+    flush = sys.stdout.flush
+    def printf(*args, **kwargs):
+        print(*args, **kwargs)
+        flush()
+
+# Debug print, only works on local machine
+LOCAL = ""LOCAL_"" in os.environ
+debug_print = (print) if LOCAL else (lambda *x, **y: None)
+
+# Fast IO
+if (not LOCAL) and (not _interactive):
+    from io import BytesIO
+    from atexit import register
+    sys.stdin = BytesIO(os.read(0, os.fstat(0).st_size))
+    sys.stdout = BytesIO()
+    register(lambda: os.write(1, sys.stdout.getvalue()))
+    input = lambda: sys.stdin.readline().rstrip('\r\n')
+
+# Some utility functions(Input, N-dimensional lists, ...)
+def input_as_list():
+    return [int(x) for x in input().split()]
+
+def input_with_offset(o):
+    return [int(x)+o for x in input().split()]
+
+def input_as_matrix(n, m):
+    return [input_as_list() for _ in range(n)]
+
+def array_of(f, *dim):
+    return [array_of(f, *dim[1:]) for _ in range(dim[0])] if dim else f()
+
+# Start of external code templates...
+# End of external code templates.
+
+main()",Error: Connection error.,naive no fsl
+0449,human,code_contests,qwen2.5-7b-instruct,"import sys
+import math
+
+nCircles = int(sys.stdin.readline())
+
+if nCircles < 1:
+    sys.stdout.write('0\n')
+    sys.exit()
+
+areas = []
+input = sys.stdin.readline()
+for radius in input.split(' '):
+    areas.append(int(radius)*int(radius))
+
+areas.sort()
+
+totalArea = 0
+for index, area in enumerate(areas):
+    if index == 0:
+        totalArea += area
+    elif index % 2 == 0:
+        totalArea += (areas[index] - areas[index-1])
+
+totalArea *= math.pi
+sys.stdout.write(str(totalArea)+'\n')
+",Error: Connection error.,naive no fsl
+0452,human,code_contests,qwen2.5-7b-instruct,"class pt(object):
+  def __init__(self, x = 0, y = 0):
+    self.x = x
+    self.y = y
+
+  def __sub__(self, other):
+    return pt(self.x-other.x, self.y-other.y)
+
+  def __mod__(self, other):
+    return self.x * other.y - self.y * other.x
+
+T = []
+ini = 0
+fin = 0
+
+def add(x, y):
+  p = pt(x, y)
+  global T, fin
+  while fin - ini >= 2 and\
+      (p-T[fin-1]) % (p-T[fin-2]) <= 0:
+    fin -= 1
+  T[fin] = p
+  fin += 1
+
+def remove(x):
+  global T, ini
+  while fin - ini >= 2 and\
+      T[ini].x*x + T[ini].y > T[ini+1].x*x + T[ini+1].y:
+        ini += 1
+
+n = int(raw_input())
+T = [pt()] * n
+A = [int(x) for x in raw_input().split()]
+B = [int(x) for x in raw_input().split()]
+
+res_a = 0
+
+for i in xrange(1, n):
+  add(B[i-1], res_a)
+  remove(A[i])
+  res = T[ini].x*A[i] + T[ini].y
+  res_a = res
+
+print(res)
+",Error: Connection error.,naive no fsl
+0454,human,code_contests,qwen2.5-7b-instruct,"def main(data):
+    n, k = map(int, data.split())
+    result = [0]
+    n -= 1
+    k -= 1
+    cur_delta = 0
+    while k < n and n > 0:
+        result.append(result[-1] + 1)
+        n -= 1
+        cur_delta += 1
+    while n > 0:
+        if cur_delta > 0:
+            cur_delta = -(cur_delta + 1)
+        else:
+            cur_delta = -(cur_delta - 1)
+        result.append(result[-1] + cur_delta)
+        n -= 1
+    m = min(result)
+    for r in result:
+        print (r-m)+1,
+
+import sys
+main(sys.stdin.readline())
+",Error: Connection error.,naive no fsl
+0458,human,code_contests,qwen2.5-7b-instruct,"class Vector:
+    def __init__(self, x = 0, y = 0, z = 0):
+        self.x = x
+        self.y = y
+        self.z = z
+
+    def __add__(self, v):
+        ans = Vector(self.x + v.x, self.y + v.y, self.z + v.z)
+        return ans
+
+    def __sub__(self, v):
+        ans = Vector(self.x - v.x, self.y - v.y, self.z - v.z)
+        return ans
+
+    def __str__(self):
+        return ""x: %d y: %d z: %d""%(self.x, self.y, self.z)
+
+    def inEquilibrium(self):
+        return ""YES"" if self.x == 0 and self.y == 0 and self.z == 0 else ""NO""
+
+n = int(raw_input())
+
+v_list = []
+while(n > 0):
+    s = list(map(int, raw_input().split()))
+    v = Vector(s[0], s[1], s[2])
+    v_list.append(v)
+    n -= 1
+
+_sum = Vector()
+for v in v_list:
+    _sum -= v
+
+print(_sum.inEquilibrium())
+",Error: Connection error.,naive no fsl
+0465,human,code_contests,qwen2.5-7b-instruct,"# 初期入力
+import sys
+input = sys.stdin.readline  #文字列では使わない
+N,K = map(int, input().split())
+S =set()
+for _ in range(K):
+    l,r = map(int, input().split())
+    S |=set(list(range(l,r+1)))
+S =list(S)
+S.sort()
+DP =[0]*(N+1)
+DP[1] =1
+for i in range(1,N+1):
+    for s in S:
+        if i +s <=N:
+            DP[i+s] +=DP[i]
+        else:
+            break
+ans =DP[N] %998244353 
+print(ans)",Error: Connection error.,naive no fsl
+0466,human,code_contests,qwen2.5-7b-instruct,"input = raw_input
+
+N,Q = map(int,input().split("" ""))
+s=list(input())
+ju = []
+for i in range(Q):
+    ju.append(input().split("" ""))
+
+def isdeadleft(xp):
+    oxp = xp
+    for i in range(Q):
+        com = ju[i]
+        if s[xp] == com[0]:
+            if com[1] == ""L"":
+                xp -= 1
+            else:
+                xp += 1
+        if xp < 0:
+            return True
+        if xp > N-1:
+            xp = N-1
+    return False
+
+def isdeadright(xp):
+    oxp = xp
+    for i in range(Q):
+        com = ju[i]
+        if s[xp] == com[0]:
+            if com[1] == ""L"":
+                xp -= 1
+            else:
+                xp += 1
+        if xp < 0:
+            xp = 0
+        if xp > N-1:
+            return True
+    return False
+
+def mid(x1,x2):
+    return int((x1+x2)/2)
+
+if isdeadleft(N-1) or isdeadright(0):
+    print(0)
+    exit()
+
+#left
+p1 = 0
+p3 = N-1
+p2 = mid(p1,p3)
+while p3 - p1 != 1:
+    if isdeadleft(p2):
+        p1,p2 = p2,mid(p2,p3)
+    else:
+        p2,p3 = mid(p1,p2),p2
+if isdeadleft(p1):
+    p = p3
+else:
+    p = p1
+#right
+p1 = 0
+p3 = N-1
+p2 = mid(p1,p3)
+while p3 - p1 != 1:
+    if isdeadright(p2):
+        p2,p3 = mid(p1,p2),p2
+    else:
+        p1,p2 = p2,mid(p2,p3)
+if isdeadright(p3):
+    q = p1
+else:
+    q = p3
+
+if p > q:
+    print(0)
+else:
+    print(q-p+1)
+",Error: Connection error.,naive no fsl
+0467,human,code_contests,qwen2.5-7b-instruct,"N = input()
+a = []
+a.append(map(int, raw_input().split()))
+
+a=a[0]
+
+c=[0,0,0,0,0,0,0,0]
+
+free=0
+
+for i in a:
+    if 1<=i and i<=399:
+        c[0]=1
+    elif 400<=i and i<=799:
+        c[1]=1
+    elif 800<=i and i<=1199:
+        c[2]=1
+    elif 1200<=i and i<=1599:
+        c[3]=1
+    elif 1600<=i and i<=1999:
+        c[4]=1
+    elif 2000<=i and i<=2399:
+        c[5]=1
+    elif 2400<=i and i<=2799:
+        c[6]=1
+    elif 2800<=i and i<=3199:
+        c[7]=1
+    elif 3200<=i:
+        free+=1
+
+ma=sum(c)+free
+
+
+
+mi=sum(c)
+if mi<1:
+    mi=1
+
+
+print(str(mi) + "" "" + str(ma))",Error: Connection error.,naive no fsl
+0468,human,code_contests,qwen2.5-7b-instruct,"import bisect
+
+n=int(raw_input())
+x=map(int,raw_input().split())+[float('inf')]
+l=int(raw_input())
+q=int(raw_input())
+r=[[0]*20 for _ in xrange(n)]
+
+for i in xrange(n):
+    if x[i]+l==x[bisect.bisect_left(x,x[i]+l)]:
+        r[i][0]=bisect.bisect_left(x,x[i]+l)
+    else:
+        r[i][0]=bisect.bisect_left(x,x[i]+l)-1
+
+for k in xrange(19):
+    for i in xrange(n):
+        r[i][k+1]=r[r[i][k]][k]
+        
+for i in xrange(q):
+    a,b=map(int,raw_input().split())
+    a-=1
+    b-=1
+    ans=0
+    if a>b:
+        a,b=b,a
+    while 1:
+        if bisect.bisect_left(r[a],b)>=1:
+            ans+=1<<(bisect.bisect_left(r[a],b)-1)
+            a=r[a][bisect.bisect_left(r[a],b)-1]
+        else :
+            ans+=1<<bisect.bisect_left(r[a],b)
+            break
+    print(ans)",Error: Connection error.,naive no fsl
+0469,human,code_contests,qwen2.5-7b-instruct,"#!/usr/bin/env python
+from __future__ import division, print_function
+from sys import stdin, exit
+
+
+def main(readline=stdin.readline):
+    for _ in range(int(readline())):
+        print(readline().replace('Hoshino', 'Hoshina'), end='')
+    exit()
+
+
+if __name__ == '__main__':
+    main()",Error: Connection error.,naive no fsl
+0470,human,code_contests,qwen2.5-7b-instruct,"from sys import stdin, stdout
+ti = lambda : stdin.readline().strip()
+ma = lambda fxn, ti : map(fxn, ti.split())
+ol = lambda arr : stdout.write(' '.join(str(i) for i in arr) + '\n')
+os = lambda i : stdout.write(str(i) + '\n')
+olws = lambda arr : stdout.write(''.join(str(i) for i in arr) + '\n')
+import math
+
+
+n, m = ma(int, ti())
+a = ma(int, ti())
+
+remaining = m
+ans = []
+for i in range(n):
+	if remaining > a[i]:
+		ans.append(0)
+		remaining -= a[i]
+	elif remaining == a[i]:
+		ans.append(1)
+		remaining = m
+	else:
+		temp = 0
+		a[i] -= remaining
+		temp = 1
+		temp += int(math.floor(a[i]/m))
+		remaining = m - a[i]%m
+		ans.append(temp)
+
+ol(ans)",Error: Connection error.,naive no fsl
+0471,human,code_contests,qwen2.5-7b-instruct,"n = input()
+a = list(map(int, raw_input().split()))
+a = [0] + a
+ans = 0
+for i in range(1, n + 1):
+	ans += 1 + (a[i] - 1) * i
+print(ans)
+",Error: Connection error.,naive no fsl
+0473,human,code_contests,qwen2.5-7b-instruct,"import sys
+
+
+def FairNut(peoples):
+	mini=10**10
+	for x in xrange(len(peoples)):
+		unit_pp=0
+		for i in xrange(len(peoples)):
+			unit_pp+=(abs(i-x)+i+x)*peoples[i]
+		mini=min(unit_pp,mini)
+	return(mini)
+
+n=int(raw_input())
+l=map(int,raw_input().split())
+print(FairNut(l)*2)
+",Error: Connection error.,naive no fsl
+0474,human,code_contests,qwen2.5-7b-instruct,"import sys
+import random, math
+from collections import defaultdict
+
+n = int(raw_input())
+arr = [int(__) for __ in raw_input().split()]
+arr.sort(reverse = True)
+newl = list()
+fl = 0
+for el in arr:
+    if fl == 0:
+        newl.append(el)
+        fl = 1
+    else:
+        newl = [el] + newl
+        fl = 0
+print(' '.join([str(x) for x in newl]))",Error: Connection error.,naive no fsl
+0475,human,code_contests,qwen2.5-7b-instruct,"import sys,math
+from fractions import gcd
+from bisect import bisect_left, bisect
+from collections import defaultdict
+from io import BytesIO
+sys.stdin = BytesIO(sys.stdin.read())
+input = lambda: sys.stdin.readline().rstrip('\r\n')
+n = int(input())
+#arr = [int(_) for _ in input().split()]
+
+dv = defaultdict(set)
+dp = defaultdict(int)
+
+for i in range(n-1):
+    s,f = [int(_) for _ in input().split()]
+    dv[s].add(f)
+    dp[f] = s
+arr = [0] * (n+1)
+lv = set()
+for i in range(1,n+1):
+    if i not in dv:
+        lv.add(i)
+    if i not in dp:
+        head = i
+mlt = 1
+mod = 998244353
+while len(lv):
+    cur = lv.pop()
+    if cur == head:
+        break
+    arr[dp[cur]] += 1
+    dv[dp[cur]].remove(cur)
+    if len(dv[dp[cur]]) == 0:
+        lv.add(dp[cur])
+    while arr[cur] > 0:
+        mlt = mlt * (arr[cur] + 1)
+        arr[cur] -= 1
+        mlt %= mod
+
+while arr[cur] > 1:
+    mlt = mlt * (arr[cur])
+    arr[cur] -= 1
+    mlt %= mod
+mlt *= n
+print(mlt % mod)",Error: Connection error.,naive no fsl
+0476,human,code_contests,qwen2.5-7b-instruct,"input_value = int(input())
+
+value_class = [3, 0, 2, 1]
+value_label = [""A"", ""B"", ""C"", ""D""]
+
+def value_num(n):
+    return value_class[n % 4]
+
+top_value = value_num(input_value)
+top_add = 0
+for add in [1, 2]:
+    add_val = value_num(input_value + add)
+    if add_val < top_value:
+        top_add = add
+        top_value = add_val
+print( str(top_add) + "" "" + value_label[top_value] )
+",Error: Connection error.,naive no fsl
+0477,human,code_contests,qwen2.5-7b-instruct,"from sys import stdin
+
+rints = lambda: [int(x) for x in stdin.readline().split()]
+rstr = lambda: list(stdin.readline().strip())
+
+n, k = rints()
+s = rstr()
+
+for i, j in enumerate(s[:-1]):
+    if not k:
+        break
+
+    if ''.join(s[i:i + 2]) == '47':
+        tem = '77' if i % 2 else '44'
+
+        if tem == '44':
+            if i < len(s) - 2 and s[i + 2] == '7':
+                s[i:i + 3] = ['4', '4', '7'] if k % 2 else ['4', '7', '7']
+                k = 0
+            else:
+                k -= 1
+                s[i:i + 2] = ['4', '4']
+
+        else:
+            if i and s[i - 1] == '4':
+                s[i - 1:i + 2] = ['4', '7', '7'] if k % 2 else ['4', '4', '7']
+                k = 0
+            else:
+                k -= 1
+                s[i:i + 2] = ['7', '7']
+
+print(''.join(s))
+",Error: Connection error.,naive no fsl
+0484,human,code_contests,qwen2.5-7b-instruct,"from sys import stdin
+
+for _ in range(int(input())):
+    n, k = map(int, stdin.readline().split())
+    ans = [x for x in range(1, k // 2 + 1)] + [x for x in range(k + 1, n + 1)]
+    print('%d\n%s' % (len(ans), ' '.join(map(str, ans))))
+",Error: Connection error.,naive no fsl
+0486,human,code_contests,qwen2.5-7b-instruct,"import os
+import sys
+
+debug=""DEBUG"" in os.environ
+
+n,k= map( int, sys.stdin.readline().split()[:2] )
+vals = map( int, sys.stdin.readline().strip('\n\r ').split()[:n] )
+if k==1:
+  count = (n*(n+1))/2 
+else:
+  count = 0
+  d = {}
+  leftmost = -1
+  for i,val in enumerate(vals):
+    if val in d:
+      d[val] += [i]
+      dval = d[val]
+      if len(dval) < k: pass
+      else:
+        dvalk = dval[-k]
+        if dvalk > leftmost: leftmost = dvalk
+    else:
+      d[val] = [i]
+
+    count += leftmost + 1
+
+print( count )
+",Error: Connection error.,naive no fsl
+0488,human,code_contests,qwen2.5-7b-instruct,"l,n=map(int,raw_input().split())
+s=str(raw_input())
+for i in range (n):
+    begin,end=map(int,raw_input().split())
+    st=s[begin-1:end]
+    arr=[0 for j in range (10)]
+    pnt=0
+    dir=1
+    while (pnt>=0) and (pnt<len(st)):
+        if st[pnt].isdigit():
+            arr[int(st[pnt])]+=1
+            if (int(st[pnt])-1>=0):
+                st=st[:pnt]+str(int(st[pnt])-1)+st[pnt+1:]
+                pnt+=dir    
+            else:
+               st=st[:pnt]+st[pnt+1:]
+               if dir<0:
+                    pnt+=dir
+        elif st[pnt]=='>':
+            dir=1
+            if ((pnt<len(st)-1) and (dir>0) and ((st[pnt+dir]=='>') or (st[pnt+dir]=='<'))) or ((pnt>0) and (dir<0) and ((st[pnt+dir]=='>') or (st[pnt+dir]=='<'))):
+                st=st[:pnt]+st[pnt+1:]
+            
+            pnt+=dir
+        elif st[pnt]=='<':
+            dir=-1
+            if ((pnt<len(st)-1) and (dir>0) and ((st[pnt+dir]=='>') or (st[pnt+dir]=='<'))) or ((pnt>0) and (dir<0) and ((st[pnt+dir]=='>') or (st[pnt+dir]=='<'))):
+                st=st[:pnt]+st[pnt+1:]
+            
+            pnt+=dir
+    ss= ' '.join(str(arr).split(','))[1:-1]
+    print (ss)
+            
+                ",Error: Connection error.,naive no fsl
+0519,human,code_contests,qwen2.5-7b-instruct,"#!/usr/bin/env python
+from __future__ import division, print_function
+from sys import stdin
+
+
+def patition(a, p, r):
+    x = a[r]
+    i = p-1
+    for j in range(p, r):
+        if a[j] <= x:
+            i += 1
+            a[i], a[j] = a[j], a[i]
+    a[i+1], a[r] = a[r], a[i+1]
+    return i+1
+
+
+n = int(stdin.readline())
+data = [int(s) for s in stdin.readline().split()]
+pat = patition(data, 0, data[-1])
+print(*data[:pat], end=' ')
+print('[{}]'.format(data[pat]), *data[pat+1:])",Error: Connection error.,naive no fsl
+0521,human,code_contests,qwen2.5-7b-instruct,"import math;
+n=input();
+i=0;
+s=[];
+if round(math.sqrt(n))==math.sqrt(n):
+    while i<math.sqrt(n):
+        i+=1;
+        if n%i==0:
+            res=(n/i)*(float((n+1-i)+1)/2);
+            s.append(int(res));
+            if i!=math.sqrt(n):
+                res=i*(float((n+1-(n/i))+1)/2);
+                s.append(int(res));                                    
+else:
+    while i<round(math.sqrt(n)):
+        i+=1;
+        if n%i==0:
+            res=(n/i)*(float((n+1-i)+1)/2);
+            s.append(int(res));
+            res=i*(float((n+1-(n/i))+1)/2);
+            s.append(int(res));        
+s.sort();
+print(s);",Error: Connection error.,naive no fsl
+0522,human,code_contests,qwen2.5-7b-instruct,"#!/usr/bin/env python
+""""""
+This file is part of https://github.com/Cheran-Senthil/PyRival.
+Copyright 2019 Cheran Senthilkumar <hello@cheran.io>
+
+""""""
+from __future__ import division, print_function
+
+import cmath
+import itertools
+import math
+import operator as op
+# import random
+import sys
+from atexit import register
+from bisect import bisect_left, bisect_right
+# from collections import Counter, defaultdict, deque
+# from copy import deepcopy
+# from decimal import Decimal
+# from difflib import SequenceMatcher
+# from functools import reduce
+# from heapq import heappop, heappush
+from io import BytesIO, FileIO, StringIO
+
+
+if sys.version_info[0] < 3:
+    class dict(dict):
+        """"""dict() -> new empty dictionary""""""
+        def items(self):
+            """"""D.items() -> a set-like object providing a view on D's items""""""
+            return dict.iteritems(self)
+
+        def keys(self):
+            """"""D.keys() -> a set-like object providing a view on D's keys""""""
+            return dict.iterkeys(self)
+
+        def values(self):
+            """"""D.values() -> an object providing a view on D's values""""""
+            return dict.itervalues(self)
+
+    input = raw_input
+    range = xrange
+
+    filter = itertools.ifilter
+    map = itertools.imap
+    zip = itertools.izip
+
+
+INP_FILE = 0
+OUT_FILE = 1
+
+if sys.version_info[0] < 3:
+    sys.stdin = BytesIO(FileIO(INP_FILE).read())
+    sys.stdout = BytesIO()
+    register(lambda: FileIO(OUT_FILE, 'w').write(sys.stdout.getvalue()))
+else:
+    sys.stdin = StringIO(FileIO(INP_FILE).read().decode())
+    sys.stdout = StringIO()
+    register(lambda: FileIO(OUT_FILE, 'w').write(sys.stdout.getvalue().encode()))
+
+input = lambda: sys.stdin.readline().rstrip('\r\n')
+
+
+def main():
+    b, k = map(int, input().split())
+    a = list(map(int, input().split()))
+
+    n = k % 2
+    m = a[-1] % 2
+    if n == 1:
+        for i in a[:-1]:
+            if i % 2 == 1:
+                m = not m
+
+    print('odd' if m else 'even')
+
+
+if __name__ == '__main__':
+    main()
+",Error: Connection error.,naive no fsl
+0524,human,code_contests,qwen2.5-7b-instruct,"""""""                         
+Beautiful is better than ugly.
+    Explicit is better than implicit.
+Simple is better than complex.
+    Complex is better than complicated.
+Flat is better than nested.
+    Sparse is better than dense.
+                    
+    * Readability counts *
+
+ // Author : raj1307 - Raj Singh
+ // Date   : 21.06.19
+
+""""""
+
+from __future__ import division, print_function
+import os,sys
+from io import BytesIO, IOBase
+
+if sys.version_info[0] < 3:
+    from __builtin__ import xrange as range
+    from future_builtins import ascii, filter, hex, map, oct, zip
+else:
+    _str = str
+    str = lambda x=b"""": x if type(x) is bytes else _str(x).encode()
+
+def ii(): return int(input())
+def si(): return input()
+def mi(): return map(int,input().strip().split("" ""))
+def li(): return list(mi())
+
+def dmain():
+    sys.setrecursionlimit(100000000)
+    threading.stack_size(40960000)
+    thread = threading.Thread(target=main)
+    thread.start()
+    
+#from collections import deque, Counter, OrderedDict,defaultdict
+#from heapq import nsmallest, nlargest, heapify,heappop ,heappush, heapreplace
+#from math import ceil,floor,log,sqrt,factorial,pow,pi
+#from bisect import bisect,bisect_left,bisect_right,insort,insort_left,insort_right
+#from decimal import *,threading
+
+abc='abcdefghijklmnopqrstuvwxyz'
+abd={'a': 0, 'b': 1, 'c': 2, 'd': 3, 'e': 4, 'f': 5, 'g': 6, 'h': 7, 'i': 8, 'j': 9, 'k': 10, 'l': 11, 'm': 12, 'n': 13, 'o': 14, 'p': 15, 'q': 16, 'r': 17, 's': 18, 't': 19, 'u': 20, 'v': 21, 'w': 22, 'x': 23, 'y': 24, 'z': 25}
+mod,MOD=1000000007,998244353
+vow=['a','e','i','o','u']
+dx,dy=[-1,1,0,0],[0,0,1,-1]
+def getKey(item): return item[0] 
+def sort2(l):return sorted(l, key=getKey)
+def d2(n,m,num):return [[num for x in range(m)] for y in range(n)]
+def isPowerOfTwo (x): return (x and (not(x & (x - 1))) )
+def decimalToBinary(n): return bin(n).replace(""0b"","""")
+def ntl(n):return [int(i) for i in str(n)]
+
+def powerMod(x,y,p):
+    res = 1
+    x %= p
+    while y > 0:
+        if y&1:
+            res = (res*x)%p
+        y = y>>1
+        x = (x*x)%p1
+    return res
+
+def gcd(x, y):
+    while y:
+        x, y = y, x % y
+    return x
+    
+def isPrime(n) : # Check Prime Number or not 
+    if (n <= 1) : return False
+    if (n <= 3) : return True
+    if (n % 2 == 0 or n % 3 == 0) : return False
+    i = 5
+    while(i * i <= n) : 
+        if (n % i == 0 or n % (i + 2) == 0) : 
+            return False
+        i = i + 6
+    return True
+
+
+# For getting input from input.txt file 
+#sys.stdin = open('input.txt', 'r')  
+  
+# Printing the Output to output.txt file 
+#sys.stdout = open('output.txt', 'w') 
+
+def main():
+    
+    
+    #for _ in range(ii()):
+    
+    n=ii()
+    
+    if n==1: 
+        print(1)
+    else:
+        
+        r=1
+        ans=1
+        for i in range(2,n+1):
+            
+            m=(r*r)%ans
+            r+=2
+            ans+=4+m
+            
+        print(ans)    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+# region fastio
+
+BUFSIZE = 8192
+
+
+class FastIO(IOBase):
+    newlines = 0
+
+    def __init__(self, file):
+        self._fd = file.fileno()
+        self.buffer = BytesIO()
+        self.writable = ""x"" in file.mode or ""r"" not in file.mode
+        self.write = self.buffer.write if self.writable else None
+
+    def read(self):
+        if self.buffer.tell():
+            return self.buffer.read()
+        return os.read(self._fd, os.fstat(self._fd).st_size)
+
+    def readline(self):
+        while self.newlines == 0:
+            b = os.read(self._fd, max(os.fstat(self._fd).st_size, BUFSIZE))
+            self.newlines = b.count(b""\n"") + (not b)
+            ptr = self.buffer.tell()
+            self.buffer.seek(0, 2), self.buffer.write(b), self.buffer.seek(ptr)
+        self.newlines -= 1
+        return self.buffer.readline()
+
+    def flush(self):
+        if self.writable:
+            os.write(self._fd, self.buffer.getvalue())
+            self.buffer.truncate(0), self.buffer.seek(0)
+
+
+def print(*args, **kwargs):
+    """"""Prints the values to a stream, or to sys.stdout by default.""""""
+    sep, file = kwargs.pop(""sep"", b"" ""), kwargs.pop(""file"", sys.stdout)
+    at_start = True
+    for x in args:
+        if not at_start:
+            file.write(sep)
+        file.write(str(x))
+        at_start = False
+    file.write(kwargs.pop(""end"", b""\n""))
+    if kwargs.pop(""flush"", False):
+        file.flush()
+
+
+sys.stdin, sys.stdout = FastIO(sys.stdin), FastIO(sys.stdout)
+input = lambda: sys.stdin.readline().rstrip(b""\r\n"")
+
+# endregion
+
+if __name__ == ""__main__"":
+    main()
+    #dmain()",Error: Connection error.,naive no fsl
+0525,human,code_contests,qwen2.5-7b-instruct,"import sys
+sys.setrecursionlimit(10 ** 6)
+# pow(3,2,5)==4
+
+n,x,y=map(int,raw_input().split())
+inp2=map(int,raw_input().split())
+for i in range(n):
+    flag=True
+    val=inp2[i]
+    for bef in range(1,x+1):
+        indis=i-bef
+        if indis<0:
+            break
+        if indis>=n:
+            break
+        if val>inp2[indis]:
+            flag=False
+            break
+    for aft in range(1,y+1):
+        indis=i+aft
+        if indis<0:
+            break
+        if indis>=n:
+            break
+        if val>inp2[indis]:
+            flag=False
+            break
+    if flag:
+        print(i+1)
+        break
+",Error: Connection error.,naive no fsl
+0526,human,code_contests,qwen2.5-7b-instruct,"n,m=map(int,raw_input().split())
+
+mod=(10**9)+7
+dp=[0]*100005
+
+if n>m:
+	n,m=m,n
+
+dp[0],dp[1],dp[2]=0,2,4
+
+for i in xrange(3, m+1):
+	dp[i]=dp[i-1]+dp[i-2]
+	dp[i]%=mod
+print (dp[n]+dp[m]-2+mod)%mod",Error: Connection error.,naive no fsl
+0527,human,code_contests,qwen2.5-7b-instruct,"from sys import stdin
+from collections import Counter
+
+
+def solve():
+    be, en, ans, cur, most = -1, -1, float('inf'), 0, Counter(a).most_common(1)[0][0]
+
+    for i in range(n):
+        if a[i] == most:
+            if be == -1:
+                be = i
+            else:
+                ans = min(ans, i - be + 1)
+                be = i
+
+    return str(ans)
+
+
+out = []
+for i in range(int(stdin.readline())):
+    n, a = int(stdin.readline()), list(map(int, stdin.readline().split()))
+    out.append(str(-1) if n == 1 else solve())
+
+print('\n'.join(out))
+",Error: Connection error.,naive no fsl
+0528,human,code_contests,qwen2.5-7b-instruct,"#!/usr/bin/env pypy
+from __future__ import division, print_function
+
+import os
+import sys
+from __builtin__ import xrange as range
+from cStringIO import StringIO
+from future_builtins import ascii, filter, hex, map, oct, zip
+from io import IOBase
+
+import __pypy__
+
+
+def f(x, y):
+    return (x | y) - y
+
+
+def main():
+    n = int(input())
+    a = [int(ai) for ai in input().split()]
+    a.sort()
+    res = a[0]
+    for i in range(n - 1):
+        res = f(res, a[i + 1])
+
+    print(res)
+
+
+# region fastio
+
+BUFSIZE = 8192
+
+
+class FastI(IOBase):
+    def __init__(self, file):
+        self._fd = file.fileno()
+        self._buffer = StringIO()
+        self.newlines = 0
+
+    def read(self):
+        while True:
+            b = os.read(self._fd, max(os.fstat(self._fd).st_size, BUFSIZE))
+            if not b:
+                break
+            ptr = self.buffer.tell()
+            self.buffer.seek(0, 2), self.buffer.write(b), self.buffer.seek(ptr)
+        self.newlines = 0
+        return self.buffer.read()
+
+    def readline(self):
+        while self.newlines == 0:
+            b = os.read(self._fd, max(os.fstat(self._fd).st_size, BUFSIZE))
+            self.newlines = b.count(""\n"") + (not b)
+            ptr = self._buffer.tell()
+            self._buffer.seek(0, 2), self._buffer.write(b), self._buffer.seek(ptr)
+        self.newlines -= 1
+        return self._buffer.readline()
+
+
+class FastO(IOBase):
+    def __init__(self, file):
+        self._fd = file.fileno()
+        self._buffer = __pypy__.builders.StringBuilder()
+        self.write = lambda s: self._buffer.append(s)
+
+    def flush(self):
+        os.write(self._fd, self._buffer.build())
+        self._buffer = __pypy__.builders.StringBuilder()
+
+
+def print(*args, **kwargs):
+    sep, file = kwargs.pop(""sep"", "" ""), kwargs.pop(""file"", sys.stdout)
+    at_start = True
+    for x in args:
+        if not at_start:
+            file.write(sep)
+        file.write(str(x))
+        at_start = False
+    file.write(kwargs.pop(""end"", ""\n""))
+    if kwargs.pop(""flush"", False):
+        file.flush()
+
+
+sys.stdin, sys.stdout = FastI(sys.stdin), FastO(sys.stdout)
+input = lambda: sys.stdin.readline().rstrip(""\r\n"")
+
+# endregion
+
+if __name__ == ""__main__"":
+    main()
+",Error: Connection error.,naive no fsl
+0529,human,code_contests,qwen2.5-7b-instruct,"from sys import stdin
+from collections import *
+from bisect import *
+
+
+def arr_inp(n):
+    if n == 1:
+        return [int(x) for x in stdin.readline().split()]
+    elif n == 2:
+        return [float(x) for x in stdin.readline().split()]
+    else:
+        return list(stdin.readline()[:-1])
+
+
+class segmenttree:
+    def __init__(self, arr, n):
+        self.tree, self.n, self.map1 = [0] * (2 * n), n, defaultdict(int)
+        # build tree
+        if arr:
+            for i in range(2 * n - 1, 0, -1):
+                if i >= n:
+                    self.tree[i] = arr[i - n][1]
+                    self.map1[arr[i - n][0]] = i
+                else:
+                    self.tree[i] = self.tree[i << 1] + self.tree[(i << 1) + 1]
+
+    # get interval[l,r)
+    def query(self, l, r):
+        res = 0
+        # l += self.n
+        # r += self.n
+        while l < r:
+            if l & 1:
+                res += self.tree[l]
+                l += 1
+            if r & 1:
+                r -= 1
+                res += self.tree[r]
+            l >>= 1
+            r >>= 1
+
+        return res
+
+    def update(self, ix, val):
+        # ix += self.n
+        # set new value
+        self.tree[ix] = val
+        # move up
+        while ix > 1:
+            self.tree[ix >> 1] = self.tree[ix] + self.tree[ix ^ 1]
+            ix >>= 1
+
+
+n, a, b, mem = int(stdin.readline()), arr_inp(1), arr_inp(1), defaultdict(int)
+for i in range(n):
+    mem[a[i] - b[i]] += 1
+
+tree = segmenttree(sorted(mem.items(), key=lambda x: x[0]), len(mem.values()))
+dis, ans, ext = set(), 0, 0 if min(mem.keys()) >= 0 else -(min(mem.keys()))
+
+for i, j in mem.items():
+    dis.add(ext + i)
+
+for i in range(n):
+    val = a[i] - b[i]
+    mem[val] -= 1
+
+    if not mem[val]:
+        dis.discard(val + ext)
+
+    tree.update(tree.map1[val], mem[val])
+    ix = bisect_right(list(dis), max(-(val - 1) + ext, 0))
+
+    if ix != len(dis):
+        if ix > 0 and list(dis)[ix - 1] == max(-(val - 1) + ext, 0):
+            ix -= 1
+        ans += tree.query(tree.map1[list(dis)[ix] - ext], tree.map1[list(dis)[-1] - ext] + 1)
+    # print(ix, dis, ans, max(-(val - 1) + ext, 0))
+print(ans)
+",Error: Connection error.,naive no fsl
+0530,human,code_contests,qwen2.5-7b-instruct,"
+from __future__ import division, print_function
+
+import os
+import sys
+from io import BytesIO, IOBase
+
+if sys.version_info[0] < 3:
+    from __builtin__ import xrange as range
+    from future_builtins import ascii, filter, hex, map, oct, zip
+
+
+def main():
+    pass
+
+
+# region fastio
+
+BUFSIZE = 8192
+
+
+class FastIO(IOBase):
+    newlines = 0
+
+    def __init__(self, file):
+        self._fd = file.fileno()
+        self.buffer = BytesIO()
+        self.writable = ""x"" in file.mode or ""r"" not in file.mode
+        self.write = self.buffer.write if self.writable else None
+
+    def read(self):
+        while True:
+            b = os.read(self._fd, max(os.fstat(self._fd).st_size, BUFSIZE))
+            if not b:
+                break
+            ptr = self.buffer.tell()
+            self.buffer.seek(0, 2), self.buffer.write(b), self.buffer.seek(ptr)
+        self.newlines = 0
+        return self.buffer.read()
+
+    def readline(self):
+        while self.newlines == 0:
+            b = os.read(self._fd, max(os.fstat(self._fd).st_size, BUFSIZE))
+            self.newlines = b.count(b""\n"") + (not b)
+            ptr = self.buffer.tell()
+            self.buffer.seek(0, 2), self.buffer.write(b), self.buffer.seek(ptr)
+        self.newlines -= 1
+        return self.buffer.readline()
+
+    def flush(self):
+        if self.writable:
+            os.write(self._fd, self.buffer.getvalue())
+            self.buffer.truncate(0), self.buffer.seek(0)
+
+
+class IOWrapper(IOBase):
+    def __init__(self, file):
+        self.buffer = FastIO(file)
+        self.flush = self.buffer.flush
+        self.writable = self.buffer.writable
+        self.write = lambda s: self.buffer.write(s.encode(""ascii""))
+        self.read = lambda: self.buffer.read().decode(""ascii"")
+        self.readline = lambda: self.buffer.readline().decode(""ascii"")
+
+
+def print(*args, **kwargs):
+    """"""Prints the values to a stream, or to sys.stdout by default.""""""
+    sep, file = kwargs.pop(""sep"", "" ""), kwargs.pop(""file"", sys.stdout)
+    at_start = True
+    for x in args:
+        if not at_start:
+            file.write(sep)
+        file.write(str(x))
+        at_start = False
+    file.write(kwargs.pop(""end"", ""\n""))
+    if kwargs.pop(""flush"", False):
+        file.flush()
+
+
+if sys.version_info[0] < 3:
+    sys.stdin, sys.stdout = FastIO(sys.stdin), FastIO(sys.stdout)
+else:
+    sys.stdin, sys.stdout = IOWrapper(sys.stdin), IOWrapper(sys.stdout)
+
+input = lambda: sys.stdin.readline().rstrip(""\r\n"")
+def checker(a,b):
+    if a<0 and b<0:
+        return 'negative'
+    elif a>0 and b>0:
+        return 'positive'
+    else:
+        return 'change'
+    
+t=int(input())
+while t>0:
+    t-=1
+    n=int(input())
+    arr=list(map(int,input().split()))
+    maxx=arr[0]
+    summ=0
+    for i in range(1,n-1):
+        verdict=checker(arr[i],arr[i-1])
+        if verdict=='positive':
+            maxx=max(maxx,arr[i])
+        elif verdict=='negative':
+            maxx=max(maxx,arr[i])
+        else:
+            summ+=maxx
+            maxx=arr[i]
+    summ+=maxx
+    if checker(maxx,arr[-1])=='change':
+        summ+=arr[-1]
+            
+            
+    
+    print(summ)
+            
+            
+            ",Error: Connection error.,naive no fsl
+0536,human,code_contests,qwen2.5-7b-instruct,"import os
+import Queue
+
+n = 0
+k = 0
+t = 0
+P = {}
+Q = Queue.PriorityQueue()
+M = []
+
+def solve():
+    # read data
+    global n, k, t, P
+    read = reader()
+    n, k, t = list(map(int, next(read).split()))
+    t -= 1
+    if t == 0:
+        print(0)
+        return
+    for i in range(n):
+        P[i] = []
+    for i in range(k):
+        m = tuple(map(int, next(read).split()))
+        m = (m[0] - 1, m[1] - 1, m[2])
+        M.append(m)
+        Q.put((m[2], m, [set(), set()]))
+    
+    # solve
+    step = 0
+    points = -1
+    print(""{0}: {1} {2} {3}"".format(1, 0, (-1, -1, 0), ()))
+    while not Q.empty():
+        step += 1
+        if step >= t:
+            break
+        points, m, used = Q.get()
+        print(""{0}: {1} {2} {3}"".format(step+1, points, m, used))
+        usedA, usedB = set(used[0]), set(used[1])
+        usedA.add(m[0])
+        usedB.add(m[1])
+        for possibleM in M:
+            if possibleM[0] in usedA or possibleM[1] in usedB or possibleM > m:
+                continue
+            Q.put((points + possibleM[2], possibleM, [usedA, usedB]))
+    print(points)
+    
+
+def reader():
+    if False:
+        with open(""F.in"", ""r"") as fin:
+            while True:
+                yield next(fin)
+    else:
+        try: input = raw_input
+        except: pass
+        while True:
+            yield input()
+
+solve()",Error: Connection error.,naive no fsl
+0537,human,code_contests,qwen2.5-7b-instruct,"from math import log, ceil
+
+k,b,n,t = map(int, raw_input('').split(' '))
+if k!=1:
+    c = k**(n-1)*(k-1+b)-b
+    if t*(k-1) >= c:
+        i = 0
+    else:
+        #i = ceil(log(c+1, k))
+        i = log(c+b, k) - log(t*(k-1)+b, k) + 1
+        '''i = int(i)
+        amount = k**(i-1)*(t+b/float(k-1))-b/float(k-1)
+        while amount < z:
+            i += 1
+            amount = k**(i-1)*(t+b/float(k-1))-b/float(k-1)'''
+else:
+    z = k+b*(n-1)
+    if t >= z:
+        i = 0
+    else:
+        i = int((z-t)/float(b) + 1)
+        amount = t+b*(i-1)
+        while amount < z:
+            i += 1
+            amount = t+b*(i-1)
+
+#print(i)
+print(int(ceil(i)))",Error: Connection error.,naive no fsl
+0538,human,code_contests,qwen2.5-7b-instruct,"import sys
+n, x = map(int, raw_input().split())
+a, b, c = list(map(int, raw_input().split())), list(map(int, raw_input().split())), [0] * n
+for i in range(n): c[i] = a[i] + b[i]
+c.sort(); 
+for i in range(n):
+    if c[i] >= x:
+        print('1 ' + str(n - i))
+        break
+    
+",Error: Connection error.,naive no fsl
+1199,human,code_contests,qwen2.5-7b-instruct,"t=int(raw_input())
+for _ in range(t):
+    n=int(raw_input())
+    A=map(int,raw_input().split())
+    A.reverse()
+    F=[0]*n
+    M=[0]*n
+    F[0]=A[0]
+    if n==1:
+        print(F[0])
+        continue
+    F[1]=A[1]
+    for i in range(2,n):
+        M[i]=min(F[i-1],F[i-2])
+        F[i]=min(A[i]+M[i-1],A[i]+A[i-1]+M[i-2])
+    print(F[-1])","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-ef0c1abd-c097-9111-9ea9-48e169120349', 'request_id': 'ef0c1abd-c097-9111-9ea9-48e169120349'}",naive no fsl

@@ -1,0 +1,1969 @@
+DEBUG - Start Task 72
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: On the Literature lesson Sergei noticed an awful injustice, it seems that some students are asked more often than others.
+
+Seating in the class looks like a rectangle, where n rows with m pupils in each. 
+
+The teacher asks pupils in the following order: at first, she asks all pupils from the first row in the order of their seating, then she continues to ask pupils from the next row. If the teacher asked the last row, then the direction of the poll changes, it means that she asks the previous row. The order of asking the rows looks as follows: the 1-st row, the 2-nd row, ..., the n - 1-st row, the n-th row, the n - 1-st row, ..., the 2-nd row, the 1-st row, the 2-nd row, ...
+
+The order of asking of pupils on the same row is always the same: the 1-st pupil, the 2-nd pupil, ..., the m-th pupil.
+
+During the lesson the teacher managed to ask exactly k questions from pupils in order described above. Sergei seats on the x-th row, on the y-th place in the row. Sergei decided to prove to the teacher that pupils are asked irregularly, help him count three values:  the maximum number of questions a particular pupil is asked,  the minimum number of questions a particular pupil is asked,  how many times the teacher asked Sergei. 
+
+If there is only one row in the class, then the teacher always asks children from this row.
+
+
+-----Input-----
+
+The first and the only line contains five integers n, m, k, x and y (1 ≤ n, m ≤ 100, 1 ≤ k ≤ 10^18, 1 ≤ x ≤ n, 1 ≤ y ≤ m).
+
+
+-----Output-----
+
+Print three integers:  the maximum number of questions a particular pupil is asked,  the minimum number of questions a particular pupil is asked,  how many times the teacher asked Sergei. 
+
+
+-----Examples-----
+Input
+1 3 8 1 1
+
+Output
+3 2 3
+Input
+4 2 9 4 2
+
+Output
+2 1 1
+Input
+5 5 25 4 3
+
+Output
+1 1 1
+Input
+100 100 1000000000000000000 100 100
+
+Output
+101010101010101 50505050505051 50505050505051
+
+
+-----Note-----
+
+The order of asking pupils in the first test:   the pupil from the first row who seats at the first table, it means it is Sergei;  the pupil from the first row who seats at the second table;  the pupil from the first row who seats at the third table;  the pupil from the first row who seats at the first table, it means it is Sergei;  the pupil from the first row who seats at the second table;  the pupil from the first row who seats at the third table;  the pupil from the first row who seats at the first table, it means it is Sergei;  the pupil from the first row who seats at the second table; 
+
+The order of asking pupils in the second test:   the pupil from the first row who seats at the first table;  the pupil from the first row who seats at the second table;  the pupil from the second row who seats at the first table;  the pupil from the second row who seats at the second table;  the pupil from the third row who seats at the first table;  the pupil from the third row who seats at the second table;  the pupil from the fourth row who seats at the first table;  the pupil from the fourth row who seats at the second table, it means it is Sergei;  the pupil from the third row who seats at the first table;
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': False, 'complex': False, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 94
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Bessie the cow and her best friend Elsie each received a sliding puzzle on Pi Day. Their puzzles consist of a 2 × 2 grid and three tiles labeled 'A', 'B', and 'C'. The three tiles sit on top of the grid, leaving one grid cell empty. To make a move, Bessie or Elsie can slide a tile adjacent to the empty cell into the empty cell as shown below: $\rightarrow$ 
+
+In order to determine if they are truly Best Friends For Life (BFFLs), Bessie and Elsie would like to know if there exists a sequence of moves that takes their puzzles to the same configuration (moves can be performed in both puzzles). Two puzzles are considered to be in the same configuration if each tile is on top of the same grid cell in both puzzles. Since the tiles are labeled with letters, rotations and reflections are not allowed.
+
+
+-----Input-----
+
+The first two lines of the input consist of a 2 × 2 grid describing the initial configuration of Bessie's puzzle. The next two lines contain a 2 × 2 grid describing the initial configuration of Elsie's puzzle. The positions of the tiles are labeled 'A', 'B', and 'C', while the empty cell is labeled 'X'. It's guaranteed that both puzzles contain exactly one tile with each letter and exactly one empty position.
+
+
+-----Output-----
+
+Output "YES"(without quotes) if the puzzles can reach the same configuration (and Bessie and Elsie are truly BFFLs). Otherwise, print "NO" (without quotes).
+
+
+-----Examples-----
+Input
+AB
+XC
+XB
+AC
+
+Output
+YES
+
+Input
+AB
+XC
+AC
+BX
+
+Output
+NO
+
+
+
+-----Note-----
+
+The solution to the first sample is described by the image. All Bessie needs to do is slide her 'A' tile down.
+
+In the second sample, the two puzzles can never be in the same configuration. Perhaps Bessie and Elsie are not meant to be friends after all...
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 94
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Bessie the cow and her best friend Elsie each received a sliding puzzle on Pi Day. Their puzzles consist of a 2 × 2 grid and three tiles labeled 'A', 'B', and 'C'. The three tiles sit on top of the grid, leaving one grid cell empty. To make a move, Bessie or Elsie can slide a tile adjacent to the empty cell into the empty cell as shown below: $\rightarrow$ 
+
+In order to determine if they are truly Best Friends For Life (BFFLs), Bessie and Elsie would like to know if there exists a sequence of moves that takes their puzzles to the same configuration (moves can be performed in both puzzles). Two puzzles are considered to be in the same configuration if each tile is on top of the same grid cell in both puzzles. Since the tiles are labeled with letters, rotations and reflections are not allowed.
+
+
+-----Input-----
+
+The first two lines of the input consist of a 2 × 2 grid describing the initial configuration of Bessie's puzzle. The next two lines contain a 2 × 2 grid describing the initial configuration of Elsie's puzzle. The positions of the tiles are labeled 'A', 'B', and 'C', while the empty cell is labeled 'X'. It's guaranteed that both puzzles contain exactly one tile with each letter and exactly one empty position.
+
+
+-----Output-----
+
+Output "YES"(without quotes) if the puzzles can reach the same configuration (and Bessie and Elsie are truly BFFLs). Otherwise, print "NO" (without quotes).
+
+
+-----Examples-----
+Input
+AB
+XC
+XB
+AC
+
+Output
+YES
+
+Input
+AB
+XC
+AC
+BX
+
+Output
+NO
+
+
+
+-----Note-----
+
+The solution to the first sample is described by the image. All Bessie needs to do is slide her 'A' tile down.
+
+In the second sample, the two puzzles can never be in the same configuration. Perhaps Bessie and Elsie are not meant to be friends after all...
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': True, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': False}
+DEBUG - Start Task 128
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Summer holidays! Someone is going on trips, someone is visiting grandparents, but someone is trying to get a part-time job. This summer Noora decided that she wants to earn some money, and took a job in a shop as an assistant.
+
+Shop, where Noora is working, has a plan on the following n days. For each day sales manager knows exactly, that in i-th day k_{i} products will be put up for sale and exactly l_{i} clients will come to the shop that day. Also, the manager is sure, that everyone, who comes to the shop, buys exactly one product or, if there aren't any left, leaves the shop without buying anything. Moreover, due to the short shelf-life of the products, manager established the following rule: if some part of the products left on the shelves at the end of the day, that products aren't kept on the next day and are sent to the dump.
+
+For advertising purposes manager offered to start a sell-out in the shop. He asked Noora to choose any f days from n next for sell-outs. On each of f chosen days the number of products were put up for sale would be doubled. Thus, if on i-th day shop planned to put up for sale k_{i} products and Noora has chosen this day for sell-out, shelves of the shop would keep 2·k_{i} products. Consequently, there is an opportunity to sell two times more products on days of sell-out.
+
+Noora's task is to choose f days to maximize total number of sold products. She asks you to help her with such a difficult problem.
+
+
+-----Input-----
+
+The first line contains two integers n and f (1 ≤ n ≤ 10^5, 0 ≤ f ≤ n) denoting the number of days in shop's plan and the number of days that Noora has to choose for sell-out.
+
+Each line of the following n subsequent lines contains two integers k_{i}, l_{i} (0 ≤ k_{i}, l_{i} ≤ 10^9) denoting the number of products on the shelves of the shop on the i-th day and the number of clients that will come to the shop on i-th day.
+
+
+-----Output-----
+
+Print a single integer denoting the maximal number of products that shop can sell.
+
+
+-----Examples-----
+Input
+4 2
+2 1
+3 5
+2 3
+1 5
+
+Output
+10
+Input
+4 1
+0 2
+0 3
+3 5
+0 6
+
+Output
+5
+
+
+-----Note-----
+
+In the first example we can choose days with numbers 2 and 4 for sell-out. In this case new numbers of products for sale would be equal to [2, 6, 2, 2] respectively. So on the first day shop will sell 1 product, on the second — 5, on the third — 2, on the fourth — 2. In total 1 + 5 + 2 + 2 = 10 product units.
+
+In the second example it is possible to sell 5 products, if you choose third day for sell-out.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 128
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Summer holidays! Someone is going on trips, someone is visiting grandparents, but someone is trying to get a part-time job. This summer Noora decided that she wants to earn some money, and took a job in a shop as an assistant.
+
+Shop, where Noora is working, has a plan on the following n days. For each day sales manager knows exactly, that in i-th day k_{i} products will be put up for sale and exactly l_{i} clients will come to the shop that day. Also, the manager is sure, that everyone, who comes to the shop, buys exactly one product or, if there aren't any left, leaves the shop without buying anything. Moreover, due to the short shelf-life of the products, manager established the following rule: if some part of the products left on the shelves at the end of the day, that products aren't kept on the next day and are sent to the dump.
+
+For advertising purposes manager offered to start a sell-out in the shop. He asked Noora to choose any f days from n next for sell-outs. On each of f chosen days the number of products were put up for sale would be doubled. Thus, if on i-th day shop planned to put up for sale k_{i} products and Noora has chosen this day for sell-out, shelves of the shop would keep 2·k_{i} products. Consequently, there is an opportunity to sell two times more products on days of sell-out.
+
+Noora's task is to choose f days to maximize total number of sold products. She asks you to help her with such a difficult problem.
+
+
+-----Input-----
+
+The first line contains two integers n and f (1 ≤ n ≤ 10^5, 0 ≤ f ≤ n) denoting the number of days in shop's plan and the number of days that Noora has to choose for sell-out.
+
+Each line of the following n subsequent lines contains two integers k_{i}, l_{i} (0 ≤ k_{i}, l_{i} ≤ 10^9) denoting the number of products on the shelves of the shop on the i-th day and the number of clients that will come to the shop on i-th day.
+
+
+-----Output-----
+
+Print a single integer denoting the maximal number of products that shop can sell.
+
+
+-----Examples-----
+Input
+4 2
+2 1
+3 5
+2 3
+1 5
+
+Output
+10
+Input
+4 1
+0 2
+0 3
+3 5
+0 6
+
+Output
+5
+
+
+-----Note-----
+
+In the first example we can choose days with numbers 2 and 4 for sell-out. In this case new numbers of products for sale would be equal to [2, 6, 2, 2] respectively. So on the first day shop will sell 1 product, on the second — 5, on the third — 2, on the fourth — 2. In total 1 + 5 + 2 + 2 = 10 product units.
+
+In the second example it is possible to sell 5 products, if you choose third day for sell-out.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 65
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: One day Kefa found n baloons. For convenience, we denote color of i-th baloon as s_{i} — lowercase letter of the Latin alphabet. Also Kefa has k friends. Friend will be upset, If he get two baloons of the same color. Kefa want to give out all baloons to his friends. Help Kefa to find out, can he give out all his baloons, such that no one of his friens will be upset — print «YES», if he can, and «NO», otherwise. Note, that Kefa's friend will not upset, if he doesn't get baloons at all.
+
+
+-----Input-----
+
+The first line contains two integers n and k (1 ≤ n, k ≤ 100) — the number of baloons and friends.
+
+Next line contains string s — colors of baloons.
+
+
+-----Output-----
+
+Answer to the task — «YES» or «NO» in a single line.
+
+You can choose the case (lower or upper) for each letter arbitrary.
+
+
+-----Examples-----
+Input
+4 2
+aabb
+
+Output
+YES
+
+Input
+6 3
+aacaab
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first sample Kefa can give 1-st and 3-rd baloon to the first friend, and 2-nd and 4-th to the second.
+
+In the second sample Kefa needs to give to all his friends baloons of color a, but one baloon will stay, thats why answer is «NO».
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': False, 'default': True, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 65
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: One day Kefa found n baloons. For convenience, we denote color of i-th baloon as s_{i} — lowercase letter of the Latin alphabet. Also Kefa has k friends. Friend will be upset, If he get two baloons of the same color. Kefa want to give out all baloons to his friends. Help Kefa to find out, can he give out all his baloons, such that no one of his friens will be upset — print «YES», if he can, and «NO», otherwise. Note, that Kefa's friend will not upset, if he doesn't get baloons at all.
+
+
+-----Input-----
+
+The first line contains two integers n and k (1 ≤ n, k ≤ 100) — the number of baloons and friends.
+
+Next line contains string s — colors of baloons.
+
+
+-----Output-----
+
+Answer to the task — «YES» or «NO» in a single line.
+
+You can choose the case (lower or upper) for each letter arbitrary.
+
+
+-----Examples-----
+Input
+4 2
+aabb
+
+Output
+YES
+
+Input
+6 3
+aacaab
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first sample Kefa can give 1-st and 3-rd baloon to the first friend, and 2-nd and 4-th to the second.
+
+In the second sample Kefa needs to give to all his friends baloons of color a, but one baloon will stay, thats why answer is «NO».
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 225
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: One day, the Grasshopper was jumping on the lawn and found a piece of paper with a string. Grasshopper became interested what is the minimum jump ability he should have in order to be able to reach the far end of the string, jumping only on vowels of the English alphabet. Jump ability is the maximum possible length of his jump. 
+
+Formally, consider that at the begginning the Grasshopper is located directly in front of the leftmost character of the string. His goal is to reach the position right after the rightmost character of the string. In one jump the Grasshopper could jump to the right any distance from 1 to the value of his jump ability. [Image] The picture corresponds to the first example. 
+
+The following letters are vowels: 'A', 'E', 'I', 'O', 'U' and 'Y'.
+
+
+-----Input-----
+
+The first line contains non-empty string consisting of capital English letters. It is guaranteed that the length of the string does not exceed 100. 
+
+
+-----Output-----
+
+Print single integer a — the minimum jump ability of the Grasshopper (in the number of symbols) that is needed to overcome the given string, jumping only on vowels.
+
+
+-----Examples-----
+Input
+ABABBBACFEYUKOTT
+
+Output
+4
+Input
+AAA
+
+Output
+1
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 225
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: One day, the Grasshopper was jumping on the lawn and found a piece of paper with a string. Grasshopper became interested what is the minimum jump ability he should have in order to be able to reach the far end of the string, jumping only on vowels of the English alphabet. Jump ability is the maximum possible length of his jump. 
+
+Formally, consider that at the begginning the Grasshopper is located directly in front of the leftmost character of the string. His goal is to reach the position right after the rightmost character of the string. In one jump the Grasshopper could jump to the right any distance from 1 to the value of his jump ability. [Image] The picture corresponds to the first example. 
+
+The following letters are vowels: 'A', 'E', 'I', 'O', 'U' and 'Y'.
+
+
+-----Input-----
+
+The first line contains non-empty string consisting of capital English letters. It is guaranteed that the length of the string does not exceed 100. 
+
+
+-----Output-----
+
+Print single integer a — the minimum jump ability of the Grasshopper (in the number of symbols) that is needed to overcome the given string, jumping only on vowels.
+
+
+-----Examples-----
+Input
+ABABBBACFEYUKOTT
+
+Output
+4
+Input
+AAA
+
+Output
+1
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 6
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Luba is surfing the Internet. She currently has n opened tabs in her browser, indexed from 1 to n from left to right. The mouse cursor is currently located at the pos-th tab. Luba needs to use the tabs with indices from l to r (inclusive) for her studies, and she wants to close all the tabs that don't belong to this segment as fast as possible.
+
+Each second Luba can either try moving the cursor to the left or to the right (if the cursor is currently at the tab i, then she can move it to the tab max(i - 1, a) or to the tab min(i + 1, b)) or try closing all the tabs to the left or to the right of the cursor (if the cursor is currently at the tab i, she can close all the tabs with indices from segment [a, i - 1] or from segment [i + 1, b]). In the aforementioned expressions a and b denote the minimum and maximum index of an unclosed tab, respectively. For example, if there were 7 tabs initially and tabs 1, 2 and 7 are closed, then a = 3, b = 6.
+
+What is the minimum number of seconds Luba has to spend in order to leave only the tabs with initial indices from l to r inclusive opened?
+
+
+-----Input-----
+
+The only line of input contains four integer numbers n, pos, l, r (1 ≤ n ≤ 100, 1 ≤ pos ≤ n, 1 ≤ l ≤ r ≤ n) — the number of the tabs, the cursor position and the segment which Luba needs to leave opened.
+
+
+-----Output-----
+
+Print one integer equal to the minimum number of seconds required to close all the tabs outside the segment [l, r].
+
+
+-----Examples-----
+Input
+6 3 2 4
+
+Output
+5
+
+Input
+6 3 1 3
+
+Output
+1
+
+Input
+5 2 1 5
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first test Luba can do the following operations: shift the mouse cursor to the tab 2, close all the tabs to the left of it, shift the mouse cursor to the tab 3, then to the tab 4, and then close all the tabs to the right of it.
+
+In the second test she only needs to close all the tabs to the right of the current position of the cursor.
+
+In the third test Luba doesn't need to do anything.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': True, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 6
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Luba is surfing the Internet. She currently has n opened tabs in her browser, indexed from 1 to n from left to right. The mouse cursor is currently located at the pos-th tab. Luba needs to use the tabs with indices from l to r (inclusive) for her studies, and she wants to close all the tabs that don't belong to this segment as fast as possible.
+
+Each second Luba can either try moving the cursor to the left or to the right (if the cursor is currently at the tab i, then she can move it to the tab max(i - 1, a) or to the tab min(i + 1, b)) or try closing all the tabs to the left or to the right of the cursor (if the cursor is currently at the tab i, she can close all the tabs with indices from segment [a, i - 1] or from segment [i + 1, b]). In the aforementioned expressions a and b denote the minimum and maximum index of an unclosed tab, respectively. For example, if there were 7 tabs initially and tabs 1, 2 and 7 are closed, then a = 3, b = 6.
+
+What is the minimum number of seconds Luba has to spend in order to leave only the tabs with initial indices from l to r inclusive opened?
+
+
+-----Input-----
+
+The only line of input contains four integer numbers n, pos, l, r (1 ≤ n ≤ 100, 1 ≤ pos ≤ n, 1 ≤ l ≤ r ≤ n) — the number of the tabs, the cursor position and the segment which Luba needs to leave opened.
+
+
+-----Output-----
+
+Print one integer equal to the minimum number of seconds required to close all the tabs outside the segment [l, r].
+
+
+-----Examples-----
+Input
+6 3 2 4
+
+Output
+5
+
+Input
+6 3 1 3
+
+Output
+1
+
+Input
+5 2 1 5
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first test Luba can do the following operations: shift the mouse cursor to the tab 2, close all the tabs to the left of it, shift the mouse cursor to the tab 3, then to the tab 4, and then close all the tabs to the right of it.
+
+In the second test she only needs to close all the tabs to the right of the current position of the cursor.
+
+In the third test Luba doesn't need to do anything.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': True}
+DEBUG - Start Task 207
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: A frog is initially at position $0$ on the number line. The frog has two positive integers $a$ and $b$. From a position $k$, it can either jump to position $k+a$ or $k-b$.
+
+Let $f(x)$ be the number of distinct integers the frog can reach if it never jumps on an integer outside the interval $[0, x]$. The frog doesn't need to visit all these integers in one trip, that is, an integer is counted if the frog can somehow reach it if it starts from $0$.
+
+Given an integer $m$, find $\sum_{i=0}^{m} f(i)$. That is, find the sum of all $f(i)$ for $i$ from $0$ to $m$.
+
+
+-----Input-----
+
+The first line contains three integers $m, a, b$ ($1 \leq m \leq 10^9, 1 \leq a,b \leq 10^5$).
+
+
+-----Output-----
+
+Print a single integer, the desired sum.
+
+
+-----Examples-----
+Input
+7 5 3
+
+Output
+19
+
+Input
+1000000000 1 2019
+
+Output
+500000001500000001
+
+Input
+100 100000 1
+
+Output
+101
+
+Input
+6 4 5
+
+Output
+10
+
+
+
+-----Note-----
+
+In the first example, we must find $f(0)+f(1)+\ldots+f(7)$. We have $f(0) = 1, f(1) = 1, f(2) = 1, f(3) = 1, f(4) = 1, f(5) = 3, f(6) = 3, f(7) = 8$. The sum of these values is $19$.
+
+In the second example, we have $f(i) = i+1$, so we want to find $\sum_{i=0}^{10^9} i+1$.
+
+In the third example, the frog can't make any jumps in any case.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 207
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: A frog is initially at position $0$ on the number line. The frog has two positive integers $a$ and $b$. From a position $k$, it can either jump to position $k+a$ or $k-b$.
+
+Let $f(x)$ be the number of distinct integers the frog can reach if it never jumps on an integer outside the interval $[0, x]$. The frog doesn't need to visit all these integers in one trip, that is, an integer is counted if the frog can somehow reach it if it starts from $0$.
+
+Given an integer $m$, find $\sum_{i=0}^{m} f(i)$. That is, find the sum of all $f(i)$ for $i$ from $0$ to $m$.
+
+
+-----Input-----
+
+The first line contains three integers $m, a, b$ ($1 \leq m \leq 10^9, 1 \leq a,b \leq 10^5$).
+
+
+-----Output-----
+
+Print a single integer, the desired sum.
+
+
+-----Examples-----
+Input
+7 5 3
+
+Output
+19
+
+Input
+1000000000 1 2019
+
+Output
+500000001500000001
+
+Input
+100 100000 1
+
+Output
+101
+
+Input
+6 4 5
+
+Output
+10
+
+
+
+-----Note-----
+
+In the first example, we must find $f(0)+f(1)+\ldots+f(7)$. We have $f(0) = 1, f(1) = 1, f(2) = 1, f(3) = 1, f(4) = 1, f(5) = 3, f(6) = 3, f(7) = 8$. The sum of these values is $19$.
+
+In the second example, we have $f(i) = i+1$, so we want to find $\sum_{i=0}^{10^9} i+1$.
+
+In the third example, the frog can't make any jumps in any case.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 101
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Innocentius has a problem — his computer monitor has broken. Now some of the pixels are "dead", that is, they are always black. As consequence, Innocentius can't play the usual computer games. He is recently playing the following game with his younger brother Polycarpus.
+
+Innocentius is touch-typing a program that paints a white square one-pixel wide frame on the black screen. As the monitor is broken, some pixels that should be white remain black. Polycarpus should look at what the program displayed on the screen and guess the position and size of the frame Innocentius has painted. Polycarpus doesn't like the game but Innocentius persuaded brother to play as "the game is good for the imagination and attention".
+
+Help Polycarpus, automatize his part in the gaming process. Write the code that finds such possible square frame that:  the frame's width is 1 pixel,  the frame doesn't go beyond the borders of the screen,  all white pixels of the monitor are located on the frame,  of all frames that satisfy the previous three conditions, the required frame must have the smallest size. 
+
+Formally, a square frame is represented by such pixels of the solid square, that are on the square's border, that is, are not fully surrounded by the other pixels of the square. For example, if the frame's size is d = 3, then it consists of 8 pixels, if its size is d = 2, then it contains 4 pixels and if d = 1, then the frame is reduced to a single pixel.
+
+
+-----Input-----
+
+The first line contains the resolution of the monitor as a pair of integers n, m (1 ≤ n, m ≤ 2000). The next n lines contain exactly m characters each — the state of the monitor pixels at the moment of the game. Character "." (period, ASCII code 46) corresponds to the black pixel, and character "w" (lowercase English letter w) corresponds to the white pixel. It is guaranteed that at least one pixel of the monitor is white.
+
+
+-----Output-----
+
+Print the monitor screen. Represent the sought frame by characters "+" (the "plus" character). The pixels that has become white during the game mustn't be changed. Print them as "w". If there are multiple possible ways to position the frame of the minimum size, print any of them.
+
+If the required frame doesn't exist, then print a single line containing number -1.
+
+
+-----Examples-----
+Input
+4 8
+..w..w..
+........
+........
+..w..w..
+
+Output
+..w++w..
+..+..+..
+..+..+..
+..w++w..
+
+Input
+5 6
+......
+.w....
+......
+..w...
+......
+
+Output
+......
++w+...
++.+...
+++w...
+......
+
+Input
+2 4
+....
+.w..
+
+Output
+....
+.w..
+
+Input
+2 6
+w..w.w
+...w..
+
+Output
+-1
+
+
+
+-----Note-----
+
+In the first sample the required size of the optimal frame equals 4. In the second sample the size of the optimal frame equals 3. In the third sample, the size of the optimal frame is 1. In the fourth sample, the required frame doesn't exist.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 101
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Innocentius has a problem — his computer monitor has broken. Now some of the pixels are "dead", that is, they are always black. As consequence, Innocentius can't play the usual computer games. He is recently playing the following game with his younger brother Polycarpus.
+
+Innocentius is touch-typing a program that paints a white square one-pixel wide frame on the black screen. As the monitor is broken, some pixels that should be white remain black. Polycarpus should look at what the program displayed on the screen and guess the position and size of the frame Innocentius has painted. Polycarpus doesn't like the game but Innocentius persuaded brother to play as "the game is good for the imagination and attention".
+
+Help Polycarpus, automatize his part in the gaming process. Write the code that finds such possible square frame that:  the frame's width is 1 pixel,  the frame doesn't go beyond the borders of the screen,  all white pixels of the monitor are located on the frame,  of all frames that satisfy the previous three conditions, the required frame must have the smallest size. 
+
+Formally, a square frame is represented by such pixels of the solid square, that are on the square's border, that is, are not fully surrounded by the other pixels of the square. For example, if the frame's size is d = 3, then it consists of 8 pixels, if its size is d = 2, then it contains 4 pixels and if d = 1, then the frame is reduced to a single pixel.
+
+
+-----Input-----
+
+The first line contains the resolution of the monitor as a pair of integers n, m (1 ≤ n, m ≤ 2000). The next n lines contain exactly m characters each — the state of the monitor pixels at the moment of the game. Character "." (period, ASCII code 46) corresponds to the black pixel, and character "w" (lowercase English letter w) corresponds to the white pixel. It is guaranteed that at least one pixel of the monitor is white.
+
+
+-----Output-----
+
+Print the monitor screen. Represent the sought frame by characters "+" (the "plus" character). The pixels that has become white during the game mustn't be changed. Print them as "w". If there are multiple possible ways to position the frame of the minimum size, print any of them.
+
+If the required frame doesn't exist, then print a single line containing number -1.
+
+
+-----Examples-----
+Input
+4 8
+..w..w..
+........
+........
+..w..w..
+
+Output
+..w++w..
+..+..+..
+..+..+..
+..w++w..
+
+Input
+5 6
+......
+.w....
+......
+..w...
+......
+
+Output
+......
++w+...
++.+...
+++w...
+......
+
+Input
+2 4
+....
+.w..
+
+Output
+....
+.w..
+
+Input
+2 6
+w..w.w
+...w..
+
+Output
+-1
+
+
+
+-----Note-----
+
+In the first sample the required size of the optimal frame equals 4. In the second sample the size of the optimal frame equals 3. In the third sample, the size of the optimal frame is 1. In the fourth sample, the required frame doesn't exist.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 276
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Piegirl got bored with binary, decimal and other integer based counting systems. Recently she discovered some interesting properties about number $q = \frac{\sqrt{5} + 1}{2}$, in particular that q^2 = q + 1, and she thinks it would make a good base for her new unique system. She called it "golden system". In golden system the number is a non-empty string containing 0's and 1's as digits. The decimal value of expression a_0a_1...a_{n} equals to $\sum_{i = 0}^{n} a_{i} \cdot q^{n - i}$.
+
+Soon Piegirl found out that this system doesn't have same properties that integer base systems do and some operations can not be performed on it. She wasn't able to come up with a fast way of comparing two numbers. She is asking for your help.
+
+Given two numbers written in golden system notation, determine which of them has larger decimal value.
+
+
+-----Input-----
+
+Input consists of two lines — one for each number. Each line contains non-empty string consisting of '0' and '1' characters. The length of each string does not exceed 100000.
+
+
+-----Output-----
+
+Print ">" if the first number is larger, "<" if it is smaller and "=" if they are equal.
+
+
+-----Examples-----
+Input
+1000
+111
+
+Output
+<
+
+Input
+00100
+11
+
+Output
+=
+
+Input
+110
+101
+
+Output
+>
+
+
+
+-----Note-----
+
+In the first example first number equals to $((\sqrt{5} + 1) / 2)^{3} \approx 1.618033988^{3} \approx 4.236$, while second number is approximately 1.618033988^2 + 1.618033988 + 1 ≈ 5.236, which is clearly a bigger number.
+
+In the second example numbers are equal. Each of them is  ≈ 2.618.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 276
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Piegirl got bored with binary, decimal and other integer based counting systems. Recently she discovered some interesting properties about number $q = \frac{\sqrt{5} + 1}{2}$, in particular that q^2 = q + 1, and she thinks it would make a good base for her new unique system. She called it "golden system". In golden system the number is a non-empty string containing 0's and 1's as digits. The decimal value of expression a_0a_1...a_{n} equals to $\sum_{i = 0}^{n} a_{i} \cdot q^{n - i}$.
+
+Soon Piegirl found out that this system doesn't have same properties that integer base systems do and some operations can not be performed on it. She wasn't able to come up with a fast way of comparing two numbers. She is asking for your help.
+
+Given two numbers written in golden system notation, determine which of them has larger decimal value.
+
+
+-----Input-----
+
+Input consists of two lines — one for each number. Each line contains non-empty string consisting of '0' and '1' characters. The length of each string does not exceed 100000.
+
+
+-----Output-----
+
+Print ">" if the first number is larger, "<" if it is smaller and "=" if they are equal.
+
+
+-----Examples-----
+Input
+1000
+111
+
+Output
+<
+
+Input
+00100
+11
+
+Output
+=
+
+Input
+110
+101
+
+Output
+>
+
+
+
+-----Note-----
+
+In the first example first number equals to $((\sqrt{5} + 1) / 2)^{3} \approx 1.618033988^{3} \approx 4.236$, while second number is approximately 1.618033988^2 + 1.618033988 + 1 ≈ 5.236, which is clearly a bigger number.
+
+In the second example numbers are equal. Each of them is  ≈ 2.618.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 291
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Little Sofia is in fourth grade. Today in the geometry lesson she learned about segments and squares. On the way home, she decided to draw $n$ squares in the snow with a side length of $1$. For simplicity, we assume that Sofia lives on a plane and can draw only segments of length $1$, parallel to the coordinate axes, with vertices at integer points.
+
+In order to draw a segment, Sofia proceeds as follows. If she wants to draw a vertical segment with the coordinates of the ends $(x, y)$ and $(x, y+1)$. Then Sofia looks if there is already a drawn segment with the coordinates of the ends $(x', y)$ and $(x', y+1)$ for some $x'$. If such a segment exists, then Sofia quickly draws a new segment, using the old one as a guideline. If there is no such segment, then Sofia has to take a ruler and measure a new segment for a long time. Same thing happens when Sofia wants to draw a horizontal segment, but only now she checks for the existence of a segment with the same coordinates $x$, $x+1$ and the differing coordinate $y$.
+
+For example, if Sofia needs to draw one square, she will have to draw two segments using a ruler:  [Image] 
+
+After that, she can draw the remaining two segments, using the first two as a guide:  [Image] 
+
+If Sofia needs to draw two squares, she will have to draw three segments using a ruler:  [Image] 
+
+After that, she can draw the remaining four segments, using the first three as a guide:  [Image] 
+
+Sofia is in a hurry, so she wants to minimize the number of segments that she will have to draw with a ruler without a guide. Help her find this minimum number.
+
+
+-----Input-----
+
+The only line of input contains a single integer $n$ ($1 \le n \le 10^{9}$), the number of squares that Sofia wants to draw.
+
+
+-----Output-----
+
+Print single integer, the minimum number of segments that Sofia will have to draw with a ruler without a guide in order to draw $n$ squares in the manner described above.
+
+
+-----Examples-----
+Input
+1
+
+Output
+2
+
+Input
+2
+
+Output
+3
+
+Input
+4
+
+Output
+4
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 291
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Little Sofia is in fourth grade. Today in the geometry lesson she learned about segments and squares. On the way home, she decided to draw $n$ squares in the snow with a side length of $1$. For simplicity, we assume that Sofia lives on a plane and can draw only segments of length $1$, parallel to the coordinate axes, with vertices at integer points.
+
+In order to draw a segment, Sofia proceeds as follows. If she wants to draw a vertical segment with the coordinates of the ends $(x, y)$ and $(x, y+1)$. Then Sofia looks if there is already a drawn segment with the coordinates of the ends $(x', y)$ and $(x', y+1)$ for some $x'$. If such a segment exists, then Sofia quickly draws a new segment, using the old one as a guideline. If there is no such segment, then Sofia has to take a ruler and measure a new segment for a long time. Same thing happens when Sofia wants to draw a horizontal segment, but only now she checks for the existence of a segment with the same coordinates $x$, $x+1$ and the differing coordinate $y$.
+
+For example, if Sofia needs to draw one square, she will have to draw two segments using a ruler:  [Image] 
+
+After that, she can draw the remaining two segments, using the first two as a guide:  [Image] 
+
+If Sofia needs to draw two squares, she will have to draw three segments using a ruler:  [Image] 
+
+After that, she can draw the remaining four segments, using the first three as a guide:  [Image] 
+
+Sofia is in a hurry, so she wants to minimize the number of segments that she will have to draw with a ruler without a guide. Help her find this minimum number.
+
+
+-----Input-----
+
+The only line of input contains a single integer $n$ ($1 \le n \le 10^{9}$), the number of squares that Sofia wants to draw.
+
+
+-----Output-----
+
+Print single integer, the minimum number of segments that Sofia will have to draw with a ruler without a guide in order to draw $n$ squares in the manner described above.
+
+
+-----Examples-----
+Input
+1
+
+Output
+2
+
+Input
+2
+
+Output
+3
+
+Input
+4
+
+Output
+4
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 115
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: You are given two matrices $A$ and $B$. Each matrix contains exactly $n$ rows and $m$ columns. Each element of $A$ is either $0$ or $1$; each element of $B$ is initially $0$.
+
+You may perform some operations with matrix $B$. During each operation, you choose any submatrix of $B$ having size $2 \times 2$, and replace every element in the chosen submatrix with $1$. In other words, you choose two integers $x$ and $y$ such that $1 \le x < n$ and $1 \le y < m$, and then set $B_{x, y}$, $B_{x, y + 1}$, $B_{x + 1, y}$ and $B_{x + 1, y + 1}$ to $1$.
+
+Your goal is to make matrix $B$ equal to matrix $A$. Two matrices $A$ and $B$ are equal if and only if every element of matrix $A$ is equal to the corresponding element of matrix $B$.
+
+Is it possible to make these matrices equal? If it is, you have to come up with a sequence of operations that makes $B$ equal to $A$. Note that you don't have to minimize the number of operations.
+
+
+-----Input-----
+
+The first line contains two integers $n$ and $m$ ($2 \le n, m \le 50$).
+
+Then $n$ lines follow, each containing $m$ integers. The $j$-th integer in the $i$-th line is $A_{i, j}$. Each integer is either $0$ or $1$.
+
+
+-----Output-----
+
+If it is impossible to make $B$ equal to $A$, print one integer $-1$.
+
+Otherwise, print any sequence of operations that transforms $B$ into $A$ in the following format: the first line should contain one integer $k$ — the number of operations, and then $k$ lines should follow, each line containing two integers $x$ and $y$ for the corresponding operation (set $B_{x, y}$, $B_{x, y + 1}$, $B_{x + 1, y}$ and $B_{x + 1, y + 1}$ to $1$). The condition $0 \le k \le 2500$ should hold.
+
+
+-----Examples-----
+Input
+3 3
+1 1 1
+1 1 1
+0 1 1
+
+Output
+3
+1 1
+1 2
+2 2
+
+Input
+3 3
+1 0 1
+1 0 1
+0 0 0
+
+Output
+-1
+
+Input
+3 2
+0 0
+0 0
+0 0
+
+Output
+0
+
+
+
+-----Note-----
+
+The sequence of operations in the first example: $\begin{matrix} 0 & 0 & 0 & & 1 & 1 & 0 & & 1 & 1 & 1 & & 1 & 1 & 1 \\ 0 & 0 & 0 & \rightarrow & 1 & 1 & 0 & \rightarrow & 1 & 1 & 1 & \rightarrow & 1 & 1 & 1 \\ 0 & 0 & 0 & & 0 & 0 & 0 & & 0 & 0 & 0 & & 0 & 1 & 1 \end{matrix}$
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 115
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: You are given two matrices $A$ and $B$. Each matrix contains exactly $n$ rows and $m$ columns. Each element of $A$ is either $0$ or $1$; each element of $B$ is initially $0$.
+
+You may perform some operations with matrix $B$. During each operation, you choose any submatrix of $B$ having size $2 \times 2$, and replace every element in the chosen submatrix with $1$. In other words, you choose two integers $x$ and $y$ such that $1 \le x < n$ and $1 \le y < m$, and then set $B_{x, y}$, $B_{x, y + 1}$, $B_{x + 1, y}$ and $B_{x + 1, y + 1}$ to $1$.
+
+Your goal is to make matrix $B$ equal to matrix $A$. Two matrices $A$ and $B$ are equal if and only if every element of matrix $A$ is equal to the corresponding element of matrix $B$.
+
+Is it possible to make these matrices equal? If it is, you have to come up with a sequence of operations that makes $B$ equal to $A$. Note that you don't have to minimize the number of operations.
+
+
+-----Input-----
+
+The first line contains two integers $n$ and $m$ ($2 \le n, m \le 50$).
+
+Then $n$ lines follow, each containing $m$ integers. The $j$-th integer in the $i$-th line is $A_{i, j}$. Each integer is either $0$ or $1$.
+
+
+-----Output-----
+
+If it is impossible to make $B$ equal to $A$, print one integer $-1$.
+
+Otherwise, print any sequence of operations that transforms $B$ into $A$ in the following format: the first line should contain one integer $k$ — the number of operations, and then $k$ lines should follow, each line containing two integers $x$ and $y$ for the corresponding operation (set $B_{x, y}$, $B_{x, y + 1}$, $B_{x + 1, y}$ and $B_{x + 1, y + 1}$ to $1$). The condition $0 \le k \le 2500$ should hold.
+
+
+-----Examples-----
+Input
+3 3
+1 1 1
+1 1 1
+0 1 1
+
+Output
+3
+1 1
+1 2
+2 2
+
+Input
+3 3
+1 0 1
+1 0 1
+0 0 0
+
+Output
+-1
+
+Input
+3 2
+0 0
+0 0
+0 0
+
+Output
+0
+
+
+
+-----Note-----
+
+The sequence of operations in the first example: $\begin{matrix} 0 & 0 & 0 & & 1 & 1 & 0 & & 1 & 1 & 1 & & 1 & 1 & 1 \\ 0 & 0 & 0 & \rightarrow & 1 & 1 & 0 & \rightarrow & 1 & 1 & 1 & \rightarrow & 1 & 1 & 1 \\ 0 & 0 & 0 & & 0 & 0 & 0 & & 0 & 0 & 0 & & 0 & 1 & 1 \end{matrix}$
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 292
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Bear Limak wants to become the largest of bears, or at least to become larger than his brother Bob.
+
+Right now, Limak and Bob weigh a and b respectively. It's guaranteed that Limak's weight is smaller than or equal to his brother's weight.
+
+Limak eats a lot and his weight is tripled after every year, while Bob's weight is doubled after every year.
+
+After how many full years will Limak become strictly larger (strictly heavier) than Bob?
+
+
+-----Input-----
+
+The only line of the input contains two integers a and b (1 ≤ a ≤ b ≤ 10) — the weight of Limak and the weight of Bob respectively.
+
+
+-----Output-----
+
+Print one integer, denoting the integer number of years after which Limak will become strictly larger than Bob.
+
+
+-----Examples-----
+Input
+4 7
+
+Output
+2
+
+Input
+4 9
+
+Output
+3
+
+Input
+1 1
+
+Output
+1
+
+
+
+-----Note-----
+
+In the first sample, Limak weighs 4 and Bob weighs 7 initially. After one year their weights are 4·3 = 12 and 7·2 = 14 respectively (one weight is tripled while the other one is doubled). Limak isn't larger than Bob yet. After the second year weights are 36 and 28, so the first weight is greater than the second one. Limak became larger than Bob after two years so you should print 2.
+
+In the second sample, Limak's and Bob's weights in next years are: 12 and 18, then 36 and 36, and finally 108 and 72 (after three years). The answer is 3. Remember that Limak wants to be larger than Bob and he won't be satisfied with equal weights.
+
+In the third sample, Limak becomes larger than Bob after the first year. Their weights will be 3 and 2 then.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 292
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Bear Limak wants to become the largest of bears, or at least to become larger than his brother Bob.
+
+Right now, Limak and Bob weigh a and b respectively. It's guaranteed that Limak's weight is smaller than or equal to his brother's weight.
+
+Limak eats a lot and his weight is tripled after every year, while Bob's weight is doubled after every year.
+
+After how many full years will Limak become strictly larger (strictly heavier) than Bob?
+
+
+-----Input-----
+
+The only line of the input contains two integers a and b (1 ≤ a ≤ b ≤ 10) — the weight of Limak and the weight of Bob respectively.
+
+
+-----Output-----
+
+Print one integer, denoting the integer number of years after which Limak will become strictly larger than Bob.
+
+
+-----Examples-----
+Input
+4 7
+
+Output
+2
+
+Input
+4 9
+
+Output
+3
+
+Input
+1 1
+
+Output
+1
+
+
+
+-----Note-----
+
+In the first sample, Limak weighs 4 and Bob weighs 7 initially. After one year their weights are 4·3 = 12 and 7·2 = 14 respectively (one weight is tripled while the other one is doubled). Limak isn't larger than Bob yet. After the second year weights are 36 and 28, so the first weight is greater than the second one. Limak became larger than Bob after two years so you should print 2.
+
+In the second sample, Limak's and Bob's weights in next years are: 12 and 18, then 36 and 36, and finally 108 and 72 (after three years). The answer is 3. Remember that Limak wants to be larger than Bob and he won't be satisfied with equal weights.
+
+In the third sample, Limak becomes larger than Bob after the first year. Their weights will be 3 and 2 then.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 18
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Arpa is researching the Mexican wave.
+
+There are n spectators in the stadium, labeled from 1 to n. They start the Mexican wave at time 0. 
+
+  At time 1, the first spectator stands.  At time 2, the second spectator stands.  ...  At time k, the k-th spectator stands.  At time k + 1, the (k + 1)-th spectator stands and the first spectator sits.  At time k + 2, the (k + 2)-th spectator stands and the second spectator sits.  ...  At time n, the n-th spectator stands and the (n - k)-th spectator sits.  At time n + 1, the (n + 1 - k)-th spectator sits.  ...  At time n + k, the n-th spectator sits. 
+
+Arpa wants to know how many spectators are standing at time t.
+
+
+-----Input-----
+
+The first line contains three integers n, k, t (1 ≤ n ≤ 10^9, 1 ≤ k ≤ n, 1 ≤ t < n + k).
+
+
+-----Output-----
+
+Print single integer: how many spectators are standing at time t.
+
+
+-----Examples-----
+Input
+10 5 3
+
+Output
+3
+
+Input
+10 5 7
+
+Output
+5
+
+Input
+10 5 12
+
+Output
+3
+
+
+
+-----Note-----
+
+In the following a sitting spectator is represented as -, a standing spectator is represented as ^.
+
+  At t = 0  ---------- $\Rightarrow$ number of standing spectators = 0.  At t = 1  ^--------- $\Rightarrow$ number of standing spectators = 1.  At t = 2  ^^-------- $\Rightarrow$ number of standing spectators = 2.  At t = 3  ^^^------- $\Rightarrow$ number of standing spectators = 3.  At t = 4  ^^^^------ $\Rightarrow$ number of standing spectators = 4.  At t = 5  ^^^^^----- $\Rightarrow$ number of standing spectators = 5.  At t = 6  -^^^^^---- $\Rightarrow$ number of standing spectators = 5.  At t = 7  --^^^^^--- $\Rightarrow$ number of standing spectators = 5.  At t = 8  ---^^^^^-- $\Rightarrow$ number of standing spectators = 5.  At t = 9  ----^^^^^- $\Rightarrow$ number of standing spectators = 5.  At t = 10 -----^^^^^ $\Rightarrow$ number of standing spectators = 5.  At t = 11 ------^^^^ $\Rightarrow$ number of standing spectators = 4.  At t = 12 -------^^^ $\Rightarrow$ number of standing spectators = 3.  At t = 13 --------^^ $\Rightarrow$ number of standing spectators = 2.  At t = 14 ---------^ $\Rightarrow$ number of standing spectators = 1.  At t = 15 ---------- $\Rightarrow$ number of standing spectators = 0.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 18
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Arpa is researching the Mexican wave.
+
+There are n spectators in the stadium, labeled from 1 to n. They start the Mexican wave at time 0. 
+
+  At time 1, the first spectator stands.  At time 2, the second spectator stands.  ...  At time k, the k-th spectator stands.  At time k + 1, the (k + 1)-th spectator stands and the first spectator sits.  At time k + 2, the (k + 2)-th spectator stands and the second spectator sits.  ...  At time n, the n-th spectator stands and the (n - k)-th spectator sits.  At time n + 1, the (n + 1 - k)-th spectator sits.  ...  At time n + k, the n-th spectator sits. 
+
+Arpa wants to know how many spectators are standing at time t.
+
+
+-----Input-----
+
+The first line contains three integers n, k, t (1 ≤ n ≤ 10^9, 1 ≤ k ≤ n, 1 ≤ t < n + k).
+
+
+-----Output-----
+
+Print single integer: how many spectators are standing at time t.
+
+
+-----Examples-----
+Input
+10 5 3
+
+Output
+3
+
+Input
+10 5 7
+
+Output
+5
+
+Input
+10 5 12
+
+Output
+3
+
+
+
+-----Note-----
+
+In the following a sitting spectator is represented as -, a standing spectator is represented as ^.
+
+  At t = 0  ---------- $\Rightarrow$ number of standing spectators = 0.  At t = 1  ^--------- $\Rightarrow$ number of standing spectators = 1.  At t = 2  ^^-------- $\Rightarrow$ number of standing spectators = 2.  At t = 3  ^^^------- $\Rightarrow$ number of standing spectators = 3.  At t = 4  ^^^^------ $\Rightarrow$ number of standing spectators = 4.  At t = 5  ^^^^^----- $\Rightarrow$ number of standing spectators = 5.  At t = 6  -^^^^^---- $\Rightarrow$ number of standing spectators = 5.  At t = 7  --^^^^^--- $\Rightarrow$ number of standing spectators = 5.  At t = 8  ---^^^^^-- $\Rightarrow$ number of standing spectators = 5.  At t = 9  ----^^^^^- $\Rightarrow$ number of standing spectators = 5.  At t = 10 -----^^^^^ $\Rightarrow$ number of standing spectators = 5.  At t = 11 ------^^^^ $\Rightarrow$ number of standing spectators = 4.  At t = 12 -------^^^ $\Rightarrow$ number of standing spectators = 3.  At t = 13 --------^^ $\Rightarrow$ number of standing spectators = 2.  At t = 14 ---------^ $\Rightarrow$ number of standing spectators = 1.  At t = 15 ---------- $\Rightarrow$ number of standing spectators = 0.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 169
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Vasya has a pile, that consists of some number of stones. $n$ times he either took one stone from the pile or added one stone to the pile. The pile was non-empty before each operation of taking one stone from the pile.
+
+You are given $n$ operations which Vasya has made. Find the minimal possible number of stones that can be in the pile after making these operations.
+
+
+-----Input-----
+
+The first line contains one positive integer $n$ — the number of operations, that have been made by Vasya ($1 \leq n \leq 100$).
+
+The next line contains the string $s$, consisting of $n$ symbols, equal to "-" (without quotes) or "+" (without quotes). If Vasya took the stone on $i$-th operation, $s_i$ is equal to "-" (without quotes), if added, $s_i$ is equal to "+" (without quotes).
+
+
+-----Output-----
+
+Print one integer — the minimal possible number of stones that can be in the pile after these $n$ operations.
+
+
+-----Examples-----
+Input
+3
+---
+
+Output
+0
+Input
+4
+++++
+
+Output
+4
+Input
+2
+-+
+
+Output
+1
+Input
+5
+++-++
+
+Output
+3
+
+
+-----Note-----
+
+In the first test, if Vasya had $3$ stones in the pile at the beginning, after making operations the number of stones will be equal to $0$. It is impossible to have less number of piles, so the answer is $0$. Please notice, that the number of stones at the beginning can't be less, than $3$, because in this case, Vasya won't be able to take a stone on some operation (the pile will be empty).
+
+In the second test, if Vasya had $0$ stones in the pile at the beginning, after making operations the number of stones will be equal to $4$. It is impossible to have less number of piles because after making $4$ operations the number of stones in the pile increases on $4$ stones. So, the answer is $4$.
+
+In the third test, if Vasya had $1$ stone in the pile at the beginning, after making operations the number of stones will be equal to $1$. It can be proved, that it is impossible to have less number of stones after making the operations.
+
+In the fourth test, if Vasya had $0$ stones in the pile at the beginning, after making operations the number of stones will be equal to $3$.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 169
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Vasya has a pile, that consists of some number of stones. $n$ times he either took one stone from the pile or added one stone to the pile. The pile was non-empty before each operation of taking one stone from the pile.
+
+You are given $n$ operations which Vasya has made. Find the minimal possible number of stones that can be in the pile after making these operations.
+
+
+-----Input-----
+
+The first line contains one positive integer $n$ — the number of operations, that have been made by Vasya ($1 \leq n \leq 100$).
+
+The next line contains the string $s$, consisting of $n$ symbols, equal to "-" (without quotes) or "+" (without quotes). If Vasya took the stone on $i$-th operation, $s_i$ is equal to "-" (without quotes), if added, $s_i$ is equal to "+" (without quotes).
+
+
+-----Output-----
+
+Print one integer — the minimal possible number of stones that can be in the pile after these $n$ operations.
+
+
+-----Examples-----
+Input
+3
+---
+
+Output
+0
+Input
+4
+++++
+
+Output
+4
+Input
+2
+-+
+
+Output
+1
+Input
+5
+++-++
+
+Output
+3
+
+
+-----Note-----
+
+In the first test, if Vasya had $3$ stones in the pile at the beginning, after making operations the number of stones will be equal to $0$. It is impossible to have less number of piles, so the answer is $0$. Please notice, that the number of stones at the beginning can't be less, than $3$, because in this case, Vasya won't be able to take a stone on some operation (the pile will be empty).
+
+In the second test, if Vasya had $0$ stones in the pile at the beginning, after making operations the number of stones will be equal to $4$. It is impossible to have less number of piles because after making $4$ operations the number of stones in the pile increases on $4$ stones. So, the answer is $4$.
+
+In the third test, if Vasya had $1$ stone in the pile at the beginning, after making operations the number of stones will be equal to $1$. It can be proved, that it is impossible to have less number of stones after making the operations.
+
+In the fourth test, if Vasya had $0$ stones in the pile at the beginning, after making operations the number of stones will be equal to $3$.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 279
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Pavel cooks barbecue. There are n skewers, they lay on a brazier in a row, each on one of n positions. Pavel wants each skewer to be cooked some time in every of n positions in two directions: in the one it was directed originally and in the reversed direction.
+
+Pavel has a plan: a permutation p and a sequence b_1, b_2, ..., b_{n}, consisting of zeros and ones. Each second Pavel move skewer on position i to position p_{i}, and if b_{i} equals 1 then he reverses it. So he hope that every skewer will visit every position in both directions.
+
+Unfortunately, not every pair of permutation p and sequence b suits Pavel. What is the minimum total number of elements in the given permutation p and the given sequence b he needs to change so that every skewer will visit each of 2n placements? Note that after changing the permutation should remain a permutation as well.
+
+There is no problem for Pavel, if some skewer visits some of the placements several times before he ends to cook. In other words, a permutation p and a sequence b suit him if there is an integer k (k ≥ 2n), so that after k seconds each skewer visits each of the 2n placements.
+
+It can be shown that some suitable pair of permutation p and sequence b exists for any n.
+
+
+-----Input-----
+
+The first line contain the integer n (1 ≤ n ≤ 2·10^5) — the number of skewers.
+
+The second line contains a sequence of integers p_1, p_2, ..., p_{n} (1 ≤ p_{i} ≤ n) — the permutation, according to which Pavel wants to move the skewers.
+
+The third line contains a sequence b_1, b_2, ..., b_{n} consisting of zeros and ones, according to which Pavel wants to reverse the skewers.
+
+
+-----Output-----
+
+Print single integer — the minimum total number of elements in the given permutation p and the given sequence b he needs to change so that every skewer will visit each of 2n placements.
+
+
+-----Examples-----
+Input
+4
+4 3 2 1
+0 1 1 1
+
+Output
+2
+
+Input
+3
+2 3 1
+0 0 0
+
+Output
+1
+
+
+
+-----Note-----
+
+In the first example Pavel can change the permutation to 4, 3, 1, 2.
+
+In the second example Pavel can change any element of b to 1.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 279
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Pavel cooks barbecue. There are n skewers, they lay on a brazier in a row, each on one of n positions. Pavel wants each skewer to be cooked some time in every of n positions in two directions: in the one it was directed originally and in the reversed direction.
+
+Pavel has a plan: a permutation p and a sequence b_1, b_2, ..., b_{n}, consisting of zeros and ones. Each second Pavel move skewer on position i to position p_{i}, and if b_{i} equals 1 then he reverses it. So he hope that every skewer will visit every position in both directions.
+
+Unfortunately, not every pair of permutation p and sequence b suits Pavel. What is the minimum total number of elements in the given permutation p and the given sequence b he needs to change so that every skewer will visit each of 2n placements? Note that after changing the permutation should remain a permutation as well.
+
+There is no problem for Pavel, if some skewer visits some of the placements several times before he ends to cook. In other words, a permutation p and a sequence b suit him if there is an integer k (k ≥ 2n), so that after k seconds each skewer visits each of the 2n placements.
+
+It can be shown that some suitable pair of permutation p and sequence b exists for any n.
+
+
+-----Input-----
+
+The first line contain the integer n (1 ≤ n ≤ 2·10^5) — the number of skewers.
+
+The second line contains a sequence of integers p_1, p_2, ..., p_{n} (1 ≤ p_{i} ≤ n) — the permutation, according to which Pavel wants to move the skewers.
+
+The third line contains a sequence b_1, b_2, ..., b_{n} consisting of zeros and ones, according to which Pavel wants to reverse the skewers.
+
+
+-----Output-----
+
+Print single integer — the minimum total number of elements in the given permutation p and the given sequence b he needs to change so that every skewer will visit each of 2n placements.
+
+
+-----Examples-----
+Input
+4
+4 3 2 1
+0 1 1 1
+
+Output
+2
+
+Input
+3
+2 3 1
+0 0 0
+
+Output
+1
+
+
+
+-----Note-----
+
+In the first example Pavel can change the permutation to 4, 3, 1, 2.
+
+In the second example Pavel can change any element of b to 1.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 280
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: The on-board computer on Polycarp's car measured that the car speed at the beginning of some section of the path equals v_1 meters per second, and in the end it is v_2 meters per second. We know that this section of the route took exactly t seconds to pass.
+
+Assuming that at each of the seconds the speed is constant, and between seconds the speed can change at most by d meters per second in absolute value (i.e., the difference in the speed of any two adjacent seconds does not exceed d in absolute value), find the maximum possible length of the path section in meters.
+
+
+-----Input-----
+
+The first line contains two integers v_1 and v_2 (1 ≤ v_1, v_2 ≤ 100) — the speeds in meters per second at the beginning of the segment and at the end of the segment, respectively.
+
+The second line contains two integers t (2 ≤ t ≤ 100) — the time when the car moves along the segment in seconds, d (0 ≤ d ≤ 10) — the maximum value of the speed change between adjacent seconds.
+
+It is guaranteed that there is a way to complete the segment so that:  the speed in the first second equals v_1,  the speed in the last second equals v_2,  the absolute value of difference of speeds between any two adjacent seconds doesn't exceed d. 
+
+
+-----Output-----
+
+Print the maximum possible length of the path segment in meters. 
+
+
+-----Examples-----
+Input
+5 6
+4 2
+
+Output
+26
+Input
+10 10
+10 0
+
+Output
+100
+
+
+-----Note-----
+
+In the first sample the sequence of speeds of Polycarpus' car can look as follows: 5, 7, 8, 6. Thus, the total path is 5 + 7 + 8 + 6 = 26 meters.
+
+In the second sample, as d = 0, the car covers the whole segment at constant speed v = 10. In t = 10 seconds it covers the distance of 100 meters.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 280
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: The on-board computer on Polycarp's car measured that the car speed at the beginning of some section of the path equals v_1 meters per second, and in the end it is v_2 meters per second. We know that this section of the route took exactly t seconds to pass.
+
+Assuming that at each of the seconds the speed is constant, and between seconds the speed can change at most by d meters per second in absolute value (i.e., the difference in the speed of any two adjacent seconds does not exceed d in absolute value), find the maximum possible length of the path section in meters.
+
+
+-----Input-----
+
+The first line contains two integers v_1 and v_2 (1 ≤ v_1, v_2 ≤ 100) — the speeds in meters per second at the beginning of the segment and at the end of the segment, respectively.
+
+The second line contains two integers t (2 ≤ t ≤ 100) — the time when the car moves along the segment in seconds, d (0 ≤ d ≤ 10) — the maximum value of the speed change between adjacent seconds.
+
+It is guaranteed that there is a way to complete the segment so that:  the speed in the first second equals v_1,  the speed in the last second equals v_2,  the absolute value of difference of speeds between any two adjacent seconds doesn't exceed d. 
+
+
+-----Output-----
+
+Print the maximum possible length of the path segment in meters. 
+
+
+-----Examples-----
+Input
+5 6
+4 2
+
+Output
+26
+Input
+10 10
+10 0
+
+Output
+100
+
+
+-----Note-----
+
+In the first sample the sequence of speeds of Polycarpus' car can look as follows: 5, 7, 8, 6. Thus, the total path is 5 + 7 + 8 + 6 = 26 meters.
+
+In the second sample, as d = 0, the car covers the whole segment at constant speed v = 10. In t = 10 seconds it covers the distance of 100 meters.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': False, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 144
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Someone gave Alyona an array containing n positive integers a_1, a_2, ..., a_{n}. In one operation, Alyona can choose any element of the array and decrease it, i.e. replace with any positive integer that is smaller than the current one. Alyona can repeat this operation as many times as she wants. In particular, she may not apply any operation to the array at all.
+
+Formally, after applying some operations Alyona will get an array of n positive integers b_1, b_2, ..., b_{n} such that 1 ≤ b_{i} ≤ a_{i} for every 1 ≤ i ≤ n. Your task is to determine the maximum possible value of mex of this array.
+
+Mex of an array in this problem is the minimum positive integer that doesn't appear in this array. For example, mex of the array containing 1, 3 and 4 is equal to 2, while mex of the array containing 2, 3 and 2 is equal to 1.
+
+
+-----Input-----
+
+The first line of the input contains a single integer n (1 ≤ n ≤ 100 000) — the number of elements in the Alyona's array.
+
+The second line of the input contains n integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ 10^9) — the elements of the array.
+
+
+-----Output-----
+
+Print one positive integer — the maximum possible value of mex of the array after Alyona applies some (possibly none) operations.
+
+
+-----Examples-----
+Input
+5
+1 3 3 3 6
+
+Output
+5
+
+Input
+2
+2 1
+
+Output
+3
+
+
+
+-----Note-----
+
+In the first sample case if one will decrease the second element value to 2 and the fifth element value to 4 then the mex value of resulting array 1 2 3 3 4 will be equal to 5.
+
+To reach the answer to the second sample case one must not decrease any of the array elements.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': True}
+DEBUG - Start Task 144
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Someone gave Alyona an array containing n positive integers a_1, a_2, ..., a_{n}. In one operation, Alyona can choose any element of the array and decrease it, i.e. replace with any positive integer that is smaller than the current one. Alyona can repeat this operation as many times as she wants. In particular, she may not apply any operation to the array at all.
+
+Formally, after applying some operations Alyona will get an array of n positive integers b_1, b_2, ..., b_{n} such that 1 ≤ b_{i} ≤ a_{i} for every 1 ≤ i ≤ n. Your task is to determine the maximum possible value of mex of this array.
+
+Mex of an array in this problem is the minimum positive integer that doesn't appear in this array. For example, mex of the array containing 1, 3 and 4 is equal to 2, while mex of the array containing 2, 3 and 2 is equal to 1.
+
+
+-----Input-----
+
+The first line of the input contains a single integer n (1 ≤ n ≤ 100 000) — the number of elements in the Alyona's array.
+
+The second line of the input contains n integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ 10^9) — the elements of the array.
+
+
+-----Output-----
+
+Print one positive integer — the maximum possible value of mex of the array after Alyona applies some (possibly none) operations.
+
+
+-----Examples-----
+Input
+5
+1 3 3 3 6
+
+Output
+5
+
+Input
+2
+2 1
+
+Output
+3
+
+
+
+-----Note-----
+
+In the first sample case if one will decrease the second element value to 2 and the fifth element value to 4 then the mex value of resulting array 1 2 3 3 4 will be equal to 5.
+
+To reach the answer to the second sample case one must not decrease any of the array elements.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 251
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: As you know, every birthday party has a cake! This time, Babaei is going to prepare the very special birthday party's cake.
+
+Simple cake is a cylinder of some radius and height. The volume of the simple cake is equal to the volume of corresponding cylinder. Babaei has n simple cakes and he is going to make a special cake placing some cylinders on each other.
+
+However, there are some additional culinary restrictions. The cakes are numbered in such a way that the cake number i can be placed only on the table or on some cake number j where j < i. Moreover, in order to impress friends Babaei will put the cake i on top of the cake j only if the volume of the cake i is strictly greater than the volume of the cake j.
+
+Babaei wants to prepare a birthday cake that has a maximum possible total volume. Help him find this value.
+
+
+-----Input-----
+
+The first line of the input contains a single integer n (1 ≤ n ≤ 100 000) — the number of simple cakes Babaei has.
+
+Each of the following n lines contains two integers r_{i} and h_{i} (1 ≤ r_{i}, h_{i} ≤ 10 000), giving the radius and height of the i-th cake.
+
+
+-----Output-----
+
+Print the maximum volume of the cake that Babaei can make. Your answer will be considered correct if its absolute or relative error does not exceed 10^{ - 6}.
+
+Namely: let's assume that your answer is a, and the answer of the jury is b. The checker program will consider your answer correct, if $\frac{|a - b|}{\operatorname{max}(1, b)} \leq 10^{-6}$.
+
+
+-----Examples-----
+Input
+2
+100 30
+40 10
+
+Output
+942477.796077000
+
+Input
+4
+1 1
+9 7
+1 4
+10 7
+
+Output
+3983.539484752
+
+
+
+-----Note-----
+
+In first sample, the optimal way is to choose the cake number 1.
+
+In second sample, the way to get the maximum volume is to use cakes with indices 1, 2 and 4.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 251
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: As you know, every birthday party has a cake! This time, Babaei is going to prepare the very special birthday party's cake.
+
+Simple cake is a cylinder of some radius and height. The volume of the simple cake is equal to the volume of corresponding cylinder. Babaei has n simple cakes and he is going to make a special cake placing some cylinders on each other.
+
+However, there are some additional culinary restrictions. The cakes are numbered in such a way that the cake number i can be placed only on the table or on some cake number j where j < i. Moreover, in order to impress friends Babaei will put the cake i on top of the cake j only if the volume of the cake i is strictly greater than the volume of the cake j.
+
+Babaei wants to prepare a birthday cake that has a maximum possible total volume. Help him find this value.
+
+
+-----Input-----
+
+The first line of the input contains a single integer n (1 ≤ n ≤ 100 000) — the number of simple cakes Babaei has.
+
+Each of the following n lines contains two integers r_{i} and h_{i} (1 ≤ r_{i}, h_{i} ≤ 10 000), giving the radius and height of the i-th cake.
+
+
+-----Output-----
+
+Print the maximum volume of the cake that Babaei can make. Your answer will be considered correct if its absolute or relative error does not exceed 10^{ - 6}.
+
+Namely: let's assume that your answer is a, and the answer of the jury is b. The checker program will consider your answer correct, if $\frac{|a - b|}{\operatorname{max}(1, b)} \leq 10^{-6}$.
+
+
+-----Examples-----
+Input
+2
+100 30
+40 10
+
+Output
+942477.796077000
+
+Input
+4
+1 1
+9 7
+1 4
+10 7
+
+Output
+3983.539484752
+
+
+
+-----Note-----
+
+In first sample, the optimal way is to choose the cake number 1.
+
+In second sample, the way to get the maximum volume is to use cakes with indices 1, 2 and 4.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 293
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Amr bought a new video game "Guess Your Way Out!". The goal of the game is to find an exit from the maze that looks like a perfect binary tree of height h. The player is initially standing at the root of the tree and the exit from the tree is located at some leaf node. 
+
+Let's index all the leaf nodes from the left to the right from 1 to 2^{h}. The exit is located at some node n where 1 ≤ n ≤ 2^{h}, the player doesn't know where the exit is so he has to guess his way out!
+
+Amr follows simple algorithm to choose the path. Let's consider infinite command string "LRLRLRLRL..." (consisting of alternating characters 'L' and 'R'). Amr sequentially executes the characters of the string using following rules:  Character 'L' means "go to the left child of the current node";  Character 'R' means "go to the right child of the current node";  If the destination node is already visited, Amr skips current command, otherwise he moves to the destination node;  If Amr skipped two consecutive commands, he goes back to the parent of the current node before executing next command;  If he reached a leaf node that is not the exit, he returns to the parent of the current node;  If he reaches an exit, the game is finished. 
+
+Now Amr wonders, if he follows this algorithm, how many nodes he is going to visit before reaching the exit?
+
+
+-----Input-----
+
+Input consists of two integers h, n (1 ≤ h ≤ 50, 1 ≤ n ≤ 2^{h}).
+
+
+-----Output-----
+
+Output a single integer representing the number of nodes (excluding the exit node) Amr is going to visit before reaching the exit by following this algorithm.
+
+
+-----Examples-----
+Input
+1 2
+
+Output
+2
+Input
+2 3
+
+Output
+5
+Input
+3 6
+
+Output
+10
+Input
+10 1024
+
+Output
+2046
+
+
+-----Note-----
+
+A perfect binary tree of height h is a binary tree consisting of h + 1 levels. Level 0 consists of a single node called root, level h consists of 2^{h} nodes called leaves. Each node that is not a leaf has exactly two children, left and right one. 
+
+Following picture illustrates the sample test number 3. Nodes are labeled according to the order of visit.
+
+[Image]
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 293
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Amr bought a new video game "Guess Your Way Out!". The goal of the game is to find an exit from the maze that looks like a perfect binary tree of height h. The player is initially standing at the root of the tree and the exit from the tree is located at some leaf node. 
+
+Let's index all the leaf nodes from the left to the right from 1 to 2^{h}. The exit is located at some node n where 1 ≤ n ≤ 2^{h}, the player doesn't know where the exit is so he has to guess his way out!
+
+Amr follows simple algorithm to choose the path. Let's consider infinite command string "LRLRLRLRL..." (consisting of alternating characters 'L' and 'R'). Amr sequentially executes the characters of the string using following rules:  Character 'L' means "go to the left child of the current node";  Character 'R' means "go to the right child of the current node";  If the destination node is already visited, Amr skips current command, otherwise he moves to the destination node;  If Amr skipped two consecutive commands, he goes back to the parent of the current node before executing next command;  If he reached a leaf node that is not the exit, he returns to the parent of the current node;  If he reaches an exit, the game is finished. 
+
+Now Amr wonders, if he follows this algorithm, how many nodes he is going to visit before reaching the exit?
+
+
+-----Input-----
+
+Input consists of two integers h, n (1 ≤ h ≤ 50, 1 ≤ n ≤ 2^{h}).
+
+
+-----Output-----
+
+Output a single integer representing the number of nodes (excluding the exit node) Amr is going to visit before reaching the exit by following this algorithm.
+
+
+-----Examples-----
+Input
+1 2
+
+Output
+2
+Input
+2 3
+
+Output
+5
+Input
+3 6
+
+Output
+10
+Input
+10 1024
+
+Output
+2046
+
+
+-----Note-----
+
+A perfect binary tree of height h is a binary tree consisting of h + 1 levels. Level 0 consists of a single node called root, level h consists of 2^{h} nodes called leaves. Each node that is not a leaf has exactly two children, left and right one. 
+
+Following picture illustrates the sample test number 3. Nodes are labeled according to the order of visit.
+
+[Image]
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 82
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: meta-llama/Llama-3.3-70B-Instruct
+DEBUG - description: Neko loves divisors. During the latest number theory lesson, he got an interesting exercise from his math teacher.
+
+Neko has two integers $a$ and $b$. His goal is to find a non-negative integer $k$ such that the least common multiple of $a+k$ and $b+k$ is the smallest possible. If there are multiple optimal integers $k$, he needs to choose the smallest one.
+
+Given his mathematical talent, Neko had no trouble getting Wrong Answer on this problem. Can you help him solve it?
+
+
+-----Input-----
+
+The only line contains two integers $a$ and $b$ ($1 \le a, b \le 10^9$).
+
+
+-----Output-----
+
+Print the smallest non-negative integer $k$ ($k \ge 0$) such that the lowest common multiple of $a+k$ and $b+k$ is the smallest possible.
+
+If there are many possible integers $k$ giving the same value of the least common multiple, print the smallest one.
+
+
+-----Examples-----
+Input
+6 10
+
+Output
+2
+Input
+21 31
+
+Output
+9
+Input
+5 10
+
+Output
+0
+
+
+-----Note-----
+
+In the first test, one should choose $k = 2$, as the least common multiple of $6 + 2$ and $10 + 2$ is $24$, which is the smallest least common multiple possible.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': False}
+DEBUG - Start Task 82
+ERROR - Error: RetryError[<Future at 0x766cdeedc280 state=finished raised ConnectionError>]

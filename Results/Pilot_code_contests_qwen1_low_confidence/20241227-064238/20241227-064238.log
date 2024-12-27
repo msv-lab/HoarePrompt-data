@@ -1,0 +1,15 @@
+DEBUG - Start Task 0003
+ERROR - Error: unsupported statement type: <ast.ClassDef object at 0x7a26bdb2dba0> class graph:
+
+    def __init__(self, gdict=None):
+        if gdict is None:
+            gdict = defaultdict(list)
+        self.gdict, self.edges, self.l = gdict, defaultdict(int), defaultdict(
+            int)
+
+    def addEdge(self, node1, node2, w=None):
+        self.gdict[node1].append(node2)
+        self.gdict[node2].append(node1)
+        self.l[node1] += 1
+        self.l[node2] += 1
+
