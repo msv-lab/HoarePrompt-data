@@ -1,0 +1,6 @@
+The function `func_27` accepts four parameters: `n`, `m`, `p`, and `v`. It returns a nested list structure with `n` layers of lists, where each layer contains `m` sublists, and each sublist contains `p` instances of the value `v`. 
+
+- If `n` is 0, the function returns an empty list.
+- If `m` is 0, the function returns a list containing `n` empty lists.
+- If `p` is 0, the function returns a list containing `n` layers, each with `m` empty sublists.
+- If `v` is mutable (e.g., a list), changes to `v` in one part of the nested list will affect all other references to `v` within the same sublist due to the way lists are created using multiplication.

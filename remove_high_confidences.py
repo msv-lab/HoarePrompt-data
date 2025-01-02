@@ -23,7 +23,7 @@ if __name__ == "__main__":
     non_confident_ids = [
         item["unique_id"].replace("_human", "")
         for item in group_consistencies["group_consistencies"]
-        if item["consistency"] < 0.9
+        if item["consistency"] < 0.8
     ]
 
     # Step 2: Select all entries from the second JSON where task_id matches

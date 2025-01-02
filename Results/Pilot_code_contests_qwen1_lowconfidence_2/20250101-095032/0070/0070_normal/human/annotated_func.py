@@ -1,0 +1,175 @@
+#State of the program right berfore the function call: x, y, and z are real numbers with exactly one digit after the decimal point such that 0.1 ≤ x, y, z ≤ 200.0.
+def func_1(x, y, z, k):
+    if (k == 1) :
+        return x ** y ** z, 'x^y^z'
+        #`The program returns x raised to the power of y raised to the power of z, represented as a string 'x^y^z'`
+    else :
+        if (k == 2) :
+            return x ** z ** y, 'x^z^y'
+            #`The program returns x raised to the power of z raised to the power of y, denoted as x^(z^y)`
+        else :
+            if (k == 3 or k == 4) :
+                return x ** (z * y), '(x^y)^z'
+                #The program returns a value calculated as \( x^{(z \times y)} \) and the string '(x^y)^z', where \( x, y, \) and \( z \) are real numbers with exactly one digit after the decimal point such that \( 0.1 \leq x, y, z \leq 200.0 \) and \( k \neq 1 \), and the value of \( k \) is either 3 or 4
+            else :
+                if (k == 5) :
+                    return y ** x ** z, 'y^x^z'
+                    #The program returns a floating-point number which is the result of y raised to the power of (x raised to the power of z), and the string 'y^x^z'
+                else :
+                    if (k == 6) :
+                        return y ** z ** x, 'y^z^x'
+                        #The program returns y raised to the power of z raised to the power of x, denoted as 'y^z^x', where 0.1 ≤ x, y, z ≤ 200.0
+                    else :
+                        if (k == 7 or k == 8) :
+                            return y ** (x * z), '(y^x)^z'
+                            #The program returns a value that is y raised to the power of (x * z), and a string indicating the operation as '(y^x)^z'
+                        else :
+                            if (k == 9) :
+                                return z ** x ** y, 'z^x^y'
+                                #The program returns z raised to the power of (x
+                            else :
+                                if (k == 10) :
+                                    return z ** y ** x, 'z^y^x'
+                                    #`z
+                                else :
+                                    if (k == 11 or k == 12) :
+                                        return z ** (x * y), '(z^x)^y'
+                                        #`The program returns z raised to the power of x*y, with the expression formatted as (z^x)^y, where x, y, and z are real numbers with exactly one digit after the decimal point such that 0.1 ≤ x, y, z ≤ 200.0, and k is either 11 or 12, with k not being any other specific value from 1 to 10`
+                                    #State of the program after the if block has been executed: x, y, and z are real numbers with exactly one digit after the decimal point such that 0.1 ≤ x, y, z ≤ 200.0, k is not equal to 1, k is not equal to 3, k is not equal to 4, k is not equal to 5, k is not equal to 6, and k is neither equal to 7 nor equal to 8, and k is not equal to 9, and k is not equal to 10, and k is not equal to 11 and k is not equal to 12
+                                #State of the program after the if-else block has been executed: x, y, and z are real numbers with exactly one digit after the decimal point such that 0.1 ≤ x, y, z ≤ 200.0, k is not equal to 1, k is not equal to 3, k is not equal to 4, k is not equal to 5, k is not equal to 6, and k is neither equal to 7 nor equal to 8, and k is not equal to 9, and k is not equal to 10, and k is not equal to 11 and k is not equal to 12
+                            #State of the program after the if-else block has been executed: x, y, and z are real numbers with exactly one digit after the decimal point such that 0.1 ≤ x, y, z ≤ 200.0, k is not equal to 1, k is not equal to 3, k is not equal to 4, k is not equal to 5, k is not equal to 6, and k is neither equal to 7 nor equal to 8, and k is not equal to 9, and k is not equal to 10, and k is not equal to 11 and k is not equal to 12
+                        #State of the program after the if-else block has been executed: x, y, and z are real numbers with exactly one digit after the decimal point such that 0.1 ≤ x, y, z ≤ 200.0, k is not equal to 1, k is not equal to 3, k is not equal to 4, k is not equal to 5, k is not equal to 6, and k is neither equal to 7 nor equal to 8, and k is not equal to 9, and k is not equal to 10, and k is not equal to 11 and k is not equal to 12
+                    #State of the program after the if-else block has been executed: x, y, and z are real numbers with exactly one digit after the decimal point such that 0.1 ≤ x, y, z ≤ 200.0, k is not equal to 1, k is not equal to 3, k is not equal to 4, k is not equal to 5, k is not equal to 6, and k is neither equal to 7 nor equal to 8, and k is not equal to 9, and k is not equal to 10, and k is not equal to 11 and k is not equal to 12
+                #State of the program after the if-else block has been executed: x, y, and z are real numbers with exactly one digit after the decimal point such that 0.1 ≤ x, y, z ≤ 200.0, k is not equal to 1, k is not equal to 3, k is not equal to 4, k is not equal to 5, k is not equal to 6, and k is neither equal to 7 nor equal to 8, and k is not equal to 9, and k is not equal to 10, and k is not equal to 11 and k is not equal to 12
+            #State of the program after the if-else block has been executed: x, y, and z are real numbers with exactly one digit after the decimal point such that 0.1 ≤ x, y, z ≤ 200.0, k is not equal to 1, k is not equal to 3, k is not equal to 4, k is not equal to 5, k is not equal to 6, and k is neither equal to 7 nor equal to 8, and k is not equal to 9, and k is not equal to 10, and k is not equal to 11 and k is not equal to 12
+        #State of the program after the if-else block has been executed: x, y, and z are real numbers with exactly one digit after the decimal point such that 0.1 ≤ x, y, z ≤ 200.0, k is not equal to 1, k is not equal to 3, k is not equal to 4, k is not equal to 5, k is not equal to 6, and k is neither equal to 7 nor equal to 8, and k is not equal to 9, and k is not equal to 10, and k is not equal to 11 and k is not equal to 12
+    #State of the program after the if-else block has been executed: x, y, and z are real numbers with exactly one digit after the decimal point such that 0.1 ≤ x, y, z ≤ 200.0, k is not equal to 1, k is not equal to 3, k is not equal to 4, k is not equal to 5, k is not equal to 6, and k is neither equal to 7 nor equal to 8, and k is not equal to 9, and k is not equal to 10, and k is not equal to 11 and k is not equal to 12
+#Overall this is what the function does:The function `func_1` accepts four parameters: `x`, `y`, `z`, and `k`, where `x`, `y`, and `z` are real numbers with exactly one digit after the decimal point and within the range 0.1 ≤ x, y, z ≤ 200.0, and `k` is an integer. Based on the value of `k`, the function performs different calculations involving powers of `x`, `y`, and `z`. The function returns either a numerical value or a string representing the calculated power expression.
+
+The function covers the following cases:
+1. If `k` is 1, it returns \( x^{y^z} \) as a string `'x^y^z'`.
+2. If `k` is 2, it returns \( x^{z^y} \) as a string `'x^z^y'`.
+3. If `k` is 3 or 4, it returns \( x^{(z \times y)} \) as a numerical value and the string `'(x^y)^z'`.
+4. If `k` is 5, it returns \( y^{(x^z)} \) as a string `'y^x^z'`.
+5. If `k` is 6, it returns \( y^{z^x} \) as a string `'y^z^x'`.
+6. If `k` is 7 or 8, it returns \( y^{(x \times z)} \) as a numerical value and the string `'(y^x)^z'`.
+7. If `k` is 9, it returns \( z^{(x^y)} \) as a numerical value.
+8. If `k` is 10, it returns \( z^{y^x} \) as a string `'z^y^x'`.
+9. If `k` is 11 or 12, it returns \( z^{(x \times y)} \) as a numerical value and the string `'(z^x)^y'`.
+
+If `k` does not match any of the above values, the function will return an error or an undefined state, as the function does not handle this case explicitly.
+
+#State of the program right berfore the function call: x, y, and z are real numbers with exactly one digit after the decimal point, such that 0.1 <= x, y, z <= 200.0.
+def func_2(x, y, z, k):
+    if (x > 1) :
+        if (k == 1) :
+            return z * log(y) + log(log(x)), 'x^y^z'
+            #`z * log(y) + log(log(x))`, `'x^y^z'`
+        else :
+            if (k == 2) :
+                return y * log(z) + log(log(x)), 'x^z^y'
+                #The program returns y * log(z) + log(log(x)) and 'x^z^y', where y and z are real numbers with exactly one digit after the decimal point such that 0.1 <= y, z <= 200.0, and x is a real number with exactly one digit after the decimal point such that 0.1 <= x <= 200.0 and x is not greater than 1, and k equals 2
+            else :
+                if (k == 3 or k == 4) :
+                    return log(y) + log(z) + log(log(x)), '(x^y)^z'
+                    #`log(y) + log(z) + log(log(x))` and `(x^y)^z` where `0.1 <= y, z <= 200.0`, `0.1 <= x <= 200.0` and `x <= 1`, and `k != 2`
+                #State of the program after the if block has been executed: x is a real number with exactly one digit after the decimal point, such that 0.1 <= x <= 200.0 and x is not greater than 1, y and z retain their original values and are real numbers with exactly one digit after the decimal point, such that 0.1 <= y, z <= 200.0, k is not equal to 2, and k is not equal to 3 and k is not equal to 4
+            #State of the program after the if-else block has been executed: x is a real number with exactly one digit after the decimal point, such that 0.1 <= x <= 200.0 and x is not greater than 1, y and z retain their original values and are real numbers with exactly one digit after the decimal point, such that 0.1 <= y, z <= 200.0, k is not equal to 2, and k is not equal to 3 and k is not equal to 4
+        #State of the program after the if-else block has been executed: x is a real number with exactly one digit after the decimal point, such that 0.1 <= x <= 200.0 and x is not greater than 1, y and z retain their original values and are real numbers with exactly one digit after the decimal point, such that 0.1 <= y, z <= 200.0, k is not equal to 2, and k is not equal to 3 and k is not equal to 4
+    #State of the program after the if block has been executed: *`x`, `y`, and `z` are real numbers with exactly one digit after the decimal point, such that 0.1 <= `x`, `y`, `z` <= 200.0. If `x` is not greater than 1, then `x` and `y` retain their original values, and `z` remains unchanged. Additionally, `k` is not equal to 2, 3, or 4.
+    if (y > 1) :
+        if (k == 5) :
+            return z * log(x) + log(log(y)), 'y^x^z'
+            #`z * log(x) + log(log(y))`, 'y
+        else :
+            if (k == 6) :
+                return x * log(z) + log(log(y)), 'y^z^x'
+                #`x * log(z) + log(log(y))`, `'y^z^x'` where `x` is not greater than 1, `y` is greater than 1, and `z` remains unchanged
+            else :
+                if (k == 7 or k == 8) :
+                    return log(x) + log(z) + log(log(y)), '(y^x)^z'
+                    #`log(x) + log(z) + log(log(y))`, `(y^x)^z` where `x` is a real number with exactly one digit after the decimal point, such that 0.1 <= `x` <= 1.0, `y` is a real number with exactly one digit after the decimal point, such that 1.0 < `y` <= 200.0, `z` is a real number with exactly one digit after the decimal point, such that 0.1 <= `z` <= 200.0, and `k` is not equal to 2, 3, 4, 5, or 6
+                #State of the program after the if block has been executed: `x`, `y`, and `z` are real numbers with exactly one digit after the decimal point, such that 0.1 <= `x`, `y`, `z` <= 200.0. `k` is not equal to 2, 3, or 4. `x` is not greater than 1, `y` is greater than 1, `z` remains unchanged, `k` is not equal to 5, and `k` is not equal to 6. `k` is not equal to 7 and `k` is not equal to 8
+            #State of the program after the if-else block has been executed: `x`, `y`, and `z` are real numbers with exactly one digit after the decimal point, such that 0.1 <= `x`, `y`, `z` <= 200.0. `k` is not equal to 2, 3, or 4. `x` is not greater than 1, `y` is greater than 1, `z` remains unchanged, `k` is not equal to 5, and `k` is not equal to 6. `k` is not equal to 7 and `k` is not equal to 8
+        #State of the program after the if-else block has been executed: `x`, `y`, and `z` are real numbers with exactly one digit after the decimal point, such that 0.1 <= `x`, `y`, `z` <= 200.0. `k` is not equal to 2, 3, or 4. `x` is not greater than 1, `y` is greater than 1, `z` remains unchanged, `k` is not equal to 5, and `k` is not equal to 6. `k` is not equal to 7 and `k` is not equal to 8
+    #State of the program after the if block has been executed: *`x`, `y`, and `z` are real numbers with exactly one digit after the decimal point, such that 0.1 <= `x`, `y`, `z` <= 200.0. `k` is not equal to 2, 3, or 4. `x` and `y` retain their original values, and `z` remains unchanged unless the if condition is met. If `y` > 1, then `z` remains unchanged. If `y` is not greater than 1, then `z` also retains its original value. `k` is not equal to 5, 6, 7, or 8.
+    if (z > 1) :
+        if (k == 9) :
+            return y * log(x) + log(log(z)), 'z^x^y'
+            #`y * log(x) + log(log(z))` where `y` is a real number with exactly one digit after the decimal point and 0.1 <= y <= 200.0, `x` is a real number with exactly one digit after the decimal point and 0.1 <= x <= 200.0, `z` is a real number with exactly one digit after the decimal point and 1.1 <= z <= 200.0, and the string `'z^x^y'`
+        else :
+            if (k == 10) :
+                return x * log(y) + log(log(z)), 'z^y^x'
+                #`x * log(y) + log(log(z))`, 'z^y^x'
+            else :
+                if (k == 11 or k == 12) :
+                    return log(x) + log(y) + log(log(z)), '(z^x)^y'
+                    #`log(x) + log(y) + log(log(z))`, `(z^x)^y` where `x` is a real number with exactly one digit after the decimal point such that 0.1 <= x <= 200.0, `y` is a real number with exactly one digit after the decimal point such that 0.1 <= y <= 200.0, `z` is a real number with exactly one digit after the decimal point such that 0.1 <= z <= 1.0, and `k` is either 11 or 12 (but its value does not affect the return)
+                #State of the program after the if block has been executed: `x`, `y`, and `z` are real numbers with exactly one digit after the decimal point, such that 0.1 <= `x`, `y`, `z` <= 200.0. `k` is not equal to 2, 3, or 4. `x` and `y` retain their original values, and `z` remains unchanged unless the if condition is met. The current value of `z` is less than or equal to 1. `k` is not equal to 5, 6, 7, 8, 9, 11, or 12.
+            #State of the program after the if-else block has been executed: `x`, `y`, and `z` are real numbers with exactly one digit after the decimal point, such that 0.1 <= `x`, `y`, `z` <= 200.0. `k` is not equal to 2, 3, or 4. `x` and `y` retain their original values, and `z` remains unchanged unless the if condition is met. The current value of `z` is less than or equal to 1. `k` is not equal to 5, 6, 7, 8, 9, 11, or 12.
+        #State of the program after the if-else block has been executed: `x`, `y`, and `z` are real numbers with exactly one digit after the decimal point, such that 0.1 <= `x`, `y`, `z` <= 200.0. `k` is not equal to 2, 3, or 4. `x` and `y` retain their original values, and `z` remains unchanged unless the if condition is met. The current value of `z` is less than or equal to 1. `k` is not equal to 5, 6, 7, 8, 9, 11, or 12.
+    #State of the program after the if block has been executed: *`x`, `y`, and `z` are real numbers with exactly one digit after the decimal point, such that 0.1 <= `x`, `y`, `z` <= 200.0. `k` is not equal to 2, 3, 4, 5, 6, 7, 8, 9, 11, or 12. `x` and `y` retain their original values, and `z` remains unchanged regardless of the value of `y`.
+    return False, ''
+    #The program returns False and an empty string
+#Overall this is what the function does:The function `func_2` accepts four parameters: `x`, `y`, `z`, and `k`. These parameters are real numbers with exactly one digit after the decimal point, such that `0.1 <= x, y, z <= 200.0`, and `k` is an integer. The function returns a mathematical expression and a string based on the values of `x`, `y`, `z`, and `k`.
+
+- If `x > 1` and `k == 1`, it returns `z * log(y) + log(log(x))` and `'x^y^z'`.
+- If `x > 1` and `k == 2`, it returns `y * log(z) + log(log(x))` and `'x^z^y'`.
+- If `x > 1` and `k == 3` or `k == 4`, it returns `log(y) + log(z) + log(log(x))` and `'x^(y^z)'`.
+- If `y > 1` and `k == 5`, it returns `z * log(x) + log(log(y))` and `'y^x^z'`.
+- If `y > 1` and `k == 6`, it returns `x * log(z) + log(log(y))` and `'y^z^x'`.
+- If `y > 1` and `k == 7` or `k == 8`, it returns `log(x) + log(z) + log(log(y))` and `'y^(x^z)'`.
+- If `z > 1` and `k == 9`, it returns `y * log(x) + log(log(z))` and `'z^x^y'`.
+- If `z > 1` and `k == 10`, it returns `x * log(y) + log(log(z))` and `'z^y^x'`.
+- If `z > 1` and `k == 11` or `k == 12`, it returns `log(x) + log(y) + log(log(z))` and `'z^(x^y)'`.
+- If none of the conditions are met, it returns `False` and an empty string.
+
+This covers all possible cases and includes potential edge cases such as when `x`, `y`, or `z` are equal to their boundaries (`0.1` or `200.0`). The function handles the specified conditions and returns the appropriate mathematical expression and string based on the input values.
+
+#State of the program right berfore the function call: x, y, and z are real numbers with exactly one digit after the decimal point, and they lie in the range [0.1, 200.0].
+def func_3(x, y, z):
+    if (max(x, y, z) < 1) :
+        maxNum, ans = 0, ''
+        for i in index:
+            t = func_1(x, y, z, i)
+            
+            if t[0] > maxNum:
+                ans = t[1]
+                maxNum = t[0]
+            
+        #State of the program after the  for loop has been executed: `maxNum` is the maximum value among all the first elements returned by `func_1(x, y, z, i)` for each `i` in `index`, `ans` is the second element of the `t` corresponding to the maximum first element, `index` is the list of indices, `t` is the return value of `func_1(x, y, z, i)` for each `i` in `index`.
+        return ans
+        #`The program returns the second element of the tuple 't' that corresponds to the maximum first element returned by func_1(x, y, z, i) for each i in index`
+    else :
+        if (max(x, y, z) == 1) :
+            if (x == 1) :
+                return 'x^y^z'
+                #The program returns '1^y^z', given that x is 1 and the maximum of x, y, and z is 1, which implies that y and z must also be 1
+            else :
+                if (y == 1) :
+                    return 'y^x^z'
+                    #The program returns '1^x^z', where x and z are real numbers with exactly one digit after the decimal point and lie in the range [0.1, 200.0]
+                else :
+                    return 'z^x^y'
+                    #The program returns z raised to the power of (x raised to the power of y)
+        else :
+            maxNum, ans = None, ''
+            for i in index:
+                t = func_2(x, y, z, i)
+                
+                if t[0] != False:
+                    if maxNum == None or t[0] > maxNum:
+                        ans = t[1]
+                        maxNum = t[0]
+                
+            #State of the program after the  for loop has been executed: `x` is a real number with exactly one digit after the decimal point in the range [0.1, 200.0], `y` is a real number with exactly one digit after the decimal point in the range [0.1, 200.0], `z` is a real number with exactly one digit after the decimal point in the range [0.1, 200.0], `maxNum` is the maximum value returned by `func_2(x, y, z, i)` among all iterations, `ans` is the corresponding string value returned by `func_2(x, y, z, i)` when `maxNum` is updated, `i` is the last value in `index` that caused `maxNum` to be updated, and `t` is the return value of `func_2(x, y, z, i)` during the last iteration.
+            return ans
+            #The program returns `ans`, which is the string value returned by `func_2(x, y, z, i)` when `maxNum` was last updated
+#Overall this is what the function does:The function `func_3` accepts three parameters `x`, `y`, and `z`, each being a real number with exactly one digit after the decimal point in the range [0.1, 200.0]. Based on certain conditions, the function performs the following actions and returns one of the following outcomes:
+
+- If the maximum of `x`, `y`, and `z` is less than 1, the function iterates over the `index` list and calls `func_1(x, y, z, i)` for each `i` in `index`. It then finds the tuple `t` with the maximum first element and returns the second element of this tuple.
+- If the maximum of `x`, `y`, and `z` is exactly 1, it checks if `x` is 1. If `x` is 1, it returns '1^y^z'. Otherwise, it checks if `y` is 1. If `y` is 1, it returns '1^x^z'. In all other cases, it returns `z` raised to the power of (`x` raised to the power of `y`).
+- If the maximum of `x`, `y`, and `z` is greater than or equal to 1, the function iterates over the `index` list and calls `func_2(x, y, z, i)` for each `i` in `index`. It keeps track of the maximum first element returned by `func_2` and the corresponding string value. After the loop, it returns the string value corresponding to the maximum first element.
+
+In all cases, the function ensures that the inputs `x`, `y`, and `z` are real numbers with exactly one digit after the decimal point in the range [0.1, 200.0].
+

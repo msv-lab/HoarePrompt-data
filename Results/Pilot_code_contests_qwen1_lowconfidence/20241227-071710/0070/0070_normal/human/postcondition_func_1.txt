@@ -1,0 +1,13 @@
+The function `func_2` accepts four parameters: `x`, `y`, `z` (real numbers with exactly one digit after the decimal point such that 0.1 ≤ x, y, z ≤ 200.0), and `k` (an integer). Based on the value of `k`, the function calculates and returns one of several mathematical expressions involving the natural logarithm (`log`) of the input variables. Specifically:
+
+1. If `x > 1` and `k == 1`, it returns `z * log(y) + log(log(x))` and the string `'x^y^z'`.
+2. If `x ≤ 1` and `k == 2`, it returns `y * log(z) + log(log(x))` and the string `'x^z^y'`.
+3. If `x > 1` and `k == 3` or `k == 4`, it returns `log(y) + log(z) + log(log(x))` and the string `'(x^y)^z'`.
+4. If `y > 1` and `k == 5`, it returns `z * log(x) + log(log(y))` and the string `'y^x^z'`.
+5. If `y > 1` and `k == 6`, it returns `x * log(z) + log(log(y))` and the string `'y^z^x'`.
+6. If `y > 1` and `k == 7` or `k == 8`, it returns `log(x) + log(z) + log(log(y))` and the string `'(y^x)^z'`.
+7. If `z > 1` and `k == 9`, it returns `y * log(x) + log(log(z))` and the string `'z^x^y'`.
+8. If `z > 1` and `k == 10`, it returns `x * log(y) + log(log(z))` and the string `'z^y^x'`.
+9. If `z > 1` and `k == 11` or `k == 12`, it returns `log(x) + log(y) + log(log(z))` and the string `'(z^x)^y'`.
+
+For all other values of `k`, the function returns `False` and an empty string.

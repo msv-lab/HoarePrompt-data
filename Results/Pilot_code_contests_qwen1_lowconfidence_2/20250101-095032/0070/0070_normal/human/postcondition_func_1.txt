@@ -1,0 +1,14 @@
+The function `func_2` accepts four parameters: `x`, `y`, `z`, and `k`. These parameters are real numbers with exactly one digit after the decimal point, such that `0.1 <= x, y, z <= 200.0`, and `k` is an integer. The function returns a mathematical expression and a string based on the values of `x`, `y`, `z`, and `k`.
+
+- If `x > 1` and `k == 1`, it returns `z * log(y) + log(log(x))` and `'x^y^z'`.
+- If `x > 1` and `k == 2`, it returns `y * log(z) + log(log(x))` and `'x^z^y'`.
+- If `x > 1` and `k == 3` or `k == 4`, it returns `log(y) + log(z) + log(log(x))` and `'x^(y^z)'`.
+- If `y > 1` and `k == 5`, it returns `z * log(x) + log(log(y))` and `'y^x^z'`.
+- If `y > 1` and `k == 6`, it returns `x * log(z) + log(log(y))` and `'y^z^x'`.
+- If `y > 1` and `k == 7` or `k == 8`, it returns `log(x) + log(z) + log(log(y))` and `'y^(x^z)'`.
+- If `z > 1` and `k == 9`, it returns `y * log(x) + log(log(z))` and `'z^x^y'`.
+- If `z > 1` and `k == 10`, it returns `x * log(y) + log(log(z))` and `'z^y^x'`.
+- If `z > 1` and `k == 11` or `k == 12`, it returns `log(x) + log(y) + log(log(z))` and `'z^(x^y)'`.
+- If none of the conditions are met, it returns `False` and an empty string.
+
+This covers all possible cases and includes potential edge cases such as when `x`, `y`, or `z` are equal to their boundaries (`0.1` or `200.0`). The function handles the specified conditions and returns the appropriate mathematical expression and string based on the input values.

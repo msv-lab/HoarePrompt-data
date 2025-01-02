@@ -1,0 +1,7 @@
+The function `func_12` accepts three parameters: `x`, `y`, and `p`, where `x` and `y` are integers and `p` is a positive integer representing a prime number. It computes the result of the modular exponentiation \(x^y \mod p\) using an efficient algorithm known as "Exponentiation by Squaring." Specifically, it iteratively squares `x` and multiplies it into the result when `y` is odd, reducing `y` by half each iteration until `y` becomes zero. After the loop, the function returns the computed result. 
+
+Potential edge cases include:
+- If `y` is 0, the loop does not execute, and the function immediately returns 1 since \(x^0 \equiv 1 \mod p\).
+- If `x` is 0, the result will always be 0 regardless of `y` and `p`, as \(0^y \equiv 0 \mod p\).
+
+The function correctly implements the modular exponentiation algorithm as described in the annotations and return postconditions.

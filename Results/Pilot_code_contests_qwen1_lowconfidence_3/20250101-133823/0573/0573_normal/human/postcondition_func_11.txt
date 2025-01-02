@@ -1,0 +1,3 @@
+The function `func_12` accepts three integers `x`, `y`, and `p` where \(0 \leq x < p\) and \(p > 0\), and \(y \geq 0\). It calculates \(x^y \mod p\) using the method of exponentiation by squaring. Specifically, it iterates through the binary representation of `y`, squaring `x` repeatedly and multiplying by `x` only when the corresponding bit in `y` is set. After the loop, it returns the result stored in `res`. 
+
+This function handles the case where `y` is zero, in which case it directly returns `1` since \(x^0 = 1\). There are no explicit checks for `x` being equal to `0` or `p` being a specific value, so these edge cases are implicitly handled by the modular arithmetic operations.

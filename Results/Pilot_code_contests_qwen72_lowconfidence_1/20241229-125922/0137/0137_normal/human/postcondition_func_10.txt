@@ -1,0 +1,4 @@
+- If `func_1` modifies any global variables or external state, those changes will be reflected after `func_10` is called.
+- If `func_1` has side effects (e.g., printing to the console, writing to a file), these side effects will occur when `func_10` is executed.
+- The function `func_10` does not handle any errors or exceptions that might be raised by `func_1`.
+- The function `func_10` does not validate the external parameters `r1`, `c1`, `r2`, and `c2`, so it assumes they are always valid according to the given conditions. If these conditions are not met, the behavior of `func_10` is undefined.

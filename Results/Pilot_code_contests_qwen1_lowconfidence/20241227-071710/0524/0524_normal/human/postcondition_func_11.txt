@@ -1,0 +1,12 @@
+The function `func_12` accepts three parameters: `x`, `y`, and `p`, where `x` and `y` are integers and `p` is a positive integer. It calculates the modular exponentiation of `x^y` under modulo `p`, meaning it computes `(x^y) mod p`. 
+
+The function uses a loop to perform the modular exponentiation efficiently using the method of exponentiation by squaring. Within each iteration of the loop:
+- If the current value of `y` is odd, it multiplies `res` by `x` modulo `p`.
+- It then squares `x` and reduces it modulo `p`.
+- It shifts `y` right by one bit (equivalent to integer division by 2).
+
+After the loop, the function returns `res`, which is the result of the modular exponentiation calculation.
+
+Potential edge cases and missing functionality:
+- The annotation mentions `p1` in the line `x = x * x % p1`, but `p1` is not defined in the function. This should be `p` instead.
+- The function does not handle the case where `y` is negative. While the provided annotations suggest `y > 0`, in practice, `y` could be negative, and the function should handle such cases appropriately, possibly returning an error or handling it based on the requirements.

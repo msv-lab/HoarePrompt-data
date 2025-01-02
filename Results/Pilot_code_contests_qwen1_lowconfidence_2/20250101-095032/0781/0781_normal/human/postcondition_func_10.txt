@@ -1,0 +1,3 @@
+The function `func_11` accepts three parameters: `a`, `b`, and `m`, where `a` and `b` are integers and `m` is a positive integer greater than 1. The function calculates the modular multiplicative inverse of `b` modulo `m` using the auxiliary function `func_10(b, m)`. If such an inverse does not exist (i.e., `func_10(b, m)` returns -1), the function returns -999999999. Otherwise, it returns the value of `inv * a % m`, where `inv` is the modular multiplicative inverse of `b` modulo `m`.
+
+In summary, after the function concludes, if a valid inverse exists, the program state will have `a` modified to its remainder when divided by `m`, and the function will return the product of the inverse and `a` modulo `m`. If no valid inverse exists, the function will return -999999999.

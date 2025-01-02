@@ -1,0 +1,7 @@
+The function `func_2()` accepts three parameters `r`, `g`, and `b`, representing the number of red, green, and blue balloons respectively. It does not return any value. After executing the function, the standard output will contain a string where the numbers of red, green, and blue balloons are concatenated together with a space separator. If the function is called with additional keyword arguments `sep`, `file`, `end`, `flush`, the respective functionalities are applied to modify the output. Specifically:
+- `sep` changes the separator between the numbers to the specified value (default is a space).
+- `file` specifies the file to write to (default is `sys.stdout`).
+- `end` appends the specified value to the end of the output (default is a newline).
+- `flush` forces the output buffer to be flushed if the specified value is `True`.
+
+However, the function does not perform any calculations or manipulations on the input parameters `r`, `g`, and `b`. It simply outputs them as a string with the specified formatting. Additionally, the function does not handle any edge cases where the input values might be outside the valid range (0 <= r, g, b <= 2 * 10^9).

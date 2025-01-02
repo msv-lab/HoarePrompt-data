@@ -1,0 +1,10 @@
+The function `func_1` accepts a string `field` consisting of '*' and '.' characters and an integer `i` such that \(0 \leq i < \text{len}(field)\). It aims to find a slice length (`slice_len`) that meets specific conditions. Specifically:
+
+- It iterates through possible slice lengths from 1 to the length of `field`.
+- For each slice length, it extracts a substring `res` from `field` starting at index `i` with the current slice length.
+- If `res` has a length of 5 and consists entirely of '*', it returns the current slice length.
+- If no such slice is found, the function returns `None`.
+
+The potential edge cases include:
+- If `field` is empty or `i` is out of bounds, the function will still follow the same logic but will not find a valid `res` substring, leading to a return value of `None`.
+- If the first condition (`len(res) == 5 and set(res) == {'*'}`) is met, the function will immediately return the slice length, which means the subsequent conditions (`slice_len_current + 1` and `slice_len_current + 2`) will not be checked.

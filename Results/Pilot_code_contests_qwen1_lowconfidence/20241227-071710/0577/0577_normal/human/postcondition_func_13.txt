@@ -1,0 +1,8 @@
+The function `func_14` accepts three parameters: `x`, `y`, and `p`. - `x` is an integer representing the base. - `y` is a non-negative integer representing the exponent. - `p` is a positive integer representing the modulus. The function implements the modular exponentiation algorithm, which calculates \( x^y \mod p \) efficiently using the square-and-multiply algorithm. The function first reduces `x` modulo `p` and then iteratively squares `x` and multiplies it with `res` when the least significant bit of `y` is 1. After the loop, the function returns `res`, which is the result of \( x^{original \ y} \mod p \). 
+
+Potential edge cases and missing functionality:
+- The function correctly handles the case where `y` is 0, as it initializes `res` to 1, which is the identity element for multiplication.
+- The function correctly handles the case where `x` or `p` is 0 or 1, though these cases might not be explicitly stated in the problem context.
+- The function correctly reduces `x` modulo `p` at the start to ensure that all intermediate calculations are performed under the same modulus.
+- The function correctly updates `x` to \( x^2 \mod p \) in each iteration, ensuring that the final value of `x` is \( x^{y//2} \mod p \).
+- The function correctly updates `res` only when the least significant bit of `y` is 1, ensuring that the correct power of `x` is included in the result.

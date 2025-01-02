@@ -1,0 +1,38 @@
+#State of the program right berfore the function call: a1, a2, a3, and a4 are integers such that 1 ≤ a1, a2, a3, a4 ≤ 10^6.
+def func():
+    a = [int(x) for x in stdin.readline().split()]
+    if (abs(a[2] - a[3]) > 1) :
+        print(-1)
+    else :
+        tem, tem2 = ['4'], ['7']
+        four, seven = 1, 0
+        four2, seven2 = 0, 1
+        for i in range(a[2] + a[3]):
+            if i & 1:
+                tem.append('4')
+                tem2.append('7')
+                four += 1
+                seven2 += 1
+            else:
+                tem.append('7')
+                tem2.append('4')
+                four2 += 1
+                seven += 1
+            
+        #State of the program after the  for loop has been executed: `a3` and `a4` are integers such that \(1 \leq a3 \leq 10^6\) and \(1 \leq a4 \leq 10^6\), `i` is either \(a3 + a4 - 1\) or \(a3 + a4\), `a` is a list containing `[a1, a2, a3, a4]`, `tem` is a list of length \(a3 + a4\) where each element alternates between '4' and '7' starting with '7' if `i` is even, and starting with '4' if `i` is odd, `tem2` is a list of the same length where each element alternates between '7' and '4' starting with '7' if `i` is even, and starting with '4' if `i` is odd, `four` and `four2` are both \(a3 + a4\), and `seven` and `seven2` are both \(a3 + a4\).
+        if ((four > a[0] or seven > a[1]) and (four2 > a[0] or seven2 > a[1])) :
+            print(-1)
+        else :
+            if ((four > a[0] or seven > a[1]) or a[2] < a[3]) :
+                tem, four, seven = tem2, four2, seven2
+            #State of the program after the if block has been executed: `a3` and `a4` are integers such that \(1 \leq a3 \leq 10^6\) and \(1 \leq a4 \leq 10^6\), `i` is either \(a3 + a4 - 1\) or \(a3 + a4\), `a` is a list containing `[a1, a2, a3, a4]`, `tem` is a list of length \(a3 + a4\) where each element alternates between '7' and '4' starting with '7' if `i` is even, and starting with '4' if `i` is odd, `tem2` is a list of the same length where each element alternates between '4' and '7' starting with '4' if `i` is even, and starting with '7' if `i` is odd, `four` is \(a3 + a4\), `four2` is \(a3 + a4\), `seven` is \(a3 + a4\), `seven2` is \(a3 + a4\). The condition \((four \leq a[0] \land seven \leq a[1]) \lor (four2 \leq a[0] \land seven2 \leq a[1])\) still holds.
+            ext4, ext7 = '4' * (a[0] - four), '7' * (a[1] - seven)
+            if (tem[-1] == '7') :
+                print('%s%s%s%s' % (tem[0], ext4, ''.join(tem[1:]), ext7))
+            else :
+                print('%s%s%s%s%s' % (tem[0], ext4, ''.join(tem[1:-1]), ext7, tem[-1]))
+            #State of the program after the if-else block has been executed: *`a3`, `a4`, `i`, `a`, `tem`, `tem2`, `four`, `four2`, `seven`, `seven2` remain the same. If the last character of `tem` is `'7'`, a string is printed with the format `%s%s%s%s` containing the first character of `tem`, followed by `ext4`, then the rest of `tem`, and finally `ext7`. Otherwise, `tem` is updated to `tem[0] + '4' * (a[0] - four) + tem[1:len(tem)-1] + '7' * (a[1] - seven) + tem[-1]`. The condition \((four \leq a[0] \land seven \leq a[1]) \lor (four2 \leq a[0] \land seven2 \leq a[1])\) still holds.
+        #State of the program after the if-else block has been executed: *`a3`, `a4`, `i`, `a`, `tem`, `tem2`, `four`, `four2`, `seven`, `seven2` remain the same. If \((four > a[0] \text{ or } seven > a[1]) \text{ and } (four2 > a[0] \text{ or } seven2 > a[1])\), the value printed is -1. Otherwise, if the last character of `tem` is `'7'`, a string is printed with the format `%s%s%s%s` containing the first character of `tem`, followed by `ext4`, then the rest of `tem`, and finally `ext7`. Otherwise, `tem` is updated to `tem[0] + '4' * (a[0] - four) + tem[1:len(tem)-1] + '7' * (a[1] - seven) + tem[-1]`. The condition \((four \leq a[0] \land seven \leq a[1]) \lor (four2 \leq a[0] \land seven2 \leq a[1])\) still holds.
+    #State of the program after the if-else block has been executed: *`a1`, `a2`, `a3`, and `a4` are integers such that 1 ≤ `a1`, `a2`, `a3`, `a4` ≤ 10^6; `a` is a list containing `[a1, a2, a3, a4]`. If the absolute difference between the third and fourth elements of `a` is greater than 1, -1 is printed. Otherwise, -1 is printed if \((four > a[0] \text{ or } seven > a[1]) \text{ and } (four2 > a[0] \text{ or } seven2 > a[1])\). Otherwise, either the string is printed with the format `%s%s%s%s` containing the first character of `tem`, followed by `ext4`, then the rest of `tem`, and finally `ext7`, or `tem` is updated to `tem[0] + '4' * (a[0] - four) + tem[1:len(tem)-1] + '7' * (a[1] - seven) + tem[-1]`, and the condition \((four \leq a[0] \land seven \leq a[1]) \lor (four2 \leq a[0] \land seven2 \leq a[1])\) still holds.
+#Overall this is what the function does:The function reads four integers \(a1, a2, a3,\) and \(a4\) from standard input, where \(1 \leq a1, a2, a3, a4 \leq 10^6\). It then constructs two lists, `tem` and `tem2`, which contain alternating characters '4' and '7'. Depending on the parity of the index, `tem` starts with '7' and `tem2` starts with '4'. After constructing these lists, it checks if the counts of '4' and '7' in `tem` and `tem2` exceed certain thresholds defined by `a1` and `a2`. If both counts exceed the thresholds, it prints -1. If the counts do not exceed the thresholds and the absolute difference between `a3` and `a4` is not greater than 1, it formats and prints a string based on the last character of `tem`. This string includes a prefix, a suffix, and the remaining characters of `tem`, adjusted by the required number of '4's and '7's to meet the thresholds. If the absolute difference between `a3` and `a4` is greater than 1, it immediately prints -1. The function does not return any value.
+

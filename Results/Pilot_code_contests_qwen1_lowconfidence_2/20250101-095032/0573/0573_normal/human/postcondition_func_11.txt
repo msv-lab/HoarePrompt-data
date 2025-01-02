@@ -1,0 +1,7 @@
+The function `func_12` accepts three parameters: `x`, `y`, and `p`, where `x` and `y` are integers, and `p` is a positive integer representing the modulus. The function calculates `x` raised to the power `y` modulo `p` using an efficient method called exponentiation by squaring. Specifically, it initializes `res` to 1 and iteratively squares `x` while right-shifting `y`. When the least significant bit of `y` is 1, it multiplies `res` by the current value of `x`. After the loop, the function returns `res`, which is the result of `x^y % p`.
+
+Potential edge cases include:
+- If `y` is 0, the function will return 1 because any number raised to the power of 0 is 1 (mod p).
+- If `x` is 0, the function will return 0 as long as `y` is not 0, since 0 raised to any positive power is 0 (mod p).
+
+The provided annotations correctly describe the behavior of the function, and no missing functionality is noted. The function handles the entire range of possible values for `x`, `y`, and `p` as defined by the problem constraints.

@@ -1,0 +1,15 @@
+The function `func_1` takes no parameters and does not return any value. It constructs a list `out` based on the values of `a`, `b`, `c`, and `d` which represent the counts of numbers 0, 1, 2, and 3 respectively in the sequence to be constructed. The function first calls another function `func_3` to get the initial values of `a`, `b`, `c`, and `d`. It then calculates two differences `s1` and `s2` where `s1 = b - a` and `s2 = c - d`.
+
+- If `s1 == s2`, the function constructs the output list `out` using the pattern `[1, 0] * a + [1, 2] * (b - a) + [3, 2] * d`.
+
+- If `s1 + 1 == s2`:
+  - If `a > 0`, it decreases `a` by 1, sets `s1` to 0, and `s2` to 1, and constructs the output list `out` as `[0] + [1, 0] * a + [1, 2] * (b - a) + [3, 2] * d`.
+  - If `a == 0`, it decreases `c` by 1 and sets `s1` to `b` and `s2` to `c - 1 - d`, and constructs the output list `out` as `[2] + [1, 0] * a + [1, 2] * (b - a) + [3, 2] * d`.
+
+- If `s1 == s2 + 1`:
+  - If `d > 0`, it decreases `d` by 1, sets `s1` to `-1`, and `s2` to `a - 2`, and constructs the output list `out` as `[1, 0] * a + [1, 2] * (b - a) + [3, 2] * d + [3]`.
+  - If `d == 0`, it decreases `b` by 1, sets `s1` to `-1`, and `s2` to `a - 2`, and constructs the output list `out` as `[1, 0] * a + [1, 2] * (b - a) + [3, 2] * d + [1]`.
+
+- If none of the above conditions are met, the function prints 'NO' and exits without constructing the output list.
+
+Finally, if the function completes successfully, it prints 'YES' followed by the constructed output list `out`.

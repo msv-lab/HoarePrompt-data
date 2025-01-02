@@ -1,0 +1,10 @@
+The function `func_1` accepts a list `curr` consisting of non-negative integers where the length of `curr` is between 1 and \(3 \times 10^5\) inclusive, and each element is in the range 0 to \(10^9\) inclusive. After executing, the function returns a boolean value indicating whether the elements in `curr` are in strictly increasing order. 
+
+The function checks if every element in `curr` is greater than the previous element starting from the second element in the list. If all elements satisfy this condition, the function returns `True`, indicating that the list is in strictly increasing order. If any element does not meet this condition, the function returns `False`.
+
+Edge cases:
+1. If the list `curr` contains only one element, the function returns `True` since there are no elements to compare.
+2. If the list `curr` is empty, the function should ideally raise an error or return `True` (depending on the desired behavior), but the provided code does not handle this case. To address this, the function could be modified to check for an empty list and return `True` or raise an error as needed.
+
+Missing functionality:
+1. The provided code does not handle the case where `curr` is an empty list. Depending on the intended behavior, this case should be addressed (e.g., returning `True` or raising an error).

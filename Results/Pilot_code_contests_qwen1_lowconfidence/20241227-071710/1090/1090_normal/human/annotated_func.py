@@ -1,0 +1,45 @@
+#State of the program right berfore the function call: n is an integer such that 1 <= n <= 10^3, s is a string of length n consisting of lowercase English letters, and a1, a2, ..., a26 is a list of 26 integers where each integer ax represents the maximum length of substring the x-th letter ('a' to 'z') can appear in and satisfies 1 <= ax <= 10^3.
+def func():
+    n = input()
+    str = raw_input()
+    arr = raw_input().split()
+    arr = map(eval, arr)
+    MOD = 1000000000.0 + 7
+    dp = [0] * 3200
+    dp[0] = 1
+    lastMatch = [0] * 3200
+    for i in range(len(lastMatch)):
+        lastMatch[i] = i
+        
+    #State of the program after the  for loop has been executed: `n` is an integer within the range of 1 to \(10^3\), `s` is a string of length `n` consisting of lowercase English letters, `a1, a2, ..., a26` is a list of 26 integers where each integer `ax` represents the maximum length of substring the x-th letter ('a' to 'z') can appear in and satisfies 1 <= `ax` <= \(10^3\), `str` is the same as `s`, `arr` is a list of evaluated results of its original elements, `MOD` is 1000000007.0, `dp` is a list of 3200 elements, where the first element is 1 and all others are 0, `lastMatch` is a list of 3200 elements, where all elements are set to the value of `len(lastMatch) - 1`.
+    maxSubLen = 0
+    for i in range(1, len(str) + 1):
+        j = 1
+        
+        k = arr[ord(str[i - 1]) - ord('a')]
+        
+        while j <= k and i - j >= 0:
+            maxSubLen = max(j, maxSubLen)
+            dp[i] = (dp[i] + dp[i - j]) % MOD
+            t = i - j - 1
+            lastMatch[t + 1] = max(lastMatch[t + 1], i - 1)
+            t = t if t > 0 else 0
+            k = min(k, arr[ord(str[t]) - ord('a')])
+            j += 1
+        
+    #State of the program after the  for loop has been executed: `n` is an integer within the range of 1 to \(10^3\), `s` is a string of length `n`, `a1, a2, ..., a26` is a list of 26 integers, `arr` is a list of evaluated results, `MOD` is 1000000007.0, `dp` is a list of 3200 elements, where the first element is 1 and `dp[i]` for `i` from `1` to `len(s)` contains the number of distinct substrings of `s` ending at each position modulo `MOD`, `lastMatch` is a list of 3200 elements, where `lastMatch[i]` is the maximum index in the string `s` where the character corresponding to `str[i]` appears, `maxSubLen` is the maximum length of any distinct substring found during the loop execution, `j` is the final value of `j` after the loop exits, `i` is the final value of `i` after the loop exits, `k` is the minimum value of `k` and `arr[ord(str[t]) - ord('a')]` at the end of the loop, `t` is 0 if `i - j - 1` is less than 0, otherwise `t` is `i - j - 1`.
+    lastIndex = 0
+    lastStrIndex = len(str) - 1
+    subNum = 0
+    while lastIndex != lastStrIndex:
+        subNum += 1
+        
+        if lastIndex == lastMatch[lastIndex]:
+            lastIndex += 1
+        else:
+            lastIndex = lastMatch[lastIndex]
+        
+    #State of the program after the loop has been executed: `n` is an integer within the range of 1 to \(10^3\), `s` is a string of length `n`, `a1, a2, ..., a26` is a list of 26 integers, `arr` is a list of evaluated results, `MOD` is 1000000007.0, `dp` is a list of 3200 elements, where the first element is 1 and `dp[i]` for `i` from `1` to `len(s)` contains the number of distinct substrings of `s` ending at each position modulo `MOD`, `lastMatch` is a list of 3200 elements, where `lastMatch[i]` is the maximum index in the string `s` where the character corresponding to `str[i]` appears, `maxSubLen` is the maximum length of any distinct substring found during the loop execution, `j` is the final value of `j` after the loop exits, `i` is the final value of `i` after the loop exits, `k` is the minimum value of `k` and `arr[ord(str[t]) - ord('a')]` at the end of the loop, `t` is 0 if `i - j - 1` is less than 0, otherwise `t` is `i - j - 1`, `lastIndex` is `n`, `lastStrIndex` is `n - 1`, `subNum` is the number of times the loop executed, which is `n`.
+    print(dp[len(str)], maxSubLen, subNum, sep='\n')
+#Overall this is what the function does:The function `func()` takes three inputs: an integer `n`, a string `s` of length `n` consisting of lowercase English letters, and a list `arr` of 26 integers representing the maximum length of substrings each letter ('a' to 'z') can appear in. The function calculates the number of distinct substrings ending at each position of the string `s` modulo `1000000007`, the maximum length of any distinct substring, and the number of unique characters in the string `s`. After executing the loops, the function prints the total number of distinct substrings modulo `1000000007`, the maximum length of any distinct substring, and the number of unique characters in the string `s`.
+

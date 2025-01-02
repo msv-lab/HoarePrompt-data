@@ -1,0 +1,6 @@
+The function `func_2` accepts five parameters: `i`, `val`, `s`, `e`, and `x`. After executing, it updates the segment tree `seg` by setting `seg[x]` to the maximum value between its current value and `val`. This operation is performed recursively based on the value of `i` relative to the midpoint `m` of the segment defined by `s` and `e`. Specifically:
+
+- If `i < m`, the function updates the left child segment (`2 * x`) of the current node.
+- If `i ≥ m`, the function updates the right child segment (`2 * x + 1`) of the current node.
+
+The function does not return any value. The final state of the program after the function concludes is that the segment tree `seg` has been updated to reflect the maximum values of `val` for each relevant segment.

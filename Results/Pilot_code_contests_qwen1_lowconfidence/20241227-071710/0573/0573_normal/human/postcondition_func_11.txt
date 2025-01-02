@@ -1,0 +1,7 @@
+The function `func_12` accepts three parameters: `x`, `y`, and `p`. `x` is an integer representing the base, `y` is an integer representing the exponent, and `p` is a positive integer representing the modulus. The function calculates the result of raising `x` to the power of `y` and then takes the result modulo `p`. The function uses an efficient algorithm called "exponentiation by squaring" to perform the calculation. The final state of the program after the function concludes is that it returns `res`, which is the result of `x` raised to the power of `y` modulo `p`. This calculation ensures that the intermediate values do not become too large, making the function suitable for large exponents and moduli.
+
+Potential edge cases and missing functionality:
+1. If `y` is 0, the function correctly returns 1 because any number raised to the power of 0 is 1.
+2. If `x` is 0, the function will return 0^y % p, which is 0 if y > 0 and 1 if y = 0.
+3. If `p` is 1, the function will always return 0, regardless of the values of `x` and `y`, because any number modulo 1 is 0.
+4. The function correctly handles negative exponents by using the property of modular arithmetic, but this case is not explicitly covered in the given code and annotations. However, since the annotations indicate that `y` is treated as a non-negative integer, this case is not considered here.

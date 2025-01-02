@@ -1,0 +1,67 @@
+A positive integer X is said to be a lunlun number if and only if the following condition is satisfied:
+
+* In the base ten representation of X (without leading zeros), for every pair of two adjacent digits, the absolute difference of those digits is at most 1.
+
+
+
+For example, 1234, 1, and 334 are lunlun numbers, while none of 31415, 119, or 13579 is.
+
+You are given a positive integer K. Find the K-th smallest lunlun number.
+
+Constraints
+
+* 1 \leq K \leq 10^5
+* All values in input are integers.
+
+Input
+
+Input is given from Standard Input in the following format:
+
+
+K
+
+
+Output
+
+Print the answer.
+
+Examples
+
+Input
+
+15
+
+
+Output
+
+23
+
+
+Input
+
+1
+
+
+Output
+
+1
+
+
+Input
+
+13
+
+
+Output
+
+21
+
+
+Input
+
+100000
+
+
+Output
+
+3234566667

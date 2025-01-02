@@ -1,0 +1,4 @@
+The function `func_5` accepts three parameters: `start`, `step`, and `count`. It returns a `range` object representing a sequence of numbers starting from `start`, ending at `start + step * count`, and incrementing or decrementing by `step`. If `step` is positive, the sequence increases by `step` for each subsequent number; if `step` is negative, the sequence decreases by `step` for each subsequent number. The function covers the following cases:
+1. If `count` is 0, the function returns an empty `range` object.
+2. If `step` is 0, the function raises a `ValueError` because a `range` with a step of 0 is invalid.
+3. The function returns a `range` object that includes `count` elements, even if `start + step * count` is out of bounds (e.g., when dealing with very large or very small integers).

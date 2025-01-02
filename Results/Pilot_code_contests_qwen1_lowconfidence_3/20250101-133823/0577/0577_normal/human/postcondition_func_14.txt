@@ -1,0 +1,6 @@
+The function `func_15` accepts two non-negative integers `x` and `y` (where `x >= y > 0`). It uses the Euclidean algorithm to compute the greatest common divisor (GCD) of the original values of `x` and `y`. After the loop terminates, `x` is set to the GCD of the original `x` and `y`, and `y` is set to 0. The function then returns `x`.
+
+Potential edge cases and considerations:
+- If `x` and `y` are both 0, the function still follows the Euclidean algorithm correctly, although `y` will eventually become 0 before the first iteration, making `x` the GCD (which is 0).
+- If `x` is 0 and `y` is non-zero, the function will correctly identify `y` as the GCD, and `x` will remain 0 after the loop.
+- If `x` and `y` are equal and non-zero, the function will correctly identify `x` (or `y`) as the GCD, and `y` will be 0 after the loop.

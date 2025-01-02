@@ -1,0 +1,4 @@
+The function `remove_duplicate` accepts a string `s`, an integer `index`, and a dictionary `char_count`. It checks if the character at the specified `index` in `s` appears more than once according to `char_count`. If the character is a duplicate, it removes the character from `s` and decrements its count in `char_count`. The function returns the modified string `s` and the updated `char_count` dictionary. Potential edge cases include: 
+- If `index` is out of bounds (i.e., `index >= len(s)`), the function will raise an `IndexError`.
+- If `char_count` does not contain the character at `index`, the function will raise a `KeyError`.
+- If `s` is empty or `index` is negative, the function will either do nothing or raise an error.

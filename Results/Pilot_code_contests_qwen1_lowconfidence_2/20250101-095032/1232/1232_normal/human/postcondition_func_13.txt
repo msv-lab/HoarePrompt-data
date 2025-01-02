@@ -1,0 +1,5 @@
+The function `func_14` accepts two non-negative integer parameters `x` and `y`. It uses the Euclidean algorithm to compute the greatest common divisor (GCD) of `x` and `y`. The function iteratively updates `x` and `y` until `y` becomes zero, at which point it returns `x` as the GCD. This GCD is guaranteed to be the largest integer that divides both `x` and `y` without leaving a remainder. 
+
+The function handles the case where either `x` or `y` could be zero. If `y` is zero initially, the function directly returns `x`. If `x` is zero and `y` is non-zero, the function will eventually set `x` to `y` when `y` is non-zero and then proceed to compute the GCD.
+
+There are no explicit missing functionalities in the provided code, and the annotations correctly reflect the state of the program after the function concludes.

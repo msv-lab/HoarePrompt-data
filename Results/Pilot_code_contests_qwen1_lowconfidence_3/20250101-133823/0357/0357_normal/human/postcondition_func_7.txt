@@ -1,0 +1,7 @@
+The function `func_8` performs a binary search on a sorted list `arr` to find the integer `x`. If `x` is found, it returns the index `mid` twice. If `x` is not found, it narrows the search range by either updating the lower bound index (`low`) or the upper bound index (`high`) and calls itself recursively. If the search range is exhausted (i.e., `high < low`), it returns the values of `high` and `low`. The function covers the following cases:
+- If `x` is found at the middle index, it returns `mid, mid`.
+- If `x` is less than the middle element, it searches the left half by calling `func_8(arr, x, low, mid - 1)`.
+- If `x` is greater than the middle element, it searches the right half by calling `func_8(arr, x, mid + 1, high)`.
+- If the search range is exhausted, it returns `high, low`.
+
+Potential edge cases include when `x` is not present in `arr`, which causes the function to continue narrowing the search range until `high < low`.

@@ -1,0 +1,7 @@
+The function processes a string `s` of length `n` and a list of integers `arr` representing lengths, to compute three values: the number of distinct substrings that can be formed based on the given lengths, the maximum length of a substring that meets a specific condition, and the number of operations required to achieve these results. Specifically, the function calculates:
+
+1. `dp[len(str)]`: The number of distinct substrings of `s` that can be formed under certain conditions.
+2. `maxSubLen`: The maximum length of a valid substring found during the computation.
+3. `subNum`: The number of operations performed to determine the valid substrings.
+
+The function reads the string `s` and a list of integers `arr` from the standard input. It then iterates through the string to update a dynamic programming array `dp` and a list `lastMatch` to track the last occurrence of valid substrings. After processing the string, it counts the number of distinct substrings and prints the results.

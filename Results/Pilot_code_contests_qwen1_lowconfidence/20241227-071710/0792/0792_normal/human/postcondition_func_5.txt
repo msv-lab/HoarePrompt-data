@@ -1,0 +1,7 @@
+The function `func_6` accepts two parameters `x` and `y`, both integers such that \(|x| \leq 10^9\) and \(|y| \leq 10^9\). It performs the following actions based on the input values:
+
+- If the minimum of the absolute values of `x` and `y` is 0, the function returns the maximum of the absolute values of `x` and `y`. This covers the case where one of the inputs is 0, and the other is non-zero. In this scenario, the function essentially returns the non-zero absolute value.
+
+- Otherwise, the function computes the greatest common divisor (GCD) of the initial values of `x` and `y` using the Euclidean algorithm. After the loop terminates, `x` will hold the GCD of the initial values of `x` and `y`, and `y` will be 0. The function then returns `x`.
+
+This means that the function can either return the non-zero absolute value of the inputs if one of them is 0, or the GCD of the initial values of `x` and `y` if both are non-zero.

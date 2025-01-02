@@ -1,0 +1,88 @@
+#State of the program right berfore the function call: n and m are integers where 1 ≤ n ≤ 100000 and 1 ≤ m ≤ 300000. There are n lines following the first line, each containing two integers wi and ci, where 1 ≤ wi ≤ 3 and 1 ≤ ci ≤ 109, representing the weight and cost of the ith souvenir, respectively.
+def func():
+    data = [[] for i in range(4)]
+    n, m = map(int, raw_input().split())
+    for i in range(0, n):
+        w, c = map(int, raw_input().split())
+        
+        data[w].append(c)
+        
+    #State of the program after the  for loop has been executed: `n` is a non-negative integer, `i` is `n`, `m` is an integer read from input, `data` is a list of 4 lists where each list at index `w` contains the integers `c` that were appended during the loop, `w` and `c` are input integers.
+    for i in range(1, 4):
+        data[i].sort()
+        
+        data[i].reverse()
+        
+    #State of the program after the  for loop has been executed: To determine the final output state after all iterations of the loop have finished, we need to analyze the loop's behavior and the changes it makes to the variables. Let's break down the loop step by step:
+    #
+    #### Initial State:
+    #- `n` is a non-negative integer.
+    #- `i` is `n`.
+    #- `m` is an integer read from input.
+    #- `data` is a list of 4 lists where each list at index `w` contains integers `c` that were appended during the loop.
+    #- `w` and `c` are input integers.
+    #
+    #### Loop Code:
+    #```python
+    #for i in range(1, 4):
+    #    data[i].sort()
+    #    data[i].reverse()
+    #```
+    #
+    #### Analysis:
+    #1. **Loop Execution**:
+    #   - The loop runs from `i = 1` to `i = 3` (inclusive).
+    #   - For each iteration, the list at index `i` in `data` is sorted and then reversed.
+    #
+    #2. **Changes to Variables**:
+    #   - `n` remains a non-negative integer and is not modified by the loop.
+    #   - `i` is a loop variable that ranges from 1 to 3 and is not related to the initial `i` (which is `n`).
+    #   - `m` remains an integer read from input and is not modified by the loop.
+    #   - `data` is modified such that the lists at indices 1, 2, and 3 are sorted and then reversed.
+    #   - `w` and `c` remain input integers and are not modified by the loop.
+    #
+    #### Final Output State:
+    #- After the loop completes, the lists at indices 1, 2, and 3 in `data` will be sorted and then reversed. This means they will be in descending order.
+    #- The list at index 0 in `data` remains unchanged because the loop only modifies indices 1, 2, and 3.
+    #
+    #### Conclusion:
+    #The final output state after all iterations of the loop have finished is:
+    #**`n` is a non-negative integer, `i` is `n`, `m` is an integer read from input, `data` is a list of 4 lists where the lists at indices 1, 2, and 3 are in descending order, and the list at index 0 is unchanged, `w` and `c` are input integers.**
+    dp = []
+    for i in range(0, 300010):
+        dp.append((0, 0, 0))
+        
+    #State of the program after the  for loop has been executed: `n` is a non-negative integer, `i` is 300010, `m` is an integer read from input, `data` is a list of 4 lists where each list at index `w` contains integers `c` that were appended during the loop, `w` and `c` are input integers, `dp` is a list containing 300010 tuples of `(0, 0, 0)`.
+    for i in range(1, m + 1):
+        for j in range(1, 3):
+            if i - j < 0 or dp[i - j][j] >= len(data[j]):
+                continue
+            val = dp[i - j][0] + data[j][dp[i - j][j]]
+            if val > dp[i][0]:
+                a0 = val
+                a1 = dp[i - j][1]
+                a2 = dp[i - j][2]
+                if j == 1:
+                    a1 += 1
+                else:
+                    a2 += 1
+                dp[i] = a0, a1, a2
+            if dp[i][0] < dp[i - 1][0]:
+                dp[i] = dp[i - 1]
+        
+    #State of the program after the  for loop has been executed: `n` is a non-negative integer, `i` is 300010, `m` is a non-negative integer, `data` is a list of 4 lists where each list at index `w` contains integers `c` that were appended during the loop, `w` and `c` are input integers, `dp` is a list containing `m + 1` tuples. Each tuple `dp[i]` for `i` from 0 to `m` contains the maximum value, count of elements from `data[1]`, and count of elements from `data[2]` used in the best combination for that index. Specifically, `dp[m][0]` is the maximum value calculated by the loop, `dp[m][1]` is the count of elements from `data[1]` used in the best combination, and `dp[m][2]` is the count of elements from `data[2]` used in the best combination.
+    ans = dp[w][0]
+    sum = 0
+    for i in range(0, len(data[3])):
+        if (i + 1) * 3 > w:
+            break
+        
+        sum += data[3][i]
+        
+        if ans < sum + dp[w - 3 * (i + 1)][0]:
+            ans = sum + dp[w - 3 * (i + 1)][0]
+        
+    #State of the program after the  for loop has been executed: `n` is a non-negative integer, `i` is the largest integer such that `(i + 1) * 3 <= w` or 0 if the loop did not execute, `m` is a non-negative integer, `data` is a list of 4 lists where each list at index `w` contains integers `c` that were appended during the loop, `w` and `c` are input integers, `dp` is a list containing `m + 1` tuples. Each tuple `dp[i]` for `i` from 0 to `m` contains the maximum value, count of elements from `data[1]`, and count of elements from `data[2]` used in the best combination for that index. Specifically, `dp[m][0]` is the maximum value calculated by the loop, `dp[m][1]` is the count of elements from `data[1]` used in the best combination, and `dp[m][2]` is the count of elements from `data[2]` used in the best combination. `sum` is the sum of the first `i + 1` elements of `data[3]` or 0 if the loop did not execute. `ans` is the maximum value between the initial `ans` and the value `sum + dp[w - 3 * (i + 1)][0]` for all valid `i`. If the loop did not execute, `sum` remains 0 and `ans` retains its initial value.
+    print(ans)
+#Overall this is what the function does:The function reads input consisting of two integers `n` and `m`, followed by `n` lines of pairs `(wi, ci)` representing the weight and cost of each souvenir. It processes this input to find the maximum total cost of souvenirs that can be selected under the constraint that the total weight does not exceed `m`. The function categorizes the souvenirs into groups based on their weights (1, 2, and 3) and sorts these groups in descending order of cost. It then uses dynamic programming to compute the maximum possible cost for each possible weight up to `m`. Finally, it calculates the maximum cost by considering the best combinations of souvenirs of weight 3 and the results from the dynamic programming table. The function prints the maximum total cost of the selected souvenirs. Edge cases and missing functionality include handling invalid input (e.g., non-integer values, out-of-range values), and ensuring that the input constraints are strictly enforced (e.g., `1 ≤ n ≤ 100000` and `1 ≤ m ≤ 300000`). Additionally, the function does not handle the case where `m` is less than the smallest weight (1), which could lead to incorrect results.
+

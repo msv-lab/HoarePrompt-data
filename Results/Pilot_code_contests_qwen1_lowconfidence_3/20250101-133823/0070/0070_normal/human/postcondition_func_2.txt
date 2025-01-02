@@ -1,0 +1,10 @@
+The function `func_3` accepts three parameters \(x\), \(y\), and \(z\), each a real number with exactly one digit after the decimal point and in the range 0.1 to 200.0. The function's primary task is to determine and return a specific string based on the values of \(x\), \(y\), and \(z\). Here are the steps and possible outcomes:
+
+1. If the maximum value among \(x\), \(y\), and \(z\) is less than 1, the function iterates over a list `index` and calls `func_1(x, y, z, i)` for each index. It keeps track of the maximum value (`maxNum`) and the corresponding string (`ans`). After the loop, it returns the string `ans`.
+2. If the maximum value among \(x\), \(y\), and \(z\) is exactly 1, the function checks the individual values of \(x\), \(y\), and \(z\):
+   - If \(x\) is 1, it returns the string `'1^y^z'`.
+   - If \(y\) is 1 and \(x\) is not 1, it returns the string `'1^x^z'`.
+   - If neither \(x\) nor \(y\) is 1, it returns the string `'z^x^y'`.
+3. In all other cases, the function iterates over the list `index` and calls `func_2(x, y, z, i)`. For each call, if the result is not `False`, it updates `maxNum` and `ans` accordingly. After the loop, it returns the string `ans`.
+
+This covers all possible scenarios and edge cases mentioned in the postconditions.

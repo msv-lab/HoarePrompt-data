@@ -1,0 +1,7 @@
+The function processes two lists, `r` and `c`, representing row and column constraints respectively, and a `base` matrix of size `h` by `w`. It first populates the `base` matrix with ones based on the values in `r` and `c`. Then, it checks specific conditions involving elements of `r` and `c` against the `base` matrix. If any condition is met, it calls `func_2(0)` and returns `None`. Otherwise, it counts the number of pairs `(i, j)` such that `r[i] < j` and `c[j] < i`, and passes this count to `func_2` modulo \(10^9 + 7\). The function ultimately returns `None` unless interrupted by `func_2(0)`.
+
+Potential edge cases and missing functionality:
+- The function assumes that `h` and `w` are positive integers within the range \(1 \leq h, w \leq 10^3\), and that `r` and `c` contain valid values. However, no error handling is provided for invalid inputs.
+- The function does not validate the values of `r` and `c` to ensure they do not exceed their respective bounds (`w` and `h`).
+- The function does not handle cases where `r` or `c` might be empty, although these would not be typical since `h` and `w` are guaranteed to be at least 1.
+- The function does not explicitly check if `r[i]` or `c[j]` exceeds the matrix dimensions when accessing `base[i][r[i]]` and `base[c[j]][j]`, which could lead to out-of-bounds errors if not properly constrained.

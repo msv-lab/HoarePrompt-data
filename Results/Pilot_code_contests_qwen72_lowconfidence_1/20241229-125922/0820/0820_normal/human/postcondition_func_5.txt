@@ -1,0 +1,8 @@
+The function `func_6` takes two parameters: a binary string `a` and a non-negative integer `flips`. It returns a single character based on the value of `flips`:
+- If `flips` is even, it returns the last character of the binary string `a`.
+- If `flips` is odd, it returns the result of applying `func_4` to the first character of the binary string `a`. Assuming `func_4` flips the bit, this means:
+  - If `a[0]` is '0', it returns '1'.
+  - If `a[0]` is '1', it returns '0'.
+Edge cases:
+- If `a` is an empty string, the function will raise an `IndexError` when attempting to access `a[0]` or `a[-1]`.
+- If `flips` is zero, the function will return the last character of `a`, which is consistent with the even case.

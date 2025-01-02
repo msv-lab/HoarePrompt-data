@@ -1,0 +1,7 @@
+The function `func_1` accepts a tuple `t` of three positive integers, each not exceeding 100, representing the lengths of the sticks. It checks if the given lengths can form a triangle, a segment, or if they do not satisfy the triangle inequality theorem. 
+
+- If any two stick lengths sum up to exactly one of the other stick lengths, the function returns 'SEGMENT'.
+- If any two stick lengths sum up to a value less than one of the other stick lengths, the function returns `None`.
+- If neither of the above conditions is met, the function returns 'TRIANGLE'.
+
+The function does not modify the input tuple `t` and only returns one of the three possible strings based on the conditions described. The function does not handle edge cases where the input tuple contains non-positive integers or values exceeding 100, which could lead to unexpected behavior.

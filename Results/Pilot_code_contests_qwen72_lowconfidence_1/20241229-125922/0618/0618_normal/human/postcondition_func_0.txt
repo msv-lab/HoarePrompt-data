@@ -1,0 +1,24 @@
+The function `func_1` does not accept any parameters and does not return any value. It modifies the variables `a`, `b`, `c`, and `d` based on the values returned by `func_3`. The function constructs a list `out` based on the relationships between `a`, `b`, `c`, and `d` and prints "YES" followed by the elements of `out`. If certain conditions are not met, the function prints "NO" and exits early. The final state of the program is that `a`, `b`, `c`, and `d` are non-negative integers such that \(0 < a + b + c + d \leq 10^5\), and `out` is a list of integers constructed according to the rules described below:
+
+1. If \(s1 = b - a\) is equal to \(s2 = c - d\):
+   - `out` is constructed as `[1, 0] * a + [1, 2] * (b - a) + [3, 2] * d`.
+
+2. If \(s1 + 1 = s2\):
+   - If `a > 0`:
+     - `a` is decremented by 1.
+     - `out` is constructed as `[0] + [1, 0] * a + [1, 2] * (b - a) + [3, 2] * d`.
+   - If `a == 0`:
+     - `c` is decremented by 1.
+     - `out` is constructed as `[2] + [1, 2] * b + [3, 2] * d`.
+
+3. If \(s1 = s2 + 1\):
+   - If `d > 0`:
+     - `d` is decremented by 1.
+     - `out` is constructed as `[1, 0] * a + [1, 2] * (b - a) + [3, 2] * d + [3]`.
+   - If `d == 0`:
+     - `b` is decremented by 1.
+     - `out` is constructed as `[1, 0] * a + [1, 2] * (b - a) + [1]`.
+
+4. If none of the above conditions are met, the function prints "NO" and exits early without constructing `out`.
+
+In all cases where `out` is constructed, the function prints "YES" followed by the elements of `out`. The final state of the program is that `a`, `b`, `c`, and `d` are updated to the values returned by `func_3` and modified according to the conditions described above.

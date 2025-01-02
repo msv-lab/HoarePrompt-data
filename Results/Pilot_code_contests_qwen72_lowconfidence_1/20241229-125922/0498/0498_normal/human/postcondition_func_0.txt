@@ -1,0 +1,9 @@
+The function `func_1` takes three parameters: `n` (an integer indicating the number of points), `points` (a list of tuples representing the coordinates of the points), and `w` (a list of integers representing special values associated with each point). It processes these inputs to check if the points can be labeled in a specific way such that certain conditions are met. Specifically, it ensures that for each point `(x, y)` in the list `points`:
+
+1. The difference `y - x` is used to group points into lists stored in a dictionary `mem2`.
+2. The frequency of each value in `w` is counted using a `Counter` object `mem`.
+3. For each unique value `i` in `w`, the function checks if the number of points with the difference `y - x` equal to `i` matches the count in `mem`. If not, the function prints 'NO' and exits.
+4. The points are then processed in reverse order, and each point is assigned a label. The function ensures that no two adjacent points (in terms of their coordinates) have a label that violates a specific ordering condition. If such a condition is violated, the function prints 'NO' and exits.
+5. If all conditions are met, the function prints 'YES' followed by the coordinates of the points in a specific order.
+
+The final state of the program is that either 'NO' is printed and the program exits early, or 'YES' is printed followed by the formatted coordinates of the points. The function does not return any value. Potential edge cases include scenarios where the input constraints are not met, such as invalid values for `n`, `points`, or `w`, which could lead to unexpected behavior or errors.

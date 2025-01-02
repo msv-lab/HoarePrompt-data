@@ -1,0 +1,10 @@
+The function `func_1` accepts a list of tuples `a`, where each tuple represents the coordinates (x, y) of a black token. It initializes two lists, `lmn` and `lmx`, both of size 400010, with specific initial values. It then updates these lists based on the coordinates in `a`. Specifically, for each coordinate (x, y) in `a`, `lmn[x]` is updated to be the minimum value of `y` among all coordinates (x, y) in `a` such that `lmn[x] > y`, and `lmx[x]` is updated to be the maximum value of `y` among all coordinates (x, y) in `a` such that `lmx[x] < y`.
+
+After these initial updates, the function further processes the lists `lmn` and `lmx` through several loops:
+1. It ensures that `lmn` is non-decreasing up to index 200009 and non-increasing from index 200009 to 400009.
+2. It ensures that `lmx` is non-increasing up to index 200009 and non-decreasing from index 200009 to 400009.
+3. It then updates `lmn` and `lmx` using a reference copy `rmn` and `rmx` to ensure that `lmn[i]` is the maximum value between itself and the corresponding value in `rmn[i]`, and similarly for `lmx`.
+
+Finally, the function calculates and returns `ans`, which is the sum of `(lmx[i] - lmn[i]) / 2` for all valid indices `i` where `lmn[i] < lmx[i]`. This sum represents the total "distance" between the maximum and minimum values of `y` for each `x` coordinate, considering the constraints and updates performed on `lmn` and `lmx`.
+
+Potential edge cases include scenarios where the input list `a` might be empty or contain only one element, in which case the initial conditions of `lmn` and `lmx` would directly apply without any updates. Additionally, if no valid indices `i` exist where `lmn[i] < lmx[i]`, the function will return 0.

@@ -1,0 +1,11 @@
+The function `func_6` accepts an integer `s` (where 1 ≤ `s` ≤ `n`), representing the starting city for the breadth-first search (BFS) to calculate distances to all other cities, and a list of lists `adjacents_list`, where `adjacents_list[i]` contains all cities directly connected to city `i` by a road. The function returns a list `distance` of length `n`, where `distance[u]` for all `u` from 0 to `n-1` represents the shortest path distance from city `s` to city `u`. 
+
+After the function concludes, the following will be true:
+- The `distance` list will have been populated such that `distance[u]` is the shortest path distance from city `s` to city `u` for all `u` from 0 to `n-1`.
+- The `q` deque will be empty.
+- All `distance[u]` values that were initially set to -1 will have been updated to their correct shortest path distances.
+- The `adjacents_list` will remain unchanged; only the `distance` list will be modified.
+
+Potential edge cases and missing functionality:
+- If `s` is 0, the code will treat it as if `s` is 1, since the code assumes `s` to be between 1 and `n`. However, this might not be ideal for a real-world scenario where `s` could logically start from 0.
+- The function does not handle the case where the graph is disconnected. If city `s` is not reachable from other cities, some `distance[u]` values will remain -1, which should be noted as an edge case.

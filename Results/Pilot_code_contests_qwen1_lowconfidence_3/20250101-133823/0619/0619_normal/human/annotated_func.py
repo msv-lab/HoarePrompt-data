@@ -1,0 +1,73 @@
+#State of the program right berfore the function call: n is an integer such that 1 ≤ n ≤ 10^5, and the list of integers a contains n elements where each element a_i satisfies 0 ≤ a_i ≤ 2^{30}-1.
+def func():
+    n = int(raw_input())
+    a = list(map(int, raw_input().split()))
+    s = []
+    for i in a:
+        ts = bin(i)[2:]
+        
+        ts = ts[::-1]
+        
+        while len(ts) < 32:
+            ts += '0'
+        
+        s.append(ts)
+        
+    #State of the program after the  for loop has been executed: `n` is an integer between 1 and \(10^5\), `a` is a list of integers containing `n` elements, `s` is a list containing `n` elements, each of which is a string of 32 '0' characters, `ts` is a string of 32 '0' characters, and `i` is the last element processed in the list `a` if the loop executes. If the loop does not execute, `n` is an integer between 1 and \(10^5\), `a` is a list of integers containing `n` elements, `s` is an empty list, and `ts` and `i` do not exist.
+    ans = ''
+    brk = -1
+    leftp = 0
+    ansl = -1
+    ansr = -1
+    for j in range(31, -1, -1):
+        c1 = 0
+        
+        c0 = 0
+        
+        for i in range(n):
+            if s[i][j] == '0':
+                c0 += 1
+            else:
+                c1 += 1
+        
+        if c1 == n:
+            ans += '1'
+        elif c0 == n:
+            ans += '0'
+        else:
+            mx0 = 0
+            mx1 = 0
+            ans += '1'
+            leftp = int(ans, 2)
+            leftp <<= j
+            for i in range(n):
+                if s[i][j] == '0':
+                    mx0 = max(mx0, int(s[i][:j][::-1], 2))
+                else:
+                    mx1 = max(mx1, int(s[i][:j][::-1], 2))
+            ansl = leftp + mx0
+            ansr = leftp + mx1
+            break
+        
+    #State of the program after the  for loop has been executed: `i` is `n`, `n` is a positive integer, `s` is a list of strings, `j` is 0, `c0` is the count of '0's at the least significant bit position, `c1` is the count of '1's at the least significant bit position, `ans` is constructed based on the conditions involving `c0` and `c1`, `ansl` is \(2^{31} + mx0\), `ansr` is \(2^{31} + mx1\), `leftp` is \(2^{31}\).
+    if (ansl == -1) :
+        leftp = int(ans, 2)
+        a1 = 0
+        for i in a:
+            a1 = max(a1, leftp ^ i)
+            
+        #State of the program after the  for loop has been executed: `a1` is the maximum value obtained by taking the bitwise XOR of `leftp` with each element in the list `a`, `leftp` is the integer value of `ans` in base 2, `i` is the last element in the list `a`, `ans` is constructed based on the conditions involving `c0` and `c1`, `ansl` equals -1, `ansr` is \(2^{31} + mx1\), `a1` is updated after considering all elements in the list `a`
+        print(a1)
+    else :
+        m1 = 0
+        m0 = 0
+        for i in a:
+            m1 = max(m1, ansr ^ i)
+            
+            m0 = max(m0, ansl ^ i)
+            
+        #State of the program after the  for loop has been executed: `m0` is the maximum of its original value and the bitwise XOR of `ansr` with each element in `a`, `m1` is the maximum of its original value and the bitwise XOR of `ansr` with each element in `a`, `a` is a non-empty iterable, `ansl` is not equal to -1, `ansr` is \(2^{31} + mx1\), `leftp` is \(2^{31}\), `m1` and `m0` are integers initialized to 0.
+        print(min(m1, m0))
+    #State of the program after the if-else block has been executed: `i` is a positive integer, `s` is a list of strings, `j` is 0, `c0` is the count of '0's at the least significant bit position, `c1` is the count of '1's at the least significant bit position, `ans` is constructed based on the conditions involving `c0` and `c1`, `ansl` is \(2^{31} + mx1\), `ansr` is \(2^{31} + mx1\), `leftp` is \(2^{31}\). If `ansl` equals -1, then `a1` is the maximum value obtained by taking the bitwise XOR of `leftp` with each element in the list `a`, and `a1` is printed. Otherwise, `m0` and `m1` are both 0, and the printed value is 0.
+#Overall this is what the function does:The function `func()` takes an integer `n` and a list of integers `a` as input. It processes the binary representations of the integers in `a` to determine certain values based on their bit patterns. Specifically, it constructs a binary string `ans` by examining the bits of the integers in `a`. If all bits in a position are the same (either all 0s or all 1s), `ans` is set accordingly. Otherwise, it calculates two values `ansl` and `ansr` representing the maximum possible values by flipping one bit at a time, and then prints the minimum of the results of two operations: either the maximum bitwise XOR of `leftp` (which is \(2^{31}\)) with each element in `a`, or the minimum of the maximum bitwise XOR of `ansr` and `ansl` with each element in `a`.
+

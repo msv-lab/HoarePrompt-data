@@ -1,0 +1,6 @@
+The function accepts three parameters: an integer `a`, a string `b`, and a string `c`. It compares the digits in the strings `b` and `c` corresponding to each card index. For each index `i`, if the digit in `b` is greater than the digit in `c`, it increments `first`. If the digit in `b` is less than the digit in `c`, it increments `second`. After the loop, the function compares `first` and `second` to determine the winner based on the following conditions:
+- If `first` is greater than `second`, it prints 'RED'.
+- If `second` is greater than `first`, it prints 'BLUE'.
+- If `first` equals `second`, it prints 'EQUAL'.
+
+The function handles the case where the number of cards `a` is within the specified range (1 <= a <= 1000). If `b` and `c` do not contain exactly `a` digits, the loop will raise an error since the comparison relies on both strings having the same length. There is no explicit handling for invalid input types, so non-integer values for `a` or non-string values for `b` and `c` would result in errors.

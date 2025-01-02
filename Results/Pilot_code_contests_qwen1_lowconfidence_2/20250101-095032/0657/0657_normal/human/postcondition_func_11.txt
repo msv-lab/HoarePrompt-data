@@ -1,0 +1,8 @@
+The function `func_12` accepts three parameters: `x`, `y`, and `p`, where `x` is an integer, `y` is a non-negative integer, and `p` is a positive integer. It returns `res`, which is the result of repeatedly squaring `x` and multiplying it to `res` whenever `y` is odd, all taken modulo `p`. Specifically, the function computes \( res = 1 \times x^{2^j} \mod p \) for each odd `y` in the range from the original value of `y` down to 1, with the final result also taken modulo `p`. 
+
+The function handles the following scenarios:
+- If `y` is 0, the function simply returns 1 (the initial value of `res`).
+- If `y` is even, the function processes the next bit of `y` without changing `res`.
+- If `y` is odd, the function updates `res` by multiplying it with \( x^{2^k} \mod p \), where \( k \) is the number of times the loop has executed.
+
+There are no explicit edge cases mentioned in the annotations or code that need special handling beyond the standard behavior described above.

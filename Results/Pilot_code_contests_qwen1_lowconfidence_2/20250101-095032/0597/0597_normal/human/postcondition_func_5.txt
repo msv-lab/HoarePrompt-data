@@ -1,0 +1,6 @@
+The function `func_6` accepts two parameters `a` and `b`, which are positive integers representing the frequency of trains going to Masha's and Dasha's directions respectively, with the condition that `a ≠ b`. The function calculates and returns one of four possible values based on specific conditions involving the results of `func_1(a, b)` and `func_2(a, b)`.
+
+- If `a < b`, the function calculates `M` as `((L / b - 1) * G)` and `D` as `(L - M)`, where `L` is the result of `func_2(a, b)` and `G` is the result of `func_1(a, b)`. It then returns either `M` or `D` depending on whether `D` is greater than `M`.
+- If `a >= b`, the function calculates `M` as `(L / a - 1) * G` and `D` as `(G + L(1 - 1/a))`. It returns either `M` or `D * a` depending on whether `D` is greater than `M`.
+
+In all cases, the function ensures that the returned value is either `M` or `D` under specific conditions related to the relative sizes of `M` and `D`. If `D` is not greater than `M`, the function returns `D` in the first case and `D * a` in the second case.

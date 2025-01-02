@@ -1,0 +1,17 @@
+The function `func_1` processes two lists `a` and `b` to determine the minimum cost required to transform the sequence `a` into the sequence `b` using two operations: casting a fireball (with cost `x`) and casting berserk (with cost `y`). The function assumes that the lengths of `a` and `b` are provided as `n` and `m` respectively, and that `a` and `b` contain distinct integers within the range [1, n]. The function also uses the parameters `x`, `k`, and `y` which represent the costs and the range of the fireball operation. 
+
+1. The function first checks if the sequence `a` contains all the elements of `b` in the same order. If not, it prints `-1` and returns.
+2. If the sets of elements in `a` and `b` are identical, it prints `0` and returns.
+3. If the sets of elements in `a` and `b` are not identical, it finds the maximum element in `a` that is not in `b` (`mx`).
+4. The function then calculates the gaps between consecutive matching elements in `a` and `b`, and keeps track of a special gap where the element `mx` appears without a matching element in `b`.
+5. If the special gap is less than `k`, it prints `-1` and returns.
+6. Finally, it calculates the total cost to fill the gaps:
+   - If the cost of a single fireball (`x`) is less than the cost of `k` berserks (`y * k`), it uses a combination of fireballs and berserks to minimize the cost.
+   - Otherwise, it uses only berserks to fill the gaps.
+7. The function prints the total cost and does not return any value.
+
+Edge Cases and Missing Functionality:
+- The function assumes that `a` and `b` are provided and that `func_2` correctly returns the necessary parameters. If `func_2` fails or returns invalid data, the function may not behave as expected.
+- The function does not handle cases where `a` or `b` are empty or where `n` or `m` are zero.
+- The function does not validate the inputs to ensure they meet the specified constraints (e.g., `1 ≤ n, m ≤ 2 ⋅ 10^5`, `1 ≤ x, y ≤ 10^9`, etc.). If these constraints are not met, the function may produce incorrect results or fail.
+- The function does not handle cases where the special gap is exactly equal to `k`. It only checks if the special gap is less than `k` and prints `-1` if true, but it should also handle the case where the special gap is exactly `k`.

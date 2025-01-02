@@ -1,0 +1,4 @@
+The function `func_2` reads a byte string `s` from the standard input, which represents a sequence of numbers and possibly a negative sign ('-'), where each number is separated by a non-digit character (excluding '\r'). The function parses these numbers into signed integers and appends them to a list `A`. The function handles exceptions that occur during parsing, such as reaching the end of the string or encountering invalid characters. The final list `A` contains the signed numerical values parsed from `s` up to the point of any exception. If the last character of `s` is a digit, the function ensures that the corresponding number is included in `A`. The function returns the list `A`.
+
+### Edge Cases and Missing Functionality:
+-

@@ -1,0 +1,9 @@
+The function `func_17` accepts an integer `n` greater than or equal to 2 and returns `False` in several cases:
+1. If `n` is less than or equal to 1.
+2. If `n` is less than or equal to 3 and not 2 or 3.
+3. If `n` is divisible by 2 or 3.
+4. If any integer `i` between 5 and the square root of `n` (inclusive) divides `n` or `n - 2`.
+
+The function returns `True` in two cases:
+1. If `n` is greater than 3, not divisible by 2 or 3, and no integer `i` between 5 and the square root of `n` divides `n` or `n - 2`.
+2. If none of the above conditions are met, which defaults to returning `True` for prime numbers greater than 3.

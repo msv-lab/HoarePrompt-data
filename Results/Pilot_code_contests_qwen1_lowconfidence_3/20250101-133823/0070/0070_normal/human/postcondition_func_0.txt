@@ -1,0 +1,16 @@
+The function `func_1` accepts four parameters: `x`, `y`, `z`, and `k`. Based on the value of `k`, it calculates one of several possible power expressions involving `x`, `y`, and `z`. Specifically, it can return:
+
+- \( x^{y^z} \) represented as a string 'x^y^z'
+- \( x^{z^y} \) represented as a string 'x^z^y'
+- \( x^{(y*z)} \) represented as a string '(x^y)^z'
+- \( y^{x^z} \) represented as a string 'y^x^z'
+- \( y^{z^x} \) represented as a string 'y^z^x'
+- \( y^{(x*z)} \) represented as a string '(y^x)^z'
+- \( z^{(x*y)} \) represented as a string \((z^x)^y\)
+
+The function does not perform any additional operations or transformations beyond these power calculations. It ensures that `x`, `y`, and `z` are real numbers with exactly one digit after the decimal point, and `0.1 <= x, y, z <= 200.0`. If `k` does not match any of the specified cases, the function does not provide a default return value, indicating that the function is only designed to handle specific cases of `k`.
+
+Potential edge cases and missing functionality:
+- The function assumes that `k` will always be one of the specified values (1 through 12). If `k` is outside this range, the function does not return a value, which could lead to errors in calling contexts where `k` might be undefined or incorrectly set.
+- The function does not handle scenarios where `x`, `y`, or `z` are zero or negative, which could lead to mathematical errors or undefined behavior in certain power expressions.
+- The function does not validate that `k` is an integer, although this is implied by the conditional checks. If a non-integer value is passed for `k`, the function may behave unexpectedly or raise an error.

@@ -1,0 +1,9 @@
+The function `func` reads two strings `s` and `t` from standard input, both of which are of equal length `n` (1 ≤ n ≤ 3·10^5) and contain only lowercase English letters. The function then processes these strings to produce a new string based on the following rules:
+
+1. If the length of the strings (`n`) is 1, the function prints the single character from `s`.
+2. If the length of the strings is 2, the function prints the lexicographically smaller concatenation of the characters from `s` and `t`.
+3. If the length of the strings is greater than 2:
+   - If the first character of the sorted `s` is less than or equal to the first character of the sorted `t`, the function constructs a new string by alternating characters from `s` and `t` (starting with `s` for even indices and `t` for odd indices). If the length of the strings is odd and the last character in the constructed string is greater than the second-to-last character, the last two characters are swapped.
+   - If the first character of the sorted `s` is greater than the first character of the sorted `t`, the function constructs a new string by alternating characters from `s` and `t` (starting with `t` for even indices and `s` for odd indices), and then reverses the resulting string before printing it.
+
+After the function executes, the original strings `s` and `t` remain sorted in ascending and descending order, respectively, and the final state of the program includes the printed output string. The function does not return any value.

@@ -1,0 +1,16 @@
+The function `func_14` determines whether an integer `n` greater than 1 is a prime number. It returns `True` if `n` is a prime number and `False` otherwise. Specifically:
+
+- If `n` is less than or equal to 1, the function returns `False`.
+- If `n` is 2 or 3, the function returns `True`.
+- If `n` is divisible by 2 or 3, the function returns `False`.
+- For integers greater than 3, the function checks divisibility by all integers of the form `6k ± 1` up to the square root of `n`. If `n` is divisible by any of these numbers, the function returns `False`.
+- If none of the above conditions are met, the function returns `True`, indicating that `n` is a prime number.
+
+Potential Edge Cases:
+- The function correctly handles the case where `n` is 2 or 3, which are the smallest prime numbers.
+- The function correctly handles non-prime numbers like 4, 6, 8, etc., which are divisible by 2 or 3.
+- The function correctly handles larger composite numbers that are not divisible by 2 or 3 but are divisible by other primes.
+- The function correctly handles large prime numbers by checking divisibility up to the square root of `n`.
+
+Missing Functionality:
+- The function assumes that `n` is an integer greater than 1, but it does not explicitly check for non-integer inputs or negative integers. This could lead to unexpected behavior if the input is not an integer greater than 1.

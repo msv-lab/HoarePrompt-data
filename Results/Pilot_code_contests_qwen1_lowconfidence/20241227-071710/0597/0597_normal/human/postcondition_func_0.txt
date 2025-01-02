@@ -1,0 +1,10 @@
+The function `func_1` accepts two positive integers `a` and `b`, where `a` and `b` are within the range of 1 to \(10^6\) and `a` is not equal to `b`. It uses the Euclidean algorithm to compute the greatest common divisor (GCD) of `a` and `b`. The function returns the GCD of the original values of `a` and `b`. 
+
+After the function concludes, the state of the program is such that `a` contains the GCD of the original values of `a` and `b`, and `b` is guaranteed to be 0. This is because the while loop continues to update `a` and `b` until `b` becomes 0, at which point `a` holds the GCD. 
+
+Edge cases to consider:
+- If `a` or `b` is 1, the GCD will also be 1.
+- If `a` and `b` are already equal, the function will still execute the loop but `b` will become 0 after one iteration, and `a` will hold the value of `a` (which is also the GCD).
+- If `a` or `b` is 0, the GCD will be the non-zero number. However, since both `a` and `b` are specified to be positive integers, this case does not need to be explicitly handled.
+
+The function does not have any missing functionality based on the provided code.

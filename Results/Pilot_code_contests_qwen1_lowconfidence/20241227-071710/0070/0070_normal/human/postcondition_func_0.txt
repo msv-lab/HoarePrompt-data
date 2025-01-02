@@ -1,0 +1,13 @@
+The function `func_1` accepts four parameters: `x`, `y`, `z`, and `k`. These parameters are real numbers with exactly one digit after the decimal point and lie in the range [0.1, 200.0]. The function returns a mathematical expression based on the value of `k`:
+
+- If `k` is 1, it returns \( x \) raised to the power of \( y \) raised to the power of \( z \), represented as `'x^y^z'`.
+- If `k` is 2, it returns \( x \) raised to the power of \( z \) raised to the power of \( y \), represented as `'x^z^y'`.
+- If `k` is 3 or 4, it should return \( x \) (the function is incomplete, so it's unclear what the return value is in these cases).
+- If `k` is 5, it returns \( y \) raised to the power of \( x \) raised to the power of \( z \), represented as `'y^x^z'`.
+- If `k` is 6, it returns \( y \) raised to the power of \( z \) raised to the power of \( x \), represented as `'y^z^x'`.
+- If `k` is 7 or 8, it returns \( y \) raised to the power of \( (x * z) \), and a string indicating \((y^x)^z\).
+- If `k` is 9, it returns \( z \) raised to the power of \( x \) raised to the power of \( y \), represented as `'z^x^y'`.
+- If `k` is 10, it returns \( z \) raised to the power of \( y \) raised to the power of \( x \), represented as `'z^y^x'`.
+- If `k` is 11 or 12, it should return \( z \) (the function is incomplete, so it's unclear what the return value is in these cases).
+
+In all other cases where `k` does not match any of the above conditions, the function is also incomplete and unclear about the return value.

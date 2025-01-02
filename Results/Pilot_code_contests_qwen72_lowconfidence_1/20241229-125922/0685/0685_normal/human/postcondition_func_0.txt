@@ -1,0 +1,10 @@
+The function `func_1` takes three parameters: `p1` and `p2`, which are tuples representing the coordinates and types of two cities, and `a1`, which is a list of city tuples. Each city tuple is structured as `(coordinate, type)`, where `coordinate` is an integer and `type` is a character ('B', 'R', or 'P'). The function calculates and returns the minimum value between two computed values, `ans1` and `ans2`.
+
+- `ans1` is always calculated as \(2 \times (p2[0] - p1[0])\), which represents twice the distance between the coordinates of `p1` and `p2`.
+
+- `ans2` is initially set to the distance between `p1` and `p2` (`p2[0] - p1[0]`). This value is then adjusted based on the presence of cities of type 'R' and 'B' in the list `a1`.
+
+  - If there are cities of type 'R' in `a1`, the function calculates the minimum distance sum for these cities and adds it to `ans2`.
+  - Similarly, if there are cities of type 'B' in `a1`, the function calculates the minimum distance sum for these cities and adds it to `ans2`.
+
+The function returns the smaller of `ans1` and the adjusted `ans2`.

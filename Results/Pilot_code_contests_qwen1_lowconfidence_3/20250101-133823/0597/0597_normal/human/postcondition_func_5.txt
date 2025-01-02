@@ -1,0 +1,7 @@
+The function `func_6` accepts two parameters `a` and `b`, both positive integers representing frequencies of trains going to Masha's and Dasha's directions respectively, with `a ≠ b`. It calculates values `G`, `L`, `M`, and `D` based on the inputs and certain conditions. Finally, it returns one of four possible results:
+1. \(M\), which is calculated as \(\left(\frac{L}{b} - 1\right) \times G\).
+2. \(D \times a\), where \(D = L + G - \frac{L \times G}{b}\) and \(M = \left(\frac{L}{b} - 1\right) \times G\) with the condition \(D \leq M\).
+3. \(M \times a\), where \(M\) is \(((L / a) - 1) \times G\).
+4. \(D \times a\), where \(D\) is \(L - M\) and \(M\) is \(((L / a) - 1) \times G\), and \(D \leq M\).
+
+The function covers all potential cases based on the conditions provided and ensures that the correct value is returned according to the specified rules.

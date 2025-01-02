@@ -1,0 +1,42 @@
+d=raw_input()
+ip=''
+dom=''
+cont=''
+com=''
+sam=''
+result=''
+if(d[0:4]=="http"):
+    ip="http"
+    for i in range(4,len(d)):
+        sam=d[4:i+1]
+        if(i==len(d)-1):
+            if(sam[len(sam)-2:len(sam)]=='ru'):
+                com='.ru'
+                dom=sam[0:len(sam)-2]
+                result=ip+"://"+dom+com
+        if(i<len(d)-1)&(len(sam)>2):
+            if(sam[len(sam)-2:len(sam)]=='ru'):
+                com='.ru'
+                cont=d[i+1:len(d)]
+                dom=sam[0:len(sam)-2]
+                result=ip+'://'+dom+com+"/"+cont
+                break
+if(d[0:3]=="ftp"):
+    ip="ftp"
+    for i in range(3,len(d)):
+        sam=d[3:i+1]
+        if(i==len(d)-1):
+            if(sam[len(sam)-2:len(sam)]=='ru'):
+                com='.ru'
+                dom=sam[0:len(sam)-2]
+                reult=ip+"://"+dom+com
+        if(i<len(d)-1)&(len(sam)>2):
+            if(len(sam)>2):
+                
+                if(sam[len(sam)-2:len(sam)]=='ru'):
+                    com='.ru'
+                    cont=d[i+1:len(d)]
+                    dom=sam[0:len(sam)-2]
+                    result=ip+'://'+dom+com+"/"+cont
+                    break            
+print(result)

@@ -1,0 +1,10 @@
+The function `func_1` takes two strings `text1` and `text2` of equal length, along with their respective substring indices `i1`, `j1`, `i2`, `j2`, and two objects `hash1` and `hash2` that provide a `substring_hash` method. It determines if certain substrings of `text1` and `text2` have matching hash values. Specifically, it checks if the hash values of specified substrings match based on the following conditions:
+
+1. If the length of the substring defined by `j1 - i1` is not a multiple of 4 or is equal to 2, the function calculates the hash values of the left and right halves of the substrings (`a1`, `a2`, `b1`, `b2`). It then compares these hash values and returns:
+   - `True` if `a1 == b1` and `a2 == b2`.
+   - `False` if `a1 != b1` and `a2 != b1`.
+   - `False` if none of the above conditions are met.
+
+2. If the length of the substring defined by `j1 - i1` is a multiple of 4 and not equal to 2, the function recursively calls itself with different combinations of the indices `i1`, `mid1`, `j1`, `i2`, `mid2`, and `j2`. It returns the result of a logical expression involving these recursive calls, which can be a combination of `AND` and `OR` operations.
+
+The function does not modify the input strings or the hash objects. It only returns a boolean value indicating the result of the hash value comparisons or the result of the recursive calls. Edge cases such as empty strings or single-character strings are not explicitly handled in the provided code, but the function should work correctly for non-empty strings of equal length.

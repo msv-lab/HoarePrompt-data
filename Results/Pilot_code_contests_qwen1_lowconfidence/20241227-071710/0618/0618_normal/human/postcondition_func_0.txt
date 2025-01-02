@@ -1,0 +1,9 @@
+The function `func_1()` takes no parameters and returns `None`. It processes four non-negative integers \(a\), \(b\), \(c\), and \(d\) such that their sum is less than or equal to \(10^5\). The function calculates the differences \(s1 = b - a\) and \(s2 = c - d\). Based on these differences, it constructs a list `out` and performs specific operations:
+
+1. If \(s1\) equals \(s2\), it constructs the list `out` as \([1, 0] * a + [1, 2] * (b - a) + [3, 2] * d\).
+2. If \(s1 + 1\) equals \(s2\) and \(a > 0\), it decreases \(a\) by 1 and constructs the list `out` as \([0] + [1, 0] * a + [1, 2] * (b - a) + [3, 2] * d\).
+3. If \(s1 + 1\) equals \(s2\) and \(a \leq 0\), it decreases \(c\) by 1 and constructs the list `out` as \([2] + [1, 0] * a + [1, 2] * (b - a) + [3, 2] * d\).
+4. If \(s1\) equals \(s2 + 1\) and \(d > 0\), it decreases \(d\) by 1 and constructs the list `out` as \([1, 0] * a + [1, 2] * (b - a) + [3, 2] * d + [3]\).
+5. If \(s1\) equals \(s2 + 1\) and \(d \leq 0\), it decreases \(b\) by 1 and constructs the list `out` as \([1, 0] * a + [1, 2] * (b - a) + [3, 2] * d + [1]\).
+
+After performing these operations, it prints 'YES' followed by the elements of the list `out`. If none of the above conditions are met, it prints 'NO' and returns `None`.

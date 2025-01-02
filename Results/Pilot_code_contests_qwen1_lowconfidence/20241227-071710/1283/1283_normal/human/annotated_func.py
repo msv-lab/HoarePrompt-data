@@ -1,0 +1,111 @@
+#State of the program right berfore the function call: matrix is a 2D list consisting of strings where each string represents a row of the pixel picture and contains only the characters "." and "#". n and m are positive integers such that 0 < n <= 1000 and 0 < m <= 1000. x and y are positive integers such that 1 <= x <= y <= 1000.
+def func_1(matrix, n, m):
+    white_cost = []
+    black_cost = []
+    for i in range(m):
+        bcount = 0
+        
+        wcount = 0
+        
+        for j in range(n):
+            if matrix[j][i] == '.':
+                bcount += 1
+            else:
+                wcount += 1
+        
+        white_cost.append(wcount)
+        
+        black_cost.append(bcount)
+        
+    #State of the program after the  for loop has been executed: `matrix` is a 2D list consisting of strings, `m` is a positive integer, `x` is a positive integer between 1 and 1000, `y` is a positive integer between 1 and 1000, `black_cost` is a list of length `m`, `white_cost` is a list of length `m`, for each `i` from 0 to `m-1`, `black_cost[i]` is the number of '.' characters in column `i` of the matrix, `white_cost[i]` is the number of any other character (representing a white square) in column `i` of the matrix, `n` is the number of rows in the matrix, `i` is `m`.
+    return black_cost, white_cost
+    #`black_cost` is a list of length `m`, where each element represents the number of '.' characters in the corresponding column of the matrix, `white_cost` is a list of length `m`, where each element represents the number of non '.' characters (representing white squares) in the corresponding column of the matrix
+#Overall this is what the function does:The function `func_1` accepts a 2D list `matrix` representing a pixel picture, where each row is a string of characters '.' and '#', and two integers `n` and `m` representing the dimensions of the matrix. It calculates and returns two lists: `black_cost` and `white_cost`. `black_cost` is a list of length `m`, where each element represents the number of '.' characters in the corresponding column of the matrix. `white_cost` is a list of length `m`, where each element represents the number of '#' characters in the corresponding column of the matrix.
+
+The function iterates over each column of the matrix and counts the number of '.' and '#' characters in each column. It then appends these counts to the respective lists. After processing all columns, the function returns the `black_cost` and `white_cost` lists.
+
+Potential edge cases and missing functionality:
+- The function assumes that `matrix` is a valid 2D list with `n` rows and `m` columns, containing only the characters '.' and '#'. If the input `matrix` is not a valid 2D list or contains invalid characters, the behavior of the function is undefined.
+- The function does not validate the values of `n` and `m`. If `n` or `m` are not within the specified bounds (0 < n <= 1000 and 0 < m <= 1000), the function may still execute but the results may be incorrect or unexpected.
+- The function does not consider the values of `x` and `y` passed as parameters, as they are not used in the calculation of `black_cost` and `white_cost`.
+
+#State of the program right berfore the function call: dp1 and dp2 are 2D lists initialized with -1, matrix is a 2D list representing the image where '.' is white and '#' is black, n and m are positive integers representing the dimensions of the matrix, x and y are positive integers such that 1 ≤ x ≤ y, and black_cost and white_cost are non-negative integers representing the cost of changing a black pixel to white and a white pixel to black respectively, index is an integer representing the current column index being processed, and w and b are non-negative integers representing the current width of the monochrome vertical line of black and white pixels respectively.
+def func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, index, w, b):
+    if (index >= m) :
+        if (w != 0 and w >= x) :
+            return 0
+            #The program returns 0
+        #State of the program after the if block has been executed: `dp1` and `dp2` are 2D lists initialized with -1, `matrix` is a 2D list representing the image where '.' is white and '#' is black, `n` and `m` are positive integers representing the dimensions of the matrix, `x` and `y` are positive integers such that 1 ≤ x ≤ y, `black_cost` and `white_cost` are non-negative integers representing the cost of changing a black pixel to white and a white pixel to black respectively, `index` is an integer representing the current column index being processed and is greater than or equal to `m`, and `w` and `b` are non-negative integers representing the current width of the monochrome vertical line of black and white pixels respectively. `w` is 0 or less than `x`.
+        if (b != 0 and b >= x) :
+            return 0
+            #The program returns 0
+        #State of the program after the if block has been executed: `dp1` and `dp2` are 2D lists initialized with -1, `matrix` is a 2D list representing the image where '.' is white and '#' is black, `n` and `m` are positive integers representing the dimensions of the matrix, `x` and `y` are positive integers such that 1 ≤ x ≤ y, `black_cost` and `white_cost` are non-negative integers representing the cost of changing a black pixel to white and a white pixel to black respectively, `index` is an integer representing the current column index being processed and is greater than or equal to `m`, and `w` and `b` are non-negative integers representing the current width of the monochrome vertical line of black and white pixels respectively. `w` is 0 or less than `x` and `b` is either 0 or less than `x`.
+        return float('inf')
+        #The program returns infinity (`float('inf')`) since the return statement directly specifies this value.
+    else :
+        if (dp1[w][index] != -1 and dp2[b][index] != -1) :
+            return min(dp1[w][index], dp2[b][index])
+            #`The program returns the minimum value between dp1[w][index] and dp2[b][index]`
+        #State of the program after the if block has been executed: dp1 and dp2 are 2D lists initialized with -1, matrix is a 2D list representing the image where '.' is white and '#' is black, n and m are positive integers representing the dimensions of the matrix, x and y are positive integers such that 1 ≤ x ≤ y, and black_cost and white_cost are non-negative integers representing the cost of changing a black pixel to white and a white pixel to black respectively, index is an integer representing the current column index being processed, and w and b are non-negative integers representing the current width of the monochrome vertical line of white and black pixels respectively. The index is less than m, and either dp1[w][index] is -1 or dp2[b][index] is -1
+        c1 = float('inf')
+        c2 = float('inf')
+        c3 = float('inf')
+        c4 = float('inf')
+        if (w < x) :
+            c1 = 0
+            cw = w
+            i = index
+            while cw < x:
+                if i == m:
+                    break
+                
+                c1 += white_cost[i]
+                
+                i += 1
+                
+                cw += 1
+                
+            #State of the program after the loop has been executed: `dp1` is a 2D list initialized with -1, `dp2` is a 2D list initialized with -1, `matrix` is a 2D list representing the image, `n` and `m` are positive integers representing the dimensions of the matrix, `x` and `y` are positive integers such that \(1 \leq x \leq y\), `black_cost` and `white_cost` are non-negative integers representing the cost of changing a black pixel to white and a white pixel to black respectively, `index` is an integer representing the current column index being processed, `w` and `b` are non-negative integers representing the current width of the monochrome vertical line of white and black pixels respectively, `cw` equals `w + x`, `c1` is the original value of `c1` plus the cumulative cost of changing white pixels to black up to the last row processed, `c2`, `c3`, and `c4` are all set to infinity (`float('inf')`), and the condition `w < x` was true; `i` is `index + x` and the loop terminates when `i == m` or `cw` reaches `x`.
+            c1 += func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, i, cw, 0)
+        #State of the program after the if block has been executed: *`dp1` and `dp2` are 2D lists initialized with -1, `matrix` is a 2D list representing the image, `n` and `m` are positive integers representing the dimensions of the matrix, `x` and `y` are positive integers such that \(1 \leq x \leq y\), `black_cost` and `white_cost` are non-negative integers representing the cost of changing a black pixel to white and a white pixel to black respectively, `index` is an integer representing the current column index being processed, `w` and `b` are non-negative integers representing the current width of the monochrome vertical line of white and black pixels respectively, `cw` equals `w + x`, `c1` is the original value of `c1` plus the value returned from `func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, i, cw, 0)`, `c2`, `c3`, and `c4` are all set to infinity, and the loop terminates when `i == m` or `cw` reaches `x`. The condition `w < x` must hold true.
+        if (b < x) :
+            c2 = 0
+            cb = b
+            i = index
+            while cb < x:
+                if i == m:
+                    c2 = float('inf')
+                    break
+                
+                c2 += black_cost[i]
+                
+                i += 1
+                
+                cb += 1
+                
+            #State of the program after the loop has been executed: `dp1` and `dp2` are 2D lists initialized with -1, `matrix` is a 2D list representing the image, `n` and `m` are positive integers representing the dimensions of the matrix, `x` and `y` are positive integers such that \(1 \leq x \leq y\), `black_cost` and `white_cost` are non-negative integers representing the cost of changing a black pixel to white and a white pixel to black respectively, `index` is an integer representing the current column index being processed, `w` and `b` are non-negative integers representing the current width of the monochrome vertical line of white and black pixels respectively, such that `b + k < x` or `i == m`, `cw` equals `w + x`, `c1` is the original value of `c1` plus the value returned from `func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, i, cw, 0)` or `c1` remains unchanged, `c2` is the sum of `black_cost` from `index` to `index + k - 1` or `c2` is infinity, `c3` is infinity, `c4` is infinity, `cb` is `b + k`, and `i` is `index + k`.
+            c2 += func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, i, 0, cb)
+        #State of the program after the if block has been executed: *`dp1` and `dp2` are 2D lists initialized with -1, `matrix` is a 2D list representing the image, `n` and `m` are positive integers representing the dimensions of the matrix, `x` and `y` are positive integers such that \(1 \leq x \leq y\), `black_cost` and `white_cost` are non-negative integers representing the cost of changing a black pixel to white and a white pixel to black respectively, `index` is an integer representing the current column index being processed, `w` and `b` are non-negative integers representing the current width of the monochrome vertical line of white and black pixels respectively, `cw` equals `w + x`, `c1` is the original value of `c1` plus the value returned from `func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, i, cw, 0)` or remains unchanged, `c2` is infinity + `func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, i, 0, cb)` if `b < x`, otherwise it remains infinity, `c3` is infinity, `c4` is infinity, `cb` is `b + k` if `b < x`, otherwise it remains `b`, and `i` is `index + k` if `b < x`, otherwise it remains `index`. All other variables remain unchanged.
+        if (w >= x and w + 1 <= y) :
+            c3 = white_cost[index] + func_2(dp1, dp2, matrix, n, m, x, y, black_cost,
+    white_cost, index + 1, w + 1, 0)
+        #State of the program after the if block has been executed: *`dp1` and `dp2` are 2D lists initialized with -1, `matrix` is a 2D list representing the image, `n` and `m` are positive integers representing the dimensions of the matrix, `x` and `y` are positive integers such that \(1 \leq x \leq y\), `black_cost` and `white_cost` are non-negative integers representing the cost of changing a black pixel to white and a white pixel to black respectively, `index` is an integer representing the current column index being processed, `w` and `b` are non-negative integers representing the current width of the monochrome vertical line of white and black pixels respectively, `cw` equals `w + x`, `c1` is either the original value of `c1` plus the value returned from `func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, i, cw, 0)` or remains unchanged, `c2` is either infinity + `func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, i, 0, cb)` if `b < x` or remains infinity, `c3` is either `white_cost[index] + func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, index + 1, w + 1, 0)` or remains infinity, `c4` is infinity, `cb` is either `b + x` if `b < x` or remains `b`, and `i` is either `index + x` if `b < x` or remains `index`. All other variables remain unchanged.
+        if (b >= x and b + 1 <= y) :
+            c4 = black_cost[index] + func_2(dp1, dp2, matrix, n, m, x, y, black_cost,
+    white_cost, index + 1, 0, b + 1)
+        #State of the program after the if block has been executed: *`dp1` and `dp2` are 2D lists initialized with -1, `matrix` is a 2D list representing the image, `n` and `m` are positive integers representing the dimensions of the matrix, `x` and `y` are positive integers such that \(1 \leq x \leq y\), `black_cost` and `white_cost` are non-negative integers representing the cost of changing a black pixel to white and a white pixel to black respectively, `index` is an integer representing the current column index being processed, `w` and `b` are non-negative integers representing the current width of the monochrome vertical line of white and black pixels respectively, `cw` equals `w + x`, `c1` is either the original value of `c1` plus the value returned from `func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, i, cw, 0)` or remains unchanged, `c2` is either infinity + `func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, i, 0, cb)` if `b < x` or remains infinity, `c3` is either `white_cost[index] + func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, index + 1, w + 1, 0)` or remains infinity, `c4` is `black_cost[index] + func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, index + 1, 0, b + 1)`, `cb` is either `b + x` if `b < x` or remains `b`, and `i` is either `index + x` if `b < x` or remains `index`. All other variables remain unchanged. If `b >= x` and `b + 1 <= y`, `c4` is `black_cost[index] + func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, index + 1, 0, b + 1)` and `cb` is either `b + x` if `b < x` or remains `b`.
+        dp1[w][index] = min(c1, c3)
+        dp2[b][index] = min(c2, c4)
+        return min(c1, c2, c3, c4)
+        #`The program returns the minimum value between c1, c2, c3, and c4, where c1 is the original value of c1 plus the value returned from func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, i, cw, 0) or remains unchanged, c2 is infinity + the value returned from func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, i, 0, cb) if b < x or remains infinity, c3 is white_cost[index] + the value returned from func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, index + 1, w + 1, 0) or remains infinity, and c4 is black_cost[index] + the value returned from func_2(dp1, dp2, matrix, n, m, x, y, black_cost, white_cost, index + 1, 0, b + 1), and cb is b + x if b < x or remains b`
+#Overall this is what the function does:The function `func_2` computes the minimum cost required to transform a portion of a given image into a monochrome vertical line of black and white pixels. The image is represented by a 2D list `matrix` where '.' denotes a white pixel and '#' denotes a black pixel. The function accepts parameters including dynamic programming tables `dp1` and `dp2`, dimensions `n` and `m`, ranges `x` and `y`, costs for changing colors `black_cost` and `white_cost`, and indices `index`, `w`, and `b`.
+
+- If the current column index `index` is greater than or equal to the total number of columns `m`, and the width of the monochrome vertical line `w` is zero or less than `x`, or the width of the monochrome vertical line `b` is zero or less than `x`, the function returns 0. This handles the case where the desired monochrome line cannot be formed within the specified range.
+- If the current column index `index` is still within the image dimensions, the function checks the precomputed values in `dp1` and `dp2`. If available, it returns the minimum of these values. Otherwise, it computes four possible costs:
+  - `c1`: The cost of converting white pixels to black from the current position to `x` (if `w < x`).
+  - `c2`: The cost of converting black pixels to white from the current position to `x` (if `b < x`).
+  - `c3`: The cost of adding a white pixel to the current position.
+  - `c4`: The cost of adding a black pixel to the current position.
+- The function recursively computes the minimum cost by considering the next column and updating the widths `w` and `b` accordingly. It stores the computed minimum cost in `dp1` and `dp2` and returns the smallest of the four computed costs.
+- The function handles all possible edge cases, such as invalid column indices, insufficient pixel widths, and the cost of changing pixel colors.
+

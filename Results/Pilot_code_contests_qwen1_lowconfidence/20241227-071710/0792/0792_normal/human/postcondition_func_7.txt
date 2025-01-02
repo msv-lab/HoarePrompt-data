@@ -1,0 +1,6 @@
+The function `func_8(n)` accepts an integer `n` as a parameter, which represents the upper limit for checking prime numbers. It returns a list `f` containing all prime numbers less than or equal to `n`. This is achieved through the Sieve of Eratosthenes algorithm, which iteratively marks the multiples of each prime number starting from 2. After executing the algorithm, the function constructs a list of all primes found up to `n` and returns this list. 
+
+Potential edge cases include:
+- If `n` is less than 2, the function returns an empty list since there are no prime numbers less than 2.
+
+Missing functionality noted in the annotation is that the final state of `p` is not directly relevant to the returned list `f`. The key point is that `p` is the largest prime number less than or equal to the square root of `n` after the sieve process completes.

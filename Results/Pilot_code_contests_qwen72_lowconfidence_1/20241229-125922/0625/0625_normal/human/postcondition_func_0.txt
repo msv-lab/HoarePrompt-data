@@ -1,0 +1,8 @@
+This function prints the values provided in `*args` to a specified file-like object (or `sys.stdout` by default), separating them by a specified separator (`sep`) and appending a specified end character (`end`). It can optionally flush the output stream if `flush` is set to `True`. The function does not return any value. After execution, the state of the program is as follows:
+
+- The `args` tuple remains unchanged.
+- The `kwargs` dictionary is modified: the keys `'sep'`, `'file'`, and `'end'` are removed, and the key `'flush'` is removed if it was `True`.
+- The string representations of all elements in `args` are written to the specified file, separated by `sep` (except before the first element).
+- If `args` is empty, nothing is written to the file.
+- The `end` character is appended to the file after the last value.
+- If `flush` is `True`, the content of the file is flushed.

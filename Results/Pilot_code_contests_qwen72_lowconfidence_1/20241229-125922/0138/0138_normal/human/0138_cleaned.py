@@ -1,0 +1,52 @@
+def func_1():
+    s = list(raw_input())
+    t = list(raw_input())
+    scount = [0] * 26
+    tcount = [0] * 26
+    for char in s:
+        scount[ord(char) - ord('a')] += 1
+    for char in t:
+        tcount[ord(char) - ord('a')] += 1
+    allgreater = True
+    for i in range(26):
+        if scount[i] < tcount[i]:
+            allgreater = False
+    if allgreater:
+        if len(s) == len(t):
+            return -1
+        for char in t:
+            scount[ord(char) - ord('a')] -= 1
+        for i in range(26):
+            while scount[i] > 0:
+                t.append(chr(i + ord('a')))
+                scount[i] -= 1
+        return ''.join(map(str, t))
+    works = -1
+    scountcopy = list(scount)
+    for i in range(len(s)):
+        cando = False
+        for j in range(ord(t[i]) - ord('a') + 1, 26):
+            if scountcopy[j] > 0:
+                cando = True
+        if cando:
+            works = i
+        if scountcopy[ord(t[i]) - ord('a')] == 0:
+            break
+        scountcopy[ord(t[i]) - ord('a')] -= 1
+    if works == -1:
+        return -1
+    res = list()
+    for i in range(works):
+        res.append(t[i])
+        scount[ord(t[i]) - ord('a')] -= 1
+    for j in range(ord(t[works]) - ord('a') + 1, 26):
+        if scount[j] > 0:
+            res.append(chr(j + ord('a')))
+            scount[j] -= 1
+            break
+    for i in range(26):
+        while scount[i] > 0:
+            res.append(chr(i + ord('a')))
+            scount[i] -= 1
+    return ''.join(map(str, res))
+print(func_1())

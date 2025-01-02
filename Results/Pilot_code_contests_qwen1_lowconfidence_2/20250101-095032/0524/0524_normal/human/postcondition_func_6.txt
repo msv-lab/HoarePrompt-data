@@ -1,0 +1,7 @@
+The function `func_7` accepts a list of integers `l` and returns a new list of integers from `l` sorted based on the values returned by the `getKey` function for each element. The function performs the following actions:
+1. It uses the `sorted` function to sort the elements of `l`.
+2. The sorting key is determined by the `getKey` function, which is applied to each element of `l`.
+3. The function does not modify the original list `l`; instead, it creates and returns a new sorted list.
+4. If the `getKey` function is not defined or does not return valid sorting keys for all elements, the function may raise an error (e.g., `TypeError`).
+5. The function handles the case where `l` is an empty list by returning an empty list.
+6. The function does not handle cases where `l` contains non-integer values; if such values are present, the `getKey` function must handle them appropriately to avoid errors.

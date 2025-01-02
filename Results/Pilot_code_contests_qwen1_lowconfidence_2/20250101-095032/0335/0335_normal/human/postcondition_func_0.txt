@@ -1,0 +1,7 @@
+The function processes a grid represented by a 2D list `matrix` of size `n x m`. For each character in the grid, it calls `func_2(matrix, i, j)` to determine whether to include the character in the final answer stored in `selected_words`. If `func_2(matrix, i, j)` returns `False`, the character at position `(i, j)` is added to `selected_words`. After processing all characters, the function prints `selected_words`.
+
+Potential edge cases and missing functionality:
+1. If `func_2(matrix, i, j)` is never called for certain positions due to logical errors or omissions, those characters might not be included in `selected_words`.
+2. If `func_2` always returns `True`, then `selected_words` will be an empty string since no characters would be added.
+3. The function assumes `n` and `m` are positive integers, and `matrix` is a valid 2D list. If these assumptions are violated, the behavior is undefined.
+4. The function does not handle non-lowercase Latin letters in the grid, although the grid is specified to contain only such letters.

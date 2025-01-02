@@ -1,0 +1,1 @@
+The function `wrapped_func` does not explicitly accept parameters but relies on `args`, `kwargs`, and `stack` from the outer scope. It calls a function `f` with `args` and `kwargs` and handles the case where `f` returns a generator. If `stack` is non-empty at the start, the function immediately returns the result of `f(*args,

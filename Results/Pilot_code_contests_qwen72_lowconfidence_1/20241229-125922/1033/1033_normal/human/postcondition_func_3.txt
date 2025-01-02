@@ -1,0 +1,7 @@
+The function `update` takes two parameters `o` and `n`, each a tuple of two integers. The first element of each tuple represents a volume, and the second element represents a count. The function returns a tuple based on the following conditions:
+
+1. If the volume in `n` (`n[0]`) is less than the volume in `o` (`o[0]`), the function returns `n`.
+2. If the volumes in `o` and `n` are equal (`n[0] == o[0]`), the function returns a new tuple with the volume `o[0]` and the count `(o[1] + n[1]) % MOD`, where `MOD` is a constant integer greater than 1.
+3. If the volume in `o` is less than the volume in `n` (`o[0] < n[0]`), the function returns `o`.
+
+The function ensures that the returned tuple maintains the volume and count constraints as described above. Edge cases such as `n[0]` being equal to `o[0]` and the behavior of the modulo operation are correctly handled.

@@ -1,0 +1,8 @@
+The function `func_13` accepts three parameters: `x`, `y`, and `p`. Here, `x` represents the base, `y` represents the non-negative exponent, and `p` represents the positive modulus. The function calculates \( x^y \mod p \) using the method of exponentiation by squaring. During its execution, it repeatedly squares the base `x` and reduces it modulo `p`, and multiplies the result `res` by `x` when `y` is odd, also reducing the product modulo `p`. After the loop, the function returns the computed result `res`.
+
+Potential edge cases include:
+- If `y` is 0, the function will return 1, since any number to the power of 0 is 1.
+- If `p` is 1, the result will always be 0 because \( x \mod 1 \) is 0 for any integer `x`.
+- If `x` is 0, the function will correctly return 0 regardless of the value of `y` and `p`.
+
+The function does not handle negative exponents or non-integer inputs for `x`, `y`, or `p`, and it assumes that `y` is non-negative and `p` is positive.

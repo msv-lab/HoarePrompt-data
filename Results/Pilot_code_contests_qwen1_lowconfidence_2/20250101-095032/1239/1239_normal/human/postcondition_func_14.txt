@@ -1,0 +1,12 @@
+The function `func_15` accepts three parameters: `x`, `y`, and `p`, where `x` is an integer representing the base, `y` is an integer representing the exponent, and `p` is a positive integer representing the modulus. It returns `res`, which is the result of \( x^y \mod p \).
+
+The function achieves this by using modular exponentiation, which efficiently computes large powers modulo a number. Specifically, it uses a loop to repeatedly square the base and reduce it modulo `p`, and when the corresponding bit in the exponent `y` is set (i.e., `y & 1`), it multiplies the result by the current value of `x` and reduces the product modulo `p`.
+
+After the loop, the function returns the computed result `res`. This method ensures that the intermediate results do not grow too large, making the computation feasible even for large values of `x` and `y`.
+
+Potential edge cases and considerations:
+- If `y` is 0, the function will return 1 because \( x^0 = 1 \) for any `x`.
+- If `x` is 0 and `y` is positive, the result will be 0 because \( 0^y = 0 \) for any positive `y`.
+- If `p` is 1, the result will always be 0 because any number modulo 1 is 0.
+
+There are no missing functionalities noted in the provided code; it correctly implements the intended operation of modular exponentiation.

@@ -1,0 +1,17 @@
+#State of the program right berfore the function call: The input is a single integer n such that 0 ≤ n ≤ 2000000000.
+def func():
+    a = int(input())
+    b = [1, 0, 0, 0, 1, 0, 1, 0, 2, 1, 1, 2, 0, 1, 0, 0]
+    res = 0
+    if (a == 0) :
+        res += b[0]
+    #State of the program after the if block has been executed: *`a` is 0, `b` is [1, 0, 0, 0, 1, 0, 1, 0, 2, 1, 1, 2, 0, 1, 0, 0], and `res` is 1 since `a` equals 0.
+    while a > 0:
+        res += b[a % 16]
+        
+        a /= 16
+        
+    #State of the program after the loop has been executed: `a` is 0, `res` is the sum of `b[i]` where `i` is the remainder of `a` when divided by 16 for each iteration, `b` remains unchanged
+    print(res)
+#Overall this is what the function does:The function `func()` takes an integer `a` as input, which should be within the range \(0 \leq a \leq 2000000000\). It then converts `a` from its decimal representation to a base-16 (hexadecimal) representation using a lookup table `b`, and sums the values in `b` corresponding to the hexadecimal digits of `a`. The function prints the sum of these values. If `a` is 0, it directly adds the first element of `b` to `res`. For any other value of `a`, it repeatedly takes the remainder of `a` when divided by 16, looks up the corresponding value in `b`, adds it to `res`, and then divides `a` by 16 (using integer division). If `a` is outside the specified range, the function does not handle this case explicitly; however, due to the nature of the operation, passing an invalid value would result in a non-zero remainder or division by zero errors, leading to incorrect results or runtime issues. The final state of the program is that `res` contains the sum of the elements in `b` corresponding to the hexadecimal digits of `a`, and `a` is reduced to 0.
+

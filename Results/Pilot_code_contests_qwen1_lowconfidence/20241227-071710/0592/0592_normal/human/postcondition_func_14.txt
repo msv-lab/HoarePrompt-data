@@ -1,0 +1,8 @@
+The function `func_15` accepts three parameters: `x`, `y`, and `p`, where `x` and `y` are non-negative integers and `p` is a positive integer. It calculates the result of raising `x` to the power of each set bit in `y`'s binary representation, then takes the result modulo `p`. The function uses a loop to iteratively square `x` and reduce `y` by considering its binary representation, updating `res` accordingly. If `y` is odd, it multiplies `x` into `res` before squaring `x`. After the loop, the function returns `res`.
+
+The function handles the following cases:
+- If `y` is zero, the loop does not execute, and `res` remains 1 (since \(x^0 \equiv 1 \mod p\)).
+- If `x` is 1, the function returns 1 regardless of `y` and `p` (since \(1^n \equiv 1 \mod p\)).
+- If `p` is 1, the function always returns 0 (since any number modulo 1 is 0).
+
+There is no explicit handling for negative values of `x` or `y`, so the function assumes non-negative inputs. The function correctly implements the intended behavior as described by the annotations and the return postconditions.

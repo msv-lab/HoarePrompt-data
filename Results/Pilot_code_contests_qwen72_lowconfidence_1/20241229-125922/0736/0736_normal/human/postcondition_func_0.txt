@@ -1,0 +1,17 @@
+The function reads two inputs: an integer `n` (2 ≤ n ≤ 100) and a list of `n` integers `a` (1 ≤ a_i ≤ n-1). It then determines whether the list `a` meets certain conditions based on the maximum value in `a` (`maxa`) and a derived value `l`. The conditions are as follows:
+
+1. If `maxa` is odd:
+   - `l` is set to `maxa / 2 + 1`.
+   - The function checks if `l` appears exactly twice in `a`.
+   - If `l` appears exactly twice, the function further checks if all elements in `a` are greater than or equal to `l`.
+   - Additionally, it checks if for all values `i` in the range `l + 1` to `maxa + 1`, the count of `i` in `a` is at least 2.
+   - If both conditions are met, the function prints 'Possible'. If any condition fails, the function prints 'Impossible' and exits.
+
+2. If `maxa` is even:
+   - `l` is set to `maxa / 2`.
+   - The function checks if `l` appears exactly once in `a`.
+   - If `l` appears exactly once, the function further checks if all elements in `a` are greater than or equal to `l`.
+   - Additionally, it checks if for all values `i` in the range `l + 1` to `maxa + 1`, the count of `i` in `a` is at least 2.
+   - If both conditions are met, the function prints 'Possible'. If any condition fails, the function prints 'Impossible' and exits.
+
+If any of the conditions are not met, the function prints 'Impossible' and exits. If all conditions are met, the function prints 'Possible' and the program continues.

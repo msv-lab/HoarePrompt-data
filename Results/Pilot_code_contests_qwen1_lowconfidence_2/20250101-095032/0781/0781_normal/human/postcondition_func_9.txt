@@ -1,0 +1,5 @@
+The function `func_10` accepts two parameters `b` and `m`, where both are integers and `m` is greater than 1. It also assumes that the greatest common divisor (gcd) of `b` and `m` is 1, meaning they are coprime. The function first calls another function `func_8(b, m)` to compute `g`, which is the gcd of `b` and `m`. If `g` is not equal to 1, the function returns -1. Otherwise, it returns `pow(b, m - 2, m)`, which is the modular multiplicative inverse of `b` modulo `m`. 
+
+The potential edge case here is when `g` is not 1, in which the function returns -1, indicating that `b` and `m` are not coprime, and the subsequent computation (`pow(b, m - 2, m)`) is not performed. This is correctly reflected in the annotation "Case_1: The program returns -1".
+
+There is no missing functionality in the given code according to the provided annotations. However, if the `func_8(b, m)` function does not correctly compute the gcd of `b` and `m`, then the behavior of `func_10` could be incorrect. But based on the provided information, the function performs as expected.

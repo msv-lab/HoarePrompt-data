@@ -1,0 +1,8 @@
+The function `func_1` accepts a 2D list `matrix` representing a pixel picture, where each row is a string of characters '.' and '#', and two integers `n` and `m` representing the dimensions of the matrix. It calculates and returns two lists: `black_cost` and `white_cost`. `black_cost` is a list of length `m`, where each element represents the number of '.' characters in the corresponding column of the matrix. `white_cost` is a list of length `m`, where each element represents the number of '#' characters in the corresponding column of the matrix.
+
+The function iterates over each column of the matrix and counts the number of '.' and '#' characters in each column. It then appends these counts to the respective lists. After processing all columns, the function returns the `black_cost` and `white_cost` lists.
+
+Potential edge cases and missing functionality:
+- The function assumes that `matrix` is a valid 2D list with `n` rows and `m` columns, containing only the characters '.' and '#'. If the input `matrix` is not a valid 2D list or contains invalid characters, the behavior of the function is undefined.
+- The function does not validate the values of `n` and `m`. If `n` or `m` are not within the specified bounds (0 < n <= 1000 and 0 < m <= 1000), the function may still execute but the results may be incorrect or unexpected.
+- The function does not consider the values of `x` and `y` passed as parameters, as they are not used in the calculation of `black_cost` and `white_cost`.

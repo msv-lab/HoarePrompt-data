@@ -1,0 +1,6 @@
+The function accepts an integer `n` representing the number of elements in a sequence, followed by `n` integers `a_1, a_2, ..., a_n` where each integer satisfies \(-10^9 \leq a_i \leq 10^9\) and \(a_i \neq 0\). It then constructs two lists, `p` and `q`, where for each index \(j\) from 1 to \(n-1\):
+
+- If \(A[j] > 0\), then \(p[j] = p[j - 1] + 1\) and \(q[j] = q[j - 1]\).
+- If \(A[j] \leq 0\), then \(p[j] = q[j - 1]\) and \(q[j] = p[j - 1] + 1\).
+
+The initial values of `p[0]` and `q[0]` are set based on whether \(A[0] > 0\) or \(A[0] \leq 0\). After constructing these lists, the function prints the sum of the elements in `q` and `p`.

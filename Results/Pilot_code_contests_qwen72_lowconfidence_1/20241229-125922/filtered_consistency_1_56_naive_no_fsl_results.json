@@ -1,0 +1,150 @@
+{
+    "total_valid_rows": {
+        "value": 41,
+        "description": "Total number of valid rows after preprocessing and removing invalid entries."
+    },
+    "Function summary": {
+        "agreement_count": "13",
+        "agreement_percentage": 31.70731707317073,
+        "mcc": -0.3014147314517564,
+        "accuracy": 0.3170731707317073,
+        "precision": 0.2857142857142857,
+        "recall": 0.08,
+        "f1_score": 0.125,
+        "balanced_accuracy": 0.38375,
+        "description": "Agreement analysis between 'Correctness' and 'original correctness'."
+    },
+    "Naive": {
+        "agreement_count": "19",
+        "agreement_percentage": 46.34146341463415,
+        "mcc": -0.037130532861625286,
+        "accuracy": 0.4634146341463415,
+        "precision": 0.5882352941176471,
+        "recall": 0.4,
+        "f1_score": 0.4761904761904762,
+        "balanced_accuracy": 0.48125,
+        "description": "Agreement analysis between 'naive correctness' and 'original correctness'."
+    },
+    "Complex tree": {
+        "agreement_count": "18",
+        "agreement_percentage": 43.90243902439025,
+        "mcc": -0.056577894986100365,
+        "accuracy": 0.43902439024390244,
+        "precision": 0.5714285714285714,
+        "recall": 0.32,
+        "f1_score": 0.41025641025641024,
+        "balanced_accuracy": 0.47250000000000003,
+        "description": "Agreement analysis between 'annotated correctness' and 'original correctness'."
+    },
+    "Simple tree": {
+        "agreement_count": "20",
+        "agreement_percentage": 48.78048780487805,
+        "mcc": -0.019518001458970664,
+        "accuracy": 0.4878048780487805,
+        "precision": 0.6,
+        "recall": 0.48,
+        "f1_score": 0.5333333333333332,
+        "balanced_accuracy": 0.49,
+        "description": "Agreement analysis between 'annotated correctness simple' and 'original correctness'."
+    },
+    "Naive No FSL": {
+        "agreement_count": "17",
+        "agreement_percentage": 41.46341463414634,
+        "mcc": -0.05892556509887896,
+        "accuracy": 0.4146341463414634,
+        "precision": 0.5555555555555556,
+        "recall": 0.2,
+        "f1_score": 0.29411764705882354,
+        "balanced_accuracy": 0.475,
+        "description": "Agreement analysis between 'naive no fsl correctness' and 'original correctness'."
+    },
+    "Function summary no FSL": {
+        "agreement_count": "12",
+        "agreement_percentage": 29.268292682926827,
+        "mcc": -0.376085729841583,
+        "accuracy": 0.2926829268292683,
+        "precision": 0.16666666666666666,
+        "recall": 0.04,
+        "f1_score": 0.06451612903225806,
+        "balanced_accuracy": 0.36375,
+        "description": "Agreement analysis between 'Correctness no fsl' and 'original correctness'."
+    },
+    "Simple verify": {
+        "agreement_count": "19",
+        "agreement_percentage": 46.34146341463415,
+        "mcc": -0.015191090506255,
+        "accuracy": 0.4634146341463415,
+        "precision": 0.6,
+        "recall": 0.36,
+        "f1_score": 0.45,
+        "balanced_accuracy": 0.4925,
+        "description": "Agreement analysis between 'simple verify' and 'original correctness'."
+    },
+    "Complex verify": {
+        "agreement_count": "17",
+        "agreement_percentage": 41.46341463414634,
+        "mcc": -0.09958705948858224,
+        "accuracy": 0.4146341463414634,
+        "precision": 0.5384615384615384,
+        "recall": 0.28,
+        "f1_score": 0.3684210526315789,
+        "balanced_accuracy": 0.4525,
+        "description": "Agreement analysis between 'complex verify' and 'original correctness'."
+    },
+    "Default verify": {
+        "agreement_count": "13",
+        "agreement_percentage": 31.70731707317073,
+        "mcc": -0.30052038200428266,
+        "accuracy": 0.3170731707317073,
+        "precision": 0.3333333333333333,
+        "recall": 0.12,
+        "f1_score": 0.1764705882352941,
+        "balanced_accuracy": 0.3725,
+        "description": "Agreement analysis between 'default verify' and 'original correctness'."
+    },
+    "Simple verify no FSL": {
+        "agreement_count": "17",
+        "agreement_percentage": 41.46341463414634,
+        "mcc": -0.05892556509887896,
+        "accuracy": 0.4146341463414634,
+        "precision": 0.5555555555555556,
+        "recall": 0.2,
+        "f1_score": 0.29411764705882354,
+        "balanced_accuracy": 0.475,
+        "description": "Agreement analysis between 'simple verify no fsl' and 'original correctness'."
+    },
+    "Complex verify no FSL": {
+        "agreement_count": "16",
+        "agreement_percentage": 39.02439024390244,
+        "mcc": -0.11078234188139946,
+        "accuracy": 0.3902439024390244,
+        "precision": 0.5,
+        "recall": 0.16,
+        "f1_score": 0.24242424242424243,
+        "balanced_accuracy": 0.455,
+        "description": "Agreement analysis between 'complex verify no fsl' and 'original correctness'."
+    },
+    "Default verify no FSL": {
+        "agreement_count": "16",
+        "agreement_percentage": 39.02439024390244,
+        "mcc": -0.11078234188139946,
+        "accuracy": 0.3902439024390244,
+        "precision": 0.5,
+        "recall": 0.16,
+        "f1_score": 0.24242424242424243,
+        "balanced_accuracy": 0.455,
+        "description": "Agreement analysis between 'default verify no fsl' and 'original correctness'."
+    },
+    "naive_correctness_vs_correctness_diff": {
+        "description": "Analysis of cases where 'naive correctness' and 'Correctness' differ.",
+        "count": 16,
+        "original_agreement_count": "11",
+        "original_agreement_percentage": 68.75
+    },
+    "naive_correctness_vs_correctness_same": {
+        "description": "Analysis of cases where 'naive correctness' and 'Correctness' are the same.",
+        "count": 25,
+        "original_agreement_count": "8",
+        "original_disagreement_count": "17"
+    }
+}

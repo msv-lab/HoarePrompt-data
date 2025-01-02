@@ -1,0 +1,6 @@
+The function `func_1` accepts three parameters `x`, `y`, and `z`, where `x`, `y`, and `z` are non-negative integers such that \(1 \leq x, y, z \leq 1000\). It returns an integer based on the following conditions:
+
+1. If `z < 4` or `y < 2` or `x < 1`, the function returns 0.
+2. Otherwise, the function initializes `delit` as `z / 4` and enters a loop that decrements `delit` by 1 until `delit` is 1. Within the loop, it checks if both `x / delit >= 1` and `y / delit >= 1`. If both conditions are met, the function returns `delit`. If neither condition is met, the loop continues and `delit` is decremented.
+
+The function returns the greatest integer `k` such that `x / k >= 1` and `y / k >= 1`, or 1 if no such `k` exists within the range of initial `delit` values.

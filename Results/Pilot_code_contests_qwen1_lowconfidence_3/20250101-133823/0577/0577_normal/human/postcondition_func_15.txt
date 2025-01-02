@@ -1,0 +1,12 @@
+The function `func_16` accepts an integer `n` greater than 1 and returns `True` or `False` based on specific conditions. Specifically:
+1. If `n` is less than or equal to 1, the function returns `False`.
+2. If `n` is less than or equal to 3, the function returns `True`.
+3. If `n` is divisible by 2 or 3, the function returns `False`.
+4. For `n` greater than 3 and not divisible by 2 or 3, the function checks divisibility by numbers of the form `6k ± 1` up to the square root of `n`. If `n` is divisible by any such number, the function returns `False`.
+5. If no divisors are found, the function returns `True`.
+
+Potential edge cases and missing functionality:
+- The function correctly handles all integers greater than 1, including edge cases like 2 and 3.
+- The function correctly identifies even numbers (divisible by 2) and multiples of 3 as non-prime.
+- The function uses an efficient algorithm to check divisibility by numbers of the form `6k ± 1`, which is sufficient to determine primality for numbers up to the square root of `n`.
+- However, the function does not explicitly handle the case where `n` is a prime number greater than 3 that is not divisible by 2, 3, or any number of the form `6k ± 1` up to its square root. This is correctly handled by the algorithm, but it is worth noting that the function will return `True` for such primes.

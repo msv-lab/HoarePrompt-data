@@ -1,0 +1,14 @@
+The function `func_1` accepts four parameters: `x`, `y`, `z`, and `k`, where `x`, `y`, and `z` are real numbers with exactly one digit after the decimal point and within the range 0.1 ≤ x, y, z ≤ 200.0, and `k` is an integer. Based on the value of `k`, the function performs different calculations involving powers of `x`, `y`, and `z`. The function returns either a numerical value or a string representing the calculated power expression.
+
+The function covers the following cases:
+1. If `k` is 1, it returns \( x^{y^z} \) as a string `'x^y^z'`.
+2. If `k` is 2, it returns \( x^{z^y} \) as a string `'x^z^y'`.
+3. If `k` is 3 or 4, it returns \( x^{(z \times y)} \) as a numerical value and the string `'(x^y)^z'`.
+4. If `k` is 5, it returns \( y^{(x^z)} \) as a string `'y^x^z'`.
+5. If `k` is 6, it returns \( y^{z^x} \) as a string `'y^z^x'`.
+6. If `k` is 7 or 8, it returns \( y^{(x \times z)} \) as a numerical value and the string `'(y^x)^z'`.
+7. If `k` is 9, it returns \( z^{(x^y)} \) as a numerical value.
+8. If `k` is 10, it returns \( z^{y^x} \) as a string `'z^y^x'`.
+9. If `k` is 11 or 12, it returns \( z^{(x \times y)} \) as a numerical value and the string `'(z^x)^y'`.
+
+If `k` does not match any of the above values, the function will return an error or an undefined state, as the function does not handle this case explicitly.

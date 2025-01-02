@@ -1,0 +1,10 @@
+The function accepts two parameters `lower` and `upper`, both non-negative integers such that \(1 \leq lower \leq upper \leq 10^{18}\). It calculates and returns the count of integers within the range `[lower, upper]` that can be represented using exactly 19 digits. This includes numbers from \(10^{18}\) to \(9999999999999999999\) (i.e., 19-digit numbers).
+
+The function performs the following steps:
+1. It initializes `res` to 0.
+2. It counts the number of single-digit integers (1 through 9) that fall within the range `[lower, upper]`.
+3. For each digit length from 2 to 19, it iterates over all possible starting digits (from 1 to 9).
+4. For each starting digit and length, it calculates the smallest and largest positions of numbers that fit within the given range.
+5. It updates `res` by adding the count of valid numbers for each combination of length and starting digit.
+
+The function handles edge cases such as when `lower` or `upper` is less than \(10^{18}\) or greater than \(9999999999999999999\). If `lower` or `upper` is outside the valid range, the function will still execute but the counts will only consider the valid portion of the range.

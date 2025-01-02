@@ -1,0 +1,9 @@
+The function accepts a string and two integers \( n \) and \( k \). It determines whether the grasshopper ('G') can jump from its initial position to the insect ('T')'s position without encountering any obstacles ('#'), where each jump is of size \( k \). If the grasshopper can reach the insect under these conditions, it prints 'YES'; otherwise, it prints 'NO'. The function checks the following:
+
+1. The input string contains exactly one 'G' and one 'T'.
+2. The absolute difference between the indices of 'G' and 'T' is divisible by \( k \).
+3. There are no obstacles ('#') between the grasshopper and the insect along the path defined by the jumps of size \( k \).
+
+If the absolute difference between the indices of 'G' and 'T' is not divisible by \( k \), the function immediately prints 'NO'.
+
+The function also handles the case where the string is reversed. If the indices of 'G' and 'T' are such that the absolute difference is divisible by \( k \) and there are no obstacles when the string is reversed, it still prints 'NO' unless the string was not reversed, in which case it prints 'YES'.

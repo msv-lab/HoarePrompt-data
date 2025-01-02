@@ -1,0 +1,14 @@
+l=map(int,raw_input().split())
+def ds(a,b): return (l[a]-l[b])**2 + (l[a+1]-l[b+1])**2
+def ch():
+    a=ds(0,2)
+    b=ds(2,4)
+    c=ds(4,0)
+    return a+b==c or b+c==a or c+a==b
+s=ch()
+for i in range(6):
+    for j in [1,-1]:
+        l[i]+=j
+        if s==0: s = 2*ch()
+        l[i]-=j
+print ["NEITHER","RIGHT","ALMOST"][s]

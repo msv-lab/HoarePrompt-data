@@ -1,0 +1,10 @@
+The function `func_3` accepts three real numbers `x`, `y`, and `z` with the constraint that 0.1 ≤ x, y, z ≤ 200.0 and each has exactly one digit after the decimal point. It returns one of five possible outcomes based on the values of `x`, `y`, and `z`:
+
+1. If the maximum of `x`, `y`, and `z` is less than 1, it iterates through a given index and calls `func_1(x, y, z, i)` for each index value. It keeps track of the maximum value returned by `func_1` and the corresponding second element of the returned tuple. If no valid tuple is found, it returns an empty string.
+2. If the maximum of `x`, `y`, and `z` is exactly 1:
+   - If `x` is 1, it returns 'x^y^z'.
+   - If `y` is 1, it returns '1^x^z'.
+   - Otherwise, it returns `z^x^y`.
+3. If the maximum of `x`, `y`, and `z` is greater than 1, it iterates through a given index and calls `func_2(x, y, z, i)` for each index value. It keeps track of the maximum value returned by `func_2` and the corresponding second element of the returned tuple. If no valid tuple is found, it returns an empty string.
+
+In all cases, the function ensures that the constraints on `x`, `y`, and `z` are respected and returns the appropriate result based on the conditions specified.

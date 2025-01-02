@@ -1,0 +1,6 @@
+The function `func_1` takes three parameters: `A`, a list of lists of integers representing a matrix; `b`, a list of integers of the same length as the number of rows in `A`; and `p`, a prime number between 2 and 2999. The function aims to solve the equation `Ax = b mod p` for `x`. It initializes `x` as a list of zeros with the same length as `A`. For each row `Ai` in `A`, it calculates a temporary value `tmp` which is the modular inverse of the last element in `Ai` multiplied by the difference between the corresponding element in `b` and the dot product of `Ai` and the current state of `x`, all taken modulo `p`. This `tmp` value is then added to the corresponding position in `x`. After processing all rows, the function returns a list of remainders obtained by dividing each element in `x` by `p`. 
+
+Potential Edge Cases:
+- If `A` is an empty list, the function will return an empty list.
+- If `A` is not a square matrix or `b` does not have the same length as the number of rows in `A`, the function may produce unexpected results or raise an error.
+- If any element in the last column of `A` is zero, the modular inverse calculation will fail, leading to a ZeroDivisionError.

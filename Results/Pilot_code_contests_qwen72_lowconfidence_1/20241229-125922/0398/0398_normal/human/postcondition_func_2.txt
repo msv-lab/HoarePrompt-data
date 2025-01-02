@@ -1,0 +1,17 @@
+The function `func_3` takes two parameters: `ds`, a list of integers representing the digits of a time component in the Martian numeral system, and `ub`, a non-negative integer representing the upper bound for the value of the time component. The function performs the following actions:
+
+1. If the list `ds` is empty, the function returns `[-1, -1]`.
+2. It calculates `maxds`, the maximum value in `ds`. If `maxds` exceeds `ub`, the function returns `[0, 0]`.
+3. If `ds` contains only one digit, the function returns `[-1, -1]`.
+4. If none of the above conditions are met, the function converts the digits in `ds` into a single value using a base `lo` (where `lo` is `maxds + 1`). If this value (`summ`) exceeds `ub`, the function returns `[0, 0]`.
+5. If `summ` is less than or equal to `ub`, the function enters a loop where it increments `hi` starting from `lo` and recalculates `summ` using the new base `hi`. The loop continues until `summ` exceeds `ub`. The function then returns `[lo, hi - 1]`.
+
+Edge Cases:
+- If `ds` is an empty list, the function returns `[-1, -1]`.
+- If `ds` contains a single digit, the function returns `[-1, -1]`.
+- If the maximum digit in `ds` exceeds `ub`, the function returns `[0, 0]`.
+- If the initial conversion of `ds` using base `lo` results in a value greater than `ub`, the function returns `[0, 0]`.
+
+Potential Missing Logic:
+- The function assumes that `ds` is a list of integers and does not handle cases where `ds` contains non-integer values or is not a list.
+- The function does not handle cases where `ub` is negative, although the annotations suggest it should be non-negative.

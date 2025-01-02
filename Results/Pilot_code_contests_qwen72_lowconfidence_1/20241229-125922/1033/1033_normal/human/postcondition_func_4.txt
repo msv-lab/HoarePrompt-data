@@ -1,0 +1,12 @@
+The function `update2` takes two tuples `o` and `n`, each containing two integers. The function compares the first elements of these tuples (`o[0]` and `n[0]`) and returns one of the following:
+
+1. If `n[0]` is greater than `o[0]`, the function returns the tuple `n`. This means the returned tuple contains the inner volume `n[0]` and a count or cumulative value `n[1]`.
+
+2. If `n[0]` is equal to `o[0]`, the function returns a new tuple `(o[0], (o[1] + n[1]) % MOD)`. Here, `o[0]` is the outer volume, and the second element is the sum of `o[1]` and `n[1]`, taken modulo `MOD`.
+
+3. If `n[0]` is less than `o[0]`, the function returns the tuple `o`. This means the returned tuple contains the outer volume `o[0]` and a count or cumulative value `o[1]`.
+
+Edge Cases and Missing Functionality:
+- The function assumes that `o` and `n` are always tuples of exactly two integers. If either `o` or `n` is not a tuple or does not contain exactly two integers, the function will raise an error.
+- The function does not handle cases where `MOD` is not defined or is zero, which would cause a division by zero error during the modulo operation.
+- The function does not validate the types or values of `o[0]`, `o[1]`, `n[0]`, and `n[1]` to ensure they are integers, which could lead to unexpected behavior if non-integer values are passed.

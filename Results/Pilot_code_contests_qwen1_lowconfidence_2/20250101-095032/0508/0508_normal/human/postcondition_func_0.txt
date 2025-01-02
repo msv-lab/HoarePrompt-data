@@ -1,0 +1,6 @@
+The function `func()` accepts two integers `n` and `m`, both within the range of 1 to 12, and two lists of pairs of integers. Each pair consists of two distinct integers between 1 and 9. The function iterates through these pairs to find if there is at least one pair from the first list and one pair from the second list that share exactly one common number. If such a pair is found, it adds the shared number to a set `cand`. After processing all pairs, the function checks the following conditions:
+1. If `cand` contains exactly one element, it prints that element.
+2. If the maximum size of any set in `cc` or `dd` is less than or equal to 1, and `cand` is non-empty, it prints 0.
+3. In all other cases, it prints -1.
+
+The function ensures that if no such pairs are found or if the conditions mentioned above do not hold, it correctly returns -1. This covers all possible edge cases including when there are no shared numbers or when the conditions for printing 0 are met.

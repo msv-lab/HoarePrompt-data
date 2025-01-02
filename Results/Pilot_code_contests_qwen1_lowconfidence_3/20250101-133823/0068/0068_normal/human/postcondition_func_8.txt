@@ -1,0 +1,3 @@
+The function `func_8` accepts four integer parameters `l`, `r`, `ll`, and `rr`, where `l` <= `r` and `ll` <= `rr`. It checks if `ll` is greater than `r` or `rr` is less than `l`. If either condition is true, the function returns -1. Otherwise, it updates `l` to be the maximum of `l` and `ll`, and `r` to be the minimum of `r` and `rr`. Finally, the function returns the maximum of 0 and the difference between `r` and `l`.
+
+This function ensures that the interval defined by `l` and `r` overlaps with the interval defined by `ll` and `rr`. If no overlap exists, it returns -1, indicating no valid overlap. If an overlap exists, it calculates the size of the overlap and returns the maximum value of 0 and this size.

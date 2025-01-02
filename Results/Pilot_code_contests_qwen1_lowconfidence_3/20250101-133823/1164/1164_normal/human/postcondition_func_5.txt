@@ -1,0 +1,3 @@
+The function `func_6` accepts two integers `x` and `y` such that -10^9 ≤ x ≤ 10^9 and -10^9 ≤ y ≤ 10^9. It first converts both `x` and `y` to their absolute values. Then, it checks if the minimum of `x` and `y` is zero. If it is, the function returns the maximum of `x` and `y`. Otherwise, it uses the Euclidean algorithm to find the greatest common divisor (GCD) of the original values of `x` and `y`. After the loop, the function returns the GCD of `x` and `y` as `x` and `y` as 0. 
+
+In summary, the function either returns the maximum of `x` and `y` or the GCD of the original values of `x` and `y` with `y` set to 0. This covers all potential cases where the minimum of `x` and `y` can be either zero or non-zero.

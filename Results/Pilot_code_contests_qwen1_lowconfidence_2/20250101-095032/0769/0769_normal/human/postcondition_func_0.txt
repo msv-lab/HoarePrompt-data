@@ -1,0 +1,7 @@
+The function `func_1` takes two parameters, `dice1` and `dice2`, which are both lists of six integers ranging from 0 to 100 inclusive. Its primary goal is to check if `dice1` can be made equal to `dice2` by rolling `dice1` in the 'S' (south) direction up to six times. If `dice1` becomes equal to `dice2` after these rolls, the function returns `True`; otherwise, it returns `False`.
+
+The function first checks if `dice1` is already equal to `dice2`. If so, it immediately sets the `flag` to `True`. If not, it iterates through each face of `dice1`, setting the top face to each number from 1 to 6, and then attempts to roll `dice1` in the 'S' direction four times. After each roll, it checks if `dice1` has become equal to `dice2`. If at any point `dice1` matches `dice2`, the function sets `flag` to `True` and breaks out of the loop.
+
+If none of the combinations and rolls make `dice1` equal to `dice2`, the function continues to roll `dice1` in the 'S' direction six more times, checking after each roll. If `dice1` still does not match `dice2` after these additional rolls, the function returns `False`.
+
+Potential edge cases include scenarios where the initial numbers on `dice1` and `dice2` are completely different, or when `dice1` cannot be made equal to `dice2` even after all possible rolls.

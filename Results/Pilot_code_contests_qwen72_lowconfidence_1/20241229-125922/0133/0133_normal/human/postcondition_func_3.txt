@@ -1,0 +1,11 @@
+The function `func_4` takes two parameters: `adj` (a list of lists representing the adjacency list of a tree) and `start` (a non-negative integer representing the starting vertex). It performs an Euler tour traversal of the tree starting from the specified vertex and returns three values: `first`, `euler`, and `height`. 
+
+- `first` is a list where `first[v]` is the index at which vertex `v` was first added to the `euler` list.
+- `euler` is a list containing the order in which vertices were visited during the Euler tour, starting from the `start` vertex and including all vertices.
+- `height` is a list where `height[v]` is the depth of vertex `v` in the tree, with the root (starting vertex) having a depth of 1.
+
+The function ensures that all vertices are visited, and the `visited` list is updated to `True` for each vertex. The `parent` list is also updated to reflect the parent of each vertex in the tree, with the root having a parent of `-1`.
+
+Potential edge cases:
+- If the tree is empty (i.e., `adj` is an empty list), the function will return empty lists for `first`, `euler`, and `height`.
+- If the `start` vertex is not connected to any other vertices (i.e., `adj[start]` is an empty list), the function will only include the `start` vertex in the `euler` list, and `first[start]` will be 0, while `height[start]` will be 1.

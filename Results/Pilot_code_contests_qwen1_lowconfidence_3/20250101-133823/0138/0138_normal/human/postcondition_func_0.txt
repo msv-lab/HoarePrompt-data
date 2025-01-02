@@ -1,0 +1,9 @@
+The function `func_1` takes no explicit parameters but reads two strings `s` and `t` from the user input, then processes these strings to determine the result based on specific conditions. After reading the strings, it counts the occurrences of each character in both strings `s` and `t` using `scount` and `tcount` respectively. It then compares these counts to check if every character in `s` appears at least as many times as in `t`.
+
+If `scount` is always greater than or equal to `tcount` for all characters, and the lengths of `s` and `t` are equal, the function returns `-1`.
+
+If the above condition is not met but the lengths of `s` and `t` are equal, it attempts to remove characters from `s` to match `t` by decrementing the corresponding counts in `scount`. If successful, it appends the remaining characters to `t` and returns the result as a string. If unsuccessful, it returns `-1`.
+
+If the initial comparison indicates that `scount` is not always greater than or equal to `tcount`, the function proceeds to a more complex algorithm involving a temporary copy of `scount` (`scountcopy`) to find a valid starting index `works`. This index represents the position in `s` where the first character in `t` cannot be found in sufficient quantity in `s`. If such an index is found, it constructs a result string by taking characters from `t` up to this index and appending any remaining valid characters from `scountcopy` in lexicographical order. If no such index exists, it returns `-1`.
+
+In all cases, the function returns `-1` in certain scenarios and constructs and returns a string in others, based on the comparison and processing of the input strings.

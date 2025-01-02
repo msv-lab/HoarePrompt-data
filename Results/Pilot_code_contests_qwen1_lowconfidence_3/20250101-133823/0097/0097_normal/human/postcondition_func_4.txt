@@ -1,0 +1,14 @@
+Functionality: The function reads user input and processes it to create a list of integers. This list contains the number of test cases `T`, followed by the number of elements `n` for each test case, and then pairs of integers `(p_i, c_i)` for each element within the test cases. The function returns this list. 
+
+The function handles the following cases:
+- It accepts user input split by spaces, which must be in the correct format (e.g., "T n p_i c_i ...").
+- It ensures that `T` is a positive integer within the range `[1, 500]`.
+- It ensures that `n` is a positive integer within the range `[1, 100]`.
+- It processes up to 100 pairs `(p_i, c_i)` for each test case, where each pair is a non-negative integer within the range `[0, 1000]`.
+
+Potential edge cases include:
+- If the input format is incorrect (e.g., missing values or incorrect types), the function will not correctly parse the input, leading to incorrect results.
+- If the number of test cases `T` exceeds 500 or the number of elements `n` per test case exceeds 100, the function will not process additional values beyond these limits.
+
+Missing functionality:
+- There is no validation or error handling for incorrect input formats or values outside the specified ranges. If invalid input is provided, the function may produce incorrect output or unexpected behavior.

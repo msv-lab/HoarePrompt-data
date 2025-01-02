@@ -1,0 +1,24 @@
+The function `func_1` reads a grid from standard input, where the grid is defined by dimensions `n` and `m` (1 ≤ n, m ≤ 1000) and each cell is represented by a character "#" (black) or "." (white). It processes the grid to identify connected components of black cells ("#") using a Disjoint Set Union (DSU) data structure. The function also checks several conditions to determine if the grid meets specific criteria:
+
+1. All black cells ("#") are adjacent to another black cell in the same row or column.
+2. There is at least one black cell in the grid.
+3. All rows and columns contain at least one black cell.
+
+If these conditions are met, the function calls `func_2` with the number of connected components of black cells minus the number of white cells. If any of these conditions are not met, `func_2` is called with `-1`.
+
+After the function executes:
+- `n` and `m` remain the dimensions of the grid.
+- `dsu` is a `DisjointSetUnion` object initialized with size `n * m` and contains unions between adjacent black cells.
+- `f_col` is a list of length `n` where each element is either -1 or the index of the last column in the corresponding row that had a black cell.
+- `f_row` is a list of length `m` where each element is either -1 or the index of the last row in the corresponding column that had a black cell.
+- `cols` is a set containing all row indices that did not have a black cell.
+- `rows` is a set containing all column indices that did not have a black cell.
+- `exists` is `True` if all black cells are adjacent to another black cell in the same row or column, otherwise `False`.
+- `black` is `True` if there is at least one black cell in the grid, otherwise `False`.
+- `white` is the total number of white cells in the grid.
+- `prev_row` is the last row read from the input.
+
+Potential edge cases and missing functionality:
+- If the grid is entirely white (no black cells), the function will still correctly call `func_2(-1)`.
+- If the grid is entirely black, the function will call `func_2(1)` since there is only one connected component of black cells.
+- The function does not handle invalid input (e.g., non-integer dimensions or invalid characters in the grid), which could lead to runtime errors.

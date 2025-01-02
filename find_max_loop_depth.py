@@ -34,9 +34,9 @@ def calculate_depth_for_programs(data):
     return data
 
 # Hardcoded file paths
-data_folder = Path("/home/jim/HoarePrompt-data/PilotData/data")
-input_file = data_folder / "mbppplus_llama3point1-70b_final_stdformat.json"
-output_file = data_folder / "mbppplus_llama3point1-70b_final_stdformat_depth.json"
+data_folder = Path("/home/dimitris/HoarePrompt-data/PilotData/data")
+input_file = data_folder / "code_contests_first1000_under09.json"
+output_file = data_folder / "code_contests_first1000_under09_depth.json"
 
 # Load the data
 data = load_data(input_file)

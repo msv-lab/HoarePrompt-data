@@ -1,0 +1,12 @@
+The function `func_12` accepts three parameters: `x`, `y`, and `p`, where both `x` and `y` are integers, and `p` is a prime number greater than 1. The function computes \( x^y \mod p \) using a fast exponentiation algorithm. After executing the loop, the function returns the result stored in `res`.
+
+The final state of the program after the function concludes is as follows:
+- `res` contains the value of \( x^y \mod p \).
+- `y` is set to 0.
+- `x` is updated to \( x^{2^k} \mod p \), where \( k \) is the number of iterations the loop performed.
+
+Potential edge cases:
+- If `y` is 0, the loop will not execute, and `res` will remain 1 regardless of the values of `x` and `p`.
+
+Missing functionality:
+- The annotation states that the program returns `res`, which is 1. However, the actual code updates `res` based on the value of `x` and `y` during the loop. Therefore, the correct return value should be `res` instead of always returning 1.

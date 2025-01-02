@@ -1,0 +1,6 @@
+The function processes a series of pairs \((p_i, c_i)\) for a given positive integer \(n\) (where \(1 \leq n \leq 100\)). It checks if the pairs meet certain conditions. Specifically, it verifies that for each pair \((p_i, c_i)\):
+
+1. \(p_i \geq prevplay\) and \(c_i \geq prevClr\).
+2. If \(c_i > prevClr\), then \(c_i - prevClr \leq p_i - prevplay\).
+
+If any of these conditions fail for any pair, the function prints 'NO'. Otherwise, it prints 'YES'. After processing all pairs, the function ends.

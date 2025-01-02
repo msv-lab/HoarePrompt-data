@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: delta is a list of integers with length n (2 ≤ n ≤ 200 000) where each element ai satisfies 1 ≤ ai ≤ n.
+def func_1(delta):
+    return [(int(i) + delta) for i in raw_input().split()]
+    #The program returns a list of integers, where each integer is the sum of an input integer and the corresponding element in list `delta`. The input integers are provided by the user.
+#Overall this is what the function does:The function `func_1` accepts a list of integers `delta` and expects user input in the form of a space-separated string of integers. It then processes this input by splitting the string into individual integers, converting them to integers, and adding each integer to the corresponding element in `delta`. The function returns a new list of integers, where each integer is the sum of an input integer and the corresponding element in `delta`. Potential edge cases include handling empty input strings or ensuring that the input string contains the correct number of integers to match the length of `delta`. If the input string does not contain enough integers, the function will use the remaining elements of `delta` with a value of 0 for the missing integers.
+

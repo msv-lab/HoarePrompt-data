@@ -1,0 +1,7 @@
+The function processes a list of distinct integers of length \( n \) (where \( 1 \leq n \leq 3 \times 10^5 \)), each integer being between 1 and \( 10^9 \). It calculates the sum of the elements in the list multiplied by a specific weighted factor, which is derived from powers of 2 and their differences. The calculation involves a loop that iterates over each element in the list, updating a running total `r` according to the formula:
+
+\[
+r \leftarrow r + s[i] \times 2^i (2^{n-2i-1} - 1) \mod (1000000000 + 7)
+\]
+
+After processing all elements, the function outputs the negation of the final value of `r`.

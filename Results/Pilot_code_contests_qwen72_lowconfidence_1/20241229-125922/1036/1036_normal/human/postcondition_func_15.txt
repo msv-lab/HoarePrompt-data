@@ -1,0 +1,6 @@
+The function `func_16` takes an integer `n` greater than 1 and determines whether `n` is a prime number. It returns `True` if `n` is a prime number and `False` otherwise. The function handles the following cases:
+- If `n` is less than or equal to 1, it returns `False`.
+- If `n` is 2 or 3, it returns `True`.
+- If `n` is divisible by 2 or 3, it returns `False`.
+- For `n` greater than 3, it checks divisibility by all integers of the form 6k ± 1 (where k is an integer) up to the square root of `n`. If `n` is divisible by any such integer, it returns `False`.
+- If none of the above conditions are met, it returns `True`, indicating that `n` is a prime number.

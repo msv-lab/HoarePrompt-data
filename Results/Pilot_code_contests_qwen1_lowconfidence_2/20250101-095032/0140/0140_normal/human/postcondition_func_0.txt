@@ -1,0 +1,9 @@
+The function `func_1` accepts a parameter `f`, which is a function that converts strings to integers. It reads a string of space-separated integers using the `read()` function. Depending on whether `f` is provided, the function returns either a map object applying `f` to each integer in the list of integers or a list of integers directly obtained by splitting the string returned by `read()`.
+
+In both cases, the final state of the program after the function concludes is:
+- If `f` is provided and is a valid function, the program returns a map object where `f` is applied to each integer in the list of integers.
+- If `f` is not provided or is not a valid function, the program returns a list of integers obtained by splitting the string returned by `read()`.
+
+Potential edge cases and missing functionality:
+- The annotation mentions that the function returns a map object when `f` is provided. However, the function does not check if `f` is a valid callable function. If `f` is not callable, the function will raise a `TypeError`.
+- The function does not handle cases where `read()` returns an empty string. In such cases, the returned map object (in Case 1) would be empty, and the returned list (in Case 2) would also be empty.

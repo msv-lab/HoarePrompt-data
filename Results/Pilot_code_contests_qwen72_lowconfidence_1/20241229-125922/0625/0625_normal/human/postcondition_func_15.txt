@@ -1,0 +1,3 @@
+The function `func_15` accepts two parameters `a` and `b`, where both are integers and `b` is not zero. It returns the absolute value of the integer division of `a` by the result of `func_6(a, b)`, multiplied by `b`. 
+
+However, the function assumes that `func_6(a, b)` always returns a non-zero value, which is necessary to avoid a division by zero error. If `func_6(a, b)` can return zero, the function will raise a `ZeroDivisionError`. Additionally, the function will always return a non-negative integer due to the use of the `abs` function.

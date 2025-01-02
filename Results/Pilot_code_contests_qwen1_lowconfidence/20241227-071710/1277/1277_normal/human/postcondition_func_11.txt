@@ -1,0 +1,13 @@
+The function `func_12` takes three inputs: `n`, `a`, and `b`. Here, `n` is an integer such that \(1 \leq n \leq 2 \cdot 10^5\), `a` is a list of integers with values ranging from \(-10^6 \leq a_i \leq 10^6\), and `b` is a list of integers where each element is either a positive integer between 1 and `n` or \(-1\), with the sequence defined by `b_i, b_{b_i}, b_{b_{b_i}}, \ldots` always ending with \(-1\).
+
+The function performs the following actions:
+1. It initializes a list `l` of length `n` filled with zeros.
+2. For each valid index `i` in `b` (i.e., where `b[i] > 0`), it updates `l[b[i] - 1]` by adding the corresponding value from `a`.
+3. It then constructs a list `l1` which contains pairs of elements from `l` and their indices.
+4. `l1` is sorted based on the first element of each pair.
+5. It initializes `ans` to 0 and creates a new list `l2` to store the final indices.
+6. For each element in the sorted `l1`, it updates `l2` by adding 1 to the index and adds to `ans` the product of the value from `a` at the current index and the value from `l` at the current index.
+7. Finally, it increments the value in `a` at the current index by the value from `l` at the current index.
+8. The function calls `func_13` twice: once with `ans` as an argument and once with the elements of `l2`.
+
+After the function concludes, `func_13` is called with two arguments: the sum of certain products involving elements from `a` and `l`, and a list of adjusted indices based on the sorted values of `l` and `b`.

@@ -1,0 +1,17 @@
+(n, b, p) = map(int, raw_input().split())
+potencias = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512]
+
+def func_1(x):
+    for i in range(10):
+        if potencias[i] > x:
+            return potencias[i - 1]
+(bo, to) = (0, p * n)
+while n > 1:
+    k = func_1(n)
+    bo += b * k
+    print(n, k, bo)
+    n = n - k / 2
+    bo += k / 2
+    if k == 1:
+        break
+print(bo, to)

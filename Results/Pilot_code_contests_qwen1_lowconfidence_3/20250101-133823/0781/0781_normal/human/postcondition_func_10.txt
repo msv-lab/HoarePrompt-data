@@ -1,0 +1,1 @@
+The function `func_11` accepts three parameters: `a`, `b`, and `m`. It first computes `a % m` and then calls `func_10(b, m)` to get the modular inverse of `b` modulo `m`. If the modular inverse does not exist (i.e., `func_10(b, m)` returns -1), the function returns -999999999. Otherwise, it returns the product of the modular inverse and `a`, taken modulo `m`.

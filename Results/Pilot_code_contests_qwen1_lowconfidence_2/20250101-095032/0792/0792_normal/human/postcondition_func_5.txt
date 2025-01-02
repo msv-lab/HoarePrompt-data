@@ -1,0 +1,6 @@
+The function `func_6` accepts two parameters `x` and `y`, both of which are integers. It first ensures that both `x` and `y` are non-negative by taking their absolute values. 
+
+- If either `x` or `y` is zero, the function checks whether `x` is non-negative. If `x` is non-negative, it returns `x`; otherwise, it returns `y`, which is guaranteed to be zero.
+- If neither `x` nor `y` is zero, the function computes the greatest common divisor (GCD) of the original values of `x` and `y` using the Euclidean algorithm. After the loop, `x` holds the GCD, and `y` is zero. The function then returns `x`.
+
+Thus, the function ultimately returns the GCD of the original values of `x` and `y` if both are non-zero, or `x` if `x` is non-negative and `y` is zero, or zero otherwise.

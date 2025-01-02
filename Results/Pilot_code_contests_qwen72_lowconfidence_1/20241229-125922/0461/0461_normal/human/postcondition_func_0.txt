@@ -1,0 +1,4 @@
+The function reads an integer `t` indicating the number of test cases, where `1 ≤ t ≤ 10000`. For each test case, it reads two integers `a` and `b` (where `0 ≤ a, b ≤ 10^6`). The function then computes and prints a result for each test case based on the following rules:
+- If `b` is 0, it prints 1.
+- If `a` is 0, it prints 0.5.
+- Otherwise, it calculates `p` as `a * b + max(a - 4 * b, 0) * b + (min(a, 4 * b)

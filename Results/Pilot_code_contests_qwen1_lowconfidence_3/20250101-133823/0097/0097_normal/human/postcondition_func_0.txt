@@ -1,0 +1,6 @@
+The function processes a series of pairs \((p_i, c_i)\) where \(p_i\) and \(c_i\) are integers. It checks whether the sequence of pairs is valid based on specific conditions. If any condition is violated, the function prints 'NO'; otherwise, it prints 'YES'. The function does not accept any parameters and returns nothing explicitly. After the function concludes, the console will display either 'YES' or 'NO' based on the validation process. The function handles the following edge cases:
+1. If \(t\) (the number of test cases) is 0, no further processing occurs.
+2. If any pair \((p_i, c_i)\) violates the conditions (i.e., \(p_i < \text{prevplay}\), \(c_i < \text{prevClr}\), or \(p_i < c_i\)), the function immediately prints 'NO'.
+3. If none of the conditions are violated, the function prints 'YES'.
+
+The function also ensures that the values of `prevplay` and `prevClr` are updated correctly within the loop.

@@ -1,0 +1,84 @@
+#State of the program right berfore the function call: s and t are non-empty strings consisting of lowercase Latin letters, with lengths satisfying 1 ≤ |s|, |t| ≤ 5000.
+def func_1():
+    s = list(raw_input())
+    t = list(raw_input())
+    scount = [0] * 26
+    tcount = [0] * 26
+    for char in s:
+        scount[ord(char) - ord('a')] += 1
+        
+    #State of the program after the  for loop has been executed: `s` is a list of characters from an input string; `tcount` remains unchanged as [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; `scount` is a list of 26 integers where each integer represents the count of a specific character ('a' to 'z') in the input string `s`.
+    for char in t:
+        tcount[ord(char) - ord('a')] += 1
+        
+    #State of the program after the  for loop has been executed: `s` is a list of characters from an input string, `tcount` is a list of 26 integers where each integer represents the count of a specific character ('a' to 'z') in the input string `s`, and `t` must either contain at least one character (if the loop executes) or be an empty list (if the loop does not execute).
+    allgreater = True
+    for i in range(26):
+        if scount[i] < tcount[i]:
+            allgreater = False
+        
+    #State of the program after the  for loop has been executed: `s` is a list of characters from an input string, `tcount` is a list of 26 integers where each integer represents the count of a specific character ('a' to 'z') in the input string `s`, `allgreater` is False, `t` must either contain at least one character or be an empty list, `i` is 26.
+    if allgreater :
+        if (len(s) == len(t)) :
+            return -1
+            #The program returns -1
+        #State of the program after the if block has been executed: `s` is a list of characters from an input string, `tcount` is a list of 26 integers where each integer represents the count of a specific character ('a' to 'z') in the input string `s`, `allgreater` is True, `t` must either contain at least one character or be an empty list, `i` is 26, and the length of `s` is not equal to the length of `t`
+        for char in t:
+            scount[ord(char) - ord('a')] -= 1
+            
+        #State of the program after the  for loop has been executed: `scount` is updated such that the count of each character in `s` is decreased by the number of times that character appears in `t`, `tcount` is a list of 26 integers where each integer represents the count of a specific character ('a' to 'z') in the input string `s`, `allgreater` is True, `t` must contain at least one character, and `i` is 0.
+        for i in range(26):
+            while scount[i] > 0:
+                t.append(chr(i + ord('a')))
+                scount[i] -= 1
+            
+        #State of the program after the  for loop has been executed: `total` is updated, `tcount` is a list of 26 integers, `allgreater` is False, `t` is a list containing all characters from 'a' to 'z' each appearing `scount[i]` times where `i` is the index of the letter in the alphabet, `i` is 26, `scount` is a list of 26 zeros, indicating all counts have been exhausted.
+        return ''.join(map(str, t))
+        #The program returns a string containing all characters from 'a' to 'z' each appearing 0 times, as indicated by the `scount` list of 26 zeros
+    #State of the program after the if block has been executed: `s` is a list of characters from an input string, `tcount` is a list of 26 integers where each integer represents the count of a specific character ('a' to 'z') in the input string `s`, `allgreater` is False, `t` must either contain at least one character or be an empty list, `i` is 26
+    works = -1
+    scountcopy = list(scount)
+    for i in range(len(s)):
+        cando = False
+        
+        for j in range(ord(t[i]) - ord('a') + 1, 26):
+            if scountcopy[j] > 0:
+                cando = True
+        
+        if cando:
+            works = i
+        
+        if scountcopy[ord(t[i]) - ord('a')] == 0:
+            break
+        
+        scountcopy[ord(t[i]) - ord('a')] -= 1
+        
+    #State of the program after the  for loop has been executed: 
+    if (works == -1) :
+        return -1
+        #The program returns -1
+    #State of the program after the if block has been executed: `works` is an integer with a value not equal to -1
+    res = list()
+    for i in range(works):
+        res.append(t[i])
+        
+        scount[ord(t[i]) - ord('a')] -= 1
+        
+    #State of the program after the  for loop has been executed: `works` is an integer with a value not equal to -1, `res` is a list containing the first `works` elements of `t`, `scount` is updated such that the count at the position corresponding to each element in `t[:works]` is decremented by 1.
+    for j in range(ord(t[works]) - ord('a') + 1, 26):
+        if scount[j] > 0:
+            res.append(chr(j + ord('a')))
+            scount[j] -= 1
+            break
+        
+    #State of the program after the  for loop has been executed: `works` is an integer with a value not equal to -1, `res` is a list containing the first `works` elements of `t`, `scount` is updated such that the count at the position corresponding to each element in `t[:works]` is decremented by 1, and the loop has executed for all valid characters (`a` to `z`) up to the character corresponding to `t[works]` in the alphabet. If `works` is -1 or there are no valid characters in `t` that satisfy the condition, `res` remains unchanged and `scount` remains as originally updated.
+    for i in range(26):
+        while scount[i] > 0:
+            res.append(chr(i + ord('a')))
+            scount[i] -= 1
+        
+    #State of the program after the  for loop has been executed: `works` is a non-negative integer, `res` is a list containing all characters from 'a' to 'z' exactly `scount[i]` times for each valid `i` where `scount[i] > 0`, and `scount` is a list of 26 integers where each `scount[i]` is 0.
+    return ''.join(map(str, res))
+    #The program returns a string containing all characters from 'a' to 'z' repeated a number of times specified by the corresponding values in 'scount', which is a list of 26 zeros
+#Overall this is what the function does:The function compares the frequency of characters in two input strings, `s` and `t`. It then checks if every character in `s` appears at least as many times as in `t`. If `s` and `t` have the same length and this condition is met, it returns -1. Otherwise, it constructs a string where each character from 'a' to 'z' appears a number of times equal to the minimum between its frequency in `s` and `t`. In case `s` cannot be transformed to match `t` by reducing frequencies, it returns -1.
+
