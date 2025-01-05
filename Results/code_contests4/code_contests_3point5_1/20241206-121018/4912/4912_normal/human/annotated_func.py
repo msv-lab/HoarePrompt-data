@@ -1,0 +1,68 @@
+#State of the program right berfore the function call: S is a string consisting of uppercase English letters and ends with 'FESTIVAL'.**
+def func():
+    n = int(input())
+    s = input()
+    res = []
+    count = 0
+    if (s[0] == '1') :
+        one = 1
+    else :
+        one = 0
+    #State of the program after the if-else block has been executed: *S is a string consisting of uppercase English letters and ends with 'FESTIVAL'; n is an input integer; res is an empty list; count is 0. If the first character of S is '1', one is 1. If the first character of S is not '1', one is 0.
+    temp = []
+    tar = 0
+    for i in range(1, n - 1):
+        if s[i - 1:i + 2] == '101':
+            tar = 1
+            temp.append(one)
+            one = 0
+        else:
+            if s[i] == '0' and tar == 1:
+                temp.append(one)
+                res.append(temp.copy())
+                temp = []
+                tar = 0
+            if s[i] == '1':
+                one += 1
+            else:
+                one = 0
+        
+    #State of the program after the  for loop has been executed: `S` is a string consisting of uppercase English letters and ending with 'FESTIVAL', `n` is greater than or equal to 2, `res` contains lists of values based on the conditions, `count` is 0, `one` is either 1 or 0 based on the conditions, `temp` is an updated list based on conditions, `tar` is either 0 or 1, `i` is n-1.
+    if (s[-1] == '1') :
+        one += 1
+    #State of the program after the if block has been executed: *`S` is a string consisting of uppercase English letters and ending with 'FESTIVAL', `n` is greater than or equal to 2, `res` contains lists of values based on the conditions, `count` is 0, `one` is either 1 or 0 based on the conditions, `temp` is an updated list based on conditions, `tar` is either 0 or 1, `i` is n-1. If the last character of `S` is '1', `one` is incremented by 1.
+    if (tar == 1) :
+        temp.append(one)
+        res.append(temp.copy())
+    #State of the program after the if block has been executed: *`S` is a string consisting of uppercase English letters and ending with 'FESTIVAL', `n` is greater than or equal to 2, `res` contains lists of values based on the conditions, `count` is 0, `one` is either 1 or 0 based on the conditions, `temp` is an updated list based on conditions, `tar` is either 0 or 1, `i` is n-1. If the last character of `S` is '1', `one` is incremented by 1. If `tar` is 1, `temp` contains the appended value of `one`, and a new list is appended to `res` after copying the contents of `temp`.
+    for x in res:
+        temp = 0
+        
+        m = len(x)
+        
+        f = []
+        
+        if m == 2:
+            temp = max(x[0], x[1])
+        
+        if m == 3:
+            temp = max(x[0], x[1], x[2])
+        
+        if m == 4:
+            temp = max(x[0] + x[2], x[3] + max(x[0], x[1]))
+        
+        if m >= 5:
+            f.append([x[0], x[1]])
+            f.append([x[1], max(x[2], x[0])])
+            f.append(x[0] + x[2], x[3] + f[0])
+            for i in range(3, m - 1):
+                f.append(x[i] + max(f[i - 2][0], f[i - 3][0]))
+                f.append(x[i + 1] + max(f[i - 2][0], f[i - 2][1]))
+            temp = max(f[-1][0], f[-1][1], f[-2][0])
+        
+        count += temp
+        
+    #State of the program after the  for loop has been executed: `S` is a string ending with 'FESTIVAL', `n` is greater than or equal to 2, `res` contains lists of values, `count` is the sum of the maximum values calculated in each iteration, `one` is either 1 or 0, `temp` holds the maximum value calculated in each iteration, `tar` is either 0 or 1, `i` is n-1, `x` is the last list in `res`, `m` is the length of `x`, `f` contains the updated appended values based on the conditions mentioned in the loop
+    print(count)
+#Overall this is what the function does:The function `func` reads an integer `n` and a string `S` consisting of uppercase English letters, then processes the string based on certain conditions. It calculates the maximum values from subsets of the processed data and sums these maximum values overall. The final result is printed as the total sum. The function does not accept any parameters and operates solely on the input data provided during execution.
+

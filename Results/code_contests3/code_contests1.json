@@ -1,0 +1,92 @@
+[
+    {
+        "description": "In order to pass the entrance examination tomorrow, Taro has to study for T more hours.\n\nFortunately, he can leap to World B where time passes X times as fast as it does in our world (World A).\n\nWhile (X \\times t) hours pass in World B, t hours pass in World A.\n\nHow many hours will pass in World A while Taro studies for T hours in World B?\n\nConstraints\n\n* All values in input are integers.\n* 1 \\leq T \\leq 100\n* 1 \\leq X \\leq 100\n\nInput\n\nInput is given from Standard Input in the following format:\n\n\nT X\n\n\nOutput\n\nPrint the number of hours that will pass in World A.\n\nThe output will be regarded as correct when its absolute or relative error from the judge's output is at most 10^{-3}.\n\nExamples\n\nInput\n\n8 3\n\n\nOutput\n\n2.6666666667\n\n\nInput\n\n99 1\n\n\nOutput\n\n99.0000000000\n\n\nInput\n\n1 100\n\n\nOutput\n\n0.0100000000",
+        "task_name": "p03135 AtCoder Beginner Contest 117 - Entrance Examination",
+        "dataset": "code_contests",
+        "model": "human",
+        "generated_code": "t,x = map(float,input().split())\nprint(t/x)\n",
+        "correct": false,
+        "task_id": "1384"
+    },
+    {
+        "description": "It's New Year's Eve soon, so Ivan decided it's high time he started setting the table. Ivan has bought two cakes and cut them into pieces: the first cake has been cut into a pieces, and the second one — into b pieces.\n\nIvan knows that there will be n people at the celebration (including himself), so Ivan has set n plates for the cakes. Now he is thinking about how to distribute the cakes between the plates. Ivan wants to do it in such a way that all following conditions are met:\n\n  1. Each piece of each cake is put on some plate; \n  2. Each plate contains at least one piece of cake; \n  3. No plate contains pieces of both cakes. \n\n\n\nTo make his guests happy, Ivan wants to distribute the cakes in such a way that the minimum number of pieces on the plate is maximized. Formally, Ivan wants to know the maximum possible number x such that he can distribute the cakes according to the aforementioned conditions, and each plate will contain at least x pieces of cake.\n\nHelp Ivan to calculate this number x!\n\nInput\n\nThe first line contains three integers n, a and b (1 ≤ a, b ≤ 100, 2 ≤ n ≤ a + b) — the number of plates, the number of pieces of the first cake, and the number of pieces of the second cake, respectively.\n\nOutput\n\nPrint the maximum possible number x such that Ivan can distribute the cake in such a way that each plate will contain at least x pieces of cake.\n\nExamples\n\nInput\n\n5 2 3\n\n\nOutput\n\n1\n\n\nInput\n\n4 7 10\n\n\nOutput\n\n3\n\nNote\n\nIn the first example there is only one way to distribute cakes to plates, all of them will have 1 cake on it.\n\nIn the second example you can have two plates with 3 and 4 pieces of the first cake and two plates both with 5 pieces of the second cake. Minimal number of pieces is 3.",
+        "task_name": "911_B. Two Cakes",
+        "dataset": "code_contests",
+        "model": "human",
+        "generated_code": "from math import ceil\n\nn, b, c = [int(x) for x in raw_input().split()]\n\nx = max(b,c) / float(min(b,c))\n\nprint (int(ceil(min(b,c)/float(n)*x)))\n",
+        "correct": false,
+        "task_id": "5446"
+    },
+    {
+        "description": "In some country live wizards. They love to ride trolleybuses.\n\nA city in this country has a trolleybus depot with n trolleybuses. Every day the trolleybuses leave the depot, one by one and go to the final station. The final station is at a distance of d meters from the depot. We know for the i-th trolleybus that it leaves at the moment of time ti seconds, can go at a speed of no greater than vi meters per second, and accelerate with an acceleration no greater than a meters per second squared. A trolleybus can decelerate as quickly as you want (magic!). It can change its acceleration as fast as you want, as well. Note that the maximum acceleration is the same for all trolleys.\n\nDespite the magic the trolleys are still powered by an electric circuit and cannot overtake each other (the wires are to blame, of course). If a trolleybus catches up with another one, they go together one right after the other until they arrive at the final station. Also, the drivers are driving so as to arrive at the final station as quickly as possible.\n\nYou, as head of the trolleybuses' fans' club, are to determine for each trolley the minimum time by which it can reach the final station. At the time of arrival at the destination station the trolleybus does not necessarily have zero speed. When a trolley is leaving the depot, its speed is considered equal to zero. From the point of view of physics, the trolleybuses can be considered as material points, and also we should ignore the impact on the speed of a trolley bus by everything, except for the acceleration and deceleration provided by the engine.\n\nInput\n\nThe first input line contains three space-separated integers n, a, d (1 ≤ n ≤ 105, 1 ≤ a, d ≤ 106) — the number of trolleybuses, their maximum acceleration and the distance from the depot to the final station, correspondingly.\n\nNext n lines contain pairs of integers ti vi (0 ≤ t1 < t2... < tn - 1 < tn ≤ 106, 1 ≤ vi ≤ 106) — the time when the i-th trolleybus leaves the depot and its maximum speed, correspondingly. The numbers in the lines are separated by spaces.\n\nOutput\n\nFor each trolleybus print a single line the time it arrives to the final station. Print the times for the trolleybuses in the order in which the trolleybuses are given in the input. The answer will be accepted if the absolute or relative error doesn't exceed 10 - 4.\n\nExamples\n\nInput\n\n3 10 10000\n0 10\n5 11\n1000 1\n\n\nOutput\n\n1000.5000000000\n1000.5000000000\n11000.0500000000\n\n\nInput\n\n1 2 26\n28 29\n\n\nOutput\n\n33.0990195136\n\nNote\n\nIn the first sample the second trolleybus will catch up with the first one, that will happen at distance 510.5 meters from the depot. The trolleybuses will go the remaining 9489.5 meters together at speed 10 meters per second. As a result, both trolleybuses will arrive to the final station by the moment of time 1000.5 seconds. The third trolleybus will not catch up with them. It will arrive to the final station by the moment of time 11000.05 seconds.",
+        "task_name": "167_A. Wizards and Trolleybuses",
+        "dataset": "code_contests",
+        "model": "human",
+        "generated_code": "import math\nt = 0.0\nn, a, d = map(int, raw_input().split())\nfor i in xrange(n):\n    ti, v = map(float, raw_input().split())\n    t1 = (v / a + (d - v * v / (2 * a)) / v) if d > v * v / (2 * a) else math.sqrt(2 * d / a)\n    t = max(t1 + ti, t)\n    print(t)\n",
+        "correct": false,
+        "task_id": "4157"
+    },
+    {
+        "description": "Berland Football Cup starts really soon! Commentators from all over the world come to the event.\n\nOrganizers have already built n commentary boxes. m regional delegations will come to the Cup. Every delegation should get the same number of the commentary boxes. If any box is left unoccupied then the delegations will be upset. So each box should be occupied by exactly one delegation.\n\nIf n is not divisible by m, it is impossible to distribute the boxes to the delegations at the moment.\n\nOrganizers can build a new commentary box paying a burles and demolish a commentary box paying b burles. They can both build and demolish boxes arbitrary number of times (each time paying a corresponding fee). It is allowed to demolish all the existing boxes.\n\nWhat is the minimal amount of burles organizers should pay to satisfy all the delegations (i.e. to make the number of the boxes be divisible by m)?\n\nInput\n\nThe only line contains four integer numbers n, m, a and b (1 ≤ n, m ≤ 10^{12}, 1 ≤ a, b ≤ 100), where n is the initial number of the commentary boxes, m is the number of delegations to come, a is the fee to build a box and b is the fee to demolish a box.\n\nOutput\n\nOutput the minimal amount of burles organizers should pay to satisfy all the delegations (i.e. to make the number of the boxes be divisible by m). It is allowed that the final number of the boxes is equal to 0.\n\nExamples\n\nInput\n\n9 7 3 8\n\n\nOutput\n\n15\n\n\nInput\n\n2 7 3 7\n\n\nOutput\n\n14\n\n\nInput\n\n30 6 17 19\n\n\nOutput\n\n0\n\nNote\n\nIn the first example organizers can build 5 boxes to make the total of 14 paying 3 burles for the each of them.\n\nIn the second example organizers can demolish 2 boxes to make the total of 0 paying 7 burles for the each of them.\n\nIn the third example organizers are already able to distribute all the boxes equally among the delegations, each one get 5 boxes.",
+        "task_name": "990_A. Commentary Boxes",
+        "dataset": "code_contests",
+        "model": "human",
+        "generated_code": "{}",
+        "correct": false,
+        "task_id": "0686"
+    },
+    {
+        "description": "You are given a string s consisting of n lowercase Latin letters.\n\nLet's define a substring as a contiguous subsegment of a string. For example, \"acab\" is a substring of \"abacaba\" (it starts in position 3 and ends in position 6), but \"aa\" or \"d\" aren't substrings of this string. So the substring of the string s from position l to position r is s[l; r] = s_l s_{l + 1} ... s_r.\n\nYou have to choose exactly one of the substrings of the given string and reverse it (i. e. make s[l; r] = s_r s_{r - 1} ... s_l) to obtain a string that is less lexicographically. Note that it is not necessary to obtain the minimum possible string.\n\nIf it is impossible to reverse some substring of the given string to obtain a string that is less, print \"NO\". Otherwise print \"YES\" and any suitable substring.\n\nString x is lexicographically less than string y, if either x is a prefix of y (and x ≠ y), or there exists such i (1 ≤ i ≤ min(|x|, |y|)), that x_i < y_i, and for any j (1 ≤ j < i) x_j = y_j. Here |a| denotes the length of the string a. The lexicographic comparison of strings is implemented by operator < in modern programming languages​​.\n\nInput\n\nThe first line of the input contains one integer n (2 ≤ n ≤ 3 ⋅ 10^5) — the length of s.\n\nThe second line of the input contains the string s of length n consisting only of lowercase Latin letters.\n\nOutput\n\nIf it is impossible to reverse some substring of the given string to obtain a string which is lexicographically less, print \"NO\". Otherwise print \"YES\" and two indices l and r (1 ≤ l < r ≤ n) denoting the substring you have to reverse. If there are multiple answers, you can print any.\n\nExamples\n\nInput\n\n\n7\nabacaba\n\n\nOutput\n\n\nYES\n2 5\n\n\nInput\n\n\n6\naabcfg\n\n\nOutput\n\n\nNO\n\nNote\n\nIn the first testcase the resulting string is \"aacabba\".",
+        "task_name": "1155_A. Reverse a Substring",
+        "dataset": "code_contests",
+        "model": "human",
+        "generated_code": "import math\nimport collections\n\nn = map(int, raw_input().split())\nn = n[0]\nc = raw_input()\nflag = False\nfor i in range(n-1):\n    if c[i] > c[i+1]:\n        flag = True\n        pos = i\n\nif flag:\n    print(\"YES\")\n    print(pos+1,pos+2)\nelse:\n    print(\"NO\")\n",
+        "correct": false,
+        "task_id": "0049"
+    },
+    {
+        "description": "Recently, Anton has found a set. The set consists of small English letters. Anton carefully wrote out all the letters from the set in one line, separated by a comma. He also added an opening curved bracket at the beginning of the line and a closing curved bracket at the end of the line. \n\nUnfortunately, from time to time Anton would forget writing some letter and write it again. He asks you to count the total number of distinct letters in his set.\n\nInput\n\nThe first and the single line contains the set of letters. The length of the line doesn't exceed 1000. It is guaranteed that the line starts from an opening curved bracket and ends with a closing curved bracket. Between them, small English letters are listed, separated by a comma. Each comma is followed by a space.\n\nOutput\n\nPrint a single number — the number of distinct letters in Anton's set.\n\nExamples\n\nInput\n\n{a, b, c}\n\n\nOutput\n\n3\n\n\nInput\n\n{b, a, b, a}\n\n\nOutput\n\n2\n\n\nInput\n\n{}\n\n\nOutput\n\n0",
+        "task_name": "443_A. Anton and Letters",
+        "dataset": "code_contests",
+        "model": "human",
+        "generated_code": "Cadena=raw_input()\nArreglo=[]\nk=1\nwhile(len(Cadena)>k)and (len(Cadena)>2):\n    Arreglo=Arreglo+[Cadena[k]]\n    k=k+3\nprint(len(list(set(Arreglo))))\n",
+        "correct": true,
+        "task_id": "1803"
+    },
+    {
+        "description": "Katya studies in a fifth grade. Recently her class studied right triangles and the Pythagorean theorem. It appeared, that there are triples of positive integers such that you can construct a right triangle with segments of lengths corresponding to triple. Such triples are called Pythagorean triples.\n\nFor example, triples (3, 4, 5), (5, 12, 13) and (6, 8, 10) are Pythagorean triples.\n\nHere Katya wondered if she can specify the length of some side of right triangle and find any Pythagorean triple corresponding to such length? Note that the side which length is specified can be a cathetus as well as hypotenuse.\n\nKatya had no problems with completing this task. Will you do the same?\n\nInput\n\nThe only line of the input contains single integer n (1 ≤ n ≤ 109) — the length of some side of a right triangle.\n\nOutput\n\nPrint two integers m and k (1 ≤ m, k ≤ 1018), such that n, m and k form a Pythagorean triple, in the only line.\n\nIn case if there is no any Pythagorean triple containing integer n, print  - 1 in the only line. If there are many answers, print any of them.\n\nExamples\n\nInput\n\n3\n\n\nOutput\n\n4 5\n\nInput\n\n6\n\n\nOutput\n\n8 10\n\nInput\n\n1\n\n\nOutput\n\n-1\n\nInput\n\n17\n\n\nOutput\n\n144 145\n\nInput\n\n67\n\n\nOutput\n\n2244 2245\n\nNote\n\n<image>\n\nIllustration for the first sample.",
+        "task_name": "707_C. Pythagorean Triples",
+        "dataset": "code_contests",
+        "model": "human",
+        "generated_code": "n = int(raw_input())\nif n<=2:\n\tprint -1\nelif n&1:\n\tprint (n*n-1)/2,(n*n+1)/2\nelse:\n\tprint (n*n/4-1),(n*n/4+1)",
+        "correct": true,
+        "task_id": "3264"
+    },
+    {
+        "description": "You are given a string S of length N consisting of `A`, `C`, `G` and `T`. Answer the following Q queries:\n\n* Query i (1 \\leq i \\leq Q): You will be given integers l_i and r_i (1 \\leq l_i < r_i \\leq N). Consider the substring of S starting at index l_i and ending at index r_i (both inclusive). In this string, how many times does `AC` occurs as a substring?\n\nConstraints\n\n* 2 \\leq N \\leq 10^5\n* 1 \\leq Q \\leq 10^5\n* S is a string of length N.\n* Each character in S is `A`, `C`, `G` or `T`.\n* 1 \\leq l_i < r_i \\leq N\n\nInput\n\nInput is given from Standard Input in the following format:\n\n\nN Q\nS\nl_1 r_1\n:\nl_Q r_Q\n\n\nOutput\n\nPrint Q lines. The i-th line should contain the answer to the i-th query.\n\nExample\n\nInput\n\n8 3\nACACTACG\n3 7\n2 3\n1 8\n\n\nOutput\n\n2\n0\n3",
+        "task_name": "p03087 AtCoder Beginner Contest 122 - GeT AC",
+        "dataset": "code_contests",
+        "model": "human",
+        "generated_code": "#coding:utf-8\n\nN,Q=map(int, raw_input().split())\nS=raw_input()\nP=[0]*(N+1)\nfor i in range(N):\n    if i==0:\n        P[0]=0\n        continue\n    if S[i-1:i+1]==\"AC\":\n        P[i]=P[i-1]+1\n    else:\n        P[i]=P[i-1]\nfor _ in range(Q):\n    l,r=map(int, raw_input().split())\n    print(P[r-1]-P[l-1])",
+        "correct": true,
+        "task_id": "3067"
+    },
+    {
+        "description": "<image>\n\nInput\n\nThe input contains a single integer a (0 ≤ a ≤ 15).\n\nOutput\n\nOutput a single integer.\n\nExample\n\nInput\n\n\n3\n\n\nOutput\n\n\n13",
+        "task_name": "1145_C. Mystery Circuit",
+        "dataset": "code_contests",
+        "model": "human",
+        "generated_code": "print([15,14,12,13,8,9,10,11,0,1,2,3,4,5,6,7][int(raw_input())])",
+        "correct": true,
+        "task_id": "4970"
+    },
+    {
+        "description": "You are given a text of single-space separated words, consisting of small and capital Latin letters.\n\nVolume of the word is number of capital letters in the word. Volume of the text is maximum volume of all words in the text.\n\nCalculate the volume of the given text.\n\nInput\n\nThe first line contains one integer number n (1 ≤ n ≤ 200) — length of the text.\n\nThe second line contains text of single-space separated words s1, s2, ..., si, consisting only of small and capital Latin letters.\n\nOutput\n\nPrint one integer number — volume of text.\n\nExamples\n\nInput\n\n7\nNonZERO\n\n\nOutput\n\n5\n\n\nInput\n\n24\nthis is zero answer text\n\n\nOutput\n\n0\n\n\nInput\n\n24\nHarbour Space University\n\n\nOutput\n\n1\n\nNote\n\nIn the first example there is only one word, there are 5 capital letters in it.\n\nIn the second example all of the words contain 0 capital letters.",
+        "task_name": "837_A. Text Volume",
+        "dataset": "code_contests",
+        "model": "human",
+        "generated_code": "raw_input()\nl=raw_input().split()\nm=0\nfor i in l :\n    s=0\n    for j in i:\n        if j.isupper() :\n              s+=1\n    m=max(s,m)\n        \nprint(m)\n        \n",
+        "correct": true,
+        "task_id": "1092"
+    }
+]

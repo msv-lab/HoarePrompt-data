@@ -1,0 +1,5 @@
+The function `func_4` takes two positive integer parameters `a` and `b` where 1 <= K <= N. It has three cases:
+Case 1: If `b` is 0, the function returns 1.
+Case 2: If `b` is odd, it returns the result of calling function `func_3` with parameters `a` and the result of calling function `func_4` with parameters `a` and `(b-1)`.
+Case 3: If `b` is even, it returns the squared result of calling `func_4(a, b / 2)`.
+Therefore, the functionality of the function is to perform recursive calculations based on the parity of `b` and return the corresponding results.

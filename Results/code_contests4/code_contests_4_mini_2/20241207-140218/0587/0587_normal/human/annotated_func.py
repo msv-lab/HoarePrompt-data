@@ -1,0 +1,180 @@
+#State of the program right berfore the function call: n and m are non-negative integers such that 0 ≤ n, m ≤ 1,000,000 and n + m > 0.
+def func_1():
+    return int(input())
+    #The program returns an integer value from user input, which is expected to be a non-negative integer
+#Overall this is what the function does:The function accepts no parameters and retrieves a non-negative integer value from user input, which is expected to be between 0 and 1,000,000 (inclusive). The function returns this integer value. It does not handle invalid input or enforce the conditions on the input range, which could lead to a ValueError if the input is not an integer.
+
+#State of the program right berfore the function call: n and m are non-negative integers such that 0 ≤ n, m ≤ 1,000,000 and n + m > 0.
+def func_2():
+    return input()
+    #The program returns user input, which is a string obtained from the input function.
+#Overall this is what the function does:The function accepts no parameters and returns a string obtained from user input. It does not handle any exceptions or edge cases related to user input, such as empty input or invalid data types.
+
+#State of the program right berfore the function call: n and m are non-negative integers such that 0 ≤ n, m ≤ 1,000,000 and n + m > 0.
+def func_3():
+    return map(int, input().strip().split(' '))
+    #The program returns a map object containing two integers n and m, which are non-negative and their sum is greater than 0
+#Overall this is what the function does:The function accepts no parameters and returns a map object that contains two non-negative integers, n and m, read from user input, where n + m > 0. The function does not handle cases where the input does not contain exactly two integers or where the integers exceed the specified bounds.
+
+#State of the program right berfore the function call: n and m are non-negative integers such that 0 ≤ n, m ≤ 1,000,000 and n + m > 0.
+def func_4():
+    return map(str, input().strip().split(' '))
+    #The program returns a map object that contains the string representations of the non-negative integers n and m, which are read from input and split by spaces.
+#Overall this is what the function does:The function reads two non-negative integers `n` and `m` from input and returns a map object containing their string representations. If the input is empty or does not contain valid non-negative integers, the function does not handle these cases, potentially leading to unexpected behavior.
+
+#State of the program right berfore the function call: n and m are non-negative integers such that 0 ≤ n, m ≤ 1,000,000 and n + m > 0.
+def func_5():
+    return list(func_3())
+    #The program returns a list containing the results of func_3() based on the non-negative integers n and m, where n + m > 0.
+#Overall this is what the function does:The function accepts no parameters and returns a list containing the results of `func_3()`. It assumes that the variables `n` and `m` are non-negative integers such that 0 ≤ n, m ≤ 1,000,000 and n + m > 0. However, since it does not directly handle input for `n` and `m`, it relies on these conditions being satisfied externally.
+
+#State of the program right berfore the function call: n and m are non-negative integers such that 0 ≤ n, m ≤ 1,000,000 and n + m > 0.
+def func_6():
+    sys.setrecursionlimit(100000000)
+    threading.stack_size(40960000)
+    thread = threading.Thread(target=main)
+    thread.start()
+#Overall this is what the function does:The function `func_6` initializes a thread that targets a function named `main`. It does not accept any parameters directly, but it operates under the assumption that two non-negative integers `n` and `m` exist in the larger scope, constrained by 0 ≤ n, m ≤ 1,000,000 and n + m > 0. However, it does not utilize these parameters within the function itself, and it has no return value or output functionality.
+
+#State of the program right berfore the function call: item is a tuple containing two non-negative integers n and m, where 0 ≤ n, m ≤ 1,000,000 and n + m > 0.
+def func_7(item):
+    return item[1]
+    #The program returns the second element of the tuple 'item', which is the non-negative integer m where 0 ≤ m ≤ 1,000,000 and n + m > 0.
+#Overall this is what the function does:The function accepts a tuple `item` containing two non-negative integers `n` and `m`, where both `n` and `m` are within the range [0, 1,000,000] and at least one of them is greater than 0. It returns the second element of the tuple, which is the integer `m`.
+
+#State of the program right berfore the function call: l is a list containing two non-negative integers n and m, where 0 ≤ n, m ≤ 1,000,000 and n + m > 0.
+def func_8(l):
+    return sorted(l, key=getKey, reverse=True)
+    #The program returns the list 'l' containing two non-negative integers n and m sorted in descending order based on the key provided by the function getKey.
+#Overall this is what the function does:The function accepts a list `l` containing two non-negative integers `n` and `m`, sorts the list in descending order based on a specified key provided by the function `getKey`, and returns the sorted list. It assumes that `l` contains exactly two elements, both of which are non-negative integers, and does not handle cases where the list has more or fewer than two elements.
+
+#State of the program right berfore the function call: n and m are non-negative integers such that 0 ≤ n, m ≤ 1,000,000 and n + m > 0.
+def func_9(n, m, num):
+    return [[num for x in range(m)] for y in range(n)]
+    #The program returns a list of n lists, each containing m zeros, representing a 2D array of size n x m
+#Overall this is what the function does:The function accepts two non-negative integers `n` and `m`, and an additional parameter `num`. It returns a 2D list (array) of size `n x m`, where each element is initialized to `num`. If either `n` or `m` is 0, it returns an empty list, as there would be no rows or columns.
+
+#State of the program right berfore the function call: n and m are non-negative integers such that 0 ≤ n, m ≤ 1,000,000 and n + m > 0.
+def func_10(x):
+    return x and not x & x - 1
+    #The program returns the value of x which is non-negative, and the expression evaluates to True if x is greater than 0, otherwise it returns False.
+#Overall this is what the function does:The function accepts a non-negative integer `x` and returns `True` if `x` is greater than 0, and `False` if `x` is 0. The function does not handle negative integers since the input is specified to be non-negative.
+
+#State of the program right berfore the function call: n is a non-negative integer representing the number of students using two-block pieces, m is a non-negative integer representing the number of students using three-block pieces, where 0 ≤ n, m ≤ 1,000,000 and n + m > 0.
+def func_11(n):
+    return bin(n).replace('0b', '')
+    #The program returns the binary representation of the non-negative integer n, without the '0b' prefix
+#Overall this is what the function does:The function accepts a non-negative integer `n` and returns its binary representation as a string, without the '0b' prefix. It correctly handles all non-negative integers, including 0, which will return '0'.
+
+#State of the program right berfore the function call: n is a non-negative integer representing the number of students using two-block pieces, and m is a non-negative integer representing the number of students using three-block pieces, such that 0 ≤ n, m ≤ 1,000,000 and n + m > 0.
+def func_12(n):
+    return [int(i) for i in str(n)]
+    #The program returns a list of integers representing the digits of the non-negative integer n, which is the number of students using two-block pieces.
+#Overall this is what the function does:The function accepts a non-negative integer `n` and returns a list of integers representing the individual digits of `n`. It correctly handles any non-negative integer input, including zero, by converting the integer to a string, iterating through each character, and converting it back to an integer for the output list. There are no edge cases or missing functionalities beyond this behavior.
+
+#State of the program right berfore the function call: n and m are non-negative integers such that 0 ≤ n, m ≤ 1,000,000 and n + m > 0.
+def func_13(n, r):
+    return factorial(n) // (factorial(r) * factorial(n - r))
+    #The program returns the binomial coefficient calculated as factorial(n) // (factorial(r) * factorial(n - r)), where n and m are non-negative integers such that 0 ≤ n, m ≤ 1,000,000 and n + m > 0.
+#Overall this is what the function does:The function accepts two non-negative integers, `n` and `r`, and returns the binomial coefficient calculated as factorial(n) // (factorial(r) * factorial(n - r)). It assumes that `n` and `r` satisfy the conditions that 0 ≤ `n`, `r` ≤ 1,000,000, and `n + r > 0`. However, the function does not handle cases where `r` is greater than `n`, which would result in a negative value in the factorial calculation for `n - r`, potentially causing a runtime error. Thus, while the function aims to compute the binomial coefficient, it lacks error handling for invalid input scenarios.
+
+#State of the program right berfore the function call: x and y are non-negative integers representing the number of students using two-block pieces and three-block pieces, respectively, such that 0 ≤ x, y ≤ 1,000,000 and x + y > 0.
+def func_14(x, y):
+    if (x % y == 0) :
+        return x // y
+        #The program returns the result of the integer division of `x` by `y`, where `x` is a non-negative integer divisible by `y` and both `x` and `y` are greater than or equal to 0.
+    else :
+        return x // y + 1
+        #The program returns the integer result of x divided by y using floor division, plus 1, where x is a non-negative integer and y is a non-negative integer greater than 0, with x not divisible by y.
+#Overall this is what the function does:The function accepts two non-negative integers `x` and `y`, representing counts of two types of pieces. It returns the result of integer division of `x` by `y` if `y` is non-zero and `x` is divisible by `y`. If `y` is non-zero and `x` is not divisible by `y`, it returns the floor division of `x` by `y` plus 1. However, if `y` is 0, the function will raise a `ZeroDivisionError` because division by zero is undefined. The function does not handle this case, leading to potential unhandled exceptions.
+
+#State of the program right berfore the function call: x and y are non-negative integers representing the number of students using two-block and three-block pieces respectively, such that 0 ≤ x, y ≤ 1,000,000 and x + y > 0.
+def func_15(x, y, p):
+    res = 1
+    x %= p
+    while y > 0:
+        if y & 1:
+            res = res * x % p
+        
+        y = y >> 1
+        
+        x = x * x % p
+        
+    #State of the program after the loop has been executed: `y` is 0, `res` is the product of all `x` values for each odd `y` during the iterations, and `x` is updated to `x` raised to the power of the initial value of `y` modulo `p`.
+    return res
+    #The program returns the product of all `x` values for each odd `y` during the iterations, but since `y` is 0 (which is not odd), `res` remains unchanged and its value is not specified in the initial state. Therefore, the program returns the unchanged value of `res, which is not explicitly defined.
+#Overall this is what the function does:The function accepts two non-negative integers `x` and `y`, along with a positive integer `p`. It calculates `x` raised to the power of `y` modulo `p` using an efficient method (exponentiation by squaring). The function returns the result of this computation. If `y` is 0, the function will return 1 (since any number raised to the power of 0 is 1). The initial value of `res` is 1, and it will remain unchanged if `y` is 0 or if there are no odd iterations during the computation. Therefore, the function returns 1 for `y` equal to 0 and the computed result for other values of `y`.
+
+#State of the program right berfore the function call: x and y are non-negative integers representing the number of students using two-block pieces and three-block pieces, respectively, such that 0 ≤ x, y ≤ 1,000,000 and x + y > 0.
+def func_16(x, y):
+    while y:
+        x, y = y, x % y
+        
+    #State of the program after the loop has been executed: `y` is 0, `x` is the greatest common divisor (GCD) of the initial values of `x` and `y`.
+    return x
+    #The program returns the greatest common divisor (GCD) of the initial values of x and y, where y is 0. Since the GCD of any number and 0 is the number itself, it returns x.
+#Overall this is what the function does:The function accepts two non-negative integers `x` and `y`, representing the number of students using two-block pieces and three-block pieces, respectively. It returns the greatest common divisor (GCD) of `x` and `y`. If both `x` and `y` are zero, the function will not terminate properly, as it will enter an infinite loop since `y` will always be zero. However, given the constraint that `x + y > 0`, at least one of them will always be non-zero. The function effectively calculates the GCD using the Euclidean algorithm.
+
+#State of the program right berfore the function call: n and m are non-negative integers such that 0 ≤ n, m ≤ 1,000,000 and n + m > 0.
+def func_17(n):
+    if (n <= 1) :
+        return False
+        #The program returns False
+    #State of the program after the if block has been executed: *`n` and `m` are non-negative integers such that 0 ≤ n, m ≤ 1,000,000, n + m > 0, and `n` is greater than 1.
+    if (n <= 3) :
+        return True
+        #The program returns True
+    #State of the program after the if block has been executed: *`n` and `m` are non-negative integers such that 0 ≤ n, m ≤ 1,000,000, n + m > 0, and `n` is greater than 3.
+    if (n % 2 == 0 or n % 3 == 0) :
+        return False
+        #The program returns False
+    #State of the program after the if block has been executed: *`n` and `m` are non-negative integers such that 0 ≤ n, m ≤ 1,000,000, n + m > 0, and `n` is greater than 3. Additionally, `n` is not divisible by 2 and not divisible by 3.
+    i = 5
+    while i * i <= n:
+        if n % i == 0 or n % (i + 2) == 0:
+            return False
+        
+        i = i + 6
+        
+    #State of the program after the loop has been executed: `n` is unchanged, `m` is a non-negative integer such that 0 ≤ m ≤ 1,000,000, `i` is the smallest integer such that `i * i` is greater than `n`
+    return True
+    #The program returns True
+#Overall this is what the function does:The function accepts a non-negative integer `n` and determines whether it is a prime number. It returns `False` if `n` is less than or equal to 1, or if `n` is divisible by 2 or 3. For numbers greater than 3, it checks divisibility using a loop with potential divisors up to the square root of `n`, returning `False` if any divisors are found. If no divisors are found, it returns `True`, indicating that `n` is prime. The function does not handle cases where `n` is 0 or 1 appropriately by returning `False`, but does not explicitly cover other edge cases beyond the specified conditions.
+
+#State of the program right berfore the function call: n and m are non-negative integers such that 0 ≤ n, m ≤ 1 000 000 and n + m > 0.
+def func_18():
+    sys.stdin = open('input.txt', 'r')
+    sys.stdout = open('output.txt', 'w')
+#Overall this is what the function does:The function `func_18` does not accept any parameters and simply redirects standard input to read from a file named 'input.txt' and standard output to write to a file named 'output.txt'. It does not perform any operations with the variables `n` and `m`, nor does it return any values or checks for their constraints. The function effectively sets up the environment for input and output file handling but lacks any logic related to `n` and `m`.
+
+#State of the program right berfore the function call: n and m are non-negative integers such that 0 ≤ n, m ≤ 1,000,000 and n + m > 0.
+def func_19():
+    n, m = func_3()
+    for i in range(1, 1000001):
+        if n <= i // 2 and m <= i // 3 and n + m <= i // 2 + i // 3 - i // 6:
+            func_20(i)
+            break
+        
+    #State of the program after the  for loop has been executed: `n` and `m` are values returned by `func_3()` such that 0 ≤ `n`, `m` ≤ 1,000,000, `n + m > 0`, and `i` is the smallest integer in the range 1 to 1,000,000 for which `n` is less than or equal to `i // 2`, `m` is less than or equal to `i // 3`, and `n + m` is less than or equal to `i // 2 + i // 3 - i // 6. If no such `i` satisfies the conditions, then the loop will not execute and `i` will remain 1.
+#Overall this is what the function does:The function does not accept parameters and relies on values returned by `func_3()`, which are non-negative integers `n` and `m` with the constraints 0 ≤ n, m ≤ 1,000,000 and n + m > 0. The function iterates through integers from 1 to 1,000,000, looking for the smallest integer `i` that satisfies the conditions: `n` is less than or equal to `i // 2`, `m` is less than or equal to `i // 3`, and `n + m` is less than or equal to `i // 2 + i // 3 - i // 6. If such an `i` is found, it calls the function `func_20(i)` and then exits the loop. If no such `i` is found, the loop does not execute and does not call `func_20`. The function lacks a return value or output mechanism.
+
+#State of the program right berfore the function call: n and m are non-negative integers such that 0 ≤ n, m ≤ 1,000,000 and n + m > 0.
+def func_20():
+    """Prints the values to a stream, or to sys.stdout by default."""
+    sep, file = kwargs.pop('sep', ' '), kwargs.pop('file', sys.stdout)
+    at_start = True
+    for x in args:
+        if not at_start:
+            file.write(sep)
+        
+        file.write(str(x))
+        
+        at_start = False
+        
+    #State of the program after the  for loop has been executed: `n` is a non-negative integer, `m` is a non-negative integer, `sep` is either the value from `kwargs` or ' ', `file` is either the value from `kwargs` or `sys.stdout`, `at_start` is False, `args` is a list with at least 1 element, `file` contains the string representations of all elements in `args` separated by `sep`.
+    file.write(kwargs.pop('end', '\n'))
+    if kwargs.pop('flush', False) :
+        file.flush()
+    #State of the program after the if block has been executed: *`n` is a non-negative integer, `m` is a non-negative integer, `sep` is either the value from `kwargs` or ' ', `file` is either the value from `kwargs` or `sys.stdout`, `at_start` is False, `args` is a list with at least 1 element, `file` contains the string representations of all elements in `args` separated by `sep`, and the value written to `file` is either `kwargs['end']` or '\n'. If `kwargs` has the key 'flush' with a value of True, the flush method of `file` is called to clear the output buffer. Otherwise, no action is taken regarding flushing the output buffer.
+#Overall this is what the function does:The function accepts no parameters and prints the string representations of the elements in `args` to a specified output stream, separated by a specified delimiter. The default output stream is `sys.stdout`, and the default delimiter is a space. It appends a specified ending string (defaulting to a newline) after printing the elements. If the `flush` keyword argument is set to True, it flushes the output buffer. The function does not handle the cases where `args` is empty, which could lead to no output being produced.
+

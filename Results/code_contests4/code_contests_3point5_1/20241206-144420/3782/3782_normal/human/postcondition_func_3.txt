@@ -1,0 +1,5 @@
+The function `func_4` accepts two positive integers `a` and `b` where 1 <= b <= a. It has three return cases:
+1. If `b` is equal to 0, the function returns 1.
+2. If `b` is odd, the function recursively calls `func_3` with parameters `a` and the result of `func_4` with parameters `a` and `b-1`.
+3. If `b` is even, the function recursively calculates the square of the value returned by calling itself with parameters `a` and `b/2`.
+Therefore, the functionality of the function is to perform recursive calculations based on the parity of `b` and return different values accordingly.

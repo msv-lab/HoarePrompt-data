@@ -1,0 +1,7 @@
+The function `func_2` accepts a string `l` of length 10 consisting of only '0's and '1's, an integer `w` where 1 ≤ w ≤ 1000, and a non-negative integer `m`. The function iterates through the values returned by `func_3(l, w)` and recursively calls itself with updated parameters. There are multiple return cases:
+- Case 1: Returns True and the string `l`.
+- Case 2: Returns True and the second element of the list `tmp`.
+- Case 3: Returns True and the second element of the list 'tmp' which contains the result of `func_2(l + [i], w, m)`.
+- Case 4: Returns True and the second element of list 'tmp'.
+- Case 5: Always returns False.
+The functionality of the function is to handle different cases based on the input parameters and iterative calls, returning specific values accordingly.

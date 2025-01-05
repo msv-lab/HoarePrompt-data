@@ -1,0 +1,34 @@
+g = lambda : stdin.readline().strip()
+gl = lambda : g().split()
+gil = lambda : [int(var) for var in gl()]
+gfl = lambda : [float(var) for var in gl()]
+gcl = lambda : list(g())
+gbs = lambda : [int(var) for var in g()]
+mod = int(1000000000.0) + 7
+inf = float('inf')
+(n, m, a) = gil()
+(person, bikes) = (gil(), gil())
+person.sort()
+bikes.sort()
+
+def func_1(k):
+    left = a
+    b = 0
+    for i in range(k):
+        pi = -k + i
+        left -= max(0, bikes[i] - person[pi])
+        b += min(person[pi], bikes[i])
+    b -= left
+    return (b, left)
+(k, cost) = (0, 0)
+(l, r) = (0, min(n, m))
+while l <= r:
+    mid = (l + r) // 2
+    (cost_, left) = func_1(mid)
+    if left >= 0:
+        l = mid + 1
+        k = mid
+        cost = cost_
+    else:
+        r = mid - 1
+print(k, max(0, cost))

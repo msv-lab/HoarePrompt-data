@@ -1,0 +1,52 @@
+#State of the program right berfore the function call: n is an integer such that 1 <= n <= 100,000, k is an integer such that 1 <= k <= 100,000, and w_i is an integer such that 1 <= w_i <= 10,000 for each package. The first line of input contains the values of n and k, followed by n lines each containing the weight of a package.
+def func():
+    n, k = [int(val) for val in raw_input().split(' ')]
+    w = []
+    maxW = sumW = 0
+    for i in range(n):
+        num = int(raw_input())
+        
+        sumW += num
+        
+        w.append(num)
+        
+        if maxW < num:
+            maxW = num
+        
+    #State of the program after the  for loop has been executed: `n` is an integer such that 1 <= `n` <= 100,000; `w` is a list containing `n` integers entered as input; `sumW` is equal to the sum of all integers in `w`; `maxW` is the maximum integer in `w`.
+    minP = 0
+    if (1 == k) :
+        minP = sumW
+    else :
+        if (n == k) :
+            minP = maxW
+        else :
+            left = maxW
+            right = 100000 * 10000
+            while left <= right:
+                middle = (left + right) // 2
+                
+                truckCnt = i = loadings = 0
+                
+                while i < n:
+                    loadings += w[i]
+                    if middle < loadings:
+                        truckCnt += 1
+                        if k < truckCnt + 1:
+                            break
+                        loadings = w[i]
+                    i += 1
+                
+                if truckCnt + 1 <= k:
+                    minP = middle
+                
+                if k < truckCnt + 1:
+                    left = middle + 1
+                else:
+                    right = middle - 1
+                
+            #State of the program after the loop has been executed: `left` is greater than `right`, `minP` is the minimum capacity required for the trucks to carry the load, `i` is equal to `n`, `loadings` is equal to the total load of the last segment of `w` processed, and `truckCnt` is the total number of trucks needed based on the loadings and `k` conditions.
+        #State of the program after the if-else block has been executed: *`n` is an integer such that 1 <= `n` <= 100,000; `w` is a list containing `n` integers; `sumW` is the sum of all integers in `w`; `maxW` is the maximum integer in `w`; and `k` is not equal to 1. If `n` is equal to `k`, then `minP` is set to `maxW`. Otherwise, `minP` is the minimum capacity required for the trucks to carry the load, `i` is equal to `n`, `loadings` is equal to the total load of the last segment of `w` processed, and `truckCnt` is the total number of trucks needed based on the loadings and `k` conditions.
+    #State of the program after the if-else block has been executed: *`n` is an integer such that 1 <= `n` <= 100,000; `w` is a list containing `n` integers; `sumW` is the sum of all integers in `w`; `maxW` is the maximum integer in `w`. If `k` is equal to 1, then `minP` is set to `sumW` and `k` is set to 1. If `k` is not equal to 1, and if `n` is equal to `k`, then `minP` is set to `maxW`. Otherwise, `minP` is the minimum capacity required for the trucks to carry the load, `i` is equal to `n`, `loadings` is equal to the total load of the last segment of `w` processed, and `truckCnt` is the total number of trucks needed based on the loadings and `k` conditions.
+#Overall this is what the function does:The function accepts two integers, `n` (the number of packages) and `k` (the number of trucks), followed by `n` package weights. It calculates the maximum weight among the packages and the total weight of all packages. It then determines the minimum capacity required for the trucks to carry all packages based on the following conditions: if `k` is 1, the minimum capacity is the total weight; if `n` equals `k`, the minimum capacity is the maximum weight; otherwise, it performs a binary search to find the minimum capacity that allows the packages to be distributed among the trucks without exceeding their count. If the distribution is not feasible, the function does not handle that case explicitly, potentially leading to unhandled scenarios.
+

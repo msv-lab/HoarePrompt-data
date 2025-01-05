@@ -1,0 +1,52 @@
+#State of the program right berfore the function call: n is a positive integer (1 <= n <= 100,000), k is a positive integer (1 <= k <= 100,000), and w_i are positive integers (1 <= w_i <= 10,000) representing the weights of n packages.
+def func():
+    n, k = [int(val) for val in raw_input().split(' ')]
+    w = []
+    maxW = sumW = 0
+    for i in range(n):
+        num = int(raw_input())
+        
+        sumW += num
+        
+        w.append(num)
+        
+        if maxW < num:
+            maxW = num
+        
+    #State of the program after the  for loop has been executed: `n` is a positive integer, `k` is a positive integer, `w` contains `n` integers, `maxW` is the maximum value among the integers in `w`, `sumW` is the sum of all integers in `w`.
+    minP = 0
+    if (1 == k) :
+        minP = sumW
+    else :
+        if (n == k) :
+            minP = maxW
+        else :
+            left = maxW
+            right = 100000 * 10000
+            while left <= right:
+                middle = (left + right) // 2
+                
+                truckCnt = i = loadings = 0
+                
+                while i < n:
+                    loadings += w[i]
+                    if middle < loadings:
+                        truckCnt += 1
+                        if k < truckCnt + 1:
+                            break
+                        loadings = w[i]
+                    i += 1
+                
+                if truckCnt + 1 <= k:
+                    minP = middle
+                
+                if k < truckCnt + 1:
+                    left = middle + 1
+                else:
+                    right = middle - 1
+                
+            #State of the program after the loop has been executed: `left` is greater than `right`, `minP` is the minimum value that allows the loading of `n` integers in at most `k` trucks, `truckCnt` is the total number of trucks counted based on the last evaluated `middle`, `loadings` is the value accumulated in the last truck before the loop terminated, `i` is `n` or less than `n` based on the final loading evaluation.
+        #State of the program after the if-else block has been executed: *`n` is a positive integer equal to `k`, `k` is a positive integer greater than 1, `w` contains `n` integers, `maxW` is the maximum value among the integers in `w`, `sumW` is the sum of all integers in `w`, and `minP` is equal to `maxW`. If `n` is not equal to `k`, then `minP` is the minimum value that allows the loading of `n` integers in at most `k` trucks, `truckCnt` is the total number of trucks counted based on the last evaluated `middle`, `loadings` is the value accumulated in the last truck before the loop terminated, and `i` is `n` or less than `n` based on the final loading evaluation.
+    #State of the program after the if-else block has been executed: *`n` is a positive integer, `k` is a positive integer. If `k` is equal to 1, then `minP` is equal to `sumW`, the sum of all integers in `w`. If `k` is greater than 1 and `n` is equal to `k`, then `minP` is equal to `maxW`, the maximum value among the integers in `w`. If `n` is not equal to `k`, then `minP` is the minimum value that allows the loading of `n` integers in at most `k` trucks, with `truckCnt` representing the total number of trucks counted, `loadings` being the value accumulated in the last truck, and `i` being `n` or less than `n` based on the final loading evaluation.
+#Overall this is what the function does:The function accepts two positive integers, `n` (the number of packages) and `k` (the maximum number of trucks), followed by `n` positive integers representing the weights of the packages. It calculates the minimum weight capacity required for `k` trucks to transport all `n` packages. If there is only one truck (`k` is 1), the capacity is the sum of all weights. If the number of packages equals the number of trucks (`n` equals `k`), the capacity is the maximum weight of a single package. Otherwise, it uses a binary search approach to determine the minimum truck capacity that allows loading all packages without exceeding `k` trucks. The function does not return any explicit output.
+

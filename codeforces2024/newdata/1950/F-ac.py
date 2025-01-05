@@ -1,0 +1,1 @@
+for e in[*open(0)][1:]:a,b,c=map(int,e.split());l=a.bit_length();print(c-a-1and-1or(b-2**l+a+c)//c+l)

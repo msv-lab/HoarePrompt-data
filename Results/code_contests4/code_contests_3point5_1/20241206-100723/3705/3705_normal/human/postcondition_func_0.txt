@@ -1,0 +1,4 @@
+The function `func_1` accepts an integer parameter `n` where 1 ≤ n ≤ 10^18. It has two main cases: 
+1. If n is equal to 0, the function returns 0.
+2. If n is not 0, the function calculates the sum of the squares of the minimum values between p*2 and n for even i, and between p and n for odd i. This sum is then multiplied by the sum of s and s+1, and returned.
+However, there seems to be a missing condition handling when n becomes negative during the loop execution. This potential edge case is not covered in the annotations but should be considered in the functionality description.

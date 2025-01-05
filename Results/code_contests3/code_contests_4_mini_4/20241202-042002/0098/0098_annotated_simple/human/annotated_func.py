@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: n is a positive odd integer such that 3 <= n <= 199.
+def func_1(n):
+    return math.cos(math.pi / (4 * n)) / math.sin(math.pi / (2 * n))
+    #The program returns the value of the expression cos(π / (4 * n)) / sin(π / (2 * n)), where n is a positive odd integer such that 3 <= n <= 199
+#Overall this is what the function does:The function accepts a positive odd integer `n` (where 3 <= n <= 199) and returns the value of the expression cos(π / (4 * n)) / sin(π / (2 * n)). There are no checks for the validity of `n` within the function; therefore, if `n` is outside the specified range or is not an odd integer, the function may produce unexpected results or errors.
+

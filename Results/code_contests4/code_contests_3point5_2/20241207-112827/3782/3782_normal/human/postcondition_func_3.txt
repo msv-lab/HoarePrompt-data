@@ -1,0 +1,5 @@
+The function `func_4` accepts two integer parameters `a` and `b`. It evaluates different cases based on the value of `b`: 
+- Case 1: If `b` is 0, the function returns 1.
+- Case 2: If `b` is odd, it recursively calls `func_3` with arguments `a` and the result of `func_4(a, b-1)`.
+- Case 3: If `b` is even, it recursively calculates `temp` as `func_4(a, b / 2)` and returns the square of `temp`.
+The function operates through these cases based on the value of `b` to determine the return value.

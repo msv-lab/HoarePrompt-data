@@ -1,0 +1,4 @@
+The function reads input values as strings, converts them to integers, and calculates a score based on the provided conditions. It iterates through the list of strings and if an element is not divisible by 10, it adds that element to the score. However, the code has issues: 
+1. The loop should iterate over the range of the length of `testSNs`.
+2. The condition `not testSNs[x] % 10 is 0` should be `int(testSNs[x]) % 10 != 0` to correctly check divisibility by 10.
+3. The function does not return any value, it only prints the calculated score.

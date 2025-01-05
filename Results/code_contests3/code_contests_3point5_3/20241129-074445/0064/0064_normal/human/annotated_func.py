@@ -1,0 +1,7 @@
+#State of the program right berfore the function call: c1, c2, c3, c4, and c5 are non-negative integers such that 0 ≤ c1, c2, c3, c4, c5 ≤ 100.**
+def func():
+    c = map(int, raw_input().split())
+    s = sum(c)
+    print - 1 if s == 0 or s % len(c) != 0 else s / len(c)
+#Overall this is what the function does:The function `func` reads input as integers into a list `c`, calculates the sum of the integers in `c`, and then prints either -1 if the sum is zero or not divisible by the length of `c`, or the average of the sum divided by the length of `c`. The function does not accept any parameters and operates on non-negative integers c1, c2, c3, c4, and c5 within the range 0 to 100.
+

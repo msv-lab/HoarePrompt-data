@@ -1,0 +1,8 @@
+#State of the program right berfore the function call: l, p, q are integers such that 1 <= l <= 1000 and 1 <= p, q <= 500.**
+def func():
+    l = input()
+    p = input()
+    q = input()
+    print(float(l) / (p + q)) * p
+#Overall this is what the function does:The function `func` prompts the user to input three integers `l`, `p`, and `q`. It then calculates a value based on these inputs but does not return any value. However, there is a syntax error in the code where the multiplication operation is outside the print statement, which may cause unexpected behavior. Additionally, the annotations mention specific constraints on the values of `l`, `p`, and `q`, but the code does not enforce these constraints, potentially leading to unexpected inputs.
+

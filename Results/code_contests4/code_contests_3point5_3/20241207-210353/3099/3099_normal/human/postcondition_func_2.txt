@@ -1,0 +1,5 @@
+The function `func_3` accepts two parameters, `a` and `b`, both of which are integers. It evaluates three cases:
+- Case 1: If `b` is 0, the function returns 1.
+- Case 2: If `b` is odd, the function returns the result of calling `func_2` with arguments `a` and the result of calling `func_3` with arguments `a` and `b-1`.
+- Case 3: If `b` is even, the function calculates `temp` by calling `func_3(a, b / 2)` and returns the result of calling `func_2` with `temp` as both arguments. However, the annotation mentions `func_3(a, 0)`, which is misleading since `b / 2` would not reduce `b` to 0. 
+Therefore, the functionality of the function `func_3` includes handling cases based on the parity of `b` and making recursive calls to `func_2` and `func_3` accordingly.

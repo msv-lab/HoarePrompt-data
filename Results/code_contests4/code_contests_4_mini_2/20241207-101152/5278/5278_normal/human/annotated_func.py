@@ -1,0 +1,52 @@
+#State of the program right berfore the function call: n is a positive integer such that 1 <= n <= 100,000, k is a positive integer such that 1 <= k <= 100,000, and w_i are positive integers such that 1 <= w_i <= 10,000 for each package i (0 <= i < n).
+def func():
+    n, k = [int(val) for val in raw_input().split(' ')]
+    w = []
+    maxW = sumW = 0
+    for i in range(n):
+        num = int(raw_input())
+        
+        sumW += num
+        
+        w.append(num)
+        
+        if maxW < num:
+            maxW = num
+        
+    #State of the program after the  for loop has been executed: `n` is a positive integer such that 1 <= `n` <= 100,000; `k` is a positive integer such that 1 <= `k` <= 100,000; `w` is a list containing `n` input integers; `sumW` is the sum of the integers in `w`; `maxW` is the maximum integer from `w`.
+    minP = 0
+    if (1 == k) :
+        minP = sumW
+    else :
+        if (n == k) :
+            minP = maxW
+        else :
+            left = maxW
+            right = 100000 * 10000
+            while left <= right:
+                middle = (left + right) // 2
+                
+                truckCnt = i = loadings = 0
+                
+                while i < n:
+                    loadings += w[i]
+                    if middle < loadings:
+                        truckCnt += 1
+                        if k < truckCnt + 1:
+                            break
+                        loadings = w[i]
+                    i += 1
+                
+                if truckCnt + 1 <= k:
+                    minP = middle
+                
+                if k < truckCnt + 1:
+                    left = middle + 1
+                else:
+                    right = middle - 1
+                
+            #State of the program after the loop has been executed: `left` is greater than `right`, `minP` holds the minimum possible capacity required to transport the load given `k` trucks, `i` is `n`, `loadings` is the sum of all integers in `w` that fit within the constraints of the final `middle`, `truckCnt` is the final count of trucks needed based on the loadings, `k` remains unchanged from its initial value, `w` remains unchanged.
+        #State of the program after the if-else block has been executed: *`n` is a positive integer such that 1 <= `n` <= 100,000; `k` is a positive integer greater than 1; `w` is a list containing `n` input integers; `sumW` is the sum of the integers in `w`; `maxW` is the maximum integer from `w`; if `n` equals `k`, then `minP` is equal to `maxW`. Otherwise, `minP` holds the minimum possible capacity required to transport the load with `k` trucks, `i` is equal to `n`, `loadings` is the sum of integers in `w` that fit within the constraints of the final `middle`, `truckCnt` is the final count of trucks needed based on the loadings, while `k` and `w` remain unchanged.
+    #State of the program after the if-else block has been executed: *`n` is a positive integer such that 1 <= `n` <= 100,000; `k` is a positive integer such that 1 <= `k` <= 100,000; `w` is a list containing `n` input integers; `sumW` is the sum of the integers in `w`; `maxW` is the maximum integer from `w`; if `k` equals 1, then `minP` is equal to `sumW`. If `k` is greater than 1 and `n` equals `k`, then `minP` is equal to `maxW`. Otherwise, `minP` holds the minimum possible capacity required to transport the load with `k` trucks, `i` is equal to `n`, `loadings` is the sum of integers in `w` that fit within the constraints of the final `middle`, and `truckCnt` is the final count of trucks needed based on the loadings, while `k` and `w` remain unchanged.
+#Overall this is what the function does:The function reads two positive integers `n` and `k`, where `n` is the number of packages and `k` is the number of trucks available. It then reads `n` weights of packages into a list. The function calculates the minimum capacity required for the trucks to transport all packages based on the constraints given by `k`. If `k` is 1, the minimum capacity is equal to the total weight of all packages. If `n` equals `k`, the minimum capacity is the weight of the heaviest package. For other cases, it uses a binary search to determine the minimum truck capacity required to transport all packages without exceeding `k` trucks. Note that the function does not return any value; it calculates `minP`, which holds the result of the minimum capacity but does not output or return it.
+

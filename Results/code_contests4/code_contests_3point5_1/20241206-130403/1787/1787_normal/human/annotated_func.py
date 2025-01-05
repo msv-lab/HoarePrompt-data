@@ -1,0 +1,127 @@
+#State of the program right berfore the function call: **
+def func_1():
+    fact = [1]
+    for i in range(1, 100005):
+        fact.append(fact[-1] * i % mod)
+        
+    #State of the program after the  for loop has been executed: `fact` is a list containing the factorial values up to 100004 based on `mod`, `i` is 100004
+    ifact = [0] * 100005
+    ifact[100004] = pow(fact[100004], mod - 2, mod)
+    for i in range(100004, 0, -1):
+        ifact[i - 1] = i * ifact[i] % mod
+        
+    #State of the program after the  for loop has been executed: `fact` is a list containing factorial values, `mod` is a constant, `i` is 0, `ifact` is a list of 100005 elements properly initialized, value of `ifact[0]` calculated as the inverse factorial of `fact[0]`, `ifact[i - 1]` is updated to `i * ifact[i] % mod`
+    return fact, ifact
+    #The program returns the list `fact` containing factorial values and the list `ifact` containing 100005 elements with updated values based on the calculations described
+#Overall this is what the function does:The function `func_1` calculates and returns two lists: `fact` containing factorial values up to 100004 based on a certain modulus, and `ifact` containing 100005 elements with updated values calculated based on the factorial values. The function does not accept any parameters.
+
+#State of the program right berfore the function call: n is a positive integer representing the length of the password, and p is a list of n positive integers representing the initial contents of the password.**
+def func_2(n, p):
+    return pow(n, p - 2, p)
+    #The program returns the result of raising n to the power of p-2 modulo p
+#Overall this is what the function does:The function `func_2` accepts two parameters: `n`, a positive integer representing the length of the password, and `p`, a list of n positive integers representing the initial contents of the password. The function calculates the result of raising n to the power of p-2 modulo p.
+
+#State of the program right berfore the function call: **
+def func_3(n, r, fact, ifact):
+    t = fact[n] * (ifact[r] * ifact[n - r]) % mod % mod
+    return t
+    #The program returns the value of 't' which is dependent on the specific values of 'fact', 'ifact', 'n', 'r', and 'mod'
+#Overall this is what the function does:The function `func_3` accepts four parameters: `n`, `r`, `fact`, and `ifact`. It calculates the value of `t` based on the values of `fact`, `ifact`, `n`, `r`, and `mod`. The calculation involves multiplication and modulo operations. The function returns the calculated value of `t`. Missing functionality: The function does not handle any error cases or input validation, so it assumes the parameters are provided correctly and does not check for edge cases such as division by zero or invalid inputs.
+
+#State of the program right berfore the function call: **
+def func_4():
+    return map(int, sys.stdin.readline().strip().split())
+    #The program returns a map object containing integers after splitting the input obtained from the standard input
+#Overall this is what the function does:The function `func_4` does not accept any parameters. It reads input from the standard input, splits the input, and returns a map object containing integers. The function does not handle any exceptions that may occur during the input reading or splitting process.
+
+#State of the program right berfore the function call: **
+def func_5():
+    return list(map(int, sys.stdin.readline().strip().split()))
+    #The program returns a list of integers by mapping the input values from the standard input after stripping and splitting them
+#Overall this is what the function does:The function `func_5` does not accept any parameters. It reads input values from the standard input, strips any whitespace, splits the values, maps them to integers, and returns a list of integers based on the mapped input values.
+
+#State of the program right berfore the function call: **
+def func_6():
+    return sys.stdin.readline().strip()
+    #The program returns the input read from the standard input after stripping any leading or trailing whitespaces
+#Overall this is what the function does:The function `func_6` reads input from the standard input and returns it after removing any leading or trailing whitespaces.
+
+#State of the program right berfore the function call: **
+def func_7(x, y):
+    while y:
+        x, y = y, x % y
+        
+    #State of the program after the loop has been executed: `x` and `y` hold the values after the loop has finished executing, with `x` and `y` being modified based on the calculations and conditions required for the loop to continue until `y` becomes falsy
+    return x
+    #The program returns the final value of variable `x` after the loop has finished executing
+#Overall this is what the function does:The function `func_7` accepts two parameters `x` and `y`. It then performs a loop where `x` and `y` are updated based on certain conditions until `y` becomes falsy. Finally, the function returns the value of `x` after the loop has finished executing. The functionality of this function is to calculate and return the final value of `x` after the loop iterations based on the values of `x` and `y`.
+
+#State of the program right berfore the function call: **
+def func_8(x, y):
+    return x * y // func_7(x, y)
+    #The program returns the result of multiplying variables x and y, then dividing the result by the return value of func_7(x, y)
+#Overall this is what the function does:The function `func_8` accepts two parameters `x` and `y`, which are variables. It then returns the result of multiplying `x` and `y`, and dividing that result by the return value of `func_7(x, y)`.
+
+#State of the program right berfore the function call: n is a positive integer representing the length of the password, and a is a list of n positive integers where 1 ≤ a_{i} ≤ 10^9.**
+def func_9(n):
+    return [n, 1, n + 1, 0][n % 4]
+    #The program returns one of the following based on the value of n:
+    #- n if n % 4 = 0
+    #- 1 if n % 4 = 1
+    #- n + 1 if n % 4 = 2
+    #- 0 if n % 4 = 3
+#Overall this is what the function does:The function `func_9` accepts a positive integer `n`, representing the length of a password. It then returns a specific value based on the modulo operation of n with 4. If n % 4 = 0, it returns n; if n % 4 = 1, it returns 1; if n % 4 = 2, it returns n + 1; if n % 4 = 3, it returns 0. The function provides a deterministic output based on the value of n modulo 4.
+
+#State of the program right berfore the function call: **
+def func_10(a, b):
+    res = 1
+    while b:
+        if b & 1:
+            res = res * a
+            res %= MOD
+            b -= 1
+        else:
+            a = a * a
+            a %= MOD
+            b >>= 1
+        
+    #State of the program after the loop has been executed: `res`, `a`, and `b` are integers. If `b` is odd, `res` is the result of raising `a` to the power of the original value of `b`, and then finding the remainder when divided by `MOD`. If `b` is even, `res` remains an integer, `a` is the result of raising the original value of `a` to the power of `b/2`, and `b` becomes 0.
+    res %= MOD
+    return res
+    #The program returns the result of raising 'a' to the power of the original value of 'b', finding the remainder when divided by 'MOD' if 'b' is odd. If 'b' is even, 'res' remains an integer, 'a' is the result of raising the original value of 'a' to the power of 'b/2', and 'b' becomes 0
+#Overall this is what the function does:The function func_10 accepts two integer parameters a and b. It calculates the result by raising 'a' to the power of the original value of 'b' and finding the remainder when divided by 'MOD' if 'b' is odd. If 'b' is even, it calculates 'res' by raising the original value of 'a' to the power of 'b/2', and 'b' eventually becomes 0. The function then returns the final value of 'res'.
+
+#State of the program right berfore the function call: **
+def func_11(P):
+    ans = (-1 + sqrt(1 + 8 * P)) // 2
+    return ans
+    #The program returns the value of 'ans' which is calculated based on the value of 'P'
+#Overall this is what the function does:The function func_11 accepts a parameter P and calculates the value of 'ans' using a mathematical formula involving the square root function. It then returns this calculated value.
+
+#State of the program right berfore the function call: **
+def func_12():
+    T = int(func_6())
+    while T:
+        n = int(func_6())
+        
+        Arr = func_5()
+        
+        p = Arr[0]
+        
+        flag = 0
+        
+        for i in Arr[1:]:
+            if i != p:
+                flag = 1
+                break
+        
+        if flag == 1:
+            print(1)
+        else:
+            print(n)
+        
+        T -= 1
+        
+    #State of the program after the loop has been executed: T is 0, n is the last integer value returned by func_6(), p is the first element of the list Arr, flag is 1 if at least one element in Arr is not equal to p
+#Overall this is what the function does:The function `func_12` does not accept any parameters. It iterates `T` times, where `T` is the integer value returned by `func_6()`. Within each iteration, it reads an integer `n`, a list `Arr` using `func_6()` and `func_5() respectively`, and assigns the first element of `Arr` to `p`. Then, it checks if any element in `Arr` is different from `p` to set the flag. If any element in `Arr` differs from `p`, it prints 1; otherwise, it prints `n`. The function does not have explicit return values.
+

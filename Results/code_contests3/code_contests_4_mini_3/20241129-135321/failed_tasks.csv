@@ -1,0 +1,8 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+5314,human,code_contests,gpt-4o-mini-2024-07-18,"n,t=list(map(int,raw_input().split()))
+a=raw_input().split()
+i=0
+while t>0:
+    t-=(86400-int(a[i]))
+    i+=1
+print(i)",Error: RetryError[<Future at 0x104ea3280 state=finished raised APIConnectionError>],hoareprompt annotated simple

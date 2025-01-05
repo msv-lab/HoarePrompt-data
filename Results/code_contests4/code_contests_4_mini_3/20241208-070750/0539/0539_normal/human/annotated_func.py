@@ -1,0 +1,35 @@
+#State of the program right berfore the function call: sum and limit are integers such that 1 ≤ sum, limit ≤ 100000.
+def func():
+    target, n = map(int, raw_input().split())
+    A = []
+    s = 0
+    for i in range(1, n + 1):
+        k = (i & -i) - 1
+        
+        if i != 1 and k == i - 1:
+            k = int(math.log(i, 2))
+        
+        A.append((2 ** k, i))
+        
+        s += A[-1][0]
+        
+    #State of the program after the  for loop has been executed: `sum` is an integer, `limit` is an integer, `target` is an input integer, `n` is the input integer, `A` is a list containing `n` tuples of the form `(2
+    if (s < target) :
+        print(-1)
+        exit()
+    #State of the program after the if block has been executed: *`sum`, `limit` are integers, `target` is an input integer, `n` is an input integer, `A` is a list containing `n` tuples of the form (2, ...). If `sum` is less than `target`, -1 is printed.
+    A.sort()
+    selected = []
+    for tup in A:
+        target -= tup[0]
+        
+        selected.append(tup[1])
+        
+        if target <= 0:
+            break
+        
+    #State of the program after the  for loop has been executed: `sum`, `limit`, and `n` are integers; `A` is a sorted list of `n` tuples; `target` is less than or equal to 0; `selected` is a list containing the `tup[1]` values from `A` up to the point where `target` was decremented to less than or equal to 0; if no tuples were processed, `selected` is empty.
+    print(len(selected))
+    print(' '.join(map(str, selected)))
+#Overall this is what the function does:The function accepts two integers `target` and `n` as input, where `target` is the desired sum and `n` represents the number of possible integer values to consider. It calculates a list of tuples containing powers of 2 and their corresponding indices, checks if the total of these powers is less than `target`, and if so, it prints -1. If sufficient powers are available, it selects the indices of the tuples that sum to at least `target`, and prints the count of selected indices followed by the indices themselves. If no indices are selected, it outputs 0 and an empty line.
+

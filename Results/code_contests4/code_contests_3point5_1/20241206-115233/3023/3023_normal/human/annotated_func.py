@@ -1,0 +1,153 @@
+#State of the program right berfore the function call: **
+def func_1():
+    N = read_int()
+    balls = []
+    for _ in range(N):
+        balls.append(read_int_array())
+        
+    #State of the program after the  for loop has been executed: N is greater than 0, balls contains N arrays of integers
+    func_8(func_2(N, balls))
+#Overall this is what the function does:The function func_1 reads an integer N from input, then reads N arrays of integers into the list balls. After that, it calls func_8 with the result of func_2(N, balls) as an argument. The function does not accept any parameters and does not return any value.
+
+#State of the program right berfore the function call: **
+def func_2(n, balls):
+    bdict = collections.defaultdict(set)
+    for (x, y) in balls:
+        bdict[x].add(y)
+        
+    #State of the program after the  for loop has been executed: `bdict` is a defaultdict of sets with keys as all unique values of `x` from balls and values as sets containing all unique values of `y` corresponding to each `x` in balls.
+    tried = set()
+    ans = n
+    for i in range(n):
+        for j in range(i):
+            p, q = balls[j][0] - balls[i][0], balls[j][1] - balls[i][1]
+            if (p, q) not in tried:
+                tried.add((p, q))
+                tried.add((-p, -q))
+                points = score(p, q)
+                if points < ans:
+                    ans = points
+        
+    #State of the program after the  for loop has been executed: `bdict` is a defaultdict of sets with keys as all unique values of `x` from `balls` and values as sets containing all unique values of `y` corresponding to each `x` in `balls`; `tried` is a set containing all unique tuples `(p, q)` where `(p, q)` is added as well as `(-p, -q)` for all unique combinations of differences between elements of `balls[j]` and `balls[i]`; `ans` is the minimum score obtained from all combinations of differences between elements of `balls[j]` and `balls[i]`; `i` is `n-1`, `n` is greater than 0 and satisfies the loop condition, `j` is `i-1`, `p` and `q` are the differences between the last elements of `balls[j]` and `balls[i]` respectively for the last iteration; `points` is the score obtained from the last combination of differences.
+    return ans
+    #The program returns the minimum score obtained from all combinations of differences between elements of balls[j] and balls[i]
+#Overall this is what the function does:The function `func_2` accepts two parameters `n` and `balls`, where `n` is an integer representing the number of elements in the `balls` list, and `balls` is a list of tuples. The function calculates the minimum score obtained from all unique combinations of differences between elements of `balls[j]` and `balls[i]`. The program utilizes a defaultdict to store the values of `y` based on unique `x` values in `balls`, then iterates over all combinations of elements in `balls` to find the minimum score. The function then returns this minimum score. However, the annotations mention a call to a `score` function which is missing in the provided code, so this missing functionality should be noted.
+
+#State of the program right berfore the function call: **
+def score(p, q):
+    out = n
+    for (x, y) in balls:
+        nx, ny = x + p, y + q
+        
+        if ny in bdict.get(nx, []):
+            out -= 1
+        
+    #State of the program after the  for loop has been executed: `out` is the value of `n` minus the number of times `ny` is in the list retrieved from `bdict` using `nx` as key for all tuples in `balls`, `balls` is a non-empty iterable, `x` and `y` are assigned values from the last tuple in `balls`, `nx` is the sum of `x` and `p`, `ny` is the sum of `y` and `q`.
+    return out
+    #The program returns the value of 'out', which is calculated as the value of 'n' minus the number of times 'ny' appears in the list retrieved from 'bdict' using 'nx' as the key for all tuples in 'balls'. 'balls' is a non-empty iterable where 'x' and 'y' are assigned values from the last tuple. 'nx' is the sum of 'x' and 'p', 'ny' is the sum of 'y' and 'q'.
+#Overall this is what the function does:The function `score` accepts two integer parameters `p` and `q`. It calculates the value of 'out' as the initial value of 'n' minus the number of times 'ny' appears in the list retrieved from 'bdict' using 'nx' as the key for all tuples in 'balls'. 'balls' is a non-empty iterable where 'x' and 'y' are assigned values from the last tuple. 'nx' is the sum of 'x' and 'p', 'ny' is the sum of 'y' and 'q'. The function then returns the resulting value as 'out'. If 'ny' is not found in the list retrieved from 'bdict', it is not counted, and 'out' remains equal to 'n'.
+
+#State of the program right berfore the function call: N is a positive integer. x_i and y_i are integers representing the coordinates of the i-th ball.**
+def func_3():
+    if (False and 'PYCHARM_HOSTED' in os.environ) :
+        func_4()
+    else :
+        func_1()
+    #State of the program after the if-else block has been executed: *N is a positive integer. x_i and y_i are integers representing the coordinates of the i-th ball. The condition (False and 'PYCHARM_HOSTED' in os.environ) is always false.
+#Overall this is what the function does:The function conditionally calls either func_4() or func_1() based on the condition (False and 'PYCHARM_HOSTED' in os.environ), which is always false. The function does not directly calculate the distance between pairs of balls as mentioned in the annotation.
+
+#State of the program right berfore the function call: **
+def func_4():
+    solution = solve
+    test_inputs = None
+    test_outputs = None
+    judge = None
+    slow_solution = None
+    if (solution is not None) :
+        if (test_outputs is not None) :
+            func_5(solution, test_inputs, test_outputs)
+        #State of the program after the if block has been executed: *`solution` is `solve`, `test_inputs` is `None`, `test_outputs` is not `None`, `judge` is `None`, `slow_solution` is `None`, and `solution` is not `None`
+        if (judge is not None) :
+            func_6(solution, test_inputs, judge)
+        #State of the program after the if block has been executed: *`solution` is `solve`, `test_inputs` is `None`, `test_outputs` is not `None`, `judge` is `None`, `slow_solution` is `None`, and `solution` is not `None`. If `judge` is not `None`, all the specified conditions are met.
+        if (slow_solution is not None) :
+            func_7(solution, test_inputs, slow_solution)
+        #State of the program after the if block has been executed: *`solution` is `solve`, `test_inputs` is `None`, `test_outputs` is not `None`, `judge` is `None`, `slow_solution` is `None`, and `solution` is not `None`. If `slow_solution` is not `None`, the program executes the specified conditions successfully.
+    #State of the program after the if block has been executed: *`solution` is `solve`, `test_inputs` is `None`, `test_outputs` is not `None`, `judge` is `None`, `slow_solution` is `None`, and `solution` is not `None`. If `slow_solution` is not `None`, the program executes the specified conditions successfully.
+#Overall this is what the function does:The function func_4 does not accept any parameters and does not perform any operations. It simply initializes variables and conditions based on certain checks, but does not carry out any significant computation or return any output.
+
+#State of the program right berfore the function call: **
+def func_5(solution, inputs_answers):
+    total, wrong = 0, 0
+    for (args, test_ans) in inputs_answers:
+        ans = solution(*args.copy())
+        
+        if ans != test_ans:
+            func_8('WRONG! ans=%s, test_ans=%s, args=%s' % (ans, test_ans, args))
+            wrong += 1
+        else:
+            func_8('GOOD')
+        
+        total += 1
+        
+    #State of the program after the  for loop has been executed: `total` is increased by the number of elements in `inputs_answers`, `inputs_answers` is empty, `ans` and `test_ans` are the values returned by the function `solution` with the last set of copied arguments, `wrong` is the number of times `ans` was not equal to `test_ans` during the loop execution.
+    func_8('ALL %d TESTS PASSED' % total if not wrong else 
+    '%d out of %d tests are WRONG' % (wrong, total))
+#Overall this is what the function does:The function func_5 accepts two parameters: `solution` which represents the correct solution function, and `inputs_answers` which contains input-output pairs. It iterates through each pair, calls the `solution` function with the input arguments, compares the output with the expected answer, and increments the `wrong` counter if they do not match. At the end, it prints the number of correct and incorrect tests. The function does not return any value explicitly but prints the test results.
+
+#State of the program right berfore the function call: **
+def func_6(solution, inputs_gen, judge):
+    total, wrong = 0, 0
+    for args in inputs_gen:
+        ans = solution(*deepcopy(args))
+        
+        if not judge(deepcopy(ans), *deepcopy(args)):
+            func_8('WRONG! ans=%s, args=%s' % (ans, args))
+            wrong += 1
+        
+        total += 1
+        
+    #State of the program after the  for loop has been executed: `total` is the total number of values generated by `inputs_gen`, `wrong` is the number of times the judge function returned false, `inputs_gen` generates at least 1 value, `ans` is the returned value from calling the function `solution` with arguments `args` after creating a deep copy of `args`. If the function judge returns false when comparing the deep copy of `ans` with the deep copy of `args`, then the function `func_8` is called with the string 'WRONG! ans=%s, args=%s'.
+    func_8('ALL %d TESTS PASSED' % total if not wrong else 
+    '%d out of %d tests are WRONG' % (wrong, total))
+#Overall this is what the function does:The function `func_6` takes three parameters: `solution`, `inputs_gen`, and `judge`. It iterates through the values generated by `inputs_gen`, calls the `solution` function with the arguments, deep copies the arguments and the result, then compares the result with the original arguments using the `judge` function. If the comparison is false, it increments the `wrong` counter and calls `func_8` with an error message. After the loop, it prints a message indicating the number of tests passed or failed based on the `wrong` counter. The functionality of the function is to test the correctness of the `solution` function based on the provided test cases generated by `inputs_gen` and evaluated by the `judge` function.
+
+#State of the program right berfore the function call: **
+def func_7(solution, inputs_gen, solution_slow):
+    total, wrong = 0, 0
+    for args in inputs_gen:
+        ans = solution(*deepcopy(args))
+        
+        slow = solution_slow(*deepcopy(args))
+        
+        if ans != slow:
+            func_8('WRONG! ans=%s, slow=%s, args=%s' % (ans, slow, args))
+            wrong += 1
+        
+        total += 1
+        
+    #State of the program after the  for loop has been executed: `total` is the total number of values produced by `inputs_gen`, `wrong` is the number of times `ans` is not equal to `slow`, `args` is the last value produced by `inputs_gen`, `ans` is the result of calling the function `solution` with a deepcopy of the last `args`, `slow` holds the result of calling `solution_slow` with a deepcopy of the last `args`.
+    func_8('ALL %d TESTS PASSED' % total if not wrong else 
+    '%d out of %d tests are WRONG' % (wrong, total))
+#Overall this is what the function does:The function `func_7` takes three parameters: `solution`, `inputs_gen`, and `solution_slow`. It iterates over the values generated by `inputs_gen`, applies `solution` and `solution_slow` to these values, compares the results, and keeps track of the number of incorrect results. At the end, it prints a message indicating whether all tests passed or how many were incorrect. The functionality of the function is to perform testing by comparing the output of `solution` and `solution_slow` on the inputs generated by `inputs_gen` and report any discrepancies.
+
+#State of the program right berfore the function call: **
+def func_8():
+    """Prints the values to a stream, or to sys.stdout by default."""
+    sep, file = kwargs.pop('sep', ' '), kwargs.pop('file', sys.stdout)
+    at_start = True
+    for x in args:
+        if not at_start:
+            file.write(sep)
+        
+        file.write(str(x))
+        
+        at_start = False
+        
+    #State of the program after the  for loop has been executed: `sep` and `file` retain their previous values, `at_start` is False, `args` has at least 1 element, `x` is the last element in `args`, `sep` is written to the `file`, and `file` now contains the string representation of the last element in `args`.
+    file.write(kwargs.pop('end', '\n'))
+    if kwargs.pop('flush', False) :
+        file.flush()
+    #State of the program after the if block has been executed: *`sep` and `file` retain their previous values, `at_start` is False, `args` has at least 1 element, `x` is the last element in `args`, `sep` is written to the `file`, `file` now contains the string representation of the last element in `args`, 'flush' key is popped from `kwargs` and its value is True.
+#Overall this is what the function does:The function `func_8` does not accept any parameters and iterates over elements in `args`, writing them to a stream. It uses the `sep` value to separate elements and writes the last element with `end` specified in `kwargs`. If the `flush` key in `kwargs` is True, it flushes the stream. If `args` is empty, the function will not write anything.
+

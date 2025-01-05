@@ -1,0 +1,28 @@
+#State of the program right berfore the function call: **
+def func():
+    N = input()
+    ss = raw_input()
+    s = ss.split('()')
+    while len(s) > 1:
+        s = ''.join(s)
+        
+        print(s)
+        
+        s = s.split('()')
+        
+    #State of the program after the loop has been executed: `s` is a list of substrings obtained by splitting the original string at '()', `s` is a list of substrings obtained by splitting the original string at '()'
+    a = ''
+    b = ''
+    s = s[0]
+    N = len(s)
+    for i in range(N):
+        if s[i] == '(':
+            a += ')'
+        
+        if s[i] == ')':
+            b += '('
+        
+    #State of the program after the  for loop has been executed: `s` is the first substring of the list obtained by splitting the original string at '()', `a` is a string of N closing parentheses ')', `b` is a string of N opening parentheses '(', `N` is a positive integer. If the character at index `i` in `s` is '(', `a` will accumulate closing parentheses. If the character at index `i` in `s` is ')', `b` will accumulate opening parentheses.
+    print(b + ss + a)
+#Overall this is what the function does:The function `func` reads an input `N`, then reads a string `ss` and splits it at '()' to create a list of substrings `s`. It iterates through the list, joining the substrings, printing them, and splitting them at '()'. After the loop, it extracts the first substring from `s` and calculates the number of opening and closing parentheses in that substring. Finally, it prints a modified version of the original string `ss` with opening and closing parentheses swapped. The function does not accept any parameters and does not return any value.
+

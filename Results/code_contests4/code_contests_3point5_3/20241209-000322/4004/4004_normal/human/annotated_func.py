@@ -1,0 +1,5 @@
+#State of the program right berfore the function call: c is a lowercase English letter.
+def func():
+    print('YES' if raw_input() in ['a', 'i', 'u', 'e', 'o'] else 'NO')
+#Overall this is what the function does:The function `func` does not accept any parameters. It reads user input and checks if the input is a lowercase English vowel ('a', 'i', 'u', 'e', 'o'). If the input is a lowercase English vowel, it prints 'YES'; otherwise, it prints 'NO'. The function does not have any output or return value.
+

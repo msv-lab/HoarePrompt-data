@@ -1,0 +1,6 @@
+The function `func_1` accepts two positive integers `x` and `y`, where `x` and `y` are within the range of 1 to 500. The function returns different values based on the following cases:
+- Case 1: If `x` is greater than or equal to `y` and `x` is divisible by `y`, the function returns the value of `y`.
+- Case 2: If `x` is not larger than `y` and `x` is not divisible by `y`, the function recursively calls itself with arguments `y` and the remainder of `x` divided by `y`.
+- Case 3: If `x` is a positive integer not larger than `y` and `y` is divisible by `x`, the function returns the value of `x`.
+- Case 4: If `x` is not larger than `y` and `y` is not divisible by `x`, the function recursively calls itself with arguments `x` and `y % x`.
+Therefore, the functionality of the function `func_1` is to handle different cases based on the relationship between the input integers `x` and `y`, providing specific return values accordingly.

@@ -1,0 +1,1 @@
+print("YES" if raw_input() in ["a","i","u","e","o"] else "NO")

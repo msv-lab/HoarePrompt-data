@@ -1,0 +1,6 @@
+import sys
+
+
+
+p1,p2,p3,p4,a,b=map(int,raw_input().split())
+

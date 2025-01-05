@@ -1,0 +1,5 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+4791,human,code_contests,gpt-4o-mini-2024-07-18,"n=input()
+while n:
+	n-=1
+	for j in range(n):print(bin(j+1)[::-1].find('1')+1)",Error: RetryError[<Future at 0x10786d480 state=finished raised APITimeoutError>],naive

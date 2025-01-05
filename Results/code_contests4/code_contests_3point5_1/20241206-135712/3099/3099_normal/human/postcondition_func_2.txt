@@ -1,0 +1,9 @@
+The function `func_3` accepts two positive integers `a` and `b`. It recursively calculates a value based on the conditions provided. 
+
+Case 1: If `b` is 0, the function returns 1.
+
+Case 2: If `b` is odd, the function returns the result of calling `func_2` with arguments `a` and the result of calling `func_3` with arguments `a` and `b-1`.
+
+Case 3: If `b` is even, the function returns the value obtained by calling `func_2(temp, temp)`, where `temp` is assigned the value returned by `func_3(a, b / 2)`.
+
+Therefore, the functionality of the function `func_3` is to perform recursive calculations based on the conditions provided and return specific values accordingly.

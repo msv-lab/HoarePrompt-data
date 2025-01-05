@@ -1,0 +1,4 @@
+The function `func` reads input from the user, calculates a score based on the input values, and prints the total score. The function does not accept any parameters and does not return any value. However, there are some issues in the code:
+1. The loop should iterate over the range of integers, not strings in the `testSNs` list.
+2. The comparison in the if statement should check for equality (`==`) rather than identity (`is`) for proper evaluation.
+3. The current implementation only sums up elements where the last digit is not 0, which may not be the intended behavior.
