@@ -1,6 +1,0 @@
-The function `func_1` accepts four integer parameters `n`, `m`, `r`, and `k`, where `1 ≤ n, m ≤ 10^5`, `1 ≤ r ≤ min(n, m)`, and `1 ≤ k ≤ min(n * m, 10^5)`. It calculates and returns the average coverage per position. The average coverage is determined by populating a min-heap with the negative coverage values for each cell `(x, y)` in an `n` by `m` grid, where each cell's coverage is given by the `coverage` function, which returns the number of possible scoop-net positions covering the cell `(x, y)`. The function then pops `k` elements from the heap and subtracts their coverage values from the total coverage. After these operations, it returns the total coverage divided by the total number of possible positions `(n - r + 1) * (m - r + 1)`.
-
-Potential edge cases and missing functionality:
-1. If `k` is greater than the number of cells in the grid, the function will only process as many cells as available in the heap.
-2. If `r` is equal to `min(n, m)`, the `coverage` of each cell would be 1, and the total coverage calculation would reflect this.
-3. If `r` is 1, the grid effectively becomes a linear array, and the total coverage calculation would reflect this change in dimensions.

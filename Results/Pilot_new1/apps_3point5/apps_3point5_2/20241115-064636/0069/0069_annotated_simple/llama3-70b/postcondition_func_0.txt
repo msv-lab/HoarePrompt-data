@@ -1,3 +1,0 @@
-The function `func` reads an integer `T` from input and then iterates `T` times. For each iteration, it reads two integers `n` and `x`, a string `s`, and calculates the counts of '0' and '1' in `s`. It then computes the balance as the difference between the counts of '0' and '1'. 
-If the balance is equal to `x`, it prints `n + 1`. If `(x - balance) % (cnt0 - cnt1) == 0`, it prints -1. Otherwise, it prints `((x - balance) // (cnt0 - cnt1) + 1)`.
-The function does not accept any parameters, and it does not have a return value. Edge cases such as when `T` is 0 or negative are handled where the loop does not execute and no values are updated.

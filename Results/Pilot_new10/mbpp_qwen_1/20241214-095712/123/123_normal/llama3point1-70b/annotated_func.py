@@ -1,6 +1,0 @@
-#State of the program right berfore the function call: lst is a list, and L is an integer such that 0 <= L <= len(lst).
-def func_1(lst, L):
-    return lst[:L], lst[L:]
-    #`The program returns two lists: the first list contains the elements from the start of lst up to but not including the L-th element, and the second list contains the elements from the L-th element to the end of lst`
-#Overall this is what the function does:The function `func_1` accepts a list `lst` and an integer `L` such that \(0 \leq L \leq \text{len(lst)}\). It returns two lists: the first list contains the elements from the start of `lst` up to but not including the `L`-th element, and the second list contains the elements from the `L`-th element to the end of `lst`. This function correctly splits the list `lst` into two parts based on the index `L`.
-

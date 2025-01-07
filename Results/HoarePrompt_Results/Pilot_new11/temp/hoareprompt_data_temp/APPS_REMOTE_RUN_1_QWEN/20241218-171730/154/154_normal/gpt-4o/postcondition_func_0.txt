@@ -1,0 +1,11 @@
+The function `func_1` accepts four parameters: `n`, `k`, `M`, and `t`. It calculates the maximum number of points that can be achieved given the constraints. Specifically, `n` represents the number of tasks, `k` represents the number of subtasks per task, `M` represents the total available time, and `t` is a list of times required to complete each subtask.
+
+The function iterates through all possible numbers of tasks that can be completed within the given time `M`. For each possible number of tasks completed, it calculates the total time used and the corresponding points. Then, it calculates the maximum number of subtasks that can be completed for the remaining time. This number is constrained by both the remaining time and the remaining tasks.
+
+Finally, the function updates the maximum points achievable by considering the current points plus the subtasks solved. The process continues until all possible scenarios have been evaluated. The function returns the maximum points achieved after evaluating all scenarios.
+
+Potential edge cases and missing functionality:
+- If `M` is zero, no tasks can be completed, so the function should return 0 points.
+- If the list `t` is empty, the function should handle this case appropriately, possibly returning 0 points since no subtasks can be completed.
+
+The final state of the program after the function concludes is that it returns `max_points`, which is the highest value obtained from the above calculations.

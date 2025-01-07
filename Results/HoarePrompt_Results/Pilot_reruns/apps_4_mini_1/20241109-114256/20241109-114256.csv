@@ -1,0 +1,207 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,naive no fsl correctness,data file
+0069,apps,llama3-70b,gpt-4o-mini-2024-07-18,"You are given string $s$ of length $n$ consisting of 0-s and 1-s. You build an infinite string $t$ as a concatenation of an infinite number of strings $s$, or $t = ssss \dots$ For example, if $s =$ 10010, then $t =$ 100101001010010...
+
+Calculate the number of prefixes of $t$ with balance equal to $x$. The balance of some string $q$ is equal to $cnt_{0, q} - cnt_{1, q}$, where $cnt_{0, q}$ is the number of occurrences of 0 in $q$, and $cnt_{1, q}$ is the number of occurrences of 1 in $q$. The number of such prefixes can be infinite; if it is so, you must say that.
+
+A prefix is a string consisting of several first letters of a given string, without any reorders. An empty prefix is also a valid prefix. For example, the string ""abcd"" has 5 prefixes: empty string, ""a"", ""ab"", ""abc"" and ""abcd"".
+
+
+-----Input-----
+
+The first line contains the single integer $T$ ($1 \le T \le 100$) — the number of test cases.
+
+Next $2T$ lines contain descriptions of test cases — two lines per test case. The first line contains two integers $n$ and $x$ ($1 \le n \le 10^5$, $-10^9 \le x \le 10^9$) — the length of string $s$ and the desired balance, respectively.
+
+The second line contains the binary string $s$ ($|s| = n$, $s_i \in \{\text{0}, \text{1}\}$).
+
+It's guaranteed that the total sum of $n$ doesn't exceed $10^5$.
+
+
+-----Output-----
+
+Print $T$ integers — one per test case. For each test case print the number of prefixes or $-1$ if there is an infinite number of such prefixes.
+
+
+-----Example-----
+Input
+4
+6 10
+010010
+5 3
+10101
+1 0
+0
+2 0
+01
+
+Output
+3
+0
+1
+-1
+
+
+
+-----Note-----
+
+In the first test case, there are 3 good prefixes of $t$: with length $28$, $30$ and $32$.","T = int(input())
+for _ in range(T):
+    n, x = map(int, input().split())
+    s = input()
+    cnt0, cnt1 = s.count('0'), s.count('1')
+    balance = cnt0 - cnt1
+    if balance == x:
+        print(n + 1)
+    elif (x - balance) % (cnt0 - cnt1) == 0:
+        print(-1)
+    else:
+        print((x - balance) // (cnt0 - cnt1) + 1)
+",,False,post,False,False,True,False,pilot_apps5.json
+0069,apps,gpt-4o,gpt-4o-mini-2024-07-18,"You are given string $s$ of length $n$ consisting of 0-s and 1-s. You build an infinite string $t$ as a concatenation of an infinite number of strings $s$, or $t = ssss \dots$ For example, if $s =$ 10010, then $t =$ 100101001010010...
+
+Calculate the number of prefixes of $t$ with balance equal to $x$. The balance of some string $q$ is equal to $cnt_{0, q} - cnt_{1, q}$, where $cnt_{0, q}$ is the number of occurrences of 0 in $q$, and $cnt_{1, q}$ is the number of occurrences of 1 in $q$. The number of such prefixes can be infinite; if it is so, you must say that.
+
+A prefix is a string consisting of several first letters of a given string, without any reorders. An empty prefix is also a valid prefix. For example, the string ""abcd"" has 5 prefixes: empty string, ""a"", ""ab"", ""abc"" and ""abcd"".
+
+
+-----Input-----
+
+The first line contains the single integer $T$ ($1 \le T \le 100$) — the number of test cases.
+
+Next $2T$ lines contain descriptions of test cases — two lines per test case. The first line contains two integers $n$ and $x$ ($1 \le n \le 10^5$, $-10^9 \le x \le 10^9$) — the length of string $s$ and the desired balance, respectively.
+
+The second line contains the binary string $s$ ($|s| = n$, $s_i \in \{\text{0}, \text{1}\}$).
+
+It's guaranteed that the total sum of $n$ doesn't exceed $10^5$.
+
+
+-----Output-----
+
+Print $T$ integers — one per test case. For each test case print the number of prefixes or $-1$ if there is an infinite number of such prefixes.
+
+
+-----Example-----
+Input
+4
+6 10
+010010
+5 3
+10101
+1 0
+0
+2 0
+01
+
+Output
+3
+0
+1
+-1
+
+
+
+-----Note-----
+
+In the first test case, there are 3 good prefixes of $t$: with length $28$, $30$ and $32$.","def solve():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+
+    T = int(data[0])
+    index = 1
+    
+    results = []
+    
+    for _ in range(T):
+        n = int(data[index])
+        x = int(data[index + 1])
+        s = data[index + 2]
+        index += 3
+        
+        # Calculate the total balance of the given string s
+        balance = s.count('0') - s.count('1')
+        
+        # Generate prefix balances
+        prefix_balances = [0] * (n + 1)
+        for i in range(1, n + 1):
+            prefix_balances[i] = prefix_balances[i - 1] + (1 if s[i - 1] == '0' else -1)
+        
+        if balance == 0:
+            # If balance is 0, check if any prefix has the exact balance x
+            if x in prefix_balances:
+                results.append(-1)
+            else:
+                results.append(0)
+        else:
+            count = 0
+            for b in prefix_balances:
+                if (x - b) % balance == 0 and (x - b) // balance >= 0:
+                    count += 1
+            results.append(count)
+    
+    for result in results:
+        print(result)
+
+if __name__ == ""__main__"":
+    solve()
+",,False,post,False,True,False,False,pilot_apps5.json
+0106,apps,llama3-70b,gpt-4o-mini-2024-07-18,"Есть n-подъездный дом, в каждом подъезде по m этажей, и на каждом этаже каждого подъезда ровно k квартир. Таким образом, в доме всего n·m·k квартир. Они пронумерованы естественным образом от 1 до n·m·k, то есть первая квартира на первом этаже в первом подъезде имеет номер 1, первая квартира на втором этаже первого подъезда имеет номер k + 1 и так далее. Особенность этого дома состоит в том, что он круглый. То есть если обходить его по часовой стрелке, то после подъезда номер 1 следует подъезд номер 2, затем подъезд номер 3 и так далее до подъезда номер n. После подъезда номер n снова идёт подъезд номер 1.
+
+Эдвард живёт в квартире номер a, а Наташа — в квартире номер b. Переход на 1 этаж вверх или вниз по лестнице занимает 5 секунд, переход от двери подъезда к двери соседнего подъезда — 15 секунд, а переход в пределах одного этажа одного подъезда происходит мгновенно. Также в каждом подъезде дома есть лифт. Он устроен следующим образом: он всегда приезжает ровно через 10 секунд после вызова, а чтобы переместить пассажира на один этаж вверх или вниз, лифт тратит ровно 1 секунду. Посадка и высадка происходят мгновенно.
+
+Помогите Эдварду найти минимальное время, за которое он сможет добраться до квартиры Наташи. Считайте, что Эдвард может выйти из подъезда только с первого этажа соответствующего подъезда (это происходит мгновенно). Если Эдвард стоит перед дверью какого-то подъезда, он может зайти в него и сразу окажется на первом этаже этого подъезда (это также происходит мгновенно). Эдвард может выбирать, в каком направлении идти вокруг дома.
+
+
+-----Входные данные-----
+
+В первой строке входных данных следуют три числа n, m, k (1 ≤ n, m, k ≤ 1000) — количество подъездов в доме, количество этажей в каждом подъезде и количество квартир на каждом этаже каждого подъезда соответственно.
+
+Во второй строке входных данных записаны два числа a и b (1 ≤ a, b ≤ n·m·k) — номера квартир, в которых живут Эдвард и Наташа, соответственно. Гарантируется, что эти номера различны. 
+
+
+-----Выходные данные-----
+
+Выведите единственное целое число — минимальное время (в секундах), за которое Эдвард сможет добраться от своей квартиры до квартиры Наташи.
+
+
+-----Примеры-----
+Входные данные
+4 10 5
+200 6
+
+Выходные данные
+39
+
+Входные данные
+3 1 5
+7 2
+
+Выходные данные
+15
+
+
+
+-----Примечание-----
+
+В первом тестовом примере Эдвард находится в 4 подъезде на 10 этаже, а Наташа находится в 1 подъезде на 2 этаже. Поэтому Эдварду выгодно сначала спуститься на лифте на первый этаж (на это он потратит 19 секунд, из которых 10 — на ожидание и 9 — на поездку на лифте), затем обойти дом против часовой стрелки до подъезда номер 1 (на это он потратит 15 секунд), и наконец подняться по лестнице на этаж номер 2 (на это он потратит 5 секунд). Таким образом, ответ равен 19 + 15 + 5 = 39.
+
+Во втором тестовом примере Эдвард живёт в подъезде 2 на этаже 1, а Наташа находится в подъезде 1 на этаже 1. Поэтому Эдварду выгодно просто обойти дом по часовой стрелке до подъезда 1, на это он потратит 15 секунд.","n, m, k = map(int, input().split())
+a, b = map(int, input().split())
+
+# Calculate the floor and block number of Edward and Natasha
+a_floor = (a - 1) % m + 1
+a_block = (a - 1) // (m * k) + 1
+b_floor = (b - 1) % m + 1
+b_block = (b - 1) // (m * k) + 1
+
+# Calculate the minimum time to reach Natasha's block
+min_block_time = min(abs(a_block - b_block), n - abs(a_block - b_block)) * 15
+
+# Calculate the minimum time to reach Natasha's floor
+if a_floor > b_floor:
+    min_floor_time = (a_floor - b_floor) * 5 + 10
+else:
+    min_floor_time = (b_floor - a_floor) * 5 + 10
+
+print(min_block_time + min_floor_time)
+",,True,post,False,False,False,False,pilot_apps5.json

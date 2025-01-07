@@ -1,0 +1,13 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,annotated correctness simple,naive no fsl correctness,Correctness no fsl,data file,simple verify,complex verify,default verify,simple verify no fsl,complex verify no fsl,default verify no fsl,unique_id,consistency
+125,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    return [lst[i::n] for i in range(n)]
+",,False,post,True,False,True,True,True,True,selected_pilot_75_mbpp.json,False,False,False,True,True,False,125_llama3point1-70b,0.5
+125,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    return [lst[i::n] for i in range(n)]
+",,False,post,True,False,True,True,True,True,selected_pilot_75_mbpp.json,False,False,False,True,True,True,125_llama3point1-70b,0.5
+125,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    return [lst[i::n] for i in range(n)]
+",,True,post,True,False,True,True,True,True,selected_pilot_75_mbpp.json,False,False,False,True,True,True,125_llama3point1-70b,0.5
+125,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    return [lst[i::n] for i in range(n)]
+",,True,post,True,False,True,False,True,False,selected_pilot_75_mbpp.json,False,False,False,True,True,True,125_llama3point1-70b,0.5

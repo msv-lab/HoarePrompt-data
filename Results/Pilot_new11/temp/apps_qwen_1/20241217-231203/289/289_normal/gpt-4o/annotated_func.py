@@ -1,7 +1,0 @@
-#State of the program right berfore the function call: n is a positive integer such that 2 <= n <= 10^18.
-def func():
-    n = int(input())
-    max_games = n.bit_length() - 1
-    print(max_games)
-#Overall this is what the function does:The function reads a positive integer \( n \) (where \( 2 \leq n \leq 10^{18} \)) from the standard input, calculates the maximum number of games that can be played based on the bit length of \( n \), and prints this value to the standard output. The function does not return any value. There are no explicit return conditions, and the bit length calculation is performed correctly within the given constraints. However, the function assumes that the input will always be within the specified range, and no input validation is provided to handle values outside this range.
-

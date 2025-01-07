@@ -1,0 +1,132 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,annotated correctness simple,naive no fsl correctness,Correctness no fsl,data file,simple verify,complex verify,default verify,simple verify no fsl,complex verify no fsl,default verify no fsl,unique_id,consistency
+134,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function that takes in a positive integer n and finds the sum of even index binomial coefficients.,"import math
+
+def even_binomial_Coeff_Sum(n):
+    sum = 0
+    for i in range(n + 1):
+        if i % 2 == 0:
+            sum += math.comb(n, i)
+    return sum
+",,True,post,True,True,True,True,True,True,selected_pilot_75_mbpp.json,True,True,True,True,True,True,134_llama3point1-70b,0.6666666666666666
+320,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find the second smallest number in a list.,"def second_smallest(nums):
+    unique_nums = sorted(set(nums))
+    return unique_nums[1] if len(unique_nums) > 1 else None
+
+# Test cases
+assert second_smallest([1, 2, -8, -2, 0, -2]) == -2
+assert second_smallest([1, 1, -0.5, 0, 2, -2, -2]) == -0.5
+assert second_smallest([2,2]) == None
+assert second_smallest([2,2,2]) == None
+",,True,post,True,True,True,True,True,True,selected_pilot_75_mbpp.json,True,True,False,True,True,False,320_gpt-4o,0.6666666666666666
+1,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to find the shared elements from the given two lists.,"def similar_elements(test_tup1, test_tup2):
+  return tuple(set(test_tup1) & set(test_tup2))
+",,True,post,True,True,True,True,True,True,selected_pilot_75_mbpp.json,True,True,True,True,True,True,1_llama3point1-70b,0.5833333333333334
+222,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to remove lowercase substrings from a given string.,"def remove_lowercase(s):
+    result = ''
+    for char in s:
+        if char.isupper():
+            result += char
+    return result
+",,False,post,True,False,False,False,False,False,selected_pilot_75_mbpp.json,False,False,False,False,False,False,222_llama3point1-70b,0.5
+161,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to find the n'th lucas number.,"def find_lucas(n):
+    if n == 0:
+        return 2
+    elif n == 1:
+        return 1
+    else:
+        a, b = 2, 1
+        for _ in range(2, n + 1):
+            a, b = b, a + b
+        return b
+",,False,post,True,True,False,False,True,False,selected_pilot_75_mbpp.json,True,False,False,True,False,False,161_llama3point1-70b,0.5833333333333334
+290,mbppplus,gpt-4o,qwen2.5-7b-instruct,"Write a function that checks if a strings contains 'z', except at the start and end of the word.","def text_match_wordz_middle(s):
+    # Check if 'z' is in the string and not at the start or end
+    if 'z' in s[1:-1]:
+        return True
+    return False
+
+# Test cases
+assert text_match_wordz_middle(""pythonzabc."") == True
+assert text_match_wordz_middle(""zxyabc."") == False
+assert text_match_wordz_middle(""  lang  ."") == False
+",,True,post,True,False,True,True,False,False,selected_pilot_75_mbpp.json,False,False,False,False,False,False,290_gpt-4o,0.6666666666666666
+335,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to find the occurrence and position of the substrings within a string. Return None if there is no match.,"def occurance_substring(string, substring):
+    start = string.find(substring)
+    if start == -1:
+        return None
+    end = start + len(substring)
+    return (substring, start, end - 1)
+",,False,post,False,True,True,True,True,False,selected_pilot_75_mbpp.json,True,True,False,True,True,False,335_llama3point1-70b,0.5
+307,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a python function to find the index of smallest triangular number with n digits.,"def find_Index(n):
+    k = 1
+    while True:
+        triangular_number = k * (k + 1) // 2
+        if len(str(triangular_number)) == n:
+            return k
+        k += 1
+
+# Test cases
+assert find_Index(2) == 4
+assert find_Index(3) == 14
+assert find_Index(4) == 45
+",,True,post,False,True,True,True,True,True,selected_pilot_75_mbpp.json,True,True,True,True,True,True,307_gpt-4o,0.5
+125,mbppplus,gpt-4o,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    result = [[] for _ in range(n)]
+    for i, element in enumerate(lst):
+        result[i % n].append(element)
+    return result
+
+# Test cases
+assert list_split(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'], 3) == [['a', 'd', 'g', 'j', 'm'], ['b', 'e', 'h', 'k', 'n'], ['c', 'f', 'i', 'l']]
+assert list_split([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], 3) == [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14], [3, 6, 9, 12]]
+assert list_split(['python', 'java', 'C', 'C++', 'DBMS', 'SQL'], 2) == [['python', 'C', 'DBMS'], ['java', 'C++', 'SQL']]
+",,True,post,True,False,True,True,True,True,selected_pilot_75_mbpp.json,False,False,False,True,True,True,125_gpt-4o,0.6666666666666666
+114,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a python function that takes in a tuple and an element and counts the occcurences of the element in the tuple.,"def count_X(tup, element):
+    return tup.count(element)
+
+# Tests
+assert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),4) == 0
+assert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),10) == 3
+assert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),8) == 4
+",,False,post,True,False,True,True,False,True,selected_pilot_75_mbpp.json,True,True,True,True,True,False,114_gpt-4o,0.5833333333333334
+216,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a python function to check whether the given list contains consecutive numbers or not.,"def check_Consecutive(lst):
+    if not lst:  # If the list is empty, it cannot be consecutive
+        return False
+    
+    lst_sorted = sorted(lst)
+    
+    for i in range(len(lst_sorted) - 1):
+        if lst_sorted[i + 1] - lst_sorted[i] != 1:
+            return False
+    
+    return True
+
+# Test cases
+assert check_Consecutive([1, 2, 3, 4, 5]) == True
+assert check_Consecutive([1, 2, 3, 5, 6]) == False
+assert check_Consecutive([1, 2, 1]) == False
+",,True,post,True,True,True,True,True,True,selected_pilot_75_mbpp.json,True,True,True,True,True,True,216_gpt-4o,0.5
+197,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function to count the occurence of all elements of list in a tuple.,"def count_Occurrence(tup, lst):
+    return sum(tup.count(element) for element in lst)
+",,True,post,True,False,True,True,False,False,selected_pilot_75_mbpp.json,False,False,False,False,False,False,197_llama3point1-70b,0.6666666666666666
+197,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a python function to count the occurence of all elements of list in a tuple.,"def count_Occurrence(tup, elements):
+    count = sum(tup.count(element) for element in elements)
+    return count
+
+# Test cases
+assert count_Occurrence(('a', 'a', 'c', 'b', 'd'), ['a', 'b']) == 3
+assert count_Occurrence((1, 2, 3, 1, 4, 6, 7, 1, 4), [1, 4, 7]) == 6
+assert count_Occurrence((1, 2, 3, 4, 5, 6), [1, 2]) == 2
+",,True,post,True,True,True,True,True,True,selected_pilot_75_mbpp.json,True,True,True,True,True,True,197_gpt-4o,0.6666666666666666
+268,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function which given a matrix represented as a list of lists returns the max of the n'th column.,"def max_of_nth(matrix, n):
+    return max(row[n-1] for row in matrix)
+",,True,post,False,True,False,False,True,True,selected_pilot_75_mbpp.json,True,True,True,True,True,True,268_llama3point1-70b,0.6666666666666666
+326,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function to find the minimum difference between any two elements in a given array.,"def find_min_diff(arr, target):
+    arr = sorted(arr)
+    min_diff = float('inf')
+    for i in range(len(arr) - 1):
+        diff = abs(arr[i] - arr[i + 1])
+        if diff < min_diff:
+            min_diff = diff
+    return min_diff
+",,False,post,True,True,True,True,True,False,selected_pilot_75_mbpp.json,True,True,False,True,False,False,326_llama3point1-70b,0.6666666666666666

@@ -1,0 +1,21 @@
+Now let's consider potential edge cases:
+- If 'G' is immediately next to 'T' and k = 1, it should return "YES".
+- If 'G' is two cells away from 'T' with k = 2, it should return "YES", provided there's no obstacle.
+- If 'G' and 'T' are separated such that total distance is not a multiple of k (e.g., G is at position 0 and T at position 2 with k = 2), it should return "NO" since the grasshopper can't land exactly on T.
+
+One crucial test case not handled is:
+- If 'G' and 'T' are separated such that there exists an obstacle at each potential jump position that the grasshopper would try to land on.
+
+For example:
+Input:
+```
+8 2
+G.#..#T.
+```
+Expected output is "NO" since G can't reach T without landing on obstacles.
+
+However, the current implementation correctly identifies such cases because it breaks the loop on the first '#' it encounters and only checks within the range of possible jumps. 
+
+Thus, all edge cases are satisfactorily addressed by the provided implementation. The indicated behavior aligns with the expected handling of the problem.
+
+Correctness:

@@ -1,0 +1,1 @@
+The function reads a camera angle in degrees from the input, normalizes it to an equivalent angle between -359 and 359 degrees, and then outputs 0 if the normalized angle is 0 (indicating no rotation or a full rotation), or otherwise categorizes the rotation into one of four categories based on the expression `(x + 90 - 1) // 90 % 4` and prints the corresponding category number.

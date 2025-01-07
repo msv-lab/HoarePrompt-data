@@ -28,15 +28,15 @@ def calculate_depth_for_programs(data):
         try:
             code = entry.get("generated_code", "")
             tree = ast.parse(code)
-            entry["depth"] = find_loop_depth(tree)
+            entry["nested_loop_depth"] = find_loop_depth(tree)
         except Exception as e:
-            entry["depth"] = -1  # Assign -1 if parsing fails
+            entry["nested_loop_depth"] = -1  # Assign -1 if parsing fails
     return data
 
 
 #write a function to remove all rows with depth different than 1 or 2 
 def remove_outliers(data):
-    return [entry for entry in data if entry["depth"] in [1, 2]]
+    return [entry for entry in data if entry["nested_loop_depth"] in [1, 2]]
 
 # Hardcoded file paths
 data_folder = Path("/home/jim/HoarePrompt-data/PilotData/data")

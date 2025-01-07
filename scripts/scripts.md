@@ -581,7 +581,29 @@ Run the script from the command line with three arguments:
 2. **`confidence_naive_no_fsl.json`**: Path to the naive no FSL confidence JSON file.
 3. **`original_results.csv`**: Path to the original CSV results file.
 
+
+## How to read the results:
+1. **`augmented_naive_no_fsl_results.json`**: are the main results
+2. **`classifier_comparison_results_naive_no_fsl.json`**: are the comparisons between the classifiers
+3. **`consistency_analysis_naive_no_fsl_results`**: Are the correlation results betwwen classifiers and confidence
+4. **`filtered_consistency_X_Y_naive_no_fsl_results`**: are the main results but filtered out results with confidence equal to X Y etc
+
 ### Example
 ```bash
 ./postprocessing.sh confidence_naive.json confidence_naive_no_fsl.json original_results.csv
+```
+
+# Script: `postprocessing_no_fsl.sh`
+
+## Purpose
+Same us postprocessing but a subset based only on the naive no fsl results.
+
+## Usage
+Run the script from the command line with three arguments:
+1. **`confidence_naive_no_fsl.json`**: Path to the naive no FSL confidence JSON file.
+2. **`original_results.csv`**: Path to the original CSV results file.
+
+### Example
+```bash
+./postprocessing_no_fsl.sh confidence_naive_no_fsl.json original_results.csv
 ```

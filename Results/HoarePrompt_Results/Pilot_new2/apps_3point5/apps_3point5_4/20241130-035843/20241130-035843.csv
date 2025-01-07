@@ -1,0 +1,641 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,annotated correctness simple,naive no fsl correctness,data file
+0069,apps,llama3-70b,gpt-3.5-turbo-0125,"You are given string $s$ of length $n$ consisting of 0-s and 1-s. You build an infinite string $t$ as a concatenation of an infinite number of strings $s$, or $t = ssss \dots$ For example, if $s =$ 10010, then $t =$ 100101001010010...
+
+Calculate the number of prefixes of $t$ with balance equal to $x$. The balance of some string $q$ is equal to $cnt_{0, q} - cnt_{1, q}$, where $cnt_{0, q}$ is the number of occurrences of 0 in $q$, and $cnt_{1, q}$ is the number of occurrences of 1 in $q$. The number of such prefixes can be infinite; if it is so, you must say that.
+
+A prefix is a string consisting of several first letters of a given string, without any reorders. An empty prefix is also a valid prefix. For example, the string ""abcd"" has 5 prefixes: empty string, ""a"", ""ab"", ""abc"" and ""abcd"".
+
+
+-----Input-----
+
+The first line contains the single integer $T$ ($1 \le T \le 100$) — the number of test cases.
+
+Next $2T$ lines contain descriptions of test cases — two lines per test case. The first line contains two integers $n$ and $x$ ($1 \le n \le 10^5$, $-10^9 \le x \le 10^9$) — the length of string $s$ and the desired balance, respectively.
+
+The second line contains the binary string $s$ ($|s| = n$, $s_i \in \{\text{0}, \text{1}\}$).
+
+It's guaranteed that the total sum of $n$ doesn't exceed $10^5$.
+
+
+-----Output-----
+
+Print $T$ integers — one per test case. For each test case print the number of prefixes or $-1$ if there is an infinite number of such prefixes.
+
+
+-----Example-----
+Input
+4
+6 10
+010010
+5 3
+10101
+1 0
+0
+2 0
+01
+
+Output
+3
+0
+1
+-1
+
+
+
+-----Note-----
+
+In the first test case, there are 3 good prefixes of $t$: with length $28$, $30$ and $32$.","T = int(input())
+for _ in range(T):
+    n, x = map(int, input().split())
+    s = input()
+    cnt0, cnt1 = s.count('0'), s.count('1')
+    balance = cnt0 - cnt1
+    if balance == x:
+        print(n + 1)
+    elif (x - balance) % (cnt0 - cnt1) == 0:
+        print(-1)
+    else:
+        print((x - balance) // (cnt0 - cnt1) + 1)
+",,True,post,False,True,True,True,False,pilot_apps5.json
+0069,apps,gpt-4o,gpt-3.5-turbo-0125,"You are given string $s$ of length $n$ consisting of 0-s and 1-s. You build an infinite string $t$ as a concatenation of an infinite number of strings $s$, or $t = ssss \dots$ For example, if $s =$ 10010, then $t =$ 100101001010010...
+
+Calculate the number of prefixes of $t$ with balance equal to $x$. The balance of some string $q$ is equal to $cnt_{0, q} - cnt_{1, q}$, where $cnt_{0, q}$ is the number of occurrences of 0 in $q$, and $cnt_{1, q}$ is the number of occurrences of 1 in $q$. The number of such prefixes can be infinite; if it is so, you must say that.
+
+A prefix is a string consisting of several first letters of a given string, without any reorders. An empty prefix is also a valid prefix. For example, the string ""abcd"" has 5 prefixes: empty string, ""a"", ""ab"", ""abc"" and ""abcd"".
+
+
+-----Input-----
+
+The first line contains the single integer $T$ ($1 \le T \le 100$) — the number of test cases.
+
+Next $2T$ lines contain descriptions of test cases — two lines per test case. The first line contains two integers $n$ and $x$ ($1 \le n \le 10^5$, $-10^9 \le x \le 10^9$) — the length of string $s$ and the desired balance, respectively.
+
+The second line contains the binary string $s$ ($|s| = n$, $s_i \in \{\text{0}, \text{1}\}$).
+
+It's guaranteed that the total sum of $n$ doesn't exceed $10^5$.
+
+
+-----Output-----
+
+Print $T$ integers — one per test case. For each test case print the number of prefixes or $-1$ if there is an infinite number of such prefixes.
+
+
+-----Example-----
+Input
+4
+6 10
+010010
+5 3
+10101
+1 0
+0
+2 0
+01
+
+Output
+3
+0
+1
+-1
+
+
+
+-----Note-----
+
+In the first test case, there are 3 good prefixes of $t$: with length $28$, $30$ and $32$.","def solve():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+
+    T = int(data[0])
+    index = 1
+    
+    results = []
+    
+    for _ in range(T):
+        n = int(data[index])
+        x = int(data[index + 1])
+        s = data[index + 2]
+        index += 3
+        
+        # Calculate the total balance of the given string s
+        balance = s.count('0') - s.count('1')
+        
+        # Generate prefix balances
+        prefix_balances = [0] * (n + 1)
+        for i in range(1, n + 1):
+            prefix_balances[i] = prefix_balances[i - 1] + (1 if s[i - 1] == '0' else -1)
+        
+        if balance == 0:
+            # If balance is 0, check if any prefix has the exact balance x
+            if x in prefix_balances:
+                results.append(-1)
+            else:
+                results.append(0)
+        else:
+            count = 0
+            for b in prefix_balances:
+                if (x - b) % balance == 0 and (x - b) // balance >= 0:
+                    count += 1
+            results.append(count)
+    
+    for result in results:
+        print(result)
+
+if __name__ == ""__main__"":
+    solve()
+",,False,post,False,False,True,True,True,pilot_apps5.json
+0106,apps,llama3-70b,gpt-3.5-turbo-0125,"Есть n-подъездный дом, в каждом подъезде по m этажей, и на каждом этаже каждого подъезда ровно k квартир. Таким образом, в доме всего n·m·k квартир. Они пронумерованы естественным образом от 1 до n·m·k, то есть первая квартира на первом этаже в первом подъезде имеет номер 1, первая квартира на втором этаже первого подъезда имеет номер k + 1 и так далее. Особенность этого дома состоит в том, что он круглый. То есть если обходить его по часовой стрелке, то после подъезда номер 1 следует подъезд номер 2, затем подъезд номер 3 и так далее до подъезда номер n. После подъезда номер n снова идёт подъезд номер 1.
+
+Эдвард живёт в квартире номер a, а Наташа — в квартире номер b. Переход на 1 этаж вверх или вниз по лестнице занимает 5 секунд, переход от двери подъезда к двери соседнего подъезда — 15 секунд, а переход в пределах одного этажа одного подъезда происходит мгновенно. Также в каждом подъезде дома есть лифт. Он устроен следующим образом: он всегда приезжает ровно через 10 секунд после вызова, а чтобы переместить пассажира на один этаж вверх или вниз, лифт тратит ровно 1 секунду. Посадка и высадка происходят мгновенно.
+
+Помогите Эдварду найти минимальное время, за которое он сможет добраться до квартиры Наташи. Считайте, что Эдвард может выйти из подъезда только с первого этажа соответствующего подъезда (это происходит мгновенно). Если Эдвард стоит перед дверью какого-то подъезда, он может зайти в него и сразу окажется на первом этаже этого подъезда (это также происходит мгновенно). Эдвард может выбирать, в каком направлении идти вокруг дома.
+
+
+-----Входные данные-----
+
+В первой строке входных данных следуют три числа n, m, k (1 ≤ n, m, k ≤ 1000) — количество подъездов в доме, количество этажей в каждом подъезде и количество квартир на каждом этаже каждого подъезда соответственно.
+
+Во второй строке входных данных записаны два числа a и b (1 ≤ a, b ≤ n·m·k) — номера квартир, в которых живут Эдвард и Наташа, соответственно. Гарантируется, что эти номера различны. 
+
+
+-----Выходные данные-----
+
+Выведите единственное целое число — минимальное время (в секундах), за которое Эдвард сможет добраться от своей квартиры до квартиры Наташи.
+
+
+-----Примеры-----
+Входные данные
+4 10 5
+200 6
+
+Выходные данные
+39
+
+Входные данные
+3 1 5
+7 2
+
+Выходные данные
+15
+
+
+
+-----Примечание-----
+
+В первом тестовом примере Эдвард находится в 4 подъезде на 10 этаже, а Наташа находится в 1 подъезде на 2 этаже. Поэтому Эдварду выгодно сначала спуститься на лифте на первый этаж (на это он потратит 19 секунд, из которых 10 — на ожидание и 9 — на поездку на лифте), затем обойти дом против часовой стрелки до подъезда номер 1 (на это он потратит 15 секунд), и наконец подняться по лестнице на этаж номер 2 (на это он потратит 5 секунд). Таким образом, ответ равен 19 + 15 + 5 = 39.
+
+Во втором тестовом примере Эдвард живёт в подъезде 2 на этаже 1, а Наташа находится в подъезде 1 на этаже 1. Поэтому Эдварду выгодно просто обойти дом по часовой стрелке до подъезда 1, на это он потратит 15 секунд.","n, m, k = map(int, input().split())
+a, b = map(int, input().split())
+
+# Calculate the floor and block number of Edward and Natasha
+a_floor = (a - 1) % m + 1
+a_block = (a - 1) // (m * k) + 1
+b_floor = (b - 1) % m + 1
+b_block = (b - 1) // (m * k) + 1
+
+# Calculate the minimum time to reach Natasha's block
+min_block_time = min(abs(a_block - b_block), n - abs(a_block - b_block)) * 15
+
+# Calculate the minimum time to reach Natasha's floor
+if a_floor > b_floor:
+    min_floor_time = (a_floor - b_floor) * 5 + 10
+else:
+    min_floor_time = (b_floor - a_floor) * 5 + 10
+
+print(min_block_time + min_floor_time)
+",,True,post,False,True,True,True,True,pilot_apps5.json
+0106,apps,gpt-4o,gpt-3.5-turbo-0125,"Есть n-подъездный дом, в каждом подъезде по m этажей, и на каждом этаже каждого подъезда ровно k квартир. Таким образом, в доме всего n·m·k квартир. Они пронумерованы естественным образом от 1 до n·m·k, то есть первая квартира на первом этаже в первом подъезде имеет номер 1, первая квартира на втором этаже первого подъезда имеет номер k + 1 и так далее. Особенность этого дома состоит в том, что он круглый. То есть если обходить его по часовой стрелке, то после подъезда номер 1 следует подъезд номер 2, затем подъезд номер 3 и так далее до подъезда номер n. После подъезда номер n снова идёт подъезд номер 1.
+
+Эдвард живёт в квартире номер a, а Наташа — в квартире номер b. Переход на 1 этаж вверх или вниз по лестнице занимает 5 секунд, переход от двери подъезда к двери соседнего подъезда — 15 секунд, а переход в пределах одного этажа одного подъезда происходит мгновенно. Также в каждом подъезде дома есть лифт. Он устроен следующим образом: он всегда приезжает ровно через 10 секунд после вызова, а чтобы переместить пассажира на один этаж вверх или вниз, лифт тратит ровно 1 секунду. Посадка и высадка происходят мгновенно.
+
+Помогите Эдварду найти минимальное время, за которое он сможет добраться до квартиры Наташи. Считайте, что Эдвард может выйти из подъезда только с первого этажа соответствующего подъезда (это происходит мгновенно). Если Эдвард стоит перед дверью какого-то подъезда, он может зайти в него и сразу окажется на первом этаже этого подъезда (это также происходит мгновенно). Эдвард может выбирать, в каком направлении идти вокруг дома.
+
+
+-----Входные данные-----
+
+В первой строке входных данных следуют три числа n, m, k (1 ≤ n, m, k ≤ 1000) — количество подъездов в доме, количество этажей в каждом подъезде и количество квартир на каждом этаже каждого подъезда соответственно.
+
+Во второй строке входных данных записаны два числа a и b (1 ≤ a, b ≤ n·m·k) — номера квартир, в которых живут Эдвард и Наташа, соответственно. Гарантируется, что эти номера различны. 
+
+
+-----Выходные данные-----
+
+Выведите единственное целое число — минимальное время (в секундах), за которое Эдвард сможет добраться от своей квартиры до квартиры Наташи.
+
+
+-----Примеры-----
+Входные данные
+4 10 5
+200 6
+
+Выходные данные
+39
+
+Входные данные
+3 1 5
+7 2
+
+Выходные данные
+15
+
+
+
+-----Примечание-----
+
+В первом тестовом примере Эдвард находится в 4 подъезде на 10 этаже, а Наташа находится в 1 подъезде на 2 этаже. Поэтому Эдварду выгодно сначала спуститься на лифте на первый этаж (на это он потратит 19 секунд, из которых 10 — на ожидание и 9 — на поездку на лифте), затем обойти дом против часовой стрелки до подъезда номер 1 (на это он потратит 15 секунд), и наконец подняться по лестнице на этаж номер 2 (на это он потратит 5 секунд). Таким образом, ответ равен 19 + 15 + 5 = 39.
+
+Во втором тестовом примере Эдвард живёт в подъезде 2 на этаже 1, а Наташа находится в подъезде 1 на этаже 1. Поэтому Эдварду выгодно просто обойти дом по часовой стрелке до подъезда 1, на это он потратит 15 секунд.","# Function to calculate minimum time for Edward to reach Natasha's apartment
+def min_time_to_reach(n, m, k, a, b):
+    # Calculating block, floor, and apartment within floor for both apartments
+    def get_location(apartment):
+        block = (apartment - 1) // (m * k) + 1
+        floor_within_block = (apartment - 1) % (m * k)
+        floor = floor_within_block // k + 1
+        return block, floor
+
+    block_a, floor_a = get_location(a)
+    block_b, floor_b = get_location(b)
+    
+    # Time to get from floor_a to floor 1 using the elevator
+    if floor_a == 1:
+        time_to_exit = 0
+    else:
+        time_to_exit = 10 + (floor_a - 1)
+    
+    # Time to walk between the blocks
+    direct_walk_time = (abs(block_a - block_b) % n) * 15
+    reverse_walk_time = (n - abs(block_a - block_b)) % n * 15
+    min_walk_time = min(direct_walk_time, reverse_walk_time)
+
+    # Time to go from floor 1 in block_b to floor_b
+    time_to_target_floor = (floor_b - 1) * 5
+    
+    # Total time
+    total_time = time_to_exit + min_walk_time + time_to_target_floor
+    return total_time
+
+# Reading input
+n, m, k = map(int, input().split())
+a, b = map(int, input().split())
+
+# Computing the result
+result = min_time_to_reach(n, m, k, a, b)
+
+# Printing the result
+print(result)
+",,False,post,False,True,True,True,True,pilot_apps5.json
+0203,apps,llama3-70b,gpt-3.5-turbo-0125,"There are n employees in Alternative Cake Manufacturing (ACM). They are now voting on some very important question and the leading world media are trying to predict the outcome of the vote.
+
+Each of the employees belongs to one of two fractions: depublicans or remocrats, and these two fractions have opposite opinions on what should be the outcome of the vote. The voting procedure is rather complicated:   Each of n employees makes a statement. They make statements one by one starting from employees 1 and finishing with employee n. If at the moment when it's time for the i-th employee to make a statement he no longer has the right to vote, he just skips his turn (and no longer takes part in this voting).  When employee makes a statement, he can do nothing or declare that one of the other employees no longer has a right to vote. It's allowed to deny from voting people who already made the statement or people who are only waiting to do so. If someone is denied from voting he no longer participates in the voting till the very end.  When all employees are done with their statements, the procedure repeats: again, each employees starting from 1 and finishing with n who are still eligible to vote make their statements.  The process repeats until there is only one employee eligible to vote remaining and he determines the outcome of the whole voting. Of course, he votes for the decision suitable for his fraction. 
+
+You know the order employees are going to vote and that they behave optimal (and they also know the order and who belongs to which fraction). Predict the outcome of the vote.
+
+
+-----Input-----
+
+The first line of the input contains a single integer n (1 ≤ n ≤ 200 000) — the number of employees. 
+
+The next line contains n characters. The i-th character is 'D' if the i-th employee is from depublicans fraction or 'R' if he is from remocrats.
+
+
+-----Output-----
+
+Print 'D' if the outcome of the vote will be suitable for depublicans and 'R' if remocrats will win.
+
+
+-----Examples-----
+Input
+5
+DDRRR
+
+Output
+D
+
+Input
+6
+DDRRRR
+
+Output
+R
+
+
+
+-----Note-----
+
+Consider one of the voting scenarios for the first sample:   Employee 1 denies employee 5 to vote.  Employee 2 denies employee 3 to vote.  Employee 3 has no right to vote and skips his turn (he was denied by employee 2).  Employee 4 denies employee 2 to vote.  Employee 5 has no right to vote and skips his turn (he was denied by employee 1).  Employee 1 denies employee 4.  Only employee 1 now has the right to vote so the voting ends with the victory of depublicans.","n = int(input())
+fractions = input()
+
+depublicans = 0
+remocrats = 0
+
+for fraction in fractions:
+    if fraction == 'D':
+        depublicans += 1
+    else:
+        remocrats += 1
+
+if depublicans > remocrats:
+    print('D')
+else:
+    print('R')
+",,False,post,False,True,True,True,False,pilot_apps5.json
+0203,apps,gpt-4o,gpt-3.5-turbo-0125,"There are n employees in Alternative Cake Manufacturing (ACM). They are now voting on some very important question and the leading world media are trying to predict the outcome of the vote.
+
+Each of the employees belongs to one of two fractions: depublicans or remocrats, and these two fractions have opposite opinions on what should be the outcome of the vote. The voting procedure is rather complicated:   Each of n employees makes a statement. They make statements one by one starting from employees 1 and finishing with employee n. If at the moment when it's time for the i-th employee to make a statement he no longer has the right to vote, he just skips his turn (and no longer takes part in this voting).  When employee makes a statement, he can do nothing or declare that one of the other employees no longer has a right to vote. It's allowed to deny from voting people who already made the statement or people who are only waiting to do so. If someone is denied from voting he no longer participates in the voting till the very end.  When all employees are done with their statements, the procedure repeats: again, each employees starting from 1 and finishing with n who are still eligible to vote make their statements.  The process repeats until there is only one employee eligible to vote remaining and he determines the outcome of the whole voting. Of course, he votes for the decision suitable for his fraction. 
+
+You know the order employees are going to vote and that they behave optimal (and they also know the order and who belongs to which fraction). Predict the outcome of the vote.
+
+
+-----Input-----
+
+The first line of the input contains a single integer n (1 ≤ n ≤ 200 000) — the number of employees. 
+
+The next line contains n characters. The i-th character is 'D' if the i-th employee is from depublicans fraction or 'R' if he is from remocrats.
+
+
+-----Output-----
+
+Print 'D' if the outcome of the vote will be suitable for depublicans and 'R' if remocrats will win.
+
+
+-----Examples-----
+Input
+5
+DDRRR
+
+Output
+D
+
+Input
+6
+DDRRRR
+
+Output
+R
+
+
+
+-----Note-----
+
+Consider one of the voting scenarios for the first sample:   Employee 1 denies employee 5 to vote.  Employee 2 denies employee 3 to vote.  Employee 3 has no right to vote and skips his turn (he was denied by employee 2).  Employee 4 denies employee 2 to vote.  Employee 5 has no right to vote and skips his turn (he was denied by employee 1).  Employee 1 denies employee 4.  Only employee 1 now has the right to vote so the voting ends with the victory of depublicans.","n = int(input())
+votes = input().strip()
+
+# Queues to track the positions of 'D' and 'R'
+d_queue = []
+r_queue = []
+
+# Populate the initial queues with the index of each 'D' and 'R'
+for i, v in enumerate(votes):
+    if v == 'D':
+        d_queue.append(i)
+    else:
+        r_queue.append(i)
+
+# Process the queues until one of them is empty
+while d_queue and r_queue:
+    d_index = d_queue.pop(0)
+    r_index = r_queue.pop(0)
+    
+    # The smaller index (earlier in the sequence) eliminates the other
+    if d_index < r_index:
+        d_queue.append(d_index + n)
+    else:
+        r_queue.append(r_index + n)
+
+# Determine the winner based on the remaining non-empty queue
+if d_queue:
+    print('D')
+else:
+    print('R')
+",,True,post,True,True,True,True,True,pilot_apps5.json
+0135,apps,llama3-70b,gpt-3.5-turbo-0125,"Imp is watching a documentary about cave painting. [Image] 
+
+Some numbers, carved in chaotic order, immediately attracted his attention. Imp rapidly proposed a guess that they are the remainders of division of a number n by all integers i from 1 to k. Unfortunately, there are too many integers to analyze for Imp.
+
+Imp wants you to check whether all these remainders are distinct. Formally, he wants to check, if all $n \text{mod} i$, 1 ≤ i ≤ k, are distinct, i. e. there is no such pair (i, j) that:   1 ≤ i < j ≤ k,  $n \operatorname{mod} i = n \operatorname{mod} j$, where $x \operatorname{mod} y$ is the remainder of division x by y. 
+
+
+-----Input-----
+
+The only line contains two integers n, k (1 ≤ n, k ≤ 10^18).
+
+
+-----Output-----
+
+Print ""Yes"", if all the remainders are distinct, and ""No"" otherwise.
+
+You can print each letter in arbitrary case (lower or upper).
+
+
+-----Examples-----
+Input
+4 4
+
+Output
+No
+
+Input
+5 3
+
+Output
+Yes
+
+
+
+-----Note-----
+
+In the first sample remainders modulo 1 and 4 coincide.","n, k = map(int, input().split())
+seen = set()
+for i in range(1, k+1):
+    remainder = n % i
+    if remainder in seen:
+        print(""No"")
+        exit()
+    seen.add(remainder)
+print(""Yes"")
+",,True,post,True,True,True,True,True,pilot_apps5.json
+0135,apps,gpt-4o,gpt-3.5-turbo-0125,"Imp is watching a documentary about cave painting. [Image] 
+
+Some numbers, carved in chaotic order, immediately attracted his attention. Imp rapidly proposed a guess that they are the remainders of division of a number n by all integers i from 1 to k. Unfortunately, there are too many integers to analyze for Imp.
+
+Imp wants you to check whether all these remainders are distinct. Formally, he wants to check, if all $n \text{mod} i$, 1 ≤ i ≤ k, are distinct, i. e. there is no such pair (i, j) that:   1 ≤ i < j ≤ k,  $n \operatorname{mod} i = n \operatorname{mod} j$, where $x \operatorname{mod} y$ is the remainder of division x by y. 
+
+
+-----Input-----
+
+The only line contains two integers n, k (1 ≤ n, k ≤ 10^18).
+
+
+-----Output-----
+
+Print ""Yes"", if all the remainders are distinct, and ""No"" otherwise.
+
+You can print each letter in arbitrary case (lower or upper).
+
+
+-----Examples-----
+Input
+4 4
+
+Output
+No
+
+Input
+5 3
+
+Output
+Yes
+
+
+
+-----Note-----
+
+In the first sample remainders modulo 1 and 4 coincide.","n, k = map(int, input().split())
+
+def are_remainders_distinct(n, k):
+    # For k >= n, there will always be non-distinct remainders
+    if k >= n:
+        return ""No""
+    
+    # For k < n, we'll check for remainders
+    seen_remainders = set()
+    for i in range(1, k + 1):
+        remainder = n % i
+        if remainder in seen_remainders:
+            return ""No""
+        seen_remainders.add(remainder)
+    
+    return ""Yes""
+
+print(are_remainders_distinct(n, k))
+",,True,post,False,True,True,True,True,pilot_apps5.json
+0227,apps,llama3-70b,gpt-3.5-turbo-0125,"You've got a positive integer sequence a_1, a_2, ..., a_{n}. All numbers in the sequence are distinct. Let's fix the set of variables b_1, b_2, ..., b_{m}. Initially each variable b_{i} (1 ≤ i ≤ m) contains the value of zero. Consider the following sequence, consisting of n operations.
+
+The first operation is assigning the value of a_1 to some variable b_{x} (1 ≤ x ≤ m). Each of the following n - 1 operations is assigning to some variable b_{y} the value that is equal to the sum of values that are stored in the variables b_{i} and b_{j} (1 ≤ i, j, y ≤ m). At that, the value that is assigned on the t-th operation, must equal a_{t}. For each operation numbers y, i, j are chosen anew.
+
+Your task is to find the minimum number of variables m, such that those variables can help you perform the described sequence of operations.
+
+
+-----Input-----
+
+The first line contains integer n (1 ≤ n ≤ 23). The second line contains n space-separated integers a_1, a_2, ..., a_{n} (1 ≤ a_{k} ≤ 10^9).
+
+It is guaranteed that all numbers in the sequence are distinct.
+
+
+-----Output-----
+
+In a single line print a single number — the minimum number of variables m, such that those variables can help you perform the described sequence of operations.
+
+If you cannot perform the sequence of operations at any m, print -1.
+
+
+-----Examples-----
+Input
+5
+1 2 3 6 8
+
+Output
+2
+
+Input
+3
+3 6 5
+
+Output
+-1
+
+Input
+6
+2 4 8 6 10 18
+
+Output
+3
+
+
+
+-----Note-----
+
+In the first sample, you can use two variables b_1 and b_2 to perform the following sequence of operations.  b_1 := 1;  b_2 := b_1 + b_1;  b_1 := b_1 + b_2;  b_1 := b_1 + b_1;  b_1 := b_1 + b_2.","n = int(input())
+a = list(map(int, input().split()))
+a.sort()
+m = 1
+for i in range(1, n):
+    if a[i] != a[i-1] * 2:
+        m += 1
+print(m if m <= 23 else -1)
+",,True,post,False,True,True,True,True,pilot_apps5.json
+0227,apps,gpt-4o,gpt-3.5-turbo-0125,"You've got a positive integer sequence a_1, a_2, ..., a_{n}. All numbers in the sequence are distinct. Let's fix the set of variables b_1, b_2, ..., b_{m}. Initially each variable b_{i} (1 ≤ i ≤ m) contains the value of zero. Consider the following sequence, consisting of n operations.
+
+The first operation is assigning the value of a_1 to some variable b_{x} (1 ≤ x ≤ m). Each of the following n - 1 operations is assigning to some variable b_{y} the value that is equal to the sum of values that are stored in the variables b_{i} and b_{j} (1 ≤ i, j, y ≤ m). At that, the value that is assigned on the t-th operation, must equal a_{t}. For each operation numbers y, i, j are chosen anew.
+
+Your task is to find the minimum number of variables m, such that those variables can help you perform the described sequence of operations.
+
+
+-----Input-----
+
+The first line contains integer n (1 ≤ n ≤ 23). The second line contains n space-separated integers a_1, a_2, ..., a_{n} (1 ≤ a_{k} ≤ 10^9).
+
+It is guaranteed that all numbers in the sequence are distinct.
+
+
+-----Output-----
+
+In a single line print a single number — the minimum number of variables m, such that those variables can help you perform the described sequence of operations.
+
+If you cannot perform the sequence of operations at any m, print -1.
+
+
+-----Examples-----
+Input
+5
+1 2 3 6 8
+
+Output
+2
+
+Input
+3
+3 6 5
+
+Output
+-1
+
+Input
+6
+2 4 8 6 10 18
+
+Output
+3
+
+
+
+-----Note-----
+
+In the first sample, you can use two variables b_1 and b_2 to perform the following sequence of operations.  b_1 := 1;  b_2 := b_1 + b_1;  b_1 := b_1 + b_2;  b_1 := b_1 + b_1;  b_1 := b_1 + b_2.","def min_variables(n, a):
+    a.sort()
+    assigned = set()
+    assigned.add(a[0])
+    m = 1
+
+    for i in range(1, n):
+        can_form = False
+        for x in assigned:
+            if (a[i] - x) in assigned:
+                can_form = True
+                break
+        if not can_form:
+            m += 1
+        assigned.add(a[i])
+    
+    return m
+
+import sys
+input = sys.stdin.read
+data = input().split()
+n = int(data[0])
+a = list(map(int, data[1:]))
+
+print(min_variables(n, a))
+",,True,post,False,True,True,True,True,pilot_apps5.json

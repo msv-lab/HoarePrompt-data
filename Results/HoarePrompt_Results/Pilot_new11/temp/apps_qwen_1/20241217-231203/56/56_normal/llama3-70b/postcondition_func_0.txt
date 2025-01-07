@@ -1,0 +1,6 @@
+The function accepts two integers \(n\) and \(k\), where \(1 \leq n \leq 10^{18}\) and \(1 \leq k \leq 10^{5}\). It determines whether it is possible to construct a sequence of exactly \(k\) distinct integers, each being a power of 2, whose sum equals \(n\). If such a sequence exists, the function prints 'Yes' followed by the sequence of integers. If not, it prints 'No'. Specifically:
+
+1. The function first checks if \(n\) is less than \(k\). If true, it prints 'No' immediately.
+2. Otherwise, it constructs a list `a` containing the bit lengths of the powers of 2 subtracted from \(n\) until \(n\) becomes 0.
+3. If the length of `a` is less than \(k\), it prints 'No'.
+4. If the length of `a` is at least \(k\), it truncates `a` to its first \(k\) elements and sorts these elements in descending order before printing 'Yes' followed by the sorted list of integers.

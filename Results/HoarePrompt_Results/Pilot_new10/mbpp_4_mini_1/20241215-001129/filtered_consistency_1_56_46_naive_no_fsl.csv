@@ -1,0 +1,96 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,annotated correctness simple,naive no fsl correctness,Correctness no fsl,data file,simple verify,complex verify,default verify,simple verify no fsl,complex verify no fsl,default verify no fsl,unique_id,consistency
+179,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to find the cube sum of first n even natural numbers.,"def cube_Sum(n):
+    return sum(i**3 for i in range(2, n*2+1, 2))
+",,True,post,True,True,True,True,True,True,selected_pilot_75_mbpp.json,True,True,True,True,True,True,179_llama3point1-70b,0.5
+68,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to get the angle of a complex number.,"import cmath
+
+def angle_complex(real, imag):
+    # Create the complex number
+    complex_number = complex(real, imag)
+    # Return the phase (angle) of the complex number
+    return cmath.phase(complex_number)
+
+# Test cases
+import math
+
+assert math.isclose(angle_complex(0,1j), 1.5707963267948966, rel_tol=0.001)
+assert math.isclose(angle_complex(2,1j), 0.4636476090008061, rel_tol=0.001)
+assert math.isclose(angle_complex(0,2j), 1.5707963267948966, rel_tol=0.001)
+",,True,post,False,False,True,True,True,True,selected_pilot_75_mbpp.json,False,True,True,True,True,True,68_gpt-4o,0.5
+134,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function that takes in a positive integer n and finds the sum of even index binomial coefficients.,"import math
+
+def even_binomial_Coeff_Sum(n):
+    # Sum of binomial coefficients at even indices is given by 2^(n-1)
+    return 2**(n-1)
+
+# Test cases
+assert even_binomial_Coeff_Sum(4) == 8
+assert even_binomial_Coeff_Sum(6) == 32
+assert even_binomial_Coeff_Sum(2) == 2
+",,False,post,True,False,False,False,False,False,selected_pilot_75_mbpp.json,False,False,False,False,False,False,134_gpt-4o,0.5
+85,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to find the maximum difference between any two elements in a given array.,"def max_Abs_Diff(arr):
+    return max(arr) - min(arr)
+",,False,post,True,True,False,True,False,False,selected_pilot_75_mbpp.json,True,False,False,True,False,False,85_llama3point1-70b,0.5
+320,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to find the second smallest number in a list.,"def second_smallest(nums):
+    unique_nums = sorted(set(nums))
+    return unique_nums[1] if len(unique_nums) > 1 else None
+
+# Test cases
+assert second_smallest([1, 2, -8, -2, 0, -2]) == -2
+assert second_smallest([1, 1, -0.5, 0, 2, -2, -2]) == -0.5
+assert second_smallest([2,2]) == None
+assert second_smallest([2,2,2]) == None
+",,True,post,True,True,False,False,False,False,selected_pilot_75_mbpp.json,True,True,True,True,True,True,320_gpt-4o,0.5
+186,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to extract the elementwise and tuples from the given two tuples.,"def and_tuples(tuple1, tuple2):
+    return tuple(a & b for a, b in zip(tuple1, tuple2))
+
+# Testing the function with the provided test cases
+assert and_tuples((10, 4, 6, 9), (5, 2, 3, 3)) == (0, 0, 2, 1)
+assert and_tuples((1, 2, 3, 4), (5, 6, 7, 8)) == (1, 2, 3, 0)
+assert and_tuples((8, 9, 11, 12), (7, 13, 14, 17)) == (0, 9, 10, 0)
+",,False,post,True,False,False,False,False,False,selected_pilot_75_mbpp.json,True,True,False,False,True,True,186_gpt-4o,0.5
+99,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to remove the characters which have odd index values of a given string.,"def odd_values_string(s):
+    return ''.join(s[i] for i in range(0, len(s), 2))
+",,True,post,True,True,True,False,True,False,selected_pilot_75_mbpp.json,True,True,True,True,True,False,99_llama3point1-70b,0.5
+10,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to find the volume of a triangular prism.,"def find_Volume(b, h, l):
+  return (b * h / 2) * l
+",,False,post,False,False,False,True,False,False,selected_pilot_75_mbpp.json,True,False,False,True,False,False,10_llama3point1-70b,0.5
+216,mbppplus,llama3point1-70b,gpt-4o-mini-2024-07-18,Write a python function to check whether the given list contains consecutive numbers or not.,"def check_Consecutive(lst):
+    lst.sort()
+    return all(lst[i] - lst[i-1] == 1 for i in range(1, len(lst))) and len(lst) == len(set(lst))
+",,False,post,True,False,True,False,False,False,selected_pilot_75_mbpp.json,True,True,True,False,True,False,216_llama3point1-70b,0.5
+141,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function takes in an integer and check whether the frequency of each digit in the integer is less than or equal to the digit itself.,"def validate(n):
+    digit_str = str(n)
+    frequency = {}
+    
+    # Calculate frequency of each digit
+    for digit in digit_str:
+        if digit in frequency:
+            frequency[digit] += 1
+        else:
+            frequency[digit] = 1
+    
+    # Check the condition for each digit
+    for digit, count in frequency.items():
+        if count > int(digit):
+            return False
+    
+    return True
+
+# Tests
+assert validate(1234) == True
+assert validate(51241) == False
+assert validate(321) == True
+",,False,post,True,False,True,True,False,False,selected_pilot_75_mbpp.json,False,True,True,False,False,False,141_gpt-4o,0.5
+235,mbppplus,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to get the sum of the digits of a non-negative integer.,"def sum_digits(n: int) -> int:
+    total = 0
+    while n > 0:
+        total += n % 10
+        n //= 10
+    return total
+
+# Testing the function with the provided test cases
+assert sum_digits(345) == 12
+assert sum_digits(12) == 3
+assert sum_digits(97) == 16
+",,True,post,True,True,True,True,True,True,selected_pilot_75_mbpp.json,True,True,True,True,True,True,235_gpt-4o,0.5

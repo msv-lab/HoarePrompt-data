@@ -1,4 +1,0 @@
-The function `count` accepts three parameters: `n`, `k`, and `dp`. `n` is a positive integer, `k` is a positive integer such that 1 <= n < 10^18 and 1 <= k <= 10, and `dp` is a dictionary used for memoization. The function returns different values based on specific conditions:
-- If `k` equals 0, the function returns 0 immediately.
-- If `(n, k)` is already in `dp`, the function returns the value stored in `dp` for that key. If `k` equals 0, the function returns 0.
-- If `(n, k)` is not in `dp` and `n` is less than 10, the function computes a value based on the given formula using a loop and returns the result.
