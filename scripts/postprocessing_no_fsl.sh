@@ -19,18 +19,19 @@ ORIGINAL_RESULTS_CSV="${ORIGINAL_RESULTS_CSV%.*}_cleaned.csv"
 
 # # Run initial Python scripts
 # python3 not_consistent_naive.py "$CONFIDENCE_NAIVE_JSON" "$ORIGINAL_RESULTS_CSV"
+# echo "python3 not_consistent_naive_no_fsl.py $CONFIDENCE_NAIVE_NO_FSL_JSON $ORIGINAL_RESULTS_CSV"
 python3 not_consistent_naive_no_fsl.py "$CONFIDENCE_NAIVE_NO_FSL_JSON" "$ORIGINAL_RESULTS_CSV"
 
 # Define base directory where files are created
 BASE_DIR=$(dirname "$ORIGINAL_RESULTS_CSV")
 
 # AUGMENTED_NAIVE="augmented_naive.csv"
-AUGMENTED_NAIVE_NO_FSL="augmented_naive_no_fsl.csv"
+AUGMENTED_NAIVE_NO_FSL="total_results.csv"
 
 FILTERED_FILES=(
-    "filtered_consistency_1_56_46_naive_no_fsl.csv"
-    "filtered_consistency_1_56_naive_no_fsl.csv"
-    "filtered_consistency_1_naive_no_fsl.csv"
+    "filtered_consistency_1_80_60_vanilla.csv"
+    "filtered_consistency_1_80_vanilla.csv"
+    "filtered_consistency_1_vanilla.csv"
     "filtered_consistency_1.csv"
 )
 
@@ -38,12 +39,12 @@ FILTERED_FILES=(
 echo "Running postprocessing for generated files..."
 
 
-for FILE in "${AUGMENTED_NAIVE}" "${AUGMENTED_NAIVE_NO_FSL}" "${FILTERED_FILES[@]}"; do
+for FILE in "${AUGMENTED_NAIVE_NO_FSL}" "${FILTERED_FILES[@]}"; do
     FILE_PATH="${BASE_DIR}/${FILE}"
 
     FILE_NAME=$(basename "${FILE}" .csv)
     if [ -f "${FILE_PATH}" ]; then
-        python3 postprocessing_new.py "${FILE_PATH}" "${BASE_DIR}/${FILE_NAME}_results.json"
+        python3 postprocessing_new.py "${FILE_PATH}" "${BASE_DIR}/${FILE_NAME}_metrics.json"
         echo "Processed: ${FILE_PATH}"
     else
         echo "Warning: File not found: ${FILE_PATH}"

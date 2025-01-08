@@ -44,23 +44,21 @@ def calculate_balanced_accuracy(tp, tn, fp, fn):
 def analyze_correctness_with_consistency(file_path):
     # Load CSV and preprocess
     df = pd.read_csv(file_path)
-    columns_to_preprocess = ['Correctness', 'naive correctness', 'original correctness', 
-                             'annotated correctness', 'annotated correctness simple', 
-                             'naive no fsl correctness', 'Correctness no fsl', "simple verify", "complex verify", "default verify", "simple verify no fsl", "complex verify no fsl", "default verify no fsl"]
+    columns_to_preprocess = ["original correctness", "summary fsl", "naive correctness fsl", "vanilla", "simple tree", "complex tree",  "summary" , "simple verify fsl", "complex verify fsl", "summary verify fsl", "simple verify", "complex verify", "summary verify"]
     valid_df = df.dropna(subset=columns_to_preprocess)
 
     # Initialize comparison variables
-    classifiers = ['Correctness', 'naive correctness', 'annotated correctness', 'annotated correctness simple', 'Correctness no fsl', "simple verify", "complex verify", "default verify", "simple verify no fsl", "complex verify no fsl", "default verify no fsl"]
+    classifiers = ["summary fsl", "vanilla", "simple tree", "complex tree",  "summary" , "simple verify fsl", "complex verify fsl", "summary verify fsl", "simple verify", "complex verify", "summary verify"]
     for classifier in classifiers:
-        comparison_col = f"naive_vs_{classifier}"
+        comparison_col = f"naive_fsl_vs_{classifier}"
         valid_df[comparison_col] = 0
 
     # Calculate comparison variables
     for index, row in valid_df.iterrows():
-        naive_correct = row['naive correctness'] == row['original correctness']
+        naive_correct = row['naive correctness fsl'] == row['original correctness']
         for classifier in classifiers:
             classifier_correct = row[classifier] == row['original correctness']
-            comparison_col = f"naive_vs_{classifier}"
+            comparison_col = f"naive_fsl_vs_{classifier}"
             if naive_correct and not classifier_correct:
                 valid_df.at[index, comparison_col] = 1
             elif not naive_correct and classifier_correct:
@@ -70,12 +68,11 @@ def analyze_correctness_with_consistency(file_path):
 
     # Correlation analysis
     correlation_results = {}
-    correct_names = {"Correctness": "Function summary", "naive correctness": "Naive", "annotated correctness": "Complex tree", "annotated correctness simple": "Simple tree", "naive no fsl correctness": "Naive No FSL", 'Correctness no fsl': 'Function summary no FSL', 'simple verify': 'Simple verify', 'complex verify': 'Complex verify', 'default verify': 'Default verify', 'simple verify no fsl': 'Simple verify no FSL', 'complex verify no fsl': 'Complex verify no FSL', 'default verify no fsl': 'Default verify no FSL'}
     for classifier in classifiers:
-        comparison_col = f"naive_vs_{classifier}"
-        comparison_col_correct_name = f"naive_vs_{correct_names[classifier]}"
+        comparison_col = f"naive_fsl_vs_{classifier}"
+        # comparison_col_correct_name = f"naive_vs_{correct_names[classifier]}"
         correlation = valid_df[[comparison_col, 'consistency']].corr().iloc[0, 1]
-        correlation_results[comparison_col_correct_name] = correlation
+        correlation_results[comparison_col] = correlation
 
     # Save results to CSV
     output_folder = os.path.dirname(file_path)

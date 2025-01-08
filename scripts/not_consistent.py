@@ -27,7 +27,7 @@ csv_data = csv_data.merge(json_df, on="unique_id", how="left")
 
 # Save augmented CSV
 output_folder = os.path.dirname(csv_file)
-augmented_csv_path = os.path.join(output_folder, "augmented.csv")
+augmented_csv_path = os.path.join(output_folder, "total_results.csv")
 csv_data.to_csv(augmented_csv_path, index=False)
 
 # Filter rows based on consistency

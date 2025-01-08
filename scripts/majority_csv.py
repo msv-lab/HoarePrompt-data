@@ -32,15 +32,10 @@ def find_and_process_csvs(directory, output_file):
     if all_dataframes:
         combined_df = pd.concat(all_dataframes, ignore_index=True)
 
+            # columns_to_preprocess = ["original correctness", "summary fsl", "naive correctness fsl", "vanilla", "simple tree", "complex tree",  "summary" , "simple verify fsl", "complex verify fsl", "summary verify fsl", "simple verify", "complex verify", "summary verify"]
+
         # Columns to compute majority values for
-        majority_columns = [
-            "Correctness",
-            "original correctness",
-            "naive correctness",
-            "annotated correctness",
-            "annotated correctness simple",
-            "naive no fsl correctness"
-        ]
+        majority_columns = ["original correctness", "summary fsl", "naive correctness fsl", "vanilla", "simple tree", "complex tree",  "summary" , "simple verify fsl", "complex verify fsl", "summary verify fsl", "simple verify", "complex verify", "summary verify"]
 
         # Group by Task ID and model_created
         grouped = combined_df.groupby(["Task ID", "model_created"])

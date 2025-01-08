@@ -135,9 +135,8 @@ def calculate_balanced_accuracy(tp, tn, fp, fn):
 def analyze_correctness(file_path, file_path_output):
     # Load CSV and preprocess
     df = pd.read_csv(file_path)
-    columns_to_preprocess = ['Correctness', 'naive correctness', 'original correctness', 
-                             'annotated correctness', 'annotated correctness simple', 
-                             'naive no fsl correctness', 'Correctness no fsl', "simple verify", "complex verify", "default verify", "simple verify no fsl", "complex verify no fsl", "default verify no fsl"]
+    columns_to_preprocess = ["original correctness", "summary fsl", "naive correctness fsl", "vanilla", "simple tree", "complex tree",  "summary" , "simple verify fsl", "complex verify fsl", "summary verify fsl", "simple verify", "complex verify", "summary verify"]
+
     valid_df = process_correctness_columns(df, columns_to_preprocess)
     total_rows = len(valid_df)
 
@@ -151,21 +150,21 @@ def analyze_correctness(file_path, file_path_output):
 
     # Agreement analysis
     comparisons = [
-        ('Correctness', 'original correctness'),
-        ('naive correctness', 'original correctness'),
-        ('annotated correctness', 'original correctness'),
-        ('annotated correctness simple', 'original correctness'),
-        ('naive no fsl correctness', 'original correctness'),
-        ('Correctness no fsl', 'original correctness'),
+        ('summary fsl', 'original correctness'),
+        ('naive correctness fsl', 'original correctness'),
+        ('simple tree', 'original correctness'),
+        ('complex tree', 'original correctness'),
+        ('vanilla', 'original correctness'),
+        ('summary', 'original correctness'),
         ('simple verify', 'original correctness'),
         ('complex verify', 'original correctness'),
-        ('default verify', 'original correctness'),
-        ('simple verify no fsl', 'original correctness'),
-        ('complex verify no fsl', 'original correctness'),
-        ('default verify no fsl', 'original correctness')
+        ('summary verify', 'original correctness'),
+        ('simple verify fsl', 'original correctness'),
+        ('complex verify fsl', 'original correctness'),
+        ('summary verify fsl', 'original correctness')
     ]
 
-    correct_names = {"Correctness": "Function summary", "naive correctness": "Naive", "annotated correctness": "Complex tree", "annotated correctness simple": "Simple tree", "naive no fsl correctness": "Naive No FSL", 'Correctness no fsl': 'Function summary no FSL', 'simple verify': 'Simple verify', 'complex verify': 'Complex verify', 'default verify': 'Default verify', 'simple verify no fsl': 'Simple verify no FSL', 'complex verify no fsl': 'Complex verify no FSL', 'default verify no fsl': 'Default verify no FSL'}
+    # correct_names = {"Correctness": "Function summary", "naive correctness": "Naive", "annotated correctness": "Complex tree", "annotated correctness simple": "Simple tree", "naive no fsl correctness": "Naive No FSL", 'Vanilla': 'Function summary no FSL', 'simple verify': 'Simple verify', 'complex verify': 'Complex verify', 'default verify': 'Default verify', 'simple verify no fsl': 'Simple verify no FSL', 'complex verify no fsl': 'Complex verify no FSL', 'default verify no fsl': 'Default verify no FSL'}
     for col1, col2 in comparisons:
         count, pct = calculate_agreement(valid_df, col1, col2)
         tp, tn, fp, fn = calculate_confusion_matrix(valid_df, col2, col1)
@@ -175,7 +174,7 @@ def analyze_correctness(file_path, file_path_output):
         recall = calculate_recall(tp, fn)
         f1_score = calculate_f1_score(tp, fp, fn)
         balanced_accuracy = calculate_balanced_accuracy(tp, tn, fp, fn)
-        analysis_report[correct_names[col1]] = {
+        analysis_report[col1] = {
             "agreement_count": count,
             "agreement_percentage": pct,
             "mcc": mcc,
@@ -187,26 +186,26 @@ def analyze_correctness(file_path, file_path_output):
             "description": f"Agreement analysis between '{col1}' and '{col2}'."
         }
 
-    # Naive correctness difference analysis
-    naive_diff = valid_df[valid_df['naive correctness'] != valid_df['Correctness']]
-    naive_same = valid_df[valid_df['naive correctness'] == valid_df['Correctness']]
+    # # Naive correctness difference analysis
+    # naive_diff = valid_df[valid_df['naive correctness'] != valid_df['Correctness']]
+    # naive_same = valid_df[valid_df['naive correctness'] == valid_df['Correctness']]
     
-    analysis_report["naive_correctness_vs_correctness_diff"] = {
-        "description": "Analysis of cases where 'naive correctness' and 'Correctness' differ.",
-        "count": len(naive_diff),
-        "original_agreement_count": (naive_diff['original correctness'] == naive_diff['naive correctness']).sum(),
-        "original_agreement_percentage": (
-            (naive_diff['original correctness'] == naive_diff['naive correctness']).sum() / len(naive_diff) * 100
-            if len(naive_diff) > 0 else 0
-        )
-    }
+    # analysis_report["naive_correctness_vs_correctness_diff"] = {
+    #     "description": "Analysis of cases where 'naive correctness' and 'Correctness' differ.",
+    #     "count": len(naive_diff),
+    #     "original_agreement_count": (naive_diff['original correctness'] == naive_diff['naive correctness']).sum(),
+    #     "original_agreement_percentage": (
+    #         (naive_diff['original correctness'] == naive_diff['naive correctness']).sum() / len(naive_diff) * 100
+    #         if len(naive_diff) > 0 else 0
+    #     )
+    # }
 
-    analysis_report["naive_correctness_vs_correctness_same"] = {
-        "description": "Analysis of cases where 'naive correctness' and 'Correctness' are the same.",
-        "count": len(naive_same),
-        "original_agreement_count": (naive_same['original correctness'] == naive_same['Correctness']).sum(),
-        "original_disagreement_count": len(naive_same) - (naive_same['original correctness'] == naive_same['Correctness']).sum(),
-    }
+    # analysis_report["naive_correctness_vs_correctness_same"] = {
+    #     "description": "Analysis of cases where 'naive correctness' and 'Correctness' are the same.",
+    #     "count": len(naive_same),
+    #     "original_agreement_count": (naive_same['original correctness'] == naive_same['Correctness']).sum(),
+    #     "original_disagreement_count": len(naive_same) - (naive_same['original correctness'] == naive_same['Correctness']).sum(),
+    # }
 
     # Save analysis report to JSON
     output_file_path = os.path.join(os.path.dirname(file_path), file_path_output)

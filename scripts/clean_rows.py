@@ -2,14 +2,10 @@ import pandas as pd
 import os
 import sys
 
+
+
 # List of columns to validate
-TESTED_COLUMNS = [
-    "Correctness", "original correctness", "naive correctness", 
-    "annotated correctness", "annotated correctness simple", 
-    "naive no fsl correctness", "Correctness no fsl", "simple verify", 
-    "complex verify", "default verify", "simple verify no fsl", 
-    "complex verify no fsl", "default verify no fsl"
-]
+TESTED_COLUMNS = ["original correctness", "summary fsl", "naive correctness fsl", "vanilla", "simple tree", "complex tree",  "summary" , "simple verify fsl", "complex verify fsl", "summary verify fsl", "simple verify", "complex verify", "summary verify"]
 
 def clean_csv(file_path):
     # Read the CSV file

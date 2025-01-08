@@ -6,18 +6,18 @@ def calculate_consistency(input_csv, output_json):
     # Read the input CSV file
     df = pd.read_csv(input_csv)
 
-    # Debugging: Print column names and data type of 'naive no fsl correctness'
+    # Debugging: Print column names and data type of 'vanilla'
     print("Columns in the DataFrame:", df.columns.tolist())
-    print("Data type of 'naive no fsl correctness':", df['naive no fsl correctness'].dtype)
+    print("Data type of 'vanilla':", df['vanilla'].dtype)
 
-    # Ensure 'original correctness' and 'naive no fsl correctness' are treated as booleans
+    # Ensure 'original correctness' and 'vanilla' are treated as booleans
     df['original correctness'] = df['original correctness'].astype(bool)
-    df['naive no fsl correctness'] = df['naive no fsl correctness'].astype(bool)
-    df['naive correctness'] = df['naive correctness'].astype(bool)
+    df['vanilla'] = df['vanilla'].astype(bool)
+    df['naive correctness fsl'] = df['naive correctness fsl'].astype(bool)
 
     # Add a column to mark correct and incorrect responses
-    df['is_correct_no_fsl'] = df['original correctness'] == df['naive no fsl correctness']
-    df['is_correct_fsl'] = df['original correctness'] == df['naive correctness']
+    df['is_correct_no_fsl'] = df['original correctness'] == df['vanilla']
+    df['is_correct_fsl'] = df['original correctness'] == df['naive correctness fsl']
 
     # Grouping by 'unique_id'
     grouped = df.groupby('unique_id')
@@ -36,9 +36,9 @@ def calculate_consistency(input_csv, output_json):
     # Calculate consistency for each group and store it in a list
     consistencies = []
     for unique_id, group in grouped:
-        group_consistency_no_fsl = calculate_group_consistency(group, 'naive no fsl correctness')
+        group_consistency_no_fsl = calculate_group_consistency(group, 'vanilla')
 
-        group_consistency_fsl = calculate_group_consistency(group, 'naive correctness')
+        group_consistency_fsl = calculate_group_consistency(group, 'naive correctness fsl')
         group_consistency = (group_consistency_no_fsl + group_consistency_fsl) / 2
         consistencies.append({
             "unique_id": unique_id,
@@ -71,8 +71,8 @@ def calculate_consistency(input_csv, output_json):
         threshold = 0.5  # Can be adjusted as needed
         
         if correct_proportion > threshold:
-            correct_consistency_no_fsl = calculate_group_consistency(group, 'naive no fsl correctness')
-            correct_consistency_fsl = calculate_group_consistency(group, 'naive correctness')
+            correct_consistency_no_fsl = calculate_group_consistency(group, 'vanilla')
+            correct_consistency_fsl = calculate_group_consistency(group, 'naive correctness fsl')
             correct_consistency = (correct_consistency_no_fsl + correct_consistency_fsl) / 2
             # correct_consistency = correct_consistency_fsl
             correct_consistencies.append({
@@ -82,8 +82,8 @@ def calculate_consistency(input_csv, output_json):
                 "consistency": correct_consistency
             })
         else:  # Majority incorrect or exactly at threshold
-            incorrect_consistency_fsl = calculate_group_consistency(group, 'naive no fsl correctness')
-            incorrect_consistency_no_fsl = calculate_group_consistency(group, 'naive correctness')
+            incorrect_consistency_fsl = calculate_group_consistency(group, 'vanilla')
+            incorrect_consistency_no_fsl = calculate_group_consistency(group, 'naive correctness fsl')
             incorrect_consistency = (incorrect_consistency_no_fsl + incorrect_consistency_fsl) / 2
             # incorrect_consistency =incorrect_consistency_fsl
             incorrect_consistencies.append({

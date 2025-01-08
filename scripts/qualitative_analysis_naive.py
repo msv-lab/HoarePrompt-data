@@ -57,7 +57,7 @@ def aggregate_results_by_unique_id(rows1, rows2, df):
 
 def compare_classifiers(df, classifiers, base_truth):
     results = {}
-    correct_names = {"Correctness": "Function summary", "naive correctness": "Naive", "annotated correctness": "Complex tree", "annotated correctness simple": "Simple tree", "naive no fsl correctness": "Naive No FSL", 'Correctness no fsl': 'Function summary no FSL', 'simple verify': 'Simple verify', 'complex verify': 'Complex verify', 'default verify': 'Default verify', 'simple verify no fsl': 'Simple verify no FSL', 'complex verify no fsl': 'Complex verify no FSL', 'default verify no fsl': 'Default verify no FSL'}
+    # correct_names = {"Correctness": "Function summary", "naive correctness": "Naive", "annotated correctness": "Complex tree", "annotated correctness simple": "Simple tree", "naive no fsl correctness": "Vanilla", 'Correctness no fsl': 'Function summary no FSL', 'simple verify': 'Simple verify ', 'complex verify': 'Complex verify', 'default verify': 'Default verify', 'simple verify no fsl': 'Simple verify no FSL', 'complex verify no fsl': 'Complex verify no FSL', 'default verify no fsl': 'Default verify no FSL'}
 
     for classifier_a, classifier_b in combinations(classifiers, 2):
         a_outperforms_b = []
@@ -84,13 +84,13 @@ def compare_classifiers(df, classifiers, base_truth):
         avg_consistency_a = sum(item['consistency'] for item in aggregated_a_outperforms_b) / a_outperforms_count if a_outperforms_count > 0 else 0
         avg_consistency_b = sum(item['consistency'] for item in aggregated_b_outperforms_a) / b_outperforms_count if b_outperforms_count > 0 else 0
 
-        results[f"{classifier_a}({correct_names[classifier_a]})_vs_{classifier_b}({correct_names[classifier_b]})"] = {
-            f"{classifier_a}({correct_names[classifier_a]})_outperforms_{classifier_b}({correct_names[classifier_b]})": {
+        results[f"{classifier_a}_vs_{classifier_b}"] = {
+            f"{classifier_a}_outperforms_{classifier_b}": {
                 "rows": aggregated_a_outperforms_b,
                 "count": a_outperforms_count,
                 "average_consistency": avg_consistency_a
             },
-            f"{classifier_b}({correct_names[classifier_b]})_outperforms_{classifier_a}({correct_names[classifier_a]})": {
+            f"{classifier_b}_outperforms_{classifier_a}": {
                 "rows": aggregated_b_outperforms_a,
                 "count": b_outperforms_count,
                 "average_consistency": avg_consistency_b
@@ -106,25 +106,14 @@ def save_results(results, output_file):
 def main(input_csv):
     df = load_csv(input_csv)
 
-    classifiers = [
-        'naive no fsl correctness',
-         'naive correctness',
-        'Correctness', 
-        'annotated correctness', 
-        'annotated correctness simple',
-        "simple verify", 
-        "complex verify", 
-        "default verify", 
-        "simple verify no fsl", 
-        "complex verify no fsl", 
-        "default verify no fsl"
-    ]
+    classifiers =  [ "naive correctness fsl","vanilla","summary fsl",   "simple tree", "complex tree",  "summary" , "simple verify fsl", "complex verify fsl", "summary verify fsl", "simple verify", "complex verify", "summary verify"]
+
     base_truth = 'original correctness'
 
     results = compare_classifiers(df, classifiers, base_truth)
 
     output_dir = os.path.dirname(input_csv)
-    output_file = os.path.join(output_dir, "classifier_comparison_results_naive.json")
+    output_file = os.path.join(output_dir, "classifier_comparison_results_naive_fsl.json")
     save_results(results, output_file)
 
     print(f"Comparison results saved to {output_file}")

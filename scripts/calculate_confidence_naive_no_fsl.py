@@ -6,16 +6,16 @@ def calculate_consistency(input_csv, output_json):
     # Read the input CSV file
     df = pd.read_csv(input_csv)
 
-    # Debugging: Print column names and data type of 'naive no fsl correctness'
+    # Debugging: Print column names and data type of 'vanilla'
     print("Columns in the DataFrame:", df.columns.tolist())
-    print("Data type of 'naive no fsl correctness':", df['naive no fsl correctness'].dtype)
+    print("Data type of 'vanilla':", df['vanilla'].dtype)
 
-    # Ensure 'original correctness' and 'naive no fsl correctness' are treated as booleans
+    # Ensure 'original correctness' and 'vanilla' are treated as booleans
     df['original correctness'] = df['original correctness'].astype(bool)
-    df['naive no fsl correctness'] = df['naive no fsl correctness'].astype(bool)
+    df['vanilla'] = df['vanilla'].astype(bool)
 
     # Add a column to mark correct and incorrect responses
-    df['is_correct'] = df['original correctness'] == df['naive no fsl correctness']
+    df['is_correct'] = df['original correctness'] == df['vanilla']
 
     # Grouping by 'unique_id'
     grouped = df.groupby('unique_id')
@@ -34,7 +34,7 @@ def calculate_consistency(input_csv, output_json):
     # Calculate consistency for each group and store it in a list
     consistencies = []
     for unique_id, group in grouped:
-        group_consistency = calculate_group_consistency(group, 'naive no fsl correctness')
+        group_consistency = calculate_group_consistency(group, 'vanilla')
         consistencies.append({
             "unique_id": unique_id,
             "consistency": group_consistency
@@ -63,13 +63,13 @@ def calculate_consistency(input_csv, output_json):
         threshold = 0.5  # Can be adjusted as needed
         
         if correct_proportion > threshold:
-            correct_consistency = calculate_group_consistency(group, 'naive no fsl correctness')
+            correct_consistency = calculate_group_consistency(group, 'vanilla')
             correct_consistencies.append({
                 "unique_id": unique_id,
                 "consistency": correct_consistency
             })
         else:  # Majority incorrect or exactly at threshold
-            incorrect_consistency = calculate_group_consistency(group, 'naive no fsl correctness')
+            incorrect_consistency = calculate_group_consistency(group, 'vanilla')
             incorrect_consistencies.append({
                 "unique_id": unique_id,
                 "consistency": incorrect_consistency
