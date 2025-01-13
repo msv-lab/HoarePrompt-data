@@ -44,7 +44,7 @@ def calculate_balanced_accuracy(tp, tn, fp, fn):
 def analyze_correctness_with_consistency(file_path):
     # Load CSV and preprocess
     df = pd.read_csv(file_path)
-    "original correctness", "summary fsl", "naive correctness fsl", "vanilla", "simple tree", "complex tree",  "summary" , "simple verify fsl", "complex verify fsl", "summary verify fsl", "simple verify", "complex verify", "summary verify"
+    
     columns_to_preprocess = ["original correctness", "summary fsl", "naive correctness fsl", "vanilla", "simple tree", "complex tree",  "summary" , "simple verify fsl", "complex verify fsl", "summary verify fsl", "simple verify", "complex verify", "summary verify"]
     valid_df = df.dropna(subset=columns_to_preprocess)
 
