@@ -13,6 +13,43 @@
 
 ## Format
 
+Each problem contains a list comprising multiple dictionaries (each representing a solution sample for the problem) . **Ideally**, the data is like:
+
+```json
+[
+  ...
+  [
+    {
+      sample with 50% pass rate (if we have)
+    },
+    {
+      sample with almost 100% pass rate (if we have)
+    },
+    {
+      the correct sample of pair 1
+    },
+    {
+      the incorrect sample of pair 1
+    },
+    {
+      the correct sample of pair 2
+    },
+    {
+      the incorrect sample of pair 2
+    },
+    {
+      the correct sample of pair 3
+    },
+    {
+      the incorrect sample of pair 3
+    }
+  ],
+  ...
+]
+```
+
+For a  **correct** code sample, it looks like:
+
 ```json
 {
     "description": "...",
@@ -25,7 +62,12 @@
     "counterexample": null,
     "unique_id": "1926_C_vjudge.10_100%",
     "test_passed": 19
-},
+}
+```
+
+For an **incorrect** code sample, it looks like:
+
+```json
 {
     "description": "...",
     "task_name": "1926_C",
@@ -43,6 +85,8 @@
     "test_passed": 0
 }
 ```
+
+- unique_id:  `{contest number}_{problem letter}_{username}_{pass rate}`
 
 ## Scripts
 
