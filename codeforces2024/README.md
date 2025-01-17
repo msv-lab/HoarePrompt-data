@@ -99,7 +99,7 @@ For an **incorrect** code sample, it looks like:
 
 2.	**Excessive access, network issues**: Reload the webpage manually if prompted.
 
-3.	**High frequency of submission access, “time rate limit”**: Wait 10 minutes, delete cookies, re-login, and change the IP.
+3.	**High frequency of submission access, “time rate limit”** or **"N/A" showed as the source code**: Wait 10 minutes, delete cookies, re-login, and change the IP.
 
 ## Issues
 
