@@ -15,36 +15,36 @@
 
 Each problem contains a list comprising multiple dictionaries (each representing a solution sample for the problem) . **Ideally**, the data is like:
 
-```json
+```python
 [
-  ...
+  # ...
   [
     {
-      sample with 50% pass rate (if we have)
+      # sample with 50% pass rate (if we have)
     },
     {
-      sample with almost 100% pass rate (if we have)
+      # sample with almost 100% pass rate (if we have)
     },
     {
-      the correct sample of pair 1
+      # the correct sample of pair 1
     },
     {
-      the incorrect sample of pair 1
+      # the incorrect sample of pair 1
     },
     {
-      the correct sample of pair 2
+      # the correct sample of pair 2
     },
     {
-      the incorrect sample of pair 2
+      # the incorrect sample of pair 2
     },
     {
-      the correct sample of pair 3
+      # the correct sample of pair 3
     },
     {
-      the incorrect sample of pair 3
+      # the incorrect sample of pair 3
     }
   ],
-  ...
+  # ...
 ]
 ```
 
