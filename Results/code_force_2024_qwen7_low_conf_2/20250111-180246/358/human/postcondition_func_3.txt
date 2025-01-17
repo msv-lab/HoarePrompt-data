@@ -1,0 +1,13 @@
+The function `func_4` accepts a list of strings `arr`, an integer `n` representing the length of `arr`, and an integer `m` representing a winning condition. It processes the list `arr` based on specific conditions and returns either 'Sasha' or 'Anna'.
+
+1. If `n > m`, the function immediately returns 'Sasha'.
+2. If `n == m`, the function checks each string in `arr` to determine if any string has a length of at least 2 and ends with '0'. If such a string exists, it returns 'Sasha'; otherwise, it returns 'Anna'.
+3. If `n < m`, the function repeatedly calls `func_2` and `func_3` on `arr` until `len(arr)` is 1. After this process, it checks if the remaining string in `arr` is greater than or equal to \(10^m\). If true, it returns 'Sasha'; otherwise, it returns 'Anna'.
+
+The function covers the following cases:
+- Returns 'Sasha' in Cases 1, 2, and 4.
+- Returns 'Anna' in Cases 3 and 5.
+
+Potential edge cases and missing functionality:
+- The function assumes that each string in `arr` can be converted to an integer without raising an error. However, it does not handle cases where the strings cannot be converted to integers.
+- The function does not provide any output for scenarios where `arr` contains strings that cannot be converted to integers, which could be an edge case depending on the input constraints.

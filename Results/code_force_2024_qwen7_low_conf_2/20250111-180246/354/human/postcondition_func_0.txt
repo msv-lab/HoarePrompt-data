@@ -1,0 +1,12 @@
+The function `func_1` accepts four non-negative integer parameters `c1`, `c2`, `c3`, and `c4`, where each parameter is constrained to be between 0 and \(10^6\) inclusive, and their sum does not exceed \(4 \times 10^6\). It computes a dynamic programming table `dp` where `dp[i][j]` represents the number of ways to achieve a sum `i` using a combination of elements from `c1`, `c2`, `c3`, and `c4`. Each element can be used multiple times. After populating the `dp` table, the function returns the sum of the last row of the `dp` table modulo \(998244353\).
+
+The function correctly handles all provided annotations and includes the following steps:
+1. Initializes a `dp` table with dimensions `(max(c1, c2, c3, c4) + 1) x 4`.
+2. Sets the base case `dp[0][0] = 1` to indicate one way to achieve a sum of 0 without any elements.
+3. Iterates through each possible sum up to `max(c1, c2, c3, c4)`, updating the `dp` table based on whether the current sum can be achieved using `c1`, `c2`, `c3`, or `c4`.
+4. Computes the total number of ways to achieve the maximum sum (`max(c1, c2, c3, c4)`) by summing the values in the last row of the `dp` table.
+5. Returns the total number of ways modulo \(998244353\).
+
+Potential edge cases:
+- If any of `c1`, `c2`, `c3`, or `c4` is 0, the corresponding entries in the `dp` table will not be updated beyond the initial base case.
+- If the sum of `c1`, `c2`, `c3`, and `c4` exceeds \(4 \times 10^6\), the function will still execute but the constraints are not violated, so the computation is valid.

@@ -1,0 +1,4 @@
+- If \(n\) or \(m\) is zero, the function should handle these cases appropriately since the initial conditions assume \(1 \leq n, m \leq 10^6\).
+- If \(k\) is less than or equal to \(0\), the function should handle these cases as well, although the problem constraints specify \(2 \leq k \leq 10^{12}\), so this scenario is unlikely.
+- The binary search is set up to search within the range \([0, \max(n, m) \times 20]\), which might not cover all possible values of \(p\) for very large \(n\) and \(m\). However, given the constraints, this range is likely sufficient.
+- The function does not explicitly handle the case where \(n\) or \(m\) is equal to zero, which could lead to undefined behavior in the calculation of \(p\). This should be addressed to ensure robustness.

@@ -1,0 +1,17 @@
+The function `func_4` accepts a list of strings `arr` representing integers, an integer `n` representing the length of `arr`, and an integer `m` determining when Sasha wins. It returns 'Sasha' if one of the following conditions is met:
+
+1. `n > m`.
+2. After processing the list through several checks, the conditions related to `flag1` and `flag2` are satisfied.
+3. After repeatedly calling `func_2` and `func_3`, the resulting single element is a string representation of an integer greater than or equal to \(10^m\).
+
+In all other cases, it returns 'Anna'.
+
+The function performs the following steps:
+
+1. If `n > m`, it immediately returns 'Sasha'.
+2. If `n == m`, it checks if there exists an element in `arr` with a length of at least 2 and either a length greater than 2 or a last character not equal to '0'. If such an element is found and both `flag1` and `flag2` are set to `True`, it returns 'Sasha'; otherwise, it returns 'Anna'.
+3. If `n < m`, it repeatedly calls `func_2` and `func_3` until `arr` is reduced to a single element. If the final single element is a string representation of an integer greater than or equal to \(10^m\), it returns 'Sasha'; otherwise, it returns 'Anna'.
+
+Edge cases and missing functionality:
+- If `arr` contains elements that are not valid integer strings, the behavior is undefined.
+- If `m` is negative or zero, the function still processes as described but the condition for 'Sasha' might not be meaningful in practical scenarios.

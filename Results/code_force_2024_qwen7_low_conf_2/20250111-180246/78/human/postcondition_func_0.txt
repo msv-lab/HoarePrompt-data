@@ -1,0 +1,13 @@
+The function processes multiple test cases, each containing integers \(n\), \(m\), and \(k\) representing the dimensions of a grid and the number of fountains respectively. The coordinates of \(k\) fountains are provided as pairs of integers \((r_i, c_i)\). The function calculates and prints the area of the smallest rectangle that can cover all the fountains and a sequence indicating which fountains are on the boundary of this rectangle. Specifically, the function:
+1. Reads the number of test cases \(t\).
+2. For each test case, reads \(n\), \(m\), and \(k\), then the coordinates of \(k\) fountains.
+3. Sorts the fountains based on their row coordinates.
+4. Constructs a list of boundary points, starting with \((1, 0, 0)\), and iteratively adds new points that have a higher row coordinate than the previous point.
+5. Calculates the area of the smallest rectangle covering all fountains by summing up the vertical distances between consecutive boundary points and the horizontal distance from the first point to the last point.
+6. Determines which fountains lie on the boundary of this rectangle by checking if their row coordinate is strictly greater than the previous boundary point’s row coordinate.
+7. Prints the total area and the sequence of 1s and 0s indicating whether each fountain is on the boundary or not.
+8. Handles the case where the coordinates of the fountains do not include \((n, 1)\).
+
+The function assumes that the input data meets the specified constraints and that the coordinates of the fountains are unique and within the grid boundaries. Potential edge cases include:
+- The case where no fountains are on the boundary (all fountains lie on a single horizontal line).
+- The case where the fountains' coordinates do not include \((n, 1)\), requiring special handling.

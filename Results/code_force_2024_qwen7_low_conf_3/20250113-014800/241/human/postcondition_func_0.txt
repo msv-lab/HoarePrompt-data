@@ -1,0 +1,8 @@
+The function `func_1` accepts a grid represented as a 2D list (`grid`), its dimensions `r` and `c`, a visited status 2D list (`visited`), and specific indices for removing and adding pixels (`i1`, `j1`, `i2`, `j2`). The function checks several conditions to determine if a new pixel can be added at position `(i2, j2)`:
+
+1. It first checks if the new position `(i2, j2)` is within the grid boundaries. If not, it returns `False`.
+2. It then checks if the new position contains a star ('*') or if it has already been visited. If either condition is true, it returns `False`.
+3. It counts the number of adjacent cells (up, down, left, right) to `(i2, j2)` that are marked with '*'. If fewer than 2 such adjacent cells exist, it returns `False`.
+4. If none of the above conditions are met, the function returns `True`.
+
+The function returns `True` only when the new pixel can be added according to the specified rules and conditions, and it returns `False` otherwise. This includes edge cases where the new position is out of bounds, contains a '*', or is already visited, or when there are fewer than 2 adjacent stars.

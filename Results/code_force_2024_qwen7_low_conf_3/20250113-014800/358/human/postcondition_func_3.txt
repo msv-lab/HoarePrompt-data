@@ -1,0 +1,12 @@
+The function `func_4` accepts a list of strings `arr` representing integers, an integer `n` representing the length of the list, and an integer `m` representing the parameter determining when Sasha wins. The function checks several conditions to determine whether to return 'Sasha' or 'Anna'.
+
+1. If `n > m`, the function immediately returns 'Sasha'.
+2. If `n == m`, the function iterates through each string in `arr` to check two conditions:
+   - If there exists any string in `arr` where the length is greater than 2 and the last character is '0', `flag2` becomes `True`.
+   - Otherwise, `flag2` remains `False`.
+   - If `flag2` is `True`, the function returns 'Sasha'.
+   - If `flag2` is `False`, the function continues to reduce the list `arr` to a single element by repeatedly calling `func_2` and `func_3` until `len(arr) == 1`.
+     - After reduction, if the single remaining element in `arr` (converted to an integer) is greater than or equal to \(10^m\), the function returns 'Sasha'.
+     - Otherwise, the function returns 'Anna'.
+
+The function covers all cases where `n` and `m` are within their specified ranges and handles the list `arr` accordingly, ensuring that the final return value is either 'Sasha' or 'Anna' based on the defined conditions.

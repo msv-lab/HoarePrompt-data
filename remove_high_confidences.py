@@ -23,11 +23,11 @@ if __name__ == "__main__":
     non_confident_ids = [
         item["unique_id"].replace("_human", "")
         for item in group_consistencies["group_consistencies"]
-        if item["consistency"] < 0.8
+        if item["consistency"] < 0.98
     ]
-
-    # Step 2: Select all entries from the second JSON where task_id matches
-    selected_tasks = [task for task in tasks if task["task_id"] in non_confident_ids]
+    print(non_confident_ids)
+    # Step 2: Select all entries from the second JSON where unique_id matches
+    selected_tasks = [task for task in tasks if str(task["unique_id"]) in non_confident_ids]
 
     # Save the result to the output JSON file
     with open(output_file, "w") as f:

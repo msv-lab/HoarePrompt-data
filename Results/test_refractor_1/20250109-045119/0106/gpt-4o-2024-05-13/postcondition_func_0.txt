@@ -1,0 +1,7 @@
+The function `func_1` accepts five parameters: `n`, `m`, `k`, `a`, and `b`. It calculates the total time required for two people to meet at a specific floor in a building with `n` blocks per floor and `m` floors. The total time is computed based on several factors:
+
+1. The initial exit time, which depends on the floor level (`floor_a`) of person `a`. If `floor_a` is 1, the exit time is 0; otherwise, it is `10 + (floor_a - 1)`.
+2. The walking distance between the blocks of the two persons, considering both direct and reverse paths, and the time taken for each path is 15 minutes per block.
+3. The time to reach the target floor (`floor_b`), which is 5 minutes per floor minus the first floor.
+
+The function returns the total time as the sum of these components. Potential edge cases include when `floor_a` or `floor_b` is 1, and the function correctly handles these by setting the corresponding exit times appropriately. The function also considers the shortest path between the blocks, ensuring the most efficient route is taken.

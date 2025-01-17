@@ -1,0 +1,5 @@
+The function `func_1` accepts two integers `a` and `b` as input. It computes the Greatest Common Divisor (GCD) of `a` and `b` using the Extended Euclidean Algorithm. If `a` is zero, it directly returns `b` as the GCD and the values `0` and `1` for the other two elements. Otherwise, it recursively calculates the GCD and the coefficients `x` and `y` such that `ax + by = gcd(a, b)`. After executing the algorithm, the function returns the GCD of `a` and `b`, along with the coefficients `x` and `y`.
+
+Potential edge case: When `a` is zero, the function correctly returns `b` as the GCD and the values `0` and `1` for the other two elements, as per the provided annotations and return postconditions.
+
+Missing functionality: The annotations and return postconditions do not mention the recursive nature of the function. However, the code itself uses recursion to solve the problem, which is an important aspect of its functionality.

@@ -1,0 +1,42 @@
+#State of the program right berfore the function call: tree is a dictionary representing an adjacency list of the tree where each key is a vertex (an integer) and the corresponding value is a list of adjacent vertices (integers). start_node is an integer representing the starting vertex for the breadth-first search (BFS) operation, such that 1 <= start_node <= n, where n is the number of vertices in the tree.
+def func_1(tree, start_node):
+    queue = deque([start_node])
+    distances = {start_node: 0}
+    while queue:
+        node = queue.popleft()
+        
+        current_distance = distances[node]
+        
+        for neighbor in tree[node]:
+            if neighbor not in distances:
+                distances[neighbor] = current_distance + 1
+                queue.append(neighbor)
+        
+    #State of the program after the loop has been executed: `queue` is an empty deque, `node` is the original `start_node`, `current_distance` is the distance from `start_node` to the farthest node in the tree, and `distances` contains the shortest path distances from the starting node to all other nodes in the graph represented by `tree`.
+    return distances
+    #`The program returns distances which contains the shortest path distances from the starting node to all other nodes in the graph represented by tree`
+#Overall this is what the function does:The function `func_1` accepts a parameter `tree`, a dictionary representing an adjacency list of a tree, and a parameter `start_node`, an integer representing the starting vertex for the BFS operation. It performs a breadth-first search (BFS) to find the shortest path distances from the `start_node` to all other nodes in the graph represented by `tree`. The function returns a dictionary containing these shortest path distances. The BFS algorithm starts from `start_node`, explores all its neighbors at the present depth prior to moving on to nodes at the next depth level, and updates the distance to each node as it discovers new paths. The function correctly handles the case where the `start_node` is not directly connected to any other nodes, resulting in a distance of infinity for those nodes. The final state of the program after the function concludes is that the `distances` dictionary contains the shortest path distances from the `start_node` to all other nodes in the graph, with unconnected nodes having a distance of infinity.
+
+#State of the program right berfore the function call: n is a positive integer representing the number of vertices in the tree, and edges is a list of tuples where each tuple (u, v) represents an edge connecting vertices u and v. All vertices are initially white, and the tree is guaranteed to be acyclic with n-1 edges.
+def func_2(n, edges):
+    tree = {i: [] for i in range(1, n + 1)}
+    for (u, v) in edges:
+        tree[u].append(v)
+        
+        tree[v].append(u)
+        
+    #State of the program after the  for loop has been executed: `tree` is a dictionary where each key from 1 to `n` (inclusive) has a list of all vertices that are connected to it through edges in the graph represented by `edges`.
+    distances = func_1(tree, 1)
+    operations = []
+    max_distance = max(distances.values())
+    for d in range(max_distance + 1):
+        nodes_at_d = [node for node, dist in distances.items() if dist == d]
+        
+        if nodes_at_d:
+            operations.append((nodes_at_d[0], d))
+        
+    #State of the program after the  for loop has been executed: `max_distance` is a non-negative integer, `operations` is a list of tuples where each tuple is of the form `(node, d)` such that `node` is a node in `distances` and `d` is the distance of `node` from node 1, and `distances` retains its original values.
+    return len(operations), operations
+    #The program returns the length of the list 'operations' and the list 'operations' itself, where each element in 'operations' is a tuple of the form (node, d)
+#Overall this is what the function does:The function `func_2` accepts two parameters: `n`, a positive integer representing the number of vertices in the tree, and `edges`, a list of tuples where each tuple `(u, v)` represents an edge connecting vertices `u` and `v`. The tree is guaranteed to be acyclic with `n-1` edges. The function first constructs an adjacency list representation of the tree. It then calls `func_1` to compute the shortest distances from vertex 1 to all other vertices. Based on these distances, it identifies nodes at each distance level and constructs a list of tuples `(node, d)`, where `node` is a vertex in the tree and `d` is its distance from vertex 1. Finally, it returns the length of this list and the list itself. The function handles the case where there might be no nodes at a particular distance level by checking if `nodes_at_d` is non-empty before appending to the `operations` list. The function does not handle negative integers for `n` or invalid edge inputs as it assumes the inputs are valid based on the problem constraints.
+

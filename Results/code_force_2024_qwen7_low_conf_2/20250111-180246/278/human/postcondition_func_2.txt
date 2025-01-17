@@ -1,0 +1,15 @@
+The function `func_2` accepts four parameters: `n`, `m`, `c`, and `edges`. 
+
+- `n` is an integer representing the number of prison cells.
+- `m` is an integer representing the number of bi-directional corridors.
+- `c` is an integer representing the funding required to build a single corridor.
+- `edges` is a list of tuples where each tuple `(u_i, v_i)` represents a corridor between cells `u_i` and `v_i`.
+
+The function first calls another function `func_1` to determine the number of connected components in the graph represented by `n` and `edges`. If the number of connected components is exactly one, the function returns `-1`. Otherwise, the function iterates over all pairs of connected components, calculates the cost as the sum of the squares of their sizes plus `c`, and keeps track of the minimum cost found. Finally, the function returns the minimum cost.
+
+Potential edge cases:
+- If the number of connected components is exactly one, the function correctly returns `-1`.
+- If there are multiple connected components, the function correctly calculates the minimum cost based on the given formula and returns it.
+
+Missing functionality:
+- The function does not handle cases where the input parameters are invalid (e.g., non-integer values, negative values for `n` or `c`, or invalid edges). This should be considered in practical applications.

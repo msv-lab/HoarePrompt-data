@@ -1,0 +1,8 @@
+The function `func_4` accepts two parameters, `bigList` and `smallList`, both of which are lists of integers. It aims to remove the last `len(smallList)` elements from `bigList` and `smallList`, ensuring the last elements of `bigList` and `smallList` are no longer equal. After performing these operations, the function returns the last element of `bigList` before the removal. 
+
+Potential edge cases include:
+- If `bigList` or `smallList` is empty, the function will not execute the loop and will return `bigList[-1]`, which could be an error depending on the expected behavior.
+- If `len(smallList) == len(bigList)`, the loop will run until both lists are empty, and the function will return `None`.
+
+Missing functionality:
+- The function does not handle cases where `len(smallList)` is greater than `len(bigList)`. In such cases, the loop will raise an `IndexError` because `bigList.pop()` would be called more times than available elements.

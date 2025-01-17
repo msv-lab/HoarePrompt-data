@@ -1,0 +1,15 @@
+The function `func_1` accepts three parameters: `n` (a positive integer), `v` (a list of positive integers of length `n`), and `p` (a permutation of integers from 1 to `n`). The function returns two values: `max_strength` (the maximum value of `i * v_sorted[i - 1]` for `i` in the range `[1, n]`) and `min_mushrooms` (the smallest `i` such that `i * v_sorted[i - 1]` equals `max_strength`). 
+
+Here is a step-by-step summary of the function's actions:
+1. The function first sorts the list `v` in descending order to get `v_sorted`.
+2. It initializes `max_strength` to 0 and `min_mushrooms` to `n`.
+3. It iterates through the range `[1, n]`:
+   - For each `i`, it calculates the strength as `i * v_sorted[i - 1]`.
+   - If the calculated strength is greater than `max_strength`, it updates `max_strength` to the new value and sets `min_mushrooms` to `i`.
+   - If the calculated strength is equal to `max_strength`, it updates `min_mushrooms` to the smaller of its current value and `i`.
+4. After the loop completes, it returns `max_strength` and `min_mushrooms`.
+
+Potential edge cases and missing functionality:
+- The function assumes that `n` is a positive integer and `v` is a list of positive integers of length `n`. There is no explicit check for these conditions, which could lead to errors if these assumptions are not met.
+- The function also assumes that `p` is a valid permutation of integers from 1 to `n`. While `p` is used to create `v_sorted`, the function does not validate that `p` is indeed a permutation of integers from 1 to `n`.
+- If `v` contains duplicate elements, the function still correctly identifies the maximum strength and corresponding index, as the sorting ensures that the highest value is considered first.

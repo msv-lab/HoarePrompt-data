@@ -1,0 +1,9 @@
+- The function correctly handles the range constraints for the number of test cases (`1 ≤ t ≤ 1000`) and the number of nodes (`2 ≤ n ≤ 10^5`).
+- However, the function assumes that the input format is always correct and does not include error handling for invalid inputs (e.g., non-integer values, incorrect lengths of `fa` or `S`).
+
+The function performs the following actions:
+- Reads the number of test cases.
+- For each test case, it reads the number of nodes, constructs the parent relationship list `fa`, and reads the string `S`.
+- It initializes two dynamic programming arrays `dp1` and `dp2` to store the minimum costs.
+- It iterates backward through the nodes, updating the `dp1` and `dp2` arrays based on the type of each student in the string `S`.
+- It prints the minimum value between `dp1[0]` and `dp2[0]`, which represents the minimum cost to reach the end of the string `S` under the specified conditions.

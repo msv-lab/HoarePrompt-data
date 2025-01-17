@@ -1,0 +1,11 @@
+The function `func_3` accepts a parameter `arr`, which is a list of strings representing integers in the range [1, 10^9]. It processes this list to find the string ending in '0' with the highest value returned by `func_1`, and modifies the list based on specific conditions. Here is a detailed breakdown of the final state of the program after the function concludes:
+
+1. The function first identifies the index `idx1` of the string ending in '0' with the highest value returned by `func_1(arr[i])` in the list `arr`.
+2. Next, it finds the index `idx2` of another string ending in '0' with the second-highest value returned by `func_1(arr[i])` in the list `arr`.
+3. If `idx2` is not 0, the function concatenates the strings at indices `idx1` and `idx2` in `arr` and removes the string at index `idx2`.
+4. If `idx2` is 0 and `foundOne` is True, the function concatenates the strings at indices `idx1` and `idx2` (which does not exist in this case), resulting in `arr[idx1]` being the only string ending in '0'.
+5. If neither of the above conditions is met, the function concatenates the first two elements in the list and removes the second element.
+
+In all cases, the function ensures that the list `arr` contains the appropriate modifications and index updates, with the value of `idx2` being either the index of the string with the second-highest value returned by `func_1` or invalid if no such string exists. The function returns the modified list `arr`.
+
+The function handles all edge cases, including when no string in the list ends in '0', and ensures that the list is processed correctly according to the specified conditions.

@@ -1,0 +1,31 @@
+#State of the program right berfore the function call: t is an integer such that 1 ≤ t ≤ 1000, and for each test case, n is an integer such that 1 ≤ n ≤ 100, and a list of n integers a_1, a_2, a_3, …, a_n such that 1 ≤ a_i ≤ 10^6.
+def func():
+    n_tests = int(input())
+    for i in range(n_tests):
+        n = int(input())
+        
+        x = [int(i) for i in input().split()]
+        
+        counter = x[0]
+        
+        for i in range(1, len(x)):
+            if x[i] == 1:
+                counter += 1
+            elif counter > x[i]:
+                counter = x[i] * ceil(counter / x[i])
+            elif counter < x[i]:
+                counter = x[i]
+            else:
+                counter = x[i] * 2
+        
+        print(counter)
+        
+    #State of the program after the  for loop has been executed: `counter` is the final value determined by the loop described above, `t` is an integer such that \(1 \leq t \leq 1000\), `n_tests` is greater than 0, and `x` is a list of integers for each test case.
+#Overall this is what the function does:The function `func` accepts an integer `t` representing the number of test cases, and for each test case, an integer `n` and a list of `n` integers `a_1, a_2, a_3, …, a_n` where \(1 \leq a_i \leq 10^6\). For each test case, it calculates a value `counter` based on the initial value of `counter` (which is the first element of the list `x`) and updates `counter` according to the following rules:
+- If the current element `x[i]` is 1, `counter` is incremented by 1.
+- If `counter` is greater than `x[i]`, `counter` is updated to `x[i] * ceil(counter / x[i])`.
+- If `counter` is less than `x[i]`, `counter` is updated to `x[i]`.
+- If `counter` equals `x[i]`, `counter` is updated to `x[i] * 2`.
+
+After processing all elements in the list for each test case, the function prints the final value of `counter`. The function does not return any value and only processes the input data, printing the result for each test case.
+

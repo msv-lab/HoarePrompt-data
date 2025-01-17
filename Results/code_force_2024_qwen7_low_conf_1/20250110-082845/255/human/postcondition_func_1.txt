@@ -1,0 +1,11 @@
+The function `func_2` accepts two parameters: `a`, a list of `n` integers where `1 <= n <= 3 * 10^5` and `1 <= a[i] <= 10^9` for all `0 <= i < n`, and `n`, the number of slimes and the length of the list `a`. It returns an array `ans` of length `n` filled with zeros. The function performs the following steps:
+
+1. Initializes auxiliary lists `left` and `last`, both starting with a single element `0` and `-1`, respectively.
+2. Populates the `last` list to record the index of the last occurrence of each distinct value in `a`.
+3. Constructs the `left` list to store cumulative sums of the elements in `a`.
+4. Iterates through the elements of `a` to determine the value of `ans[i]` for each `i` from `1` to `n-1`:
+   - If `a[i] < a[i-1]`, sets `ans[i]` to `1`.
+   - Otherwise, calculates a value `x` based on the cumulative sum and checks if `func_1(left, x)` and `last[i-1]` provide a valid index `inx` to update `ans[i]`.
+   - If no valid `inx` is found, `ans[i]` remains `0`.
+
+The function ensures that `ans[i]` is set to `1` if `a[i] < a[i-1]` and otherwise is updated based on the results of `func_1(left, x)` and `last[i-1]`. In all cases, `ans` is returned as an array of zeros with length `n`. Potential edge cases include when `a` contains repeated values or when `a` is a constant sequence.

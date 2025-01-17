@@ -1,0 +1,1696 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+0003,human,code_contests,qwen2.5-7b-instruct,"from __future__ import division
+from sys import stdin, stdout
+# from fractions import gcd
+# from math import *
+# from operator import mul
+# from functools import reduce
+# from copy import copy
+from collections import deque, defaultdict, Counter
+
+rstr = lambda: stdin.readline().strip()
+rstrs = lambda: [str(x) for x in stdin.readline().split()]
+rint = lambda: int(stdin.readline())
+rints = lambda: [int(x) for x in stdin.readline().split()]
+rstr_2d = lambda n: [rstr() for _ in range(n)]
+rint_2d = lambda n: [rint() for _ in range(n)]
+rints_2d = lambda n: [rints() for _ in range(n)]
+pr = lambda args, sep: stdout.write(sep.join(map(str, args)) + '\n')
+out = []
+
+
+class graph:
+    # initialize graph
+    def __init__(self, gdict=None):
+        if gdict is None:
+            gdict = defaultdict(list)
+        self.gdict, self.edges, self.l = gdict, defaultdict(int), defaultdict(int)
+
+    # add edge
+    def addEdge(self, node1, node2, w=None):
+        self.gdict[node1].append(node2)
+        self.gdict[node2].append(node1)
+        self.l[node1] += 1
+        self.l[node2] += 1
+
+
+n = int(input())
+g = graph()
+for _ in range(n - 1):
+    u, v = rints()
+    g.addEdge(u, v)
+
+for i in range(1, n + 1):
+    if g.l[i] != 1 and g.l[i] < 3:
+        print('NO')
+        exit()
+
+print('YES')
+","Error: unsupported statement type: <ast.ClassDef object at 0x7a3b7e439ba0> class graph:
+
+    def __init__(self, gdict=None):
+        if gdict is None:
+            gdict = defaultdict(list)
+        self.gdict, self.edges, self.l = gdict, defaultdict(int), defaultdict(
+            int)
+
+    def addEdge(self, node1, node2, w=None):
+        self.gdict[node1].append(node2)
+        self.gdict[node2].append(node1)
+        self.l[node1] += 1
+        self.l[node2] += 1
+",hoareprompt
+0037,human,code_contests,qwen2.5-7b-instruct,"def main():
+    import sys
+    from collections import defaultdict
+    input = sys.stdin.readline
+
+    class UnionFind():
+        def __init__(self, n):
+            self.n = n
+            self.root = [-1] * (n + 1)
+            self.rnk = [0] * (n + 1)
+
+        def find_root(self, x):
+            if self.root[x] < 0:
+                return x
+            else:
+                self.root[x] = self.find_root(self.root[x])
+                return self.root[x]
+
+        def unite(self, x, y):
+            x = self.find_root(x)
+            y = self.find_root(y)
+            if x == y:
+                return
+            elif self.rnk[x] > self.rnk[y]:
+                self.root[x] += self.root[y]
+                self.root[y] = x
+            else:
+                self.root[y] += self.root[x]
+                self.root[x] = y
+                if self.rnk[x] == self.rnk[y]:
+                    self.rnk[y] += 1
+
+        def isSameGroup(self, x, y):
+            return self.find_root(x) == self.find_root(y)
+
+        def size(self, x):
+            return -self.root[self.find_root(x)]
+
+    class Bit:
+        def __init__(self, n):
+            self.size = n
+            self.inf = 10 ** 15
+            self.tree = [self.inf] * (n + 1)
+
+        def query(self, i):
+            s = self.inf
+            while i > 0:
+                s = min(self.tree[i], s)
+                i -= i & -i
+            return s
+
+        def update(self, i, x):
+            while i <= self.size:
+                self.tree[i] = min(self.tree[i], x)
+                i += i & -i
+
+    N, D = map(int, input().split())
+    A = list(map(int, input().split()))
+
+    tmp = [(a, i+1) for i, a in enumerate(A)]
+    tmp.sort(key=lambda x: x[0])
+    segtree_plus = Bit(N+5)
+    segtree_minus = Bit(N+5)
+    edge = []
+    val2idx_plus = defaultdict(int)
+    val2idx_minus = defaultdict(lambda: N+3)
+    edge_append = edge.append
+    inf = 10**15
+    for a, i in tmp:
+        val_plus = a+D*i
+        val_minus = a-D*i
+        segtree_plus.update(N+1-i, val_plus)
+        segtree_minus.update(i, val_minus)
+        i_ori = val2idx_plus[val_plus]
+        if i > i_ori:
+            val2idx_plus[val_plus] = i
+        i_ori = val2idx_minus[val_minus]
+        if i < i_ori:
+            val2idx_minus[val_minus] = i
+        plus_min = segtree_plus.query(N-i)
+        if plus_min < inf:
+            j_plus = val2idx_plus[plus_min]
+            edge_append((i, j_plus, A[i-1] + A[j_plus-1] + D*(j_plus - i)))
+        minus_min = segtree_minus.query(i-1)
+        if minus_min < inf:
+            j_minus = val2idx_minus[minus_min]
+            edge_append((i, j_minus, A[i-1] + A[j_minus-1] + D * (i - j_minus)))
+
+    edge.sort(key=lambda x: x[2])
+    UF = UnionFind(N + 1)
+    ans = 0
+    for u, v, cost in edge:
+        if UF.isSameGroup(u, v):
+            continue
+        ans += cost
+        UF.unite(u, v)
+    print(ans)
+
+
+if __name__ == '__main__':
+    main()
+","Error: expected an indented block after class definition on line 6 (<unknown>, line 13)",hoareprompt
+0068,human,code_contests,qwen2.5-7b-instruct,"from __future__ import division, print_function
+from itertools import permutations 
+import threading,bisect,math,heapq,sys
+from collections import deque
+# threading.stack_size(2**27)
+# sys.setrecursionlimit(10**4)
+from sys import stdin, stdout
+i_m=9223372036854775807    
+def cin():
+    return map(int,sin().split())
+def ain():                           #takes array as input
+    return list(map(int,sin().split()))
+def sin():
+    return input()
+def inin():
+    return int(input()) 
+prime=[]
+def dfs(n,d,v):
+    v[n]=1
+    x=d[n]
+    for i in x:
+        if i not in v:
+            dfs(i,d,v)
+    return p 
+""""""**************************MAIN*****************************""""""
+def main():
+    def f(x,a):
+        b=0
+        mx=0
+        mi=0
+        for i in range(len(a)):
+            b+=a[i]-x
+            mx=max(b,mx)
+            mi=min(b,mi)
+        ans=mx-mi
+        return ans
+    n=inin()
+    a=ain()
+    l=-100005
+    r=100005
+    h=101
+    ans=i_m
+    while(h>0):
+        h-=1
+        m1=l+(r-l)/3
+        m2=r-(r-l)/3
+        p=f(m1,a)
+        q=f(m2,a)
+        ans=min(p,q,ans)
+        if p<=q:
+            r=m2
+        else:
+            l=m1
+    print(ans)
+
+""""""***********************************************""""""
+def block(x): 
+      
+    v = []  
+    while (x > 0): 
+        v.append(int(x % 2)) 
+        x = int(x / 2) 
+    ans=[]
+    for i in range(0, len(v)): 
+        if (v[i] == 1): 
+            ans.append(2**i)  
+    return ans 
+def intersection(l,r,ll,rr):
+    # print(l,r,ll,rr)
+    if (ll > r or rr < l): 
+            return -1  
+    else: 
+        l = max(l, ll) 
+        r = min(r, rr)
+    return max(0,r-l) 
+######## Python 2 and 3 footer by Pajenegod and c1729
+fac=[]
+def fact(n,mod):
+    global fac
+    fac.append(1)
+    for i in range(1,n+1):
+        fac.append((fac[i-1]*i)%mod)
+    f=fac[:]
+    return f
+def nCr(n,r,mod):
+    global fac
+    x=fac[n]
+    y=fac[n-r]
+    z=fac[r]
+    x=moddiv(x,y,mod)
+    return moddiv(x,z,mod)
+def moddiv(m,n,p):
+    x=pow(n,p-2,p)
+    return (m*x)%p
+def GCD(x, y): 
+    x=abs(x)
+    y=abs(y)
+    if(min(x,y)==0):
+        return max(x,y)
+    while(y): 
+        x, y = y, x % y 
+    return x 
+def Divisors(n) : 
+    l = []  
+    ll=[]
+    for i in range(1, int(math.sqrt(n) + 1)) :
+        if (n % i == 0) : 
+            if (n // i == i) : 
+                l.append(i) 
+            else : 
+                l.append(i)
+                ll.append(n//i)
+    l.extend(ll[::-1])
+    return l
+def SieveOfEratosthenes(n): 
+    global prime
+    prime = [True for i in range(n+1)] 
+    p = 2
+    while (p * p <= n): 
+        if (prime[p] == True): 
+            for i in range(p * p, n+1, p): 
+                prime[i] = False
+        p += 1
+    f=[]
+    for p in range(2, n): 
+        if prime[p]: 
+            f.append(p)
+    return f
+def primeFactors(n): 
+    a=[]
+    while n % 2 == 0: 
+        a.append(2) 
+        n = n // 2 
+    for i in range(3,int(math.sqrt(n))+1,2):  
+        while n % i== 0: 
+            a.append(i) 
+            n = n // i  
+    if n > 2: 
+        a.append(n)
+    return a
+""""""*******************************************************""""""
+py2 = round(0.5)
+if py2:
+    from future_builtins import ascii, filter, hex, map, oct, zip
+    range = xrange
+import os
+from io import IOBase, BytesIO
+BUFSIZE = 8192
+class FastIO(BytesIO):
+    newlines = 0
+ 
+    def __init__(self, file):
+        self._file = file
+        self._fd = file.fileno()
+        self.writable = ""x"" in file.mode or ""w"" in file.mode
+        self.write = super(FastIO, self).write if self.writable else None
+ 
+    def _fill(self):
+        s = os.read(self._fd, max(os.fstat(self._fd).st_size, BUFSIZE))
+        self.seek((self.tell(), self.seek(0,2), super(FastIO, self).write(s))[0])
+        return s
+ 
+    def read(self):
+        while self._fill(): pass
+        return super(FastIO,self).read()
+ 
+    def readline(self):
+        while self.newlines == 0:
+            s = self._fill(); self.newlines = s.count(b""\n"") + (not s)
+        self.newlines -= 1
+        return super(FastIO, self).readline()
+ 
+    def flush(self):
+        if self.writable:
+            os.write(self._fd, self.getvalue())
+            self.truncate(0), self.seek(0)
+ 
+class IOWrapper(IOBase):
+    def __init__(self, file):
+        self.buffer = FastIO(file)
+        self.flush = self.buffer.flush
+        self.writable = self.buffer.writable
+        if py2:
+            self.write = self.buffer.write
+            self.read = self.buffer.read
+            self.readline = self.buffer.readline
+        else:
+            self.write = lambda s:self.buffer.write(s.encode('ascii'))
+            self.read = lambda:self.buffer.read().decode('ascii')
+            self.readline = lambda:self.buffer.readline().decode('ascii')
+ 
+sys.stdin, sys.stdout = IOWrapper(sys.stdin), IOWrapper(sys.stdout)
+input = lambda: sys.stdin.readline().rstrip('\r\n') 
+# Cout implemented in Python
+class ostream:
+    def __lshift__(self,a):
+        sys.stdout.write(str(a))
+        return self
+cout = ostream()
+endl = '\n'
+ 
+# Read all remaining integers in stdin, type is given by optional argument, this is fast
+def readnumbers(zero = 0):
+    conv = ord if py2 else lambda x:x
+    A = []; numb = zero; sign = 1; i = 0; s = sys.stdin.buffer.read()
+    try:
+        while True:
+            if s[i] >= b'R' [0]:
+                numb = 10 * numb + conv(s[i]) - 48
+            elif s[i] == b'-' [0]: sign = -1
+            elif s[i] != b'\r' [0]:
+                A.append(sign*numb)
+                numb = zero; sign = 1
+            i += 1
+    except:pass
+    if s and s[-1] >= b'R' [0]:
+        A.append(sign*numb)
+    return A
+ 
+# threading.Thread(target=main).start()
+if __name__== ""__main__"":
+  main()","Error: unsupported statement type: <ast.Global object at 0x7a3b7e3ae920> global fac
+",hoareprompt
+0100,human,code_contests,qwen2.5-7b-instruct,"from __future__ import division, print_function
+from itertools import permutations 
+import threading,bisect,math,heapq,sys
+# threading.stack_size(2**27)
+# sys.setrecursionlimit(10**4)
+from sys import stdin, stdout
+i_m=9223372036854775807    
+def cin():
+    return map(int,sin().split())
+def ain():                           #takes array as input
+    return list(map(int,sin().split()))
+def sin():
+    return input()
+def inin():
+    return int(input()) 
+prime=[]
+def dfs(n,d,v,a,c):
+    v[n]=1
+    if n in d:
+        x=d[n]
+    else:
+        a[n]+=c
+        x=[]
+    p=a[n]
+    for i in x:
+        if i not in v:
+            dfs(i,d,v,a,c)
+            p+=a[i]
+    a[n]=p
+    return p 
+ 
+""""""**************************MAIN*****************************""""""
+def main():
+    n=inin()
+    a=ain()
+    print(1,1)
+    x=a[0]%n
+    print(n-x)
+    a[0]+=n-x
+    if n>1:
+        print(2,n)
+        b=[]
+        for i in range(1,n):
+            b.append((a[i]%n)*(n-1))
+            a[i]+=b[i-1]
+        print(*b)
+    if n==1:
+        print(1,1)
+        print(0)
+    print(1,n)
+    for i in range(n):
+        a[i]=-a[i]
+    print(*a)
+
+    
+""""""*******************************************************""""""
+
+######## Python 2 and 3 footer by Pajenegod and c1729
+fac=[]
+def fact(n,mod):
+    global fac
+    fac.append(1)
+    for i in range(1,n+1):
+        fac.append((fac[i-1]*i)%mod)
+    f=fac[:]
+    return f
+def nCr(n,r,mod):
+    global fac
+    x=fac[n]
+    y=fac[n-r]
+    z=fac[r]
+    x=moddiv(x,y,mod)
+    return moddiv(x,z,mod)
+def moddiv(m,n,p):
+    x=pow(n,p-2,p)
+    return (m*x)%p
+def GCD(x, y): 
+    x=abs(x)
+    y=abs(y)
+    if(min(x,y)==0):
+        return max(x,y)
+    while(y): 
+        x, y = y, x % y 
+    return x 
+def Divisors(n) : 
+    l = []  
+    ll=[]
+    for i in range(1, int(math.sqrt(n) + 1)) :
+        if (n % i == 0) : 
+            if (n // i == i) : 
+                l.append(i) 
+            else : 
+                l.append(i)
+                ll.append(n//i)
+    l.extend(ll[::-1])
+    return l
+def SieveOfEratosthenes(n): 
+    global prime
+    prime = [True for i in range(n+1)] 
+    p = 2
+    while (p * p <= n): 
+        if (prime[p] == True): 
+            for i in range(p * p, n+1, p): 
+                prime[i] = False
+        p += 1
+    f=[]
+    for p in range(2, n): 
+        if prime[p]: 
+            f.append(p)
+    return f
+def primeFactors(n): 
+    a=[]
+    while n % 2 == 0: 
+        a.append(2) 
+        n = n // 2 
+    for i in range(3,int(math.sqrt(n))+1,2):  
+        while n % i== 0: 
+            a.append(i) 
+            n = n // i  
+    if n > 2: 
+        a.append(n)
+    return a
+""""""*******************************************************""""""
+py2 = round(0.5)
+if py2:
+    from future_builtins import ascii, filter, hex, map, oct, zip
+    range = xrange
+import os
+from io import IOBase, BytesIO
+BUFSIZE = 8192
+class FastIO(BytesIO):
+    newlines = 0
+ 
+    def __init__(self, file):
+        self._file = file
+        self._fd = file.fileno()
+        self.writable = ""x"" in file.mode or ""w"" in file.mode
+        self.write = super(FastIO, self).write if self.writable else None
+ 
+    def _fill(self):
+        s = os.read(self._fd, max(os.fstat(self._fd).st_size, BUFSIZE))
+        self.seek((self.tell(), self.seek(0,2), super(FastIO, self).write(s))[0])
+        return s
+ 
+    def read(self):
+        while self._fill(): pass
+        return super(FastIO,self).read()
+ 
+    def readline(self):
+        while self.newlines == 0:
+            s = self._fill(); self.newlines = s.count(b""\n"") + (not s)
+        self.newlines -= 1
+        return super(FastIO, self).readline()
+ 
+    def flush(self):
+        if self.writable:
+            os.write(self._fd, self.getvalue())
+            self.truncate(0), self.seek(0)
+ 
+class IOWrapper(IOBase):
+    def __init__(self, file):
+        self.buffer = FastIO(file)
+        self.flush = self.buffer.flush
+        self.writable = self.buffer.writable
+        if py2:
+            self.write = self.buffer.write
+            self.read = self.buffer.read
+            self.readline = self.buffer.readline
+        else:
+            self.write = lambda s:self.buffer.write(s.encode('ascii'))
+            self.read = lambda:self.buffer.read().decode('ascii')
+            self.readline = lambda:self.buffer.readline().decode('ascii')
+ 
+sys.stdin, sys.stdout = IOWrapper(sys.stdin), IOWrapper(sys.stdout)
+input = lambda: sys.stdin.readline().rstrip('\r\n') 
+# Cout implemented in Python
+class ostream:
+    def __lshift__(self,a):
+        sys.stdout.write(str(a))
+        return self
+cout = ostream()
+endl = '\n'
+ 
+# Read all remaining integers in stdin, type is given by optional argument, this is fast
+def readnumbers(zero = 0):
+    conv = ord if py2 else lambda x:x
+    A = []; numb = zero; sign = 1; i = 0; s = sys.stdin.buffer.read()
+    try:
+        while True:
+            if s[i] >= b'R' [0]:
+                numb = 10 * numb + conv(s[i]) - 48
+            elif s[i] == b'-' [0]: sign = -1
+            elif s[i] != b'\r' [0]:
+                A.append(sign*numb)
+                numb = zero; sign = 1
+            i += 1
+    except:pass
+    if s and s[-1] >= b'R' [0]:
+        A.append(sign*numb)
+    return A
+ 
+# threading.Thread(target=main).start()
+if __name__== ""__main__"":
+  main()","Error: unsupported statement type: <ast.Global object at 0x7a3b7e4e5cc0> global fac
+",hoareprompt
+0227,human,code_contests,qwen2.5-7b-instruct,"from __future__ import division, print_function
+import bisect
+import math
+import heapq
+import itertools
+import sys
+from collections import deque
+from atexit import register
+from collections import Counter
+from functools import reduce
+sys.setrecursionlimit(100000)
+if sys.version_info[0] < 3:
+    from io import BytesIO as stream
+else:
+    from io import StringIO as stream
+ 
+ 
+if sys.version_info[0] < 3:
+    class dict(dict):
+        """"""dict() -> new empty dictionary""""""
+        def items(self):
+            """"""D.items() -> a set-like object providing a view on D's items""""""
+            return dict.iteritems(self)
+ 
+        def keys(self):
+            """"""D.keys() -> a set-like object providing a view on D's keys""""""
+            return dict.iterkeys(self)
+ 
+        def values(self):
+            """"""D.values() -> an object providing a view on D's values""""""
+            return dict.itervalues(self)
+ 
+    input = raw_input
+    range = xrange
+ 
+    filter = itertools.ifilter
+    map = itertools.imap
+    zip = itertools.izip
+ 
+ 
+def sync_with_stdio(sync=True):
+    """"""Set whether the standard Python streams are allowed to buffer their I/O.
+ 
+    Args:
+        sync (bool, optional): The new synchronization setting.
+ 
+    """"""
+    global input, flush
+ 
+    if sync:
+        flush = sys.stdout.flush
+    else:
+        sys.stdin = stream(sys.stdin.read())
+        input = lambda: sys.stdin.readline().rstrip('\r\n')
+ 
+        sys.stdout = stream()
+        register(lambda: sys.__stdout__.write(sys.stdout.getvalue()))
+
+def dd():
+    return map(int,input().split())    
+def arr():
+    return list(map(int,input().split()))
+def twinSort(X,Y):
+    #sorting X wrt Y
+    return [x for _,x in sorted(zip(Y,X))]
+
+def solve():
+    n=int(input())
+    ar=arr()
+    ans=[]
+
+    for i in range(n-1):
+        if ar[i]%ar[i+1]==0 or ar[i+1]%ar[i]==0:
+            ans.append(ar[i])
+        else:
+            if ar[i]<ar[i+1]:
+                ans.append(ar[i])
+                ar[i+1]-=(ar[i+1]%ar[i])
+            else:
+                ans.append(ar[i])
+                ar[i+1]+=(ar[i+1]%ar[i])
+
+        
+    ans.append(ar[i+1])
+    for i in ans:
+        print(i,end=' ')
+    print()
+
+
+        
+    # print(sum(ans)*2,sum(ar))
+
+def main():
+    testCase=1
+    if testCase:
+        for _ in range(int(input())):
+            solve()
+    else:
+        solve()
+    
+if __name__ == '__main__':
+    sync_with_stdio(False)
+    main()","Error: unsupported statement type: <ast.Global object at 0x7a3b7e265a50> global input, flush
+",hoareprompt
+0328,human,code_contests,qwen2.5-7b-instruct,"import sys
+
+
+def siftup(ind):
+    global tree
+    while (ind != 1) and (frendly[tree[ind]] < frendly[tree[ind // 2]]):
+        tree[ind], tree[ind // 2] = tree[ind // 2], tree[ind]
+        ind //= 2
+    
+
+def siftdown(ind):
+    global tree
+    while (ind * 2 + 1 <= len(tree) - 1) and (frendly[tree[ind]] > frendly[tree[ind * 2]] or frendly[tree[ind]] > frendly[tree[ind * 2 + 1]]):
+        if frendly[tree[ind * 2]] > frendly[tree[ind * 2 + 1]]:
+            tree[ind], tree[ind * 2 + 1] = tree[ind * 2 + 1], tree[ind]
+            ind = ind * 2 + 1
+        else:
+            tree[ind], tree[ind * 2] = tree[ind * 2], tree[ind]
+            ind *= 2
+    if (ind * 2 <= len(tree) - 1) and (frendly[tree[ind]] > frendly[tree[ind * 2]]):
+        tree[ind], tree[ind * 2] = tree[ind * 2], tree[ind]
+        ind *= 2
+        
+    
+n, k, q = map(int, sys.stdin.readline().split())
+frendly = [0] + list(map(int, sys.stdin.readline().split()))
+bearsout = set([i for i in range(1, n + 1)])
+tree = [0]
+for i in range(q):
+    lab, b = map(int, sys.stdin.readline().split())
+    if lab == 1:
+        if len(tree) > k:
+            if frendly[b] > frendly[tree[1]]:
+                bearsout.discard(b)
+                bearsout.add(tree[1])
+                tree[1] = b
+                siftdown(1)
+        else:
+            tree.append(b)
+            bearsout.discard(b)
+            siftup(len(tree) - 1)
+    else:
+        if b in bearsout:
+            sys.stdout.write('NO' + '\n')
+        else:
+            sys.stdout.write('YES' + '\n')
+            #","Error: unsupported statement type: <ast.Global object at 0x7a3b7e4e70a0> global tree
+",hoareprompt
+0367,human,code_contests,qwen2.5-7b-instruct,"from sys import stdin
+from collections import *
+
+
+class graph:
+    def __init__(self):
+        self.gdict, self.edges = defaultdict(list), set()
+
+    def addEdge(self, node1, node2, w=None):
+        self.gdict[node1].append(node2)
+        self.gdict[node2].append(node1)
+        self.edges.add(tuple(sorted([node1, node2])))
+
+    def bfs_util(self, i):
+        self.visit = [0] * (n + 1)
+        queue, self.visit[i] = deque([[i, 0]]), 1
+
+        while queue:
+            # dequeue parent vertix
+            s, lev = queue.popleft()
+            if s == n:
+                ans.append(lev)
+                break
+
+            # enqueue child vertices
+            for i1 in self.gdict[s]:
+                if self.visit[i1] == 0:
+                    queue.append([i1, lev + 1])
+                    self.visit[i1] = 1
+
+
+rint = lambda: int(stdin.readline())
+rints = lambda: [int(x) for x in stdin.readline().split()]
+rint_2d = lambda n: [rint() for _ in range(n)]
+rints_2d = lambda n: [rints() for _ in range(n)]
+
+n, m = rints()
+g, g1, ans = graph(), graph(), []
+for _ in range(m):
+    u, v = rints()
+    g.addEdge(u, v)
+
+for i in range(1, n):
+    for j in range(i + 1, n + 1):
+        if (i, j) not in g.edges:
+            g1.addEdge(i, j)
+
+g.bfs_util(1)
+g1.bfs_util(1)
+# print(ans)
+print(-1 if len(ans) < 2 else max(ans))
+","Error: unsupported statement type: <ast.ClassDef object at 0x7a3b7e336e30> class graph:
+
+    def __init__(self):
+        self.gdict, self.edges = defaultdict(list), set()
+
+    def addEdge(self, node1, node2, w=None):
+        self.gdict[node1].append(node2)
+        self.gdict[node2].append(node1)
+        self.edges.add(tuple(sorted([node1, node2])))
+
+    def bfs_util(self, i):
+        self.visit = [0] * (n + 1)
+        queue, self.visit[i] = deque([[i, 0]]), 1
+        while queue:
+            s, lev = queue.popleft()
+            if s == n:
+                ans.append(lev)
+                break
+            for i1 in self.gdict[s]:
+                if self.visit[i1] == 0:
+                    queue.append([i1, lev + 1])
+                    self.visit[i1] = 1
+",hoareprompt
+0429,human,code_contests,qwen2.5-7b-instruct,"# Python program for Dijkstra's 
+# single source shortest 
+# path algorithm. The program 
+# is for adjacency matrix 
+ans=[]
+p=[]
+# representation of the graph 
+
+from collections import defaultdict 
+pa=[]
+#Class to represent a graph 
+class Graph: 
+
+	# A utility function to find the 
+	# vertex with minimum dist value, from 
+	# the set of vertices still in queue 
+	def minDistance(self,dist,queue): 
+		# Initialize min value and min_index as -1 
+		minimum = float(""Inf"") 
+		min_index = -1
+		
+		# from the dist array,pick one which 
+		# has min value and is till in queue 
+		for i in range(len(dist)): 
+			if dist[i] < minimum and i in queue: 
+				minimum = dist[i] 
+				min_index = i 
+		return min_index 
+
+
+	# Function to print shortest path 
+	# from source to j 
+	# using parent array 
+	def printPath(self, parent, j): 
+		global p
+		global pa 
+		#Base Case : If j is source 
+		if parent[j] == -1 : 
+		#	print j, 
+			p.append(j)
+			pa.append(p)
+			return
+		self.printPath(parent , parent[j]) 
+		#print j, 
+		p.append(j)
+        
+	# A utility function to print 
+	# the constructed distance 
+	# array 
+	def printSolution(self, dist, parent): 
+		src = 0
+		global p
+	#	print(""Vertex \t\tDistance from Source\tPath"") 
+		for i in range(1, len(dist)): 
+		#	print(""\n%d --> %d \t\t%d \t\t\t\t\t"" % (src, i, dist[i])), 
+			p=[]
+			self.printPath(parent,i) 
+			#print(p,'fun')
+		#	pa.append(p)
+
+	'''Function that implements Dijkstra's single source shortest path 
+	algorithm for a graph represented using adjacency matrix 
+	representation'''
+	def dijkstra(self, graph, src): 
+
+		row = len(graph) 
+		col = len(graph[0]) 
+
+		# The output array. dist[i] will hold 
+		# the shortest distance from src to i 
+		# Initialize all distances as INFINITE 
+		dist = [float(""Inf"")] * row 
+
+		#Parent array to store 
+		# shortest path tree 
+		parent = [-1] * row 
+
+		# Distance of source vertex 
+		# from itself is always 0 
+		dist[src] = 0
+	
+		# Add all vertices in queue 
+		queue = [] 
+		for i in range(row): 
+			queue.append(i) 
+			
+		#Find shortest path for all vertices 
+		while queue: 
+
+			# Pick the minimum dist vertex 
+			# from the set of vertices 
+			# still in queue 
+			u = self.minDistance(dist,queue) 
+
+			# remove min element	 
+			queue.remove(u) 
+
+			# Update dist value and parent 
+			# index of the adjacent vertices of 
+			# the picked vertex. Consider only 
+			# those vertices which are still in 
+			# queue 
+			for i in range(col): 
+				'''Update dist[i] only if it is in queue, there is 
+				an edge from u to i, and total weight of path from 
+				src to i through u is smaller than current value of 
+				dist[i]'''
+				if graph[u][i] and i in queue: 
+					if dist[u] + graph[u][i] < dist[i]: 
+						dist[i] = dist[u] + graph[u][i] 
+						parent[i] = u 
+
+
+		# print the constructed distance array 
+		self.printSolution(dist,parent) 
+
+g= Graph() 
+edge=[]
+n,m=map(int,raw_input().split())
+graph=[[0 for j in range(n)]for i in range(n)]
+for i in range(m):
+    a,b,c=map(int,raw_input().split())
+    a,b=min(a,b),max(a,b)
+    edge.append([a-1,b-1])
+    graph[a-1][b-1]=c 
+    graph[b-1][a-1]=c 
+
+		
+
+ans={}
+for i in range(n):
+    p=[]
+    g.dijkstra(graph,i) 
+   # print(p)
+    for i in range(len(p)-1):
+        a,b=p[i],p[i+1]
+        a,b=min(a,b),max(a,b)
+        ans[(a,b)]=1 
+#print(ans)
+#print(pa)
+# This code is contributed by Neelam Yadav 
+cnt=0 
+for i in edge: 
+    if ans.get((i[0],i[1]),-1)!=-1:
+        cnt+=1 
+print(m-cnt)","Error: unsupported statement type: <ast.ClassDef object at 0x7a3b7e3fbd90> class Graph:
+
+    def minDistance(self, dist, queue):
+        minimum = float('Inf')
+        min_index = -1
+        for i in range(len(dist)):
+            if dist[i] < minimum and i in queue:
+                minimum = dist[i]
+                min_index = i
+        return min_index
+
+    def printPath(self, parent, j):
+        global p
+        global pa
+        if parent[j] == -1:
+            p.append(j)
+            pa.append(p)
+            return
+        self.printPath(parent, parent[j])
+        p.append(j)
+
+    def printSolution(self, dist, parent):
+        src = 0
+        global p
+        for i in range(1, len(dist)):
+            p = []
+            self.printPath(parent, i)
+    """"""Function that implements Dijkstra's single source shortest path 
+	algorithm for a graph represented using adjacency matrix 
+	representation""""""
+
+    def dijkstra(self, graph, src):
+        row = len(graph)
+        col = len(graph[0])
+        dist = [float('Inf')] * row
+        parent = [-1] * row
+        dist[src] = 0
+        queue = []
+        for i in range(row):
+            queue.append(i)
+        while queue:
+            u = self.minDistance(dist, queue)
+            queue.remove(u)
+            for i in range(col):
+                """"""Update dist[i] only if it is in queue, there is 
+				an edge from u to i, and total weight of path from 
+				src to i through u is smaller than current value of 
+				dist[i]""""""
+                if graph[u][i] and i in queue:
+                    if dist[u] + graph[u][i] < dist[i]:
+                        dist[i] = dist[u] + graph[u][i]
+                        parent[i] = u
+        self.printSolution(dist, parent)
+",hoareprompt
+0654,human,code_contests,qwen2.5-7b-instruct,"#!/usr/bin/env python
+""""""
+This file is part of https://github.com/Cheran-Senthil/PyRival.
+
+Copyright 2018 Cheran Senthilkumar all rights reserved,
+Cheran Senthilkumar <hello@cheran.io>
+Permission to use, modify, and distribute this software is given under the
+terms of the MIT License.
+
+""""""
+from __future__ import division, print_function
+
+import cmath
+import itertools
+import math
+import operator as op
+# import random
+import sys
+from atexit import register
+from bisect import bisect_left, bisect_right
+# from collections import Counter, MutableSequence, defaultdict, deque
+# from copy import deepcopy
+# from decimal import Decimal
+# from difflib import SequenceMatcher
+# from fractions import Fraction
+# from heapq import heappop, heappush
+
+if sys.version_info[0] < 3:
+    # from cPickle import dumps
+    from io import BytesIO as stream
+    # from Queue import PriorityQueue, Queue
+else:
+    from functools import reduce
+    from io import StringIO as stream
+    from math import gcd
+    # from pickle import dumps
+    # from queue import PriorityQueue, Queue
+
+
+if sys.version_info[0] < 3:
+    class dict(dict):
+        """"""dict() -> new empty dictionary""""""
+        def items(self):
+            """"""D.items() -> a set-like object providing a view on D's items""""""
+            return dict.iteritems(self)
+
+        def keys(self):
+            """"""D.keys() -> a set-like object providing a view on D's keys""""""
+            return dict.iterkeys(self)
+
+        def values(self):
+            """"""D.values() -> an object providing a view on D's values""""""
+            return dict.itervalues(self)
+
+    def gcd(x, y):
+        """"""gcd(x, y) -> int
+        greatest common divisor of x and y
+        """"""
+        while y:
+            x, y = y, x % y
+        return x
+
+    input = raw_input
+    range = xrange
+
+    filter = itertools.ifilter
+    map = itertools.imap
+    zip = itertools.izip
+
+
+def sync_with_stdio(sync=True):
+    """"""Set whether the standard Python streams are allowed to buffer their I/O.
+
+    Args:
+        sync (bool, optional): The new synchronization setting.
+
+    """"""
+    global input, flush
+
+    if sync:
+        flush = sys.stdout.flush
+    else:
+        sys.stdin = stream(sys.stdin.read())
+        input = lambda: sys.stdin.readline().rstrip('\r\n')
+
+        sys.stdout = stream()
+        register(lambda: sys.__stdout__.write(sys.stdout.getvalue()))
+
+MOD = 998244353
+
+def main():
+    n, m, k = map(int, input().split())
+
+    a = 1
+    for i in range((n - 1) - k + 1, n):
+        a *= i
+        a %= MOD
+    b = 1
+    for i in range(1, k+1):
+        b *= i
+        b %= MOD
+
+    nck = a // b
+
+    print((m * pow((m - 1), k, MOD) * nck) % MOD)
+
+if __name__ == '__main__':
+    sync_with_stdio(False)
+    main()
+","Error: unsupported statement type: <ast.Global object at 0x7a3b7e591a80> global input, flush
+",hoareprompt
+0792,human,code_contests,qwen2.5-7b-instruct,"from __future__ import division, print_function
+# import threading
+# threading.stack_size(2**27)
+# import sys
+# sys.setrecursionlimit(10**7)
+from sys import stdin, stdout
+import bisect            #c++ upperbound
+import math
+import heapq
+i_m=9223372036854775807
+def modinv(n,p):
+    return pow(n,p-2,p)
+def cin():
+    return map(int,sin().split())
+def ain():                           #takes array as input
+    return list(map(int,sin().split()))
+def sin():
+    return input()
+def inin():
+    return int(input())
+import math  
+def GCD(x, y): 
+    x=abs(x)
+    y=abs(y)
+    if(min(x,y)==0):
+        return max(x,y)
+    while(y): 
+        x, y = y, x % y 
+    return x 
+def Divisors(n) : 
+    l = []  
+    for i in range(1, int(math.sqrt(n) + 1)) :
+        if (n % i == 0) : 
+            if (n // i == i) : 
+                l.append(i) 
+            else : 
+                l.append(i)
+                l.append(n//i)
+    return l
+ 
+
+def SieveOfEratosthenes(n): 
+    prime = [True for i in range(n+1)] 
+    p = 2
+    while (p * p <= n): 
+        if (prime[p] == True): 
+            for i in range(p * p, n+1, p): 
+                prime[i] = False
+        p += 1
+    f=[]
+    for p in range(2, n): 
+        if prime[p]: 
+            f.append(p)
+    return f
+q=[]       
+def dfs(n,d,v,c):
+    global q
+    v[n]=1
+    x=d[n]
+    q.append(n)
+    j=c
+    for i in x:
+        if i not in v:
+            f=dfs(i,d,v,c+1)
+            j=max(j,f)
+            # print(f)
+    return j
+  
+""""""*******************************************************""""""
+def main():
+    n,m,k=cin()
+    a=ain()
+    b=[0]
+    b.append(a[0])
+    if m==1:
+        a.sort(reverse=True)
+        print(sum(a[:k]))
+        sys.exit()
+    for i in range(1,n):
+        b.append(a[i]+b[-1])
+    d=[[0]*n]
+    for i in range(1,k+1):
+        dd=[]
+        p=0
+        for j in range(n+1):
+            if j<m:
+                dd.append(0)
+            else:
+                f=d[i-1][j-m]+b[j]-b[j-m]
+                p=max(f,p)
+                dd.append(p)
+        d.append(dd)
+    # print(d)
+    print(max(d[-1]))
+    # # print(d)
+    # m=-i_m
+    # for i in d:
+    #     m=max(m,i[0])
+    # print(m)
+
+
+######## Python 2 and 3 footer by Pajenegod and c1729
+ 
+# Note because cf runs old PyPy3 version which doesn't have the sped up
+# unicode strings, PyPy3 strings will many times be slower than pypy2.
+# There is a way to get around this by using binary strings in PyPy3
+# but its syntax is different which makes it kind of a mess to use.
+ 
+# So on cf, use PyPy2 for best string performance.
+ 
+py2 = round(0.5)
+if py2:
+    from future_builtins import ascii, filter, hex, map, oct, zip
+    range = xrange
+ 
+import os, sys
+from io import IOBase, BytesIO
+ 
+BUFSIZE = 8192
+class FastIO(BytesIO):
+    newlines = 0
+ 
+    def __init__(self, file):
+        self._file = file
+        self._fd = file.fileno()
+        self.writable = ""x"" in file.mode or ""w"" in file.mode
+        self.write = super(FastIO, self).write if self.writable else None
+ 
+    def _fill(self):
+        s = os.read(self._fd, max(os.fstat(self._fd).st_size, BUFSIZE))
+        self.seek((self.tell(), self.seek(0,2), super(FastIO, self).write(s))[0])
+        return s
+ 
+    def read(self):
+        while self._fill(): pass
+        return super(FastIO,self).read()
+ 
+    def readline(self):
+        while self.newlines == 0:
+            s = self._fill(); self.newlines = s.count(b""\n"") + (not s)
+        self.newlines -= 1
+        return super(FastIO, self).readline()
+ 
+    def flush(self):
+        if self.writable:
+            os.write(self._fd, self.getvalue())
+            self.truncate(0), self.seek(0)
+ 
+class IOWrapper(IOBase):
+    def __init__(self, file):
+        self.buffer = FastIO(file)
+        self.flush = self.buffer.flush
+        self.writable = self.buffer.writable
+        if py2:
+            self.write = self.buffer.write
+            self.read = self.buffer.read
+            self.readline = self.buffer.readline
+        else:
+            self.write = lambda s:self.buffer.write(s.encode('ascii'))
+            self.read = lambda:self.buffer.read().decode('ascii')
+            self.readline = lambda:self.buffer.readline().decode('ascii')
+ 
+ 
+sys.stdin, sys.stdout = IOWrapper(sys.stdin), IOWrapper(sys.stdout)
+input = lambda: sys.stdin.readline().rstrip('\r\n')
+ 
+# Cout implemented in Python
+import sys
+class ostream:
+    def __lshift__(self,a):
+        sys.stdout.write(str(a))
+        return self
+cout = ostream()
+endl = '\n'
+ 
+# Read all remaining integers in stdin, type is given by optional argument, this is fast
+def readnumbers(zero = 0):
+    conv = ord if py2 else lambda x:x
+    A = []; numb = zero; sign = 1; i = 0; s = sys.stdin.buffer.read()
+    try:
+        while True:
+            if s[i] >= b'R' [0]:
+                numb = 10 * numb + conv(s[i]) - 48
+            elif s[i] == b'-' [0]: sign = -1
+            elif s[i] != b'\r' [0]:
+                A.append(sign*numb)
+                numb = zero; sign = 1
+            i += 1
+    except:pass
+    if s and s[-1] >= b'R' [0]:
+        A.append(sign*numb)
+    return A
+ 
+# threading.Thread(target=main).start()
+if __name__== ""__main__"":
+  main()","Error: unsupported statement type: <ast.Global object at 0x7a3b7e3229e0> global q
+",hoareprompt
+0832,human,code_contests,qwen2.5-7b-instruct,"""""""
+________        _____________              ______
+___  __ \____  ____  __ \__(_)__   _______ ___  /
+__  /_/ /_  / / /_  /_/ /_  /__ | / /  __ `/_  /
+_  ____/_  /_/ /_  _, _/_  / __ |/ // /_/ /_  /
+/_/     _\__, / /_/ |_| /_/  _____/ \__,_/ /_/
+        /____/
+
+https://github.com/Cheran-Senthil/PyRival
+Copyright (c) 2018 Cheran Senthilkumar
+""""""
+from __future__ import division, print_function
+
+import cmath
+import itertools
+import math
+import operator as op
+import sys
+from atexit import register
+from bisect import bisect_left, bisect_right
+
+# import random
+# from collections import Counter, MutableSequence, defaultdict, deque
+# from copy import deepcopy
+# from decimal import Decimal
+# from difflib import SequenceMatcher
+# from heapq import heappop, heappush
+
+if sys.version_info[0] < 3:
+    from io import BytesIO as stream
+    # from fractions import Fraction
+    # from fractions import gcd
+    # from cPickle import dumps
+    # from Queue import PriorityQueue, Queue
+else:
+    from io import StringIO as stream
+    # from functools import reduce
+    # from fractions import Fraction
+    # from math import gcd
+    # from pickle import dumps
+    # from queue import PriorityQueue, Queue
+
+
+if sys.version_info[0] < 3:
+    class dict(dict):
+        def items(self):
+            return dict.iteritems(self)
+
+        def keys(self):
+            return dict.iterkeys(self)
+
+        def values(self):
+            return dict.itervalues(self)
+
+    input = raw_input
+    range = xrange
+
+    filter = itertools.ifilter
+    map = itertools.imap
+    zip = itertools.izip
+
+
+def sync_with_stdio(sync=True):
+    """"""
+    Sets whether the standard Python streams are allowed to buffer their I/O.
+
+    Parameters
+    ----------
+    sync : bool, optional
+        The new synchronization setting. Default is True.
+    """"""
+    global input, flush
+
+    if sync:
+        flush = sys.stdout.flush
+    else:
+        sys.stdin = stream(sys.stdin.read())
+        input = lambda: sys.stdin.readline().rstrip('\r\n')
+
+        sys.stdout = stream()
+        register(lambda: sys.__stdout__.write(sys.stdout.getvalue()))
+
+
+def main():
+    n, m = map(int, input().split(' '))
+    if n > m:
+        print('YES')
+    else:
+        a = list(map(lambda x: int(x) % m, input().split(' ')))
+        dp = [[False] * m for _ in range(n)]
+        dp[0][a[0]] = True
+        for i in range(1, n):
+            dp[i][a[i]] = True
+            for j, flag in enumerate(dp[i - 1]):
+                if flag:
+                    dp[i][j] = True
+                    dp[i][(j + a[i]) % m] = True
+
+        if dp[-1][0]:
+            print('YES')
+        else:
+            print('NO')
+
+
+if __name__ == '__main__':
+    sys.setrecursionlimit(10000)
+    sync_with_stdio(False)
+    main()
+","Error: unsupported statement type: <ast.Global object at 0x7a3b7e3bbee0> global input, flush
+",hoareprompt
+1149,human,code_contests,qwen2.5-7b-instruct,"import math
+import sys
+if sys.version[0] == '2':
+    range, input = xrange, raw_input
+
+
+class FenwickTree:
+    def __init__(self, a_list, f, default):
+        # 0-indexed
+        self.N = len(a_list)
+        self.bit = a_list[:]
+        self.f = f
+        self.default = default
+        for _ in range(self.N, 1 << (math.ceil(math.log(self.N, 2)))):
+            self.bit.append(self.default)
+        for i in range(self.N - 1):
+            self.bit[i | (i + 1)] = self.f(self.bit[i | (i + 1)], self.bit[i])
+
+    def update(self, i, val):
+        while i < self.N:
+            self.bit[i] = self.f(self.bit[i], val)
+            i |= i + 1
+
+    def query(self, n):
+        # [0, n]
+        ret = 0
+        while n >= 0:
+            ret = self.f(ret, self.bit[n])
+            n = (n & (n + 1)) - 1
+        return ret
+
+
+N = int(input())
+X = [int(x) for x in input().split()]
+dp = FenwickTree([0] * N, lambda x, y: max(x, y), 0)
+for x, i in sorted((x, i) for i, x in enumerate(X)):
+    dp.update(i, dp.query(i) + x)
+print(N * (N + 1) // 2 - dp.query(N - 1))","Error: unsupported statement type: <ast.ClassDef object at 0x7a3b7e47f760> class FenwickTree:
+
+    def __init__(self, a_list, f, default):
+        self.N = len(a_list)
+        self.bit = a_list[:]
+        self.f = f
+        self.default = default
+        for _ in range(self.N, 1 << math.ceil(math.log(self.N, 2))):
+            self.bit.append(self.default)
+        for i in range(self.N - 1):
+            self.bit[i | i + 1] = self.f(self.bit[i | i + 1], self.bit[i])
+
+    def update(self, i, val):
+        while i < self.N:
+            self.bit[i] = self.f(self.bit[i], val)
+            i |= i + 1
+
+    def query(self, n):
+        ret = 0
+        while n >= 0:
+            ret = self.f(ret, self.bit[n])
+            n = (n & n + 1) - 1
+        return ret
+",hoareprompt
+1164,human,code_contests,qwen2.5-7b-instruct,"from __future__ import division, print_function
+# import threading
+# threading.stack_size(2**27)
+import sys
+sys.setrecursionlimit(10**4)
+# sys.stdin = open('inpy.txt', 'r')
+# sys.stdout = open('outpy.txt', 'w')
+from sys import stdin, stdout
+import bisect            #c++ upperbound
+import math
+import heapq
+i_m=9223372036854775807
+def modinv(n,p):
+    return pow(n,p-2,p)
+def cin():
+    return map(int,sin().split())
+def ain():                           #takes array as input
+    return list(map(int,sin().split()))
+def sin():
+    return input()
+def inin():
+    return int(input())
+import math  
+def GCD(x, y): 
+    x=abs(x)
+    y=abs(y)
+    if(min(x,y)==0):
+        return max(x,y)
+    while(y): 
+        x, y = y, x % y 
+    return x 
+def Divisors(n) : 
+    l = []  
+    for i in range(1, int(math.sqrt(n) + 1)) :
+        if (n % i == 0) : 
+            if (n // i == i) : 
+                l.append(i) 
+            else : 
+                l.append(i)
+                l.append(n//i)
+    return l
+prime=[]
+def SieveOfEratosthenes(n): 
+    global prime
+    prime = [True for i in range(n+1)] 
+    p = 2
+    while (p * p <= n): 
+        if (prime[p] == True): 
+            for i in range(p * p, n+1, p): 
+                prime[i] = False
+        p += 1
+    f=[]
+    for p in range(2, n): 
+        if prime[p]: 
+            f.append(p)
+    return f
+def primeFactors(n): 
+    a=[]
+    # Print the number of two's that divide n 
+    while n % 2 == 0: 
+        a.append(2) 
+        n = n // 2
+          
+    # n must be odd at this point 
+    # so a skip of 2 ( i = i + 2) can be used 
+    for i in range(3,int(math.sqrt(n))+1,2): 
+          
+        # while i divides n , print i ad divide n 
+        while n % i== 0: 
+            a.append(i) 
+            n = n // i 
+              
+    # Condition if n is a prime 
+    # number greater than 2 
+    if n > 2: 
+        a.append(n)
+    return a
+
+""""""*******************************************************""""""
+def main():
+    n = inin()
+    a = ain()
+    d=[]
+    p=0
+    for i in range(0,n-1):
+        d.append(a[i+1]-a[i])
+        p+=max(a[i+1]-a[i],0)
+    print((a[0] - p + 1) // 2 + p)
+    t=inin()
+    for _ in range(t):
+        l,r,x=cin()
+        l-=1
+        r-=1
+        if l == 0:
+            a[0] += x
+        if l > 0:
+            p -= max(0, d[l - 1])
+            d[l - 1] += x
+            p += max(0, d[l - 1])
+        if r < n - 1:
+            p -= max(0, d[r])
+            d[r] -= x
+            p += max(0, d[r])
+        print((a[0] - p + 1) // 2 + p)
+######## Python 2 and 3 footer by Pajenegod and c1729
+ 
+# Note because cf runs old PyPy3 version which doesn't have the sped up
+# unicode strings, PyPy3 strings will many times be slower than pypy2.
+# There is a way to get around this by using binary strings in PyPy3
+# but its syntax is yferent which makes it kind of a mess to use.
+ 
+# So on cf, use PyPy2 for best string performance.
+ 
+py2 = round(0.5)
+if py2:
+    from future_builtins import ascii, filter, hex, map, oct, zip
+    range = xrange
+ 
+import os, sys
+from io import IOBase, BytesIO
+ 
+BUFSIZE = 8192
+class FastIO(BytesIO):
+    newlines = 0
+ 
+    def __init__(self, file):
+        self._file = file
+        self._fd = file.fileno()
+        self.writable = ""x"" in file.mode or ""w"" in file.mode
+        self.write = super(FastIO, self).write if self.writable else None
+ 
+    def _fill(self):
+        s = os.read(self._fd, max(os.fstat(self._fd).st_size, BUFSIZE))
+        self.seek((self.tell(), self.seek(0,2), super(FastIO, self).write(s))[0])
+        return s
+ 
+    def read(self):
+        while self._fill(): pass
+        return super(FastIO,self).read()
+ 
+    def readline(self):
+        while self.newlines == 0:
+            s = self._fill(); self.newlines = s.count(b""\n"") + (not s)
+        self.newlines -= 1
+        return super(FastIO, self).readline()
+ 
+    def flush(self):
+        if self.writable:
+            os.write(self._fd, self.getvalue())
+            self.truncate(0), self.seek(0)
+ 
+class IOWrapper(IOBase):
+    def __init__(self, file):
+        self.buffer = FastIO(file)
+        self.flush = self.buffer.flush
+        self.writable = self.buffer.writable
+        if py2:
+            self.write = self.buffer.write
+            self.read = self.buffer.read
+            self.readline = self.buffer.readline
+        else:
+            self.write = lambda s:self.buffer.write(s.encode('ascii'))
+            self.read = lambda:self.buffer.read().decode('ascii')
+            self.readline = lambda:self.buffer.readline().decode('ascii')
+ 
+ 
+sys.stdin, sys.stdout = IOWrapper(sys.stdin), IOWrapper(sys.stdout)
+input = lambda: sys.stdin.readline().rstrip('\r\n')
+ 
+# Cout implemented in Python
+import sys
+class ostream:
+    def __lshift__(self,a):
+        sys.stdout.write(str(a))
+        return self
+cout = ostream()
+endl = '\n'
+ 
+# Read all remaining integers in stdin, type is given by optional argument, this is fast
+def readnumbers(zero = 0):
+    conv = ord if py2 else lambda x:x
+    A = []; numb = zero; sign = 1; i = 0; s = sys.stdin.buffer.read()
+    try:
+        while True:
+            if s[i] >= b'R' [0]:
+                numb = 10 * numb + conv(s[i]) - 48
+            elif s[i] == b'-' [0]: sign = -1
+            elif s[i] != b'\r' [0]:
+                A.append(sign*numb)
+                numb = zero; sign = 1
+            i += 1
+    except:pass
+    if s and s[-1] >= b'R' [0]:
+        A.append(sign*numb)
+    return A
+ 
+# threading.Thread(target=main).start()
+if __name__== ""__main__"":
+  main()","Error: unsupported statement type: <ast.Global object at 0x7a3b7e22a890> global prime
+",hoareprompt

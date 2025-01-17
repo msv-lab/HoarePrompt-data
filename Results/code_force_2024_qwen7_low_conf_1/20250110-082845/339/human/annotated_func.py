@@ -1,0 +1,37 @@
+#State of the program right berfore the function call: n is an integer such that 1 ≤ n ≤ 10^5, and a is a list of n integers where 1 ≤ a_i ≤ 10^5 for all 1 ≤ i ≤ n.
+def func():
+    N = int(input())
+    ans = []
+    a = [int(x) for x in input().split()]
+    b = [(i, a[i]) for i in range(len(a))]
+    S = sorted(b, key=lambda x: x[1])
+    m = max(a)
+    bits = [0] + [1] * N + [0]
+    wtr = [[] for q in range(N)]
+    f = []
+    g = 1
+    last = 0
+    for (i, num) in S:
+        for e in range(num - last):
+            f.append(g)
+        
+        last = num
+        
+        bits[i + 1] = 0
+        
+        g += bits[i] + bits[i + 2] - 1
+        
+    #State of the program after the  for loop has been executed: `N` is an integer equal to the input value within the range 1 to \(10^5\); `a` is a list of `N` integers where each integer is between 1 and \(10^5\); `ans` is an empty list; `b` is a list of tuples where each tuple consists of an index `i` and the corresponding value `a[i]`; `S` is a list of tuples where each tuple consists of an index `i` and the corresponding value `a[i]`, sorted in ascending order by the value `a[i]`; `m` is the maximum value in the list `a`; `bits` is a list of length `N + 2` starting with `0`, followed by `N` elements set to `1`, and ending with `0`, with all elements except the first and the last set to `0`; `wtr` is a list of `N` empty lists; `f` is a list of `N + 2` elements, with the first `N + 1` elements being ones and the last element being `g`; `g` is either 0, 1, or 2; `last` is `m`.
+    for d in range(1, m + 1):
+        print(sum([f[d * x] for x in range(1 + (m - 1) // d)]), end=' ')
+        
+    #State of the program after the  for loop has been executed: `total` is 0, `a` is a list of N integers where each integer is between 1 and \(10^5\), `ans` is an empty list, `b` is a list of tuples where each tuple consists of an index `i` and the corresponding value `a[i]`, `S` is a list of tuples where each tuple consists of an index `i` and the corresponding value `a[i]`, sorted in ascending order by the value `a[i]`, `m` is the maximum value in the list `a`, `bits` is a list of length `N + 2` starting with `0`, followed by `N` elements set to `1`, and ending with `0`, with all elements except the first and the last set to `0`, `wtr` is a list of `N` empty lists, `f` is a list of `N + 2` elements with the first `N + 1` elements being ones and the last element being `g`, `g` is either 0, 1, or 2, `last` is `m`, and the printed value for each iteration `i` is the sum of the elements in `f` at indices from `d*i` to `(d-1)*(i+1)` inclusive.
+#Overall this is what the function does:The function accepts an integer `n` and a list `a` of `n` integers, and performs the following operations:
+1. It reads the integer `N` and the list `a` from standard input.
+2. It constructs a list `b` of tuples containing each index `i` and the corresponding value `a[i]`.
+3. It sorts the list `b` based on the values of `a`.
+4. It determines the maximum value `m` in the list `a`.
+5. It initializes a bit array `bits` and a list `wtr` of empty lists.
+6. It iterates through the sorted list `S` and updates the bit array `bits` and another list `f` based on the differences between consecutive elements.
+7. It prints the cumulative sums of the elements in the list `f` for each divisor of the maximum value `m`.
+

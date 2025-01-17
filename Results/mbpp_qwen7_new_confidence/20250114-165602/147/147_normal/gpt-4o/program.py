@@ -1,0 +1,7 @@
+def find(a, b):
+    return a // b
+
+# Test cases
+assert find(10, 3) == 3
+assert find(4, 2) == 2
+assert find(20, 5) == 4

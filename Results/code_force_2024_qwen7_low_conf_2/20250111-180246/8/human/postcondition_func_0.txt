@@ -1,0 +1,9 @@
+The function `func_1` accepts two parameters: `n` (a positive integer representing the length of the string `s`) and `s` (a string consisting of lowercase English letters). The function computes the lengths of the longest palindromic substrings centered at specific indices for the given string `s`.
+
+After executing the function, the state of the program will be as follows:
+- If `n` is 0, the function returns an empty list.
+- Otherwise, the function returns a list `res` of length `2 * n - 1`, where each element `res[z]` (with `z` ranging from 0 to `2 * n - 2`) represents the length of the longest palindromic substring centered at indices `i` and `j`, where `i = (z + 1) // 2` and `j = z // 2`. Additionally, for each `z`, `res[z]` is also the length of the longest palindromic substring centered at indices `i - p - 1` and `j + p`, where `p` is the length of the longest palindromic substring centered at indices `i - p - 1` and `j + p`.
+
+Potential edge case: When `n` is 0, the function returns an empty list. This ensures that the function handles the case where the input string `s` is empty correctly.
+
+Missing functionality: The provided annotations and code do not explicitly mention handling cases where `s` contains only one character or is a single character repeated throughout. However, since the algorithm checks for palindromes centered at specific indices, it inherently covers these cases as well. Therefore, no additional missing functionality needs to be included in the summary.

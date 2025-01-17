@@ -1,0 +1,21 @@
+t=input()
+t=int(t)
+while t:
+    n,k=input().split()
+    n=int(n)
+    k=int(k)
+    if(k==4*n-2):
+        a=k//2+1 
+        print(a)
+        t=t-1
+        continue
+    if(k%2!=0):
+        a=k//2+1 
+        print(a)
+        t=t-1
+        continue
+    if(k%2==0):
+        a=k//2 
+        print(a)
+        t=t-1
+        continue

@@ -1,0 +1,7 @@
+The function `func_2` processes a series of test cases, each containing a number of strings `s` of varying lengths `n`, and checks whether each string `s` contains at least one 'B'. For each test case, it calls `func_1(n, s)` which is assumed to return `True` if `s` contains at least one 'B' and `False` otherwise. It collects the results of these calls in a list named `results`. After processing all test cases, it prints each result in the list. The function ensures that every string `s` in each test case has at least one 'B', and if any string does not meet this condition, `func_1` would return `False`.
+
+Potential edge cases and missing functionality:
+- The function assumes that `func_1` correctly returns `True` if a string contains at least one 'B' and `False` otherwise. If `func_1` has incorrect logic, the function's output will be unreliable.
+- The function does not handle the case where the input `t` is 0 (no test cases). In this scenario, no strings would be processed, and no results would be printed.
+- The function does not provide any error handling for invalid inputs, such as non-integer values for `t` or `n`, or non-string values for `s`. If any of these conditions occur, the behavior of the function is undefined.
+- The function does not validate that each string `s` is indeed a sequence of 'W' and 'B' characters; it only ensures that there is at least one 'B'. If a string contains other characters, the behavior of `func_1` and thus the function is undefined.

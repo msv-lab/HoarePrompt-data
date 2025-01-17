@@ -1,0 +1,12 @@
+The function `func_2` accepts a grid represented as a 2D list of strings, along with the dimensions of the grid (number of rows `r` and columns `c`), and the initial and final positions of Amanda within the grid. It attempts to find a path from Amanda's initial position to her final position using a breadth-first search algorithm. The function returns either `None` or a list of tuples representing the path from the initial position to the final position in reverse order.
+
+1. The function initializes a `visited` matrix to keep track of visited positions, a queue `q` for BFS, and a `parent` dictionary to store the parent positions for each position in the grid.
+2. It performs a breadth-first search starting from the initial position. For each position, it checks all four possible directions (up, down, left, right). If the next position is within bounds, not yet visited, and accessible according to `func_1`, it marks the position as visited, adds it to the queue, and records its parent.
+3. After the BFS completes, if the final position is not reached, the function returns `None`.
+4. If the final position is reached, it traces back the path from the final position to the initial position using the `parent` dictionary, storing the path in the `moves` list.
+5. The `moves` list is reversed to represent the path from the initial position to the final position, and then returned.
+
+Potential edge cases and missing functionality:
+- If `func_1` returns `False` for all possible moves from the initial position, the function will return `None` without checking other positions.
+- The function assumes that the grid is non-empty and the positions are valid. No checks are performed to ensure these conditions are met.
+- The function does not handle cases where the grid contains obstacles or non-passable cells; it only checks if the next position is within bounds and not visited.

@@ -35,8 +35,8 @@ def calculate_depth_for_programs(data):
 
 # Hardcoded file paths
 data_folder = Path("/home/dimitris/HoarePrompt-data/PilotData/data")
-input_file = data_folder / "code_contests_first1000_under09.json"
-output_file = data_folder / "code_contests_first1000_under09_depth.json"
+input_file = data_folder / "code_force_2024.json"
+output_file = data_folder / "code_force_2024_depth.json"
 
 # Load the data
 data = load_data(input_file)

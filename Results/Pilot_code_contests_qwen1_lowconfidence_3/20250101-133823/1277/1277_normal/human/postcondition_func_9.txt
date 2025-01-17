@@ -1,0 +1,6 @@
+The function `func_10` accepts two parameters `b` and `m`. It first calls another function `func_8(b, m)` to compute some value `g`. If `g` is not equal to 1, the function returns -1. Otherwise, the function returns `pow(b, m - 2, m)`. The function ensures that `b` is an integer such that \(1 < b < 10^6\) and \(\gcd(b, m) = 1\), and `m` is an integer such that \(m > 1\). The final state of the program after the function concludes is one of the following:
+- If `g` is not equal to 1, the program returns -1.
+- If `g` is equal to 1, the program returns `pow(b, m - 2, m)`.
+
+Potential edge cases include:
+- If `b` is not an integer such that \(1 < b < 10^6\) and \(\gcd(b, m) = 1\), or if `m` is not an integer such that \(m > 1\), the function may behave unpredictably due to the assumptions made in the annotations and the conditions checked in the code. However, the function itself does not handle these cases directly.

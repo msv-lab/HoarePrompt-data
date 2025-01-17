@@ -6,21 +6,21 @@ def calculate_consistency(input_csv, output_json):
     # Read the input CSV file
     df = pd.read_csv(input_csv)
 
-    # Debugging: Print column names and data type of 'naive no fsl correctness'
+    # Debugging: Print column names and data type of 'vanilla'
     print("Columns in the DataFrame:", df.columns.tolist())
-    print("Data type of 'naive no fsl correctness':", df['naive no fsl correctness'].dtype)
+    print("Data type of 'vanilla':", df['vanilla'].dtype)
 
-    # Ensure 'original correctness' and 'naive no fsl correctness' are treated as booleans
+    # Ensure 'original correctness' and 'vanilla' are treated as booleans
     df['original correctness'] = df['original correctness'].astype(bool)
-    df['naive no fsl correctness'] = df['naive no fsl correctness'].astype(bool)
+    df['vanilla'] = df['vanilla'].astype(bool)
 
     # Add a column to mark correct and incorrect responses
-    df['is_correct'] = df['original correctness'] == df['naive no fsl correctness']
+    df['is_correct'] = df['original correctness'] == df['vanilla']
 
-    # Ensure 'logprobs' column is present and numeric
-    if 'logprobs' not in df.columns:
-        raise KeyError("'logprobs' column is missing in the input CSV.")
-    df['logprobs'] = pd.to_numeric(df['logprobs'], errors='coerce').fillna(0)
+    # Ensure 'probability' column is present and numeric
+    if 'probability' not in df.columns:
+        raise KeyError("'probability' column is missing in the input CSV.")
+    df['probability'] = pd.to_numeric(df['probability'], errors='coerce').fillna(0)
 
     # Grouping by 'unique_id'
     grouped = df.groupby('unique_id')
@@ -40,9 +40,9 @@ def calculate_consistency(input_csv, output_json):
         # Iterate through rows to calculate the weighted sum
         for _, row in group.iterrows():
             if row[column] == majority_response:
-                weighted_sum += row[weights_column]  # Add logprobs for majority response
+                weighted_sum += row[weights_column]  # Add probability for majority response
             else:
-                weighted_sum -= row[weights_column]  # Subtract logprobs for non-majority response
+                weighted_sum -= row[weights_column]  # Subtract probability for non-majority response
 
         # Calculate consistency score
         num_rows = len(group)
@@ -56,7 +56,7 @@ def calculate_consistency(input_csv, output_json):
 
     for unique_id, group in grouped:
         # Calculate overall group consistency
-        group_consistency, group_consistency_old = calculate_group_consistency(group, 'naive no fsl correctness', 'logprobs')
+        group_consistency, group_consistency_old = calculate_group_consistency(group, 'vanilla', 'probability')
         consistencies.append({
             "unique_id": unique_id,
             "consistency": group_consistency,
@@ -68,14 +68,14 @@ def calculate_consistency(input_csv, output_json):
         threshold = 0.5  # Majority rule: more than 50% correct responses
 
         if correct_proportion > threshold:
-            correct_consistency, correct_consistency_old = calculate_group_consistency(group, 'naive no fsl correctness', 'logprobs')
+            correct_consistency, correct_consistency_old = calculate_group_consistency(group, 'vanilla', 'probability')
             correct_consistencies.append({
                 "unique_id": unique_id,
                 "consistency": correct_consistency,
                 "consistency_old": correct_consistency_old
             })
         else:
-            incorrect_consistency , incorrect_consistency_old = calculate_group_consistency(group, 'naive no fsl correctness', 'logprobs')
+            incorrect_consistency , incorrect_consistency_old = calculate_group_consistency(group, 'vanilla', 'probability')
             incorrect_consistencies.append({
                 "unique_id": unique_id,
                 "consistency": incorrect_consistency,

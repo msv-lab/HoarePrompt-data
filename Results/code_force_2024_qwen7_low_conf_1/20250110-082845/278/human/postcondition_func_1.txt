@@ -1,0 +1,7 @@
+The function `bfs` accepts an integer `start` representing a cell index within the range [1, n], where n is the total number of prison cells. It performs a breadth-first search (BFS) starting from the given `start` node to find all nodes in the connected component. The function marks each visited node in a dictionary called `visited` with a value of `True`. After executing the function, it returns a list `component` containing all nodes in the connected component starting from `start`, where each node in this list has `True` for its value in the `visited` dictionary. 
+
+Potential edge cases include:
+- If the `start` node has no neighbors, the returned `component` list will only contain the `start` node itself.
+- If the graph is completely disconnected (no nodes are reachable from `start`), the returned `component` list will only contain the `start` node.
+
+Missing functionality in the annotations is that the function initializes the `visited` dictionary before starting the BFS, and it uses a `deque` from the `collections` module to implement the queue for BFS.

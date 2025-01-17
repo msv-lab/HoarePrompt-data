@@ -1,0 +1,10 @@
+The function `func_1` accepts two parameters: `n` (a positive integer representing the length of the string `s`) and `s` (a string consisting of lowercase English letters). It returns either an empty list or a list of `2*n - 1` elements. This list contains the lengths of the longest palindromic substrings centered at each position in `s`.
+
+- If `n` is 0, the function returns an empty list.
+- Otherwise, the function iterates through each position in the string `s` and calculates the length of the longest palindromic substring centered at that position. It stores these lengths in the list `res`, which has a length of `2*n - 1`.
+
+The function covers the following edge cases:
+- When `n` is 0, it correctly returns an empty list.
+- For non-zero values of `n`, it correctly identifies and records the lengths of the longest palindromic substrings centered at each position in `s`.
+
+There are no missing functionalities in the provided code, and the annotations accurately reflect the actions performed by the code.

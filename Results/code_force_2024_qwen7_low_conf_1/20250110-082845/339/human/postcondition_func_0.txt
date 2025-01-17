@@ -1,0 +1,8 @@
+The function accepts an integer `n` and a list `a` of `n` integers, and performs the following operations:
+1. It reads the integer `N` and the list `a` from standard input.
+2. It constructs a list `b` of tuples containing each index `i` and the corresponding value `a[i]`.
+3. It sorts the list `b` based on the values of `a`.
+4. It determines the maximum value `m` in the list `a`.
+5. It initializes a bit array `bits` and a list `wtr` of empty lists.
+6. It iterates through the sorted list `S` and updates the bit array `bits` and another list `f` based on the differences between consecutive elements.
+7. It prints the cumulative sums of the elements in the list `f` for each divisor of the maximum value `m`.

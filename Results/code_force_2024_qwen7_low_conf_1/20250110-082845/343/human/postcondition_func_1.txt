@@ -1,0 +1,7 @@
+The function `func_2` accepts a list `cts` of integers. It iterates through each integer in `cts` and maintains a list `odds` which stores integers from `cts` that do not repeat consecutively. Specifically, if the current integer `ct` is the same as the last element in `odds`, it removes the last element from `odds`. Otherwise, it appends `ct` to `odds`. After processing all elements in `cts`, the function returns the list `odds`.
+
+Potential edge cases include:
+- If `cts` is empty, `odds` remains empty, as there are no elements to process.
+- If all elements in `cts` are identical, `odds` will remain empty since every element would be removed upon encountering its duplicate.
+
+The function ensures that the returned list `odds` contains only those integers from `cts` that do not repeat consecutively.

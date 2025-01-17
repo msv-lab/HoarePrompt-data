@@ -1,0 +1,14 @@
+The function `func` processes multiple test cases, each consisting of three non-negative integers `a`, `b`, and `c`, representing the number of introverts, extroverts, and universals, respectively. It calculates a value `tents` based on the following rules:
+- For each test case, if `b % 3 == 0`, `tents` is incremented by `b // 3`.
+- If `b % 3 == 1` and `c >= 2`, `tents` is incremented by `b // 3 + 1` and `c` is decremented by 2.
+- If `b % 3 == 1` and `c < 2`, the function prints `-1` and exits the current iteration.
+- If `b % 3 == 2` and `c >= 1`, `tents` is incremented by `b // 3 + 1` and `c` is decremented by 1.
+- If `b % 3 != 1` and `c >= 1`, `tents` is incremented by `c // 3 + (1 if c % 3 > 0 else 0)` and `c` is decremented by 1.
+- If `c < 1` at any point during the calculation, the function prints `-1` and exits the current iteration.
+- After processing all test cases, the function prints the final value of `tents` or `-1` if any iteration resulted in `-1`.
+
+The function accepts an integer `t` indicating the number of test cases, where \(1 \leq t \leq 10^4\), and for each test case, it processes the values of `a`, `b`, and `c`, ensuring that \(0 \leq a, b, c \leq 10^9\).
+
+Potential edge cases and missing functionality:
+- The function correctly handles the condition when `c < 1` by printing `-1` and exiting the current iteration.
+- However, the function does not handle the case when `b % 3 == 1` and `c == 1` separately; instead, it increments `tents` by `b // 3 + 1` and decrements `c` by 2, which is incorrect if `c` is exactly 1. This should be handled by checking if `c == 1` before decrementing `c` by 2.

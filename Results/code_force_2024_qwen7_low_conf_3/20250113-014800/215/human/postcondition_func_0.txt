@@ -1,0 +1,7 @@
+The function accepts a parameter `t`, a positive integer representing the number of test cases. For each test case, it processes three positive integers `n`, `a`, and `b` (where \(1 \leq n, a, b \leq 10^9\)). Based on the value of `b` relative to `a`, the function calculates and prints one of three possible outputs:
+
+1. If `b <= a`, the output is `n * a`.
+2. If `b - a >= n`, the output is `int((2 * b - n + 1) * n / 2)`.
+3. If `b - a < n`, the output is `int((b - a) / 2 * (b - a + 1) + a * n)`.
+
+After processing all test cases, the function does not retain any specific values for `n`, `a`, and `b`, as these are redefined for each iteration. The final state of the program will be that all test cases have been processed according to the given conditions.

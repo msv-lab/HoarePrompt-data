@@ -1,0 +1,1 @@
+- If any of `c1`, `c2`, `c3`, or `c4` is zero, the corresponding entries in the `dp` table will not be updated because the conditions `if i <= c1`, etc., will not be met. However, since the initial value `dp[0][0]` is set to 1, the sum of the last row will still correctly represent the total number of ways, as long as at least one of `c1`, `c2`, `c3`, or `c4` is non-zero.

@@ -1,0 +1,14 @@
+The function `func_1` accepts a grid represented as a 2D list of strings, the dimensions of the grid, a 2D list indicating visited pixels, and coordinates for removing and adding pixels. It checks if adding a new pixel at `(i2, j2)` to Amanda's body meets certain conditions:
+
+1. The new pixel coordinates `(i2, j2)` must be within the grid boundaries.
+2. The new pixel must not be marked as `'*'` or already visited.
+3. At least two adjacent pixels to `(i2, j2)` must also be marked as `'*'` and unvisited.
+
+If all these conditions are met, the function returns `True`. Otherwise, it returns `False`.
+
+Potential edge cases:
+- If the new pixel coordinates `(i2, j2)` are out of grid boundaries, the function returns `False`.
+- If the new pixel is already marked as `'*'` or visited, the function returns `False`.
+- If fewer than two adjacent pixels to `(i2, j2)` are marked as `'*'` and unvisited, the function returns `False`.
+
+The function does not perform any modifications to the grid or visited status; it only checks the conditions and returns a boolean value based on those checks.

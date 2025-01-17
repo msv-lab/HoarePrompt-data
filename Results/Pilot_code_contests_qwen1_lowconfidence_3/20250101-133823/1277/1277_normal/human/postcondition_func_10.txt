@@ -1,0 +1,7 @@
+The function `func_11` accepts three parameters: `a`, `b`, and `m`. `a` is an integer representing an element from array `a`, `b` is an integer representing an element from array `b`, and `m` is a positive integer representing the modulus. 
+
+The function first computes the value of `a` modulo `m`. It then calls another function `func_10` with parameters `b` and `m` to find the modular inverse of `b` modulo `m`. If the modular inverse does not exist (i.e., `func_10(b, m)` returns `-1`), the function returns `-999999999`. Otherwise, it returns the product of the modular inverse of `b` and `a`, all taken modulo `m`.
+
+The final state of the program after the function concludes will be one of two states:
+- If the modular inverse of `b` modulo `m` does not exist, the program state will have the value `-999999999`.
+- If the modular inverse of `b` modulo `m` exists, the program state will have the value `(inv * a) % m`, where `inv` is the modular inverse of `b` modulo `m`.

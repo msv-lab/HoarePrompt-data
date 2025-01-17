@@ -1,0 +1,147 @@
+#State of the program right berfore the function call: n is an integer such that 1 ≤ n ≤ 10^5. The following n-1 lines each contain two integers v_i and u_i such that 1 ≤ v_i < u_i ≤ n, representing the edges of the tree.
+def func():
+    n = int(raw_input())
+    e = [[] for i in range(n + 1)]
+    for i in range(n - 1):
+        u, v = map(int, raw_input().split())
+        
+        e[u].append(v)
+        
+        e[v].append(u)
+        
+    #State of the program after the  for loop has been executed: `i` is `n - 1`, `e` is a list of \(n + 1\) sublists where each sublist at index `u` contains all `v` such that there is a bidirectional edge between `u` and `v`, `n` is the original input value, and it must satisfy \(1 \leq n \leq 10^5\).
+    dep = [-1] * (n + 1)
+    dep[1] = 0
+    q = deque([1])
+    cur = 1
+    while q:
+        cur = q.popleft()
+        
+        for to in e[cur]:
+            if dep[to] == -1:
+                dep[to] = dep[cur] + 1
+                q.append(to)
+        
+    #State of the program after the loop has been executed: `i` is 0, `q` is empty, `cur` is the last node processed, `e` is a list of \(n + 1\) sublists representing the adjacency list of the graph, `n` is the original input value, `dep` is a list of length \(n + 1\) where each element is set to the distance from node `1` to that node, and `to` is the last node that was added to the deque `q` if it exists.
+    dep = [-1] * (n + 1)
+    pred = [0] * (n + 1)
+    dep[cur] = 0
+    q = deque([cur])
+    end = cur
+    while q:
+        end = q.popleft()
+        
+        for to in e[end]:
+            if dep[to] == -1:
+                dep[to] = dep[end] + 1
+                pred[to] = end
+                q.append(to)
+        
+    #State of the program after the loop has been executed: `q` is an empty deque, `end` is the last node added to `q` (initially `cur`), `dep` is a list of length \(n + 1\) where each element represents the shortest distance from the starting node to the corresponding node, `pred` is a list of length \(n + 1\) where each element represents the predecessor of the corresponding node in the shortest path tree, `cur` is the last node that was processed, `i` is `n`, and `e` remains a list of \(n + 1\) sublists representing the adjacency list of the graph.
+    deg = [-1] * (n + 1)
+    bad = False
+    for i in range(1, n + 1):
+        if deg[dep[i]] == -1:
+            deg[dep[i]] = len(e[i])
+        elif deg[dep[i]] != len(e[i]):
+            bad = True
+            break
+        
+    #State of the program after the  for loop has been executed: `i` is `n + 1`, `bad` is True if there exists any index `j` from 1 to `n` such that `deg[dep[j]]` is not equal to the length of `e[j]`, otherwise `bad` remains `False`, `deg[dep[i]]` is updated for each `i` from 1 to `n` if necessary, `i` is the only variable that changes with each iteration, and `end` remains the last node added to `q`, `dep` remains a list of length \(n + 1\) representing the shortest distances, `pred` remains a list of length \(n + 1\) representing the predecessors, `cur` remains the last node processed, `e` remains a list of \(n + 1\) sublists representing the adjacency list of the graph, `deg` remains a list of length \(n + 1\) where each element is updated if necessary, and `bad` remains `True` if any inconsistency is found or `False` otherwise.
+    if (not bad) :
+        print(cur)
+        exit()
+    #State of the program after the if block has been executed: *`i` is `n + 1`, `bad` remains `False`, `deg[dep[i]]` is updated for each `i` from 1 to `n` if necessary, `cur` is printed with its current value, `end` remains the last node added to `q`, `dep` remains a list of length \(n + 1\) representing the shortest distances, `pred` remains a list of length \(n + 1\) representing the predecessors, `cur` remains the last node processed, `e` remains a list of \(n + 1\) sublists representing the adjacency list of the graph, `deg` remains a list of length \(n + 1\) where each element is updated if necessary, and `bad` remains `False` since the condition `(not bad)` is true. The program exits immediately after this state.
+    center = end
+    for i in range(dep[end] // 2):
+        center = pred[center]
+        
+    #State of the program after the  for loop has been executed: `i` is the final value of `i` after the loop, which is `dep[end] // 2`, `dep[end]` must be at least `2 * i + 1`, `center` is the node that is `dep[end] // 2` steps back from the initial `center` in the list `pred`.
+    dep = [-1] * (n + 1)
+    dep[end] = 0
+    q = deque([end])
+    while q:
+        cur = q.popleft()
+        
+        for to in e[cur]:
+            if dep[to] == -1:
+                dep[to] = dep[cur] + 1
+                q.append(to)
+        
+    #State of the program after the loop has been executed: `dep[end]` is the shortest distance from `center` to `end`, `i` is the total number of iterations the loop has executed, `center` is the node that is `dep[end] // 2` steps back from the initial `center` in the list `pred`, `q` is an empty deque, `cur` is not defined since the loop has finished, and for every node `to` in `e[cur]` during the loop, `dep[to]` is set to `dep[cur] + 1` for each `to` such that `dep[to]` was initially `-1`.
+    deg = [-1] * (n + 1)
+    bad = False
+    for i in range(1, n + 1):
+        if deg[dep[i]] == -1:
+            deg[dep[i]] = len(e[i])
+        elif deg[dep[i]] != len(e[i]):
+            bad = True
+            break
+        
+    #State of the program after the  for loop has been executed: `dep[end]` is the shortest distance from `center` to `end`, `i` is `n`, `n` is a positive integer, `center` is the node that is `dep[end] // 2` steps back from the initial `center` in the list `pred`, `q` is an empty deque, `cur` is not defined, `deg` is a list of length `n + 1` with all elements initialized to `-1`. If `deg[dep[i]] == -1`, then `deg[dep[i]]` is set to `len(e[i])` for each iteration `i` from `1` to `n`. Otherwise, `bad` is set to `True` after the loop terminates.
+    if (not bad) :
+        print(end)
+        exit()
+    #State of the program after the if block has been executed: *`dep[end]` is the shortest distance from `center` to `end`, `i` is `n`, `n` is a positive integer, `center` is the node that is `dep[end] // 2` steps back from the initial `center` in the list `pred`, `q` is an empty deque, `cur` is not defined, `deg` is a list of length `n + 1` with all elements initialized to `-1`, and the value of `end` is printed.
+    top = center
+    dep = [-1] * (n + 1)
+    dep[center] = 0
+    q = deque([center])
+    while q:
+        cur = q.popleft()
+        
+        for to in e[cur]:
+            if dep[to] == -1:
+                if len(e[to]) == 2:
+                    dep[to] = dep[cur] + 1
+                    q.append(to)
+                elif len(e[to]) == 1:
+                    top = to
+                    q.clear()
+                    break
+        
+    #State of the program after the loop has been executed: `dep` is a list of length `n + 1` where `dep[center]` is the maximum depth found during the traversal and all other elements are `-1`. `i` is `n`. `cur` is the farthest node from `center` that has been processed. `q` is an empty deque, as the loop exits when there are no more nodes to process. `top` is the node that was most recently updated and set as the new top node during the loop execution. `deg` is a list of length `n + 1` where each element is the degree (number of edges) of the corresponding node in the graph represented by `e`.
+    deg = [-1] * (n + 1)
+    bad = False
+    for i in range(1, n + 1):
+        if deg[dep[i]] == -1:
+            deg[dep[i]] = len(e[i])
+        elif deg[dep[i]] != len(e[i]):
+            bad = True
+            break
+        
+    #State of the program after the  for loop has been executed: `i` is `n+1`, `deg[dep[i-1]]` is the length of `e[i-1]` for all `i` from `1` to `n` or not equal to `-1`, `bad` is `True` if any `deg[dep[i]]` is not equal to the length of `e[i]` for any `i` from `1` to `n`, otherwise `bad` remains `False`.
+    if (not bad) :
+        print(center)
+        exit()
+    #State of the program after the if block has been executed: *`i` is `n+1`, `deg[dep[i-1]]` is the length of `e[i-1]` for all `i` from `1` to `n` or not equal to `-1`, `bad` remains `False` if any `deg[dep[i]]` is not equal to the length of `e[i]` for any `i` from `1` to `n`, and `center` retains its original value. The program has exited.
+    dep = [-1] * (n + 1)
+    dep[top] = 0
+    q = deque([top])
+    while q:
+        cur = q.popleft()
+        
+        for to in e[cur]:
+            if dep[to] == -1:
+                dep[to] = dep[cur] + 1
+                q.append(to)
+        
+    #State of the program after the loop has been executed: `q` is empty, `cur` is the last node processed, `dep` is a dictionary where each key is a node and its value is the depth level from the initial node in `q`, and `dep[node]` for each node in the graph is set to the correct depth level based on the path from the initial node in `q`.
+    deg = [-1] * (n + 1)
+    bad = False
+    for i in range(1, n + 1):
+        if deg[dep[i]] == -1:
+            deg[dep[i]] = len(e[i])
+        elif deg[dep[i]] != len(e[i]):
+            bad = True
+            break
+        
+    #State of the program after the  for loop has been executed: `i` is `n+1`, `n` is a positive integer, `bad` is `True` if there exists any `j` (where `1 ≤ j ≤ n`) such that `deg[dep[j]]` is not equal to `len(e[j])`, otherwise `bad` is `False`.
+    if (not bad) :
+        print(top)
+        exit()
+    #State of the program after the if block has been executed: *`i` is `n+1`, `n` is a positive integer, `bad` is `False` if there exists any `j` (where `1 ≤ j ≤ n`) such that `deg[dep[j]]` is not equal to `len(e[j])`, otherwise `bad` remains `False`.
+    print(-1)
+#Overall this is what the function does:The function does not explicitly check for the validity of the input edges forming a tree. It assumes the input is correct and focuses on finding the central node. However, a thorough validation step would be needed to ensure the input forms a valid tree structure before proceeding with the main algorithm.
+-
+

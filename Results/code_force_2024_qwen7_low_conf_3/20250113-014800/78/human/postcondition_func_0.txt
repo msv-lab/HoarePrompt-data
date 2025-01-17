@@ -1,0 +1,4 @@
+The function processes `t` test cases, where `t` is an integer such that \(1 \leq t \leq 10^4\). For each test case, it accepts three integers `n`, `m`, and `k` with specified ranges, and `k` pairs of integers representing fountain coordinates. The function then calculates and prints two outputs for each test case:
+1. A sum `s` which is the result of the expression \((c[i][0] - 1) * (c[i][1] - f[-1][1])\) for all `i` where \(c[i][1] > f[-1][1]\).
+2. A list `answer` of length `k` where each element is 1 if the corresponding fountain index satisfies certain conditions, and 0 otherwise.
+Specifically, the function sorts the fountain coordinates by the first element, iterates through them to calculate `s`, and updates the `answer` list based on the relative positions of the fountains. After processing all test cases, the function prints the total sum `s` plus the product of `n - f[-1][1]` and `m`, followed by the `answer` list.

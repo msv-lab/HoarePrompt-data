@@ -1,0 +1,6 @@
+The function processes multiple test cases, each consisting of three integers \( n \), \( a \), and \( b \), where \( n \) represents the number of buns, \( a \) is the usual price of a bun, and \( b \) is the price of the first bun to be sold at a modified price. For each test case, the function calculates the total cost for \( n \) buns under the following conditions:
+- If \( b \) is less than or equal to \( a \), the total cost is \( n \times a \).
+- If \( b \) is greater than \( a \) and the difference between \( b \) and \( a \) is greater than or equal to \( n \), the total cost is calculated using the formula \( \text{int}((2 \times b - n + 1) \times n / 2) \).
+- Otherwise, the total cost is calculated using the formula \( \text{int}((b - a) / 2 \times (b - a + 1) + a \times n) \).
+
+The function reads \( t \) test cases from the input, processes each one according to the conditions described, and prints the total cost for each test case. The final state of the program after the function concludes is that it has processed all test cases and printed the total cost for each one, with the last printed value being the result of the last condition met during the loop iterations.

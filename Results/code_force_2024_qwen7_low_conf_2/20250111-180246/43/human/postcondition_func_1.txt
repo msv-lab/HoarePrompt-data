@@ -1,0 +1,16 @@
+The function `traverse` accepts three parameters: `node`, `parent`, and a dictionary `tree`. `node` is an integer representing a vertex in the tree, `parent` is an integer representing the parent of the current node in the traversal, and `tree` is a dictionary where keys are integers (representing nodes) and values are lists of integers (representing neighbors). The function calculates a value based on the `student_types` list, which is a list of strings of length `n` where each string can be 'P' (parties), 'S' (studies), or 'C' (code).
+
+The function performs the following actions:
+1. It iterates through the neighbors of the given `node`, excluding the `parent`.
+2. For each neighbor, it recursively calls `traverse` and sums up the results, storing this sum in `partying_neighbors`.
+3. Depending on the value of `student_types[node]`:
+   - If `student_types[node]` is 'P', it returns `partying_neighbors + 1`.
+   - If `student_types[node]` is 'S', it returns the maximum of 0 and `partying_neighbors - 1`.
+   - If `student_types[node]` is 'C', it returns `partying_neighbors`.
+
+The final state of the program after the function concludes is:
+- If `student_types[node]` is 'P', the function returns the sum of `partying_neighbors` for all neighbors of `node` plus 1.
+- If `student_types[node]` is 'S', the function returns the maximum of 0 and the difference between `partying_neighbors` and 1.
+- If `student_types[node]` is 'C', the function returns `partying_neighbors`.
+
+This function effectively computes a value based on the `student_types` of the current node and its neighbors, considering the type of students present.

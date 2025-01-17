@@ -1,0 +1,1 @@
+- There is no explicit handling for the case when `n` is the last vertex in the tree (i.e., it has no neighbors). In such a case, the recursive call to `func_2` would cause an issue since there would be no elements in `graph[n]`. This should be handled to prevent potential index out of range errors.

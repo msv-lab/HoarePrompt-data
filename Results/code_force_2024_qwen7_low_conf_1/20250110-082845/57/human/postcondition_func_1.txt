@@ -1,0 +1,6 @@
+The function processes a series of test cases, where each test case consists of two integers `n` and `x`. For each test case, it calls the `func_1(n, x)` function and stores the result in a list `results`. After processing all test cases, it prints the results in order. The function reads the input from standard input, where the first line contains the number of test cases `t`, followed by `t` lines, each containing two space-separated integers `n` and `x`.
+
+Potential edge cases and missing functionality:
+1. The function assumes that the input format is correct and that there are enough elements in the `data` list to process all test cases. If there are fewer than `2 * t` elements in the `data` list, the function will raise an `IndexError`.
+2. The function does not handle invalid input (e.g., non-integer values, negative integers, or `x` not being less than `n`). It relies on the caller to ensure that the input is valid.
+3. The function does not perform any error checking on the results returned by `func_1(n, x)`. It simply appends the results to the `results` list and prints them.

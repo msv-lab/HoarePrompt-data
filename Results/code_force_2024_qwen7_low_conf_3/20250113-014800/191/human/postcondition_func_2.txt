@@ -1,0 +1,5 @@
+The function `func_3` accepts four parameters: `n` (the size of the chessboard), `k` (the number of moves already played), `fact` (a list of precomputed factorials up to `n`), and `mod` (an integer). It returns either 0 or a specific value calculated based on these parameters. Specifically:
+- If `k` is not within the valid range \(0 \leq k \leq n\), the function returns 0.
+- Otherwise, it computes and returns the value \((fact[n] * func_2(fact[k], mod) \% mod * func_2(fact[n - k], mod) \% mod)\), where `func_2` is applied to `fact[k]` and `mod`, and the result is taken modulo `mod`, then applied to `fact[n - k]` and `mod`, and the final result is also taken modulo `mod`.
+
+This function checks the validity of `k` first, ensuring it falls within the specified range before proceeding with the computation. If `k` is out of range, the function simply returns 0 without further calculations.

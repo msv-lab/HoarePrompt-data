@@ -1,0 +1,8 @@
+The function `func_1` accepts two parameters: `n` and `s`. 
+
+- `n` is an integer such that \(1 \leq n \leq 2 \cdot 10^5\).
+- `s` is a string consisting of 'N', 'S', 'E', 'W' with length `n`.
+
+The function first counts the occurrences of 'N', 'S', 'E', and 'W' in the string `s`. It then checks if the counts of 'N' and 'S' are equal and the counts of 'E' and 'W' are equal. If these conditions are not met, it returns 'NO'.
+
+If the conditions are met, it constructs a new string based on the characters in `s`. For each 'N' in `s`, it appends 'R' to the result list and decreases the count of 'N'. For each 'S' in `s`, it appends 'H' to the result list and decreases the count of 'S'. Similarly, for each 'E' in `s`, it appends 'R' to the result list and decreases the count of 'E'. For each 'W' in `s`, it appends 'H' to the result list and decreases the count of 'W'. After processing all characters, it returns a string created by joining the elements in the result list.

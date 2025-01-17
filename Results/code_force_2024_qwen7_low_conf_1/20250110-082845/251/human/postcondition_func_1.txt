@@ -1,0 +1,6 @@
+The function `func_2` accepts four parameters: `n`, `m`, `k`, and `steps`. All of `n`, `m`, and `k` are positive integers with specific constraints (1 ≤ n, m, k ≤ 10^6 and 2 ≤ k ≤ 10^12), and `steps` is a non-negative integer.
+
+- The function iterates `steps` times, halving `h` when it is greater than `w` and halving `w` when it is less than or equal to `h`. Both `h` and `w` are ensured to be at least 1 after each iteration.
+- After the loop, the function checks if the product of `h` and `w` is less than `k`. If it is, the function returns `True`; otherwise, it returns `None`.
+
+This means the function returns `True` if, after performing the specified operations for `steps` iterations, the product of `h` and `w` is still less than `k`. Otherwise, it returns `None`.

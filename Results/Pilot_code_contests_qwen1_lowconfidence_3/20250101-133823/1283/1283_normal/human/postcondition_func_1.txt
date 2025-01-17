@@ -1,0 +1,14 @@
+The function `func_2` accepts several parameters including 2D lists `dp1` and `dp2`, a 2D list `matrix`, positive integers `n`, `m`, `x`, `y`, and costs `black_cost` and `white_cost`. It processes these inputs to calculate a minimum cost related to transforming pixels in the `matrix` from black to white or vice versa, using dynamic programming techniques. 
+
+The function checks various conditions and recursively calculates costs based on the current state of groups of pixels (`w` and `b`), the costs of pixel transformations (`black_cost` and `white_cost`), and the bounds defined by `x` and `y`. Depending on these conditions, it can return 0, `float('inf')`, or the minimum value between certain computed costs. Specifically:
+
+- If the index is out of bounds and certain width conditions are met, it returns 0.
+- If the index is out of bounds and other width conditions are met, it also returns 0.
+- If the index is out of bounds and neither width condition is met, it returns `float('inf')`.
+- If precomputed values in `dp1` and `dp2` are available, it returns the minimum of those values.
+- Otherwise, it computes four possible costs (`c1`, `c2`, `c3`, `c4`) by recursively calling itself and potentially modifying the costs based on whether the current group of pixels is within bounds. It then updates `dp1` and `dp2` with the minimum cost for the current index and returns the minimum of these four costs.
+
+Potential edge cases and missing functionality:
+- The function does not handle the case where `x > y`, which should be a valid check.
+- The function assumes `w` and `b` are non-negative integers, but it does not explicitly validate this.
+- The function does not provide clear handling for invalid inputs like negative integers or non-lists for `dp1`, `dp2`, `matrix`, or invalid characters in `matrix`.

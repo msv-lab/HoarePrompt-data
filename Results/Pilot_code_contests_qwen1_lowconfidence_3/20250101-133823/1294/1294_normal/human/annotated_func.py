@@ -1,0 +1,9 @@
+#State of the program right berfore the function call: x is an integer representing the number of participants (1 ≤ x ≤ 500), and b and p are integers representing the number of bottles of water per participant per match and the number of towels per participant (1 ≤ b, p ≤ 500).
+def func_1(x):
+    for i in range(10):
+        if potencias[i] > x:
+            return potencias[i - 1]
+        
+    #State of the program after the  for loop has been executed: `x` is an integer representing the number of participants, `b` and `p` are integers representing the number of bottles of water per participant per match and the number of towels per participant. If `potencias[9]` is greater than `x`, the function returns `potencias[8]`. Otherwise, the function returns `potencias[9]` if it is less than or equal to `x`, and if none of these conditions are met, the function returns `potencias[0]` if it is less than or equal to `x`, otherwise no specific value is returned.
+#Overall this is what the function does:The function `func_1` accepts an integer `x` representing the number of participants, with the constraint \(1 \leq x \leq 500\). It then iterates through the indices of an array `potencias` (not defined in the snippet but assumed to be relevant based on the cases provided). If `potencias[i]` is greater than `x`, the function returns `potencias[i - 1]`. If `i` is within the bounds of the array and `potencias[i - 1]` is less than or equal to `x`, the function returns `potencias[i - 1]`. If none of the above conditions are met, the function returns `potencias[9]` if it is less than or equal to `x`, otherwise it returns `potencias[0]` if it is less than or equal to `x`. If `potencias[9]` is not greater than `x`, the function will eventually return `potencias[0]`. If `potencias[0]` is also not less than or equal to `x`, the function will not return anything.
+

@@ -1,0 +1,6 @@
+The function accepts four positive integers `n`, `m`, `k`, and two distinct integers `a` and `b` within the range \(1 \leq a, b \leq n \cdot m \cdot k\). It calculates and prints the total time required for `a` and `b` to meet under the given constraints. The total time is composed of the minimum time to travel between the floors (`min_floor_time`) and the minimum time to travel between the blocks (`min_block_time`). 
+
+- The floor calculation considers the vertical distance between `a` and `b` and adds a fixed time of 10 minutes for the elevator to reach the ground floor.
+- The block calculation considers the horizontal distance between the blocks where `a` and `b` are located and multiplies it by 15 minutes, which is the time it takes to move between adjacent blocks.
+
+The function handles the case where `a_floor` might be greater than `b_floor` and adjusts the floor travel time accordingly. There are no explicit edge cases mentioned in the code; however, the code assumes that `a` and `b` are within the valid range and that `a` is not equal to `b`. If these conditions are not met, the function may behave unpredictably.

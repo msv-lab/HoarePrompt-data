@@ -1,0 +1,3 @@
+The function `func_3` accepts an integer `n` such that \(1 \leq n \leq 10^9\). It calculates values for `k` and `r` using `divmod(n, 2)`, then computes `_2_pwr_k` using `func_1(2, k, 999999893)`. Based on the value of `r`, it determines the value of `q` as either \((-2 \cdot _2_pwr_k^2 + 8 \cdot _2_pwr_k - 4) \% 999999893\) if `r` is 0, or \((4 \cdot _2_pwr_k^2 + 8 \cdot _2_pwr_k - 4) \% 999999893\) if `r` is 1. Finally, it returns the result of `func_2(p, q, 999999893)` where `p = (4 \cdot _2_pwr_k - 4) \% 999999893`.
+
+The function effectively performs these steps regardless of the value of `n`, handling both even and odd values of `n` correctly. If `n` is even, `r` will be 0, and if `n` is odd, `r` will be 1.

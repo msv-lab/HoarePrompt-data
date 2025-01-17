@@ -1,0 +1,11 @@
+The function processes `t` test cases, each consisting of three non-negative integers `a`, `b`, and `c`. It calculates the maximum number of tents (`tents`) that can be allocated based on certain conditions involving `a`, `b`, and `c`. Specifically, `a` represents the number of introverts, `b` the number of extroverts, and `c` the number of universals (which can be used as either introverts or extroverts). The function updates `tents` according to the following rules:
+
+1. Initialize `tents` with the value of `a`.
+2. If `b % 3 == 0`, add `b // 3` to `tents`.
+3. If `b % 3 == 1` and `c >= 2`, add `b // 3 + 1` to `tents` and decrement `c` by 2.
+4. If `b % 3 == 2` and `c >= 1`, add `b // 3 + 1` to `tents` and decrement `c` by 1.
+5. After updating based on `b`, if `c` is non-negative, add up to one more tent (`c // 3 + (1 if c % 3 > 0 else 0)`).
+
+If at any point `c` becomes negative due to the above operations, the function prints `-1` and does not proceed with further updates. Otherwise, it prints the final value of `tents`.
+
+The function accepts `t` test cases and returns no explicit output, but prints the result for each test case during its execution.
