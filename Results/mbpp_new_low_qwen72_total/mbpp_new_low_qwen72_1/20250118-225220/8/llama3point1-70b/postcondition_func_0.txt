@@ -1,0 +1,8 @@
+The function `func_1` accepts a string `s` and a single character string `char`. It returns a new string based on the following cases:
+1. If `char` appears exactly once in `s`, the function returns `s` with the single occurrence of `char` removed.
+2. If `char` appears more than once in `s`, the function returns a new string with the first and last occurrences of `char` removed.
+3. If `char` does not appear in `s` at all, the function returns the original string `s` unchanged. 
+
+Potential edge cases and missing functionality:
+- If `s` is an empty string or `char` is an empty string, the function will return `s` unchanged.
+- If `s` contains multiple occurrences of `char` but all occurrences are adjacent (e.g., "aaa"), the function will still remove the first and last occurrences, effectively removing the outermost `char` characters.

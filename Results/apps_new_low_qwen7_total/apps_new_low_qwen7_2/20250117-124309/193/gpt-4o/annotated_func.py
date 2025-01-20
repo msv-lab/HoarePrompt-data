@@ -1,0 +1,7 @@
+#State of the program right berfore the function call: x and y are integers such that 3 <= y < x <= 100,000.
+def func():
+    x, y = map(int, input().split())
+
+print((x - y) // 2 + (x - y) % 2)
+#Overall this is what the function does:The function accepts two integers `x` and `y` through user input, where `3 <= y < x <= 100,000`. It then calculates and prints the result of the expression \((x - y) // 2 + (x - y) \% 2\). This expression simplifies to \(\frac{x - y}{2}\) if \(x - y\) is even, or \(\frac{x - y + 1}{2}\) if \(x - y\) is odd. The function does not return any value; instead, it directly prints the result.
+

@@ -1,0 +1,6 @@
+The function `func_1` reads five integer inputs `c`, `v_0`, `v_1`, `a`, and `l` from the user, where `1 ≤ c ≤ 1000`, `0 ≤ l < v_0 ≤ v_1 ≤ 1000`, and `0 ≤ a ≤ 1000`. It calculates the minimum number of days required to read at least `c` pages, given the following conditions:
+- On the first day, the reader reads `v_0` pages.
+- On subsequent days, the reader reads `min(current_speed, v_1) - l` pages, where `current_speed` starts at `v_0` and increases by `a` each day, up to a maximum of `v_1`.
+- If the number of pages read becomes negative, it is reset to 0.
+- The function prints the total number of days required to reach or exceed `c` pages read.
+- After the function concludes, the state of the program includes the original input values (`c`, `v_0`, `v_1`, `a`, `l`), the number of days (`days`), the total pages read (`pages_read`), and the final reading speed (`current_speed`).

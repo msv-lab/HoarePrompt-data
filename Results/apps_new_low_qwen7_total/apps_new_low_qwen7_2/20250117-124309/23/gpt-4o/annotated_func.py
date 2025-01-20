@@ -1,0 +1,12 @@
+#State of the program right berfore the function call: s is a string consisting of only English letters and its length is between 1 and 1000, inclusive.
+def func_1(s):
+    n = len(s)
+    for i in range(n // 2):
+        if s[i] != s[n - 1 - i]:
+            return False
+        
+    #State of the program after the  for loop has been executed: Output State: `s` is a string consisting of only English letters with a length between 1 and 1000, inclusive; for all `i` in the range of `0` to `n-1`, the character at index `i` is equal to the character at index `n - 1 - i`. If the loop completes without returning False, it means the string `s` is a palindrome. Otherwise, the function will return False at some point during the loop execution.
+    return True
+    #The program returns True indicating that the string 's' is a palindrome
+#Overall this is what the function does:The function `func_1` accepts a string `s` consisting of only English letters and checks whether `s` is a palindrome. It returns `False` if the string is not a palindrome and `True` if the string is a palindrome. The function iterates through the first half of the string, comparing characters from the start and the end moving towards the center. If it finds any mismatch, it immediately returns `False`. If the loop completes without finding any mismatches, it returns `True`. The function handles strings of lengths between 1 and 1000, inclusive.
+

@@ -1,0 +1,7 @@
+The function `func_1` accepts two parameters `n` and `m`, which are non-negative integers such that \(0 \leq n, m \leq 1000\). Based on the values of `n` and `m`, it returns a list of points that satisfy the condition of having at least 4 different points on the grid from (0, 0) to (n, m) inclusive. Specifically:
+- If both `n` and `m` are at least 2, the function returns `[(0, 0), (n, 0), (n, m), (0, m)]`.
+- If `n` is 0, the function returns `[(0, 0), (0, m), (0, 1), (0, m - 1)]`.
+- If `m` is 0, the function returns `[(0, 0), (n, 0), (1, 0), (n - 1, 0)]`.
+- If `n` is 1, the function returns `[(0, 0), (1, 0), (1, m), (0, m)]`.
+
+The function ensures that the returned list always contains exactly 4 distinct points on the grid, adhering to the given constraints.

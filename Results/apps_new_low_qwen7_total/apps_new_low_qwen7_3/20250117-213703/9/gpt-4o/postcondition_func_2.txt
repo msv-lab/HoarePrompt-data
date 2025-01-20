@@ -1,0 +1,4 @@
+The function `tiles_needed_to_complete_group` accepts a list of 3 string tiles, where each string represents a suited tile with a number (ranging from 1 to 9) followed by a suit character (m, p, or s). It returns either 1 or 2 based on the following conditions:
+- If the list contains only one tile, it returns 2.
+- If the list contains two tiles, it returns 1 if they are the same or if the difference between their values is less than or equal to 2. Otherwise, it returns 2.
+- If the list contains three tiles, it returns 2 regardless of the values of the tiles.

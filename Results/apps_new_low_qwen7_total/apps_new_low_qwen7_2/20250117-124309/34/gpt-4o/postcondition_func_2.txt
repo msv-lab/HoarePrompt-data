@@ -1,0 +1,12 @@
+The function `adjust_solution` accepts parameters `x`, `y`, `a1_div_gcd`, `a2_div_gcd`, `sign_a1`, and `sign_a2`. It updates the values of `x` and `y` based on the conditions involving `b1`, `a1`, `L`, and `R`. Specifically:
+
+1. If `sign_a1 > 0`, it calculates `k` using `(L - (b1 + a1 * x)) // (a1 * a1_div_gcd)` and adjusts `x` and `y` accordingly.
+2. If `b1 + a1 * x < L`, it further updates `x` to `x + a2_div_gcd` and `y` to `y - a1_div_gcd`.
+3. If `b1 + a1 * x > R`, it adjusts `x` to `x - a2_div_gcd` and `y` to `y + a1_div_gcd`.
+
+After these adjustments, the function returns the updated values of `x` and `y`.
+
+Potential edge cases and missing functionality:
+- The function assumes that `a1` and `a2` are not zero, which is not explicitly checked in the code.
+- There is no handling for the case when `b1 + a1 * x == L` or `b1 + a1 * x == R`, which could lead to unexpected behavior depending on the specific requirements.
+- The function does not modify `a1_div_gcd`, `a2_div_gcd`, `sign_a1`, `sign_a2`, `L`, and `R` as stated in the annotations, ensuring these parameters remain unchanged.

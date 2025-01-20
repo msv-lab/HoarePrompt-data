@@ -1,0 +1,288 @@
+Task ID,Dataset,model_created,model_run,description,Code,run_number,original correctness,summary fsl,naive correctness fsl,vanilla,simple tree,complex tree,summary,simple verify fsl,complex verify fsl,summary verify fsl,simple verify,complex verify,summary verify
+2,mbppplus,gpt-4o,qwen2.5-72b-instruct,Write a python function to identify non-prime numbers.,"import math
+
+def is_not_prime(n):
+    if n <= 1:
+        return True
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if n % i == 0:
+            return True
+    return False
+
+# Test cases
+assert is_not_prime(1) == True
+assert is_not_prime(2) == False
+assert is_not_prime(10) == True
+assert is_not_prime(35) == True
+assert is_not_prime(37) == False
+",2,True,True,True,True,True,True,True,True,True,True,True,True,True
+58,mbppplus,gpt-4o,qwen2.5-72b-instruct,Write a python function to count true booleans in the given list.,"def count(bool_list):
+    return sum(bool_list)
+
+# Test cases
+assert count([True, False, True]) == 2
+assert count([False, False]) == 0
+assert count([True, True, True]) == 3
+",2,True,True,True,True,True,True,True,True,True,True,True,True,True
+116,mbppplus,gpt-4o,qwen2.5-72b-instruct,Write a python function to convert complex numbers to polar coordinates.,"import cmath
+
+def convert(num):
+    return cmath.polar(complex(num))
+
+# Test cases
+assert convert(1) == (1.0, 0.0)
+assert convert(4) == (4.0, 0.0)
+assert convert(5) == (5.0, 0.0)
+",2,True,False,False,True,True,True,True,False,False,False,True,True,True
+122,mbppplus,gpt-4o,qwen2.5-72b-instruct,Write a function that takes in two tuples and performs mathematical division operation element-wise across the given tuples.,"def division_elements(tup1, tup2):
+    # Perform element-wise division
+    result = tuple(a // b for a, b in zip(tup1, tup2))
+    return result
+
+# Test cases
+assert division_elements((10, 4, 6, 9),(5, 2, 3, 3)) == (2, 2, 2, 3)
+assert division_elements((12, 6, 8, 16),(6, 3, 4, 4)) == (2, 2, 2, 4)
+assert division_elements((20, 14, 36, 18),(5, 7, 6, 9)) == (4, 2, 6, 2)
+",2,False,True,True,True,True,True,True,True,True,True,True,True,True
+154,mbppplus,gpt-4o,qwen2.5-72b-instruct,Write a function to find the depth of a dictionary.,"def dict_depth(d):
+    if not isinstance(d, dict) or not d:
+        return 1
+    else:
+        return 1 + max(dict_depth(value) for value in d.values())
+
+# Test cases
+assert dict_depth({'a':1, 'b': {'c': {'d': {}}}}) == 4
+assert dict_depth({'a':1, 'b': {'c':'python'}}) == 2
+assert dict_depth({1: 'Sun', 2: {3: {4:'Mon'}}}) == 3
+",2,False,False,False,True,True,True,True,False,True,True,True,True,True
+181,mbppplus,gpt-4o,qwen2.5-72b-instruct,Write a python function to find the average of cubes of first n natural numbers.,"def find_Average_Of_Cube(n):
+    # Generate the first n natural numbers
+    natural_numbers = range(1, n + 1)
+    # Compute the cubes of these numbers
+    cubes = [x ** 3 for x in natural_numbers]
+    # Calculate the sum of the cubes
+    sum_of_cubes = sum(cubes)
+    # Calculate the average
+    average = sum_of_cubes / n
+    return average
+
+# Test cases to validate the solution
+assert find_Average_Of_Cube(2) == 4.5
+assert find_Average_Of_Cube(3) == 12
+assert find_Average_Of_Cube(1) == 1
+",2,True,True,True,True,True,True,True,True,True,True,True,True,True
+188,mbppplus,gpt-4o,qwen2.5-72b-instruct,Write a function to find the median length of a trapezium.,"def median_trapezium(a, b, _):
+    return (a + b) / 2
+
+# Testing the function with provided test cases
+assert median_trapezium(15, 25, 35) == 20
+assert median_trapezium(10, 20, 30) == 15
+assert median_trapezium(6, 9, 4) == 7.5
+",2,True,False,False,True,True,True,True,False,False,False,True,True,True
+199,mbppplus,gpt-4o,qwen2.5-72b-instruct,Write a function to calculate the sum of perrin numbers.,"def cal_sum(n):
+    if n < 0:
+        return 0
+    
+    perrin = [3, 0, 2]
+    
+    for i in range(3, n+1):
+        perrin.append(perrin[i-2] + perrin[i-3])
+        
+    return sum(perrin)
+
+# Test cases
+assert cal_sum(9) == 49
+assert cal_sum(10) == 66
+assert cal_sum(11) == 88
+",2,False,False,False,True,True,True,True,False,True,True,True,True,True
+213,mbppplus,gpt-4o,qwen2.5-72b-instruct,Write a function to find the maximum product formed by multiplying numbers of an increasing sublist of that array.,"def max_product(arr):
+    n = len(arr)
+    if n == 0:
+        return 0
+
+    # Initialize a list to store the maximum product up to each element
+    max_products = [0] * n
+    max_products[0] = arr[0]
+
+    for i in range(1, n):
+        max_products[i] = arr[i]
+        for j in range(i):
+            if arr[j] < arr[i]:
+                max_products[i] = max(max_products[i], max_products[j] * arr[i])
+
+    # Return the maximum product found
+    return max(max_products)
+
+# Test cases
+assert max_product([3, 100, 4, 5, 150, 6]) == 3000
+assert max_product([4, 42, 55, 68, 80]) == 50265600
+assert max_product([10, 22, 9, 33, 21, 50, 41, 60]) == 2460
+",2,False,True,False,True,True,True,True,True,True,True,True,True,True
+225,mbppplus,gpt-4o,qwen2.5-72b-instruct,Write a python function to find the difference between the sum of cubes of the first n natural numbers and the sum of the first n natural numbers.,"def difference(n):
+    # Calculate the sum of the first n natural numbers
+    sum_n = n * (n + 1) // 2
+    
+    # Calculate the sum of the cubes of the first n natural numbers
+    sum_cubes_n = sum_n ** 2
+    
+    # Calculate the difference
+    return sum_cubes_n - sum_n
+
+# Tests
+assert difference(3) == 30
+assert difference(5) == 210
+assert difference(2) == 6
+",2,True,False,True,True,True,True,False,True,False,True,True,True,True
+287,mbppplus,gpt-4o,qwen2.5-72b-instruct,Write a function to calculate the wind chill index rounded to the next integer given the wind velocity in km/h and a temperature in celsius.,"def wind_chill(velocity, temperature):
+    wind_chill_index = 13.12 + 0.6215 * temperature - 11.37 * (velocity ** 0.16) + 0.3965 * temperature * (velocity ** 0.16)
+    return round(wind_chill_index)
+
+# Test cases
+assert wind_chill(120, 35) == 40
+assert wind_chill(40, 20) == 19
+assert wind_chill(10, 8) == 6
+",2,True,True,False,False,True,True,True,False,False,False,False,False,False
+331,mbppplus,gpt-4o,qwen2.5-72b-instruct,Write a python function to get the difference between two lists.,"def Diff(list1, list2):
+    # Convert lists to sets and find their symmetric difference
+    set1 = set(list1)
+    set2 = set(list2)
+    diff_elements = set1.symmetric_difference(set2)
+    
+    # Convert the set back to a list and sort it to ensure the order matches the expected results
+    result_list = list(diff_elements)
+    result_list.sort(key=lambda x: (list1 + list2).index(x))
+    
+    return result_list
+
+# Test cases
+assert Diff([10, 15, 20, 25, 30, 35, 40], [25, 40, 35]) == [10, 20, 30, 15]
+assert Diff([1,2,3,4,5], [6,7,1]) == [2,3,4,5,6,7]
+assert Diff([1,2,3], [6,7,1]) == [2,3,6,7]
+",2,True,True,False,True,True,True,True,False,False,False,True,True,True
+342,mbppplus,gpt-4o,qwen2.5-72b-instruct,Write a function to find the product of first even and odd number of a given list.,"def mul_even_odd(lst):
+    first_odd = None
+    first_even = None
+    
+    for num in lst:
+        if first_odd is None and num % 2 != 0:
+            first_odd = num
+        if first_even is None and num % 2 == 0:
+            first_even = num
+        if first_odd is not None and first_even is not None:
+            break
+    
+    return first_odd * first_even
+
+# Test cases
+assert mul_even_odd([1, 3, 5, 7, 4, 1, 6, 8]) == 4
+assert mul_even_odd([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 2
+assert mul_even_odd([1, 5, 7, 9, 10]) == 10
+",2,True,False,False,True,True,True,True,False,False,False,True,True,False
+2,mbppplus,llama3point1-70b,qwen2.5-72b-instruct,Write a python function to identify non-prime numbers.,"import math
+def is_not_prime(n):
+    if n == 1:
+        return True
+    for i in range(2, int(math.sqrt(n))+1):
+        if n % i == 0:
+            return True
+    return False
+",2,True,False,True,False,True,False,False,True,True,True,False,False,False
+8,mbppplus,llama3point1-70b,qwen2.5-72b-instruct,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s, char):
+    first_occurrence = s.find(char)
+    last_occurrence = s.rfind(char)
+    
+    if first_occurrence != -1 and last_occurrence != -1:
+        if first_occurrence == last_occurrence:
+            return s.replace(char, '', 1)
+        else:
+            return s[:first_occurrence] + s[first_occurrence+1:last_occurrence] + s[last_occurrence+1:]
+    else:
+        return s
+",2,True,True,False,True,True,False,True,False,True,True,True,True,True
+67,mbppplus,llama3point1-70b,qwen2.5-72b-instruct,Write a function to sum all amicable numbers from 1 to a specified number.,"def sum_of_divisors(n):
+    divisors_sum = 0
+    for i in range(1, int(n**0.5) + 1):
+        if n % i == 0:
+            if i * i != n:
+                divisors_sum += i + n // i
+            else:
+                divisors_sum += i
+    return divisors_sum - n
+
+def amicable_numbers_sum(n):
+    amicable_sum = 0
+    for num in range(1, n + 1):
+        if sum_of_divisors(num) < n:
+            if sum_of_divisors(sum_of_divisors(num)) == num and num != sum_of_divisors(num):
+                amicable_sum += num
+    return amicable_sum
+",2,True,False,False,True,True,True,True,True,True,True,True,True,False
+83,mbppplus,llama3point1-70b,qwen2.5-72b-instruct,Write a function to sort a list of elements.,"def pancake_sort(arr):
+    n = len(arr)
+    for size in range(n, 0, -1):
+        max_index = arr.index(max(arr[:size]))
+        if max_index != size-1:
+            if max_index != 0:
+                arr[:max_index+1] = arr[:max_index+1][::-1]
+            arr[:size] = arr[:size][::-1]
+    return arr
+",2,True,True,False,True,True,True,True,True,False,False,True,True,True
+121,mbppplus,llama3point1-70b,qwen2.5-72b-instruct,Write a function to find the nth newman–shanks–williams prime number.,"def is_prime(n):
+    """"""Check if a number is prime.""""""
+    if n < 2:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def newman_prime(n):
+    """"""Find the nth Newman-Shanks-Williams prime number.""""""
+    if n == 1:
+        return 7  # The first NSW prime is 7
+    
+    # Initialize the count of NSW primes and the current number
+    count = 1
+    num = 7
+    
+    while True:
+        # Check if the current number is a prime number
+        if is_prime(num):
+            # Check if the current prime number is congruent to 1 or 5 modulo 6
+            if num % 6 in [1, 5]:
+                # Increment the count of NSW primes
+                count += 1
+                
+                # If we have found the nth NSW prime, return it
+                if count == n:
+                    return num
+        
+        # Move on to the next number
+        num += 1
+",2,False,False,False,False,True,True,True,False,False,False,False,False,False
+241,mbppplus,llama3point1-70b,qwen2.5-72b-instruct,Write a python function to check whether a list is sublist of another or not.,"def is_Sub_Array(main_list, sub_list):
+    return ''.join(map(str, sub_list)) in ''.join(map(str, main_list))
+",2,False,False,False,True,True,True,False,False,False,False,True,True,True
+270,mbppplus,llama3point1-70b,qwen2.5-72b-instruct,Write a function to find the cumulative sum of all the values that are present in the given tuple list.,"def cummulative_sum(tuples):
+    return sum(sum(t) for t in tuples)
+",2,True,True,False,True,True,True,True,False,False,False,True,True,True
+282,mbppplus,llama3point1-70b,qwen2.5-72b-instruct,Write a function to replace whitespaces with an underscore and vice versa in a given string.,"def replace_spaces(s: str) -> str:
+    s = s.replace(' ', '_')
+    s = s.replace('_', ' ')
+    s = s.replace(' ', '_')
+    return s
+",2,False,False,False,False,False,False,False,False,False,False,False,False,False
+302,mbppplus,llama3point1-70b,qwen2.5-72b-instruct,Write a function to find the index of the first occurrence of a given number in a sorted array.,"def find_first_occurrence(arr, num):
+    for i, x in enumerate(arr):
+        if x == num:
+            return i
+    return -1  # return -1 if num is not found in the array
+",2,True,False,False,True,True,True,True,True,True,False,True,True,True
+314,mbppplus,llama3point1-70b,qwen2.5-72b-instruct,Write a function to sort a given list of strings of numbers numerically.,"def sort_numeric_strings(num_strings):
+  return sorted([int(num) for num in num_strings])
+",2,True,False,False,True,True,True,True,False,False,False,True,True,True
+342,mbppplus,llama3point1-70b,qwen2.5-72b-instruct,Write a function to find the product of first even and odd number of a given list.,"def mul_even_odd(nums):
+    even = next((num for num in nums if num % 2 == 0), None)
+    odd = next((num for num in nums if num % 2 != 0), None)
+    return even * odd
+",2,True,False,False,True,False,True,True,False,False,False,True,True,True

@@ -1,0 +1,9 @@
+The function `func_1` accepts two parameters `n` and `k`, both of which are non-negative integers such that \(1 \leq n, k \leq 10^{10}\) and \(n \geq k\). It aims to determine if it is possible to create a sequence of length `k` where the sum of the sequence is exactly `n`. 
+
+If the minimum sum required (`k * (k + 1) // 2`) exceeds `n`, the function returns `-1`.
+
+Otherwise, the function calculates a divisor `d` and a remainder `remainder` from the division of `n` by `min_sum`. It then creates a sequence where each element is initially set to `d * (i + 1)` for `i` ranging from `0` to `k-1`. The function then iteratively increments elements starting from the end of the sequence until the remainder is zero or the sequence is fully adjusted.
+
+After these operations, the function returns the modified sequence where the last `remainder` elements have been incremented by `1`.
+
+In summary, the function checks if a valid sequence can be formed and returns either `-1` if not possible or the modified sequence if possible.

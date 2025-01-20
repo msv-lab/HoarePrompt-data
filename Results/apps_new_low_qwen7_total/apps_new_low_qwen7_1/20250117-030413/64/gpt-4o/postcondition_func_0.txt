@@ -1,0 +1,17 @@
+The function `func_1` accepts three parameters: `n`, `k`, and `cards`. 
+
+- `n` is a positive integer such that 1 ≤ n ≤ 100,000.
+- `k` is a positive integer such that 1 ≤ k ≤ 10^9.
+- `cards` is a list of `n` positive integers such that 1 ≤ cards[i] ≤ 10^9 for all 0 ≤ i < n.
+
+The function calculates the product of all elements in the `cards` list and checks if this product is divisible by `k`. If the product is not divisible by `k`, the function returns 0. Otherwise, it proceeds to calculate two products, `left_product` and `right_product`, in two separate loops.
+
+- The `right_product` list is initialized to 1 and is updated in reverse order to store the cumulative product of the elements in `cards` from the end to the beginning.
+- The `left_product` is calculated as the product of elements from the start to the current index in the `cards` list.
+
+For each index `x` in the `cards` list, the function checks if the product of `left_product` and `right_product[x + 1]` is divisible by `k`. If true, it increments `valid_ways` by 1. Finally, the function returns `valid_ways`, which represents the number of ways to split the `cards` list into two non-empty contiguous subarrays such that the product of the subarrays is divisible by `k`.
+
+Potential edge cases:
+- If `n` is 1, the function will return 0 because there are no ways to split a single-element list into two non-empty subarrays.
+- If `k` is greater than the product of all elements in `cards`, the function will still initialize `right_product` and then proceed to the second loop, but since `left_product` will always be less than `k` (as it multiplies elements from the start), `valid_ways` will remain 0.
+- If the product of all elements in `cards` is not divisible by `k`, the function will immediately return 0 without entering the main loop.

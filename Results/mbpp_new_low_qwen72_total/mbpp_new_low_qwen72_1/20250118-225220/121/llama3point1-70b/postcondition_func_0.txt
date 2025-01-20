@@ -1,0 +1,10 @@
+The function `func_1` accepts an integer `n` and checks whether `n` is a prime number. It returns `True` if `n` is a prime number and `False` otherwise. 
+
+- If `n` is less than 2, the function returns `False`.
+- If `n` is 2 or greater, the function iterates over all integers from 2 to the square root of `n` (inclusive). If any of these integers divide `n` without a remainder, the function returns `False`.
+- If no divisors are found, the function returns `True`.
+
+Potential edge cases:
+- For `n = 0` and `n = 1`, the function correctly returns `False` because neither 0 nor 1 are prime numbers.
+- For `n = 2`, the function returns `True` since 2 is the smallest prime number.
+- For negative integers, the function also returns `False` because negative numbers are not considered prime.

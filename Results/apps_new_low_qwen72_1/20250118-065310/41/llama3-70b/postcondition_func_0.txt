@@ -1,0 +1,10 @@
+This function reads an integer `n` representing the number of participants in a competition, where `2 ≤ n ≤ 1000`. For each participant, it reads two integers `a_i` and `b_i` (where `1 ≤ a_i, b_i ≤ 4126`), representing the rating of the participant before and after the competition, respectively. The participants are ordered from the top to the bottom of the standings. The function then determines the type of the competition based on the following criteria:
+- If any participant's rating has changed (`a_i ≠ b_i` for any `i`), the competition is classified as "rated".
+- If the relative order of any two participants has changed (i.e., if `a_i < a_j` but `b_i > b_j` for any `i < j`), the competition is classified as "unrated".
+- If neither of the above conditions is met, the competition is classified as "maybe".
+
+The function prints one of the three possible outcomes: "rated", "unrated", or "maybe". After the function executes, the state of the program is:
+- `n` is an integer such that `2 ≤ n ≤ 1000`.
+- `ratings_before` and `ratings_after` are lists containing the ratings before and after the competition, respectively, each with `n` elements.
+- The variables `rated`, `unrated`, and `maybe` are boolean values that determine the classification of the competition.
+- The function does not return any value; it only prints the result to the console.

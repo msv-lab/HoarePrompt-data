@@ -1,0 +1,6 @@
+The function `func_1` accepts three parameters: `n`, `m`, and `k`, where `n`, `m`, and `k` are integers such that `2 ≤ k ≤ n ≤ 10^9` and `0 ≤ m ≤ n`. It returns a score based on the following conditions:
+
+1. If `m` is less than or equal to `n - n // k`, the score is `m % MOD`.
+2. Otherwise, it calculates `excess_full_sets` as `(n - m) // k` and `remaining_correct_answers` as `(n - m) % k`. The score is then calculated as `(m % MOD) - excess_full_sets + remaining_correct_answers`.
+
+This function handles all edge cases where the conditions for the score calculation are met. It ensures that the score is computed correctly based on the given inputs and the specified rules.

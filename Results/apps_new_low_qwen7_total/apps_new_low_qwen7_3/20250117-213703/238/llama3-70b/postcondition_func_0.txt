@@ -1,0 +1,6 @@
+The function takes no parameters and reads three integers \( n \), \( m \), and \( k \) from the standard input, where \( 1 \leq n \leq m \leq 10^9 \) and \( 1 \leq k \leq n \). It then prints one of two values based on the value of \( k \):
+
+- If \( k = 1 \), it prints the minimum value between \( \frac{m}{n} \) (integer division) and \( m - (n - 1) \).
+- If \( k \neq 1 \), it prints the minimum value between \( \frac{m}{n} + 1 \) (integer division) and \( m - (n - k) \).
+
+The function does not return any value; instead, it prints the computed result to the standard output. There are no edge cases mentioned in the provided code, but it handles the general case correctly according to the given conditions.

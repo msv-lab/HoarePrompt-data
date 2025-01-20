@@ -1,0 +1,982 @@
+Task ID,Dataset,model_created,model_run,description,Code,run_number,original correctness,summary fsl,naive correctness fsl,vanilla,simple tree,complex tree,summary,simple verify fsl,complex verify fsl,summary verify fsl,simple verify,complex verify,summary verify,unique_id,consistency,consistency_mine,consistency_old
+197,apps,gpt-4o,qwen2.5-7b-instruct,"Nastya received a gift on New Year — a magic wardrobe. It is magic because in the end of each month the number of dresses in it doubles (i.e. the number of dresses becomes twice as large as it is in the beginning of the month).
+
+Unfortunately, right after the doubling the wardrobe eats one of the dresses (if any) with the 50% probability. It happens every month except the last one in the year. 
+
+Nastya owns x dresses now, so she became interested in the expected number of dresses she will have in one year. Nastya lives in Byteland, so the year lasts for k + 1 months.
+
+Nastya is really busy, so she wants you to solve this problem. You are the programmer, after all. Also, you should find the answer modulo 10^9 + 7, because it is easy to see that it is always integer.
+
+
+-----Input-----
+
+The only line contains two integers x and k (0 ≤ x, k ≤ 10^18), where x is the initial number of dresses and k + 1 is the number of months in a year in Byteland.
+
+
+-----Output-----
+
+In the only line print a single integer — the expected number of dresses Nastya will own one year later modulo 10^9 + 7.
+
+
+-----Examples-----
+Input
+2 0
+
+Output
+4
+
+Input
+2 1
+
+Output
+7
+
+Input
+3 2
+
+Output
+21
+
+
+
+-----Note-----
+
+In the first example a year consists on only one month, so the wardrobe does not eat dresses at all.
+
+In the second example after the first month there are 3 dresses with 50% probability and 4 dresses with 50% probability. Thus, in the end of the year there are 6 dresses with 50% probability and 8 dresses with 50% probability. This way the answer for this test is (6 + 8) / 2 = 7.","MOD = 10**9 + 7
+
+def power_mod(base, exponent, mod):
+    result = 1
+    while exponent > 0:
+        if exponent % 2 == 1:
+            result = (result * base) % mod
+        base = (base * base) % mod
+        exponent //= 2
+    return result
+
+def expected_dresses(x, k):
+    if x == 0:
+        return 0
+    # Calculate (2^(k+1) - 1) % MOD
+    power = power_mod(2, k + 1, MOD)
+    result = (x * (power - 1) % MOD) % MOD
+    return result
+
+# Read input
+import sys
+input = sys.stdin.read
+x, k = map(int, input().split())
+
+# Print the result
+print(expected_dresses(x, k))
+",1,False,False,False,True,True,True,True,True,False,True,True,False,True,197_gpt-4o,0.4348406407739015,-0.06378777132990125,0.5416666666666666
+250,apps,gpt-4o,qwen2.5-7b-instruct,"Valery is a PE teacher at a school in Berland. Soon the students are going to take a test in long jumps, and Valery has lost his favorite ruler! 
+
+However, there is no reason for disappointment, as Valery has found another ruler, its length is l centimeters. The ruler already has n marks, with which he can make measurements. We assume that the marks are numbered from 1 to n in the order they appear from the beginning of the ruler to its end. The first point coincides with the beginning of the ruler and represents the origin. The last mark coincides with the end of the ruler, at distance l from the origin. This ruler can be repesented by an increasing sequence a_1, a_2, ..., a_{n}, where a_{i} denotes the distance of the i-th mark from the origin (a_1 = 0, a_{n} = l).
+
+Valery believes that with a ruler he can measure the distance of d centimeters, if there is a pair of integers i and j (1 ≤ i ≤ j ≤ n), such that the distance between the i-th and the j-th mark is exactly equal to d (in other words, a_{j} - a_{i} = d). 
+
+Under the rules, the girls should be able to jump at least x centimeters, and the boys should be able to jump at least y (x < y) centimeters. To test the children's abilities, Valery needs a ruler to measure each of the distances x and y. 
+
+Your task is to determine what is the minimum number of additional marks you need to add on the ruler so that they can be used to measure the distances x and y. Valery can add the marks at any integer non-negative distance from the origin not exceeding the length of the ruler.
+
+
+-----Input-----
+
+The first line contains four positive space-separated integers n, l, x, y (2 ≤ n ≤ 10^5, 2 ≤ l ≤ 10^9, 1 ≤ x < y ≤ l) — the number of marks, the length of the ruler and the jump norms for girls and boys, correspondingly.
+
+The second line contains a sequence of n integers a_1, a_2, ..., a_{n} (0 = a_1 < a_2 < ... < a_{n} = l), where a_{i} shows the distance from the i-th mark to the origin.
+
+
+-----Output-----
+
+In the first line print a single non-negative integer v — the minimum number of marks that you need to add on the ruler.
+
+In the second line print v space-separated integers p_1, p_2, ..., p_{v} (0 ≤ p_{i} ≤ l). Number p_{i} means that the i-th mark should be at the distance of p_{i} centimeters from the origin. Print the marks in any order. If there are multiple solutions, print any of them.
+
+
+-----Examples-----
+Input
+3 250 185 230
+0 185 250
+
+Output
+1
+230
+
+Input
+4 250 185 230
+0 20 185 250
+
+Output
+0
+
+Input
+2 300 185 230
+0 300
+
+Output
+2
+185 230
+
+
+
+-----Note-----
+
+In the first sample it is impossible to initially measure the distance of 230 centimeters. For that it is enough to add a 20 centimeter mark or a 230 centimeter mark.
+
+In the second sample you already can use the ruler to measure the distances of 185 and 230 centimeters, so you don't have to add new marks.
+
+In the third sample the ruler only contains the initial and the final marks. We will need to add two marks to be able to test the children's skills.","# Read input values
+n, l, x, y = map(int, input().split())
+marks = list(map(int, input().split()))
+
+# Initialize sets for easier lookup of required distances
+marks_set = set(marks)
+x_found = False
+y_found = False
+
+# Check if x and y distances can be measured
+for mark in marks:
+    if (mark + x) in marks_set or (mark - x) in marks_set:
+        x_found = True
+    if (mark + y) in marks_set or (mark - y) in marks_set:
+        y_found = True
+    if x_found and y_found:
+        break
+
+# If both x and y distances can already be measured, no new marks are needed
+if x_found and y_found:
+    print(0)
+else:
+    # Try to find a mark that can measure both x and y distances if added
+    new_marks = set()
+    for mark in marks:
+        if not x_found:
+            # Check if a mark that is x distance from the current mark can also measure y distance
+            if (mark + x + y) in marks_set or (mark + x - y) in marks_set or (mark - x + y) in marks_set:
+                new_marks.add(mark + x)
+            elif (mark - x + y) in marks_set or (mark - x - y) in marks_set:
+                new_marks.add(mark - x)
+        if not y_found:
+            # Check if a mark that is y distance from the current mark can also measure x distance
+            if (mark + y + x) in marks_set or (mark + y - x) in marks_set or (mark - y + x) in marks_set:
+                new_marks.add(mark + y)
+            elif (mark - y + x) in marks_set or (mark - y - x) in marks_set:
+                new_marks.add(mark - y)
+    
+    # If we found a mark that can measure both distances, add only that mark
+    if new_marks:
+        print(1)
+        print(new_marks.pop())
+    else:
+        # Otherwise, add both x and y marks if necessary
+        result = []
+        if not x_found:
+            result.append(x)
+        if not y_found:
+            result.append(y)
+        print(len(result))
+        print("" "".join(map(str, result)))
+",1,False,False,False,False,False,True,True,False,True,False,False,False,True,250_gpt-4o,0.32805105442607474,-0.16596394579970838,0.5416666666666666
+96,apps,llama3-70b,qwen2.5-7b-instruct,"Array of integers is unimodal, if:
+
+  it is strictly increasing in the beginning;  after that it is constant;  after that it is strictly decreasing. 
+
+The first block (increasing) and the last block (decreasing) may be absent. It is allowed that both of this blocks are absent.
+
+For example, the following three arrays are unimodal: [5, 7, 11, 11, 2, 1], [4, 4, 2], [7], but the following three are not unimodal: [5, 5, 6, 6, 1], [1, 2, 1, 2], [4, 5, 5, 6].
+
+Write a program that checks if an array is unimodal.
+
+
+-----Input-----
+
+The first line contains integer n (1 ≤ n ≤ 100) — the number of elements in the array.
+
+The second line contains n integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ 1 000) — the elements of the array.
+
+
+-----Output-----
+
+Print ""YES"" if the given array is unimodal. Otherwise, print ""NO"".
+
+You can output each letter in any case (upper or lower).
+
+
+-----Examples-----
+Input
+6
+1 5 5 5 4 2
+
+Output
+YES
+
+Input
+5
+10 20 30 20 10
+
+Output
+YES
+
+Input
+4
+1 2 1 2
+
+Output
+NO
+
+Input
+7
+3 3 3 3 3 3 3
+
+Output
+YES
+
+
+
+-----Note-----
+
+In the first example the array is unimodal, because it is strictly increasing in the beginning (from position 1 to position 2, inclusively), that it is constant (from position 2 to position 4, inclusively) and then it is strictly decreasing (from position 4 to position 6, inclusively).","n = int(input())
+arr = list(map(int, input().split()))
+
+increasing = False
+constant = False
+decreasing = False
+
+for i in range(1, n):
+    if arr[i] > arr[i-1]:
+        if decreasing:
+            print(""NO"")
+            exit()
+        increasing = True
+    elif arr[i] == arr[i-1]:
+        if increasing:
+            increasing = False
+            constant = True
+    else:
+        if increasing:
+            increasing = False
+        decreasing = True
+
+print(""YES"")
+",1,False,False,False,True,True,False,True,True,True,True,True,True,False,96_llama3-70b,0.46078781656624684,-0.038680870689825585,0.5416666666666666
+99,apps,llama3-70b,qwen2.5-7b-instruct,"Gerald bought two very rare paintings at the Sotheby's auction and he now wants to hang them on the wall. For that he bought a special board to attach it to the wall and place the paintings on the board. The board has shape of an a_1 × b_1 rectangle, the paintings have shape of a a_2 × b_2 and a_3 × b_3 rectangles.
+
+Since the paintings are painted in the style of abstract art, it does not matter exactly how they will be rotated, but still, one side of both the board, and each of the paintings must be parallel to the floor. The paintings can touch each other and the edges of the board, but can not overlap or go beyond the edge of the board. Gerald asks whether it is possible to place the paintings on the board, or is the board he bought not large enough?
+
+
+-----Input-----
+
+The first line contains two space-separated numbers a_1 and b_1 — the sides of the board. Next two lines contain numbers a_2, b_2, a_3 and b_3 — the sides of the paintings. All numbers a_{i}, b_{i} in the input are integers and fit into the range from 1 to 1000.
+
+
+-----Output-----
+
+If the paintings can be placed on the wall, print ""YES"" (without the quotes), and if they cannot, print ""NO"" (without the quotes).
+
+
+-----Examples-----
+Input
+3 2
+1 3
+2 1
+
+Output
+YES
+
+Input
+5 5
+3 3
+3 3
+
+Output
+NO
+
+Input
+4 2
+2 3
+1 2
+
+Output
+YES
+
+
+
+-----Note-----
+
+That's how we can place the pictures in the first test:
+
+[Image]
+
+And that's how we can do it in the third one.
+
+[Image]","a1, b1 = map(int, input().split())
+a2, b2 = map(int, input().split())
+a3, b3 = map(int, input().split())
+
+if max(a1, b1) >= max(a2, b2) and min(a1, b1) >= min(a2, b2):
+    if max(a1, b1) >= max(a3, b3) and min(a1, b1) >= min(a3, b3):
+        print(""YES"")
+    else:
+        print(""NO"")
+else:
+    if max(a1, b1) >= max(a3, b3) and min(a1, b1) >= min(a3, b3):
+        print(""YES"")
+    else:
+        print(""NO"")
+",1,False,False,False,False,False,False,False,True,False,True,True,False,True,99_llama3-70b,0.44565346236023223,-0.053507185884652454,0.5416666666666666
+197,apps,gpt-4o,qwen2.5-7b-instruct,"Nastya received a gift on New Year — a magic wardrobe. It is magic because in the end of each month the number of dresses in it doubles (i.e. the number of dresses becomes twice as large as it is in the beginning of the month).
+
+Unfortunately, right after the doubling the wardrobe eats one of the dresses (if any) with the 50% probability. It happens every month except the last one in the year. 
+
+Nastya owns x dresses now, so she became interested in the expected number of dresses she will have in one year. Nastya lives in Byteland, so the year lasts for k + 1 months.
+
+Nastya is really busy, so she wants you to solve this problem. You are the programmer, after all. Also, you should find the answer modulo 10^9 + 7, because it is easy to see that it is always integer.
+
+
+-----Input-----
+
+The only line contains two integers x and k (0 ≤ x, k ≤ 10^18), where x is the initial number of dresses and k + 1 is the number of months in a year in Byteland.
+
+
+-----Output-----
+
+In the only line print a single integer — the expected number of dresses Nastya will own one year later modulo 10^9 + 7.
+
+
+-----Examples-----
+Input
+2 0
+
+Output
+4
+
+Input
+2 1
+
+Output
+7
+
+Input
+3 2
+
+Output
+21
+
+
+
+-----Note-----
+
+In the first example a year consists on only one month, so the wardrobe does not eat dresses at all.
+
+In the second example after the first month there are 3 dresses with 50% probability and 4 dresses with 50% probability. Thus, in the end of the year there are 6 dresses with 50% probability and 8 dresses with 50% probability. This way the answer for this test is (6 + 8) / 2 = 7.","MOD = 10**9 + 7
+
+def power_mod(base, exponent, mod):
+    result = 1
+    while exponent > 0:
+        if exponent % 2 == 1:
+            result = (result * base) % mod
+        base = (base * base) % mod
+        exponent //= 2
+    return result
+
+def expected_dresses(x, k):
+    if x == 0:
+        return 0
+    # Calculate (2^(k+1) - 1) % MOD
+    power = power_mod(2, k + 1, MOD)
+    result = (x * (power - 1) % MOD) % MOD
+    return result
+
+# Read input
+import sys
+input = sys.stdin.read
+x, k = map(int, input().split())
+
+# Print the result
+print(expected_dresses(x, k))
+",2,False,True,False,True,True,True,True,False,True,True,True,True,True,197_gpt-4o,0.4348406407739015,-0.06378777132990125,0.5416666666666666
+250,apps,gpt-4o,qwen2.5-7b-instruct,"Valery is a PE teacher at a school in Berland. Soon the students are going to take a test in long jumps, and Valery has lost his favorite ruler! 
+
+However, there is no reason for disappointment, as Valery has found another ruler, its length is l centimeters. The ruler already has n marks, with which he can make measurements. We assume that the marks are numbered from 1 to n in the order they appear from the beginning of the ruler to its end. The first point coincides with the beginning of the ruler and represents the origin. The last mark coincides with the end of the ruler, at distance l from the origin. This ruler can be repesented by an increasing sequence a_1, a_2, ..., a_{n}, where a_{i} denotes the distance of the i-th mark from the origin (a_1 = 0, a_{n} = l).
+
+Valery believes that with a ruler he can measure the distance of d centimeters, if there is a pair of integers i and j (1 ≤ i ≤ j ≤ n), such that the distance between the i-th and the j-th mark is exactly equal to d (in other words, a_{j} - a_{i} = d). 
+
+Under the rules, the girls should be able to jump at least x centimeters, and the boys should be able to jump at least y (x < y) centimeters. To test the children's abilities, Valery needs a ruler to measure each of the distances x and y. 
+
+Your task is to determine what is the minimum number of additional marks you need to add on the ruler so that they can be used to measure the distances x and y. Valery can add the marks at any integer non-negative distance from the origin not exceeding the length of the ruler.
+
+
+-----Input-----
+
+The first line contains four positive space-separated integers n, l, x, y (2 ≤ n ≤ 10^5, 2 ≤ l ≤ 10^9, 1 ≤ x < y ≤ l) — the number of marks, the length of the ruler and the jump norms for girls and boys, correspondingly.
+
+The second line contains a sequence of n integers a_1, a_2, ..., a_{n} (0 = a_1 < a_2 < ... < a_{n} = l), where a_{i} shows the distance from the i-th mark to the origin.
+
+
+-----Output-----
+
+In the first line print a single non-negative integer v — the minimum number of marks that you need to add on the ruler.
+
+In the second line print v space-separated integers p_1, p_2, ..., p_{v} (0 ≤ p_{i} ≤ l). Number p_{i} means that the i-th mark should be at the distance of p_{i} centimeters from the origin. Print the marks in any order. If there are multiple solutions, print any of them.
+
+
+-----Examples-----
+Input
+3 250 185 230
+0 185 250
+
+Output
+1
+230
+
+Input
+4 250 185 230
+0 20 185 250
+
+Output
+0
+
+Input
+2 300 185 230
+0 300
+
+Output
+2
+185 230
+
+
+
+-----Note-----
+
+In the first sample it is impossible to initially measure the distance of 230 centimeters. For that it is enough to add a 20 centimeter mark or a 230 centimeter mark.
+
+In the second sample you already can use the ruler to measure the distances of 185 and 230 centimeters, so you don't have to add new marks.
+
+In the third sample the ruler only contains the initial and the final marks. We will need to add two marks to be able to test the children's skills.","# Read input values
+n, l, x, y = map(int, input().split())
+marks = list(map(int, input().split()))
+
+# Initialize sets for easier lookup of required distances
+marks_set = set(marks)
+x_found = False
+y_found = False
+
+# Check if x and y distances can be measured
+for mark in marks:
+    if (mark + x) in marks_set or (mark - x) in marks_set:
+        x_found = True
+    if (mark + y) in marks_set or (mark - y) in marks_set:
+        y_found = True
+    if x_found and y_found:
+        break
+
+# If both x and y distances can already be measured, no new marks are needed
+if x_found and y_found:
+    print(0)
+else:
+    # Try to find a mark that can measure both x and y distances if added
+    new_marks = set()
+    for mark in marks:
+        if not x_found:
+            # Check if a mark that is x distance from the current mark can also measure y distance
+            if (mark + x + y) in marks_set or (mark + x - y) in marks_set or (mark - x + y) in marks_set:
+                new_marks.add(mark + x)
+            elif (mark - x + y) in marks_set or (mark - x - y) in marks_set:
+                new_marks.add(mark - x)
+        if not y_found:
+            # Check if a mark that is y distance from the current mark can also measure x distance
+            if (mark + y + x) in marks_set or (mark + y - x) in marks_set or (mark - y + x) in marks_set:
+                new_marks.add(mark + y)
+            elif (mark - y + x) in marks_set or (mark - y - x) in marks_set:
+                new_marks.add(mark - y)
+    
+    # If we found a mark that can measure both distances, add only that mark
+    if new_marks:
+        print(1)
+        print(new_marks.pop())
+    else:
+        # Otherwise, add both x and y marks if necessary
+        result = []
+        if not x_found:
+            result.append(x)
+        if not y_found:
+            result.append(y)
+        print(len(result))
+        print("" "".join(map(str, result)))
+",2,False,False,False,True,False,False,True,True,False,False,False,True,True,250_gpt-4o,0.32805105442607474,-0.16596394579970838,0.5416666666666666
+96,apps,llama3-70b,qwen2.5-7b-instruct,"Array of integers is unimodal, if:
+
+  it is strictly increasing in the beginning;  after that it is constant;  after that it is strictly decreasing. 
+
+The first block (increasing) and the last block (decreasing) may be absent. It is allowed that both of this blocks are absent.
+
+For example, the following three arrays are unimodal: [5, 7, 11, 11, 2, 1], [4, 4, 2], [7], but the following three are not unimodal: [5, 5, 6, 6, 1], [1, 2, 1, 2], [4, 5, 5, 6].
+
+Write a program that checks if an array is unimodal.
+
+
+-----Input-----
+
+The first line contains integer n (1 ≤ n ≤ 100) — the number of elements in the array.
+
+The second line contains n integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ 1 000) — the elements of the array.
+
+
+-----Output-----
+
+Print ""YES"" if the given array is unimodal. Otherwise, print ""NO"".
+
+You can output each letter in any case (upper or lower).
+
+
+-----Examples-----
+Input
+6
+1 5 5 5 4 2
+
+Output
+YES
+
+Input
+5
+10 20 30 20 10
+
+Output
+YES
+
+Input
+4
+1 2 1 2
+
+Output
+NO
+
+Input
+7
+3 3 3 3 3 3 3
+
+Output
+YES
+
+
+
+-----Note-----
+
+In the first example the array is unimodal, because it is strictly increasing in the beginning (from position 1 to position 2, inclusively), that it is constant (from position 2 to position 4, inclusively) and then it is strictly decreasing (from position 4 to position 6, inclusively).","n = int(input())
+arr = list(map(int, input().split()))
+
+increasing = False
+constant = False
+decreasing = False
+
+for i in range(1, n):
+    if arr[i] > arr[i-1]:
+        if decreasing:
+            print(""NO"")
+            exit()
+        increasing = True
+    elif arr[i] == arr[i-1]:
+        if increasing:
+            increasing = False
+            constant = True
+    else:
+        if increasing:
+            increasing = False
+        decreasing = True
+
+print(""YES"")
+",2,False,False,False,True,True,False,True,True,True,True,True,True,False,96_llama3-70b,0.46078781656624684,-0.038680870689825585,0.5416666666666666
+99,apps,llama3-70b,qwen2.5-7b-instruct,"Gerald bought two very rare paintings at the Sotheby's auction and he now wants to hang them on the wall. For that he bought a special board to attach it to the wall and place the paintings on the board. The board has shape of an a_1 × b_1 rectangle, the paintings have shape of a a_2 × b_2 and a_3 × b_3 rectangles.
+
+Since the paintings are painted in the style of abstract art, it does not matter exactly how they will be rotated, but still, one side of both the board, and each of the paintings must be parallel to the floor. The paintings can touch each other and the edges of the board, but can not overlap or go beyond the edge of the board. Gerald asks whether it is possible to place the paintings on the board, or is the board he bought not large enough?
+
+
+-----Input-----
+
+The first line contains two space-separated numbers a_1 and b_1 — the sides of the board. Next two lines contain numbers a_2, b_2, a_3 and b_3 — the sides of the paintings. All numbers a_{i}, b_{i} in the input are integers and fit into the range from 1 to 1000.
+
+
+-----Output-----
+
+If the paintings can be placed on the wall, print ""YES"" (without the quotes), and if they cannot, print ""NO"" (without the quotes).
+
+
+-----Examples-----
+Input
+3 2
+1 3
+2 1
+
+Output
+YES
+
+Input
+5 5
+3 3
+3 3
+
+Output
+NO
+
+Input
+4 2
+2 3
+1 2
+
+Output
+YES
+
+
+
+-----Note-----
+
+That's how we can place the pictures in the first test:
+
+[Image]
+
+And that's how we can do it in the third one.
+
+[Image]","a1, b1 = map(int, input().split())
+a2, b2 = map(int, input().split())
+a3, b3 = map(int, input().split())
+
+if max(a1, b1) >= max(a2, b2) and min(a1, b1) >= min(a2, b2):
+    if max(a1, b1) >= max(a3, b3) and min(a1, b1) >= min(a3, b3):
+        print(""YES"")
+    else:
+        print(""NO"")
+else:
+    if max(a1, b1) >= max(a3, b3) and min(a1, b1) >= min(a3, b3):
+        print(""YES"")
+    else:
+        print(""NO"")
+",2,False,False,False,True,False,False,False,False,False,False,False,False,False,99_llama3-70b,0.44565346236023223,-0.053507185884652454,0.5416666666666666
+197,apps,gpt-4o,qwen2.5-7b-instruct,"Nastya received a gift on New Year — a magic wardrobe. It is magic because in the end of each month the number of dresses in it doubles (i.e. the number of dresses becomes twice as large as it is in the beginning of the month).
+
+Unfortunately, right after the doubling the wardrobe eats one of the dresses (if any) with the 50% probability. It happens every month except the last one in the year. 
+
+Nastya owns x dresses now, so she became interested in the expected number of dresses she will have in one year. Nastya lives in Byteland, so the year lasts for k + 1 months.
+
+Nastya is really busy, so she wants you to solve this problem. You are the programmer, after all. Also, you should find the answer modulo 10^9 + 7, because it is easy to see that it is always integer.
+
+
+-----Input-----
+
+The only line contains two integers x and k (0 ≤ x, k ≤ 10^18), where x is the initial number of dresses and k + 1 is the number of months in a year in Byteland.
+
+
+-----Output-----
+
+In the only line print a single integer — the expected number of dresses Nastya will own one year later modulo 10^9 + 7.
+
+
+-----Examples-----
+Input
+2 0
+
+Output
+4
+
+Input
+2 1
+
+Output
+7
+
+Input
+3 2
+
+Output
+21
+
+
+
+-----Note-----
+
+In the first example a year consists on only one month, so the wardrobe does not eat dresses at all.
+
+In the second example after the first month there are 3 dresses with 50% probability and 4 dresses with 50% probability. Thus, in the end of the year there are 6 dresses with 50% probability and 8 dresses with 50% probability. This way the answer for this test is (6 + 8) / 2 = 7.","MOD = 10**9 + 7
+
+def power_mod(base, exponent, mod):
+    result = 1
+    while exponent > 0:
+        if exponent % 2 == 1:
+            result = (result * base) % mod
+        base = (base * base) % mod
+        exponent //= 2
+    return result
+
+def expected_dresses(x, k):
+    if x == 0:
+        return 0
+    # Calculate (2^(k+1) - 1) % MOD
+    power = power_mod(2, k + 1, MOD)
+    result = (x * (power - 1) % MOD) % MOD
+    return result
+
+# Read input
+import sys
+input = sys.stdin.read
+x, k = map(int, input().split())
+
+# Print the result
+print(expected_dresses(x, k))
+",3,False,True,False,True,False,True,True,False,False,False,True,True,True,197_gpt-4o,0.4348406407739015,-0.06378777132990125,0.5416666666666666
+250,apps,gpt-4o,qwen2.5-7b-instruct,"Valery is a PE teacher at a school in Berland. Soon the students are going to take a test in long jumps, and Valery has lost his favorite ruler! 
+
+However, there is no reason for disappointment, as Valery has found another ruler, its length is l centimeters. The ruler already has n marks, with which he can make measurements. We assume that the marks are numbered from 1 to n in the order they appear from the beginning of the ruler to its end. The first point coincides with the beginning of the ruler and represents the origin. The last mark coincides with the end of the ruler, at distance l from the origin. This ruler can be repesented by an increasing sequence a_1, a_2, ..., a_{n}, where a_{i} denotes the distance of the i-th mark from the origin (a_1 = 0, a_{n} = l).
+
+Valery believes that with a ruler he can measure the distance of d centimeters, if there is a pair of integers i and j (1 ≤ i ≤ j ≤ n), such that the distance between the i-th and the j-th mark is exactly equal to d (in other words, a_{j} - a_{i} = d). 
+
+Under the rules, the girls should be able to jump at least x centimeters, and the boys should be able to jump at least y (x < y) centimeters. To test the children's abilities, Valery needs a ruler to measure each of the distances x and y. 
+
+Your task is to determine what is the minimum number of additional marks you need to add on the ruler so that they can be used to measure the distances x and y. Valery can add the marks at any integer non-negative distance from the origin not exceeding the length of the ruler.
+
+
+-----Input-----
+
+The first line contains four positive space-separated integers n, l, x, y (2 ≤ n ≤ 10^5, 2 ≤ l ≤ 10^9, 1 ≤ x < y ≤ l) — the number of marks, the length of the ruler and the jump norms for girls and boys, correspondingly.
+
+The second line contains a sequence of n integers a_1, a_2, ..., a_{n} (0 = a_1 < a_2 < ... < a_{n} = l), where a_{i} shows the distance from the i-th mark to the origin.
+
+
+-----Output-----
+
+In the first line print a single non-negative integer v — the minimum number of marks that you need to add on the ruler.
+
+In the second line print v space-separated integers p_1, p_2, ..., p_{v} (0 ≤ p_{i} ≤ l). Number p_{i} means that the i-th mark should be at the distance of p_{i} centimeters from the origin. Print the marks in any order. If there are multiple solutions, print any of them.
+
+
+-----Examples-----
+Input
+3 250 185 230
+0 185 250
+
+Output
+1
+230
+
+Input
+4 250 185 230
+0 20 185 250
+
+Output
+0
+
+Input
+2 300 185 230
+0 300
+
+Output
+2
+185 230
+
+
+
+-----Note-----
+
+In the first sample it is impossible to initially measure the distance of 230 centimeters. For that it is enough to add a 20 centimeter mark or a 230 centimeter mark.
+
+In the second sample you already can use the ruler to measure the distances of 185 and 230 centimeters, so you don't have to add new marks.
+
+In the third sample the ruler only contains the initial and the final marks. We will need to add two marks to be able to test the children's skills.","# Read input values
+n, l, x, y = map(int, input().split())
+marks = list(map(int, input().split()))
+
+# Initialize sets for easier lookup of required distances
+marks_set = set(marks)
+x_found = False
+y_found = False
+
+# Check if x and y distances can be measured
+for mark in marks:
+    if (mark + x) in marks_set or (mark - x) in marks_set:
+        x_found = True
+    if (mark + y) in marks_set or (mark - y) in marks_set:
+        y_found = True
+    if x_found and y_found:
+        break
+
+# If both x and y distances can already be measured, no new marks are needed
+if x_found and y_found:
+    print(0)
+else:
+    # Try to find a mark that can measure both x and y distances if added
+    new_marks = set()
+    for mark in marks:
+        if not x_found:
+            # Check if a mark that is x distance from the current mark can also measure y distance
+            if (mark + x + y) in marks_set or (mark + x - y) in marks_set or (mark - x + y) in marks_set:
+                new_marks.add(mark + x)
+            elif (mark - x + y) in marks_set or (mark - x - y) in marks_set:
+                new_marks.add(mark - x)
+        if not y_found:
+            # Check if a mark that is y distance from the current mark can also measure x distance
+            if (mark + y + x) in marks_set or (mark + y - x) in marks_set or (mark - y + x) in marks_set:
+                new_marks.add(mark + y)
+            elif (mark - y + x) in marks_set or (mark - y - x) in marks_set:
+                new_marks.add(mark - y)
+    
+    # If we found a mark that can measure both distances, add only that mark
+    if new_marks:
+        print(1)
+        print(new_marks.pop())
+    else:
+        # Otherwise, add both x and y marks if necessary
+        result = []
+        if not x_found:
+            result.append(x)
+        if not y_found:
+            result.append(y)
+        print(len(result))
+        print("" "".join(map(str, result)))
+",3,False,False,False,False,False,False,True,False,False,False,True,True,False,250_gpt-4o,0.32805105442607474,-0.16596394579970838,0.5416666666666666
+96,apps,llama3-70b,qwen2.5-7b-instruct,"Array of integers is unimodal, if:
+
+  it is strictly increasing in the beginning;  after that it is constant;  after that it is strictly decreasing. 
+
+The first block (increasing) and the last block (decreasing) may be absent. It is allowed that both of this blocks are absent.
+
+For example, the following three arrays are unimodal: [5, 7, 11, 11, 2, 1], [4, 4, 2], [7], but the following three are not unimodal: [5, 5, 6, 6, 1], [1, 2, 1, 2], [4, 5, 5, 6].
+
+Write a program that checks if an array is unimodal.
+
+
+-----Input-----
+
+The first line contains integer n (1 ≤ n ≤ 100) — the number of elements in the array.
+
+The second line contains n integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ 1 000) — the elements of the array.
+
+
+-----Output-----
+
+Print ""YES"" if the given array is unimodal. Otherwise, print ""NO"".
+
+You can output each letter in any case (upper or lower).
+
+
+-----Examples-----
+Input
+6
+1 5 5 5 4 2
+
+Output
+YES
+
+Input
+5
+10 20 30 20 10
+
+Output
+YES
+
+Input
+4
+1 2 1 2
+
+Output
+NO
+
+Input
+7
+3 3 3 3 3 3 3
+
+Output
+YES
+
+
+
+-----Note-----
+
+In the first example the array is unimodal, because it is strictly increasing in the beginning (from position 1 to position 2, inclusively), that it is constant (from position 2 to position 4, inclusively) and then it is strictly decreasing (from position 4 to position 6, inclusively).","n = int(input())
+arr = list(map(int, input().split()))
+
+increasing = False
+constant = False
+decreasing = False
+
+for i in range(1, n):
+    if arr[i] > arr[i-1]:
+        if decreasing:
+            print(""NO"")
+            exit()
+        increasing = True
+    elif arr[i] == arr[i-1]:
+        if increasing:
+            increasing = False
+            constant = True
+    else:
+        if increasing:
+            increasing = False
+        decreasing = True
+
+print(""YES"")
+",3,False,False,False,True,True,False,True,True,True,True,True,False,True,96_llama3-70b,0.46078781656624684,-0.038680870689825585,0.5416666666666666
+99,apps,llama3-70b,qwen2.5-7b-instruct,"Gerald bought two very rare paintings at the Sotheby's auction and he now wants to hang them on the wall. For that he bought a special board to attach it to the wall and place the paintings on the board. The board has shape of an a_1 × b_1 rectangle, the paintings have shape of a a_2 × b_2 and a_3 × b_3 rectangles.
+
+Since the paintings are painted in the style of abstract art, it does not matter exactly how they will be rotated, but still, one side of both the board, and each of the paintings must be parallel to the floor. The paintings can touch each other and the edges of the board, but can not overlap or go beyond the edge of the board. Gerald asks whether it is possible to place the paintings on the board, or is the board he bought not large enough?
+
+
+-----Input-----
+
+The first line contains two space-separated numbers a_1 and b_1 — the sides of the board. Next two lines contain numbers a_2, b_2, a_3 and b_3 — the sides of the paintings. All numbers a_{i}, b_{i} in the input are integers and fit into the range from 1 to 1000.
+
+
+-----Output-----
+
+If the paintings can be placed on the wall, print ""YES"" (without the quotes), and if they cannot, print ""NO"" (without the quotes).
+
+
+-----Examples-----
+Input
+3 2
+1 3
+2 1
+
+Output
+YES
+
+Input
+5 5
+3 3
+3 3
+
+Output
+NO
+
+Input
+4 2
+2 3
+1 2
+
+Output
+YES
+
+
+
+-----Note-----
+
+That's how we can place the pictures in the first test:
+
+[Image]
+
+And that's how we can do it in the third one.
+
+[Image]","a1, b1 = map(int, input().split())
+a2, b2 = map(int, input().split())
+a3, b3 = map(int, input().split())
+
+if max(a1, b1) >= max(a2, b2) and min(a1, b1) >= min(a2, b2):
+    if max(a1, b1) >= max(a3, b3) and min(a1, b1) >= min(a3, b3):
+        print(""YES"")
+    else:
+        print(""NO"")
+else:
+    if max(a1, b1) >= max(a3, b3) and min(a1, b1) >= min(a3, b3):
+        print(""YES"")
+    else:
+        print(""NO"")
+",3,False,False,False,True,False,False,True,False,False,True,False,False,False,99_llama3-70b,0.44565346236023223,-0.053507185884652454,0.5416666666666666

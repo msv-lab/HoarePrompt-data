@@ -1,0 +1,10 @@
+The function `func_2` accepts a string `block` which is a non-empty sequence of small English letters with a minimum length of 3, where all characters except for the vowels 'a', 'e', 'i', 'o', and 'u' are consonants. The function checks if there is any character in `block` that is not equal to the first character. If such a character is found, the function returns `True`; otherwise, it returns `False`.
+
+The final state of the program after the function concludes is as follows:
+- If any character in `block` is not equal to the first character, the function returns `True`.
+- Otherwise, the function returns `False`.
+
+Potential edge cases and missing functionality in the annotations include:
+- The function correctly handles the case where `block` contains only consonants and returns `False` if all characters are the same.
+- The function correctly handles the case where `block` contains only consonants and returns `True` if there is any character different from the first one.
+- The function correctly returns `False` when the length of `block` is less than 3, although this case is not explicitly covered in the annotations.

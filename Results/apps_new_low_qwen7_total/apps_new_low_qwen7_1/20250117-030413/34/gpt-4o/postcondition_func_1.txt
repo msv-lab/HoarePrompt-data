@@ -1,0 +1,11 @@
+The function `func_2` accepts six parameters: `a1`, `b1`, `a2`, `b2`, `L`, and `R`. These parameters are integers where \(0 < a1, a2 \leq 2 \times 10^9\), \(-2 \times 10^9 \leq b1, b2, L, R \leq 2 \times 10^9\), and \(L \leq R\).
+
+The function performs the following steps:
+1. Initializes variables `A`, `B`, and `C` using the provided parameters.
+2. Calls another function `func_1` to compute the greatest common divisor (`gcd`) and the coefficients `x0` and `y0` for the linear Diophantine equation \(A \cdot x + B \cdot y = C\).
+3. Checks if \(C\) is divisible by `gcd`. If not, the function returns `-1`.
+4. Adjusts `x0` and `y0` based on the value of `A` and `B`.
+5. Divides `a1` and `a2` by `gcd` and stores the results in `a1_div_gcd` and `a2_div_gcd`, respectively.
+6. Adjusts the solution `(x0, y0)` using the `adjust_solution` function.
+7. Iterates through possible values of `x0` and `y0` to find how many times the expression \(val = a1 \cdot x0 + b1\) falls within the range \([L, R]\).
+8. Returns the count of valid values.

@@ -1,0 +1,12 @@
+The function `is_koutsu_or_shuntsu` accepts three parameters: `t1`, `t2`, and `t3`. Each parameter is a string representing a suited tile where the first character is a digit from 1 to 9 and the second character is 'm', 'p', or 's'. The function checks if the input strings represent either a koutsu (a triplet of the same number) or a shuntsu (a sequential triplet of the same suit).
+
+After executing the function, the following states will be true:
+- If the input strings represent a koutsu, the function returns `True`.
+- If the input strings represent a shuntsu, the function returns `True`.
+- If the input strings do not represent either a koutsu or a shuntsu, the function returns `False`.
+
+The function correctly identifies koutsu and shuntsu based on the conditions specified in the code. It first checks if all three input strings are identical, which would indicate a koutsu. If not, it then checks if the numbers in the strings form a sequential triplet and if the suits are the same, which would indicate a shuntsu. If neither condition is met, the function returns `False`.
+
+Potential edge cases and missing functionality:
+- The code currently does not handle cases where the input strings do not follow the expected format (e.g., incorrect characters or out-of-range digits). This could lead to unexpected behavior if invalid input is provided.
+- The code assumes that the suits are checked and considered in both conditions, but it does not explicitly state or check that the suits are the same in the shuntsu condition. While the annotation mentions checking suits, the code itself does not enforce this check, potentially leading to false positives if the suits are not verified.

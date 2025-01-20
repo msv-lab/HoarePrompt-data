@@ -1,0 +1,22 @@
+#State of the program right berfore the function call: The input string s is a non-empty string consisting of characters 'R', 'B', 'Y', 'G', and '!', where the length of s is between 4 and 100 inclusive. Each of the characters 'R', 'B', 'Y', and 'G' appears at least once in s. Moreover, s represents a valid garland with some blown light bulbs, meaning no four consecutive characters in s are the same.
+def func():
+    s = input().strip()
+
+dead_bulbs = {'R': 0, 'B': 0, 'Y': 0, 'G': 0}
+
+positions = {}
+    for (i, char) in enumerate(s):
+        if char in 'RBYG':
+            positions[char] = i % 4
+        
+    #State of the program after the  for loop has been executed: `s` is a non-empty string, `i` is the length of `s` - 1, `char` is the last character of the string `s`, `dead_bulbs` is a dictionary with keys 'R', 'B', 'Y', 'G' and values all set to 0, `positions` is a dictionary where the key is any of 'R', 'B', 'Y', 'G' present in `s` and the value is the index of that character modulo 4. If a character in `s` is not one of 'R', 'B', 'Y', 'G', it does not affect the `positions` dictionary.
+    for (i, char) in enumerate(s):
+        if char == '!':
+            for color, pos in positions.items():
+                if i % 4 == pos:
+                    dead_bulbs[color] += 1
+        
+    #State of the program after the  for loop has been executed: `s` is a non-empty string, `i` is the length of `s`, `char` is the last character of the string `s`, `dead_bulbs` is a dictionary where each key 'R', 'B', 'Y', 'G' has a value equal to the number of times the condition `i % 4 == positions[color]` was true for that key across all iterations, `positions` is an empty dictionary. The loop executes exactly once for each character in `s` unless the character is '!', in which case it only executes for the first occurrence of '!' in `s`. If no '!' is present, the loop does not execute at all.
+    print(dead_bulbs['R'], dead_bulbs['B'], dead_bulbs['Y'], dead_bulbs['G'])
+#Overall this is what the function does:The function `func()` accepts a non-empty string `s` consisting of characters 'R', 'B', 'Y', 'G', and '!', and returns the count of blown light bulbs represented by '!' in the string `s`. It first initializes a dictionary `dead_bulbs` to zero for each of the colors 'R', 'B', 'Y', and 'G'. Then, it creates a dictionary `positions` to record the position of each of these colors modulo 4. For each character in `s`, if the character is '!', it increments the count of the corresponding color in `dead_bulbs` based on its position recorded in `positions`. If no '!' is present in `s`, the function will still execute the loops, but `dead_bulbs` will remain unchanged. The function finally prints the counts of blown light bulbs for each color.
+

@@ -1,0 +1,7 @@
+The function `func` accepts no parameters. It processes a non-empty input string `s` of length between 4 and 100, inclusive, which consists of the characters 'R', 'B', 'Y', 'G', and '!', where '!' denotes a dead light bulb. The string `s` ensures that each of the characters 'R', 'B', 'Y', and 'G' appears at least once and represents a valid garland.
+
+After processing, the function determines the number of dead light bulbs for each color ('R', 'B', 'Y', 'G') based on their positions in the garland. Specifically, for each position in the string `s` that contains a '!', the function checks if the corresponding position in the garland (determined by `i % 4`) matches the position of the color in the `positions` dictionary. If there is a match, the count of dead light bulbs for that color is incremented.
+
+The function then prints the counts of dead light bulbs for 'R', 'B', 'Y', and 'G' in that order.
+
+The final state of the program after the function concludes is that it prints the counts of dead light bulbs for each color, and the internal variables `s`, `dead_bulbs`, `positions`, and `i` are no longer accessible outside the function.

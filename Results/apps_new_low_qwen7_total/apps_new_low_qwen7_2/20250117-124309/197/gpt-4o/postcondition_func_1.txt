@@ -1,0 +1,11 @@
+The function `func_2` accepts two parameters: `x` (an integer representing the initial number of dresses) and `k` (an integer representing the number of months in a year minus one, where `k + 1` is the total number of months in the year). It returns 0 if `x` is 0, otherwise, it calculates and returns \((x * ((2^{k+1}) - 1)) \mod (10^9 + 7)\).
+
+The function performs the following actions:
+1. Checks if `x` is 0. If true, it returns 0.
+2. If `x` is not 0, it calculates \(2^{k+1}\) using `func_1(2, k + 1, MOD)`.
+3. Computes the result as \(x * ((2^{k+1}) - 1) \mod (10^9 + 7)\).
+
+Potential edge cases and missing functionality:
+- If `x` is 0, the function correctly returns 0.
+- If `k` is 0 (meaning there is only 1 month in the year), the function calculates \(2^{1} - 1 = 1\), resulting in a final output of \(x * 1 \mod (10^9 + 7) = x \mod (10^9 + 7)\).
+- The function ensures that all calculations are performed modulo \(10^9 + 7\) to handle large numbers.

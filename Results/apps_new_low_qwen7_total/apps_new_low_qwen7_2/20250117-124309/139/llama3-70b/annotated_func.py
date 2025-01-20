@@ -1,0 +1,19 @@
+#State of the program right berfore the function call: n, a, b, c are non-negative integers such that 1 ≤ n, a, b, c ≤ 10^9.
+def func():
+    n, a, b, c = map(int, input().split())
+
+k = 4 - n % 4
+    if (k == 4) :
+        k = 0
+    #State of the program after the if block has been executed: *`n` is a non-negative integer equal to the input modulo 4 plus 4, `a` is a non-negative integer, `b` is a non-negative integer, `c` is a non-negative integer, `k` is 0. Since `k == 4` implies `k` is 0 in the if part, the overall postcondition matches the if part's postcondition.
+    ans = float('inf')
+    for i in range(k // 3 + 1):
+        j = (k - 3 * i) // 2
+        
+        if 3 * i + 2 * j <= k:
+            ans = min(ans, 3 * i * c + j * b + (k - 3 * i - 2 * j) * a)
+        
+    #State of the program after the  for loop has been executed: `n` is a non-negative integer equal to the input modulo 4 plus 4, `a` is a non-negative integer, `b` is a non-negative integer, `c` is a non-negative integer, `k` is 0, `ans` is `6c - 3b`, `i` is 2, `j` is -3.
+    print(ans)
+#Overall this is what the function does:The function accepts no explicit parameters and reads four integers \( n \), \( a \), \( b \), and \( c \) from standard input. It then computes a value based on these inputs and prints the result. Specifically, it calculates the minimum cost to achieve a specific condition related to \( n \), \( a \), \( b \), and \( c \). If \( n \) is negative, it results in an error message, which is not possible given the problem constraints since \( n \) is defined to be a non-negative integer. The function first adjusts \( n \) to ensure it is a multiple of 4 by adding 4 if necessary. Then, it iterates through possible combinations of \( i \) and \( j \) to find the minimum cost, where the cost is calculated as \( 3i \cdot c + j \cdot b + (k - 3i - 2j) \cdot a \). The final output is the minimum cost found. If no valid combination of \( i \) and \( j \) is found, the minimum cost remains infinity, and this value is printed.
+

@@ -1,0 +1,5 @@
+The function `func_1` accepts a list of three strings `tiles`, where each string represents a suited tile in the format "digit suit" (e.g., "1m", "2p", "3s"). The digits range from 1 to 9, and the suits can be m, p, or s. The function determines whether the given tiles form a koutsu (three identical tiles) or shuntsu (a sequence of three consecutive tiles). If they do, the function returns 0. Otherwise, it calculates the minimum number of additional tiles needed to complete groups for each suit and returns this minimum value.
+
+After the function concludes, the following will be true:
+- If the given tiles form a koutsu or shuntsu, the function returns 0.
+- If the given tiles do not form a koutsu or shuntsu, the function returns `min_additional_tiles`, which is the smallest number of additional tiles required to complete groups for each suit. This value is determined by iterating over the suits and calculating the necessary additional tiles using the `tiles_needed_to_complete_group(numbers)` function for each suit.

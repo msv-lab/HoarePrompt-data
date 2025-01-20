@@ -1,0 +1,7 @@
+The function `func_1` accepts four parameters: `n`, `operations`, `x`, and `y`. `n` is an integer such that 1 ≤ n ≤ 2·10^5, `operations` is a string consisting of 'U', 'D', 'L', and 'R' characters, and `x` and `y` are integers such that -10^9 ≤ x, y ≤ 10^9.
+
+The function first computes the final position (`final_x`, `final_y`) based on the given operations. It then calculates the difference between the initial position (`x`, `y`) and the final position (`dx`, `dy`). If the differences are zero, it immediately returns 0.
+
+If the differences are non-zero, the function performs a second pass through the operations to find the minimum length of a path that revisits a previously visited position. This is done using a dictionary `position_map` to keep track of the indices where each position was last seen. The function calculates the target position for each operation and checks if it has been visited before. If it has, the function updates the `min_length` if the current path length is shorter than the previous recorded minimum length.
+
+After completing the second pass, the function returns the minimum length found if it is not infinity; otherwise, it returns -1.

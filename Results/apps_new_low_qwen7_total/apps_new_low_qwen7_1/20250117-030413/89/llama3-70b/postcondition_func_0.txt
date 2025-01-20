@@ -1,0 +1,8 @@
+The function `func_1` accepts two non-negative integers `a` and `b` as parameters, where `1 <= a <= b <= 10^18`. It iterates through all integers from `a` to `b` (inclusive) and counts how many of these integers have exactly one zero in their decimal representation. The function returns this count. 
+
+Potential edge cases and considerations:
+- If `a` or `b` is less than 1, the function will treat them as 1 because of the preconditions specified.
+- If `a` and `b` are equal and represent a number with exactly one zero, it will be counted.
+- If `a` and `b` are such that no number between them has exactly one zero, the function will return 0.
+- The function correctly handles the upper limit of \(10^{18}\), ensuring it can process very large numbers efficiently.
+- If `a` or `b` has leading zeros in their string representation, the function will still correctly count the number of zeros in the decimal representation, as per the problem statement.

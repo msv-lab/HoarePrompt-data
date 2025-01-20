@@ -1,0 +1,19 @@
+#State of the program right berfore the function call: The input is a non-empty binary string `s` with a length of up to 100 characters, where each character is either '0' or '1'.
+def func():
+    s = input()
+    if ('1' not in s) :
+        print('no')
+    else :
+        index_of_first_one = s.find('1')
+
+remaining_string = s[index_of_first_one + 1:]
+
+count_of_zeros = remaining_string.count('0')
+        if (count_of_zeros >= 6) :
+            print('yes')
+        else :
+            print('no')
+        #State of the program after the if-else block has been executed: *`s` is a non-empty binary string with at least one '1', `index_of_first_one` is the index of the first '1' in `s`, `remaining_string` is the substring of `s` starting right after the first '1', `count_of_zeros` is the number of '0's in `remaining_string`. If `count_of_zeros` is greater than or equal to 6, the state of the variables remains unchanged. If `count_of_zeros` is less than 6, the function prints 'no' to the console and the state of the variables remains unchanged.
+    #State of the program after the if-else block has been executed: *The input is a non-empty binary string `s` with a length of up to 100 characters, where each character is either '0' or '1'. If `s` does not contain the character '1', 'no' is printed. If `s` contains at least one '1', `index_of_first_one` is the index of the first '1' in `s`, `remaining_string` is the substring of `s` starting right after the first '1', and `count_of_zeros` is the number of '0's in `remaining_string`. If `count_of_zeros` is greater than or equal to 6, the state of the variables remains unchanged. If `count_of_zeros` is less than 6, the function prints 'no' to the console and the state of the variables remains unchanged.
+#Overall this is what the function does:The function `func` reads a non-empty binary string `s` from the user input, where each character is either '0' or '1'. It checks if the string contains the character '1'. If the string does not contain '1', it prints 'no' and the function ends. If the string contains at least one '1', it finds the index of the first occurrence of '1' and creates a substring `remaining_string` starting from the character immediately following the first '1'. It then counts the number of '0's in `remaining_string`. If the count of '0's is 6 or more, it prints 'yes'. Otherwise, it prints 'no'. The function does not modify the original string `s` or any other variables, and it does not return any value.
+

@@ -1,0 +1,7 @@
+#State of the program right berfore the function call: x and y are integers such that 3 ≤ y < x ≤ 100 000.
+def func():
+    x, y = map(int, input().split())
+
+print((x - y) // 2 + (x - y) % 2)
+#Overall this is what the function does:The function `func` accepts two space-separated integers `x` and `y` as input, where `3 ≤ y < x ≤ 100,000`. It calculates and returns an integer based on the expression `(x - y) // 2 + (x - y) % 2`. This expression effectively rounds down the result of `(x - y) / 2` to the nearest integer. There are no additional actions performed by the function beyond reading the input and performing the calculation. The function does not handle any edge cases explicitly; however, since `x` and `y` are constrained by `3 ≤ y < x ≤ 100,000`, these constraints ensure that the division and modulo operations are well-defined. The function returns the calculated integer as the output.
+

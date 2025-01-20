@@ -1,0 +1,7 @@
+The function `func_2` accepts two parameters `l` and `r`, both of which are integers such that \(1 \leq l \leq r < 10^{18}\), and an additional integer `k` (where \(1 \leq k \leq 10\)) that is referenced internally. The function returns the sum of all numbers in the range \([l, r]\) that contain at most `k` different digits, modulo \(998244353\). The function iterates through each number in the specified range, checks if the number meets the condition specified by `func_1(num, k)`, and if true, adds the number to `total_sum`. After completing the iteration, the function returns `total_sum`.
+
+Potential edge cases include:
+1. If `l > r`, the function should ideally handle this by returning 0 since no numbers are in the valid range.
+2. If `l == r` and the number `l` (or `r`) does not satisfy `func_1(num, k)`, the function still returns 0.
+
+The function does not explicitly handle these edge cases in the provided code, so the output in these scenarios should be 0.

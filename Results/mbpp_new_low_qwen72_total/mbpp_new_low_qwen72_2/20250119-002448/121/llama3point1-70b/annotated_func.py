@@ -1,0 +1,115 @@
+#State of the program right berfore the function call: n is an integer.
+def func_1(n):
+    """Check if a number is prime."""
+    if (n < 2) :
+        return False
+        #The program returns False
+    #State of the program after the if block has been executed: *`n` is an integer, and `n` is greater than or equal to 2
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+        
+    #State of the program after the  for loop has been executed: `n` is an integer greater than or equal to 2, `i` is `int(n
+    return True
+    #The program returns True
+#Overall this is what the function does:The function `func_1` takes an integer `n` as input and returns a boolean value indicating whether `n` is a prime number. 
+
+- If `n` is less than 2, the function returns `False`.
+- For `n` greater than or equal to 2, the function checks if `n` is divisible by any integer from 2 to the square root of `n` (inclusive). If `n` is divisible by any of these integers, the function returns `False`.
+- If no divisors are found, the function returns `True`.
+
+Edge Cases:
+- For `n = 0` or `n = 1`, the function correctly returns `False` because these numbers are not prime.
+- For `n = 2`, the function correctly returns `True` because 2 is the smallest prime number.
+- For negative integers, the function also returns `False` because negative numbers are not considered prime.
+
+#State of the program right berfore the function call: n is a positive integer.
+def func_2(n):
+    """Find the nth Newman-Shanks-Williams prime number."""
+    if (n == 1) :
+        return 7
+        #The program returns 7
+    #State of the program after the if block has been executed: *n is a positive integer, and n is not equal to 1
+    count = 1
+
+num = 7
+    while True:
+        if func_1(num):
+            if num % 6 in [1, 5]:
+                count += 1
+                if count == n:
+                    return num
+        
+        num += 1
+        
+    #State of the program after the loop has been executed: To solve this problem, we need to understand the behavior of the loop based on the provided initial state and the code. Let's break it down step by step:
+    #
+    #### Initial State
+    #- `n` is a positive integer and `n` is not equal to 1.
+    #- `count` is 1.
+    #- `num` is 7.
+    #
+    #### Code Analysis
+    #The loop continues indefinitely until a specific condition is met:
+    #```python
+    #while True:
+    #    if func_1(num):
+    #        if num % 6 in [1, 5]:
+    #            count += 1
+    #            if count == n:
+    #                return num
+    #    num += 1
+    #```
+    #
+    #### Step-by-Step Execution
+    #1. **First Iteration**:
+    #   - `num` is 7.
+    #   - `func_1(7)` is evaluated.
+    #   - If `func_1(7)` is `True` and `7 % 6` (which is 1) is in `[1, 5]`, then:
+    #     - `count` is incremented to 2.
+    #     - If `count` (now 2) equals `n`, the loop returns `num` (which is 7).
+    #   - If `func_1(7)` is `False` or `7 % 6` is not in `[1, 5]`, `num` is incremented to 8.
+    #
+    #2. **Second Iteration**:
+    #   - `num` is 8.
+    #   - `func_1(8)` is evaluated.
+    #   - If `func_1(8)` is `True` and `8 % 6` (which is 2) is in `[1, 5]`, then:
+    #     - `count` is incremented to 2 (if `count` was 1) or 3 (if `count` was 2).
+    #     - If `count` equals `n`, the loop returns `num` (which is 8).
+    #   - If `func_1(8)` is `False` or `8 % 6` is not in `[1, 5]`, `num` is incremented to 9.
+    #
+    #3. **Third Iteration**:
+    #   - `num` is 9.
+    #   - `func_1(9)` is evaluated.
+    #   - If `func_1(9)` is `True` and `9 % 6` (which is 3) is in `[1, 5]`, then:
+    #     - `count` is incremented to 2 (if `count` was 1) or 3 (if `count` was 2).
+    #     - If `count` equals `n`, the loop returns `num` (which is 9).
+    #   - If `func_1(9)` is `False` or `9 % 6` is not in `[1, 5]`, `num` is incremented to 10.
+    #
+    #### General Behavior
+    #- The loop increments `num` by 1 in each iteration.
+    #- `count` is incremented only if `func_1(num)` is `True` and `num % 6` is either 1 or 5.
+    #- The loop will continue until `count` equals `n`, at which point it returns the current value of `num`.
+    #
+    #### Invariant Variables
+    #- `n` remains a positive integer and is not equal to 1 throughout the loop.
+    #
+    #### Final Output State
+    #- The loop will terminate when `count` equals `n`.
+    #- The final value of `num` will be the value that satisfies the conditions `func_1(num)` is `True` and `num % 6` is either 1 or 5, and `count` equals `n`.
+    #
+    #### Conclusion
+    #Given the initial state and the loop behavior, the final output state is:
+    #**`n` is a positive integer and `n` is not equal to 1, `count` is `n`, `num` is the smallest integer such that `func_1(num)` is `True` and `num % 6` is either 1 or 5, and `count` equals `n`.**
+#Overall this is what the function does:The function `func_2` accepts a positive integer `n` and returns the `n`-th Newman-Shanks-Williams (NSW) prime number. 
+
+- If `n` is 1, the function immediately returns 7.
+- For `n` greater than 1, the function searches for the `n`-th NSW prime number by incrementing a variable `num` starting from 7. It checks if `num` satisfies two conditions:
+  1. `func_1(num)` returns `True`.
+  2. `num % 6` is either 1 or 5.
+- If both conditions are met, a counter `count` is incremented. When `count` reaches `n`, the function returns the current value of `num`.
+
+Edge Cases:
+- If `n` is 1, the function correctly returns 7.
+- If `n` is greater than 1, the function will continue to search for the `n`-th NSW prime number, ensuring that the returned value meets the specified conditions. However, if `func_1` never returns `True` for any `num` that satisfies `num % 6 in [1, 5]`, the function will run indefinitely.
+

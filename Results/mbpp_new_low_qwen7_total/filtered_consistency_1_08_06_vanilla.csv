@@ -1,0 +1,61 @@
+Task ID,Dataset,model_created,model_run,description,Code,run_number,original correctness,summary fsl,naive correctness fsl,vanilla,simple tree,complex tree,summary,simple verify fsl,complex verify fsl,summary verify fsl,simple verify,complex verify,summary verify,unique_id,consistency,consistency_mine,consistency_old
+328,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find nth polite number. geeksforgeeks.org/n-th-polite-number/,"def is_polite(n):
+    count = 0
+    number = 1
+    while count < n:
+        if (number & (number - 1)) != 0:  # Check if number is not a power of 2
+            count += 1
+        number += 1
+    return number - 1
+
+# Testing the function
+assert is_polite(7) == 11
+assert is_polite(4) == 7
+assert is_polite(9) == 13
+",1,False,False,False,False,False,False,False,True,False,False,False,True,True,328_gpt-4o,0.3885418521138691,-0.1116618743836484,0.5
+126,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to find the lateral surface area of a cube given its side length.,"def lateralsurface_cube(side_length):
+  return 4 * (side_length ** 2)
+",1,False,True,True,True,True,True,False,True,True,True,True,True,True,126_llama3point1-70b,0.5669277912971546,0.06686289513630085,0.5416666666666666
+314,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to sort a given list of strings of numbers numerically.,"def sort_numeric_strings(num_strings):
+  return sorted([int(num) for num in num_strings])
+",1,True,True,False,False,True,True,False,False,False,False,True,True,True,314_llama3point1-70b,0.5808078027700696,0.07891939936617938,0.625
+328,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find nth polite number. geeksforgeeks.org/n-th-polite-number/,"def is_polite(n):
+    count = 0
+    number = 1
+    while count < n:
+        if (number & (number - 1)) != 0:  # Check if number is not a power of 2
+            count += 1
+        number += 1
+    return number - 1
+
+# Testing the function
+assert is_polite(7) == 11
+assert is_polite(4) == 7
+assert is_polite(9) == 13
+",2,False,False,False,True,False,False,False,True,True,False,False,False,False,328_gpt-4o,0.3885418521138691,-0.1116618743836484,0.5
+126,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to find the lateral surface area of a cube given its side length.,"def lateralsurface_cube(side_length):
+  return 4 * (side_length ** 2)
+",2,False,True,True,True,True,True,True,True,True,True,True,True,True,126_llama3point1-70b,0.5669277912971546,0.06686289513630085,0.5416666666666666
+314,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to sort a given list of strings of numbers numerically.,"def sort_numeric_strings(num_strings):
+  return sorted([int(num) for num in num_strings])
+",2,True,False,False,False,True,False,False,True,True,False,True,True,True,314_llama3point1-70b,0.5808078027700696,0.07891939936617938,0.625
+328,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find nth polite number. geeksforgeeks.org/n-th-polite-number/,"def is_polite(n):
+    count = 0
+    number = 1
+    while count < n:
+        if (number & (number - 1)) != 0:  # Check if number is not a power of 2
+            count += 1
+        number += 1
+    return number - 1
+
+# Testing the function
+assert is_polite(7) == 11
+assert is_polite(4) == 7
+assert is_polite(9) == 13
+",3,False,False,False,True,True,False,False,True,True,True,True,False,True,328_gpt-4o,0.3885418521138691,-0.1116618743836484,0.5
+126,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to find the lateral surface area of a cube given its side length.,"def lateralsurface_cube(side_length):
+  return 4 * (side_length ** 2)
+",3,False,True,True,True,True,True,True,True,True,True,True,True,True,126_llama3point1-70b,0.5669277912971546,0.06686289513630085,0.5416666666666666
+314,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to sort a given list of strings of numbers numerically.,"def sort_numeric_strings(num_strings):
+  return sorted([int(num) for num in num_strings])
+",3,True,False,True,False,False,False,False,False,False,True,False,True,False,314_llama3point1-70b,0.5808078027700696,0.07891939936617938,0.625

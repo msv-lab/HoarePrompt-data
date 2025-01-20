@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: x and y are integers representing the indices a and b respectively, and p and q are integers representing the number of chocolates Joty gets for painting a tile red and blue respectively. The values satisfy 1 ≤ x, y, p, q ≤ 10^9.
+def func_1(x, y):
+    return x * y // gcd(x, y)
+    #`The program returns (x * y) // gcd(x, y)` where `x` and `y` are integers representing indices, and `gcd(x, y)` is the greatest common divisor of `x` and `y`.
+#Overall this is what the function does:The function `func_1` accepts two integers `x` and `y`, computes their greatest common divisor (gcd), and returns the value of `(x * y) // gcd(x, y)`. The function ensures that both `x` and `y` are positive integers within the range of \(1 \leq x, y \leq 10^9\). It handles the case where either `x` or `y` could be equal to 1, as the gcd in such cases would still be 1, and the result would be `x * y`. The function also correctly handles the case where both `x` and `y` are the same, resulting in a gcd of `x` or `y`, and the returned value being `x * y`. There are no apparent edge cases missed by the code, and the provided return postcondition accurately reflects the function’s behavior.
+

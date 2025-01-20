@@ -1,0 +1,6 @@
+The function reads three integers \( n \), \( m \), and \( k \) from the standard input, where \( 1 \leq n \leq m \leq 10^9 \) and \( 1 \leq k \leq n \). It then calculates and prints one of two values based on the value of \( k \):
+
+1. If \( k = 1 \), it prints \( \min\left(\frac{m}{n}, m - (n - 1)\right) \).
+2. Otherwise, it prints \( \min\left(\left\lfloor \frac{m}{n} \right\rfloor + 1, m - (n - k)\right) \).
+
+The function does not accept any parameters and does not return any value. After executing the function, the program will have printed one of the two calculated values, depending on the value of \( k \). The function handles all valid inputs within the specified constraints.

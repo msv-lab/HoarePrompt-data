@@ -1,0 +1,5 @@
+The function `func_1` takes two lists, `main_list` and `sub_list`, as input and returns a boolean value. It returns `True` if the string representation of `sub_list` (where each element is converted to a string and concatenated) is a substring of the string representation of `main_list` (where each element is also converted to a string and concatenated). Otherwise, it returns `False`. 
+
+Potential edge cases include:
+- If either `main_list` or `sub_list` is empty, the function will return `False` unless `sub_list` is empty, in which case it will return `True` because an empty string is considered a substring of any string.
+- If the elements of `main_list` or `sub_list` are not convertible to strings, a `TypeError` will be raised.

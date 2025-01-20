@@ -1,0 +1,13 @@
+The function `count` accepts three parameters: `n` (an integer), `k` (a positive integer such that \(1 \leq k \leq 10\)), and `dp` (a dictionary used for memoization). It returns one of three possible values based on the input conditions:
+
+- If `k` is 0, the function returns 0.
+- If the key `(n, k)` is already present in the `dp` dictionary, the function returns the value stored at `dp[n, k]`.
+- If neither of the above conditions is met, the function computes a value based on the following logic:
+  - If `n` is less than \(10^k\), the function sets `dp[n, k]` to `n`.
+  - If `n` is greater than or equal to \(10^k\), the function updates `dp[n, k]` using the formula:
+    \[
+    9 \left[ (k-1) \cdot 10^{k-1} - \frac{10^2 - 10^{2(k-1)}}{99} \right] + 9 \cdot 10^{(k - 2)} \cdot (n // 10^{(k - 1)} - 1)
+    \]
+  - Finally, the function returns `dp[n, k]` modulo \(998244353\).
+
+The function uses memoization to store intermediate results in the `dp` dictionary to optimize repeated calculations.

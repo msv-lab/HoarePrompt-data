@@ -1,0 +1,25 @@
+#State of the program right berfore the function call: s is a string, and char is a single character string.
+def func_1(s, char):
+    first_occurrence = s.find(char)
+
+last_occurrence = s.rfind(char)
+    if (first_occurrence != -1 and last_occurrence != -1) :
+        if (first_occurrence == last_occurrence) :
+            return s.replace(char, '', 1)
+            #The program returns the string `s` with the first (and only) occurrence of `char` removed. Since `char` appears exactly once in `s`, the returned string will be `s` without this single instance of `char`.
+        else :
+            return s[:first_occurrence] + s[first_occurrence + 1:last_occurrence] + s[
+    last_occurrence + 1:]
+            #The program returns a new string that is a version of `s` with the first and last occurrences of `char` removed. The string consists of the substring from the start of `s` up to but not including the first occurrence of `char`, concatenated with the substring from just after the first occurrence of `char` up to but not including the last occurrence of `char`, and finally concatenated with the substring from just after the last occurrence of `char` to the end of `s`.
+    else :
+        return s
+        #The program returns the string 's', which is a string where either the first or the last occurrence of 'char' is not found in 's'.
+#Overall this is what the function does:The function `func_1` accepts a string `s` and a single character string `char`. It returns a new string based on the following cases:
+1. If `char` appears exactly once in `s`, the function returns `s` with the single occurrence of `char` removed.
+2. If `char` appears more than once in `s`, the function returns a new string with the first and last occurrences of `char` removed.
+3. If `char` does not appear in `s` at all, the function returns the original string `s` unchanged. 
+
+Potential edge cases and missing functionality:
+- If `s` is an empty string or `char` is an empty string, the function will return `s` unchanged.
+- If `s` contains multiple occurrences of `char` but all occurrences are adjacent (e.g., "aaa"), the function will still remove the first and last occurrences, effectively removing the outermost `char` characters.
+

@@ -1,0 +1,2 @@
+- The function handles the case where the input string \( n \) is empty or contains only a single digit. In these cases, since it's not possible to remove any digit, the function will print "NO".
+- The function also correctly handles leading zeros in the initial string representation of \( n \). However, if the initial number \( n \) itself is divisible by 8, the function does not account for this scenario. It should check if \( n \) is already divisible by 8 before starting the loop to avoid unnecessary iterations.

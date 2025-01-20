@@ -1,0 +1,10 @@
+The function `func_1` takes two parameters: a string `s` and a single character string `char`. It returns a modified version of `s` based on the presence and position of `char` within `s`:
+
+1. If `char` is not found in `s`, the function returns `s` unchanged.
+2. If `char` appears exactly once in `s`, the function returns `s` with that single occurrence of `char` removed.
+3. If `char` appears more than once in `s`, the function returns a new string with the first and last occurrences of `char` removed. 
+
+Edge Cases:
+- If `s` is an empty string, the function will return an empty string.
+- If `char` is an empty string, the function will return `s` unchanged because `find` and `rfind` will not find an empty string as a valid character.
+- If `char` is a multi-character string, the function will still treat it as a single character and attempt to find it in `s`, which may lead to unexpected behavior if the multi-character string is not found as a whole.

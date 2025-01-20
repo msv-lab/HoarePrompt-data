@@ -1,0 +1,14 @@
+def func_1(lst):
+    first_odd = None
+    first_even = None
+    for num in lst:
+        if first_odd is None and num % 2 != 0:
+            first_odd = num
+        if first_even is None and num % 2 == 0:
+            first_even = num
+        if first_odd is not None and first_even is not None:
+            break
+    return first_odd * first_even
+assert func_1([1, 3, 5, 7, 4, 1, 6, 8]) == 4
+assert func_1([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == 2
+assert func_1([1, 5, 7, 9, 10]) == 10

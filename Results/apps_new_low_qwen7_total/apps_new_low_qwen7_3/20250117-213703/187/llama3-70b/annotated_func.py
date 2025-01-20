@@ -1,0 +1,36 @@
+#State of the program right berfore the function call: n and m are non-negative integers such that 0 <= n, m <= 1,000,000 and n + m > 0.
+def func():
+    n, m = map(int, input().split())
+
+towers = set()
+    for i in range(1, n + 1):
+        towers.add(i * 2)
+        
+    #State of the program after the  for loop has been executed: `i` is `n + 1`; `towers` is a set containing `{2, 4, 6, ..., 2n}`; `n` is unchanged; `m` is unchanged.
+    for i in range(1, m + 1):
+        towers.add(i * 3)
+        
+    #State of the program after the  for loop has been executed: Output State: `i` is `3 * m + 1`, `towers` is a set containing `{2, 4, 6, ..., 2n, 3 * 1, 3 * 2, ..., 3 * m}`, `n` is unchanged, `m` is unchanged, and `n + 1` must be less than `m + 1`.
+    #
+    #### Explanation:
+    #
+    #1. **Analyze the Code and Initial State**:
+    #   - The loop runs from `i = 1` to `i = m + 1` (exclusive).
+    #   - In each iteration, the value `i * 3` is added to the `towers` set.
+    #
+    #2. **Track Variable Changes**:
+    #   - `i`: Starts at `n + 1` and increases by 1 in each iteration until it reaches `m + 1`. Therefore, after `m` iterations, `i` will be `n + 1 + m = m + 1 + n - 1 = 3 * m + 1 - 3 = 3 * m + 1`.
+    #   - `towers`: Initially contains `{2, 4, 6, ..., 2n}`. In each iteration, `i * 3` is added to the set, so after `m` iterations, `towers` will contain `{2, 4, 6, ..., 2n, 3, 6, 9, ..., 3 * m}`.
+    #   - `n` and `m` remain unchanged throughout the loop.
+    #
+    #3. **Conditions Under Which the Loop Executes**:
+    #   - The loop will execute `m` times if `n + 1 <= m + 1`, which simplifies to `n < m`.
+    #
+    #4. **Verify Relationships**:
+    #   - After `m` iterations, `i` will be `3 * m + 1` as derived.
+    #   - `towers` will contain all the elements of the form `2k` for `k = 1, 2, ..., n` and `3k` for `k = 1, 2, ..., m`.
+    #
+    #Therefore, the final output state after the loop finishes executing is as stated above.
+    print(max(towers))
+#Overall this is what the function does:The function takes two non-negative integers \( n \) and \( m \) as input, where \( 0 \leq n, m \leq 1,000,000 \) and \( n + m > 0 \). It constructs a set of integers starting from 2 up to \( 2n \) in steps of 2, and then adds integers from 3 up to \( 3m \) in steps of 3. The function finally prints the maximum value in the constructed set. If \( n \geq m \), the loop condition fails to execute, resulting in a set containing only even numbers from 2 to \( 2n \).
+

@@ -1,0 +1,4214 @@
+Task ID,Dataset,model_created,model_run,description,Code,run_number,original correctness,summary fsl,naive correctness fsl,vanilla,simple tree,complex tree,summary,simple verify fsl,complex verify fsl,summary verify fsl,simple verify,complex verify,summary verify,unique_id,consistency,consistency_mine,consistency_old
+13,apps,gpt-4o,qwen2.5-7b-instruct,"Vova has won $n$ trophies in different competitions. Each trophy is either golden or silver. The trophies are arranged in a row.
+
+The beauty of the arrangement is the length of the longest subsegment consisting of golden trophies. Vova wants to swap two trophies (not necessarily adjacent ones) to make the arrangement as beautiful as possible — that means, to maximize the length of the longest such subsegment.
+
+Help Vova! Tell him the maximum possible beauty of the arrangement if he is allowed to do at most one swap.
+
+
+-----Input-----
+
+The first line contains one integer $n$ ($2 \le n \le 10^5$) — the number of trophies.
+
+The second line contains $n$ characters, each of them is either G or S. If the $i$-th character is G, then the $i$-th trophy is a golden one, otherwise it's a silver trophy. 
+
+
+-----Output-----
+
+Print the maximum possible length of a subsegment of golden trophies, if Vova is allowed to do at most one swap.
+
+
+-----Examples-----
+Input
+10
+GGGSGGGSGG
+
+Output
+7
+
+Input
+4
+GGGG
+
+Output
+4
+
+Input
+3
+SSS
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example Vova has to swap trophies with indices $4$ and $10$. Thus he will obtain the sequence ""GGGGGGGSGS"", the length of the longest subsegment of golden trophies is $7$. 
+
+In the second example Vova can make no swaps at all. The length of the longest subsegment of golden trophies in the sequence is $4$. 
+
+In the third example Vova cannot do anything to make the length of the longest subsegment of golden trophies in the sequence greater than $0$.","def max_beauty_after_swap(n, trophies):
+    segments = []
+    i = 0
+    
+    while i < n:
+        if trophies[i] == 'G':
+            start = i
+            while i < n and trophies[i] == 'G':
+                i += 1
+            segments.append((start, i - 1))
+        else:
+            i += 1
+    
+    if not segments:
+        return 0
+    
+    max_length = max(end - start + 1 for start, end in segments)
+    
+    if len(segments) == 1:
+        return max_length
+    
+    for i in range(1, len(segments)):
+        prev_start, prev_end = segments[i - 1]
+        curr_start, curr_end = segments[i]
+        if curr_start - prev_end == 2:
+            max_length = max(max_length, (curr_end - curr_start + 1) + (prev_end - prev_start + 1) + 1)
+    
+    return min(max_length + 1, n)
+
+# Read input
+import sys
+input = sys.stdin.read
+data = input().split()
+n = int(data[0])
+trophies = data[1]
+
+# Print output
+print(max_beauty_after_swap(n, trophies))
+",1,False,False,False,True,True,True,True,True,True,True,False,False,False,13_gpt-4o,0.5777493155989952,0.07779992903777712,0.5833333333333334
+28,apps,gpt-4o,qwen2.5-7b-instruct,"You are given a string s consisting of n lowercase Latin letters. You have to type this string using your keyboard.
+
+Initially, you have an empty string. Until you type the whole string, you may perform the following operation:  add a character to the end of the string. 
+
+Besides, at most once you may perform one additional operation: copy the string and append it to itself.
+
+For example, if you have to type string abcabca, you can type it in 7 operations if you type all the characters one by one. However, you can type it in 5 operations if you type the string abc first and then copy it and type the last character.
+
+If you have to type string aaaaaaaaa, the best option is to type 4 characters one by one, then copy the string, and then type the remaining character.
+
+Print the minimum number of operations you need to type the given string.
+
+
+-----Input-----
+
+The first line of the input containing only one integer number n (1 ≤ n ≤ 100) — the length of the string you have to type. The second line containing the string s consisting of n lowercase Latin letters.
+
+
+-----Output-----
+
+Print one integer number — the minimum number of operations you need to type the given string.
+
+
+-----Examples-----
+Input
+7
+abcabca
+
+Output
+5
+
+Input
+8
+abcdefgh
+
+Output
+8
+
+
+
+-----Note-----
+
+The first test described in the problem statement.
+
+In the second test you can only type all the characters one by one.","n = int(input())
+s = input()
+
+# Function to find the minimum number of operations to type the string
+def min_operations_to_type(n, s):
+    # Initialize the operations count to n (typing each character one by one)
+    min_operations = n
+    
+    # Try to find the optimal place to perform the copy operation
+    for i in range(1, n):
+        # Find the length of the substring to copy
+        if s[:i] == s[i:2*i]:
+            # Calculate the number of operations
+            operations = i + 1 + (n - 2*i)
+            min_operations = min(min_operations, operations)
+    
+    return min_operations
+
+# Get the result
+result = min_operations_to_type(n, s)
+
+# Print the result
+print(result)
+",1,True,False,False,True,True,True,True,False,True,True,True,True,True,28_gpt-4o,0.548959125547294,0.04899058022009064,0.5
+52,apps,gpt-4o,qwen2.5-7b-instruct,"В Берляндском государственном университете локальная сеть между серверами не всегда работает без ошибок. При передаче двух одинаковых сообщений подряд возможна ошибка, в результате которой эти два сообщения сливаются в одно. При таком слиянии конец первого сообщения совмещается с началом второго. Конечно, совмещение может происходить только по одинаковым символам. Длина совмещения должна быть положительным числом, меньшим длины текста сообщения. 
+
+Например, при передаче двух сообщений «abrakadabra» подряд возможно, что оно будет передано с ошибкой описанного вида, и тогда будет получено сообщение вида «abrakadabrabrakadabra» или «abrakadabrakadabra» (в первом случае совмещение произошло по одному символу, а во втором — по четырем).
+
+По полученному сообщению t определите, возможно ли, что это результат ошибки описанного вида работы локальной сети, и если возможно, определите возможное значение s. 
+
+Не следует считать ошибкой ситуацию полного наложения друга на друга двух сообщений. К примеру, если получено сообщение «abcd», следует считать, что в нём ошибки нет. Аналогично, простое дописывание одного сообщения вслед за другим не является признаком ошибки. Например, если получено сообщение «abcabc», следует считать, что в нём ошибки нет.
+
+
+-----Входные данные-----
+
+В единственной строке выходных данных следует непустая строка t, состоящая из строчных букв латинского алфавита. Длина строки t не превосходит 100 символов.
+
+
+-----Выходные данные-----
+
+Если сообщение t не может содержать ошибки, выведите «NO» (без кавычек) в единственную строку выходных данных.
+
+В противном случае в первой строке выведите «YES» (без кавычек), а в следующей строке выведите строку s — возможное сообщение, которое могло привести к ошибке. Если возможных ответов несколько, разрешается вывести любой из них.
+
+
+-----Примеры-----
+Входные данные
+abrakadabrabrakadabra
+
+Выходные данные
+YES
+abrakadabra
+
+Входные данные
+acacacaca
+
+Выходные данные
+YES
+acaca
+
+Входные данные
+abcabc
+
+Выходные данные
+NO
+
+Входные данные
+abababab
+
+Выходные данные
+YES
+ababab
+
+Входные данные
+tatbt
+
+Выходные данные
+NO
+
+
+
+-----Примечание-----
+
+Во втором примере подходящим ответом также является строка acacaca.","def find_possible_message(t):
+    n = len(t)
+    for i in range(1, n):
+        if t[:i] == t[-i:]:
+            s = t[:-i]
+            if s + t[-i:] == t:
+                return ""YES\n"" + s
+    return ""NO""
+
+# Read input
+t = input().strip()
+
+# Find and print the result
+print(find_possible_message(t))
+",1,False,False,False,True,True,True,True,False,True,True,True,True,True,52_gpt-4o,0.5222316825506773,0.022116155956770172,0.5
+64,apps,gpt-4o,qwen2.5-7b-instruct,"Vova again tries to play some computer card game.
+
+The rules of deck creation in this game are simple. Vova is given an existing deck of n cards and a magic number k. The order of the cards in the deck is fixed. Each card has a number written on it; number a_{i} is written on the i-th card in the deck.
+
+After receiving the deck and the magic number, Vova removes x (possibly x = 0) cards from the top of the deck, y (possibly y = 0) cards from the bottom of the deck, and the rest of the deck is his new deck (Vova has to leave at least one card in the deck after removing cards). So Vova's new deck actually contains cards x + 1, x + 2, ... n - y - 1, n - y from the original deck.
+
+Vova's new deck is considered valid iff the product of all numbers written on the cards in his new deck is divisible by k. So Vova received a deck (possibly not a valid one) and a number k, and now he wonders, how many ways are there to choose x and y so the deck he will get after removing x cards from the top and y cards from the bottom is valid?
+
+
+-----Input-----
+
+The first line contains two integers n and k (1 ≤ n ≤ 100 000, 1 ≤ k ≤ 10^9).
+
+The second line contains n integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ 10^9) — the numbers written on the cards.
+
+
+-----Output-----
+
+Print the number of ways to choose x and y so the resulting deck is valid.
+
+
+-----Examples-----
+Input
+3 4
+6 2 8
+
+Output
+4
+
+Input
+3 6
+9 1 14
+
+Output
+1
+
+
+
+-----Note-----
+
+In the first example the possible values of x and y are:
+
+  x = 0, y = 0;  x = 1, y = 0;  x = 2, y = 0;  x = 0, y = 1.","def count_valid_decks(n, k, cards):
+    from math import gcd
+    from functools import reduce
+    
+    def lcm(a, b):
+        return a * b // gcd(a, b)
+    
+    def product(arr):
+        return reduce(lambda x, y: x * y, arr, 1)
+    
+    total_product = product(cards)
+    
+    if total_product % k != 0:
+        return 0
+    
+    right_product = [1] * (n + 1)
+    for i in range(n - 1, -1, -1):
+        right_product[i] = right_product[i + 1] * cards[i]
+    
+    valid_ways = 0
+    left_product = 1
+    
+    for x in range(n):
+        if left_product * right_product[x + 1] % k == 0:
+            valid_ways += 1
+        left_product *= cards[x]
+    
+    return valid_ways
+
+# Reading input
+import sys
+input = sys.stdin.read
+data = input().split()
+n = int(data[0])
+k = int(data[1])
+cards = list(map(int, data[2:]))
+
+# Calculating and printing the number of valid ways
+print(count_valid_decks(n, k, cards))
+",1,False,False,False,True,True,True,True,True,True,True,True,False,True,64_gpt-4o,0.5293401931959961,0.029302011377072862,0.5416666666666666
+159,apps,gpt-4o,qwen2.5-7b-instruct,"Berland annual chess tournament is coming!
+
+Organizers have gathered 2·n chess players who should be divided into two teams with n people each. The first team is sponsored by BerOil and the second team is sponsored by BerMobile. Obviously, organizers should guarantee the win for the team of BerOil.
+
+Thus, organizers should divide all 2·n players into two teams with n people each in such a way that the first team always wins.
+
+Every chess player has its rating r_{i}. It is known that chess player with the greater rating always wins the player with the lower rating. If their ratings are equal then any of the players can win.
+
+After teams assignment there will come a drawing to form n pairs of opponents: in each pair there is a player from the first team and a player from the second team. Every chess player should be in exactly one pair. Every pair plays once. The drawing is totally random.
+
+Is it possible to divide all 2·n players into two teams with n people each so that the player from the first team in every pair wins regardless of the results of the drawing?
+
+
+-----Input-----
+
+The first line contains one integer n (1 ≤ n ≤ 100).
+
+The second line contains 2·n integers a_1, a_2, ... a_2n (1 ≤ a_{i} ≤ 1000).
+
+
+-----Output-----
+
+If it's possible to divide all 2·n players into two teams with n people each so that the player from the first team in every pair wins regardless of the results of the drawing, then print ""YES"". Otherwise print ""NO"".
+
+
+-----Examples-----
+Input
+2
+1 3 2 4
+
+Output
+YES
+
+Input
+1
+3 3
+
+Output
+NO","# Read input
+n = int(input())
+ratings = list(map(int, input().split()))
+
+# Sort the ratings
+ratings.sort()
+
+# Split the sorted ratings into two teams
+team1 = ratings[:n]
+team2 = ratings[n:]
+
+# Check if every player in team1 has a higher rating than every player in team2
+possible = all(team1[i] < team2[i] for i in range(n))
+
+# Output the result
+if possible:
+    print(""YES"")
+else:
+    print(""NO"")
+",1,False,False,True,True,True,True,True,False,True,True,True,False,True,159_gpt-4o,0.5495298594419469,0.048886123808425795,0.5833333333333334
+165,apps,gpt-4o,qwen2.5-7b-instruct,"It's a beautiful April day and Wallace is playing football with his friends. But his friends do not know that Wallace actually stayed home with Gromit and sent them his robotic self instead. Robo-Wallace has several advantages over the other guys. For example, he can hit the ball directly to the specified point. And yet, the notion of a giveaway is foreign to him. The combination of these features makes the Robo-Wallace the perfect footballer — as soon as the ball gets to him, he can just aim and hit the goal. He followed this tactics in the first half of the match, but he hit the goal rarely. The opposing team has a very good goalkeeper who catches most of the balls that fly directly into the goal. But Robo-Wallace is a quick thinker, he realized that he can cheat the goalkeeper. After all, they are playing in a football box with solid walls. Robo-Wallace can kick the ball to the other side, then the goalkeeper will not try to catch the ball. Then, if the ball bounces off the wall and flies into the goal, the goal will at last be scored.
+
+Your task is to help Robo-Wallace to detect a spot on the wall of the football box, to which the robot should kick the ball, so that the ball bounces once and only once off this wall and goes straight to the goal. In the first half of the match Robo-Wallace got a ball in the head and was severely hit. As a result, some of the schemes have been damaged. Because of the damage, Robo-Wallace can only aim to his right wall (Robo-Wallace is standing with his face to the opposing team's goal).
+
+The football box is rectangular. Let's introduce a two-dimensional coordinate system so that point (0, 0) lies in the lower left corner of the field, if you look at the box above. Robo-Wallace is playing for the team, whose goal is to the right. It is an improvised football field, so the gate of Robo-Wallace's rivals may be not in the middle of the left wall. [Image] 
+
+In the given coordinate system you are given:   y_1, y_2 — the y-coordinates of the side pillars of the goalposts of robo-Wallace's opponents;  y_{w} — the y-coordinate of the wall to which Robo-Wallace is aiming;  x_{b}, y_{b} — the coordinates of the ball's position when it is hit;  r — the radius of the ball. 
+
+A goal is scored when the center of the ball crosses the OY axis in the given coordinate system between (0, y_1) and (0, y_2). The ball moves along a straight line. The ball's hit on the wall is perfectly elastic (the ball does not shrink from the hit), the angle of incidence equals the angle of reflection. If the ball bounces off the wall not to the goal, that is, if it hits the other wall or the goal post, then the opposing team catches the ball and Robo-Wallace starts looking for miscalculation and gets dysfunctional. Such an outcome, if possible, should be avoided. We assume that the ball touches an object, if the distance from the center of the ball to the object is no greater than the ball radius r.
+
+
+-----Input-----
+
+The first and the single line contains integers y_1, y_2, y_{w}, x_{b}, y_{b}, r (1 ≤ y_1, y_2, y_{w}, x_{b}, y_{b} ≤ 10^6; y_1 < y_2 < y_{w}; y_{b} + r < y_{w}; 2·r < y_2 - y_1).
+
+It is guaranteed that the ball is positioned correctly in the field, doesn't cross any wall, doesn't touch the wall that Robo-Wallace is aiming at. The goal posts can't be located in the field corners.
+
+
+-----Output-----
+
+If Robo-Wallace can't score a goal in the described manner, print ""-1"" (without the quotes). Otherwise, print a single number x_{w} — the abscissa of his point of aiming. 
+
+If there are multiple points of aiming, print the abscissa of any of them. When checking the correctness of the answer, all comparisons are made with the permissible absolute error, equal to 10^{ - 8}. 
+
+It is recommended to print as many characters after the decimal point as possible.
+
+
+-----Examples-----
+Input
+4 10 13 10 3 1
+
+Output
+4.3750000000
+
+Input
+1 4 6 2 2 1
+
+Output
+-1
+
+Input
+3 10 15 17 9 2
+
+Output
+11.3333333333
+
+
+
+-----Note-----
+
+Note that in the first and third samples other correct values of abscissa x_{w} are also possible.","def find_aiming_point(y1, y2, yw, xb, yb, r):
+    # Boundary conditions check
+    if yb + r >= yw or y1 >= y2 or y1 + r >= y2 - r:
+        return -1
+
+    # Calculate the intersection point on the right wall
+    # Using the geometry and reflection properties
+    # The goal is to find the x_w such that the ball bounces and hits the goal
+    
+    # Using the fact that the reflection point must maintain the property of the line
+    # We use the formula derived from the reflection geometry
+    # slope = (yb - y_w) / (xb - x_w)
+    # reflected_slope = (y_w - goal_y) / (x_w)
+    
+    # Choose a point on the goal line within the goal range
+    y_goal_mid = (y1 + y2) / 2
+    if y_goal_mid - r < y1 or y_goal_mid + r > y2:
+        return -1
+
+    # Calculate x_w
+    x_w = xb - (2 * (yb - y_goal_mid) * (xb - 0)) / (y_goal_mid - yb)
+    
+    if x_w <= 0:
+        return -1
+
+    return x_w
+
+# Read input
+import sys
+input = sys.stdin.read
+data = input().strip().split()
+
+y1 = int(data[0])
+y2 = int(data[1])
+yw = int(data[2])
+xb = int(data[3])
+yb = int(data[4])
+r = int(data[5])
+
+# Calculate the result
+result = find_aiming_point(y1, y2, yw, xb, yb, r)
+if result == -1:
+    print(result)
+else:
+    print(f""{result:.10f}"")
+",1,False,False,False,True,True,True,True,True,True,True,True,True,False,165_gpt-4o,0.5836571653413781,0.08398384419307396,0.5833333333333334
+197,apps,gpt-4o,qwen2.5-7b-instruct,"Nastya received a gift on New Year — a magic wardrobe. It is magic because in the end of each month the number of dresses in it doubles (i.e. the number of dresses becomes twice as large as it is in the beginning of the month).
+
+Unfortunately, right after the doubling the wardrobe eats one of the dresses (if any) with the 50% probability. It happens every month except the last one in the year. 
+
+Nastya owns x dresses now, so she became interested in the expected number of dresses she will have in one year. Nastya lives in Byteland, so the year lasts for k + 1 months.
+
+Nastya is really busy, so she wants you to solve this problem. You are the programmer, after all. Also, you should find the answer modulo 10^9 + 7, because it is easy to see that it is always integer.
+
+
+-----Input-----
+
+The only line contains two integers x and k (0 ≤ x, k ≤ 10^18), where x is the initial number of dresses and k + 1 is the number of months in a year in Byteland.
+
+
+-----Output-----
+
+In the only line print a single integer — the expected number of dresses Nastya will own one year later modulo 10^9 + 7.
+
+
+-----Examples-----
+Input
+2 0
+
+Output
+4
+
+Input
+2 1
+
+Output
+7
+
+Input
+3 2
+
+Output
+21
+
+
+
+-----Note-----
+
+In the first example a year consists on only one month, so the wardrobe does not eat dresses at all.
+
+In the second example after the first month there are 3 dresses with 50% probability and 4 dresses with 50% probability. Thus, in the end of the year there are 6 dresses with 50% probability and 8 dresses with 50% probability. This way the answer for this test is (6 + 8) / 2 = 7.","MOD = 10**9 + 7
+
+def power_mod(base, exponent, mod):
+    result = 1
+    while exponent > 0:
+        if exponent % 2 == 1:
+            result = (result * base) % mod
+        base = (base * base) % mod
+        exponent //= 2
+    return result
+
+def expected_dresses(x, k):
+    if x == 0:
+        return 0
+    # Calculate (2^(k+1) - 1) % MOD
+    power = power_mod(2, k + 1, MOD)
+    result = (x * (power - 1) % MOD) % MOD
+    return result
+
+# Read input
+import sys
+input = sys.stdin.read
+x, k = map(int, input().split())
+
+# Print the result
+print(expected_dresses(x, k))
+",1,False,False,False,True,True,True,True,True,False,True,True,False,True,197_gpt-4o,0.4348406407739015,-0.06378777132990125,0.5416666666666666
+250,apps,gpt-4o,qwen2.5-7b-instruct,"Valery is a PE teacher at a school in Berland. Soon the students are going to take a test in long jumps, and Valery has lost his favorite ruler! 
+
+However, there is no reason for disappointment, as Valery has found another ruler, its length is l centimeters. The ruler already has n marks, with which he can make measurements. We assume that the marks are numbered from 1 to n in the order they appear from the beginning of the ruler to its end. The first point coincides with the beginning of the ruler and represents the origin. The last mark coincides with the end of the ruler, at distance l from the origin. This ruler can be repesented by an increasing sequence a_1, a_2, ..., a_{n}, where a_{i} denotes the distance of the i-th mark from the origin (a_1 = 0, a_{n} = l).
+
+Valery believes that with a ruler he can measure the distance of d centimeters, if there is a pair of integers i and j (1 ≤ i ≤ j ≤ n), such that the distance between the i-th and the j-th mark is exactly equal to d (in other words, a_{j} - a_{i} = d). 
+
+Under the rules, the girls should be able to jump at least x centimeters, and the boys should be able to jump at least y (x < y) centimeters. To test the children's abilities, Valery needs a ruler to measure each of the distances x and y. 
+
+Your task is to determine what is the minimum number of additional marks you need to add on the ruler so that they can be used to measure the distances x and y. Valery can add the marks at any integer non-negative distance from the origin not exceeding the length of the ruler.
+
+
+-----Input-----
+
+The first line contains four positive space-separated integers n, l, x, y (2 ≤ n ≤ 10^5, 2 ≤ l ≤ 10^9, 1 ≤ x < y ≤ l) — the number of marks, the length of the ruler and the jump norms for girls and boys, correspondingly.
+
+The second line contains a sequence of n integers a_1, a_2, ..., a_{n} (0 = a_1 < a_2 < ... < a_{n} = l), where a_{i} shows the distance from the i-th mark to the origin.
+
+
+-----Output-----
+
+In the first line print a single non-negative integer v — the minimum number of marks that you need to add on the ruler.
+
+In the second line print v space-separated integers p_1, p_2, ..., p_{v} (0 ≤ p_{i} ≤ l). Number p_{i} means that the i-th mark should be at the distance of p_{i} centimeters from the origin. Print the marks in any order. If there are multiple solutions, print any of them.
+
+
+-----Examples-----
+Input
+3 250 185 230
+0 185 250
+
+Output
+1
+230
+
+Input
+4 250 185 230
+0 20 185 250
+
+Output
+0
+
+Input
+2 300 185 230
+0 300
+
+Output
+2
+185 230
+
+
+
+-----Note-----
+
+In the first sample it is impossible to initially measure the distance of 230 centimeters. For that it is enough to add a 20 centimeter mark or a 230 centimeter mark.
+
+In the second sample you already can use the ruler to measure the distances of 185 and 230 centimeters, so you don't have to add new marks.
+
+In the third sample the ruler only contains the initial and the final marks. We will need to add two marks to be able to test the children's skills.","# Read input values
+n, l, x, y = map(int, input().split())
+marks = list(map(int, input().split()))
+
+# Initialize sets for easier lookup of required distances
+marks_set = set(marks)
+x_found = False
+y_found = False
+
+# Check if x and y distances can be measured
+for mark in marks:
+    if (mark + x) in marks_set or (mark - x) in marks_set:
+        x_found = True
+    if (mark + y) in marks_set or (mark - y) in marks_set:
+        y_found = True
+    if x_found and y_found:
+        break
+
+# If both x and y distances can already be measured, no new marks are needed
+if x_found and y_found:
+    print(0)
+else:
+    # Try to find a mark that can measure both x and y distances if added
+    new_marks = set()
+    for mark in marks:
+        if not x_found:
+            # Check if a mark that is x distance from the current mark can also measure y distance
+            if (mark + x + y) in marks_set or (mark + x - y) in marks_set or (mark - x + y) in marks_set:
+                new_marks.add(mark + x)
+            elif (mark - x + y) in marks_set or (mark - x - y) in marks_set:
+                new_marks.add(mark - x)
+        if not y_found:
+            # Check if a mark that is y distance from the current mark can also measure x distance
+            if (mark + y + x) in marks_set or (mark + y - x) in marks_set or (mark - y + x) in marks_set:
+                new_marks.add(mark + y)
+            elif (mark - y + x) in marks_set or (mark - y - x) in marks_set:
+                new_marks.add(mark - y)
+    
+    # If we found a mark that can measure both distances, add only that mark
+    if new_marks:
+        print(1)
+        print(new_marks.pop())
+    else:
+        # Otherwise, add both x and y marks if necessary
+        result = []
+        if not x_found:
+            result.append(x)
+        if not y_found:
+            result.append(y)
+        print(len(result))
+        print("" "".join(map(str, result)))
+",1,False,False,False,False,False,True,True,False,True,False,False,False,True,250_gpt-4o,0.32805105442607474,-0.16596394579970838,0.5416666666666666
+265,apps,gpt-4o,qwen2.5-7b-instruct,"There is an airplane which has n rows from front to back. There will be m people boarding this airplane.
+
+This airplane has an entrance at the very front and very back of the plane.
+
+Each person has some assigned seat. It is possible for multiple people to have the same assigned seat. The people will then board the plane one by one starting with person 1. Each person can independently choose either the front entrance or back entrance to enter the plane.
+
+When a person walks into the plane, they walk directly to their assigned seat and will try to sit in it. If it is occupied, they will continue walking in the direction they walked in until they are at empty seat - they will take the earliest empty seat that they can find. If they get to the end of the row without finding a seat, they will be angry.
+
+Find the number of ways to assign tickets to the passengers and board the plane without anyone getting angry. Two ways are different if there exists a passenger who chose a different entrance in both ways, or the assigned seat is different. Print this count modulo 10^9 + 7.
+
+
+-----Input-----
+
+The first line of input will contain two integers n, m (1 ≤ m ≤ n ≤ 1 000 000), the number of seats, and the number of passengers, respectively.
+
+
+-----Output-----
+
+Print a single number, the number of ways, modulo 10^9 + 7.
+
+
+-----Example-----
+Input
+3 3
+
+Output
+128
+
+
+
+-----Note-----
+
+Here, we will denote a passenger by which seat they were assigned, and which side they came from (either ""F"" or ""B"" for front or back, respectively).
+
+For example, one valid way is 3B, 3B, 3B (i.e. all passengers were assigned seat 3 and came from the back entrance). Another valid way would be 2F, 1B, 3F.
+
+One invalid way would be 2B, 2B, 2B, since the third passenger would get to the front without finding a seat.","MOD = 10**9 + 7
+
+def factorial(n):
+    result = 1
+    for i in range(2, n + 1):
+        result = result * i % MOD
+    return result
+
+def number_of_ways(n, m):
+    # Compute factorial(n) and factorial(n-m)
+    fact_n = factorial(n)
+    fact_n_m = factorial(n - m)
+    
+    # The number of ways to assign tickets to passengers and ensure no one gets angry:
+    # This is computed as 2^m * factorial(n) // factorial(n-m)
+    ways = pow(2, m, MOD) * fact_n % MOD * pow(fact_n_m, MOD-2, MOD) % MOD
+    
+    return ways
+
+# Read input
+import sys
+input = sys.stdin.read
+data = input().strip().split()
+n = int(data[0])
+m = int(data[1])
+
+# Calculate the number of ways
+result = number_of_ways(n, m)
+
+# Output the result
+print(result)
+",1,False,False,False,True,True,True,True,True,False,True,True,True,True,265_gpt-4o,0.5971675832200772,0.0977370811161579,0.5416666666666666
+290,apps,gpt-4o,qwen2.5-7b-instruct,"Tonio has a keyboard with only two letters, ""V"" and ""K"".
+
+One day, he has typed out a string s with only these two letters. He really likes it when the string ""VK"" appears, so he wishes to change at most one letter in the string (or do no changes) to maximize the number of occurrences of that string. Compute the maximum number of times ""VK"" can appear as a substring (i. e. a letter ""K"" right after a letter ""V"") in the resulting string.
+
+
+-----Input-----
+
+The first line will contain a string s consisting only of uppercase English letters ""V"" and ""K"" with length not less than 1 and not greater than 100.
+
+
+-----Output-----
+
+Output a single integer, the maximum number of times ""VK"" can appear as a substring of the given string after changing at most one character.
+
+
+-----Examples-----
+Input
+VK
+
+Output
+1
+
+Input
+VV
+
+Output
+1
+
+Input
+V
+
+Output
+0
+
+Input
+VKKKKKKKKKVVVVVVVVVK
+
+Output
+3
+
+Input
+KVKV
+
+Output
+1
+
+
+
+-----Note-----
+
+For the first case, we do not change any letters. ""VK"" appears once, which is the maximum number of times it could appear.
+
+For the second case, we can change the second character from a ""V"" to a ""K"". This will give us the string ""VK"". This has one occurrence of the string ""VK"" as a substring.
+
+For the fourth case, we can change the fourth character from a ""K"" to a ""V"". This will give us the string ""VKKVKKKKKKVVVVVVVVVK"". This has three occurrences of the string ""VK"" as a substring. We can check no other moves can give us strictly more occurrences.","s = input()
+
+# Initialize the count of VK substrings
+count_vk = 0
+
+# Count initial VK substrings
+for i in range(len(s) - 1):
+    if s[i] == 'V' and s[i + 1] == 'K':
+        count_vk += 1
+
+# Try changing each character and see if it increases VK substrings
+max_vk = count_vk
+for i in range(len(s)):
+    if s[i] == 'V':
+        s_new = s[:i] + 'K' + s[i+1:]
+    elif s[i] == 'K':
+        s_new = s[:i] + 'V' + s[i+1:]
+    else:
+        continue
+    
+    new_count_vk = 0
+    for j in range(len(s_new) - 1):
+        if s_new[j] == 'V' and s_new[j + 1] == 'K':
+            new_count_vk += 1
+    
+    max_vk = max(max_vk, new_count_vk)
+
+print(max_vk)
+",1,True,True,False,True,True,True,True,False,False,True,True,True,False,290_gpt-4o,0.5689011500308099,0.06930433337203927,0.5416666666666666
+36,apps,llama3-70b,qwen2.5-7b-instruct,"The flag of Berland is such rectangular field n × m that satisfies following conditions:
+
+  Flag consists of three colors which correspond to letters 'R', 'G' and 'B'.  Flag consists of three equal in width and height stripes, parralel to each other and to sides of the flag. Each stripe has exactly one color.  Each color should be used in exactly one stripe. 
+
+You are given a field n × m, consisting of characters 'R', 'G' and 'B'. Output ""YES"" (without quotes) if this field corresponds to correct flag of Berland. Otherwise, print ""NO"" (without quotes).
+
+
+-----Input-----
+
+The first line contains two integer numbers n and m (1 ≤ n, m ≤ 100) — the sizes of the field.
+
+Each of the following n lines consisting of m characters 'R', 'G' and 'B' — the description of the field.
+
+
+-----Output-----
+
+Print ""YES"" (without quotes) if the given field corresponds to correct flag of Berland . Otherwise, print ""NO"" (without quotes).
+
+
+-----Examples-----
+Input
+6 5
+RRRRR
+RRRRR
+BBBBB
+BBBBB
+GGGGG
+GGGGG
+
+Output
+YES
+
+Input
+4 3
+BRG
+BRG
+BRG
+BRG
+
+Output
+YES
+
+Input
+6 7
+RRRGGGG
+RRRGGGG
+RRRGGGG
+RRRBBBB
+RRRBBBB
+RRRBBBB
+
+Output
+NO
+
+Input
+4 4
+RRRR
+RRRR
+BBBB
+GGGG
+
+Output
+NO
+
+
+
+-----Note-----
+
+The field in the third example doesn't have three parralel stripes.
+
+Rows of the field in the fourth example are parralel to each other and to borders. But they have different heights — 2, 1 and 1.","n, m = map(int, input().split())
+field = [input() for _ in range(n)]
+
+rows = len(set(''.join(field[i::n//3]) for i in range(n//3)))
+cols = len(set(''.join(row[i*m//3:(i+1)*m//3] for row in field)) for i in range(3))
+
+print(""YES"" if rows == 3 and cols == 3 else ""NO"")
+",1,False,False,False,True,True,True,False,False,False,True,False,False,False,36_llama3-70b,0.5737313256405553,0.0718182532301581,0.625
+44,apps,llama3-70b,qwen2.5-7b-instruct,"You are given the set of vectors on the plane, each of them starting at the origin. Your task is to find a pair of vectors with the minimal non-oriented angle between them.
+
+Non-oriented angle is non-negative value, minimal between clockwise and counterclockwise direction angles. Non-oriented angle is always between 0 and π. For example, opposite directions vectors have angle equals to π.
+
+
+-----Input-----
+
+First line of the input contains a single integer n (2 ≤ n ≤ 100 000) — the number of vectors.
+
+The i-th of the following n lines contains two integers x_{i} and y_{i} (|x|, |y| ≤ 10 000, x^2 + y^2 > 0) — the coordinates of the i-th vector. Vectors are numbered from 1 to n in order of appearing in the input. It is guaranteed that no two vectors in the input share the same direction (but they still can have opposite directions).
+
+
+-----Output-----
+
+Print two integer numbers a and b (a ≠ b) — a pair of indices of vectors with the minimal non-oriented angle. You can print the numbers in any order. If there are many possible answers, print any.
+
+
+-----Examples-----
+Input
+4
+-1 0
+0 -1
+1 0
+1 1
+
+Output
+3 4
+
+Input
+6
+-1 0
+0 -1
+1 0
+1 1
+-4 -5
+-4 -6
+
+Output
+6 5","import math
+
+n = int(input())
+
+v = []
+for _ in range(n):
+    x, y = map(int, input().split())
+    v.append((x, y))
+
+ans = (0, 1)
+ans_angle = math.pi
+
+v.sort(key=lambda v: math.atan2(v[1], v[0]))
+
+for i in range(n):
+    for j in range(i+1, min(n, i+100)):
+        angle = math.acos((v[i][0]*v[j][0] + v[i][1]*v[j][1]) / 
+                          math.sqrt(v[i][0]**2 + v[i][1]**2) / 
+                          math.sqrt(v[j][0]**2 + v[j][1]**2))
+        if angle < ans_angle:
+            ans_angle = angle
+            ans = (i, j)
+
+print(ans[0]+1, ans[1]+1)
+",1,False,False,False,False,True,False,True,True,True,True,False,True,True,44_llama3-70b,0.5575568417069499,0.05699574066749571,0.5833333333333334
+50,apps,llama3-70b,qwen2.5-7b-instruct,"Let's write all the positive integer numbers one after another from $1$ without any delimiters (i.e. as a single string). It will be the infinite sequence starting with 123456789101112131415161718192021222324252627282930313233343536...
+
+Your task is to print the $k$-th digit of this sequence.
+
+
+-----Input-----
+
+The first and only line contains integer $k$ ($1 \le k \le 10^{12}$) — the position to process ($1$-based index).
+
+
+-----Output-----
+
+Print the $k$-th digit of the resulting infinite sequence.
+
+
+-----Examples-----
+Input
+7
+
+Output
+7
+
+Input
+21
+
+Output
+5","k = int(input())
+n = 1
+while True:
+    s = str(n)
+    if len(s) >= k:
+        print(s[k-1])
+        break
+    k -= len(s)
+    n += 1
+",1,False,False,False,True,True,True,True,True,False,False,False,True,True,50_llama3-70b,0.5992170886152665,0.0999273480448792,0.5833333333333334
+96,apps,llama3-70b,qwen2.5-7b-instruct,"Array of integers is unimodal, if:
+
+  it is strictly increasing in the beginning;  after that it is constant;  after that it is strictly decreasing. 
+
+The first block (increasing) and the last block (decreasing) may be absent. It is allowed that both of this blocks are absent.
+
+For example, the following three arrays are unimodal: [5, 7, 11, 11, 2, 1], [4, 4, 2], [7], but the following three are not unimodal: [5, 5, 6, 6, 1], [1, 2, 1, 2], [4, 5, 5, 6].
+
+Write a program that checks if an array is unimodal.
+
+
+-----Input-----
+
+The first line contains integer n (1 ≤ n ≤ 100) — the number of elements in the array.
+
+The second line contains n integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ 1 000) — the elements of the array.
+
+
+-----Output-----
+
+Print ""YES"" if the given array is unimodal. Otherwise, print ""NO"".
+
+You can output each letter in any case (upper or lower).
+
+
+-----Examples-----
+Input
+6
+1 5 5 5 4 2
+
+Output
+YES
+
+Input
+5
+10 20 30 20 10
+
+Output
+YES
+
+Input
+4
+1 2 1 2
+
+Output
+NO
+
+Input
+7
+3 3 3 3 3 3 3
+
+Output
+YES
+
+
+
+-----Note-----
+
+In the first example the array is unimodal, because it is strictly increasing in the beginning (from position 1 to position 2, inclusively), that it is constant (from position 2 to position 4, inclusively) and then it is strictly decreasing (from position 4 to position 6, inclusively).","n = int(input())
+arr = list(map(int, input().split()))
+
+increasing = False
+constant = False
+decreasing = False
+
+for i in range(1, n):
+    if arr[i] > arr[i-1]:
+        if decreasing:
+            print(""NO"")
+            exit()
+        increasing = True
+    elif arr[i] == arr[i-1]:
+        if increasing:
+            increasing = False
+            constant = True
+    else:
+        if increasing:
+            increasing = False
+        decreasing = True
+
+print(""YES"")
+",1,False,False,False,True,True,False,True,True,True,True,True,True,False,96_llama3-70b,0.46078781656624684,-0.038680870689825585,0.5416666666666666
+99,apps,llama3-70b,qwen2.5-7b-instruct,"Gerald bought two very rare paintings at the Sotheby's auction and he now wants to hang them on the wall. For that he bought a special board to attach it to the wall and place the paintings on the board. The board has shape of an a_1 × b_1 rectangle, the paintings have shape of a a_2 × b_2 and a_3 × b_3 rectangles.
+
+Since the paintings are painted in the style of abstract art, it does not matter exactly how they will be rotated, but still, one side of both the board, and each of the paintings must be parallel to the floor. The paintings can touch each other and the edges of the board, but can not overlap or go beyond the edge of the board. Gerald asks whether it is possible to place the paintings on the board, or is the board he bought not large enough?
+
+
+-----Input-----
+
+The first line contains two space-separated numbers a_1 and b_1 — the sides of the board. Next two lines contain numbers a_2, b_2, a_3 and b_3 — the sides of the paintings. All numbers a_{i}, b_{i} in the input are integers and fit into the range from 1 to 1000.
+
+
+-----Output-----
+
+If the paintings can be placed on the wall, print ""YES"" (without the quotes), and if they cannot, print ""NO"" (without the quotes).
+
+
+-----Examples-----
+Input
+3 2
+1 3
+2 1
+
+Output
+YES
+
+Input
+5 5
+3 3
+3 3
+
+Output
+NO
+
+Input
+4 2
+2 3
+1 2
+
+Output
+YES
+
+
+
+-----Note-----
+
+That's how we can place the pictures in the first test:
+
+[Image]
+
+And that's how we can do it in the third one.
+
+[Image]","a1, b1 = map(int, input().split())
+a2, b2 = map(int, input().split())
+a3, b3 = map(int, input().split())
+
+if max(a1, b1) >= max(a2, b2) and min(a1, b1) >= min(a2, b2):
+    if max(a1, b1) >= max(a3, b3) and min(a1, b1) >= min(a3, b3):
+        print(""YES"")
+    else:
+        print(""NO"")
+else:
+    if max(a1, b1) >= max(a3, b3) and min(a1, b1) >= min(a3, b3):
+        print(""YES"")
+    else:
+        print(""NO"")
+",1,False,False,False,False,False,False,False,True,False,True,True,False,True,99_llama3-70b,0.44565346236023223,-0.053507185884652454,0.5416666666666666
+191,apps,llama3-70b,qwen2.5-7b-instruct,"Карта звёздного неба представляет собой прямоугольное поле, состоящее из n строк по m символов в каждой строке. Каждый символ — это либо «.» (означает пустой участок неба), либо «*» (означает то, что в этом месте на небе есть звезда). 
+
+Новое издание карты звёздного неба будет напечатано на квадратных листах, поэтому требуется найти минимально возможную сторону квадрата, в который могут поместиться все звезды. Границы искомого квадрата должны быть параллельны сторонам заданного прямоугольного поля.
+
+
+-----Входные данные-----
+
+В первой строке входных данных записаны два числа n и m (1 ≤ n, m ≤ 1000) — количество строк и столбцов на карте звездного неба.
+
+В следующих n строках задано по m символов. Каждый символ — это либо «.» (пустой участок неба), либо «*» (звезда).
+
+Гарантируется, что на небе есть хотя бы одна звезда.
+
+
+-----Выходные данные-----
+
+Выведите одно число — минимально возможную сторону квадрата, которым можно накрыть все звезды.
+
+
+-----Примеры-----
+Входные данные
+4 4
+....
+..*.
+...*
+..**
+
+Выходные данные
+3
+
+Входные данные
+1 3
+*.*
+
+Выходные данные
+3
+
+Входные данные
+2 1
+.
+*
+
+Выходные данные
+1
+
+
+
+-----Примечание-----
+
+Один из возможных ответов на первый тестовый пример:
+
+ [Image] 
+
+Один из возможных ответов на второй тестовый пример (обратите внимание, что покрывающий квадрат выходит за пределы карты звездного неба):
+
+ [Image] 
+
+Ответ на третий тестовый пример:
+
+ [Image]","n, m = map(int, input().split())
+stars = []
+for _ in range(n):
+    row = input()
+    for j, c in enumerate(row):
+        if c == '*':
+            stars.append((j, _))
+
+min_x = min(x for x, y in stars)
+max_x = max(x for x, y in stars)
+min_y = min(y for x, y in stars)
+max_y = max(y for x, y in stars)
+
+side = max(max_x - min_x + 1, max_y - min_y + 1)
+print(side)
+",1,True,True,True,True,True,True,True,True,True,False,True,True,True,191_llama3-70b,0.5906126045643085,0.09096909090919665,0.5416666666666666
+207,apps,llama3-70b,qwen2.5-7b-instruct,"A frog is initially at position $0$ on the number line. The frog has two positive integers $a$ and $b$. From a position $k$, it can either jump to position $k+a$ or $k-b$.
+
+Let $f(x)$ be the number of distinct integers the frog can reach if it never jumps on an integer outside the interval $[0, x]$. The frog doesn't need to visit all these integers in one trip, that is, an integer is counted if the frog can somehow reach it if it starts from $0$.
+
+Given an integer $m$, find $\sum_{i=0}^{m} f(i)$. That is, find the sum of all $f(i)$ for $i$ from $0$ to $m$.
+
+
+-----Input-----
+
+The first line contains three integers $m, a, b$ ($1 \leq m \leq 10^9, 1 \leq a,b \leq 10^5$).
+
+
+-----Output-----
+
+Print a single integer, the desired sum.
+
+
+-----Examples-----
+Input
+7 5 3
+
+Output
+19
+
+Input
+1000000000 1 2019
+
+Output
+500000001500000001
+
+Input
+100 100000 1
+
+Output
+101
+
+Input
+6 4 5
+
+Output
+10
+
+
+
+-----Note-----
+
+In the first example, we must find $f(0)+f(1)+\ldots+f(7)$. We have $f(0) = 1, f(1) = 1, f(2) = 1, f(3) = 1, f(4) = 1, f(5) = 3, f(6) = 3, f(7) = 8$. The sum of these values is $19$.
+
+In the second example, we have $f(i) = i+1$, so we want to find $\sum_{i=0}^{10^9} i+1$.
+
+In the third example, the frog can't make any jumps in any case.","m, a, b = map(int, input().split())
+dp = [0]*(m+1)
+dp[0] = 1
+for i in range(m+1):
+    if i+a <= m:
+        dp[i+a] += dp[i]
+    if i-b >= 0:
+        dp[i] += dp[i-b]
+print(sum(dp))
+",1,False,False,False,True,False,False,False,True,True,True,True,True,False,207_llama3-70b,0.5811835376272438,0.07923404231990178,0.625
+211,apps,llama3-70b,qwen2.5-7b-instruct,"One spring day on his way to university Lesha found an array A. Lesha likes to split arrays into several parts. This time Lesha decided to split the array A into several, possibly one, new arrays so that the sum of elements in each of the new arrays is not zero. One more condition is that if we place the new arrays one after another they will form the old array A.
+
+Lesha is tired now so he asked you to split the array. Help Lesha!
+
+
+-----Input-----
+
+The first line contains single integer n (1 ≤ n ≤ 100) — the number of elements in the array A.
+
+The next line contains n integers a_1, a_2, ..., a_{n} ( - 10^3 ≤ a_{i} ≤ 10^3) — the elements of the array A.
+
+
+-----Output-----
+
+If it is not possible to split the array A and satisfy all the constraints, print single line containing ""NO"" (without quotes).
+
+Otherwise in the first line print ""YES"" (without quotes). In the next line print single integer k — the number of new arrays. In each of the next k lines print two integers l_{i} and r_{i} which denote the subarray A[l_{i}... r_{i}] of the initial array A being the i-th new array. Integers l_{i}, r_{i} should satisfy the following conditions:  l_1 = 1  r_{k} = n  r_{i} + 1 = l_{i} + 1 for each 1 ≤ i < k. 
+
+If there are multiple answers, print any of them.
+
+
+-----Examples-----
+Input
+3
+1 2 -3
+
+Output
+YES
+2
+1 2
+3 3
+
+Input
+8
+9 -12 3 4 -4 -10 7 3
+
+Output
+YES
+2
+1 2
+3 8
+
+Input
+1
+0
+
+Output
+NO
+
+Input
+4
+1 2 3 -5
+
+Output
+YES
+4
+1 1
+2 2
+3 3
+4 4","n = int(input())
+a = list(map(int, input().split()))
+prefix_sum = [0] * (n + 1)
+for i in range(n):
+    prefix_sum[i + 1] = prefix_sum[i] + a[i]
+
+if prefix_sum[n] == 0:
+    print(""NO"")
+else:
+    print(""YES"")
+    k = 1
+    l = 1
+    for r in range(1, n + 1):
+        if prefix_sum[r] != 0 and prefix_sum[r] != prefix_sum[n]:
+            print(k, l, r)
+            k += 1
+            l = r
+    print(k, l, n)
+",1,False,False,False,True,False,True,False,True,True,True,False,False,False,211_llama3-70b,0.5857055335578474,0.08375838445913218,0.625
+236,apps,llama3-70b,qwen2.5-7b-instruct,"After passing a test, Vasya got himself a box of $n$ candies. He decided to eat an equal amount of candies each morning until there are no more candies. However, Petya also noticed the box and decided to get some candies for himself.
+
+This means the process of eating candies is the following: in the beginning Vasya chooses a single integer $k$, same for all days. After that, in the morning he eats $k$ candies from the box (if there are less than $k$ candies in the box, he eats them all), then in the evening Petya eats $10\%$ of the candies remaining in the box. If there are still candies left in the box, the process repeats — next day Vasya eats $k$ candies again, and Petya — $10\%$ of the candies left in a box, and so on.
+
+If the amount of candies in the box is not divisible by $10$, Petya rounds the amount he takes from the box down. For example, if there were $97$ candies in the box, Petya would eat only $9$ of them. In particular, if there are less than $10$ candies in a box, Petya won't eat any at all.
+
+Your task is to find out the minimal amount of $k$ that can be chosen by Vasya so that he would eat at least half of the $n$ candies he initially got. Note that the number $k$ must be integer.
+
+
+-----Input-----
+
+The first line contains a single integer $n$ ($1 \leq n \leq 10^{18}$) — the initial amount of candies in the box.
+
+
+-----Output-----
+
+Output a single integer — the minimal amount of $k$ that would allow Vasya to eat at least half of candies he got.
+
+
+-----Example-----
+Input
+68
+
+Output
+3
+
+
+
+-----Note-----
+
+In the sample, the amount of candies, with $k=3$, would change in the following way (Vasya eats first):
+
+$68 \to 65 \to 59 \to 56 \to 51 \to 48 \to 44 \to 41 \\ \to 37 \to 34 \to 31 \to 28 \to 26 \to 23 \to 21 \to 18 \to 17 \to 14 \\ \to 13 \to 10 \to 9 \to 6 \to 6 \to 3 \to 3 \to 0$.
+
+In total, Vasya would eat $39$ candies, while Petya — $29$.","n = int(input())
+k = 1
+while True:
+    candies = n
+    vasya_eaten = 0
+    while candies > 0:
+        vasya_eaten += min(k, candies)
+        candies -= min(k, candies)
+        petya_eaten = candies // 10
+        candies -= petya_eaten
+    if vasya_eaten * 2 >= n:
+        print(k)
+        break
+    k += 1
+",1,False,True,True,True,True,True,True,True,True,True,True,True,False,236_llama3-70b,0.5442130571415579,0.04427062132914813,0.5416666666666666
+13,apps,gpt-4o,qwen2.5-7b-instruct,"Vova has won $n$ trophies in different competitions. Each trophy is either golden or silver. The trophies are arranged in a row.
+
+The beauty of the arrangement is the length of the longest subsegment consisting of golden trophies. Vova wants to swap two trophies (not necessarily adjacent ones) to make the arrangement as beautiful as possible — that means, to maximize the length of the longest such subsegment.
+
+Help Vova! Tell him the maximum possible beauty of the arrangement if he is allowed to do at most one swap.
+
+
+-----Input-----
+
+The first line contains one integer $n$ ($2 \le n \le 10^5$) — the number of trophies.
+
+The second line contains $n$ characters, each of them is either G or S. If the $i$-th character is G, then the $i$-th trophy is a golden one, otherwise it's a silver trophy. 
+
+
+-----Output-----
+
+Print the maximum possible length of a subsegment of golden trophies, if Vova is allowed to do at most one swap.
+
+
+-----Examples-----
+Input
+10
+GGGSGGGSGG
+
+Output
+7
+
+Input
+4
+GGGG
+
+Output
+4
+
+Input
+3
+SSS
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example Vova has to swap trophies with indices $4$ and $10$. Thus he will obtain the sequence ""GGGGGGGSGS"", the length of the longest subsegment of golden trophies is $7$. 
+
+In the second example Vova can make no swaps at all. The length of the longest subsegment of golden trophies in the sequence is $4$. 
+
+In the third example Vova cannot do anything to make the length of the longest subsegment of golden trophies in the sequence greater than $0$.","def max_beauty_after_swap(n, trophies):
+    segments = []
+    i = 0
+    
+    while i < n:
+        if trophies[i] == 'G':
+            start = i
+            while i < n and trophies[i] == 'G':
+                i += 1
+            segments.append((start, i - 1))
+        else:
+            i += 1
+    
+    if not segments:
+        return 0
+    
+    max_length = max(end - start + 1 for start, end in segments)
+    
+    if len(segments) == 1:
+        return max_length
+    
+    for i in range(1, len(segments)):
+        prev_start, prev_end = segments[i - 1]
+        curr_start, curr_end = segments[i]
+        if curr_start - prev_end == 2:
+            max_length = max(max_length, (curr_end - curr_start + 1) + (prev_end - prev_start + 1) + 1)
+    
+    return min(max_length + 1, n)
+
+# Read input
+import sys
+input = sys.stdin.read
+data = input().split()
+n = int(data[0])
+trophies = data[1]
+
+# Print output
+print(max_beauty_after_swap(n, trophies))
+",2,False,False,False,True,True,True,True,True,True,True,False,False,False,13_gpt-4o,0.5777493155989952,0.07779992903777712,0.5833333333333334
+28,apps,gpt-4o,qwen2.5-7b-instruct,"You are given a string s consisting of n lowercase Latin letters. You have to type this string using your keyboard.
+
+Initially, you have an empty string. Until you type the whole string, you may perform the following operation:  add a character to the end of the string. 
+
+Besides, at most once you may perform one additional operation: copy the string and append it to itself.
+
+For example, if you have to type string abcabca, you can type it in 7 operations if you type all the characters one by one. However, you can type it in 5 operations if you type the string abc first and then copy it and type the last character.
+
+If you have to type string aaaaaaaaa, the best option is to type 4 characters one by one, then copy the string, and then type the remaining character.
+
+Print the minimum number of operations you need to type the given string.
+
+
+-----Input-----
+
+The first line of the input containing only one integer number n (1 ≤ n ≤ 100) — the length of the string you have to type. The second line containing the string s consisting of n lowercase Latin letters.
+
+
+-----Output-----
+
+Print one integer number — the minimum number of operations you need to type the given string.
+
+
+-----Examples-----
+Input
+7
+abcabca
+
+Output
+5
+
+Input
+8
+abcdefgh
+
+Output
+8
+
+
+
+-----Note-----
+
+The first test described in the problem statement.
+
+In the second test you can only type all the characters one by one.","n = int(input())
+s = input()
+
+# Function to find the minimum number of operations to type the string
+def min_operations_to_type(n, s):
+    # Initialize the operations count to n (typing each character one by one)
+    min_operations = n
+    
+    # Try to find the optimal place to perform the copy operation
+    for i in range(1, n):
+        # Find the length of the substring to copy
+        if s[:i] == s[i:2*i]:
+            # Calculate the number of operations
+            operations = i + 1 + (n - 2*i)
+            min_operations = min(min_operations, operations)
+    
+    return min_operations
+
+# Get the result
+result = min_operations_to_type(n, s)
+
+# Print the result
+print(result)
+",2,True,False,False,True,True,False,False,True,True,True,False,False,True,28_gpt-4o,0.548959125547294,0.04899058022009064,0.5
+64,apps,gpt-4o,qwen2.5-7b-instruct,"Vova again tries to play some computer card game.
+
+The rules of deck creation in this game are simple. Vova is given an existing deck of n cards and a magic number k. The order of the cards in the deck is fixed. Each card has a number written on it; number a_{i} is written on the i-th card in the deck.
+
+After receiving the deck and the magic number, Vova removes x (possibly x = 0) cards from the top of the deck, y (possibly y = 0) cards from the bottom of the deck, and the rest of the deck is his new deck (Vova has to leave at least one card in the deck after removing cards). So Vova's new deck actually contains cards x + 1, x + 2, ... n - y - 1, n - y from the original deck.
+
+Vova's new deck is considered valid iff the product of all numbers written on the cards in his new deck is divisible by k. So Vova received a deck (possibly not a valid one) and a number k, and now he wonders, how many ways are there to choose x and y so the deck he will get after removing x cards from the top and y cards from the bottom is valid?
+
+
+-----Input-----
+
+The first line contains two integers n and k (1 ≤ n ≤ 100 000, 1 ≤ k ≤ 10^9).
+
+The second line contains n integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ 10^9) — the numbers written on the cards.
+
+
+-----Output-----
+
+Print the number of ways to choose x and y so the resulting deck is valid.
+
+
+-----Examples-----
+Input
+3 4
+6 2 8
+
+Output
+4
+
+Input
+3 6
+9 1 14
+
+Output
+1
+
+
+
+-----Note-----
+
+In the first example the possible values of x and y are:
+
+  x = 0, y = 0;  x = 1, y = 0;  x = 2, y = 0;  x = 0, y = 1.","def count_valid_decks(n, k, cards):
+    from math import gcd
+    from functools import reduce
+    
+    def lcm(a, b):
+        return a * b // gcd(a, b)
+    
+    def product(arr):
+        return reduce(lambda x, y: x * y, arr, 1)
+    
+    total_product = product(cards)
+    
+    if total_product % k != 0:
+        return 0
+    
+    right_product = [1] * (n + 1)
+    for i in range(n - 1, -1, -1):
+        right_product[i] = right_product[i + 1] * cards[i]
+    
+    valid_ways = 0
+    left_product = 1
+    
+    for x in range(n):
+        if left_product * right_product[x + 1] % k == 0:
+            valid_ways += 1
+        left_product *= cards[x]
+    
+    return valid_ways
+
+# Reading input
+import sys
+input = sys.stdin.read
+data = input().split()
+n = int(data[0])
+k = int(data[1])
+cards = list(map(int, data[2:]))
+
+# Calculating and printing the number of valid ways
+print(count_valid_decks(n, k, cards))
+",2,False,False,False,True,True,True,True,True,False,True,True,True,False,64_gpt-4o,0.5293401931959961,0.029302011377072862,0.5416666666666666
+89,apps,gpt-4o,qwen2.5-7b-instruct,"The year 2015 is almost over.
+
+Limak is a little polar bear. He has recently learnt about the binary system. He noticed that the passing year has exactly one zero in its representation in the binary system — 2015_10 = 11111011111_2. Note that he doesn't care about the number of zeros in the decimal representation.
+
+Limak chose some interval of years. He is going to count all years from this interval that have exactly one zero in the binary representation. Can you do it faster?
+
+Assume that all positive integers are always written without leading zeros.
+
+
+-----Input-----
+
+The only line of the input contains two integers a and b (1 ≤ a ≤ b ≤ 10^18) — the first year and the last year in Limak's interval respectively.
+
+
+-----Output-----
+
+Print one integer – the number of years Limak will count in his chosen interval.
+
+
+-----Examples-----
+Input
+5 10
+
+Output
+2
+
+Input
+2015 2015
+
+Output
+1
+
+Input
+100 105
+
+Output
+0
+
+Input
+72057594000000000 72057595000000000
+
+Output
+26
+
+
+
+-----Note-----
+
+In the first sample Limak's interval contains numbers 5_10 = 101_2, 6_10 = 110_2, 7_10 = 111_2, 8_10 = 1000_2, 9_10 = 1001_2 and 10_10 = 1010_2. Two of them (101_2 and 110_2) have the described property.","def count_years_with_one_zero_in_binary(a, b):
+    def has_exactly_one_zero_in_binary(x):
+        binary_representation = bin(x)[2:]
+        return binary_representation.count('0') == 1
+
+    count = 0
+    for year in range(a, b + 1):
+        if has_exactly_one_zero_in_binary(year):
+            count += 1
+    
+    return count
+
+if __name__ == ""__main__"":
+    import sys
+    input = sys.stdin.read
+    data = input().strip().split()
+    a = int(data[0])
+    b = int(data[1])
+    result = count_years_with_one_zero_in_binary(a, b)
+    print(result)
+",2,False,True,False,True,True,True,True,True,True,True,True,True,True,89_gpt-4o,0.5320826153262929,0.032228761891690744,0.5416666666666666
+159,apps,gpt-4o,qwen2.5-7b-instruct,"Berland annual chess tournament is coming!
+
+Organizers have gathered 2·n chess players who should be divided into two teams with n people each. The first team is sponsored by BerOil and the second team is sponsored by BerMobile. Obviously, organizers should guarantee the win for the team of BerOil.
+
+Thus, organizers should divide all 2·n players into two teams with n people each in such a way that the first team always wins.
+
+Every chess player has its rating r_{i}. It is known that chess player with the greater rating always wins the player with the lower rating. If their ratings are equal then any of the players can win.
+
+After teams assignment there will come a drawing to form n pairs of opponents: in each pair there is a player from the first team and a player from the second team. Every chess player should be in exactly one pair. Every pair plays once. The drawing is totally random.
+
+Is it possible to divide all 2·n players into two teams with n people each so that the player from the first team in every pair wins regardless of the results of the drawing?
+
+
+-----Input-----
+
+The first line contains one integer n (1 ≤ n ≤ 100).
+
+The second line contains 2·n integers a_1, a_2, ... a_2n (1 ≤ a_{i} ≤ 1000).
+
+
+-----Output-----
+
+If it's possible to divide all 2·n players into two teams with n people each so that the player from the first team in every pair wins regardless of the results of the drawing, then print ""YES"". Otherwise print ""NO"".
+
+
+-----Examples-----
+Input
+2
+1 3 2 4
+
+Output
+YES
+
+Input
+1
+3 3
+
+Output
+NO","# Read input
+n = int(input())
+ratings = list(map(int, input().split()))
+
+# Sort the ratings
+ratings.sort()
+
+# Split the sorted ratings into two teams
+team1 = ratings[:n]
+team2 = ratings[n:]
+
+# Check if every player in team1 has a higher rating than every player in team2
+possible = all(team1[i] < team2[i] for i in range(n))
+
+# Output the result
+if possible:
+    print(""YES"")
+else:
+    print(""NO"")
+",2,False,False,False,True,True,True,True,True,True,True,True,True,True,159_gpt-4o,0.5495298594419469,0.048886123808425795,0.5833333333333334
+165,apps,gpt-4o,qwen2.5-7b-instruct,"It's a beautiful April day and Wallace is playing football with his friends. But his friends do not know that Wallace actually stayed home with Gromit and sent them his robotic self instead. Robo-Wallace has several advantages over the other guys. For example, he can hit the ball directly to the specified point. And yet, the notion of a giveaway is foreign to him. The combination of these features makes the Robo-Wallace the perfect footballer — as soon as the ball gets to him, he can just aim and hit the goal. He followed this tactics in the first half of the match, but he hit the goal rarely. The opposing team has a very good goalkeeper who catches most of the balls that fly directly into the goal. But Robo-Wallace is a quick thinker, he realized that he can cheat the goalkeeper. After all, they are playing in a football box with solid walls. Robo-Wallace can kick the ball to the other side, then the goalkeeper will not try to catch the ball. Then, if the ball bounces off the wall and flies into the goal, the goal will at last be scored.
+
+Your task is to help Robo-Wallace to detect a spot on the wall of the football box, to which the robot should kick the ball, so that the ball bounces once and only once off this wall and goes straight to the goal. In the first half of the match Robo-Wallace got a ball in the head and was severely hit. As a result, some of the schemes have been damaged. Because of the damage, Robo-Wallace can only aim to his right wall (Robo-Wallace is standing with his face to the opposing team's goal).
+
+The football box is rectangular. Let's introduce a two-dimensional coordinate system so that point (0, 0) lies in the lower left corner of the field, if you look at the box above. Robo-Wallace is playing for the team, whose goal is to the right. It is an improvised football field, so the gate of Robo-Wallace's rivals may be not in the middle of the left wall. [Image] 
+
+In the given coordinate system you are given:   y_1, y_2 — the y-coordinates of the side pillars of the goalposts of robo-Wallace's opponents;  y_{w} — the y-coordinate of the wall to which Robo-Wallace is aiming;  x_{b}, y_{b} — the coordinates of the ball's position when it is hit;  r — the radius of the ball. 
+
+A goal is scored when the center of the ball crosses the OY axis in the given coordinate system between (0, y_1) and (0, y_2). The ball moves along a straight line. The ball's hit on the wall is perfectly elastic (the ball does not shrink from the hit), the angle of incidence equals the angle of reflection. If the ball bounces off the wall not to the goal, that is, if it hits the other wall or the goal post, then the opposing team catches the ball and Robo-Wallace starts looking for miscalculation and gets dysfunctional. Such an outcome, if possible, should be avoided. We assume that the ball touches an object, if the distance from the center of the ball to the object is no greater than the ball radius r.
+
+
+-----Input-----
+
+The first and the single line contains integers y_1, y_2, y_{w}, x_{b}, y_{b}, r (1 ≤ y_1, y_2, y_{w}, x_{b}, y_{b} ≤ 10^6; y_1 < y_2 < y_{w}; y_{b} + r < y_{w}; 2·r < y_2 - y_1).
+
+It is guaranteed that the ball is positioned correctly in the field, doesn't cross any wall, doesn't touch the wall that Robo-Wallace is aiming at. The goal posts can't be located in the field corners.
+
+
+-----Output-----
+
+If Robo-Wallace can't score a goal in the described manner, print ""-1"" (without the quotes). Otherwise, print a single number x_{w} — the abscissa of his point of aiming. 
+
+If there are multiple points of aiming, print the abscissa of any of them. When checking the correctness of the answer, all comparisons are made with the permissible absolute error, equal to 10^{ - 8}. 
+
+It is recommended to print as many characters after the decimal point as possible.
+
+
+-----Examples-----
+Input
+4 10 13 10 3 1
+
+Output
+4.3750000000
+
+Input
+1 4 6 2 2 1
+
+Output
+-1
+
+Input
+3 10 15 17 9 2
+
+Output
+11.3333333333
+
+
+
+-----Note-----
+
+Note that in the first and third samples other correct values of abscissa x_{w} are also possible.","def find_aiming_point(y1, y2, yw, xb, yb, r):
+    # Boundary conditions check
+    if yb + r >= yw or y1 >= y2 or y1 + r >= y2 - r:
+        return -1
+
+    # Calculate the intersection point on the right wall
+    # Using the geometry and reflection properties
+    # The goal is to find the x_w such that the ball bounces and hits the goal
+    
+    # Using the fact that the reflection point must maintain the property of the line
+    # We use the formula derived from the reflection geometry
+    # slope = (yb - y_w) / (xb - x_w)
+    # reflected_slope = (y_w - goal_y) / (x_w)
+    
+    # Choose a point on the goal line within the goal range
+    y_goal_mid = (y1 + y2) / 2
+    if y_goal_mid - r < y1 or y_goal_mid + r > y2:
+        return -1
+
+    # Calculate x_w
+    x_w = xb - (2 * (yb - y_goal_mid) * (xb - 0)) / (y_goal_mid - yb)
+    
+    if x_w <= 0:
+        return -1
+
+    return x_w
+
+# Read input
+import sys
+input = sys.stdin.read
+data = input().strip().split()
+
+y1 = int(data[0])
+y2 = int(data[1])
+yw = int(data[2])
+xb = int(data[3])
+yb = int(data[4])
+r = int(data[5])
+
+# Calculate the result
+result = find_aiming_point(y1, y2, yw, xb, yb, r)
+if result == -1:
+    print(result)
+else:
+    print(f""{result:.10f}"")
+",2,False,False,False,True,True,True,False,True,False,True,True,True,False,165_gpt-4o,0.5836571653413781,0.08398384419307396,0.5833333333333334
+197,apps,gpt-4o,qwen2.5-7b-instruct,"Nastya received a gift on New Year — a magic wardrobe. It is magic because in the end of each month the number of dresses in it doubles (i.e. the number of dresses becomes twice as large as it is in the beginning of the month).
+
+Unfortunately, right after the doubling the wardrobe eats one of the dresses (if any) with the 50% probability. It happens every month except the last one in the year. 
+
+Nastya owns x dresses now, so she became interested in the expected number of dresses she will have in one year. Nastya lives in Byteland, so the year lasts for k + 1 months.
+
+Nastya is really busy, so she wants you to solve this problem. You are the programmer, after all. Also, you should find the answer modulo 10^9 + 7, because it is easy to see that it is always integer.
+
+
+-----Input-----
+
+The only line contains two integers x and k (0 ≤ x, k ≤ 10^18), where x is the initial number of dresses and k + 1 is the number of months in a year in Byteland.
+
+
+-----Output-----
+
+In the only line print a single integer — the expected number of dresses Nastya will own one year later modulo 10^9 + 7.
+
+
+-----Examples-----
+Input
+2 0
+
+Output
+4
+
+Input
+2 1
+
+Output
+7
+
+Input
+3 2
+
+Output
+21
+
+
+
+-----Note-----
+
+In the first example a year consists on only one month, so the wardrobe does not eat dresses at all.
+
+In the second example after the first month there are 3 dresses with 50% probability and 4 dresses with 50% probability. Thus, in the end of the year there are 6 dresses with 50% probability and 8 dresses with 50% probability. This way the answer for this test is (6 + 8) / 2 = 7.","MOD = 10**9 + 7
+
+def power_mod(base, exponent, mod):
+    result = 1
+    while exponent > 0:
+        if exponent % 2 == 1:
+            result = (result * base) % mod
+        base = (base * base) % mod
+        exponent //= 2
+    return result
+
+def expected_dresses(x, k):
+    if x == 0:
+        return 0
+    # Calculate (2^(k+1) - 1) % MOD
+    power = power_mod(2, k + 1, MOD)
+    result = (x * (power - 1) % MOD) % MOD
+    return result
+
+# Read input
+import sys
+input = sys.stdin.read
+x, k = map(int, input().split())
+
+# Print the result
+print(expected_dresses(x, k))
+",2,False,True,False,True,True,True,True,False,True,True,True,True,True,197_gpt-4o,0.4348406407739015,-0.06378777132990125,0.5416666666666666
+250,apps,gpt-4o,qwen2.5-7b-instruct,"Valery is a PE teacher at a school in Berland. Soon the students are going to take a test in long jumps, and Valery has lost his favorite ruler! 
+
+However, there is no reason for disappointment, as Valery has found another ruler, its length is l centimeters. The ruler already has n marks, with which he can make measurements. We assume that the marks are numbered from 1 to n in the order they appear from the beginning of the ruler to its end. The first point coincides with the beginning of the ruler and represents the origin. The last mark coincides with the end of the ruler, at distance l from the origin. This ruler can be repesented by an increasing sequence a_1, a_2, ..., a_{n}, where a_{i} denotes the distance of the i-th mark from the origin (a_1 = 0, a_{n} = l).
+
+Valery believes that with a ruler he can measure the distance of d centimeters, if there is a pair of integers i and j (1 ≤ i ≤ j ≤ n), such that the distance between the i-th and the j-th mark is exactly equal to d (in other words, a_{j} - a_{i} = d). 
+
+Under the rules, the girls should be able to jump at least x centimeters, and the boys should be able to jump at least y (x < y) centimeters. To test the children's abilities, Valery needs a ruler to measure each of the distances x and y. 
+
+Your task is to determine what is the minimum number of additional marks you need to add on the ruler so that they can be used to measure the distances x and y. Valery can add the marks at any integer non-negative distance from the origin not exceeding the length of the ruler.
+
+
+-----Input-----
+
+The first line contains four positive space-separated integers n, l, x, y (2 ≤ n ≤ 10^5, 2 ≤ l ≤ 10^9, 1 ≤ x < y ≤ l) — the number of marks, the length of the ruler and the jump norms for girls and boys, correspondingly.
+
+The second line contains a sequence of n integers a_1, a_2, ..., a_{n} (0 = a_1 < a_2 < ... < a_{n} = l), where a_{i} shows the distance from the i-th mark to the origin.
+
+
+-----Output-----
+
+In the first line print a single non-negative integer v — the minimum number of marks that you need to add on the ruler.
+
+In the second line print v space-separated integers p_1, p_2, ..., p_{v} (0 ≤ p_{i} ≤ l). Number p_{i} means that the i-th mark should be at the distance of p_{i} centimeters from the origin. Print the marks in any order. If there are multiple solutions, print any of them.
+
+
+-----Examples-----
+Input
+3 250 185 230
+0 185 250
+
+Output
+1
+230
+
+Input
+4 250 185 230
+0 20 185 250
+
+Output
+0
+
+Input
+2 300 185 230
+0 300
+
+Output
+2
+185 230
+
+
+
+-----Note-----
+
+In the first sample it is impossible to initially measure the distance of 230 centimeters. For that it is enough to add a 20 centimeter mark or a 230 centimeter mark.
+
+In the second sample you already can use the ruler to measure the distances of 185 and 230 centimeters, so you don't have to add new marks.
+
+In the third sample the ruler only contains the initial and the final marks. We will need to add two marks to be able to test the children's skills.","# Read input values
+n, l, x, y = map(int, input().split())
+marks = list(map(int, input().split()))
+
+# Initialize sets for easier lookup of required distances
+marks_set = set(marks)
+x_found = False
+y_found = False
+
+# Check if x and y distances can be measured
+for mark in marks:
+    if (mark + x) in marks_set or (mark - x) in marks_set:
+        x_found = True
+    if (mark + y) in marks_set or (mark - y) in marks_set:
+        y_found = True
+    if x_found and y_found:
+        break
+
+# If both x and y distances can already be measured, no new marks are needed
+if x_found and y_found:
+    print(0)
+else:
+    # Try to find a mark that can measure both x and y distances if added
+    new_marks = set()
+    for mark in marks:
+        if not x_found:
+            # Check if a mark that is x distance from the current mark can also measure y distance
+            if (mark + x + y) in marks_set or (mark + x - y) in marks_set or (mark - x + y) in marks_set:
+                new_marks.add(mark + x)
+            elif (mark - x + y) in marks_set or (mark - x - y) in marks_set:
+                new_marks.add(mark - x)
+        if not y_found:
+            # Check if a mark that is y distance from the current mark can also measure x distance
+            if (mark + y + x) in marks_set or (mark + y - x) in marks_set or (mark - y + x) in marks_set:
+                new_marks.add(mark + y)
+            elif (mark - y + x) in marks_set or (mark - y - x) in marks_set:
+                new_marks.add(mark - y)
+    
+    # If we found a mark that can measure both distances, add only that mark
+    if new_marks:
+        print(1)
+        print(new_marks.pop())
+    else:
+        # Otherwise, add both x and y marks if necessary
+        result = []
+        if not x_found:
+            result.append(x)
+        if not y_found:
+            result.append(y)
+        print(len(result))
+        print("" "".join(map(str, result)))
+",2,False,False,False,True,False,False,True,True,False,False,False,True,True,250_gpt-4o,0.32805105442607474,-0.16596394579970838,0.5416666666666666
+265,apps,gpt-4o,qwen2.5-7b-instruct,"There is an airplane which has n rows from front to back. There will be m people boarding this airplane.
+
+This airplane has an entrance at the very front and very back of the plane.
+
+Each person has some assigned seat. It is possible for multiple people to have the same assigned seat. The people will then board the plane one by one starting with person 1. Each person can independently choose either the front entrance or back entrance to enter the plane.
+
+When a person walks into the plane, they walk directly to their assigned seat and will try to sit in it. If it is occupied, they will continue walking in the direction they walked in until they are at empty seat - they will take the earliest empty seat that they can find. If they get to the end of the row without finding a seat, they will be angry.
+
+Find the number of ways to assign tickets to the passengers and board the plane without anyone getting angry. Two ways are different if there exists a passenger who chose a different entrance in both ways, or the assigned seat is different. Print this count modulo 10^9 + 7.
+
+
+-----Input-----
+
+The first line of input will contain two integers n, m (1 ≤ m ≤ n ≤ 1 000 000), the number of seats, and the number of passengers, respectively.
+
+
+-----Output-----
+
+Print a single number, the number of ways, modulo 10^9 + 7.
+
+
+-----Example-----
+Input
+3 3
+
+Output
+128
+
+
+
+-----Note-----
+
+Here, we will denote a passenger by which seat they were assigned, and which side they came from (either ""F"" or ""B"" for front or back, respectively).
+
+For example, one valid way is 3B, 3B, 3B (i.e. all passengers were assigned seat 3 and came from the back entrance). Another valid way would be 2F, 1B, 3F.
+
+One invalid way would be 2B, 2B, 2B, since the third passenger would get to the front without finding a seat.","MOD = 10**9 + 7
+
+def factorial(n):
+    result = 1
+    for i in range(2, n + 1):
+        result = result * i % MOD
+    return result
+
+def number_of_ways(n, m):
+    # Compute factorial(n) and factorial(n-m)
+    fact_n = factorial(n)
+    fact_n_m = factorial(n - m)
+    
+    # The number of ways to assign tickets to passengers and ensure no one gets angry:
+    # This is computed as 2^m * factorial(n) // factorial(n-m)
+    ways = pow(2, m, MOD) * fact_n % MOD * pow(fact_n_m, MOD-2, MOD) % MOD
+    
+    return ways
+
+# Read input
+import sys
+input = sys.stdin.read
+data = input().strip().split()
+n = int(data[0])
+m = int(data[1])
+
+# Calculate the number of ways
+result = number_of_ways(n, m)
+
+# Output the result
+print(result)
+",2,False,True,False,True,True,True,True,False,True,True,False,False,True,265_gpt-4o,0.5971675832200772,0.0977370811161579,0.5416666666666666
+290,apps,gpt-4o,qwen2.5-7b-instruct,"Tonio has a keyboard with only two letters, ""V"" and ""K"".
+
+One day, he has typed out a string s with only these two letters. He really likes it when the string ""VK"" appears, so he wishes to change at most one letter in the string (or do no changes) to maximize the number of occurrences of that string. Compute the maximum number of times ""VK"" can appear as a substring (i. e. a letter ""K"" right after a letter ""V"") in the resulting string.
+
+
+-----Input-----
+
+The first line will contain a string s consisting only of uppercase English letters ""V"" and ""K"" with length not less than 1 and not greater than 100.
+
+
+-----Output-----
+
+Output a single integer, the maximum number of times ""VK"" can appear as a substring of the given string after changing at most one character.
+
+
+-----Examples-----
+Input
+VK
+
+Output
+1
+
+Input
+VV
+
+Output
+1
+
+Input
+V
+
+Output
+0
+
+Input
+VKKKKKKKKKVVVVVVVVVK
+
+Output
+3
+
+Input
+KVKV
+
+Output
+1
+
+
+
+-----Note-----
+
+For the first case, we do not change any letters. ""VK"" appears once, which is the maximum number of times it could appear.
+
+For the second case, we can change the second character from a ""V"" to a ""K"". This will give us the string ""VK"". This has one occurrence of the string ""VK"" as a substring.
+
+For the fourth case, we can change the fourth character from a ""K"" to a ""V"". This will give us the string ""VKKVKKKKKKVVVVVVVVVK"". This has three occurrences of the string ""VK"" as a substring. We can check no other moves can give us strictly more occurrences.","s = input()
+
+# Initialize the count of VK substrings
+count_vk = 0
+
+# Count initial VK substrings
+for i in range(len(s) - 1):
+    if s[i] == 'V' and s[i + 1] == 'K':
+        count_vk += 1
+
+# Try changing each character and see if it increases VK substrings
+max_vk = count_vk
+for i in range(len(s)):
+    if s[i] == 'V':
+        s_new = s[:i] + 'K' + s[i+1:]
+    elif s[i] == 'K':
+        s_new = s[:i] + 'V' + s[i+1:]
+    else:
+        continue
+    
+    new_count_vk = 0
+    for j in range(len(s_new) - 1):
+        if s_new[j] == 'V' and s_new[j + 1] == 'K':
+            new_count_vk += 1
+    
+    max_vk = max(max_vk, new_count_vk)
+
+print(max_vk)
+",2,True,True,True,True,False,True,True,True,False,True,False,True,False,290_gpt-4o,0.5689011500308099,0.06930433337203927,0.5416666666666666
+36,apps,llama3-70b,qwen2.5-7b-instruct,"The flag of Berland is such rectangular field n × m that satisfies following conditions:
+
+  Flag consists of three colors which correspond to letters 'R', 'G' and 'B'.  Flag consists of three equal in width and height stripes, parralel to each other and to sides of the flag. Each stripe has exactly one color.  Each color should be used in exactly one stripe. 
+
+You are given a field n × m, consisting of characters 'R', 'G' and 'B'. Output ""YES"" (without quotes) if this field corresponds to correct flag of Berland. Otherwise, print ""NO"" (without quotes).
+
+
+-----Input-----
+
+The first line contains two integer numbers n and m (1 ≤ n, m ≤ 100) — the sizes of the field.
+
+Each of the following n lines consisting of m characters 'R', 'G' and 'B' — the description of the field.
+
+
+-----Output-----
+
+Print ""YES"" (without quotes) if the given field corresponds to correct flag of Berland . Otherwise, print ""NO"" (without quotes).
+
+
+-----Examples-----
+Input
+6 5
+RRRRR
+RRRRR
+BBBBB
+BBBBB
+GGGGG
+GGGGG
+
+Output
+YES
+
+Input
+4 3
+BRG
+BRG
+BRG
+BRG
+
+Output
+YES
+
+Input
+6 7
+RRRGGGG
+RRRGGGG
+RRRGGGG
+RRRBBBB
+RRRBBBB
+RRRBBBB
+
+Output
+NO
+
+Input
+4 4
+RRRR
+RRRR
+BBBB
+GGGG
+
+Output
+NO
+
+
+
+-----Note-----
+
+The field in the third example doesn't have three parralel stripes.
+
+Rows of the field in the fourth example are parralel to each other and to borders. But they have different heights — 2, 1 and 1.","n, m = map(int, input().split())
+field = [input() for _ in range(n)]
+
+rows = len(set(''.join(field[i::n//3]) for i in range(n//3)))
+cols = len(set(''.join(row[i*m//3:(i+1)*m//3] for row in field)) for i in range(3))
+
+print(""YES"" if rows == 3 and cols == 3 else ""NO"")
+",2,False,False,False,True,False,False,False,True,True,False,False,False,False,36_llama3-70b,0.5737313256405553,0.0718182532301581,0.625
+44,apps,llama3-70b,qwen2.5-7b-instruct,"You are given the set of vectors on the plane, each of them starting at the origin. Your task is to find a pair of vectors with the minimal non-oriented angle between them.
+
+Non-oriented angle is non-negative value, minimal between clockwise and counterclockwise direction angles. Non-oriented angle is always between 0 and π. For example, opposite directions vectors have angle equals to π.
+
+
+-----Input-----
+
+First line of the input contains a single integer n (2 ≤ n ≤ 100 000) — the number of vectors.
+
+The i-th of the following n lines contains two integers x_{i} and y_{i} (|x|, |y| ≤ 10 000, x^2 + y^2 > 0) — the coordinates of the i-th vector. Vectors are numbered from 1 to n in order of appearing in the input. It is guaranteed that no two vectors in the input share the same direction (but they still can have opposite directions).
+
+
+-----Output-----
+
+Print two integer numbers a and b (a ≠ b) — a pair of indices of vectors with the minimal non-oriented angle. You can print the numbers in any order. If there are many possible answers, print any.
+
+
+-----Examples-----
+Input
+4
+-1 0
+0 -1
+1 0
+1 1
+
+Output
+3 4
+
+Input
+6
+-1 0
+0 -1
+1 0
+1 1
+-4 -5
+-4 -6
+
+Output
+6 5","import math
+
+n = int(input())
+
+v = []
+for _ in range(n):
+    x, y = map(int, input().split())
+    v.append((x, y))
+
+ans = (0, 1)
+ans_angle = math.pi
+
+v.sort(key=lambda v: math.atan2(v[1], v[0]))
+
+for i in range(n):
+    for j in range(i+1, min(n, i+100)):
+        angle = math.acos((v[i][0]*v[j][0] + v[i][1]*v[j][1]) / 
+                          math.sqrt(v[i][0]**2 + v[i][1]**2) / 
+                          math.sqrt(v[j][0]**2 + v[j][1]**2))
+        if angle < ans_angle:
+            ans_angle = angle
+            ans = (i, j)
+
+print(ans[0]+1, ans[1]+1)
+",2,False,False,False,True,False,True,True,True,True,True,False,True,True,44_llama3-70b,0.5575568417069499,0.05699574066749571,0.5833333333333334
+50,apps,llama3-70b,qwen2.5-7b-instruct,"Let's write all the positive integer numbers one after another from $1$ without any delimiters (i.e. as a single string). It will be the infinite sequence starting with 123456789101112131415161718192021222324252627282930313233343536...
+
+Your task is to print the $k$-th digit of this sequence.
+
+
+-----Input-----
+
+The first and only line contains integer $k$ ($1 \le k \le 10^{12}$) — the position to process ($1$-based index).
+
+
+-----Output-----
+
+Print the $k$-th digit of the resulting infinite sequence.
+
+
+-----Examples-----
+Input
+7
+
+Output
+7
+
+Input
+21
+
+Output
+5","k = int(input())
+n = 1
+while True:
+    s = str(n)
+    if len(s) >= k:
+        print(s[k-1])
+        break
+    k -= len(s)
+    n += 1
+",2,False,False,True,True,True,True,True,False,True,True,True,True,False,50_llama3-70b,0.5992170886152665,0.0999273480448792,0.5833333333333334
+96,apps,llama3-70b,qwen2.5-7b-instruct,"Array of integers is unimodal, if:
+
+  it is strictly increasing in the beginning;  after that it is constant;  after that it is strictly decreasing. 
+
+The first block (increasing) and the last block (decreasing) may be absent. It is allowed that both of this blocks are absent.
+
+For example, the following three arrays are unimodal: [5, 7, 11, 11, 2, 1], [4, 4, 2], [7], but the following three are not unimodal: [5, 5, 6, 6, 1], [1, 2, 1, 2], [4, 5, 5, 6].
+
+Write a program that checks if an array is unimodal.
+
+
+-----Input-----
+
+The first line contains integer n (1 ≤ n ≤ 100) — the number of elements in the array.
+
+The second line contains n integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ 1 000) — the elements of the array.
+
+
+-----Output-----
+
+Print ""YES"" if the given array is unimodal. Otherwise, print ""NO"".
+
+You can output each letter in any case (upper or lower).
+
+
+-----Examples-----
+Input
+6
+1 5 5 5 4 2
+
+Output
+YES
+
+Input
+5
+10 20 30 20 10
+
+Output
+YES
+
+Input
+4
+1 2 1 2
+
+Output
+NO
+
+Input
+7
+3 3 3 3 3 3 3
+
+Output
+YES
+
+
+
+-----Note-----
+
+In the first example the array is unimodal, because it is strictly increasing in the beginning (from position 1 to position 2, inclusively), that it is constant (from position 2 to position 4, inclusively) and then it is strictly decreasing (from position 4 to position 6, inclusively).","n = int(input())
+arr = list(map(int, input().split()))
+
+increasing = False
+constant = False
+decreasing = False
+
+for i in range(1, n):
+    if arr[i] > arr[i-1]:
+        if decreasing:
+            print(""NO"")
+            exit()
+        increasing = True
+    elif arr[i] == arr[i-1]:
+        if increasing:
+            increasing = False
+            constant = True
+    else:
+        if increasing:
+            increasing = False
+        decreasing = True
+
+print(""YES"")
+",2,False,False,False,True,True,False,True,True,True,True,True,True,False,96_llama3-70b,0.46078781656624684,-0.038680870689825585,0.5416666666666666
+99,apps,llama3-70b,qwen2.5-7b-instruct,"Gerald bought two very rare paintings at the Sotheby's auction and he now wants to hang them on the wall. For that he bought a special board to attach it to the wall and place the paintings on the board. The board has shape of an a_1 × b_1 rectangle, the paintings have shape of a a_2 × b_2 and a_3 × b_3 rectangles.
+
+Since the paintings are painted in the style of abstract art, it does not matter exactly how they will be rotated, but still, one side of both the board, and each of the paintings must be parallel to the floor. The paintings can touch each other and the edges of the board, but can not overlap or go beyond the edge of the board. Gerald asks whether it is possible to place the paintings on the board, or is the board he bought not large enough?
+
+
+-----Input-----
+
+The first line contains two space-separated numbers a_1 and b_1 — the sides of the board. Next two lines contain numbers a_2, b_2, a_3 and b_3 — the sides of the paintings. All numbers a_{i}, b_{i} in the input are integers and fit into the range from 1 to 1000.
+
+
+-----Output-----
+
+If the paintings can be placed on the wall, print ""YES"" (without the quotes), and if they cannot, print ""NO"" (without the quotes).
+
+
+-----Examples-----
+Input
+3 2
+1 3
+2 1
+
+Output
+YES
+
+Input
+5 5
+3 3
+3 3
+
+Output
+NO
+
+Input
+4 2
+2 3
+1 2
+
+Output
+YES
+
+
+
+-----Note-----
+
+That's how we can place the pictures in the first test:
+
+[Image]
+
+And that's how we can do it in the third one.
+
+[Image]","a1, b1 = map(int, input().split())
+a2, b2 = map(int, input().split())
+a3, b3 = map(int, input().split())
+
+if max(a1, b1) >= max(a2, b2) and min(a1, b1) >= min(a2, b2):
+    if max(a1, b1) >= max(a3, b3) and min(a1, b1) >= min(a3, b3):
+        print(""YES"")
+    else:
+        print(""NO"")
+else:
+    if max(a1, b1) >= max(a3, b3) and min(a1, b1) >= min(a3, b3):
+        print(""YES"")
+    else:
+        print(""NO"")
+",2,False,False,False,True,False,False,False,False,False,False,False,False,False,99_llama3-70b,0.44565346236023223,-0.053507185884652454,0.5416666666666666
+191,apps,llama3-70b,qwen2.5-7b-instruct,"Карта звёздного неба представляет собой прямоугольное поле, состоящее из n строк по m символов в каждой строке. Каждый символ — это либо «.» (означает пустой участок неба), либо «*» (означает то, что в этом месте на небе есть звезда). 
+
+Новое издание карты звёздного неба будет напечатано на квадратных листах, поэтому требуется найти минимально возможную сторону квадрата, в который могут поместиться все звезды. Границы искомого квадрата должны быть параллельны сторонам заданного прямоугольного поля.
+
+
+-----Входные данные-----
+
+В первой строке входных данных записаны два числа n и m (1 ≤ n, m ≤ 1000) — количество строк и столбцов на карте звездного неба.
+
+В следующих n строках задано по m символов. Каждый символ — это либо «.» (пустой участок неба), либо «*» (звезда).
+
+Гарантируется, что на небе есть хотя бы одна звезда.
+
+
+-----Выходные данные-----
+
+Выведите одно число — минимально возможную сторону квадрата, которым можно накрыть все звезды.
+
+
+-----Примеры-----
+Входные данные
+4 4
+....
+..*.
+...*
+..**
+
+Выходные данные
+3
+
+Входные данные
+1 3
+*.*
+
+Выходные данные
+3
+
+Входные данные
+2 1
+.
+*
+
+Выходные данные
+1
+
+
+
+-----Примечание-----
+
+Один из возможных ответов на первый тестовый пример:
+
+ [Image] 
+
+Один из возможных ответов на второй тестовый пример (обратите внимание, что покрывающий квадрат выходит за пределы карты звездного неба):
+
+ [Image] 
+
+Ответ на третий тестовый пример:
+
+ [Image]","n, m = map(int, input().split())
+stars = []
+for _ in range(n):
+    row = input()
+    for j, c in enumerate(row):
+        if c == '*':
+            stars.append((j, _))
+
+min_x = min(x for x, y in stars)
+max_x = max(x for x, y in stars)
+min_y = min(y for x, y in stars)
+max_y = max(y for x, y in stars)
+
+side = max(max_x - min_x + 1, max_y - min_y + 1)
+print(side)
+",2,True,True,True,True,True,True,True,True,True,True,True,True,True,191_llama3-70b,0.5906126045643085,0.09096909090919665,0.5416666666666666
+207,apps,llama3-70b,qwen2.5-7b-instruct,"A frog is initially at position $0$ on the number line. The frog has two positive integers $a$ and $b$. From a position $k$, it can either jump to position $k+a$ or $k-b$.
+
+Let $f(x)$ be the number of distinct integers the frog can reach if it never jumps on an integer outside the interval $[0, x]$. The frog doesn't need to visit all these integers in one trip, that is, an integer is counted if the frog can somehow reach it if it starts from $0$.
+
+Given an integer $m$, find $\sum_{i=0}^{m} f(i)$. That is, find the sum of all $f(i)$ for $i$ from $0$ to $m$.
+
+
+-----Input-----
+
+The first line contains three integers $m, a, b$ ($1 \leq m \leq 10^9, 1 \leq a,b \leq 10^5$).
+
+
+-----Output-----
+
+Print a single integer, the desired sum.
+
+
+-----Examples-----
+Input
+7 5 3
+
+Output
+19
+
+Input
+1000000000 1 2019
+
+Output
+500000001500000001
+
+Input
+100 100000 1
+
+Output
+101
+
+Input
+6 4 5
+
+Output
+10
+
+
+
+-----Note-----
+
+In the first example, we must find $f(0)+f(1)+\ldots+f(7)$. We have $f(0) = 1, f(1) = 1, f(2) = 1, f(3) = 1, f(4) = 1, f(5) = 3, f(6) = 3, f(7) = 8$. The sum of these values is $19$.
+
+In the second example, we have $f(i) = i+1$, so we want to find $\sum_{i=0}^{10^9} i+1$.
+
+In the third example, the frog can't make any jumps in any case.","m, a, b = map(int, input().split())
+dp = [0]*(m+1)
+dp[0] = 1
+for i in range(m+1):
+    if i+a <= m:
+        dp[i+a] += dp[i]
+    if i-b >= 0:
+        dp[i] += dp[i-b]
+print(sum(dp))
+",2,False,False,False,False,False,False,True,False,False,True,False,False,True,207_llama3-70b,0.5811835376272438,0.07923404231990178,0.625
+211,apps,llama3-70b,qwen2.5-7b-instruct,"One spring day on his way to university Lesha found an array A. Lesha likes to split arrays into several parts. This time Lesha decided to split the array A into several, possibly one, new arrays so that the sum of elements in each of the new arrays is not zero. One more condition is that if we place the new arrays one after another they will form the old array A.
+
+Lesha is tired now so he asked you to split the array. Help Lesha!
+
+
+-----Input-----
+
+The first line contains single integer n (1 ≤ n ≤ 100) — the number of elements in the array A.
+
+The next line contains n integers a_1, a_2, ..., a_{n} ( - 10^3 ≤ a_{i} ≤ 10^3) — the elements of the array A.
+
+
+-----Output-----
+
+If it is not possible to split the array A and satisfy all the constraints, print single line containing ""NO"" (without quotes).
+
+Otherwise in the first line print ""YES"" (without quotes). In the next line print single integer k — the number of new arrays. In each of the next k lines print two integers l_{i} and r_{i} which denote the subarray A[l_{i}... r_{i}] of the initial array A being the i-th new array. Integers l_{i}, r_{i} should satisfy the following conditions:  l_1 = 1  r_{k} = n  r_{i} + 1 = l_{i} + 1 for each 1 ≤ i < k. 
+
+If there are multiple answers, print any of them.
+
+
+-----Examples-----
+Input
+3
+1 2 -3
+
+Output
+YES
+2
+1 2
+3 3
+
+Input
+8
+9 -12 3 4 -4 -10 7 3
+
+Output
+YES
+2
+1 2
+3 8
+
+Input
+1
+0
+
+Output
+NO
+
+Input
+4
+1 2 3 -5
+
+Output
+YES
+4
+1 1
+2 2
+3 3
+4 4","n = int(input())
+a = list(map(int, input().split()))
+prefix_sum = [0] * (n + 1)
+for i in range(n):
+    prefix_sum[i + 1] = prefix_sum[i] + a[i]
+
+if prefix_sum[n] == 0:
+    print(""NO"")
+else:
+    print(""YES"")
+    k = 1
+    l = 1
+    for r in range(1, n + 1):
+        if prefix_sum[r] != 0 and prefix_sum[r] != prefix_sum[n]:
+            print(k, l, r)
+            k += 1
+            l = r
+    print(k, l, n)
+",2,False,False,False,True,True,True,True,False,True,False,False,False,True,211_llama3-70b,0.5857055335578474,0.08375838445913218,0.625
+236,apps,llama3-70b,qwen2.5-7b-instruct,"After passing a test, Vasya got himself a box of $n$ candies. He decided to eat an equal amount of candies each morning until there are no more candies. However, Petya also noticed the box and decided to get some candies for himself.
+
+This means the process of eating candies is the following: in the beginning Vasya chooses a single integer $k$, same for all days. After that, in the morning he eats $k$ candies from the box (if there are less than $k$ candies in the box, he eats them all), then in the evening Petya eats $10\%$ of the candies remaining in the box. If there are still candies left in the box, the process repeats — next day Vasya eats $k$ candies again, and Petya — $10\%$ of the candies left in a box, and so on.
+
+If the amount of candies in the box is not divisible by $10$, Petya rounds the amount he takes from the box down. For example, if there were $97$ candies in the box, Petya would eat only $9$ of them. In particular, if there are less than $10$ candies in a box, Petya won't eat any at all.
+
+Your task is to find out the minimal amount of $k$ that can be chosen by Vasya so that he would eat at least half of the $n$ candies he initially got. Note that the number $k$ must be integer.
+
+
+-----Input-----
+
+The first line contains a single integer $n$ ($1 \leq n \leq 10^{18}$) — the initial amount of candies in the box.
+
+
+-----Output-----
+
+Output a single integer — the minimal amount of $k$ that would allow Vasya to eat at least half of candies he got.
+
+
+-----Example-----
+Input
+68
+
+Output
+3
+
+
+
+-----Note-----
+
+In the sample, the amount of candies, with $k=3$, would change in the following way (Vasya eats first):
+
+$68 \to 65 \to 59 \to 56 \to 51 \to 48 \to 44 \to 41 \\ \to 37 \to 34 \to 31 \to 28 \to 26 \to 23 \to 21 \to 18 \to 17 \to 14 \\ \to 13 \to 10 \to 9 \to 6 \to 6 \to 3 \to 3 \to 0$.
+
+In total, Vasya would eat $39$ candies, while Petya — $29$.","n = int(input())
+k = 1
+while True:
+    candies = n
+    vasya_eaten = 0
+    while candies > 0:
+        vasya_eaten += min(k, candies)
+        candies -= min(k, candies)
+        petya_eaten = candies // 10
+        candies -= petya_eaten
+    if vasya_eaten * 2 >= n:
+        print(k)
+        break
+    k += 1
+",2,False,True,True,True,True,True,True,True,True,True,True,False,False,236_llama3-70b,0.5442130571415579,0.04427062132914813,0.5416666666666666
+13,apps,gpt-4o,qwen2.5-7b-instruct,"Vova has won $n$ trophies in different competitions. Each trophy is either golden or silver. The trophies are arranged in a row.
+
+The beauty of the arrangement is the length of the longest subsegment consisting of golden trophies. Vova wants to swap two trophies (not necessarily adjacent ones) to make the arrangement as beautiful as possible — that means, to maximize the length of the longest such subsegment.
+
+Help Vova! Tell him the maximum possible beauty of the arrangement if he is allowed to do at most one swap.
+
+
+-----Input-----
+
+The first line contains one integer $n$ ($2 \le n \le 10^5$) — the number of trophies.
+
+The second line contains $n$ characters, each of them is either G or S. If the $i$-th character is G, then the $i$-th trophy is a golden one, otherwise it's a silver trophy. 
+
+
+-----Output-----
+
+Print the maximum possible length of a subsegment of golden trophies, if Vova is allowed to do at most one swap.
+
+
+-----Examples-----
+Input
+10
+GGGSGGGSGG
+
+Output
+7
+
+Input
+4
+GGGG
+
+Output
+4
+
+Input
+3
+SSS
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example Vova has to swap trophies with indices $4$ and $10$. Thus he will obtain the sequence ""GGGGGGGSGS"", the length of the longest subsegment of golden trophies is $7$. 
+
+In the second example Vova can make no swaps at all. The length of the longest subsegment of golden trophies in the sequence is $4$. 
+
+In the third example Vova cannot do anything to make the length of the longest subsegment of golden trophies in the sequence greater than $0$.","def max_beauty_after_swap(n, trophies):
+    segments = []
+    i = 0
+    
+    while i < n:
+        if trophies[i] == 'G':
+            start = i
+            while i < n and trophies[i] == 'G':
+                i += 1
+            segments.append((start, i - 1))
+        else:
+            i += 1
+    
+    if not segments:
+        return 0
+    
+    max_length = max(end - start + 1 for start, end in segments)
+    
+    if len(segments) == 1:
+        return max_length
+    
+    for i in range(1, len(segments)):
+        prev_start, prev_end = segments[i - 1]
+        curr_start, curr_end = segments[i]
+        if curr_start - prev_end == 2:
+            max_length = max(max_length, (curr_end - curr_start + 1) + (prev_end - prev_start + 1) + 1)
+    
+    return min(max_length + 1, n)
+
+# Read input
+import sys
+input = sys.stdin.read
+data = input().split()
+n = int(data[0])
+trophies = data[1]
+
+# Print output
+print(max_beauty_after_swap(n, trophies))
+",3,False,True,False,True,True,True,True,True,True,True,False,True,False,13_gpt-4o,0.5777493155989952,0.07779992903777712,0.5833333333333334
+28,apps,gpt-4o,qwen2.5-7b-instruct,"You are given a string s consisting of n lowercase Latin letters. You have to type this string using your keyboard.
+
+Initially, you have an empty string. Until you type the whole string, you may perform the following operation:  add a character to the end of the string. 
+
+Besides, at most once you may perform one additional operation: copy the string and append it to itself.
+
+For example, if you have to type string abcabca, you can type it in 7 operations if you type all the characters one by one. However, you can type it in 5 operations if you type the string abc first and then copy it and type the last character.
+
+If you have to type string aaaaaaaaa, the best option is to type 4 characters one by one, then copy the string, and then type the remaining character.
+
+Print the minimum number of operations you need to type the given string.
+
+
+-----Input-----
+
+The first line of the input containing only one integer number n (1 ≤ n ≤ 100) — the length of the string you have to type. The second line containing the string s consisting of n lowercase Latin letters.
+
+
+-----Output-----
+
+Print one integer number — the minimum number of operations you need to type the given string.
+
+
+-----Examples-----
+Input
+7
+abcabca
+
+Output
+5
+
+Input
+8
+abcdefgh
+
+Output
+8
+
+
+
+-----Note-----
+
+The first test described in the problem statement.
+
+In the second test you can only type all the characters one by one.","n = int(input())
+s = input()
+
+# Function to find the minimum number of operations to type the string
+def min_operations_to_type(n, s):
+    # Initialize the operations count to n (typing each character one by one)
+    min_operations = n
+    
+    # Try to find the optimal place to perform the copy operation
+    for i in range(1, n):
+        # Find the length of the substring to copy
+        if s[:i] == s[i:2*i]:
+            # Calculate the number of operations
+            operations = i + 1 + (n - 2*i)
+            min_operations = min(min_operations, operations)
+    
+    return min_operations
+
+# Get the result
+result = min_operations_to_type(n, s)
+
+# Print the result
+print(result)
+",3,True,False,False,True,True,True,True,True,False,False,False,True,True,28_gpt-4o,0.548959125547294,0.04899058022009064,0.5
+52,apps,gpt-4o,qwen2.5-7b-instruct,"В Берляндском государственном университете локальная сеть между серверами не всегда работает без ошибок. При передаче двух одинаковых сообщений подряд возможна ошибка, в результате которой эти два сообщения сливаются в одно. При таком слиянии конец первого сообщения совмещается с началом второго. Конечно, совмещение может происходить только по одинаковым символам. Длина совмещения должна быть положительным числом, меньшим длины текста сообщения. 
+
+Например, при передаче двух сообщений «abrakadabra» подряд возможно, что оно будет передано с ошибкой описанного вида, и тогда будет получено сообщение вида «abrakadabrabrakadabra» или «abrakadabrakadabra» (в первом случае совмещение произошло по одному символу, а во втором — по четырем).
+
+По полученному сообщению t определите, возможно ли, что это результат ошибки описанного вида работы локальной сети, и если возможно, определите возможное значение s. 
+
+Не следует считать ошибкой ситуацию полного наложения друга на друга двух сообщений. К примеру, если получено сообщение «abcd», следует считать, что в нём ошибки нет. Аналогично, простое дописывание одного сообщения вслед за другим не является признаком ошибки. Например, если получено сообщение «abcabc», следует считать, что в нём ошибки нет.
+
+
+-----Входные данные-----
+
+В единственной строке выходных данных следует непустая строка t, состоящая из строчных букв латинского алфавита. Длина строки t не превосходит 100 символов.
+
+
+-----Выходные данные-----
+
+Если сообщение t не может содержать ошибки, выведите «NO» (без кавычек) в единственную строку выходных данных.
+
+В противном случае в первой строке выведите «YES» (без кавычек), а в следующей строке выведите строку s — возможное сообщение, которое могло привести к ошибке. Если возможных ответов несколько, разрешается вывести любой из них.
+
+
+-----Примеры-----
+Входные данные
+abrakadabrabrakadabra
+
+Выходные данные
+YES
+abrakadabra
+
+Входные данные
+acacacaca
+
+Выходные данные
+YES
+acaca
+
+Входные данные
+abcabc
+
+Выходные данные
+NO
+
+Входные данные
+abababab
+
+Выходные данные
+YES
+ababab
+
+Входные данные
+tatbt
+
+Выходные данные
+NO
+
+
+
+-----Примечание-----
+
+Во втором примере подходящим ответом также является строка acacaca.","def find_possible_message(t):
+    n = len(t)
+    for i in range(1, n):
+        if t[:i] == t[-i:]:
+            s = t[:-i]
+            if s + t[-i:] == t:
+                return ""YES\n"" + s
+    return ""NO""
+
+# Read input
+t = input().strip()
+
+# Find and print the result
+print(find_possible_message(t))
+",3,False,False,False,True,True,True,False,True,True,True,True,False,False,52_gpt-4o,0.5222316825506773,0.022116155956770172,0.5
+64,apps,gpt-4o,qwen2.5-7b-instruct,"Vova again tries to play some computer card game.
+
+The rules of deck creation in this game are simple. Vova is given an existing deck of n cards and a magic number k. The order of the cards in the deck is fixed. Each card has a number written on it; number a_{i} is written on the i-th card in the deck.
+
+After receiving the deck and the magic number, Vova removes x (possibly x = 0) cards from the top of the deck, y (possibly y = 0) cards from the bottom of the deck, and the rest of the deck is his new deck (Vova has to leave at least one card in the deck after removing cards). So Vova's new deck actually contains cards x + 1, x + 2, ... n - y - 1, n - y from the original deck.
+
+Vova's new deck is considered valid iff the product of all numbers written on the cards in his new deck is divisible by k. So Vova received a deck (possibly not a valid one) and a number k, and now he wonders, how many ways are there to choose x and y so the deck he will get after removing x cards from the top and y cards from the bottom is valid?
+
+
+-----Input-----
+
+The first line contains two integers n and k (1 ≤ n ≤ 100 000, 1 ≤ k ≤ 10^9).
+
+The second line contains n integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ 10^9) — the numbers written on the cards.
+
+
+-----Output-----
+
+Print the number of ways to choose x and y so the resulting deck is valid.
+
+
+-----Examples-----
+Input
+3 4
+6 2 8
+
+Output
+4
+
+Input
+3 6
+9 1 14
+
+Output
+1
+
+
+
+-----Note-----
+
+In the first example the possible values of x and y are:
+
+  x = 0, y = 0;  x = 1, y = 0;  x = 2, y = 0;  x = 0, y = 1.","def count_valid_decks(n, k, cards):
+    from math import gcd
+    from functools import reduce
+    
+    def lcm(a, b):
+        return a * b // gcd(a, b)
+    
+    def product(arr):
+        return reduce(lambda x, y: x * y, arr, 1)
+    
+    total_product = product(cards)
+    
+    if total_product % k != 0:
+        return 0
+    
+    right_product = [1] * (n + 1)
+    for i in range(n - 1, -1, -1):
+        right_product[i] = right_product[i + 1] * cards[i]
+    
+    valid_ways = 0
+    left_product = 1
+    
+    for x in range(n):
+        if left_product * right_product[x + 1] % k == 0:
+            valid_ways += 1
+        left_product *= cards[x]
+    
+    return valid_ways
+
+# Reading input
+import sys
+input = sys.stdin.read
+data = input().split()
+n = int(data[0])
+k = int(data[1])
+cards = list(map(int, data[2:]))
+
+# Calculating and printing the number of valid ways
+print(count_valid_decks(n, k, cards))
+",3,False,False,False,True,True,True,True,True,True,True,True,True,False,64_gpt-4o,0.5293401931959961,0.029302011377072862,0.5416666666666666
+89,apps,gpt-4o,qwen2.5-7b-instruct,"The year 2015 is almost over.
+
+Limak is a little polar bear. He has recently learnt about the binary system. He noticed that the passing year has exactly one zero in its representation in the binary system — 2015_10 = 11111011111_2. Note that he doesn't care about the number of zeros in the decimal representation.
+
+Limak chose some interval of years. He is going to count all years from this interval that have exactly one zero in the binary representation. Can you do it faster?
+
+Assume that all positive integers are always written without leading zeros.
+
+
+-----Input-----
+
+The only line of the input contains two integers a and b (1 ≤ a ≤ b ≤ 10^18) — the first year and the last year in Limak's interval respectively.
+
+
+-----Output-----
+
+Print one integer – the number of years Limak will count in his chosen interval.
+
+
+-----Examples-----
+Input
+5 10
+
+Output
+2
+
+Input
+2015 2015
+
+Output
+1
+
+Input
+100 105
+
+Output
+0
+
+Input
+72057594000000000 72057595000000000
+
+Output
+26
+
+
+
+-----Note-----
+
+In the first sample Limak's interval contains numbers 5_10 = 101_2, 6_10 = 110_2, 7_10 = 111_2, 8_10 = 1000_2, 9_10 = 1001_2 and 10_10 = 1010_2. Two of them (101_2 and 110_2) have the described property.","def count_years_with_one_zero_in_binary(a, b):
+    def has_exactly_one_zero_in_binary(x):
+        binary_representation = bin(x)[2:]
+        return binary_representation.count('0') == 1
+
+    count = 0
+    for year in range(a, b + 1):
+        if has_exactly_one_zero_in_binary(year):
+            count += 1
+    
+    return count
+
+if __name__ == ""__main__"":
+    import sys
+    input = sys.stdin.read
+    data = input().strip().split()
+    a = int(data[0])
+    b = int(data[1])
+    result = count_years_with_one_zero_in_binary(a, b)
+    print(result)
+",3,False,True,False,True,False,True,True,True,True,True,False,False,True,89_gpt-4o,0.5320826153262929,0.032228761891690744,0.5416666666666666
+159,apps,gpt-4o,qwen2.5-7b-instruct,"Berland annual chess tournament is coming!
+
+Organizers have gathered 2·n chess players who should be divided into two teams with n people each. The first team is sponsored by BerOil and the second team is sponsored by BerMobile. Obviously, organizers should guarantee the win for the team of BerOil.
+
+Thus, organizers should divide all 2·n players into two teams with n people each in such a way that the first team always wins.
+
+Every chess player has its rating r_{i}. It is known that chess player with the greater rating always wins the player with the lower rating. If their ratings are equal then any of the players can win.
+
+After teams assignment there will come a drawing to form n pairs of opponents: in each pair there is a player from the first team and a player from the second team. Every chess player should be in exactly one pair. Every pair plays once. The drawing is totally random.
+
+Is it possible to divide all 2·n players into two teams with n people each so that the player from the first team in every pair wins regardless of the results of the drawing?
+
+
+-----Input-----
+
+The first line contains one integer n (1 ≤ n ≤ 100).
+
+The second line contains 2·n integers a_1, a_2, ... a_2n (1 ≤ a_{i} ≤ 1000).
+
+
+-----Output-----
+
+If it's possible to divide all 2·n players into two teams with n people each so that the player from the first team in every pair wins regardless of the results of the drawing, then print ""YES"". Otherwise print ""NO"".
+
+
+-----Examples-----
+Input
+2
+1 3 2 4
+
+Output
+YES
+
+Input
+1
+3 3
+
+Output
+NO","# Read input
+n = int(input())
+ratings = list(map(int, input().split()))
+
+# Sort the ratings
+ratings.sort()
+
+# Split the sorted ratings into two teams
+team1 = ratings[:n]
+team2 = ratings[n:]
+
+# Check if every player in team1 has a higher rating than every player in team2
+possible = all(team1[i] < team2[i] for i in range(n))
+
+# Output the result
+if possible:
+    print(""YES"")
+else:
+    print(""NO"")
+",3,False,False,False,True,True,True,True,False,True,True,False,False,True,159_gpt-4o,0.5495298594419469,0.048886123808425795,0.5833333333333334
+165,apps,gpt-4o,qwen2.5-7b-instruct,"It's a beautiful April day and Wallace is playing football with his friends. But his friends do not know that Wallace actually stayed home with Gromit and sent them his robotic self instead. Robo-Wallace has several advantages over the other guys. For example, he can hit the ball directly to the specified point. And yet, the notion of a giveaway is foreign to him. The combination of these features makes the Robo-Wallace the perfect footballer — as soon as the ball gets to him, he can just aim and hit the goal. He followed this tactics in the first half of the match, but he hit the goal rarely. The opposing team has a very good goalkeeper who catches most of the balls that fly directly into the goal. But Robo-Wallace is a quick thinker, he realized that he can cheat the goalkeeper. After all, they are playing in a football box with solid walls. Robo-Wallace can kick the ball to the other side, then the goalkeeper will not try to catch the ball. Then, if the ball bounces off the wall and flies into the goal, the goal will at last be scored.
+
+Your task is to help Robo-Wallace to detect a spot on the wall of the football box, to which the robot should kick the ball, so that the ball bounces once and only once off this wall and goes straight to the goal. In the first half of the match Robo-Wallace got a ball in the head and was severely hit. As a result, some of the schemes have been damaged. Because of the damage, Robo-Wallace can only aim to his right wall (Robo-Wallace is standing with his face to the opposing team's goal).
+
+The football box is rectangular. Let's introduce a two-dimensional coordinate system so that point (0, 0) lies in the lower left corner of the field, if you look at the box above. Robo-Wallace is playing for the team, whose goal is to the right. It is an improvised football field, so the gate of Robo-Wallace's rivals may be not in the middle of the left wall. [Image] 
+
+In the given coordinate system you are given:   y_1, y_2 — the y-coordinates of the side pillars of the goalposts of robo-Wallace's opponents;  y_{w} — the y-coordinate of the wall to which Robo-Wallace is aiming;  x_{b}, y_{b} — the coordinates of the ball's position when it is hit;  r — the radius of the ball. 
+
+A goal is scored when the center of the ball crosses the OY axis in the given coordinate system between (0, y_1) and (0, y_2). The ball moves along a straight line. The ball's hit on the wall is perfectly elastic (the ball does not shrink from the hit), the angle of incidence equals the angle of reflection. If the ball bounces off the wall not to the goal, that is, if it hits the other wall or the goal post, then the opposing team catches the ball and Robo-Wallace starts looking for miscalculation and gets dysfunctional. Such an outcome, if possible, should be avoided. We assume that the ball touches an object, if the distance from the center of the ball to the object is no greater than the ball radius r.
+
+
+-----Input-----
+
+The first and the single line contains integers y_1, y_2, y_{w}, x_{b}, y_{b}, r (1 ≤ y_1, y_2, y_{w}, x_{b}, y_{b} ≤ 10^6; y_1 < y_2 < y_{w}; y_{b} + r < y_{w}; 2·r < y_2 - y_1).
+
+It is guaranteed that the ball is positioned correctly in the field, doesn't cross any wall, doesn't touch the wall that Robo-Wallace is aiming at. The goal posts can't be located in the field corners.
+
+
+-----Output-----
+
+If Robo-Wallace can't score a goal in the described manner, print ""-1"" (without the quotes). Otherwise, print a single number x_{w} — the abscissa of his point of aiming. 
+
+If there are multiple points of aiming, print the abscissa of any of them. When checking the correctness of the answer, all comparisons are made with the permissible absolute error, equal to 10^{ - 8}. 
+
+It is recommended to print as many characters after the decimal point as possible.
+
+
+-----Examples-----
+Input
+4 10 13 10 3 1
+
+Output
+4.3750000000
+
+Input
+1 4 6 2 2 1
+
+Output
+-1
+
+Input
+3 10 15 17 9 2
+
+Output
+11.3333333333
+
+
+
+-----Note-----
+
+Note that in the first and third samples other correct values of abscissa x_{w} are also possible.","def find_aiming_point(y1, y2, yw, xb, yb, r):
+    # Boundary conditions check
+    if yb + r >= yw or y1 >= y2 or y1 + r >= y2 - r:
+        return -1
+
+    # Calculate the intersection point on the right wall
+    # Using the geometry and reflection properties
+    # The goal is to find the x_w such that the ball bounces and hits the goal
+    
+    # Using the fact that the reflection point must maintain the property of the line
+    # We use the formula derived from the reflection geometry
+    # slope = (yb - y_w) / (xb - x_w)
+    # reflected_slope = (y_w - goal_y) / (x_w)
+    
+    # Choose a point on the goal line within the goal range
+    y_goal_mid = (y1 + y2) / 2
+    if y_goal_mid - r < y1 or y_goal_mid + r > y2:
+        return -1
+
+    # Calculate x_w
+    x_w = xb - (2 * (yb - y_goal_mid) * (xb - 0)) / (y_goal_mid - yb)
+    
+    if x_w <= 0:
+        return -1
+
+    return x_w
+
+# Read input
+import sys
+input = sys.stdin.read
+data = input().strip().split()
+
+y1 = int(data[0])
+y2 = int(data[1])
+yw = int(data[2])
+xb = int(data[3])
+yb = int(data[4])
+r = int(data[5])
+
+# Calculate the result
+result = find_aiming_point(y1, y2, yw, xb, yb, r)
+if result == -1:
+    print(result)
+else:
+    print(f""{result:.10f}"")
+",3,False,False,False,True,True,True,True,True,False,True,True,True,False,165_gpt-4o,0.5836571653413781,0.08398384419307396,0.5833333333333334
+197,apps,gpt-4o,qwen2.5-7b-instruct,"Nastya received a gift on New Year — a magic wardrobe. It is magic because in the end of each month the number of dresses in it doubles (i.e. the number of dresses becomes twice as large as it is in the beginning of the month).
+
+Unfortunately, right after the doubling the wardrobe eats one of the dresses (if any) with the 50% probability. It happens every month except the last one in the year. 
+
+Nastya owns x dresses now, so she became interested in the expected number of dresses she will have in one year. Nastya lives in Byteland, so the year lasts for k + 1 months.
+
+Nastya is really busy, so she wants you to solve this problem. You are the programmer, after all. Also, you should find the answer modulo 10^9 + 7, because it is easy to see that it is always integer.
+
+
+-----Input-----
+
+The only line contains two integers x and k (0 ≤ x, k ≤ 10^18), where x is the initial number of dresses and k + 1 is the number of months in a year in Byteland.
+
+
+-----Output-----
+
+In the only line print a single integer — the expected number of dresses Nastya will own one year later modulo 10^9 + 7.
+
+
+-----Examples-----
+Input
+2 0
+
+Output
+4
+
+Input
+2 1
+
+Output
+7
+
+Input
+3 2
+
+Output
+21
+
+
+
+-----Note-----
+
+In the first example a year consists on only one month, so the wardrobe does not eat dresses at all.
+
+In the second example after the first month there are 3 dresses with 50% probability and 4 dresses with 50% probability. Thus, in the end of the year there are 6 dresses with 50% probability and 8 dresses with 50% probability. This way the answer for this test is (6 + 8) / 2 = 7.","MOD = 10**9 + 7
+
+def power_mod(base, exponent, mod):
+    result = 1
+    while exponent > 0:
+        if exponent % 2 == 1:
+            result = (result * base) % mod
+        base = (base * base) % mod
+        exponent //= 2
+    return result
+
+def expected_dresses(x, k):
+    if x == 0:
+        return 0
+    # Calculate (2^(k+1) - 1) % MOD
+    power = power_mod(2, k + 1, MOD)
+    result = (x * (power - 1) % MOD) % MOD
+    return result
+
+# Read input
+import sys
+input = sys.stdin.read
+x, k = map(int, input().split())
+
+# Print the result
+print(expected_dresses(x, k))
+",3,False,True,False,True,False,True,True,False,False,False,True,True,True,197_gpt-4o,0.4348406407739015,-0.06378777132990125,0.5416666666666666
+250,apps,gpt-4o,qwen2.5-7b-instruct,"Valery is a PE teacher at a school in Berland. Soon the students are going to take a test in long jumps, and Valery has lost his favorite ruler! 
+
+However, there is no reason for disappointment, as Valery has found another ruler, its length is l centimeters. The ruler already has n marks, with which he can make measurements. We assume that the marks are numbered from 1 to n in the order they appear from the beginning of the ruler to its end. The first point coincides with the beginning of the ruler and represents the origin. The last mark coincides with the end of the ruler, at distance l from the origin. This ruler can be repesented by an increasing sequence a_1, a_2, ..., a_{n}, where a_{i} denotes the distance of the i-th mark from the origin (a_1 = 0, a_{n} = l).
+
+Valery believes that with a ruler he can measure the distance of d centimeters, if there is a pair of integers i and j (1 ≤ i ≤ j ≤ n), such that the distance between the i-th and the j-th mark is exactly equal to d (in other words, a_{j} - a_{i} = d). 
+
+Under the rules, the girls should be able to jump at least x centimeters, and the boys should be able to jump at least y (x < y) centimeters. To test the children's abilities, Valery needs a ruler to measure each of the distances x and y. 
+
+Your task is to determine what is the minimum number of additional marks you need to add on the ruler so that they can be used to measure the distances x and y. Valery can add the marks at any integer non-negative distance from the origin not exceeding the length of the ruler.
+
+
+-----Input-----
+
+The first line contains four positive space-separated integers n, l, x, y (2 ≤ n ≤ 10^5, 2 ≤ l ≤ 10^9, 1 ≤ x < y ≤ l) — the number of marks, the length of the ruler and the jump norms for girls and boys, correspondingly.
+
+The second line contains a sequence of n integers a_1, a_2, ..., a_{n} (0 = a_1 < a_2 < ... < a_{n} = l), where a_{i} shows the distance from the i-th mark to the origin.
+
+
+-----Output-----
+
+In the first line print a single non-negative integer v — the minimum number of marks that you need to add on the ruler.
+
+In the second line print v space-separated integers p_1, p_2, ..., p_{v} (0 ≤ p_{i} ≤ l). Number p_{i} means that the i-th mark should be at the distance of p_{i} centimeters from the origin. Print the marks in any order. If there are multiple solutions, print any of them.
+
+
+-----Examples-----
+Input
+3 250 185 230
+0 185 250
+
+Output
+1
+230
+
+Input
+4 250 185 230
+0 20 185 250
+
+Output
+0
+
+Input
+2 300 185 230
+0 300
+
+Output
+2
+185 230
+
+
+
+-----Note-----
+
+In the first sample it is impossible to initially measure the distance of 230 centimeters. For that it is enough to add a 20 centimeter mark or a 230 centimeter mark.
+
+In the second sample you already can use the ruler to measure the distances of 185 and 230 centimeters, so you don't have to add new marks.
+
+In the third sample the ruler only contains the initial and the final marks. We will need to add two marks to be able to test the children's skills.","# Read input values
+n, l, x, y = map(int, input().split())
+marks = list(map(int, input().split()))
+
+# Initialize sets for easier lookup of required distances
+marks_set = set(marks)
+x_found = False
+y_found = False
+
+# Check if x and y distances can be measured
+for mark in marks:
+    if (mark + x) in marks_set or (mark - x) in marks_set:
+        x_found = True
+    if (mark + y) in marks_set or (mark - y) in marks_set:
+        y_found = True
+    if x_found and y_found:
+        break
+
+# If both x and y distances can already be measured, no new marks are needed
+if x_found and y_found:
+    print(0)
+else:
+    # Try to find a mark that can measure both x and y distances if added
+    new_marks = set()
+    for mark in marks:
+        if not x_found:
+            # Check if a mark that is x distance from the current mark can also measure y distance
+            if (mark + x + y) in marks_set or (mark + x - y) in marks_set or (mark - x + y) in marks_set:
+                new_marks.add(mark + x)
+            elif (mark - x + y) in marks_set or (mark - x - y) in marks_set:
+                new_marks.add(mark - x)
+        if not y_found:
+            # Check if a mark that is y distance from the current mark can also measure x distance
+            if (mark + y + x) in marks_set or (mark + y - x) in marks_set or (mark - y + x) in marks_set:
+                new_marks.add(mark + y)
+            elif (mark - y + x) in marks_set or (mark - y - x) in marks_set:
+                new_marks.add(mark - y)
+    
+    # If we found a mark that can measure both distances, add only that mark
+    if new_marks:
+        print(1)
+        print(new_marks.pop())
+    else:
+        # Otherwise, add both x and y marks if necessary
+        result = []
+        if not x_found:
+            result.append(x)
+        if not y_found:
+            result.append(y)
+        print(len(result))
+        print("" "".join(map(str, result)))
+",3,False,False,False,False,False,False,True,False,False,False,True,True,False,250_gpt-4o,0.32805105442607474,-0.16596394579970838,0.5416666666666666
+265,apps,gpt-4o,qwen2.5-7b-instruct,"There is an airplane which has n rows from front to back. There will be m people boarding this airplane.
+
+This airplane has an entrance at the very front and very back of the plane.
+
+Each person has some assigned seat. It is possible for multiple people to have the same assigned seat. The people will then board the plane one by one starting with person 1. Each person can independently choose either the front entrance or back entrance to enter the plane.
+
+When a person walks into the plane, they walk directly to their assigned seat and will try to sit in it. If it is occupied, they will continue walking in the direction they walked in until they are at empty seat - they will take the earliest empty seat that they can find. If they get to the end of the row without finding a seat, they will be angry.
+
+Find the number of ways to assign tickets to the passengers and board the plane without anyone getting angry. Two ways are different if there exists a passenger who chose a different entrance in both ways, or the assigned seat is different. Print this count modulo 10^9 + 7.
+
+
+-----Input-----
+
+The first line of input will contain two integers n, m (1 ≤ m ≤ n ≤ 1 000 000), the number of seats, and the number of passengers, respectively.
+
+
+-----Output-----
+
+Print a single number, the number of ways, modulo 10^9 + 7.
+
+
+-----Example-----
+Input
+3 3
+
+Output
+128
+
+
+
+-----Note-----
+
+Here, we will denote a passenger by which seat they were assigned, and which side they came from (either ""F"" or ""B"" for front or back, respectively).
+
+For example, one valid way is 3B, 3B, 3B (i.e. all passengers were assigned seat 3 and came from the back entrance). Another valid way would be 2F, 1B, 3F.
+
+One invalid way would be 2B, 2B, 2B, since the third passenger would get to the front without finding a seat.","MOD = 10**9 + 7
+
+def factorial(n):
+    result = 1
+    for i in range(2, n + 1):
+        result = result * i % MOD
+    return result
+
+def number_of_ways(n, m):
+    # Compute factorial(n) and factorial(n-m)
+    fact_n = factorial(n)
+    fact_n_m = factorial(n - m)
+    
+    # The number of ways to assign tickets to passengers and ensure no one gets angry:
+    # This is computed as 2^m * factorial(n) // factorial(n-m)
+    ways = pow(2, m, MOD) * fact_n % MOD * pow(fact_n_m, MOD-2, MOD) % MOD
+    
+    return ways
+
+# Read input
+import sys
+input = sys.stdin.read
+data = input().strip().split()
+n = int(data[0])
+m = int(data[1])
+
+# Calculate the number of ways
+result = number_of_ways(n, m)
+
+# Output the result
+print(result)
+",3,False,True,False,False,True,True,True,False,False,True,True,True,True,265_gpt-4o,0.5971675832200772,0.0977370811161579,0.5416666666666666
+290,apps,gpt-4o,qwen2.5-7b-instruct,"Tonio has a keyboard with only two letters, ""V"" and ""K"".
+
+One day, he has typed out a string s with only these two letters. He really likes it when the string ""VK"" appears, so he wishes to change at most one letter in the string (or do no changes) to maximize the number of occurrences of that string. Compute the maximum number of times ""VK"" can appear as a substring (i. e. a letter ""K"" right after a letter ""V"") in the resulting string.
+
+
+-----Input-----
+
+The first line will contain a string s consisting only of uppercase English letters ""V"" and ""K"" with length not less than 1 and not greater than 100.
+
+
+-----Output-----
+
+Output a single integer, the maximum number of times ""VK"" can appear as a substring of the given string after changing at most one character.
+
+
+-----Examples-----
+Input
+VK
+
+Output
+1
+
+Input
+VV
+
+Output
+1
+
+Input
+V
+
+Output
+0
+
+Input
+VKKKKKKKKKVVVVVVVVVK
+
+Output
+3
+
+Input
+KVKV
+
+Output
+1
+
+
+
+-----Note-----
+
+For the first case, we do not change any letters. ""VK"" appears once, which is the maximum number of times it could appear.
+
+For the second case, we can change the second character from a ""V"" to a ""K"". This will give us the string ""VK"". This has one occurrence of the string ""VK"" as a substring.
+
+For the fourth case, we can change the fourth character from a ""K"" to a ""V"". This will give us the string ""VKKVKKKKKKVVVVVVVVVK"". This has three occurrences of the string ""VK"" as a substring. We can check no other moves can give us strictly more occurrences.","s = input()
+
+# Initialize the count of VK substrings
+count_vk = 0
+
+# Count initial VK substrings
+for i in range(len(s) - 1):
+    if s[i] == 'V' and s[i + 1] == 'K':
+        count_vk += 1
+
+# Try changing each character and see if it increases VK substrings
+max_vk = count_vk
+for i in range(len(s)):
+    if s[i] == 'V':
+        s_new = s[:i] + 'K' + s[i+1:]
+    elif s[i] == 'K':
+        s_new = s[:i] + 'V' + s[i+1:]
+    else:
+        continue
+    
+    new_count_vk = 0
+    for j in range(len(s_new) - 1):
+        if s_new[j] == 'V' and s_new[j + 1] == 'K':
+            new_count_vk += 1
+    
+    max_vk = max(max_vk, new_count_vk)
+
+print(max_vk)
+",3,True,True,False,True,True,True,True,False,False,True,True,True,False,290_gpt-4o,0.5689011500308099,0.06930433337203927,0.5416666666666666
+36,apps,llama3-70b,qwen2.5-7b-instruct,"The flag of Berland is such rectangular field n × m that satisfies following conditions:
+
+  Flag consists of three colors which correspond to letters 'R', 'G' and 'B'.  Flag consists of three equal in width and height stripes, parralel to each other and to sides of the flag. Each stripe has exactly one color.  Each color should be used in exactly one stripe. 
+
+You are given a field n × m, consisting of characters 'R', 'G' and 'B'. Output ""YES"" (without quotes) if this field corresponds to correct flag of Berland. Otherwise, print ""NO"" (without quotes).
+
+
+-----Input-----
+
+The first line contains two integer numbers n and m (1 ≤ n, m ≤ 100) — the sizes of the field.
+
+Each of the following n lines consisting of m characters 'R', 'G' and 'B' — the description of the field.
+
+
+-----Output-----
+
+Print ""YES"" (without quotes) if the given field corresponds to correct flag of Berland . Otherwise, print ""NO"" (without quotes).
+
+
+-----Examples-----
+Input
+6 5
+RRRRR
+RRRRR
+BBBBB
+BBBBB
+GGGGG
+GGGGG
+
+Output
+YES
+
+Input
+4 3
+BRG
+BRG
+BRG
+BRG
+
+Output
+YES
+
+Input
+6 7
+RRRGGGG
+RRRGGGG
+RRRGGGG
+RRRBBBB
+RRRBBBB
+RRRBBBB
+
+Output
+NO
+
+Input
+4 4
+RRRR
+RRRR
+BBBB
+GGGG
+
+Output
+NO
+
+
+
+-----Note-----
+
+The field in the third example doesn't have three parralel stripes.
+
+Rows of the field in the fourth example are parralel to each other and to borders. But they have different heights — 2, 1 and 1.","n, m = map(int, input().split())
+field = [input() for _ in range(n)]
+
+rows = len(set(''.join(field[i::n//3]) for i in range(n//3)))
+cols = len(set(''.join(row[i*m//3:(i+1)*m//3] for row in field)) for i in range(3))
+
+print(""YES"" if rows == 3 and cols == 3 else ""NO"")
+",3,False,False,False,True,False,False,False,True,False,True,False,False,False,36_llama3-70b,0.5737313256405553,0.0718182532301581,0.625
+44,apps,llama3-70b,qwen2.5-7b-instruct,"You are given the set of vectors on the plane, each of them starting at the origin. Your task is to find a pair of vectors with the minimal non-oriented angle between them.
+
+Non-oriented angle is non-negative value, minimal between clockwise and counterclockwise direction angles. Non-oriented angle is always between 0 and π. For example, opposite directions vectors have angle equals to π.
+
+
+-----Input-----
+
+First line of the input contains a single integer n (2 ≤ n ≤ 100 000) — the number of vectors.
+
+The i-th of the following n lines contains two integers x_{i} and y_{i} (|x|, |y| ≤ 10 000, x^2 + y^2 > 0) — the coordinates of the i-th vector. Vectors are numbered from 1 to n in order of appearing in the input. It is guaranteed that no two vectors in the input share the same direction (but they still can have opposite directions).
+
+
+-----Output-----
+
+Print two integer numbers a and b (a ≠ b) — a pair of indices of vectors with the minimal non-oriented angle. You can print the numbers in any order. If there are many possible answers, print any.
+
+
+-----Examples-----
+Input
+4
+-1 0
+0 -1
+1 0
+1 1
+
+Output
+3 4
+
+Input
+6
+-1 0
+0 -1
+1 0
+1 1
+-4 -5
+-4 -6
+
+Output
+6 5","import math
+
+n = int(input())
+
+v = []
+for _ in range(n):
+    x, y = map(int, input().split())
+    v.append((x, y))
+
+ans = (0, 1)
+ans_angle = math.pi
+
+v.sort(key=lambda v: math.atan2(v[1], v[0]))
+
+for i in range(n):
+    for j in range(i+1, min(n, i+100)):
+        angle = math.acos((v[i][0]*v[j][0] + v[i][1]*v[j][1]) / 
+                          math.sqrt(v[i][0]**2 + v[i][1]**2) / 
+                          math.sqrt(v[j][0]**2 + v[j][1]**2))
+        if angle < ans_angle:
+            ans_angle = angle
+            ans = (i, j)
+
+print(ans[0]+1, ans[1]+1)
+",3,False,False,False,True,True,True,True,True,False,True,True,False,True,44_llama3-70b,0.5575568417069499,0.05699574066749571,0.5833333333333334
+50,apps,llama3-70b,qwen2.5-7b-instruct,"Let's write all the positive integer numbers one after another from $1$ without any delimiters (i.e. as a single string). It will be the infinite sequence starting with 123456789101112131415161718192021222324252627282930313233343536...
+
+Your task is to print the $k$-th digit of this sequence.
+
+
+-----Input-----
+
+The first and only line contains integer $k$ ($1 \le k \le 10^{12}$) — the position to process ($1$-based index).
+
+
+-----Output-----
+
+Print the $k$-th digit of the resulting infinite sequence.
+
+
+-----Examples-----
+Input
+7
+
+Output
+7
+
+Input
+21
+
+Output
+5","k = int(input())
+n = 1
+while True:
+    s = str(n)
+    if len(s) >= k:
+        print(s[k-1])
+        break
+    k -= len(s)
+    n += 1
+",3,False,False,True,True,True,True,True,True,True,True,True,True,True,50_llama3-70b,0.5992170886152665,0.0999273480448792,0.5833333333333334
+96,apps,llama3-70b,qwen2.5-7b-instruct,"Array of integers is unimodal, if:
+
+  it is strictly increasing in the beginning;  after that it is constant;  after that it is strictly decreasing. 
+
+The first block (increasing) and the last block (decreasing) may be absent. It is allowed that both of this blocks are absent.
+
+For example, the following three arrays are unimodal: [5, 7, 11, 11, 2, 1], [4, 4, 2], [7], but the following three are not unimodal: [5, 5, 6, 6, 1], [1, 2, 1, 2], [4, 5, 5, 6].
+
+Write a program that checks if an array is unimodal.
+
+
+-----Input-----
+
+The first line contains integer n (1 ≤ n ≤ 100) — the number of elements in the array.
+
+The second line contains n integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ 1 000) — the elements of the array.
+
+
+-----Output-----
+
+Print ""YES"" if the given array is unimodal. Otherwise, print ""NO"".
+
+You can output each letter in any case (upper or lower).
+
+
+-----Examples-----
+Input
+6
+1 5 5 5 4 2
+
+Output
+YES
+
+Input
+5
+10 20 30 20 10
+
+Output
+YES
+
+Input
+4
+1 2 1 2
+
+Output
+NO
+
+Input
+7
+3 3 3 3 3 3 3
+
+Output
+YES
+
+
+
+-----Note-----
+
+In the first example the array is unimodal, because it is strictly increasing in the beginning (from position 1 to position 2, inclusively), that it is constant (from position 2 to position 4, inclusively) and then it is strictly decreasing (from position 4 to position 6, inclusively).","n = int(input())
+arr = list(map(int, input().split()))
+
+increasing = False
+constant = False
+decreasing = False
+
+for i in range(1, n):
+    if arr[i] > arr[i-1]:
+        if decreasing:
+            print(""NO"")
+            exit()
+        increasing = True
+    elif arr[i] == arr[i-1]:
+        if increasing:
+            increasing = False
+            constant = True
+    else:
+        if increasing:
+            increasing = False
+        decreasing = True
+
+print(""YES"")
+",3,False,False,False,True,True,False,True,True,True,True,True,False,True,96_llama3-70b,0.46078781656624684,-0.038680870689825585,0.5416666666666666
+99,apps,llama3-70b,qwen2.5-7b-instruct,"Gerald bought two very rare paintings at the Sotheby's auction and he now wants to hang them on the wall. For that he bought a special board to attach it to the wall and place the paintings on the board. The board has shape of an a_1 × b_1 rectangle, the paintings have shape of a a_2 × b_2 and a_3 × b_3 rectangles.
+
+Since the paintings are painted in the style of abstract art, it does not matter exactly how they will be rotated, but still, one side of both the board, and each of the paintings must be parallel to the floor. The paintings can touch each other and the edges of the board, but can not overlap or go beyond the edge of the board. Gerald asks whether it is possible to place the paintings on the board, or is the board he bought not large enough?
+
+
+-----Input-----
+
+The first line contains two space-separated numbers a_1 and b_1 — the sides of the board. Next two lines contain numbers a_2, b_2, a_3 and b_3 — the sides of the paintings. All numbers a_{i}, b_{i} in the input are integers and fit into the range from 1 to 1000.
+
+
+-----Output-----
+
+If the paintings can be placed on the wall, print ""YES"" (without the quotes), and if they cannot, print ""NO"" (without the quotes).
+
+
+-----Examples-----
+Input
+3 2
+1 3
+2 1
+
+Output
+YES
+
+Input
+5 5
+3 3
+3 3
+
+Output
+NO
+
+Input
+4 2
+2 3
+1 2
+
+Output
+YES
+
+
+
+-----Note-----
+
+That's how we can place the pictures in the first test:
+
+[Image]
+
+And that's how we can do it in the third one.
+
+[Image]","a1, b1 = map(int, input().split())
+a2, b2 = map(int, input().split())
+a3, b3 = map(int, input().split())
+
+if max(a1, b1) >= max(a2, b2) and min(a1, b1) >= min(a2, b2):
+    if max(a1, b1) >= max(a3, b3) and min(a1, b1) >= min(a3, b3):
+        print(""YES"")
+    else:
+        print(""NO"")
+else:
+    if max(a1, b1) >= max(a3, b3) and min(a1, b1) >= min(a3, b3):
+        print(""YES"")
+    else:
+        print(""NO"")
+",3,False,False,False,True,False,False,True,False,False,True,False,False,False,99_llama3-70b,0.44565346236023223,-0.053507185884652454,0.5416666666666666
+191,apps,llama3-70b,qwen2.5-7b-instruct,"Карта звёздного неба представляет собой прямоугольное поле, состоящее из n строк по m символов в каждой строке. Каждый символ — это либо «.» (означает пустой участок неба), либо «*» (означает то, что в этом месте на небе есть звезда). 
+
+Новое издание карты звёздного неба будет напечатано на квадратных листах, поэтому требуется найти минимально возможную сторону квадрата, в который могут поместиться все звезды. Границы искомого квадрата должны быть параллельны сторонам заданного прямоугольного поля.
+
+
+-----Входные данные-----
+
+В первой строке входных данных записаны два числа n и m (1 ≤ n, m ≤ 1000) — количество строк и столбцов на карте звездного неба.
+
+В следующих n строках задано по m символов. Каждый символ — это либо «.» (пустой участок неба), либо «*» (звезда).
+
+Гарантируется, что на небе есть хотя бы одна звезда.
+
+
+-----Выходные данные-----
+
+Выведите одно число — минимально возможную сторону квадрата, которым можно накрыть все звезды.
+
+
+-----Примеры-----
+Входные данные
+4 4
+....
+..*.
+...*
+..**
+
+Выходные данные
+3
+
+Входные данные
+1 3
+*.*
+
+Выходные данные
+3
+
+Входные данные
+2 1
+.
+*
+
+Выходные данные
+1
+
+
+
+-----Примечание-----
+
+Один из возможных ответов на первый тестовый пример:
+
+ [Image] 
+
+Один из возможных ответов на второй тестовый пример (обратите внимание, что покрывающий квадрат выходит за пределы карты звездного неба):
+
+ [Image] 
+
+Ответ на третий тестовый пример:
+
+ [Image]","n, m = map(int, input().split())
+stars = []
+for _ in range(n):
+    row = input()
+    for j, c in enumerate(row):
+        if c == '*':
+            stars.append((j, _))
+
+min_x = min(x for x, y in stars)
+max_x = max(x for x, y in stars)
+min_y = min(y for x, y in stars)
+max_y = max(y for x, y in stars)
+
+side = max(max_x - min_x + 1, max_y - min_y + 1)
+print(side)
+",3,True,True,True,True,True,True,True,True,True,True,True,True,True,191_llama3-70b,0.5906126045643085,0.09096909090919665,0.5416666666666666
+207,apps,llama3-70b,qwen2.5-7b-instruct,"A frog is initially at position $0$ on the number line. The frog has two positive integers $a$ and $b$. From a position $k$, it can either jump to position $k+a$ or $k-b$.
+
+Let $f(x)$ be the number of distinct integers the frog can reach if it never jumps on an integer outside the interval $[0, x]$. The frog doesn't need to visit all these integers in one trip, that is, an integer is counted if the frog can somehow reach it if it starts from $0$.
+
+Given an integer $m$, find $\sum_{i=0}^{m} f(i)$. That is, find the sum of all $f(i)$ for $i$ from $0$ to $m$.
+
+
+-----Input-----
+
+The first line contains three integers $m, a, b$ ($1 \leq m \leq 10^9, 1 \leq a,b \leq 10^5$).
+
+
+-----Output-----
+
+Print a single integer, the desired sum.
+
+
+-----Examples-----
+Input
+7 5 3
+
+Output
+19
+
+Input
+1000000000 1 2019
+
+Output
+500000001500000001
+
+Input
+100 100000 1
+
+Output
+101
+
+Input
+6 4 5
+
+Output
+10
+
+
+
+-----Note-----
+
+In the first example, we must find $f(0)+f(1)+\ldots+f(7)$. We have $f(0) = 1, f(1) = 1, f(2) = 1, f(3) = 1, f(4) = 1, f(5) = 3, f(6) = 3, f(7) = 8$. The sum of these values is $19$.
+
+In the second example, we have $f(i) = i+1$, so we want to find $\sum_{i=0}^{10^9} i+1$.
+
+In the third example, the frog can't make any jumps in any case.","m, a, b = map(int, input().split())
+dp = [0]*(m+1)
+dp[0] = 1
+for i in range(m+1):
+    if i+a <= m:
+        dp[i+a] += dp[i]
+    if i-b >= 0:
+        dp[i] += dp[i-b]
+print(sum(dp))
+",3,False,False,False,True,True,False,True,True,True,True,True,True,True,207_llama3-70b,0.5811835376272438,0.07923404231990178,0.625
+211,apps,llama3-70b,qwen2.5-7b-instruct,"One spring day on his way to university Lesha found an array A. Lesha likes to split arrays into several parts. This time Lesha decided to split the array A into several, possibly one, new arrays so that the sum of elements in each of the new arrays is not zero. One more condition is that if we place the new arrays one after another they will form the old array A.
+
+Lesha is tired now so he asked you to split the array. Help Lesha!
+
+
+-----Input-----
+
+The first line contains single integer n (1 ≤ n ≤ 100) — the number of elements in the array A.
+
+The next line contains n integers a_1, a_2, ..., a_{n} ( - 10^3 ≤ a_{i} ≤ 10^3) — the elements of the array A.
+
+
+-----Output-----
+
+If it is not possible to split the array A and satisfy all the constraints, print single line containing ""NO"" (without quotes).
+
+Otherwise in the first line print ""YES"" (without quotes). In the next line print single integer k — the number of new arrays. In each of the next k lines print two integers l_{i} and r_{i} which denote the subarray A[l_{i}... r_{i}] of the initial array A being the i-th new array. Integers l_{i}, r_{i} should satisfy the following conditions:  l_1 = 1  r_{k} = n  r_{i} + 1 = l_{i} + 1 for each 1 ≤ i < k. 
+
+If there are multiple answers, print any of them.
+
+
+-----Examples-----
+Input
+3
+1 2 -3
+
+Output
+YES
+2
+1 2
+3 3
+
+Input
+8
+9 -12 3 4 -4 -10 7 3
+
+Output
+YES
+2
+1 2
+3 8
+
+Input
+1
+0
+
+Output
+NO
+
+Input
+4
+1 2 3 -5
+
+Output
+YES
+4
+1 1
+2 2
+3 3
+4 4","n = int(input())
+a = list(map(int, input().split()))
+prefix_sum = [0] * (n + 1)
+for i in range(n):
+    prefix_sum[i + 1] = prefix_sum[i] + a[i]
+
+if prefix_sum[n] == 0:
+    print(""NO"")
+else:
+    print(""YES"")
+    k = 1
+    l = 1
+    for r in range(1, n + 1):
+        if prefix_sum[r] != 0 and prefix_sum[r] != prefix_sum[n]:
+            print(k, l, r)
+            k += 1
+            l = r
+    print(k, l, n)
+",3,False,False,False,True,True,False,False,True,True,True,False,False,True,211_llama3-70b,0.5857055335578474,0.08375838445913218,0.625
+236,apps,llama3-70b,qwen2.5-7b-instruct,"After passing a test, Vasya got himself a box of $n$ candies. He decided to eat an equal amount of candies each morning until there are no more candies. However, Petya also noticed the box and decided to get some candies for himself.
+
+This means the process of eating candies is the following: in the beginning Vasya chooses a single integer $k$, same for all days. After that, in the morning he eats $k$ candies from the box (if there are less than $k$ candies in the box, he eats them all), then in the evening Petya eats $10\%$ of the candies remaining in the box. If there are still candies left in the box, the process repeats — next day Vasya eats $k$ candies again, and Petya — $10\%$ of the candies left in a box, and so on.
+
+If the amount of candies in the box is not divisible by $10$, Petya rounds the amount he takes from the box down. For example, if there were $97$ candies in the box, Petya would eat only $9$ of them. In particular, if there are less than $10$ candies in a box, Petya won't eat any at all.
+
+Your task is to find out the minimal amount of $k$ that can be chosen by Vasya so that he would eat at least half of the $n$ candies he initially got. Note that the number $k$ must be integer.
+
+
+-----Input-----
+
+The first line contains a single integer $n$ ($1 \leq n \leq 10^{18}$) — the initial amount of candies in the box.
+
+
+-----Output-----
+
+Output a single integer — the minimal amount of $k$ that would allow Vasya to eat at least half of candies he got.
+
+
+-----Example-----
+Input
+68
+
+Output
+3
+
+
+
+-----Note-----
+
+In the sample, the amount of candies, with $k=3$, would change in the following way (Vasya eats first):
+
+$68 \to 65 \to 59 \to 56 \to 51 \to 48 \to 44 \to 41 \\ \to 37 \to 34 \to 31 \to 28 \to 26 \to 23 \to 21 \to 18 \to 17 \to 14 \\ \to 13 \to 10 \to 9 \to 6 \to 6 \to 3 \to 3 \to 0$.
+
+In total, Vasya would eat $39$ candies, while Petya — $29$.","n = int(input())
+k = 1
+while True:
+    candies = n
+    vasya_eaten = 0
+    while candies > 0:
+        vasya_eaten += min(k, candies)
+        candies -= min(k, candies)
+        petya_eaten = candies // 10
+        candies -= petya_eaten
+    if vasya_eaten * 2 >= n:
+        print(k)
+        break
+    k += 1
+",3,False,False,True,True,True,True,True,False,True,True,True,False,True,236_llama3-70b,0.5442130571415579,0.04427062132914813,0.5416666666666666

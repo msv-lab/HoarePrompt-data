@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: num is a complex number.
+def func_1(num):
+    return cmath.polar(complex(num))
+    #The program returns a tuple representing the polar coordinates of the complex number `num`. The first element of the tuple is the magnitude (or absolute value) of `num`, and the second element is the phase angle (in radians) of `num`.
+#Overall this is what the function does:The function `func_1` accepts a complex number `num` and returns a tuple representing its polar coordinates. The first element of the tuple is the magnitude (or absolute value) of `num`, and the second element is the phase angle (in radians) of `num`. The function handles all valid complex numbers, including those with zero real or imaginary parts. If `num` is zero (0+0j), the magnitude will be 0, and the phase angle will be 0.0 radians.
+

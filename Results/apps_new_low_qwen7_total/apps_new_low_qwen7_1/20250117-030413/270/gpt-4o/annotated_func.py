@@ -1,0 +1,28 @@
+#State of the program right berfore the function call: The input string s is a non-empty string of length between 4 and 100, inclusive, consisting of the characters 'R', 'B', 'Y', 'G', and '!', where '!' denotes a dead light bulb. The string s guarantees that each of the characters 'R', 'B', 'Y', and 'G' appears at least once and that s represents a valid garland as described in the problem statement.
+def func():
+    s = input().strip()
+
+dead_bulbs = {'R': 0, 'B': 0, 'Y': 0, 'G': 0}
+
+positions = {}
+    for (i, char) in enumerate(s):
+        if char in 'RBYG':
+            positions[char] = i % 4
+        
+    #State of the program after the  for loop has been executed: All keys in `positions` are set to the remainder of the index `i` divided by 4 (`i % 4`). The value of `dead_bulbs` remains {'R': 0, 'B': 0, 'Y': 0, 'G': 0} since no updates occur for dead light bulbs ('!'). The variable `i` will be equal to the length of the string `s` minus one after the loop completes.
+    for (i, char) in enumerate(s):
+        if char == '!':
+            for color, pos in positions.items():
+                if i % 4 == pos:
+                    dead_bulbs[color] += 1
+        
+    #State of the program after the  for loop has been executed: All keys in `positions` are set to the remainder of the index `i` divided by 4 (`i % 4`). The value of `dead_bulbs` is updated such that for each key-value pair `(color, pos)` in `positions`, if the final value of `i` (which is the length of the string `s` minus one) modulo 4 equals `pos`, then `dead_bulbs[color]` is incremented by 1. The variable `i` is equal to the length of the string `s` minus one after the loop completes. The loop executes as long as `positions` contains at least one key-value pair where `char == '!'. If `char` is not '!', the loop does not execute.
+    print(dead_bulbs['R'], dead_bulbs['B'], dead_bulbs['Y'], dead_bulbs['G'])
+#Overall this is what the function does:The function `func` accepts no parameters. It processes a non-empty input string `s` of length between 4 and 100, inclusive, which consists of the characters 'R', 'B', 'Y', 'G', and '!', where '!' denotes a dead light bulb. The string `s` ensures that each of the characters 'R', 'B', 'Y', and 'G' appears at least once and represents a valid garland.
+
+After processing, the function determines the number of dead light bulbs for each color ('R', 'B', 'Y', 'G') based on their positions in the garland. Specifically, for each position in the string `s` that contains a '!', the function checks if the corresponding position in the garland (determined by `i % 4`) matches the position of the color in the `positions` dictionary. If there is a match, the count of dead light bulbs for that color is incremented.
+
+The function then prints the counts of dead light bulbs for 'R', 'B', 'Y', and 'G' in that order.
+
+The final state of the program after the function concludes is that it prints the counts of dead light bulbs for each color, and the internal variables `s`, `dead_bulbs`, `positions`, and `i` are no longer accessible outside the function.
+

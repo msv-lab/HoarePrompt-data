@@ -1,0 +1,10 @@
+The function `func_1` accepts two parameters `a` and `b`, both of which are integers with specific constraints: `0 < a, a2 ≤ 2·10^9` and `-2·10^9 ≤ b, b2 ≤ 2·10^9`. The function aims to compute the greatest common divisor (gcd) of `a` and `b`, and find the coefficients `x` and `y` such that `ax + by = gcd(a, b)`.
+
+The function operates through recursion. If `a` is zero, it returns `b`, 0, 1 as per the base case. Otherwise, it recursively computes the gcd using the Euclidean algorithm, adjusting the coefficients `x` and `y` accordingly until the gcd is found. The function then returns the gcd and the coefficients `x` and `y`.
+
+Potential edge cases and missing functionality:
+- The function correctly handles the case where `a` is zero by returning `b`, 0, 1.
+- However, the function does not explicitly handle the case where `b` is zero. In practice, if `b` is zero, the gcd would be `a` and the coefficients would be `1` and `0` respectively.
+- The function assumes that the initial call to `func_1` does not have both `a` and `b` as zero, which is a valid assumption given the constraints.
+
+After the function concludes, the program will return either `b', 0, 1` if `b` is within the specified range and `a` is zero, or `gcd, x, y` where `gcd` is the greatest common divisor of `a` and `b`, and `x` and `y` are the coefficients such that `ax + by = gcd(a, b)`.

@@ -1,0 +1,466 @@
+Task ID,Dataset,model_created,model_run,description,Code,run_number,original correctness,summary fsl,naive correctness fsl,vanilla,simple tree,complex tree,summary,simple verify fsl,complex verify fsl,summary verify fsl,simple verify,complex verify,summary verify
+90,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function that counts the number of pairs of integers in a list that xor to an even number.,"def find_even_pair(lst):
+    even_count = sum(1 for x in lst if x % 2 == 0)
+    odd_count = len(lst) - even_count  # total count minus even count gives odd count
+
+    # Calculate the number of pairs that XOR to an even number
+    even_pairs = even_count * (even_count - 1) // 2
+    odd_pairs = odd_count * (odd_count - 1) // 2
+    
+    return even_pairs + odd_pairs
+
+# Test cases
+assert find_even_pair([5, 4, 7, 2, 1]) == 4
+assert find_even_pair([7, 2, 8, 1, 0, 5, 11]) == 9
+assert find_even_pair([1, 2, 3]) == 1
+",1,True,False,False,True,False,False,True,True,True,True,True,True,True
+125,mbppplus,gpt-4o,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    result = [[] for _ in range(n)]
+    for i, element in enumerate(lst):
+        result[i % n].append(element)
+    return result
+
+# Test cases
+assert list_split(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'], 3) == [['a', 'd', 'g', 'j', 'm'], ['b', 'e', 'h', 'k', 'n'], ['c', 'f', 'i', 'l']]
+assert list_split([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], 3) == [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14], [3, 6, 9, 12]]
+assert list_split(['python', 'java', 'C', 'C++', 'DBMS', 'SQL'], 2) == [['python', 'C', 'DBMS'], ['java', 'C++', 'SQL']]
+",1,True,True,False,False,False,True,True,False,True,False,True,True,True
+143,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function that checks whether a string contains the 'a' character followed by two or three 'b' characters.,"import re
+
+def text_match_two_three(text):
+    # Define the regular expression pattern
+    pattern = r'a(b{2,3})'
+    # Search the pattern in the given text
+    match = re.search(pattern, text)
+    # Return True if the pattern is found, otherwise False
+    return bool(match)
+
+# Test cases
+assert text_match_two_three(""ac"") == False
+assert text_match_two_three(""dc"") == False
+assert text_match_two_three(""abbbba"") == True
+",1,True,True,False,False,True,True,True,False,False,False,True,False,True
+173,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find the minimum value in a given heterogeneous list.,"def min_val(lst):
+    # Filter out only integer values from the list
+    int_values = [x for x in lst if isinstance(x, int)]
+    # Find and return the minimum value among the integer values
+    return min(int_values)
+
+# Test cases to validate the solution
+assert min_val(['Python', 3, 2, 4, 5, 'version']) == 2
+assert min_val(['Python', 15, 20, 25]) == 15
+assert min_val(['Python', 30, 20, 40, 50, 'version']) == 20
+",1,True,True,False,True,True,True,True,True,False,True,False,True,True
+186,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to extract the elementwise and tuples from the given two tuples.,"def and_tuples(tuple1, tuple2):
+    return tuple(a & b for a, b in zip(tuple1, tuple2))
+
+# Testing the function with the provided test cases
+assert and_tuples((10, 4, 6, 9), (5, 2, 3, 3)) == (0, 0, 2, 1)
+assert and_tuples((1, 2, 3, 4), (5, 6, 7, 8)) == (1, 2, 3, 0)
+assert and_tuples((8, 9, 11, 12), (7, 13, 14, 17)) == (0, 9, 10, 0)
+",1,True,False,False,True,True,True,True,False,True,False,True,True,False
+192,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to remove odd characters in a string.,"def remove_odd(s):
+    return ''.join([s[i] for i in range(len(s)) if i % 2 != 0])
+
+# Testing the function with the provided test cases
+assert remove_odd(""python"") == ""yhn""
+assert remove_odd(""program"") == ""rga""
+assert remove_odd(""language"") == ""agae""
+",1,True,True,False,True,False,True,False,False,False,True,True,False,True
+239,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a python function to remove duplicate numbers from a given number of lists.,"from collections import Counter
+
+def two_unique_nums(lst):
+    # Count the occurrences of each number in the list
+    count = Counter(lst)
+    
+    # Filter out the numbers that occur more than once
+    result = [num for num in lst if count[num] == 1]
+    
+    return result
+
+# Testing the function with the provided test cases
+assert two_unique_nums([1,2,3,2,3,4,5]) == [1, 4, 5]
+assert two_unique_nums([1,2,3,2,4,5]) == [1, 3, 4, 5]
+assert two_unique_nums([1,2,3,4,5]) == [1, 2, 3, 4, 5]
+",1,True,True,False,False,False,False,False,False,False,False,False,False,False
+328,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find nth polite number. geeksforgeeks.org/n-th-polite-number/,"def is_polite(n):
+    count = 0
+    number = 1
+    while count < n:
+        if (number & (number - 1)) != 0:  # Check if number is not a power of 2
+            count += 1
+        number += 1
+    return number - 1
+
+# Testing the function
+assert is_polite(7) == 11
+assert is_polite(4) == 7
+assert is_polite(9) == 13
+",1,False,False,False,False,False,False,False,True,False,False,False,True,True
+32,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to check whether it follows the sequence given in the patterns array.,"def is_samepatterns(patterns1, patterns2):
+    if len(patterns1) != len(patterns2):
+        return False
+    
+    mapping = {}
+    for p1, p2 in zip(patterns1, patterns2):
+        if p1 not in mapping:
+            mapping[p1] = p2
+        elif mapping[p1] != p2:
+            return False
+    
+    return True
+",1,False,True,True,True,True,True,True,True,False,True,True,True,True
+45,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to check whether the given number is undulating or not.,"def is_undulating(n):
+    n = str(n)
+    undulating = True
+    for i in range(1, len(n) - 1):
+        if (n[i-1] < n[i] and n[i] < n[i+1]) or (n[i-1] > n[i] and n[i] > n[i+1]):
+            pass
+        else:
+            undulating = False
+            break
+    return undulating
+",1,False,False,False,False,True,False,True,False,False,True,False,False,False
+76,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to convert a tuple to a string.,"def tup_string(tup):
+  return """".join(tup)
+",1,True,True,False,False,False,True,False,True,False,True,False,False,True
+97,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,"Write a function that takes in a sorted array, its length (n), and an element and returns whether the element is the majority element in the given sorted array. (The majority element is the element that occurs more than n/2 times.)","def is_majority(arr, n, x):
+    count = arr.count(x)
+    return count > n/2",1,True,False,False,False,True,True,False,True,True,True,True,True,True
+105,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function to set all even bits of a given number.,"def even_bit_set_number(n):
+    return n | 0xAAAAAAAA
+",1,False,False,False,True,True,True,True,False,True,True,False,False,False
+125,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    return [lst[i::n] for i in range(n)]
+",1,True,True,False,True,True,True,True,False,True,True,False,True,True
+126,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to find the lateral surface area of a cube given its side length.,"def lateralsurface_cube(side_length):
+  return 4 * (side_length ** 2)
+",1,False,True,True,True,True,True,False,True,True,True,True,True,True
+226,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function to count the number of pairs whose xor value is odd.,"def find_Odd_Pair(arr, n):
+    odd_count = sum(1 for num in arr if num % 2 != 0)
+    even_count = n - odd_count
+    return odd_count * even_count + (odd_count * (odd_count - 1)) // 2
+",1,False,False,True,False,True,False,True,True,False,False,True,False,True
+265,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,"Write a function to search a string for a regex pattern. The function should return the matching subtring, a start index and an end index.","import re
+
+def find_literals(s, pattern):
+    match = re.search(pattern, s)
+    if match:
+        return (match.group(), match.start(), match.end())
+    else:
+        return None
+",1,True,True,False,True,True,True,True,False,True,True,True,True,True
+314,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to sort a given list of strings of numbers numerically.,"def sort_numeric_strings(num_strings):
+  return sorted([int(num) for num in num_strings])
+",1,True,True,False,False,True,True,False,False,False,False,True,True,True
+336,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function to check whether every odd index contains odd numbers of a given list.,"def odd_position(lst):
+    for i in range(len(lst)):
+        if i % 2 != 0 and lst[i] % 2 == 0:
+            return False
+    return True
+",1,True,True,True,True,True,True,True,True,True,True,False,False,True
+90,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function that counts the number of pairs of integers in a list that xor to an even number.,"def find_even_pair(lst):
+    even_count = sum(1 for x in lst if x % 2 == 0)
+    odd_count = len(lst) - even_count  # total count minus even count gives odd count
+
+    # Calculate the number of pairs that XOR to an even number
+    even_pairs = even_count * (even_count - 1) // 2
+    odd_pairs = odd_count * (odd_count - 1) // 2
+    
+    return even_pairs + odd_pairs
+
+# Test cases
+assert find_even_pair([5, 4, 7, 2, 1]) == 4
+assert find_even_pair([7, 2, 8, 1, 0, 5, 11]) == 9
+assert find_even_pair([1, 2, 3]) == 1
+",2,True,False,False,True,False,False,True,True,True,True,True,True,True
+125,mbppplus,gpt-4o,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    result = [[] for _ in range(n)]
+    for i, element in enumerate(lst):
+        result[i % n].append(element)
+    return result
+
+# Test cases
+assert list_split(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'], 3) == [['a', 'd', 'g', 'j', 'm'], ['b', 'e', 'h', 'k', 'n'], ['c', 'f', 'i', 'l']]
+assert list_split([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], 3) == [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14], [3, 6, 9, 12]]
+assert list_split(['python', 'java', 'C', 'C++', 'DBMS', 'SQL'], 2) == [['python', 'C', 'DBMS'], ['java', 'C++', 'SQL']]
+",2,True,True,True,True,True,False,False,True,True,True,False,True,False
+143,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function that checks whether a string contains the 'a' character followed by two or three 'b' characters.,"import re
+
+def text_match_two_three(text):
+    # Define the regular expression pattern
+    pattern = r'a(b{2,3})'
+    # Search the pattern in the given text
+    match = re.search(pattern, text)
+    # Return True if the pattern is found, otherwise False
+    return bool(match)
+
+# Test cases
+assert text_match_two_three(""ac"") == False
+assert text_match_two_three(""dc"") == False
+assert text_match_two_three(""abbbba"") == True
+",2,True,True,True,True,False,False,True,False,True,True,False,False,False
+173,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find the minimum value in a given heterogeneous list.,"def min_val(lst):
+    # Filter out only integer values from the list
+    int_values = [x for x in lst if isinstance(x, int)]
+    # Find and return the minimum value among the integer values
+    return min(int_values)
+
+# Test cases to validate the solution
+assert min_val(['Python', 3, 2, 4, 5, 'version']) == 2
+assert min_val(['Python', 15, 20, 25]) == 15
+assert min_val(['Python', 30, 20, 40, 50, 'version']) == 20
+",2,True,True,False,False,False,False,True,True,True,True,True,True,True
+186,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to extract the elementwise and tuples from the given two tuples.,"def and_tuples(tuple1, tuple2):
+    return tuple(a & b for a, b in zip(tuple1, tuple2))
+
+# Testing the function with the provided test cases
+assert and_tuples((10, 4, 6, 9), (5, 2, 3, 3)) == (0, 0, 2, 1)
+assert and_tuples((1, 2, 3, 4), (5, 6, 7, 8)) == (1, 2, 3, 0)
+assert and_tuples((8, 9, 11, 12), (7, 13, 14, 17)) == (0, 9, 10, 0)
+",2,True,True,False,True,True,True,True,True,False,True,True,True,True
+192,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to remove odd characters in a string.,"def remove_odd(s):
+    return ''.join([s[i] for i in range(len(s)) if i % 2 != 0])
+
+# Testing the function with the provided test cases
+assert remove_odd(""python"") == ""yhn""
+assert remove_odd(""program"") == ""rga""
+assert remove_odd(""language"") == ""agae""
+",2,True,True,True,True,True,False,False,False,False,True,True,True,False
+328,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find nth polite number. geeksforgeeks.org/n-th-polite-number/,"def is_polite(n):
+    count = 0
+    number = 1
+    while count < n:
+        if (number & (number - 1)) != 0:  # Check if number is not a power of 2
+            count += 1
+        number += 1
+    return number - 1
+
+# Testing the function
+assert is_polite(7) == 11
+assert is_polite(4) == 7
+assert is_polite(9) == 13
+",2,False,False,False,True,False,False,False,True,True,False,False,False,False
+32,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to check whether it follows the sequence given in the patterns array.,"def is_samepatterns(patterns1, patterns2):
+    if len(patterns1) != len(patterns2):
+        return False
+    
+    mapping = {}
+    for p1, p2 in zip(patterns1, patterns2):
+        if p1 not in mapping:
+            mapping[p1] = p2
+        elif mapping[p1] != p2:
+            return False
+    
+    return True
+",2,False,False,True,True,True,True,False,True,False,False,True,True,False
+45,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to check whether the given number is undulating or not.,"def is_undulating(n):
+    n = str(n)
+    undulating = True
+    for i in range(1, len(n) - 1):
+        if (n[i-1] < n[i] and n[i] < n[i+1]) or (n[i-1] > n[i] and n[i] > n[i+1]):
+            pass
+        else:
+            undulating = False
+            break
+    return undulating
+",2,False,False,False,False,True,True,False,True,False,False,True,True,True
+76,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to convert a tuple to a string.,"def tup_string(tup):
+  return """".join(tup)
+",2,True,True,False,False,True,True,False,True,True,True,False,True,True
+97,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,"Write a function that takes in a sorted array, its length (n), and an element and returns whether the element is the majority element in the given sorted array. (The majority element is the element that occurs more than n/2 times.)","def is_majority(arr, n, x):
+    count = arr.count(x)
+    return count > n/2",2,True,False,True,False,True,True,True,True,True,True,True,False,True
+105,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function to set all even bits of a given number.,"def even_bit_set_number(n):
+    return n | 0xAAAAAAAA
+",2,False,False,False,True,False,True,True,False,True,False,False,True,True
+125,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    return [lst[i::n] for i in range(n)]
+",2,True,True,False,True,False,True,True,True,True,True,True,False,False
+126,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to find the lateral surface area of a cube given its side length.,"def lateralsurface_cube(side_length):
+  return 4 * (side_length ** 2)
+",2,False,True,True,True,True,True,True,True,True,True,True,True,True
+197,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function to count the occurence of all elements of list in a tuple.,"def count_Occurrence(tup, lst):
+    return sum(tup.count(element) for element in lst)
+",2,True,True,False,True,True,True,True,False,False,True,False,True,True
+265,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,"Write a function to search a string for a regex pattern. The function should return the matching subtring, a start index and an end index.","import re
+
+def find_literals(s, pattern):
+    match = re.search(pattern, s)
+    if match:
+        return (match.group(), match.start(), match.end())
+    else:
+        return None
+",2,True,True,False,True,True,True,True,True,False,True,True,True,True
+314,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to sort a given list of strings of numbers numerically.,"def sort_numeric_strings(num_strings):
+  return sorted([int(num) for num in num_strings])
+",2,True,False,False,False,True,False,False,True,True,False,True,True,True
+336,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function to check whether every odd index contains odd numbers of a given list.,"def odd_position(lst):
+    for i in range(len(lst)):
+        if i % 2 != 0 and lst[i] % 2 == 0:
+            return False
+    return True
+",2,True,True,True,True,True,True,False,True,True,True,False,True,True
+90,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function that counts the number of pairs of integers in a list that xor to an even number.,"def find_even_pair(lst):
+    even_count = sum(1 for x in lst if x % 2 == 0)
+    odd_count = len(lst) - even_count  # total count minus even count gives odd count
+
+    # Calculate the number of pairs that XOR to an even number
+    even_pairs = even_count * (even_count - 1) // 2
+    odd_pairs = odd_count * (odd_count - 1) // 2
+    
+    return even_pairs + odd_pairs
+
+# Test cases
+assert find_even_pair([5, 4, 7, 2, 1]) == 4
+assert find_even_pair([7, 2, 8, 1, 0, 5, 11]) == 9
+assert find_even_pair([1, 2, 3]) == 1
+",3,True,False,False,True,True,False,True,False,False,True,True,False,True
+125,mbppplus,gpt-4o,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    result = [[] for _ in range(n)]
+    for i, element in enumerate(lst):
+        result[i % n].append(element)
+    return result
+
+# Test cases
+assert list_split(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'], 3) == [['a', 'd', 'g', 'j', 'm'], ['b', 'e', 'h', 'k', 'n'], ['c', 'f', 'i', 'l']]
+assert list_split([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], 3) == [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14], [3, 6, 9, 12]]
+assert list_split(['python', 'java', 'C', 'C++', 'DBMS', 'SQL'], 2) == [['python', 'C', 'DBMS'], ['java', 'C++', 'SQL']]
+",3,True,True,True,False,False,False,True,True,False,True,True,True,True
+143,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function that checks whether a string contains the 'a' character followed by two or three 'b' characters.,"import re
+
+def text_match_two_three(text):
+    # Define the regular expression pattern
+    pattern = r'a(b{2,3})'
+    # Search the pattern in the given text
+    match = re.search(pattern, text)
+    # Return True if the pattern is found, otherwise False
+    return bool(match)
+
+# Test cases
+assert text_match_two_three(""ac"") == False
+assert text_match_two_three(""dc"") == False
+assert text_match_two_three(""abbbba"") == True
+",3,True,True,True,False,False,True,True,True,True,True,True,True,True
+173,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find the minimum value in a given heterogeneous list.,"def min_val(lst):
+    # Filter out only integer values from the list
+    int_values = [x for x in lst if isinstance(x, int)]
+    # Find and return the minimum value among the integer values
+    return min(int_values)
+
+# Test cases to validate the solution
+assert min_val(['Python', 3, 2, 4, 5, 'version']) == 2
+assert min_val(['Python', 15, 20, 25]) == 15
+assert min_val(['Python', 30, 20, 40, 50, 'version']) == 20
+",3,True,True,False,True,False,True,True,False,False,True,True,True,True
+186,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to extract the elementwise and tuples from the given two tuples.,"def and_tuples(tuple1, tuple2):
+    return tuple(a & b for a, b in zip(tuple1, tuple2))
+
+# Testing the function with the provided test cases
+assert and_tuples((10, 4, 6, 9), (5, 2, 3, 3)) == (0, 0, 2, 1)
+assert and_tuples((1, 2, 3, 4), (5, 6, 7, 8)) == (1, 2, 3, 0)
+assert and_tuples((8, 9, 11, 12), (7, 13, 14, 17)) == (0, 9, 10, 0)
+",3,True,True,False,True,True,False,True,False,False,False,True,True,True
+192,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to remove odd characters in a string.,"def remove_odd(s):
+    return ''.join([s[i] for i in range(len(s)) if i % 2 != 0])
+
+# Testing the function with the provided test cases
+assert remove_odd(""python"") == ""yhn""
+assert remove_odd(""program"") == ""rga""
+assert remove_odd(""language"") == ""agae""
+",3,True,True,True,True,True,True,True,False,True,True,False,True,True
+239,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a python function to remove duplicate numbers from a given number of lists.,"from collections import Counter
+
+def two_unique_nums(lst):
+    # Count the occurrences of each number in the list
+    count = Counter(lst)
+    
+    # Filter out the numbers that occur more than once
+    result = [num for num in lst if count[num] == 1]
+    
+    return result
+
+# Testing the function with the provided test cases
+assert two_unique_nums([1,2,3,2,3,4,5]) == [1, 4, 5]
+assert two_unique_nums([1,2,3,2,4,5]) == [1, 3, 4, 5]
+assert two_unique_nums([1,2,3,4,5]) == [1, 2, 3, 4, 5]
+",3,True,True,False,False,False,False,False,False,False,True,True,False,True
+328,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find nth polite number. geeksforgeeks.org/n-th-polite-number/,"def is_polite(n):
+    count = 0
+    number = 1
+    while count < n:
+        if (number & (number - 1)) != 0:  # Check if number is not a power of 2
+            count += 1
+        number += 1
+    return number - 1
+
+# Testing the function
+assert is_polite(7) == 11
+assert is_polite(4) == 7
+assert is_polite(9) == 13
+",3,False,False,False,True,True,False,False,True,True,True,True,False,True
+32,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to check whether it follows the sequence given in the patterns array.,"def is_samepatterns(patterns1, patterns2):
+    if len(patterns1) != len(patterns2):
+        return False
+    
+    mapping = {}
+    for p1, p2 in zip(patterns1, patterns2):
+        if p1 not in mapping:
+            mapping[p1] = p2
+        elif mapping[p1] != p2:
+            return False
+    
+    return True
+",3,False,True,True,True,True,True,True,True,True,True,True,True,True
+45,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to check whether the given number is undulating or not.,"def is_undulating(n):
+    n = str(n)
+    undulating = True
+    for i in range(1, len(n) - 1):
+        if (n[i-1] < n[i] and n[i] < n[i+1]) or (n[i-1] > n[i] and n[i] > n[i+1]):
+            pass
+        else:
+            undulating = False
+            break
+    return undulating
+",3,False,False,False,False,True,True,True,True,True,True,False,False,True
+76,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to convert a tuple to a string.,"def tup_string(tup):
+  return """".join(tup)
+",3,True,True,False,False,True,True,True,False,True,True,True,True,True
+97,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,"Write a function that takes in a sorted array, its length (n), and an element and returns whether the element is the majority element in the given sorted array. (The majority element is the element that occurs more than n/2 times.)","def is_majority(arr, n, x):
+    count = arr.count(x)
+    return count > n/2",3,True,True,False,False,False,True,True,False,True,True,True,False,False
+105,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function to set all even bits of a given number.,"def even_bit_set_number(n):
+    return n | 0xAAAAAAAA
+",3,False,False,False,True,True,False,True,True,True,False,True,True,True
+125,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    return [lst[i::n] for i in range(n)]
+",3,True,False,False,True,True,True,True,True,False,True,False,True,False
+126,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to find the lateral surface area of a cube given its side length.,"def lateralsurface_cube(side_length):
+  return 4 * (side_length ** 2)
+",3,False,True,True,True,True,True,True,True,True,True,True,True,True
+197,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function to count the occurence of all elements of list in a tuple.,"def count_Occurrence(tup, lst):
+    return sum(tup.count(element) for element in lst)
+",3,True,True,False,True,False,True,True,False,False,True,True,True,True
+226,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function to count the number of pairs whose xor value is odd.,"def find_Odd_Pair(arr, n):
+    odd_count = sum(1 for num in arr if num % 2 != 0)
+    even_count = n - odd_count
+    return odd_count * even_count + (odd_count * (odd_count - 1)) // 2
+",3,False,False,True,False,False,False,True,True,False,False,True,False,False
+265,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,"Write a function to search a string for a regex pattern. The function should return the matching subtring, a start index and an end index.","import re
+
+def find_literals(s, pattern):
+    match = re.search(pattern, s)
+    if match:
+        return (match.group(), match.start(), match.end())
+    else:
+        return None
+",3,True,True,False,True,True,True,True,False,True,True,True,True,True
+314,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to sort a given list of strings of numbers numerically.,"def sort_numeric_strings(num_strings):
+  return sorted([int(num) for num in num_strings])
+",3,True,False,True,False,False,False,False,False,False,True,False,True,False
+336,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function to check whether every odd index contains odd numbers of a given list.,"def odd_position(lst):
+    for i in range(len(lst)):
+        if i % 2 != 0 and lst[i] % 2 == 0:
+            return False
+    return True
+",3,True,False,True,True,True,False,False,True,True,False,True,True,False

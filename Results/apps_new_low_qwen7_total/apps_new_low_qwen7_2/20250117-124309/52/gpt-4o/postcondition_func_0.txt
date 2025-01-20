@@ -1,0 +1,7 @@
+The function `func_1` accepts a non-empty string `t` consisting of lowercase Latin letters, where the length of `t` does not exceed 100 characters. It checks if there exists a substring `s` such that removing a suffix of `t` (of length `i`) results in the original string `t`. If such a substring `s` is found, the function returns 'YES\n' followed by the substring `s`. Specifically:
+
+- If `s + t[-i:] == t` for some index `i` (meaning the string `t` can be split into a prefix `s` and a suffix `t[-i:]`), the function returns 'YES\n' followed by `s`.
+- If no such `i` exists but removing the last two characters of `t` (i.e., `t[:-2]`) results in a string that matches the original `t` when the last character is removed (i.e., `t[:-2] + t[-1] == t`), the function returns 'YES\n' followed by `t[:-2]`.
+- If no such `i` exists and neither of the above conditions are met, the function returns 'NO'.
+
+This covers all possible cases: finding a suitable `s` and returning the appropriate result, or determining that no such `s` exists and returning 'NO'.

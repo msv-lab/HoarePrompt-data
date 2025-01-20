@@ -1,0 +1,8 @@
+The function `func_1` accepts two parameters `n` and `m`, which are non-negative integers such that \(0 \leq n, m \leq 1000\). It returns a list of four distinct points based on the values of `n` and `m`. The function handles various edge cases:
+- If both `n` and `m` are at least 2, it returns the points \[(0, 0), (n, 0), (n, m), (0, m)\].
+- If `n` is 0, it returns \[(0, 0), (0, m), (0, 1), (0, m - 1)].
+- If `m` is 0 and `n` is at least 2, it returns \[(0, 0), (n, 0), (1, 0), (n - 1, 0)].
+- If `n` is 1, it returns \[(0, 0), (1, 0), (1, m), (0, m)].
+- Otherwise, it returns \[(0, 0), (0, 1), (n, 1), (n, 0)].
+
+The function ensures that the grid contains at least 4 different points and the returned list always consists of four distinct points.

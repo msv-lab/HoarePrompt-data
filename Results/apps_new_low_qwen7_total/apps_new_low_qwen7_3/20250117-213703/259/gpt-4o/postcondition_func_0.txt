@@ -1,0 +1,16 @@
+The function `func_1` accepts two parameters: `n` and `ticket`. 
+
+- `n` is an even integer such that 2 <= n <= 2 * 10^5.
+- `ticket` is a string of length `n` consisting of digits and '?' characters. The number of '?' characters in `ticket` is even.
+
+The function calculates the sum of non-'?' characters in the first half and second half of the `ticket` string and counts the number of '?' characters in each half. It then computes the difference between these sums and the difference in the count of '?' characters. Based on these calculations, the function determines whether the ticket can be considered "Bicarp" or "Monocarp". Specifically, if the adjusted sum difference (considering the maximum possible value for '?' characters as 9) is divisible by 9, the function prints 'Bicarp'; otherwise, it prints 'Monocarp'.
+
+Potential edge cases and missing functionality:
+- The function assumes that the number of '?' characters in `ticket` is always even, as stated in the problem constraints. There is no check to verify this condition, which means the function will only proceed correctly under this assumption. If the number of '?' characters were odd, the function would need to handle this case differently, potentially returning an error or a specific message indicating the inconsistency.
+
+The final state of the program after the function concludes is as follows:
+- The variable `i` will be equal to `n`.
+- The variables `left_sum` and `right_sum` will hold the sum of the integer values of the non-'?' elements in the first and second halves of `ticket`, respectively.
+- The variables `left_question_marks` and `right_question_marks` will hold the count of '?' characters in the first and second halves of `ticket`, respectively.
+- The variables `half_n` and `n` will retain their original values.
+- The function will print either 'Bicarp' or 'Monocarp' based on the computed conditions.

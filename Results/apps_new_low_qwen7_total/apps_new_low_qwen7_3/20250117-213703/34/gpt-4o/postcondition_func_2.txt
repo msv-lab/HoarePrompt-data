@@ -1,0 +1,5 @@
+The function `adjust_solution` accepts six parameters: `x` and `y` (both integers), `a1_div_gcd` and `a2_div_gcd` (both positive integers representing the greatest common divisor of `a1` and `a2` divided by their respective gcd), `sign_a1` (an integer representing the sign of `a1` and either 1 or -1), and `L` and `R` (both integers such that `L` <= `R`). 
+
+The function first checks the value of `sign_a1` and adjusts `x` and `y` accordingly using `a1_div_gcd` and `a2_div_gcd`. Then, it checks whether `b1 + a1 * x` is less than `L` or greater than `R`. If `b1 + a1 * x` is less than `L`, `x` is increased by `a2_div_gcd` and `y` is decreased by `a1_div_gcd`. If `b1 + a1 * x` is greater than `R`, `x` is decreased by `a2_div_gcd` and `y` is increased by `a1_div_gcd`.
+
+After these adjustments, the function returns `x` and `y`. If none of the conditions are met, `x` and `y` remain unchanged. This means that the final state of the program after the function concludes is that `x` and `y` are integers, possibly updated based on the conditions, while `a1_div_gcd`, `a2_div_gcd`, `sign_a1`, `L`, and `R` remain unchanged.

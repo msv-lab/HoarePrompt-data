@@ -1,0 +1,54 @@
+#State of the program right berfore the function call: a, b, c, and d are floating-point numbers such that \(|a|, |b|, |c|, |d| \leq 10^9\), and the matrix \(A = \left(\begin{array}{ll}{a} & {b} \\{c} & {d} \end{array} \right)\) is degenerate (i.e., \(\operatorname{det}(A) = ad - bc = 0\)).
+def func_1(A):
+    a, b, c, d = A[0][0], A[0][1], A[1][0], A[1][1]
+
+det = a * d - b * c
+    if (det == 0) :
+        return 0.0
+        #The program returns 0.0
+    if (abs(a) >= max(abs(b), abs(c), abs(d))) :
+        a_prime = b * c / d if d != 0 else 0
+
+min_norm_value = abs(a - a_prime)
+    else :
+        if (abs(b) >= max(abs(a), abs(c), abs(d))) :
+            b_prime = a * d / c if c != 0 else 0
+
+min_norm_value = abs(b - b_prime)
+        else :
+            if (abs(c) >= max(abs(a), abs(b), abs(d))) :
+                c_prime = a * d / b if b != 0 else 0
+
+min_norm_value = abs(c - c_prime)
+            else :
+                d_prime = b * c / a if a != 0 else 0
+
+min_norm_value = abs(d - d_prime)
+            #State of the program after the if-else block has been executed: *`a`, `b`, `c`, `d`, `det`, `c_prime`, and `d_prime` are numbers. If the absolute value of `c` is greater than or equal to the maximum of the absolute values of `a`, `b`, and `d`, then `c_prime` is calculated as `a * d / b` if `b` is not zero, otherwise `0`, and `min_norm_value` is the absolute value of `c` minus `c_prime`. Otherwise, `d_prime` is calculated as `b * c / a` if `a` is not zero, otherwise `0`, and `min_norm_value` is the absolute value of `d` minus `d_prime`.
+        #State of the program after the if-else block has been executed: `a`, `b`, `c`, `d`, `det`, `c_prime`, and `d_prime` are numbers. If the absolute value of `b` is greater than or equal to the maximum of the absolute values of `a`, `c`, and `d`, then `min_norm_value` is the absolute value of `b` minus a value derived from setting `det` to 0.0, adjusting `b_prime` appropriately, and ensuring the absolute value of `b` remains greater than or equal to the maximum of the absolute values of `a`, `c`, and `d`. Otherwise, if the absolute value of `c` is greater than or equal to the maximum of the absolute values of `a`, `b`, and `d`, then `c_prime` is calculated as `a * d / b` if `b` is not zero, otherwise `0`, and `min_norm_value` is the absolute value of `c` minus `c_prime`. If neither condition is met, then `d_prime` is calculated as `b * c / a` if `a` is not zero, otherwise `0`, and `min_norm_value` is the absolute value of `d` minus `d_prime`.
+    #State of the program after the if-else block has been executed: *`a`, `b`, `c`, `d`, `det`, `a_prime`, `b_prime`, `c_prime`, and `d_prime` are numbers. If the absolute value of `a` is greater than or equal to the maximum of the absolute values of `b`, `c`, and `d`, then `a_prime` is `b * c / d` if `d` is not zero, otherwise `0`, and `min_norm_value` is `abs(a - a_prime)`. If the absolute value of `b` is greater than or equal to the maximum of the absolute values of `a`, `c`, and `d`, then `min_norm_value` is `abs(b) - (0.0 if det == 0.0 else a * b_prime)`, where `b_prime` is adjusted such that the absolute value of `b` remains greater than or equal to the maximum of the absolute values of `a`, `c`, and `d`. If the absolute value of `c` is greater than or equal to the maximum of the absolute values of `a`, `b`, and `d`, then `c_prime` is `a * d / b` if `b` is not zero, otherwise `0`, and `min_norm_value` is `abs(c) - c_prime`. If none of the above conditions are met, then `d_prime` is `b * c / a` if `a` is not zero, otherwise `0`, and `min_norm_value` is `abs(d) - d_prime`.
+    return min_norm_value
+    #`The program returns min_norm_value which is calculated based on the given conditions involving the absolute values of a, b, c, and d, and their respective prime values and adjustments`
+#Overall this is what the function does:The function `func_1` accepts a 2x2 degenerate matrix `A` and returns either 0.0 or `min_norm_value`. If the determinant of the matrix `A` is 0, it returns 0.0 immediately. Otherwise, it calculates `min_norm_value` based on the following conditions:
+1. If the absolute value of `a` is the largest among `a`, `b`, `c`, and `d`, it computes `a_prime` as `b * c / d` if `d` is not zero, otherwise 0. It then sets `min_norm_value` to the absolute difference between `a` and `a_prime`.
+2. If the absolute value of `b` is the largest, it computes `b_prime` as `a * d / c` if `c` is not zero, otherwise 0. It then sets `min_norm_value` to the absolute difference between `b` and `b_prime`.
+3. If the absolute value of `c` is the largest, it computes `c_prime` as `a * d / b` if `b` is not zero, otherwise 0. It then sets `min_norm_value` to the absolute difference between `c` and `c_prime`.
+4. If none of the above conditions are met, it computes `d_prime` as `b * c / a` if `a` is not zero, otherwise 0. It then sets `min_norm_value` to the absolute difference between `d` and `d_prime`.
+
+In all cases, the function returns the calculated `min_norm_value`. This value represents the smallest possible norm (difference) between the original elements and their adjusted counterparts, subject to the conditions specified.
+
+#State of the program right berfore the function call: a, b, c, and d are integers such that |a|, |b|, |c|, |d| ≤ 10^9. The matrix A is given as a 2x2 matrix with elements a, b, c, and d.
+def func_2():
+    data = input().split()
+
+a, b = int(data[0]), int(data[1])
+
+c, d = int(data[2]), int(data[3])
+
+A = [[a, b], [c, d]]
+
+result = func_1(A)
+
+print(f'{result:.10f}')
+#Overall this is what the function does:The function reads four integers \(a\), \(b\), \(c\), and \(d\) from the input, constructs a 2x2 matrix \(A\) using these integers, calls another function `func_1` with matrix \(A\) as input, and then prints the result of `func_1` rounded to 10 decimal places. The function does not accept any parameters and its primary action is to transform the input integers into a matrix and process it through `func_1`. Potential edge cases include the possibility of invalid input (e.g., non-integer values or more than four input values). If the input is invalid, the function may raise an exception. Additionally, the function assumes that the input is always in the correct format; otherwise, it will fail when attempting to split the input string.
+

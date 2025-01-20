@@ -1,0 +1,9 @@
+The function `func_1` computes the greatest common divisor (GCD) of two integers `a` and `b`. If `a` is zero, it directly returns `b` and the coefficients `0` and `1` that satisfy the equation `gcd = b * 0 + a * 1`. Otherwise, it recursively computes the GCD using the Euclidean algorithm and finds the coefficients `x` and `y` such that `gcd = a * x + b * y`. The function returns the GCD and the coefficients `x` and `y`.
+
+Potential edge cases:
+- If `a` is zero, the function correctly returns `b` and the coefficients `0` and `1`.
+- The function handles integer values within the specified ranges (-2·10^9 to 2·10^9).
+
+Missing functionality:
+- The annotation mentions that the function returns `b` as an integer within the range of -2·10^9 to 2·10^9, 0, and 1, but the actual code does not limit `b` to this range. Therefore, the returned value of `b` could potentially exceed these limits if `a` is zero.
+- The function does not explicitly handle the case where both `a` and `b` are zero, although this is technically a valid input for computing the GCD. In practice, the function should ideally return an appropriate error message or handle this case differently since the GCD of zero with any number is undefined in a mathematical sense.

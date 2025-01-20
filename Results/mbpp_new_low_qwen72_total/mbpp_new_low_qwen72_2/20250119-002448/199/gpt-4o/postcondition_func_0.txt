@@ -1,0 +1,9 @@
+The function `func_1` accepts a single parameter `n`, which is expected to be a non-negative integer. The function returns the sum of the elements in a list `perrin` that represents the Perrin sequence up to the `n`-th term. Specifically:
+
+- If `n < 0`, the function returns `0`.
+- If `n < 3`, the function returns the sum of the initial Perrin sequence `[3, 0, 2]`, which is `5`.
+- If `n ≥ 3`, the function extends the Perrin sequence to `n + 1` elements, where each new element is the sum of the two elements preceding it (i.e., `perrin[i] = perrin[i - 2] + perrin[i - 3]`), and returns the sum of all elements in this extended list.
+
+Potential edge cases:
+- When `n` is exactly `0`, `1`, or `2`, the function will return `5` because the initial Perrin sequence `[3, 0, 2]` is used directly.
+- When `n` is a large number, the function will compute the extended Perrin sequence and return the sum of all its elements, which could be a very large number.

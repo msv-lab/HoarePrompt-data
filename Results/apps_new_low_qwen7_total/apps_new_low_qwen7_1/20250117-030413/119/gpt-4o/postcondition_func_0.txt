@@ -1,0 +1,10 @@
+The function takes no parameters and reads three integers \( t \), \( s \), and \( x \) from standard input, where \( 0 \leq t, x \leq 10^9 \) and \( 2 \leq s \leq 10^9 \). It then checks several conditions to determine whether to print 'YES' or 'NO'. Specifically:
+
+1. If \( x = t \), it prints 'YES'.
+2. If \( x > t \):
+   - If \( (x - t) \% s == 0 \), it prints 'YES'.
+   - If \( (x - t - 1) \% s == 0 \) and \( x \neq t + 1 \), it also prints 'YES'.
+   - Otherwise, it prints 'NO'.
+3. If \( x < t \), it directly prints 'NO'.
+
+After the function concludes, the state of the program will be such that it has printed either 'YES' or 'NO' based on the conditions evaluated, and the variables \( t \), \( s \), and \( x \) remain unchanged.

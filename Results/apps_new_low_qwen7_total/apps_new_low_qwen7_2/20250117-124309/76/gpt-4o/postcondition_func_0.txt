@@ -1,0 +1,9 @@
+The function `func_1` processes a depot field grid consisting of `n` rows and `m` columns. Each cell in the grid is either an empty cell (`"."`) or a cell occupied by a wall (`"*"`). The function calculates the number of walls in each row and column and then checks if there is a cell `(i, j)` such that the sum of the walls in row `i` and column `j` minus one (if the cell itself is a wall) equals the total number of walls in the grid. If such a cell is found, the function prints 'YES' followed by the coordinates of the cell `(i+1, j+1)` and returns `None`. If no such cell is found, the function prints 'NO' and returns `None`.
+
+The function accepts no parameters directly but relies on input read from standard input. It reads the dimensions of the grid (`n` and `m`), followed by the grid itself, and processes the grid according to the specified conditions. If the grid is such that the sum of walls in any row and column (considering the cell itself if it is a wall) matches the total number of walls, the function indicates this by printing 'YES' and the coordinates. Otherwise, it prints 'NO'.
+
+Potential edge cases include:
+- If the grid is empty (`n = 0` or `m = 0`), the function still processes the grid and prints 'NO'.
+- If all cells are empty (`"."`), the function prints 'NO'.
+- If the grid has no walls (`"*"`), the function also prints 'NO'.
+- The function handles the case where the sum condition is met exactly, indicating the presence of a valid cell.

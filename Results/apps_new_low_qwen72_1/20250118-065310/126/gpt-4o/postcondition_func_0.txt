@@ -1,0 +1,8 @@
+The function `func` reads four lines of input, each containing four integers (l, s, r, p) representing the state of traffic lights for each road part, where each integer can be 0 (red light) or 1 (green light). The function checks for the possibility of an accident based on the following conditions:
+- If the pedestrian light (p) is green (1), and any of the other lights (l, s, r) in the same road part are green (1), an accident is possible.
+- If the pedestrian light (p) is green (1), and any of the corresponding lights (l, s, r) in the next three road parts are green (1), an accident is possible.
+
+If an accident is possible, the function prints 'YES'; otherwise, it prints 'NO'. After the function executes, the state of the program includes:
+- `traffic_lights` is a list of four sublists, each containing four integers.
+- `accident_possible` is a boolean indicating whether an accident is possible.
+- The input values are consumed and no longer available for further processing.

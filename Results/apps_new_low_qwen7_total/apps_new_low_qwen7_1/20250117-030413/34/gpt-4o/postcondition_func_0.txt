@@ -1,0 +1,10 @@
+The function `func_1` accepts two integer parameters `a` and `b`, and optionally `a_2`, `b_2`, `L`, and `R`. It returns either the value `b` within the range \(-2 \cdot 10^9 \leq b \leq 2 \cdot 10^9\) with specific values for the second and third return values, or the greatest common divisor (GCD) of `b % a` and `a`, along with additional calculated values `x` and `y`.
+
+1. If `a` is zero, the function immediately returns `b`, `0`, and `1`.
+2. Otherwise, the function recursively calls itself with the arguments `(b % a, a)` to compute the GCD and related values.
+3. After the recursive call, it calculates `x` and `y` using the extended Euclidean algorithm.
+4. The function then returns the computed GCD, `x`, and `y`.
+
+Edge cases and missing functionality:
+- The function assumes `a` is a positive integer greater than zero. If `a` is zero or negative, the behavior is undefined according to the current logic.
+- The optional parameters `a_2`, `b_2`, `L`, and `R` are not used in the function body, indicating they might be unused or incorrectly referenced. These should be either used within the function or removed to avoid confusion.

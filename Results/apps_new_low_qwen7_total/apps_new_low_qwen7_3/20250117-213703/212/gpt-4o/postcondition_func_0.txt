@@ -1,0 +1,8 @@
+The function `func_1` accepts three parameters `n`, `m`, and `k`, where `2 ≤ k ≤ n ≤ 10^9` and `0 ≤ m ≤ n`. It calculates and returns a `score` based on the following conditions:
+1. If `m` is less than or equal to `n - n // k`, the function returns `m % MOD`.
+2. Otherwise, it calculates additional variables:
+   - `excess_full_sets` as `max_full_sets - (n - m) // (k - 1)`.
+   - `remaining_correct_answers` as `m - excess_full_sets * k`.
+3. The function then computes `score` using these values: `(remaining_correct_answers + k * (pow(2, excess_full_sets, MOD) - 1) * pow(2, MOD - 2, MOD)) % MOD`.
+4. The function covers the edge case where `m` might exceed `n - n // k`, and correctly computes `score` based on the described logic.
+5. The function also handles the scenario where `m` is exactly `n - n // k`, which would fall under the first condition.

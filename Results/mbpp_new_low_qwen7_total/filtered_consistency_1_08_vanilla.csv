@@ -1,0 +1,257 @@
+Task ID,Dataset,model_created,model_run,description,Code,run_number,original correctness,summary fsl,naive correctness fsl,vanilla,simple tree,complex tree,summary,simple verify fsl,complex verify fsl,summary verify fsl,simple verify,complex verify,summary verify,unique_id,consistency,consistency_mine,consistency_old
+125,mbppplus,gpt-4o,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    result = [[] for _ in range(n)]
+    for i, element in enumerate(lst):
+        result[i % n].append(element)
+    return result
+
+# Test cases
+assert list_split(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'], 3) == [['a', 'd', 'g', 'j', 'm'], ['b', 'e', 'h', 'k', 'n'], ['c', 'f', 'i', 'l']]
+assert list_split([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], 3) == [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14], [3, 6, 9, 12]]
+assert list_split(['python', 'java', 'C', 'C++', 'DBMS', 'SQL'], 2) == [['python', 'C', 'DBMS'], ['java', 'C++', 'SQL']]
+",1,True,True,False,False,False,True,True,False,True,False,True,True,True,125_gpt-4o,0.663322383574363,0.14616720916194523,0.75
+173,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find the minimum value in a given heterogeneous list.,"def min_val(lst):
+    # Filter out only integer values from the list
+    int_values = [x for x in lst if isinstance(x, int)]
+    # Find and return the minimum value among the integer values
+    return min(int_values)
+
+# Test cases to validate the solution
+assert min_val(['Python', 3, 2, 4, 5, 'version']) == 2
+assert min_val(['Python', 15, 20, 25]) == 15
+assert min_val(['Python', 30, 20, 40, 50, 'version']) == 20
+",1,True,True,False,True,True,True,True,True,False,True,False,True,True,173_gpt-4o,0.6164273668406037,0.11857990992992988,0.5833333333333334
+192,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to remove odd characters in a string.,"def remove_odd(s):
+    return ''.join([s[i] for i in range(len(s)) if i % 2 != 0])
+
+# Testing the function with the provided test cases
+assert remove_odd(""python"") == ""yhn""
+assert remove_odd(""program"") == ""rga""
+assert remove_odd(""language"") == ""agae""
+",1,True,True,False,True,False,True,False,False,False,True,True,False,True,192_gpt-4o,0.6855483315262091,0.19329907021664772,0.5833333333333334
+328,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find nth polite number. geeksforgeeks.org/n-th-polite-number/,"def is_polite(n):
+    count = 0
+    number = 1
+    while count < n:
+        if (number & (number - 1)) != 0:  # Check if number is not a power of 2
+            count += 1
+        number += 1
+    return number - 1
+
+# Testing the function
+assert is_polite(7) == 11
+assert is_polite(4) == 7
+assert is_polite(9) == 13
+",1,False,False,False,False,False,False,False,True,False,False,False,True,True,328_gpt-4o,0.3885418521138691,-0.1116618743836484,0.5
+32,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to check whether it follows the sequence given in the patterns array.,"def is_samepatterns(patterns1, patterns2):
+    if len(patterns1) != len(patterns2):
+        return False
+    
+    mapping = {}
+    for p1, p2 in zip(patterns1, patterns2):
+        if p1 not in mapping:
+            mapping[p1] = p2
+        elif mapping[p1] != p2:
+            return False
+    
+    return True
+",1,False,True,True,True,True,True,True,True,False,True,True,True,True,32_llama3point1-70b,0.7052702561145292,0.20540388395543155,0.7083333333333334
+45,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to check whether the given number is undulating or not.,"def is_undulating(n):
+    n = str(n)
+    undulating = True
+    for i in range(1, len(n) - 1):
+        if (n[i-1] < n[i] and n[i] < n[i+1]) or (n[i-1] > n[i] and n[i] > n[i+1]):
+            pass
+        else:
+            undulating = False
+            break
+    return undulating
+",1,False,False,False,False,True,False,True,False,False,True,False,False,False,45_llama3point1-70b,0.6295492819271006,0.13101836277060774,0.5416666666666666
+76,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to convert a tuple to a string.,"def tup_string(tup):
+  return """".join(tup)
+",1,True,True,False,False,False,True,False,True,False,True,False,False,True,76_llama3point1-70b,0.6148161417494625,0.11564013922438665,0.5416666666666666
+125,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    return [lst[i::n] for i in range(n)]
+",1,True,True,False,True,True,True,True,False,True,True,False,True,True,125_llama3point1-70b,0.7045578562585108,0.21327482223177885,0.5833333333333334
+126,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to find the lateral surface area of a cube given its side length.,"def lateralsurface_cube(side_length):
+  return 4 * (side_length ** 2)
+",1,False,True,True,True,True,True,False,True,True,True,True,True,True,126_llama3point1-70b,0.5669277912971546,0.06686289513630085,0.5416666666666666
+226,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function to count the number of pairs whose xor value is odd.,"def find_Odd_Pair(arr, n):
+    odd_count = sum(1 for num in arr if num % 2 != 0)
+    even_count = n - odd_count
+    return odd_count * even_count + (odd_count * (odd_count - 1)) // 2
+",1,False,False,True,False,True,False,True,True,False,False,True,False,True,226_llama3point1-70b,0.7822807666560289,0.30908514232178325,0.6666666666666666
+314,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to sort a given list of strings of numbers numerically.,"def sort_numeric_strings(num_strings):
+  return sorted([int(num) for num in num_strings])
+",1,True,True,False,False,True,True,False,False,False,False,True,True,True,314_llama3point1-70b,0.5808078027700696,0.07891939936617938,0.625
+125,mbppplus,gpt-4o,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    result = [[] for _ in range(n)]
+    for i, element in enumerate(lst):
+        result[i % n].append(element)
+    return result
+
+# Test cases
+assert list_split(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'], 3) == [['a', 'd', 'g', 'j', 'm'], ['b', 'e', 'h', 'k', 'n'], ['c', 'f', 'i', 'l']]
+assert list_split([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], 3) == [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14], [3, 6, 9, 12]]
+assert list_split(['python', 'java', 'C', 'C++', 'DBMS', 'SQL'], 2) == [['python', 'C', 'DBMS'], ['java', 'C++', 'SQL']]
+",2,True,True,True,True,True,False,False,True,True,True,False,True,False,125_gpt-4o,0.663322383574363,0.14616720916194523,0.75
+173,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find the minimum value in a given heterogeneous list.,"def min_val(lst):
+    # Filter out only integer values from the list
+    int_values = [x for x in lst if isinstance(x, int)]
+    # Find and return the minimum value among the integer values
+    return min(int_values)
+
+# Test cases to validate the solution
+assert min_val(['Python', 3, 2, 4, 5, 'version']) == 2
+assert min_val(['Python', 15, 20, 25]) == 15
+assert min_val(['Python', 30, 20, 40, 50, 'version']) == 20
+",2,True,True,False,False,False,False,True,True,True,True,True,True,True,173_gpt-4o,0.6164273668406037,0.11857990992992988,0.5833333333333334
+192,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to remove odd characters in a string.,"def remove_odd(s):
+    return ''.join([s[i] for i in range(len(s)) if i % 2 != 0])
+
+# Testing the function with the provided test cases
+assert remove_odd(""python"") == ""yhn""
+assert remove_odd(""program"") == ""rga""
+assert remove_odd(""language"") == ""agae""
+",2,True,True,True,True,True,False,False,False,False,True,True,True,False,192_gpt-4o,0.6855483315262091,0.19329907021664772,0.5833333333333334
+328,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find nth polite number. geeksforgeeks.org/n-th-polite-number/,"def is_polite(n):
+    count = 0
+    number = 1
+    while count < n:
+        if (number & (number - 1)) != 0:  # Check if number is not a power of 2
+            count += 1
+        number += 1
+    return number - 1
+
+# Testing the function
+assert is_polite(7) == 11
+assert is_polite(4) == 7
+assert is_polite(9) == 13
+",2,False,False,False,True,False,False,False,True,True,False,False,False,False,328_gpt-4o,0.3885418521138691,-0.1116618743836484,0.5
+32,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to check whether it follows the sequence given in the patterns array.,"def is_samepatterns(patterns1, patterns2):
+    if len(patterns1) != len(patterns2):
+        return False
+    
+    mapping = {}
+    for p1, p2 in zip(patterns1, patterns2):
+        if p1 not in mapping:
+            mapping[p1] = p2
+        elif mapping[p1] != p2:
+            return False
+    
+    return True
+",2,False,False,True,True,True,True,False,True,False,False,True,True,False,32_llama3point1-70b,0.7052702561145292,0.20540388395543155,0.7083333333333334
+45,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to check whether the given number is undulating or not.,"def is_undulating(n):
+    n = str(n)
+    undulating = True
+    for i in range(1, len(n) - 1):
+        if (n[i-1] < n[i] and n[i] < n[i+1]) or (n[i-1] > n[i] and n[i] > n[i+1]):
+            pass
+        else:
+            undulating = False
+            break
+    return undulating
+",2,False,False,False,False,True,True,False,True,False,False,True,True,True,45_llama3point1-70b,0.6295492819271006,0.13101836277060774,0.5416666666666666
+76,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to convert a tuple to a string.,"def tup_string(tup):
+  return """".join(tup)
+",2,True,True,False,False,True,True,False,True,True,True,False,True,True,76_llama3point1-70b,0.6148161417494625,0.11564013922438665,0.5416666666666666
+125,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    return [lst[i::n] for i in range(n)]
+",2,True,True,False,True,False,True,True,True,True,True,True,False,False,125_llama3point1-70b,0.7045578562585108,0.21327482223177885,0.5833333333333334
+126,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to find the lateral surface area of a cube given its side length.,"def lateralsurface_cube(side_length):
+  return 4 * (side_length ** 2)
+",2,False,True,True,True,True,True,True,True,True,True,True,True,True,126_llama3point1-70b,0.5669277912971546,0.06686289513630085,0.5416666666666666
+197,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function to count the occurence of all elements of list in a tuple.,"def count_Occurrence(tup, lst):
+    return sum(tup.count(element) for element in lst)
+",2,True,True,False,True,True,True,True,False,False,True,False,True,True,197_llama3point1-70b,0.7923816151990436,0.31969801971291273,0.7083333333333334
+314,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to sort a given list of strings of numbers numerically.,"def sort_numeric_strings(num_strings):
+  return sorted([int(num) for num in num_strings])
+",2,True,False,False,False,True,False,False,True,True,False,True,True,True,314_llama3point1-70b,0.5808078027700696,0.07891939936617938,0.625
+125,mbppplus,gpt-4o,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    result = [[] for _ in range(n)]
+    for i, element in enumerate(lst):
+        result[i % n].append(element)
+    return result
+
+# Test cases
+assert list_split(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'], 3) == [['a', 'd', 'g', 'j', 'm'], ['b', 'e', 'h', 'k', 'n'], ['c', 'f', 'i', 'l']]
+assert list_split([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], 3) == [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14], [3, 6, 9, 12]]
+assert list_split(['python', 'java', 'C', 'C++', 'DBMS', 'SQL'], 2) == [['python', 'C', 'DBMS'], ['java', 'C++', 'SQL']]
+",3,True,True,True,False,False,False,True,True,False,True,True,True,True,125_gpt-4o,0.663322383574363,0.14616720916194523,0.75
+173,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find the minimum value in a given heterogeneous list.,"def min_val(lst):
+    # Filter out only integer values from the list
+    int_values = [x for x in lst if isinstance(x, int)]
+    # Find and return the minimum value among the integer values
+    return min(int_values)
+
+# Test cases to validate the solution
+assert min_val(['Python', 3, 2, 4, 5, 'version']) == 2
+assert min_val(['Python', 15, 20, 25]) == 15
+assert min_val(['Python', 30, 20, 40, 50, 'version']) == 20
+",3,True,True,False,True,False,True,True,False,False,True,True,True,True,173_gpt-4o,0.6164273668406037,0.11857990992992988,0.5833333333333334
+192,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to remove odd characters in a string.,"def remove_odd(s):
+    return ''.join([s[i] for i in range(len(s)) if i % 2 != 0])
+
+# Testing the function with the provided test cases
+assert remove_odd(""python"") == ""yhn""
+assert remove_odd(""program"") == ""rga""
+assert remove_odd(""language"") == ""agae""
+",3,True,True,True,True,True,True,True,False,True,True,False,True,True,192_gpt-4o,0.6855483315262091,0.19329907021664772,0.5833333333333334
+328,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find nth polite number. geeksforgeeks.org/n-th-polite-number/,"def is_polite(n):
+    count = 0
+    number = 1
+    while count < n:
+        if (number & (number - 1)) != 0:  # Check if number is not a power of 2
+            count += 1
+        number += 1
+    return number - 1
+
+# Testing the function
+assert is_polite(7) == 11
+assert is_polite(4) == 7
+assert is_polite(9) == 13
+",3,False,False,False,True,True,False,False,True,True,True,True,False,True,328_gpt-4o,0.3885418521138691,-0.1116618743836484,0.5
+32,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to check whether it follows the sequence given in the patterns array.,"def is_samepatterns(patterns1, patterns2):
+    if len(patterns1) != len(patterns2):
+        return False
+    
+    mapping = {}
+    for p1, p2 in zip(patterns1, patterns2):
+        if p1 not in mapping:
+            mapping[p1] = p2
+        elif mapping[p1] != p2:
+            return False
+    
+    return True
+",3,False,True,True,True,True,True,True,True,True,True,True,True,True,32_llama3point1-70b,0.7052702561145292,0.20540388395543155,0.7083333333333334
+45,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to check whether the given number is undulating or not.,"def is_undulating(n):
+    n = str(n)
+    undulating = True
+    for i in range(1, len(n) - 1):
+        if (n[i-1] < n[i] and n[i] < n[i+1]) or (n[i-1] > n[i] and n[i] > n[i+1]):
+            pass
+        else:
+            undulating = False
+            break
+    return undulating
+",3,False,False,False,False,True,True,True,True,True,True,False,False,True,45_llama3point1-70b,0.6295492819271006,0.13101836277060774,0.5416666666666666
+76,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to convert a tuple to a string.,"def tup_string(tup):
+  return """".join(tup)
+",3,True,True,False,False,True,True,True,False,True,True,True,True,True,76_llama3point1-70b,0.6148161417494625,0.11564013922438665,0.5416666666666666
+125,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    return [lst[i::n] for i in range(n)]
+",3,True,False,False,True,True,True,True,True,False,True,False,True,False,125_llama3point1-70b,0.7045578562585108,0.21327482223177885,0.5833333333333334
+126,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to find the lateral surface area of a cube given its side length.,"def lateralsurface_cube(side_length):
+  return 4 * (side_length ** 2)
+",3,False,True,True,True,True,True,True,True,True,True,True,True,True,126_llama3point1-70b,0.5669277912971546,0.06686289513630085,0.5416666666666666
+197,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function to count the occurence of all elements of list in a tuple.,"def count_Occurrence(tup, lst):
+    return sum(tup.count(element) for element in lst)
+",3,True,True,False,True,False,True,True,False,False,True,True,True,True,197_llama3point1-70b,0.7923816151990436,0.31969801971291273,0.7083333333333334
+226,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function to count the number of pairs whose xor value is odd.,"def find_Odd_Pair(arr, n):
+    odd_count = sum(1 for num in arr if num % 2 != 0)
+    even_count = n - odd_count
+    return odd_count * even_count + (odd_count * (odd_count - 1)) // 2
+",3,False,False,True,False,False,False,True,True,False,False,True,False,False,226_llama3point1-70b,0.7822807666560289,0.30908514232178325,0.6666666666666666
+314,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to sort a given list of strings of numbers numerically.,"def sort_numeric_strings(num_strings):
+  return sorted([int(num) for num in num_strings])
+",3,True,False,True,False,False,False,False,False,False,True,False,True,False,314_llama3point1-70b,0.5808078027700696,0.07891939936617938,0.625

@@ -1,0 +1,3 @@
+The function `func_1` accepts two parameters: an integer `n` representing the length of a string `s`, and a string `s` consisting of `n` lowercase Latin letters. It calculates and returns the minimum number of operations required to achieve a specific condition across all possible substrings of `s`. If no such substrings exist, it returns `n`.
+
+The function iterates through all possible substrings of `s` and checks if the first half of each substring is equal to the second half. If a match is found, it calculates the number of operations needed based on the length of the matching substring and updates `min_operations` with the smallest value found. If no matching substrings are found after checking all possibilities, it returns `n`.

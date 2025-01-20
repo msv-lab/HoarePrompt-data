@@ -1,0 +1,13 @@
+The function processes a list `a` of `n` integers (where each integer is either 0 or 1 and 1 ≤ n ≤ 100,000). It checks if there is at least one 1 before the first 0 in the list. If such a condition is met, it constructs a string with specific formatting and prints 'YES'. Otherwise, it prints 'NO'. Specifically, the function performs the following steps:
+1. Reads an integer `n` and a list `a` of `n` integers.
+2. Checks if there is at least one 1 before the first 0 in the list.
+3. If the condition is met, it constructs a string `result` with the format: `str(a[first_one_index]) + '->'`, `str(a[first_one_index + 1]) + '->'`, ..., `str(a[first_zero_index - 1]) + '->'`, `str('(') + str(a[first_zero_index]) + ')`, and `->str(a[i])` for each `i` in the range `first_zero_index + 1` to `n-1`.
+4. Prints the constructed string.
+5. If the condition is not met, it simply prints 'NO'.
+
+Potential edge cases include:
+- The list `a` consists entirely of 1s.
+- The list `a` consists entirely of 0s.
+- The list `a` contains no 1s.
+- The list `a` contains only one element which is 0.
+- The list `a` starts with 0 and does not contain any 1s after it.

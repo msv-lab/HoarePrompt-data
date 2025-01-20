@@ -1,0 +1,7 @@
+The function `is_koutsu_or_shuntsu` accepts three parameters: `t1`, `t2`, and `t3`, each representing a suited tile as a string. The first character is a digit from 1 to 9, and the second character is either 'm', 'p', or 's'.
+
+- If all three tiles (`t1`, `t2`, `t3`) are identical, the function returns `True`.
+- If the tiles are of the same suit (`s1 == s2 == s3`) and the numbers form a consecutive sequence (i.e., `[n1, n2, n3]` are in ascending order and within the range 1 to 8), the function returns `True`.
+- In all other cases, the function returns `False`.
+
+Thus, the function checks whether the given three tiles form either a koutsu (three identical tiles) or a shuntsu (a sequence of three consecutive tiles of the same suit).

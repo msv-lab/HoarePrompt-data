@@ -1,0 +1,11 @@
+The function `func_2` accepts a positive integer `n` and returns the `n`-th Newman-Shanks-Williams (NSW) prime number. 
+
+- If `n` is 1, the function immediately returns 7.
+- For `n` greater than 1, the function searches for the `n`-th NSW prime number by incrementing a variable `num` starting from 7. It checks if `num` satisfies two conditions:
+  1. `func_1(num)` returns `True`.
+  2. `num % 6` is either 1 or 5.
+- If both conditions are met, a counter `count` is incremented. When `count` reaches `n`, the function returns the current value of `num`.
+
+Edge Cases:
+- If `n` is 1, the function correctly returns 7.
+- If `n` is greater than 1, the function will continue to search for the `n`-th NSW prime number, ensuring that the returned value meets the specified conditions. However, if `func_1` never returns `True` for any `num` that satisfies `num % 6 in [1, 5]`, the function will run indefinitely.

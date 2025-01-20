@@ -1,0 +1,41 @@
+#State of the program right berfore the function call: l and r are non-negative integers such that 1 <= l <= r < 10^18, and k is a non-negative integer such that 1 <= k <= 10. dp is a dictionary used for memoization in the count function.
+def func_1(l, r, k):
+    dp = {}
+    return (count(r, k, dp) - count(l - 1, k, dp)) % MOD
+    #The program returns (count(r, k, dp) - count(l - 1, k, dp)) % MOD, where `count(r, k, dp)` is the count of numbers up to `r` that have exactly `k` different digits, and `count(l - 1, k, dp)` is the count of numbers up to `l - 1` that have exactly `k` different digits, and `MOD` is a constant value (usually 10^9 + 7)
+#Overall this is what the function does:The function `func_1` accepts three parameters: `l`, `r`, and `k`. It calculates the difference in the count of numbers up to `r` and up to `l-1` that have exactly `k` different digits, and returns this difference modulo a constant value (`MOD`, usually \(10^9 + 7\)). The function uses memoization through a dictionary `dp` to store intermediate results of the `count` function to improve efficiency. 
+
+Potential edge cases include when `l` or `r` is equal to 0, or when `k` is 0 or 10. If `k` is 0, the function should return 0 because no number can have 0 different digits. If `k` is 10, the function should return 1 if `l` and `r` are within the range of 1 to 10 (inclusive), otherwise, it should return 0 because the maximum number of unique digits a number can have within the given constraints is 10. If `l` is greater than `r`, the function should still calculate the difference correctly, which will result in a negative number, but due to the modulo operation, it will wrap around to a positive value.
+
+#State of the program right berfore the function call: n (represented by `n` in the function), k (represented by `k` in the function), and `dp` (a dictionary used for memoization) where `n` is an integer, `k` is a positive integer such that 1 <= k <= 10, and `dp` is a dictionary used to store previously computed results for the function `count`.
+def count(n, k, dp):
+    if (k == 0) :
+        return 0
+        #The program returns 0
+    #State of the program after the if block has been executed: `n` is an integer, `k` is a positive integer such that 1 <= k <= 10, and `dp` is a dictionary used to store previously computed results for the function `count`. The condition `k != 0` holds true.
+    if ((n, k) in dp) :
+        return dp[n, k]
+        #The program returns the value stored in the dictionary `dp` for the key `(n, k)`
+    #State of the program after the if block has been executed: `n` is an integer, `k` is a positive integer such that 1 <= k <= 10, and `dp` is a dictionary used to store previously computed results for the function `count`. The condition `k != 0` holds true, and `(n, k)` is not in `dp`
+    if (n < 10 ** k) :
+        dp[n, k] = n
+    else :
+        dp[n, k] = 9
+        for i in range(1, k):
+            dp[n, k] += 9 * 10 ** (i - 1) * (10 ** (k - i) - 10 ** (i - 1))
+            
+        #State of the program after the  for loop has been executed: `dp[n, k]` is updated by adding \(9 \times 10^3 \times (10^{k-4} - 10^3)\) to its previous value.
+        dp[n, k] += (10 ** (k - 1) - 10 ** (k - 2)) * (n // 10 ** (k - 1) - 1)
+
+dp[n, k] %= MOD
+    #State of the program after the if-else block has been executed: *`dp[n, k]` is updated based on the following conditions: if `n` is less than \(10^k\), then `dp[n, k]` is directly set to `n`. Otherwise, `dp[n, k]` is updated to its previous value plus \((10^{(k-1)} - 10^{(k-2)}) \times (n // 10^{(k-1)} - 1)\) modulo `MOD`.
+    return dp[n, k]
+    #`dp[n, k]` which is updated based on the condition: if `n` is less than \(10^k\), then `dp[n, k]` is directly set to `n`. Otherwise, `dp[n, k]` is updated to its previous value plus \((10^{(k-1)} - 10^{(k-2)}) \times (n // 10^{(k-1)} - 1)\) modulo `MOD`. The function returns this updated value.
+#Overall this is what the function does:The function `count` accepts three parameters: `n`, `k`, and `dp`. 
+
+- If `k` is 0, the function returns 0.
+- If the key `(n, k)` is already present in the dictionary `dp`, the function returns the value stored in `dp` for the key `(n, k)`.
+- If neither of the above conditions hold, the function checks whether `n` is less than \(10^k\). If true, `dp[n, k]` is directly set to `n`. Otherwise, `dp[n, k]` is updated to its previous value plus \((10^{(k-1)} - 10^{(k-2)}) \times (n // 10^{(k-1)} - 1)\) modulo `MOD`. The function then returns the updated value stored in `dp[n, k]`.
+
+After the function concludes, the final state of the program will be that `dp[n, k]` contains either 0, the value stored in `dp` for the key `(n, k)`, or an updated value based on the specified conditions. The returned value will reflect one of these states depending on the input values of `n`, `k`, and the contents of `dp`.
+

@@ -1,0 +1,8 @@
+The function `func_1` accepts an integer `n` such that \(0 \leq n \leq 10^{18}\). It updates the coordinates `x` and `y` based on a series of directions defined in the `directions` list. The function returns the updated coordinates `(x, y)` after processing `n` according to the following rules:
+
+1. If `n` is greater than or equal to 2 and less than `steps`, `x` and `y` are updated by adding `dx * n` and `dy * n` respectively, and the function returns the updated coordinates.
+2. If `n` is greater than or equal to `steps`, the function processes `n` in chunks of `steps`, updating `x` and `y` by adding `dx * steps` and `dy * steps` twice per iteration, then updating `x` and `y` again by adding `dx * (n mod steps)` and `dy * (n mod steps)`. The direction index is updated accordingly, and the function returns the final coordinates.
+3. If `n` is less than 2, the function directly updates `x` and `y` by adding `dx * n` and `dy * n` and returns the updated coordinates.
+4. After each full cycle of updating `x` and `y` for `steps`, the `direction_index` and `steps` are adjusted, and the process continues until `n` becomes zero.
+
+The final state of the program after the function concludes is that it returns the coordinates `(x, y)` where `x` and `y` are updated based on the above rules.

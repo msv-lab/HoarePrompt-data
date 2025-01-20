@@ -1,0 +1,16 @@
+#State of the program right berfore the function call: n is a positive integer.
+def func_1(n):
+    count = 0
+
+number = 1
+    while count < n:
+        if number & number - 1 != 0:
+            count += 1
+        
+        number += 1
+        
+    #State of the program after the loop has been executed: `count` is `n`, `number` is the smallest power of 2 greater than or equal to `n + 1`.
+    return number - 1
+    #`The program returns the smallest power of 2 greater than or equal to n + 1 minus 1`
+#Overall this is what the function does:The function `func_1` accepts a positive integer `n` and returns the smallest power of 2 that is greater than or equal to `n + 1`, minus 1. It achieves this by initializing a counter `count` to 0 and a variable `number` to 1. The function then enters a loop that continues until `count` equals `n`. Within the loop, it checks if `number` is not a power of 2 (by verifying if `number & (number - 1)` is not equal to 0). If `number` is not a power of 2, it increments the counter. Regardless of whether `number` is a power of 2 or not, the function increments `number` by 1. Once the loop exits, the function returns `number - 1`, which is the smallest power of 2 greater than or equal to `n + 1` minus 1. The function handles the case where `n` is 0 by returning 0, as the smallest power of 2 greater than or equal to 1 is 1, and `1 - 1` is 0.
+

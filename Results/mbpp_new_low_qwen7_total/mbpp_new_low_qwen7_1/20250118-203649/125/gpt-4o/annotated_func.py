@@ -1,0 +1,63 @@
+#State of the program right berfore the function call: lst is a list, and n is a positive integer such that 0 < n <= len(lst).
+def func_1(lst, n):
+    result = [[] for _ in range(n)]
+    for (i, element) in enumerate(lst):
+        result[i % n].append(element)
+        
+    #State of the program after the  for loop has been executed: Let's analyze the given code and the provided information step by step.
+    #
+    #### Step 1: Analyze the Code and Initial State
+    #
+    #- **Initial State**: 
+    #  - `lst`: A list.
+    #  - `n`: A positive integer such that \(0 < n \leq \text{len}(lst)\).
+    #  - `result`: A list of `n` empty lists.
+    #
+    #- **Loop Code**:
+    #  ```python
+    #  for i, element in enumerate(lst):
+    #      result[i % n].append(element)
+    #  ```
+    #
+    #### Step 2: Track Variable Changes
+    #
+    #- **Invariants**:
+    #  - The length of `result` remains `n` throughout the loop.
+    #  - `n` remains unchanged since it is a constant value from the initial state.
+    #
+    #- **Variables that change**:
+    #  - `i`: This variable increments from `0` to `len(lst) - 1`.
+    #  - `element`: This variable takes the value of each element in `lst` as the loop iterates.
+    #  - `result`: The contents of `result` are updated based on the values of `i` and `element`.
+    #
+    #### Step 3: Summarize the Loop Behavior
+    #
+    #- For each iteration of the loop:
+    #  - `i` increments by 1.
+    #  - `element` becomes the current element in `lst` at index `i`.
+    #  - `result[i % n]` appends the `element` to the corresponding sublist in `result`.
+    #
+    #- If the loop completes:
+    #  - Each sublist in `result` will contain elements from `lst` starting from the position `i % n` and wrapping around if necessary.
+    #
+    #### Step 4: Verify Relationships
+    #
+    #- The loop will execute `len(lst)` times if `lst` is not empty.
+    #- After the loop completes, `result` will have sublists where the first sublist (`result[0]`) contains elements from `lst` starting from index `0` to `n-1`, the second sublist (`result[1]`) contains elements from `lst` starting from index `1` to `n`, and so on.
+    #
+    #### Final Output State
+    #
+    #Since the loop will iterate over all elements in `lst`, the final output state will be:
+    #
+    #- `lst`: Unchanged.
+    #- `n`: Unchanged.
+    #- `result`: A list of `n` sublists, where the `k`-th sublist contains elements from `lst` starting from index `k` to `k + len(lst) - 1` modulo `n`.
+    #
+    #**Output State:**
+    #```
+    #result: [[lst[0], lst[1], ..., lst[n-1]], [lst[n], lst[n+1], ..., lst[2*n-1]], ..., [lst[len(lst)-n], lst[len(lst)-n+1], ..., lst[len(lst)-1]]]
+    #```
+    return result
+    #`result` is a list of `n` sublists, where the `k`-th sublist contains elements from `lst` starting from index `k` to `k + len(lst) - 1` modulo `n`, and `n` is a positive integer such that `0 < n <= len(lst)`
+#Overall this is what the function does:The function `func_1` accepts a list `lst` and a positive integer `n`, and returns a list of `n` sublists. Each sublist contains elements from `lst` starting from index `k` to `k + len(lst) - 1` modulo `n`. Specifically, the `k`-th sublist contains elements from `lst[k % len(lst)]` to `lst[(k + len(lst) - 1) % len(lst)]`. The function ensures that `0 < n <= len(lst)` and handles the case when `lst` is empty by creating an empty `result` list.
+

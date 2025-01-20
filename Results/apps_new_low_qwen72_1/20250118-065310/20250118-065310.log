@@ -1,0 +1,3916 @@
+DEBUG - Start Task 7
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: You are fighting with Zmei Gorynich — a ferocious monster from Slavic myths, a huge dragon-like reptile with multiple heads! 
+
+ $m$ 
+
+Initially Zmei Gorynich has $x$ heads. You can deal $n$ types of blows. If you deal a blow of the $i$-th type, you decrease the number of Gorynich's heads by $min(d_i, curX)$, there $curX$ is the current number of heads. But if after this blow Zmei Gorynich has at least one head, he grows $h_i$ new heads. If $curX = 0$ then Gorynich is defeated. 
+
+You can deal each blow any number of times, in any order.
+
+For example, if $curX = 10$, $d = 7$, $h = 10$ then the number of heads changes to $13$ (you cut $7$ heads off, but then Zmei grows $10$ new ones), but if $curX = 10$, $d = 11$, $h = 100$ then number of heads changes to $0$ and Zmei Gorynich is considered defeated.
+
+Calculate the minimum number of blows to defeat Zmei Gorynich!
+
+You have to answer $t$ independent queries.
+
+
+-----Input-----
+
+The first line contains one integer $t$ ($1 \le t \le 100$) – the number of queries.
+
+The first line of each query contains two integers $n$ and $x$ ($1 \le n \le 100$, $1 \le x \le 10^9$) — the number of possible types of blows and the number of heads Zmei initially has, respectively.
+
+The following $n$ lines of each query contain the descriptions of types of blows you can deal. The $i$-th line contains two integers $d_i$ and $h_i$ ($1 \le d_i, h_i \le 10^9$) — the description of the $i$-th blow.
+
+
+-----Output-----
+
+For each query print the minimum number of blows you have to deal to defeat Zmei Gorynich. 
+
+If Zmei Gorynuch cannot be defeated print $-1$.
+
+
+-----Example-----
+Input
+3
+3 10
+6 3
+8 2
+1 4
+4 10
+4 1
+3 2
+2 6
+1 100
+2 15
+10 11
+14 100
+
+Output
+2
+3
+-1
+
+
+
+-----Note-----
+
+In the first query you can deal the first blow (after that the number of heads changes to $10 - 6 + 3 = 7$), and then deal the second blow.
+
+In the second query you just deal the first blow three times, and Zmei is defeated. 
+
+In third query you can not defeat Zmei Gorynich. Maybe it's better to convince it to stop fighting?
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 13
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Vova has won $n$ trophies in different competitions. Each trophy is either golden or silver. The trophies are arranged in a row.
+
+The beauty of the arrangement is the length of the longest subsegment consisting of golden trophies. Vova wants to swap two trophies (not necessarily adjacent ones) to make the arrangement as beautiful as possible — that means, to maximize the length of the longest such subsegment.
+
+Help Vova! Tell him the maximum possible beauty of the arrangement if he is allowed to do at most one swap.
+
+
+-----Input-----
+
+The first line contains one integer $n$ ($2 \le n \le 10^5$) — the number of trophies.
+
+The second line contains $n$ characters, each of them is either G or S. If the $i$-th character is G, then the $i$-th trophy is a golden one, otherwise it's a silver trophy. 
+
+
+-----Output-----
+
+Print the maximum possible length of a subsegment of golden trophies, if Vova is allowed to do at most one swap.
+
+
+-----Examples-----
+Input
+10
+GGGSGGGSGG
+
+Output
+7
+
+Input
+4
+GGGG
+
+Output
+4
+
+Input
+3
+SSS
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example Vova has to swap trophies with indices $4$ and $10$. Thus he will obtain the sequence "GGGGGGGSGS", the length of the longest subsegment of golden trophies is $7$. 
+
+In the second example Vova can make no swaps at all. The length of the longest subsegment of golden trophies in the sequence is $4$. 
+
+In the third example Vova cannot do anything to make the length of the longest subsegment of golden trophies in the sequence greater than $0$.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 18
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Arpa is researching the Mexican wave.
+
+There are n spectators in the stadium, labeled from 1 to n. They start the Mexican wave at time 0. 
+
+  At time 1, the first spectator stands.  At time 2, the second spectator stands.  ...  At time k, the k-th spectator stands.  At time k + 1, the (k + 1)-th spectator stands and the first spectator sits.  At time k + 2, the (k + 2)-th spectator stands and the second spectator sits.  ...  At time n, the n-th spectator stands and the (n - k)-th spectator sits.  At time n + 1, the (n + 1 - k)-th spectator sits.  ...  At time n + k, the n-th spectator sits. 
+
+Arpa wants to know how many spectators are standing at time t.
+
+
+-----Input-----
+
+The first line contains three integers n, k, t (1 ≤ n ≤ 10^9, 1 ≤ k ≤ n, 1 ≤ t < n + k).
+
+
+-----Output-----
+
+Print single integer: how many spectators are standing at time t.
+
+
+-----Examples-----
+Input
+10 5 3
+
+Output
+3
+
+Input
+10 5 7
+
+Output
+5
+
+Input
+10 5 12
+
+Output
+3
+
+
+
+-----Note-----
+
+In the following a sitting spectator is represented as -, a standing spectator is represented as ^.
+
+  At t = 0  ---------- $\Rightarrow$ number of standing spectators = 0.  At t = 1  ^--------- $\Rightarrow$ number of standing spectators = 1.  At t = 2  ^^-------- $\Rightarrow$ number of standing spectators = 2.  At t = 3  ^^^------- $\Rightarrow$ number of standing spectators = 3.  At t = 4  ^^^^------ $\Rightarrow$ number of standing spectators = 4.  At t = 5  ^^^^^----- $\Rightarrow$ number of standing spectators = 5.  At t = 6  -^^^^^---- $\Rightarrow$ number of standing spectators = 5.  At t = 7  --^^^^^--- $\Rightarrow$ number of standing spectators = 5.  At t = 8  ---^^^^^-- $\Rightarrow$ number of standing spectators = 5.  At t = 9  ----^^^^^- $\Rightarrow$ number of standing spectators = 5.  At t = 10 -----^^^^^ $\Rightarrow$ number of standing spectators = 5.  At t = 11 ------^^^^ $\Rightarrow$ number of standing spectators = 4.  At t = 12 -------^^^ $\Rightarrow$ number of standing spectators = 3.  At t = 13 --------^^ $\Rightarrow$ number of standing spectators = 2.  At t = 14 ---------^ $\Rightarrow$ number of standing spectators = 1.  At t = 15 ---------- $\Rightarrow$ number of standing spectators = 0.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 26
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: You are given matrix with n rows and n columns filled with zeroes. You should put k ones in it in such a way that the resulting matrix is symmetrical with respect to the main diagonal (the diagonal that goes from the top left to the bottom right corner) and is lexicographically maximal.
+
+One matrix is lexicographically greater than the other if the first different number in the first different row from the top in the first matrix is greater than the corresponding number in the second one.
+
+If there exists no such matrix then output -1.
+
+
+-----Input-----
+
+The first line consists of two numbers n and k (1 ≤ n ≤ 100, 0 ≤ k ≤ 10^6).
+
+
+-----Output-----
+
+If the answer exists then output resulting matrix. Otherwise output -1.
+
+
+-----Examples-----
+Input
+2 1
+
+Output
+1 0 
+0 0 
+
+Input
+3 2
+
+Output
+1 0 0 
+0 1 0 
+0 0 0 
+
+Input
+2 5
+
+Output
+-1
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 40
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: A string is a palindrome if it reads the same from the left to the right and from the right to the left. For example, the strings "kek", "abacaba", "r" and "papicipap" are palindromes, while the strings "abb" and "iq" are not.
+
+A substring $s[l \ldots r]$ ($1 \leq l \leq r \leq |s|$) of a string $s = s_{1}s_{2} \ldots s_{|s|}$ is the string $s_{l}s_{l + 1} \ldots s_{r}$.
+
+Anna does not like palindromes, so she makes her friends call her Ann. She also changes all the words she reads in a similar way. Namely, each word $s$ is changed into its longest substring that is not a palindrome. If all the substrings of $s$ are palindromes, she skips the word at all.
+
+Some time ago Ann read the word $s$. What is the word she changed it into?
+
+
+-----Input-----
+
+The first line contains a non-empty string $s$ with length at most $50$ characters, containing lowercase English letters only.
+
+
+-----Output-----
+
+If there is such a substring in $s$ that is not a palindrome, print the maximum length of such a substring. Otherwise print $0$.
+
+Note that there can be multiple longest substrings that are not palindromes, but their length is unique.
+
+
+-----Examples-----
+Input
+mew
+
+Output
+3
+
+Input
+wuffuw
+
+Output
+5
+
+Input
+qqqqqqqq
+
+Output
+0
+
+
+
+-----Note-----
+
+"mew" is not a palindrome, so the longest substring of it that is not a palindrome, is the string "mew" itself. Thus, the answer for the first example is $3$.
+
+The string "uffuw" is one of the longest non-palindrome substrings (of length $5$) of the string "wuffuw", so the answer for the second example is $5$.
+
+All substrings of the string "qqqqqqqq" consist of equal characters so they are palindromes. This way, there are no non-palindrome substrings. Thus, the answer for the third example is $0$.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 43
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: You are given a binary string $s$.
+
+Find the number of distinct cyclical binary strings of length $n$ which contain $s$ as a substring.
+
+The cyclical string $t$ contains $s$ as a substring if there is some cyclical shift of string $t$, such that $s$ is a substring of this cyclical shift of $t$.
+
+For example, the cyclical string "000111" contains substrings "001", "01110" and "10", but doesn't contain "0110" and "10110".
+
+Two cyclical strings are called different if they differ from each other as strings. For example, two different strings, which differ from each other by a cyclical shift, are still considered different cyclical strings.
+
+
+-----Input-----
+
+The first line contains a single integer $n$ ($1 \le n \le 40$) — the length of the target string $t$.
+
+The next line contains the string $s$ ($1 \le |s| \le n$) — the string which must be a substring of cyclical string $t$. String $s$ contains only characters '0' and '1'.
+
+
+-----Output-----
+
+Print the only integer — the number of distinct cyclical binary strings $t$, which contain $s$ as a substring.
+
+
+-----Examples-----
+Input
+2
+0
+
+Output
+3
+Input
+4
+1010
+
+Output
+2
+Input
+20
+10101010101010
+
+Output
+962
+
+
+-----Note-----
+
+In the first example, there are three cyclical strings, which contain "0" — "00", "01" and "10".
+
+In the second example, there are only two such strings — "1010", "0101".
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 46
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: You are given positive integer number n. You should create such strictly increasing sequence of k positive numbers a_1, a_2, ..., a_{k}, that their sum is equal to n and greatest common divisor is maximal.
+
+Greatest common divisor of sequence is maximum of such numbers that every element of sequence is divisible by them.
+
+If there is no possible sequence then output -1.
+
+
+-----Input-----
+
+The first line consists of two numbers n and k (1 ≤ n, k ≤ 10^10).
+
+
+-----Output-----
+
+If the answer exists then output k numbers — resulting sequence. Otherwise output -1. If there are multiple answers, print any of them.
+
+
+-----Examples-----
+Input
+6 3
+
+Output
+1 2 3
+
+Input
+8 2
+
+Output
+2 6
+
+Input
+5 3
+
+Output
+-1
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 52
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: В Берляндском государственном университете локальная сеть между серверами не всегда работает без ошибок. При передаче двух одинаковых сообщений подряд возможна ошибка, в результате которой эти два сообщения сливаются в одно. При таком слиянии конец первого сообщения совмещается с началом второго. Конечно, совмещение может происходить только по одинаковым символам. Длина совмещения должна быть положительным числом, меньшим длины текста сообщения. 
+
+Например, при передаче двух сообщений «abrakadabra» подряд возможно, что оно будет передано с ошибкой описанного вида, и тогда будет получено сообщение вида «abrakadabrabrakadabra» или «abrakadabrakadabra» (в первом случае совмещение произошло по одному символу, а во втором — по четырем).
+
+По полученному сообщению t определите, возможно ли, что это результат ошибки описанного вида работы локальной сети, и если возможно, определите возможное значение s. 
+
+Не следует считать ошибкой ситуацию полного наложения друга на друга двух сообщений. К примеру, если получено сообщение «abcd», следует считать, что в нём ошибки нет. Аналогично, простое дописывание одного сообщения вслед за другим не является признаком ошибки. Например, если получено сообщение «abcabc», следует считать, что в нём ошибки нет.
+
+
+-----Входные данные-----
+
+В единственной строке выходных данных следует непустая строка t, состоящая из строчных букв латинского алфавита. Длина строки t не превосходит 100 символов.
+
+
+-----Выходные данные-----
+
+Если сообщение t не может содержать ошибки, выведите «NO» (без кавычек) в единственную строку выходных данных.
+
+В противном случае в первой строке выведите «YES» (без кавычек), а в следующей строке выведите строку s — возможное сообщение, которое могло привести к ошибке. Если возможных ответов несколько, разрешается вывести любой из них.
+
+
+-----Примеры-----
+Входные данные
+abrakadabrabrakadabra
+
+Выходные данные
+YES
+abrakadabra
+
+Входные данные
+acacacaca
+
+Выходные данные
+YES
+acaca
+
+Входные данные
+abcabc
+
+Выходные данные
+NO
+
+Входные данные
+abababab
+
+Выходные данные
+YES
+ababab
+
+Входные данные
+tatbt
+
+Выходные данные
+NO
+
+
+
+-----Примечание-----
+
+Во втором примере подходящим ответом также является строка acacaca.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': True}
+DEBUG - Start Task 58
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: After making bad dives into swimming pools, Wilbur wants to build a swimming pool in the shape of a rectangle in his backyard. He has set up coordinate axes, and he wants the sides of the rectangle to be parallel to them. Of course, the area of the rectangle must be positive. Wilbur had all four vertices of the planned pool written on a paper, until his friend came along and erased some of the vertices.
+
+Now Wilbur is wondering, if the remaining n vertices of the initial rectangle give enough information to restore the area of the planned swimming pool.
+
+
+-----Input-----
+
+The first line of the input contains a single integer n (1 ≤ n ≤ 4) — the number of vertices that were not erased by Wilbur's friend.
+
+Each of the following n lines contains two integers x_{i} and y_{i} ( - 1000 ≤ x_{i}, y_{i} ≤ 1000) —the coordinates of the i-th vertex that remains. Vertices are given in an arbitrary order.
+
+It's guaranteed that these points are distinct vertices of some rectangle, that has positive area and which sides are parallel to the coordinate axes.
+
+
+-----Output-----
+
+Print the area of the initial rectangle if it could be uniquely determined by the points remaining. Otherwise, print  - 1. 
+
+
+-----Examples-----
+Input
+2
+0 0
+1 1
+
+Output
+1
+
+Input
+1
+1 1
+
+Output
+-1
+
+
+
+-----Note-----
+
+In the first sample, two opposite corners of the initial rectangle are given, and that gives enough information to say that the rectangle is actually a unit square.
+
+In the second sample there is only one vertex left and this is definitely not enough to uniquely define the area.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': False, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 61
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: A new airplane SuperPuperJet has an infinite number of rows, numbered with positive integers starting with 1 from cockpit to tail. There are six seats in each row, denoted with letters from 'a' to 'f'. Seats 'a', 'b' and 'c' are located to the left of an aisle (if one looks in the direction of the cockpit), while seats 'd', 'e' and 'f' are located to the right. Seats 'a' and 'f' are located near the windows, while seats 'c' and 'd' are located near the aisle.  [Image] 
+
+ 
+
+It's lunch time and two flight attendants have just started to serve food. They move from the first rows to the tail, always maintaining a distance of two rows from each other because of the food trolley. Thus, at the beginning the first attendant serves row 1 while the second attendant serves row 3. When both rows are done they move one row forward: the first attendant serves row 2 while the second attendant serves row 4. Then they move three rows forward and the first attendant serves row 5 while the second attendant serves row 7. Then they move one row forward again and so on.
+
+Flight attendants work with the same speed: it takes exactly 1 second to serve one passenger and 1 second to move one row forward. Each attendant first serves the passengers on the seats to the right of the aisle and then serves passengers on the seats to the left of the aisle (if one looks in the direction of the cockpit). Moreover, they always serve passengers in order from the window to the aisle. Thus, the first passenger to receive food in each row is located in seat 'f', and the last one — in seat 'c'. Assume that all seats are occupied.
+
+Vasya has seat s in row n and wants to know how many seconds will pass before he gets his lunch.
+
+
+-----Input-----
+
+The only line of input contains a description of Vasya's seat in the format ns, where n (1 ≤ n ≤ 10^18) is the index of the row and s is the seat in this row, denoted as letter from 'a' to 'f'. The index of the row and the seat are not separated by a space.
+
+
+-----Output-----
+
+Print one integer — the number of seconds Vasya has to wait until he gets his lunch.
+
+
+-----Examples-----
+Input
+1f
+
+Output
+1
+
+Input
+2d
+
+Output
+10
+
+Input
+4a
+
+Output
+11
+
+Input
+5e
+
+Output
+18
+
+
+
+-----Note-----
+
+In the first sample, the first flight attendant serves Vasya first, so Vasya gets his lunch after 1 second.
+
+In the second sample, the flight attendants will spend 6 seconds to serve everyone in the rows 1 and 3, then they will move one row forward in 1 second. As they first serve seats located to the right of the aisle in order from window to aisle, Vasya has to wait 3 more seconds. The total is 6 + 1 + 3 = 10.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': True, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 71
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Polycarp is crazy about round numbers. He especially likes the numbers divisible by 10^{k}.
+
+In the given number of n Polycarp wants to remove the least number of digits to get a number that is divisible by 10^{k}. For example, if k = 3, in the number 30020 it is enough to delete a single digit (2). In this case, the result is 3000 that is divisible by 10^3 = 1000.
+
+Write a program that prints the minimum number of digits to be deleted from the given integer number n, so that the result is divisible by 10^{k}. The result should not start with the unnecessary leading zero (i.e., zero can start only the number 0, which is required to be written as exactly one digit).
+
+It is guaranteed that the answer exists.
+
+
+-----Input-----
+
+The only line of the input contains two integer numbers n and k (0 ≤ n ≤ 2 000 000 000, 1 ≤ k ≤ 9).
+
+It is guaranteed that the answer exists. All numbers in the input are written in traditional notation of integers, that is, without any extra leading zeros.
+
+
+-----Output-----
+
+Print w — the required minimal number of digits to erase. After removing the appropriate w digits from the number n, the result should have a value that is divisible by 10^{k}. The result can start with digit 0 in the single case (the result is zero and written by exactly the only digit 0).
+
+
+-----Examples-----
+Input
+30020 3
+
+Output
+1
+
+Input
+100 9
+
+Output
+2
+
+Input
+10203049 2
+
+Output
+3
+
+
+
+-----Note-----
+
+In the example 2 you can remove two digits: 1 and any 0. The result is number 0 which is divisible by any number.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 74
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Mister B once received a gift: it was a book about aliens, which he started read immediately. This book had c pages.
+
+At first day Mister B read v_0 pages, but after that he started to speed up. Every day, starting from the second, he read a pages more than on the previous day (at first day he read v_0 pages, at second — v_0 + a pages, at third — v_0 + 2a pages, and so on). But Mister B is just a human, so he physically wasn't able to read more than v_1 pages per day.
+
+Also, to refresh his memory, every day, starting from the second, Mister B had to reread last l pages he read on the previous day. Mister B finished the book when he read the last page for the first time.
+
+Help Mister B to calculate how many days he needed to finish the book.
+
+
+-----Input-----
+
+First and only line contains five space-separated integers: c, v_0, v_1, a and l (1 ≤ c ≤ 1000, 0 ≤ l < v_0 ≤ v_1 ≤ 1000, 0 ≤ a ≤ 1000) — the length of the book in pages, the initial reading speed, the maximum reading speed, the acceleration in reading speed and the number of pages for rereading.
+
+
+-----Output-----
+
+Print one integer — the number of days Mister B needed to finish the book.
+
+
+-----Examples-----
+Input
+5 5 10 5 4
+
+Output
+1
+
+Input
+12 4 12 4 1
+
+Output
+3
+
+Input
+15 1 100 0 0
+
+Output
+15
+
+
+
+-----Note-----
+
+In the first sample test the book contains 5 pages, so Mister B read it right at the first day.
+
+In the second sample test at first day Mister B read pages number 1 - 4, at second day — 4 - 11, at third day — 11 - 12 and finished the book.
+
+In third sample test every day Mister B read 1 page of the book, so he finished in 15 days.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 82
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Neko loves divisors. During the latest number theory lesson, he got an interesting exercise from his math teacher.
+
+Neko has two integers $a$ and $b$. His goal is to find a non-negative integer $k$ such that the least common multiple of $a+k$ and $b+k$ is the smallest possible. If there are multiple optimal integers $k$, he needs to choose the smallest one.
+
+Given his mathematical talent, Neko had no trouble getting Wrong Answer on this problem. Can you help him solve it?
+
+
+-----Input-----
+
+The only line contains two integers $a$ and $b$ ($1 \le a, b \le 10^9$).
+
+
+-----Output-----
+
+Print the smallest non-negative integer $k$ ($k \ge 0$) such that the lowest common multiple of $a+k$ and $b+k$ is the smallest possible.
+
+If there are many possible integers $k$ giving the same value of the least common multiple, print the smallest one.
+
+
+-----Examples-----
+Input
+6 10
+
+Output
+2
+Input
+21 31
+
+Output
+9
+Input
+5 10
+
+Output
+0
+
+
+-----Note-----
+
+In the first test, one should choose $k = 2$, as the least common multiple of $6 + 2$ and $10 + 2$ is $24$, which is the smallest least common multiple possible.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 83
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Noora is a student of one famous high school. It's her final year in school — she is going to study in university next year. However, she has to get an «A» graduation certificate in order to apply to a prestigious one.
+
+In school, where Noora is studying, teachers are putting down marks to the online class register, which are integers from 1 to k. The worst mark is 1, the best is k. Mark that is going to the certificate, is calculated as an average of all the marks, rounded to the closest integer. If several answers are possible, rounding up is produced. For example, 7.3 is rounded to 7, but 7.5 and 7.8784 — to 8. 
+
+For instance, if Noora has marks [8, 9], then the mark to the certificate is 9, because the average is equal to 8.5 and rounded to 9, but if the marks are [8, 8, 9], Noora will have graduation certificate with 8.
+
+To graduate with «A» certificate, Noora has to have mark k.
+
+Noora got n marks in register this year. However, she is afraid that her marks are not enough to get final mark k. Noora decided to ask for help in the internet, where hacker Leha immediately responded to her request. He is ready to hack class register for Noora and to add Noora any number of additional marks from 1 to k. At the same time, Leha want his hack be unseen to everyone, so he decided to add as less as possible additional marks. Please help Leha to calculate the minimal number of marks he has to add, so that final Noora's mark will become equal to k.
+
+
+-----Input-----
+
+The first line contains two integers n and k (1 ≤ n ≤ 100, 1 ≤ k ≤ 100) denoting the number of marks, received by Noora and the value of highest possible mark.
+
+The second line contains n integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ k) denoting marks received by Noora before Leha's hack.
+
+
+-----Output-----
+
+Print a single integer — minimal number of additional marks, that Leha has to add in order to change Noora's final mark to k.
+
+
+-----Examples-----
+Input
+2 10
+8 9
+
+Output
+4
+Input
+3 5
+4 4 4
+
+Output
+3
+
+
+-----Note-----
+
+Consider the first example testcase.
+
+Maximal mark is 10, Noora received two marks — 8 and 9, so current final mark is 9. To fix it, Leha can add marks [10, 10, 10, 10] (4 marks in total) to the registry, achieving Noora having average mark equal to $\frac{8 + 9 + 10 + 10 + 10 + 10}{6} = \frac{57}{6} = 9.5$. Consequently, new final mark is 10. Less number of marks won't fix the situation.
+
+In the second example Leha can add [5, 5, 5] to the registry, so that making average mark equal to 4.5, which is enough to have 5 in the certificate.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 87
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Polycarp and Vasiliy love simple logical games. Today they play a game with infinite chessboard and one pawn for each player. Polycarp and Vasiliy move in turns, Polycarp starts. In each turn Polycarp can move his pawn from cell (x, y) to (x - 1, y) or (x, y - 1). Vasiliy can move his pawn from (x, y) to one of cells: (x - 1, y), (x - 1, y - 1) and (x, y - 1). Both players are also allowed to skip move. 
+
+There are some additional restrictions — a player is forbidden to move his pawn to a cell with negative x-coordinate or y-coordinate or to the cell containing opponent's pawn The winner is the first person to reach cell (0, 0). 
+
+You are given the starting coordinates of both pawns. Determine who will win if both of them play optimally well.
+
+
+-----Input-----
+
+The first line contains four integers: x_{p}, y_{p}, x_{v}, y_{v} (0 ≤ x_{p}, y_{p}, x_{v}, y_{v} ≤ 10^5) — Polycarp's and Vasiliy's starting coordinates.
+
+It is guaranteed that in the beginning the pawns are in different cells and none of them is in the cell (0, 0).
+
+
+-----Output-----
+
+Output the name of the winner: "Polycarp" or "Vasiliy".
+
+
+-----Examples-----
+Input
+2 1 2 2
+
+Output
+Polycarp
+
+Input
+4 7 7 4
+
+Output
+Vasiliy
+
+
+
+-----Note-----
+
+In the first sample test Polycarp starts in (2, 1) and will move to (1, 1) in the first turn. No matter what his opponent is doing, in the second turn Polycarp can move to (1, 0) and finally to (0, 0) in the third turn.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 101
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Innocentius has a problem — his computer monitor has broken. Now some of the pixels are "dead", that is, they are always black. As consequence, Innocentius can't play the usual computer games. He is recently playing the following game with his younger brother Polycarpus.
+
+Innocentius is touch-typing a program that paints a white square one-pixel wide frame on the black screen. As the monitor is broken, some pixels that should be white remain black. Polycarpus should look at what the program displayed on the screen and guess the position and size of the frame Innocentius has painted. Polycarpus doesn't like the game but Innocentius persuaded brother to play as "the game is good for the imagination and attention".
+
+Help Polycarpus, automatize his part in the gaming process. Write the code that finds such possible square frame that:  the frame's width is 1 pixel,  the frame doesn't go beyond the borders of the screen,  all white pixels of the monitor are located on the frame,  of all frames that satisfy the previous three conditions, the required frame must have the smallest size. 
+
+Formally, a square frame is represented by such pixels of the solid square, that are on the square's border, that is, are not fully surrounded by the other pixels of the square. For example, if the frame's size is d = 3, then it consists of 8 pixels, if its size is d = 2, then it contains 4 pixels and if d = 1, then the frame is reduced to a single pixel.
+
+
+-----Input-----
+
+The first line contains the resolution of the monitor as a pair of integers n, m (1 ≤ n, m ≤ 2000). The next n lines contain exactly m characters each — the state of the monitor pixels at the moment of the game. Character "." (period, ASCII code 46) corresponds to the black pixel, and character "w" (lowercase English letter w) corresponds to the white pixel. It is guaranteed that at least one pixel of the monitor is white.
+
+
+-----Output-----
+
+Print the monitor screen. Represent the sought frame by characters "+" (the "plus" character). The pixels that has become white during the game mustn't be changed. Print them as "w". If there are multiple possible ways to position the frame of the minimum size, print any of them.
+
+If the required frame doesn't exist, then print a single line containing number -1.
+
+
+-----Examples-----
+Input
+4 8
+..w..w..
+........
+........
+..w..w..
+
+Output
+..w++w..
+..+..+..
+..+..+..
+..w++w..
+
+Input
+5 6
+......
+.w....
+......
+..w...
+......
+
+Output
+......
++w+...
++.+...
+++w...
+......
+
+Input
+2 4
+....
+.w..
+
+Output
+....
+.w..
+
+Input
+2 6
+w..w.w
+...w..
+
+Output
+-1
+
+
+
+-----Note-----
+
+In the first sample the required size of the optimal frame equals 4. In the second sample the size of the optimal frame equals 3. In the third sample, the size of the optimal frame is 1. In the fourth sample, the required frame doesn't exist.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 104
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: JATC and his friend Giraffe are currently in their room, solving some problems. Giraffe has written on the board an array $a_1$, $a_2$, ..., $a_n$ of integers, such that $1 \le a_1 < a_2 < \ldots < a_n \le 10^3$, and then went to the bathroom.
+
+JATC decided to prank his friend by erasing some consecutive elements in the array. Since he doesn't want for the prank to go too far, he will only erase in a way, such that Giraffe can still restore the array using the information from the remaining elements. Because Giraffe has created the array, he's also aware that it's an increasing array and all the elements are integers in the range $[1, 10^3]$.
+
+JATC wonders what is the greatest number of elements he can erase?
+
+
+-----Input-----
+
+The first line of the input contains a single integer $n$ ($1 \le n \le 100$) — the number of elements in the array.
+
+The second line of the input contains $n$ integers $a_i$ ($1 \le a_1<a_2<\dots<a_n \le 10^3$) — the array written by Giraffe.
+
+
+-----Output-----
+
+Print a single integer — the maximum number of consecutive elements in the array that JATC can erase.
+
+If it is impossible to erase even a single element, print $0$.
+
+
+-----Examples-----
+Input
+6
+1 3 4 5 6 9
+
+Output
+2
+Input
+3
+998 999 1000
+
+Output
+2
+Input
+5
+1 2 3 4 5
+
+Output
+4
+
+
+-----Note-----
+
+In the first example, JATC can erase the third and fourth elements, leaving the array $[1, 3, \_, \_, 6, 9]$. As you can see, there is only one way to fill in the blanks.
+
+In the second example, JATC can erase the second and the third elements. The array will become $[998, \_, \_]$. Because all the elements are less than or equal to $1000$, the array is still can be restored. Note, that he can't erase the first $2$ elements.
+
+In the third example, JATC can erase the first $4$ elements. Since all the elements are greater than or equal to $1$, Giraffe can still restore the array. Note, that he can't erase the last $4$ elements.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 107
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Есть n-подъездный дом, в каждом подъезде по m этажей, и на каждом этаже каждого подъезда ровно k квартир. Таким образом, в доме всего n·m·k квартир. Они пронумерованы естественным образом от 1 до n·m·k, то есть первая квартира на первом этаже в первом подъезде имеет номер 1, первая квартира на втором этаже первого подъезда имеет номер k + 1 и так далее. Особенность этого дома состоит в том, что он круглый. То есть если обходить его по часовой стрелке, то после подъезда номер 1 следует подъезд номер 2, затем подъезд номер 3 и так далее до подъезда номер n. После подъезда номер n снова идёт подъезд номер 1.
+
+Эдвард живёт в квартире номер a, а Наташа — в квартире номер b. Переход на 1 этаж вверх или вниз по лестнице занимает 5 секунд, переход от двери подъезда к двери соседнего подъезда — 15 секунд, а переход в пределах одного этажа одного подъезда происходит мгновенно. Также в каждом подъезде дома есть лифт. Он устроен следующим образом: он всегда приезжает ровно через 10 секунд после вызова, а чтобы переместить пассажира на один этаж вверх или вниз, лифт тратит ровно 1 секунду. Посадка и высадка происходят мгновенно.
+
+Помогите Эдварду найти минимальное время, за которое он сможет добраться до квартиры Наташи. Считайте, что Эдвард может выйти из подъезда только с первого этажа соответствующего подъезда (это происходит мгновенно). Если Эдвард стоит перед дверью какого-то подъезда, он может зайти в него и сразу окажется на первом этаже этого подъезда (это также происходит мгновенно). Эдвард может выбирать, в каком направлении идти вокруг дома.
+
+
+-----Входные данные-----
+
+В первой строке входных данных следуют три числа n, m, k (1 ≤ n, m, k ≤ 1000) — количество подъездов в доме, количество этажей в каждом подъезде и количество квартир на каждом этаже каждого подъезда соответственно.
+
+Во второй строке входных данных записаны два числа a и b (1 ≤ a, b ≤ n·m·k) — номера квартир, в которых живут Эдвард и Наташа, соответственно. Гарантируется, что эти номера различны. 
+
+
+-----Выходные данные-----
+
+Выведите единственное целое число — минимальное время (в секундах), за которое Эдвард сможет добраться от своей квартиры до квартиры Наташи.
+
+
+-----Примеры-----
+Входные данные
+4 10 5
+200 6
+
+Выходные данные
+39
+
+Входные данные
+3 1 5
+7 2
+
+Выходные данные
+15
+
+
+
+-----Примечание-----
+
+В первом тестовом примере Эдвард находится в 4 подъезде на 10 этаже, а Наташа находится в 1 подъезде на 2 этаже. Поэтому Эдварду выгодно сначала спуститься на лифте на первый этаж (на это он потратит 19 секунд, из которых 10 — на ожидание и 9 — на поездку на лифте), затем обойти дом против часовой стрелки до подъезда номер 1 (на это он потратит 15 секунд), и наконец подняться по лестнице на этаж номер 2 (на это он потратит 5 секунд). Таким образом, ответ равен 19 + 15 + 5 = 39.
+
+Во втором тестовом примере Эдвард живёт в подъезде 2 на этаже 1, а Наташа находится в подъезде 1 на этаже 1. Поэтому Эдварду выгодно просто обойти дом по часовой стрелке до подъезда 1, на это он потратит 15 секунд.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 108
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Top-model Izabella participates in the competition. She wants to impress judges and show her mathematical skills.
+
+Her problem is following: for given string, consisting of only 0 and 1, tell if it's possible to remove some digits in such a way, that remaining number is a representation of some positive integer, divisible by 64, in the binary numerical system.
+
+
+-----Input-----
+
+In the only line given a non-empty binary string s with length up to 100.
+
+
+-----Output-----
+
+Print «yes» (without quotes) if it's possible to remove digits required way and «no» otherwise.
+
+
+-----Examples-----
+Input
+100010001
+
+Output
+yes
+Input
+100
+
+Output
+no
+
+
+-----Note-----
+
+In the first test case, you can get string 1 000 000 after removing two ones which is a representation of number 64 in the binary numerical system.
+
+You can read more about binary numeral system representation here: https://en.wikipedia.org/wiki/Binary_system
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 113
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Absent-minded Masha got set of n cubes for her birthday.
+
+At each of 6 faces of each cube, there is exactly one digit from 0 to 9. Masha became interested what is the largest natural x such she can make using her new cubes all integers from 1 to x.
+
+To make a number Masha can rotate her cubes and put them in a row. After that, she looks at upper faces of cubes from left to right and reads the number.
+
+The number can't contain leading zeros. It's not required to use all cubes to build a number.
+
+Pay attention: Masha can't make digit 6 from digit 9 and vice-versa using cube rotations.
+
+
+-----Input-----
+
+In first line integer n is given (1 ≤ n ≤ 3) — the number of cubes, Masha got for her birthday.
+
+Each of next n lines contains 6 integers a_{i}_{j} (0 ≤ a_{i}_{j} ≤ 9) — number on j-th face of i-th cube.
+
+
+-----Output-----
+
+Print single integer — maximum number x such Masha can make any integers from 1 to x using her cubes or 0 if Masha can't make even 1.
+
+
+-----Examples-----
+Input
+3
+0 1 2 3 4 5
+6 7 8 9 0 1
+2 3 4 5 6 7
+
+Output
+87
+Input
+3
+0 1 3 5 6 8
+1 2 4 5 7 8
+2 3 4 6 7 9
+
+Output
+98
+
+
+-----Note-----
+
+In the first test case, Masha can build all numbers from 1 to 87, but she can't make 88 because there are no two cubes with digit 8.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 122
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Ilya is an experienced player in tic-tac-toe on the 4 × 4 field. He always starts and plays with Xs. He played a lot of games today with his friend Arseny. The friends became tired and didn't finish the last game. It was Ilya's turn in the game when they left it. Determine whether Ilya could have won the game by making single turn or not. 
+
+The rules of tic-tac-toe on the 4 × 4 field are as follows. Before the first turn all the field cells are empty. The two players take turns placing their signs into empty cells (the first player places Xs, the second player places Os). The player who places Xs goes first, the another one goes second. The winner is the player who first gets three of his signs in a row next to each other (horizontal, vertical or diagonal).
+
+
+-----Input-----
+
+The tic-tac-toe position is given in four lines.
+
+Each of these lines contains four characters. Each character is '.' (empty cell), 'x' (lowercase English letter x), or 'o' (lowercase English letter o). It is guaranteed that the position is reachable playing tic-tac-toe, and it is Ilya's turn now (in particular, it means that the game is not finished). It is possible that all the cells are empty, it means that the friends left without making single turn.
+
+
+-----Output-----
+
+Print single line: "YES" in case Ilya could have won by making single turn, and "NO" otherwise.
+
+
+-----Examples-----
+Input
+xx..
+.oo.
+x...
+oox.
+
+Output
+YES
+
+Input
+x.ox
+ox..
+x.o.
+oo.x
+
+Output
+NO
+
+Input
+x..x
+..oo
+o...
+x.xo
+
+Output
+YES
+
+Input
+o.x.
+o...
+.x..
+ooxx
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first example Ilya had two winning moves: to the empty cell in the left column and to the leftmost empty cell in the first row.
+
+In the second example it wasn't possible to win by making single turn.
+
+In the third example Ilya could have won by placing X in the last row between two existing Xs.
+
+In the fourth example it wasn't possible to win by making single turn.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 126
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Sagheer is walking in the street when he comes to an intersection of two roads. Each road can be represented as two parts where each part has 3 lanes getting into the intersection (one for each direction) and 3 lanes getting out of the intersection, so we have 4 parts in total. Each part has 4 lights, one for each lane getting into the intersection (l — left, s — straight, r — right) and a light p for a pedestrian crossing.  [Image] 
+
+An accident is possible if a car can hit a pedestrian. This can happen if the light of a pedestrian crossing of some part and the light of a lane that can get to or from that same part are green at the same time.
+
+Now, Sagheer is monitoring the configuration of the traffic lights. Your task is to help him detect whether an accident is possible.
+
+
+-----Input-----
+
+The input consists of four lines with each line describing a road part given in a counter-clockwise order.
+
+Each line contains four integers l, s, r, p — for the left, straight, right and pedestrian lights, respectively. The possible values are 0 for red light and 1 for green light.
+
+
+-----Output-----
+
+On a single line, print "YES" if an accident is possible, and "NO" otherwise.
+
+
+-----Examples-----
+Input
+1 0 0 1
+0 1 0 0
+0 0 1 0
+0 0 0 1
+
+Output
+YES
+
+Input
+0 1 1 0
+1 0 1 0
+1 1 0 0
+0 0 0 1
+
+Output
+NO
+
+Input
+1 0 0 0
+0 0 0 1
+0 0 0 0
+1 0 1 0
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first example, some accidents are possible because cars of part 1 can hit pedestrians of parts 1 and 4. Also, cars of parts 2 and 3 can hit pedestrians of part 4.
+
+In the second example, no car can pass the pedestrian crossing of part 4 which is the only green pedestrian light. So, no accident can occur.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': False, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': True}
+DEBUG - Start Task 132
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: There is a beautiful garden of stones in Innopolis.
+
+Its most beautiful place is the $n$ piles with stones numbered from $1$ to $n$.
+
+EJOI participants have visited this place twice. 
+
+When they first visited it, the number of stones in piles was $x_1, x_2, \ldots, x_n$, correspondingly. One of the participants wrote down this sequence in a notebook. 
+
+They visited it again the following day, and the number of stones in piles was equal to $y_1, y_2, \ldots, y_n$. One of the participants also wrote it down in a notebook.
+
+It is well known that every member of the EJOI jury during the night either sits in the room $108$ or comes to the place with stones. Each jury member who comes there either takes one stone for himself or moves one stone from one pile to another. We can assume that there is an unlimited number of jury members. No one except the jury goes to the place with stones at night.
+
+Participants want to know whether their notes can be correct or they are sure to have made a mistake.
+
+
+-----Input-----
+
+The first line of the input file contains a single integer $n$, the number of piles with stones in the garden ($1 \leq n \leq 50$).
+
+The second line contains $n$ integers separated by spaces $x_1, x_2, \ldots, x_n$, the number of stones in piles recorded in the notebook when the participants came to the place with stones for the first time ($0 \leq x_i \leq 1000$).
+
+The third line contains $n$ integers separated by spaces $y_1, y_2, \ldots, y_n$, the number of stones in piles recorded in the notebook when the participants came to the place with stones for the second time ($0 \leq y_i \leq 1000$).
+
+
+-----Output-----
+
+If the records can be consistent output "Yes", otherwise output "No" (quotes for clarity).
+
+
+-----Examples-----
+Input
+5
+1 2 3 4 5
+2 1 4 3 5
+
+Output
+Yes
+
+Input
+5
+1 1 1 1 1
+1 0 1 0 1
+
+Output
+Yes
+
+Input
+3
+2 3 9
+1 7 9
+
+Output
+No
+
+
+
+-----Note-----
+
+In the first example, the following could have happened during the night: one of the jury members moved one stone from the second pile to the first pile, and the other jury member moved one stone from the fourth pile to the third pile.
+
+In the second example, the jury took stones from the second and fourth piles.
+
+It can be proved that it is impossible for the jury members to move and took stones to convert the first array into the second array.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 137
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: You are given two very long integers a, b (leading zeroes are allowed). You should check what number a or b is greater or determine that they are equal.
+
+The input size is very large so don't use the reading of symbols one by one. Instead of that use the reading of a whole line or token.
+
+As input/output can reach huge size it is recommended to use fast input/output methods: for example, prefer to use scanf/printf instead of cin/cout in C++, prefer to use BufferedReader/PrintWriter instead of Scanner/System.out in Java. Don't use the function input() in Python2 instead of it use the function raw_input().
+
+
+-----Input-----
+
+The first line contains a non-negative integer a.
+
+The second line contains a non-negative integer b.
+
+The numbers a, b may contain leading zeroes. Each of them contains no more than 10^6 digits.
+
+
+-----Output-----
+
+Print the symbol "<" if a < b and the symbol ">" if a > b. If the numbers are equal print the symbol "=".
+
+
+-----Examples-----
+Input
+9
+10
+
+Output
+<
+
+Input
+11
+10
+
+Output
+>
+
+Input
+00012345
+12345
+
+Output
+=
+
+Input
+0123
+9
+
+Output
+>
+
+Input
+0123
+111
+
+Output
+>
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': True}
+DEBUG - Start Task 141
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: The mayor of the Central Town wants to modernize Central Street, represented in this problem by the $(Ox)$ axis.
+
+On this street, there are $n$ antennas, numbered from $1$ to $n$. The $i$-th antenna lies on the position $x_i$ and has an initial scope of $s_i$: it covers all integer positions inside the interval $[x_i - s_i; x_i + s_i]$.
+
+It is possible to increment the scope of any antenna by $1$, this operation costs $1$ coin. We can do this operation as much as we want (multiple times on the same antenna if we want).
+
+To modernize the street, we need to make all integer positions from $1$ to $m$ inclusive covered by at least one antenna. Note that it is authorized to cover positions outside $[1; m]$, even if it's not required.
+
+What is the minimum amount of coins needed to achieve this modernization?
+
+
+-----Input-----
+
+The first line contains two integers $n$ and $m$ ($1 \le n \le 80$ and $n \le m \le 100\ 000$).
+
+The $i$-th of the next $n$ lines contains two integers $x_i$ and $s_i$ ($1 \le x_i \le m$ and $0 \le s_i \le m$).
+
+On each position, there is at most one antenna (values $x_i$ are pairwise distinct).
+
+
+-----Output-----
+
+You have to output a single integer: the minimum amount of coins required to make all integer positions from $1$ to $m$ inclusive covered by at least one antenna.
+
+
+-----Examples-----
+Input
+3 595
+43 2
+300 4
+554 10
+
+Output
+281
+
+Input
+1 1
+1 1
+
+Output
+0
+
+Input
+2 50
+20 0
+3 1
+
+Output
+30
+
+Input
+5 240
+13 0
+50 25
+60 5
+155 70
+165 70
+
+Output
+26
+
+
+
+-----Note-----
+
+In the first example, here is a possible strategy:
+
+  Increase the scope of the first antenna by $40$, so that it becomes $2 + 40 = 42$. This antenna will cover interval $[43 - 42; 43 + 42]$ which is $[1; 85]$  Increase the scope of the second antenna by $210$, so that it becomes $4 + 210 = 214$. This antenna will cover interval $[300 - 214; 300 + 214]$, which is $[86; 514]$  Increase the scope of the third antenna by $31$, so that it becomes $10 + 31 = 41$. This antenna will cover interval $[554 - 41; 554 + 41]$, which is $[513; 595]$ 
+
+Total cost is $40 + 210 + 31 = 281$. We can prove that it's the minimum cost required to make all positions from $1$ to $595$ covered by at least one antenna.
+
+Note that positions $513$ and $514$ are in this solution covered by two different antennas, but it's not important.
+
+—
+
+In the second example, the first antenna already covers an interval $[0; 2]$ so we have nothing to do.
+
+Note that the only position that we needed to cover was position $1$; positions $0$ and $2$ are covered, but it's not important.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': True}
+DEBUG - Start Task 154
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Polycarp takes part in a math show. He is given n tasks, each consists of k subtasks, numbered 1 through k. It takes him t_{j} minutes to solve the j-th subtask of any task. Thus, time required to solve a subtask depends only on its index, but not on the task itself. Polycarp can solve subtasks in any order.
+
+By solving subtask of arbitrary problem he earns one point. Thus, the number of points for task is equal to the number of solved subtasks in it. Moreover, if Polycarp completely solves the task (solves all k of its subtasks), he recieves one extra point. Thus, total number of points he recieves for the complete solution of the task is k + 1.
+
+Polycarp has M minutes of time. What is the maximum number of points he can earn?
+
+
+-----Input-----
+
+The first line contains three integer numbers n, k and M (1 ≤ n ≤ 45, 1 ≤ k ≤ 45, 0 ≤ M ≤ 2·10^9).
+
+The second line contains k integer numbers, values t_{j} (1 ≤ t_{j} ≤ 1000000), where t_{j} is the time in minutes required to solve j-th subtask of any task.
+
+
+-----Output-----
+
+Print the maximum amount of points Polycarp can earn in M minutes.
+
+
+-----Examples-----
+Input
+3 4 11
+1 2 3 4
+
+Output
+6
+
+Input
+5 5 10
+1 2 4 8 16
+
+Output
+7
+
+
+
+-----Note-----
+
+In the first example Polycarp can complete the first task and spend 1 + 2 + 3 + 4 = 10 minutes. He also has the time to solve one subtask of the second task in one minute.
+
+In the second example Polycarp can solve the first subtask of all five tasks and spend 5·1 = 5 minutes. Also he can solve the second subtasks of two tasks and spend 2·2 = 4 minutes. Thus, he earns 5 + 2 = 7 points in total.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 160
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: You are given an array of n elements, you must make it a co-prime array in as few moves as possible.
+
+In each move you can insert any positive integral number you want not greater than 10^9 in any place in the array.
+
+An array is co-prime if any two adjacent numbers of it are co-prime.
+
+In the number theory, two integers a and b are said to be co-prime if the only positive integer that divides both of them is 1.
+
+
+-----Input-----
+
+The first line contains integer n (1 ≤ n ≤ 1000) — the number of elements in the given array.
+
+The second line contains n integers a_{i} (1 ≤ a_{i} ≤ 10^9) — the elements of the array a.
+
+
+-----Output-----
+
+Print integer k on the first line — the least number of elements needed to add to the array a to make it co-prime.
+
+The second line should contain n + k integers a_{j} — the elements of the array a after adding k elements to it. Note that the new array should be co-prime, so any two adjacent values should be co-prime. Also the new array should be got from the original array a by adding k elements to it.
+
+If there are multiple answers you can print any one of them.
+
+
+-----Example-----
+Input
+3
+2 7 28
+
+Output
+1
+2 7 9 28
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': False, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 161
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: We have a sequence of N integers: A_1, A_2, \cdots, A_N.
+You can perform the following operation between 0 and K times (inclusive):
+ - Choose two integers i and j such that i \neq j, each between 1 and N (inclusive). Add 1 to A_i and -1 to A_j, possibly producing a negative element.
+Compute the maximum possible positive integer that divides every element of A after the operations. Here a positive integer x divides an integer y if and only if there exists an integer z such that y = xz.
+
+-----Constraints-----
+ - 2 \leq N \leq 500
+ - 1 \leq A_i \leq 10^6
+ - 0 \leq K \leq 10^9
+ - All values in input are integers.
+
+-----Input-----
+Input is given from Standard Input in the following format:
+N K
+A_1 A_2 \cdots A_{N-1} A_{N}
+
+-----Output-----
+Print the maximum possible positive integer that divides every element of A after the operations.
+
+-----Sample Input-----
+2 3
+8 20
+
+-----Sample Output-----
+7
+
+7 will divide every element of A if, for example, we perform the following operation:
+ - Choose i = 2, j = 1. A becomes (7, 21).
+We cannot reach the situation where 8 or greater integer divides every element of A.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 165
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: It's a beautiful April day and Wallace is playing football with his friends. But his friends do not know that Wallace actually stayed home with Gromit and sent them his robotic self instead. Robo-Wallace has several advantages over the other guys. For example, he can hit the ball directly to the specified point. And yet, the notion of a giveaway is foreign to him. The combination of these features makes the Robo-Wallace the perfect footballer — as soon as the ball gets to him, he can just aim and hit the goal. He followed this tactics in the first half of the match, but he hit the goal rarely. The opposing team has a very good goalkeeper who catches most of the balls that fly directly into the goal. But Robo-Wallace is a quick thinker, he realized that he can cheat the goalkeeper. After all, they are playing in a football box with solid walls. Robo-Wallace can kick the ball to the other side, then the goalkeeper will not try to catch the ball. Then, if the ball bounces off the wall and flies into the goal, the goal will at last be scored.
+
+Your task is to help Robo-Wallace to detect a spot on the wall of the football box, to which the robot should kick the ball, so that the ball bounces once and only once off this wall and goes straight to the goal. In the first half of the match Robo-Wallace got a ball in the head and was severely hit. As a result, some of the schemes have been damaged. Because of the damage, Robo-Wallace can only aim to his right wall (Robo-Wallace is standing with his face to the opposing team's goal).
+
+The football box is rectangular. Let's introduce a two-dimensional coordinate system so that point (0, 0) lies in the lower left corner of the field, if you look at the box above. Robo-Wallace is playing for the team, whose goal is to the right. It is an improvised football field, so the gate of Robo-Wallace's rivals may be not in the middle of the left wall. [Image] 
+
+In the given coordinate system you are given:   y_1, y_2 — the y-coordinates of the side pillars of the goalposts of robo-Wallace's opponents;  y_{w} — the y-coordinate of the wall to which Robo-Wallace is aiming;  x_{b}, y_{b} — the coordinates of the ball's position when it is hit;  r — the radius of the ball. 
+
+A goal is scored when the center of the ball crosses the OY axis in the given coordinate system between (0, y_1) and (0, y_2). The ball moves along a straight line. The ball's hit on the wall is perfectly elastic (the ball does not shrink from the hit), the angle of incidence equals the angle of reflection. If the ball bounces off the wall not to the goal, that is, if it hits the other wall or the goal post, then the opposing team catches the ball and Robo-Wallace starts looking for miscalculation and gets dysfunctional. Such an outcome, if possible, should be avoided. We assume that the ball touches an object, if the distance from the center of the ball to the object is no greater than the ball radius r.
+
+
+-----Input-----
+
+The first and the single line contains integers y_1, y_2, y_{w}, x_{b}, y_{b}, r (1 ≤ y_1, y_2, y_{w}, x_{b}, y_{b} ≤ 10^6; y_1 < y_2 < y_{w}; y_{b} + r < y_{w}; 2·r < y_2 - y_1).
+
+It is guaranteed that the ball is positioned correctly in the field, doesn't cross any wall, doesn't touch the wall that Robo-Wallace is aiming at. The goal posts can't be located in the field corners.
+
+
+-----Output-----
+
+If Robo-Wallace can't score a goal in the described manner, print "-1" (without the quotes). Otherwise, print a single number x_{w} — the abscissa of his point of aiming. 
+
+If there are multiple points of aiming, print the abscissa of any of them. When checking the correctness of the answer, all comparisons are made with the permissible absolute error, equal to 10^{ - 8}. 
+
+It is recommended to print as many characters after the decimal point as possible.
+
+
+-----Examples-----
+Input
+4 10 13 10 3 1
+
+Output
+4.3750000000
+
+Input
+1 4 6 2 2 1
+
+Output
+-1
+
+Input
+3 10 15 17 9 2
+
+Output
+11.3333333333
+
+
+
+-----Note-----
+
+Note that in the first and third samples other correct values of abscissa x_{w} are also possible.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 173
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: In Berland each high school student is characterized by academic performance — integer value between 1 and 5.
+
+In high school 0xFF there are two groups of pupils: the group A and the group B. Each group consists of exactly n students. An academic performance of each student is known — integer value between 1 and 5.
+
+The school director wants to redistribute students between groups so that each of the two groups has the same number of students whose academic performance is equal to 1, the same number of students whose academic performance is 2 and so on. In other words, the purpose of the school director is to change the composition of groups, so that for each value of academic performance the numbers of students in both groups are equal.
+
+To achieve this, there is a plan to produce a series of exchanges of students between groups. During the single exchange the director selects one student from the class A and one student of class B. After that, they both change their groups.
+
+Print the least number of exchanges, in order to achieve the desired equal numbers of students for each academic performance.
+
+
+-----Input-----
+
+The first line of the input contains integer number n (1 ≤ n ≤ 100) — number of students in both groups.
+
+The second line contains sequence of integer numbers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ 5), where a_{i} is academic performance of the i-th student of the group A.
+
+The third line contains sequence of integer numbers b_1, b_2, ..., b_{n} (1 ≤ b_{i} ≤ 5), where b_{i} is academic performance of the i-th student of the group B.
+
+
+-----Output-----
+
+Print the required minimum number of exchanges or -1, if the desired distribution of students can not be obtained.
+
+
+-----Examples-----
+Input
+4
+5 4 4 4
+5 5 4 5
+
+Output
+1
+
+Input
+6
+1 1 1 1 1 1
+5 5 5 5 5 5
+
+Output
+3
+
+Input
+1
+5
+3
+
+Output
+-1
+
+Input
+9
+3 2 5 5 2 3 3 3 2
+4 1 4 1 1 2 4 4 1
+
+Output
+4
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': True}
+DEBUG - Start Task 179
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: A telephone number is a sequence of exactly $11$ digits such that its first digit is 8.
+
+Vasya and Petya are playing a game. Initially they have a string $s$ of length $n$ ($n$ is odd) consisting of digits. Vasya makes the first move, then players alternate turns. In one move the player must choose a character and erase it from the current string. For example, if the current string 1121, after the player's move it may be 112, 111 or 121. The game ends when the length of string $s$ becomes 11. If the resulting string is a telephone number, Vasya wins, otherwise Petya wins.
+
+You have to determine if Vasya has a winning strategy (that is, if Vasya can win the game no matter which characters Petya chooses during his moves).
+
+
+-----Input-----
+
+The first line contains one integer $n$ ($13 \le n < 10^5$, $n$ is odd) — the length of string $s$.
+
+The second line contains the string $s$ ($|s| = n$) consisting only of decimal digits.
+
+
+-----Output-----
+
+If Vasya has a strategy that guarantees him victory, print YES.
+
+Otherwise print NO.
+
+
+-----Examples-----
+Input
+13
+8380011223344
+
+Output
+YES
+
+Input
+15
+807345619350641
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first example Vasya needs to erase the second character. Then Petya cannot erase a character from the remaining string 880011223344 so that it does not become a telephone number.
+
+In the second example after Vasya's turn Petya can erase one character character 8. The resulting string can't be a telephone number, because there is no digit 8 at all.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': True}
+DEBUG - Start Task 183
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Carl is a beginner magician. He has a blue, b violet and c orange magic spheres. In one move he can transform two spheres of the same color into one sphere of any other color. To make a spell that has never been seen before, he needs at least x blue, y violet and z orange spheres. Can he get them (possible, in multiple actions)?
+
+
+-----Input-----
+
+The first line of the input contains three integers a, b and c (0 ≤ a, b, c ≤ 1 000 000) — the number of blue, violet and orange spheres that are in the magician's disposal.
+
+The second line of the input contains three integers, x, y and z (0 ≤ x, y, z ≤ 1 000 000) — the number of blue, violet and orange spheres that he needs to get.
+
+
+-----Output-----
+
+If the wizard is able to obtain the required numbers of spheres, print "Yes". Otherwise, print "No".
+
+
+-----Examples-----
+Input
+4 4 0
+2 1 2
+
+Output
+Yes
+
+Input
+5 6 1
+2 7 2
+
+Output
+No
+
+Input
+3 3 3
+2 2 2
+
+Output
+Yes
+
+
+
+-----Note-----
+
+In the first sample the wizard has 4 blue and 4 violet spheres. In his first action he can turn two blue spheres into one violet one. After that he will have 2 blue and 5 violet spheres. Then he turns 4 violet spheres into 2 orange spheres and he ends up with 2 blue, 1 violet and 2 orange spheres, which is exactly what he needs.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 188
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Petya and Vasya decided to play a game. They have n cards (n is an even number). A single integer is written on each card.
+
+Before the game Petya will choose an integer and after that Vasya will choose another integer (different from the number that Petya chose). During the game each player takes all the cards with number he chose. For example, if Petya chose number 5 before the game he will take all cards on which 5 is written and if Vasya chose number 10 before the game he will take all cards on which 10 is written.
+
+The game is considered fair if Petya and Vasya can take all n cards, and the number of cards each player gets is the same.
+
+Determine whether Petya and Vasya can choose integer numbers before the game so that the game is fair. 
+
+
+-----Input-----
+
+The first line contains a single integer n (2 ≤ n ≤ 100) — number of cards. It is guaranteed that n is an even number.
+
+The following n lines contain a sequence of integers a_1, a_2, ..., a_{n} (one integer per line, 1 ≤ a_{i} ≤ 100) — numbers written on the n cards.
+
+
+-----Output-----
+
+If it is impossible for Petya and Vasya to choose numbers in such a way that the game will be fair, print "NO" (without quotes) in the first line. In this case you should not print anything more.
+
+In the other case print "YES" (without quotes) in the first line. In the second line print two distinct integers — number that Petya should choose and the number that Vasya should choose to make the game fair. If there are several solutions, print any of them.
+
+
+-----Examples-----
+Input
+4
+11
+27
+27
+11
+
+Output
+YES
+11 27
+
+Input
+2
+6
+6
+
+Output
+NO
+
+Input
+6
+10
+20
+30
+20
+10
+20
+
+Output
+NO
+
+Input
+6
+1
+1
+2
+2
+3
+3
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first example the game will be fair if, for example, Petya chooses number 11, and Vasya chooses number 27. Then the will take all cards — Petya will take cards 1 and 4, and Vasya will take cards 2 and 3. Thus, each of them will take exactly two cards.
+
+In the second example fair game is impossible because the numbers written on the cards are equal, but the numbers that Petya and Vasya should choose should be distinct.
+
+In the third example it is impossible to take all cards. Petya and Vasya can take at most five cards — for example, Petya can choose number 10 and Vasya can choose number 20. But for the game to be fair it is necessary to take 6 cards.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': True, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': True}
+DEBUG - Start Task 212
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Manao is taking part in a quiz. The quiz consists of n consecutive questions. A correct answer gives one point to the player. The game also has a counter of consecutive correct answers. When the player answers a question correctly, the number on this counter increases by 1. If the player answers a question incorrectly, the counter is reset, that is, the number on it reduces to 0. If after an answer the counter reaches the number k, then it is reset, and the player's score is doubled. Note that in this case, first 1 point is added to the player's score, and then the total score is doubled. At the beginning of the game, both the player's score and the counter of consecutive correct answers are set to zero.
+
+Manao remembers that he has answered exactly m questions correctly. But he does not remember the order in which the questions came. He's trying to figure out what his minimum score may be. Help him and compute the remainder of the corresponding number after division by 1000000009 (10^9 + 9).
+
+
+-----Input-----
+
+The single line contains three space-separated integers n, m and k (2 ≤ k ≤ n ≤ 10^9; 0 ≤ m ≤ n).
+
+
+-----Output-----
+
+Print a single integer — the remainder from division of Manao's minimum possible score in the quiz by 1000000009 (10^9 + 9).
+
+
+-----Examples-----
+Input
+5 3 2
+
+Output
+3
+
+Input
+5 4 2
+
+Output
+6
+
+
+
+-----Note-----
+
+Sample 1. Manao answered 3 questions out of 5, and his score would double for each two consecutive correct answers. If Manao had answered the first, third and fifth questions, he would have scored as much as 3 points.
+
+Sample 2. Now Manao answered 4 questions. The minimum possible score is obtained when the only wrong answer is to the question 4.
+
+Also note that you are asked to minimize the score and not the remainder of the score modulo 1000000009. For example, if Manao could obtain either 2000000000 or 2000000020 points, the answer is 2000000000 mod 1000000009, even though 2000000020 mod 1000000009 is a smaller number.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 214
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: In a building where Polycarp lives there are equal number of flats on each floor. Unfortunately, Polycarp don't remember how many flats are on each floor, but he remembers that the flats are numbered from 1 from lower to upper floors. That is, the first several flats are on the first floor, the next several flats are on the second and so on. Polycarp don't remember the total number of flats in the building, so you can consider the building to be infinitely high (i.e. there are infinitely many floors). Note that the floors are numbered from 1.
+
+Polycarp remembers on which floors several flats are located. It is guaranteed that this information is not self-contradictory. It means that there exists a building with equal number of flats on each floor so that the flats from Polycarp's memory have the floors Polycarp remembers.
+
+Given this information, is it possible to restore the exact floor for flat n? 
+
+
+-----Input-----
+
+The first line contains two integers n and m (1 ≤ n ≤ 100, 0 ≤ m ≤ 100), where n is the number of the flat you need to restore floor for, and m is the number of flats in Polycarp's memory.
+
+m lines follow, describing the Polycarp's memory: each of these lines contains a pair of integers k_{i}, f_{i} (1 ≤ k_{i} ≤ 100, 1 ≤ f_{i} ≤ 100), which means that the flat k_{i} is on the f_{i}-th floor. All values k_{i} are distinct.
+
+It is guaranteed that the given information is not self-contradictory.
+
+
+-----Output-----
+
+Print the number of the floor in which the n-th flat is located, if it is possible to determine it in a unique way. Print -1 if it is not possible to uniquely restore this floor.
+
+
+-----Examples-----
+Input
+10 3
+6 2
+2 1
+7 3
+
+Output
+4
+
+Input
+8 4
+3 1
+6 2
+5 2
+2 1
+
+Output
+-1
+
+
+
+-----Note-----
+
+In the first example the 6-th flat is on the 2-nd floor, while the 7-th flat is on the 3-rd, so, the 6-th flat is the last on its floor and there are 3 flats on each floor. Thus, the 10-th flat is on the 4-th floor.
+
+In the second example there can be 3 or 4 flats on each floor, so we can't restore the floor for the 8-th flat.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': False, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': True}
+DEBUG - Start Task 220
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: A sportsman starts from point x_{start} = 0 and runs to point with coordinate x_{finish} = m (on a straight line). Also, the sportsman can jump — to jump, he should first take a run of length of not less than s meters (in this case for these s meters his path should have no obstacles), and after that he can jump over a length of not more than d meters. Running and jumping is permitted only in the direction from left to right. He can start andfinish a jump only at the points with integer coordinates in which there are no obstacles. To overcome some obstacle, it is necessary to land at a point which is strictly to the right of this obstacle.
+
+On the way of an athlete are n obstacles at coordinates x_1, x_2, ..., x_{n}. He cannot go over the obstacles, he can only jump over them. Your task is to determine whether the athlete will be able to get to the finish point.
+
+
+-----Input-----
+
+The first line of the input containsd four integers n, m, s and d (1 ≤ n ≤ 200 000, 2 ≤ m ≤ 10^9, 1 ≤ s, d ≤ 10^9) — the number of obstacles on the runner's way, the coordinate of the finishing point, the length of running before the jump and the maximum length of the jump, correspondingly.
+
+The second line contains a sequence of n integers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ m - 1) — the coordinates of the obstacles. It is guaranteed that the starting and finishing point have no obstacles, also no point can have more than one obstacle, The coordinates of the obstacles are given in an arbitrary order.
+
+
+-----Output-----
+
+If the runner cannot reach the finishing point, print in the first line of the output "IMPOSSIBLE" (without the quotes).
+
+If the athlete can get from start to finish, print any way to do this in the following format:  print a line of form "RUN X>" (where "X" should be a positive integer), if the athlete should run for "X" more meters;  print a line of form "JUMP Y" (where "Y" should be a positive integer), if the sportsman starts a jump and should remain in air for "Y" more meters. 
+
+All commands "RUN" and "JUMP" should strictly alternate, starting with "RUN", besides, they should be printed chronologically. It is not allowed to jump over the finishing point but it is allowed to land there after a jump. The athlete should stop as soon as he reaches finish.
+
+
+-----Examples-----
+Input
+3 10 1 3
+3 4 7
+
+Output
+RUN 2
+JUMP 3
+RUN 1
+JUMP 2
+RUN 2
+
+Input
+2 9 2 3
+6 4
+
+Output
+IMPOSSIBLE
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 237
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: A necklace can be described as a string of links ('-') and pearls ('o'), with the last link or pearl connected to the first one. $0$ 
+
+You can remove a link or a pearl and insert it between two other existing links or pearls (or between a link and a pearl) on the necklace. This process can be repeated as many times as you like, but you can't throw away any parts.
+
+Can you make the number of links between every two adjacent pearls equal? Two pearls are considered to be adjacent if there is no other pearl between them.
+
+Note that the final necklace should remain as one circular part of the same length as the initial necklace.
+
+
+-----Input-----
+
+The only line of input contains a string $s$ ($3 \leq |s| \leq 100$), representing the necklace, where a dash '-' represents a link and the lowercase English letter 'o' represents a pearl.
+
+
+-----Output-----
+
+Print "YES" if the links and pearls can be rejoined such that the number of links between adjacent pearls is equal. Otherwise print "NO".
+
+You can print each letter in any case (upper or lower).
+
+
+-----Examples-----
+Input
+-o-o--
+Output
+YES
+Input
+-o---
+
+Output
+YES
+Input
+-o---o-
+
+Output
+NO
+Input
+ooo
+
+Output
+YES
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 239
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: You are given an array $a_1, a_2, \dots , a_n$ and two integers $m$ and $k$.
+
+You can choose some subarray $a_l, a_{l+1}, \dots, a_{r-1}, a_r$. 
+
+The cost of subarray $a_l, a_{l+1}, \dots, a_{r-1}, a_r$ is equal to $\sum\limits_{i=l}^{r} a_i - k \lceil \frac{r - l + 1}{m} \rceil$, where $\lceil x \rceil$ is the least integer greater than or equal to $x$. 
+
+The cost of empty subarray is equal to zero.
+
+For example, if $m = 3$, $k = 10$ and $a = [2, -4, 15, -3, 4, 8, 3]$, then the cost of some subarrays are:  $a_3 \dots a_3: 15 - k \lceil \frac{1}{3} \rceil = 15 - 10 = 5$;  $a_3 \dots a_4: (15 - 3) - k \lceil \frac{2}{3} \rceil = 12 - 10 = 2$;  $a_3 \dots a_5: (15 - 3 + 4) - k \lceil \frac{3}{3} \rceil = 16 - 10 = 6$;  $a_3 \dots a_6: (15 - 3 + 4 + 8) - k \lceil \frac{4}{3} \rceil = 24 - 20 = 4$;  $a_3 \dots a_7: (15 - 3 + 4 + 8 + 3) - k \lceil \frac{5}{3} \rceil = 27 - 20 = 7$. 
+
+Your task is to find the maximum cost of some subarray (possibly empty) of array $a$.
+
+
+-----Input-----
+
+The first line contains three integers $n$, $m$, and $k$ ($1 \le n \le 3 \cdot 10^5, 1 \le m \le 10, 1 \le k \le 10^9$).
+
+The second line contains $n$ integers $a_1, a_2, \dots, a_n$ ($-10^9 \le a_i \le 10^9$).
+
+
+-----Output-----
+
+Print the maximum cost of some subarray of array $a$.
+
+
+-----Examples-----
+Input
+7 3 10
+2 -4 15 -3 4 8 3
+
+Output
+7
+
+Input
+5 2 1000
+-13 -4 -9 -20 -11
+
+Output
+0
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 242
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Not so long ago company R2 bought company R1 and consequently, all its developments in the field of multicore processors. Now the R2 laboratory is testing one of the R1 processors.
+
+The testing goes in n steps, at each step the processor gets some instructions, and then its temperature is measured. The head engineer in R2 is keeping a report record on the work of the processor: he writes down the minimum and the maximum measured temperature in his notebook. His assistant had to write down all temperatures into his notebook, but (for unknown reasons) he recorded only m.
+
+The next day, the engineer's assistant filed in a report with all the m temperatures. However, the chief engineer doubts that the assistant wrote down everything correctly (naturally, the chief engineer doesn't doubt his notes). So he asked you to help him. Given numbers n, m, min, max and the list of m temperatures determine whether you can upgrade the set of m temperatures to the set of n temperatures (that is add n - m temperatures), so that the minimum temperature was min and the maximum one was max.
+
+
+-----Input-----
+
+The first line contains four integers n, m, min, max (1 ≤ m < n ≤ 100; 1 ≤ min < max ≤ 100). The second line contains m space-separated integers t_{i} (1 ≤ t_{i} ≤ 100) — the temperatures reported by the assistant.
+
+Note, that the reported temperatures, and the temperatures you want to add can contain equal temperatures.
+
+
+-----Output-----
+
+If the data is consistent, print 'Correct' (without the quotes). Otherwise, print 'Incorrect' (without the quotes).
+
+
+-----Examples-----
+Input
+2 1 1 2
+1
+
+Output
+Correct
+
+Input
+3 1 1 3
+2
+
+Output
+Correct
+
+Input
+2 1 1 3
+2
+
+Output
+Incorrect
+
+
+
+-----Note-----
+
+In the first test sample one of the possible initial configurations of temperatures is [1, 2].
+
+In the second test sample one of the possible initial configurations of temperatures is [2, 1, 3].
+
+In the third test sample it is impossible to add one temperature to obtain the minimum equal to 1 and the maximum equal to 3.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 245
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Bomboslav likes to look out of the window in his room and watch lads outside playing famous shell game. The game is played by two persons: operator and player. Operator takes three similar opaque shells and places a ball beneath one of them. Then he shuffles the shells by swapping some pairs and the player has to guess the current position of the ball.
+
+Bomboslav noticed that guys are not very inventive, so the operator always swaps the left shell with the middle one during odd moves (first, third, fifth, etc.) and always swaps the middle shell with the right one during even moves (second, fourth, etc.).
+
+Let's number shells from 0 to 2 from left to right. Thus the left shell is assigned number 0, the middle shell is 1 and the right shell is 2. Bomboslav has missed the moment when the ball was placed beneath the shell, but he knows that exactly n movements were made by the operator and the ball was under shell x at the end. Now he wonders, what was the initial position of the ball?
+
+
+-----Input-----
+
+The first line of the input contains an integer n (1 ≤ n ≤ 2·10^9) — the number of movements made by the operator.
+
+The second line contains a single integer x (0 ≤ x ≤ 2) — the index of the shell where the ball was found after n movements.
+
+
+-----Output-----
+
+Print one integer from 0 to 2 — the index of the shell where the ball was initially placed.
+
+
+-----Examples-----
+Input
+4
+2
+
+Output
+1
+
+Input
+1
+1
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first sample, the ball was initially placed beneath the middle shell and the operator completed four movements.  During the first move operator swapped the left shell and the middle shell. The ball is now under the left shell.  During the second move operator swapped the middle shell and the right one. The ball is still under the left shell.  During the third move operator swapped the left shell and the middle shell again. The ball is again in the middle.  Finally, the operators swapped the middle shell and the right shell. The ball is now beneath the right shell.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 250
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Valery is a PE teacher at a school in Berland. Soon the students are going to take a test in long jumps, and Valery has lost his favorite ruler! 
+
+However, there is no reason for disappointment, as Valery has found another ruler, its length is l centimeters. The ruler already has n marks, with which he can make measurements. We assume that the marks are numbered from 1 to n in the order they appear from the beginning of the ruler to its end. The first point coincides with the beginning of the ruler and represents the origin. The last mark coincides with the end of the ruler, at distance l from the origin. This ruler can be repesented by an increasing sequence a_1, a_2, ..., a_{n}, where a_{i} denotes the distance of the i-th mark from the origin (a_1 = 0, a_{n} = l).
+
+Valery believes that with a ruler he can measure the distance of d centimeters, if there is a pair of integers i and j (1 ≤ i ≤ j ≤ n), such that the distance between the i-th and the j-th mark is exactly equal to d (in other words, a_{j} - a_{i} = d). 
+
+Under the rules, the girls should be able to jump at least x centimeters, and the boys should be able to jump at least y (x < y) centimeters. To test the children's abilities, Valery needs a ruler to measure each of the distances x and y. 
+
+Your task is to determine what is the minimum number of additional marks you need to add on the ruler so that they can be used to measure the distances x and y. Valery can add the marks at any integer non-negative distance from the origin not exceeding the length of the ruler.
+
+
+-----Input-----
+
+The first line contains four positive space-separated integers n, l, x, y (2 ≤ n ≤ 10^5, 2 ≤ l ≤ 10^9, 1 ≤ x < y ≤ l) — the number of marks, the length of the ruler and the jump norms for girls and boys, correspondingly.
+
+The second line contains a sequence of n integers a_1, a_2, ..., a_{n} (0 = a_1 < a_2 < ... < a_{n} = l), where a_{i} shows the distance from the i-th mark to the origin.
+
+
+-----Output-----
+
+In the first line print a single non-negative integer v — the minimum number of marks that you need to add on the ruler.
+
+In the second line print v space-separated integers p_1, p_2, ..., p_{v} (0 ≤ p_{i} ≤ l). Number p_{i} means that the i-th mark should be at the distance of p_{i} centimeters from the origin. Print the marks in any order. If there are multiple solutions, print any of them.
+
+
+-----Examples-----
+Input
+3 250 185 230
+0 185 250
+
+Output
+1
+230
+
+Input
+4 250 185 230
+0 20 185 250
+
+Output
+0
+
+Input
+2 300 185 230
+0 300
+
+Output
+2
+185 230
+
+
+
+-----Note-----
+
+In the first sample it is impossible to initially measure the distance of 230 centimeters. For that it is enough to add a 20 centimeter mark or a 230 centimeter mark.
+
+In the second sample you already can use the ruler to measure the distances of 185 and 230 centimeters, so you don't have to add new marks.
+
+In the third sample the ruler only contains the initial and the final marks. We will need to add two marks to be able to test the children's skills.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 257
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Kicker (table football) is a board game based on football, in which players control the footballers' figures mounted on rods by using bars to get the ball into the opponent's goal. When playing two on two, one player of each team controls the goalkeeper and the full-backs (plays defence), the other player controls the half-backs and forwards (plays attack).
+
+Two teams of company Q decided to battle each other. Let's enumerate players from both teams by integers from 1 to 4. The first and second player play in the first team, the third and the fourth one play in the second team. For each of the four players we know their game skills in defence and attack. The defence skill of the i-th player is a_{i}, the attack skill is b_{i}.
+
+Before the game, the teams determine how they will play. First the players of the first team decide who will play in the attack, and who will play in the defence. Then the second team players do the same, based on the choice of their opponents.
+
+We will define a team's defence as the defence skill of player of the team who plays defence. Similarly, a team's attack is the attack skill of the player of the team who plays attack. We assume that one team is guaranteed to beat the other one, if its defence is strictly greater than the opponent's attack and its attack is strictly greater than the opponent's defence.
+
+The teams of company Q know each other's strengths and therefore arrange their teams optimally. Identify the team that is guaranteed to win (if both teams act optimally) or tell that there is no such team.
+
+
+-----Input-----
+
+The input contain the players' description in four lines. The i-th line contains two space-separated integers a_{i} and b_{i} (1 ≤ a_{i}, b_{i} ≤ 100) — the defence and the attack skill of the i-th player, correspondingly.
+
+
+-----Output-----
+
+If the first team can win, print phrase "Team 1" (without the quotes), if the second team can win, print phrase "Team 2" (without the quotes). If no of the teams can definitely win, print "Draw" (without the quotes).
+
+
+-----Examples-----
+Input
+1 100
+100 1
+99 99
+99 99
+
+Output
+Team 1
+
+Input
+1 1
+2 2
+3 3
+2 2
+
+Output
+Team 2
+
+Input
+3 3
+2 2
+1 1
+2 2
+
+Output
+Draw
+
+
+
+-----Note-----
+
+Let consider the first test sample. The first team can definitely win if it will choose the following arrangement: the first player plays attack, the second player plays defence.
+
+Consider the second sample. The order of the choosing roles for players makes sense in this sample. As the members of the first team choose first, the members of the second team can beat them (because they know the exact defence value and attack value of the first team).
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': True, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 259
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Monocarp and Bicarp live in Berland, where every bus ticket consists of $n$ digits ($n$ is an even number). During the evening walk Monocarp and Bicarp found a ticket where some of the digits have been erased. The number of digits that have been erased is even.
+
+Monocarp and Bicarp have decided to play a game with this ticket. Monocarp hates happy tickets, while Bicarp collects them. A ticket is considered happy if the sum of the first $\frac{n}{2}$ digits of this ticket is equal to the sum of the last $\frac{n}{2}$ digits.
+
+Monocarp and Bicarp take turns (and Monocarp performs the first of them). During each turn, the current player must replace any erased digit with any digit from $0$ to $9$. The game ends when there are no erased digits in the ticket.
+
+If the ticket is happy after all erased digits are replaced with decimal digits, then Bicarp wins. Otherwise, Monocarp wins. You have to determine who will win if both players play optimally.
+
+
+-----Input-----
+
+The first line contains one even integer $n$ $(2 \le n \le 2 \cdot 10^{5})$ — the number of digits in the ticket.
+
+The second line contains a string of $n$ digits and "?" characters — the ticket which Monocarp and Bicarp have found. If the $i$-th character is "?", then the $i$-th digit is erased. Note that there may be leading zeroes. The number of "?" characters is even.
+
+
+-----Output-----
+
+If Monocarp wins, print "Monocarp" (without quotes). Otherwise print "Bicarp" (without quotes).
+
+
+-----Examples-----
+Input
+4
+0523
+
+Output
+Bicarp
+
+Input
+2
+??
+
+Output
+Bicarp
+
+Input
+8
+?054??0?
+
+Output
+Bicarp
+
+Input
+6
+???00?
+
+Output
+Monocarp
+
+
+
+-----Note-----
+
+Since there is no question mark in the ticket in the first example, the winner is determined before the game even starts, and it is Bicarp.
+
+In the second example, Bicarp also wins. After Monocarp chooses an erased digit and replaces it with a new one, Bicap can choose another position with an erased digit and replace it with the same digit, so the ticket is happy.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 266
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: A company of $n$ friends wants to order exactly two pizzas. It is known that in total there are $9$ pizza ingredients in nature, which are denoted by integers from $1$ to $9$.
+
+Each of the $n$ friends has one or more favorite ingredients: the $i$-th of friends has the number of favorite ingredients equal to $f_i$ ($1 \le f_i \le 9$) and your favorite ingredients form the sequence $b_{i1}, b_{i2}, \dots, b_{if_i}$ ($1 \le b_{it} \le 9$).
+
+The website of CodePizza restaurant has exactly $m$ ($m \ge 2$) pizzas. Each pizza is characterized by a set of $r_j$ ingredients $a_{j1}, a_{j2}, \dots, a_{jr_j}$ ($1 \le r_j \le 9$, $1 \le a_{jt} \le 9$) , which are included in it, and its price is $c_j$.
+
+Help your friends choose exactly two pizzas in such a way as to please the maximum number of people in the company. It is known that a person is pleased with the choice if each of his/her favorite ingredients is in at least one ordered pizza. If there are several ways to choose two pizzas so as to please the maximum number of friends, then choose the one that minimizes the total price of two pizzas.
+
+
+-----Input-----
+
+The first line of the input contains two integers $n$ and $m$ ($1 \le n \le 10^5, 2 \le m \le 10^5$) — the number of friends in the company and the number of pizzas, respectively.
+
+Next, the $n$ lines contain descriptions of favorite ingredients of the friends: the $i$-th of them contains the number of favorite ingredients $f_i$ ($1 \le f_i \le 9$) and a sequence of distinct integers $b_{i1}, b_{i2}, \dots, b_{if_i}$ ($1 \le b_{it} \le 9$).
+
+Next, the $m$ lines contain pizza descriptions: the $j$-th of them contains the integer price of the pizza $c_j$ ($1 \le c_j \le 10^9$), the number of ingredients $r_j$ ($1 \le r_j \le 9$) and the ingredients themselves as a sequence of distinct integers $a_{j1}, a_{j2}, \dots, a_{jr_j}$ ($1 \le a_{jt} \le 9$).
+
+
+-----Output-----
+
+Output two integers $j_1$ and $j_2$ ($1 \le j_1,j_2 \le m$, $j_1 \ne j_2$) denoting the indices of two pizzas in the required set. If there are several solutions, output any of them. Pizza indices can be printed in any order.
+
+
+-----Examples-----
+Input
+3 4
+2 6 7
+4 2 3 9 5
+3 2 3 9
+100 1 7
+400 3 3 2 5
+100 2 9 2
+500 3 2 9 5
+
+Output
+2 3
+
+Input
+4 3
+1 1
+1 2
+1 3
+1 4
+10 4 1 2 3 4
+20 4 1 2 3 4
+30 4 1 2 3 4
+
+Output
+1 2
+
+Input
+1 5
+9 9 8 7 6 5 4 3 2 1
+3 4 1 2 3 4
+1 4 5 6 7 8
+4 4 1 3 5 7
+1 4 2 4 6 8
+5 4 1 9 2 8
+
+Output
+2 4
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 275
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: A sequence of square brackets is regular if by inserting symbols "+" and "1" into it, you can get a regular mathematical expression from it. For example, sequences "[[]][]", "[]" and "[[][[]]]" — are regular, at the same time "][", "[[]" and "[[]]][" — are irregular. 
+
+Draw the given sequence using a minimalistic pseudographics in the strip of the lowest possible height — use symbols '+', '-' and '|'. For example, the sequence "[[][]][]" should be represented as: 
+
++-        -++- -+    
+
+|+- -++- -+||   |
+
+||   ||   |||   |
+
+|+- -++- -+||   |
+
++-        -++- -+
+
+
+
+Each bracket should be represented with the hepl of one or more symbols '|' (the vertical part) and symbols '+' and '-' as on the example which is given above.
+
+Brackets should be drawn without spaces one by one, only dividing pairs of consecutive pairwise brackets with a single-space bar (so that the two brackets do not visually merge into one symbol). The image should have the minimum possible height. 
+
+The enclosed bracket is always smaller than the surrounding bracket, but each bracket separately strives to maximize the height of the image. So the pair of final brackets in the example above occupies the entire height of the image.
+
+Study carefully the examples below, they adequately explain the condition of the problem. Pay attention that in this problem the answer (the image) is unique. 
+
+
+-----Input-----
+
+The first line contains an even integer n (2 ≤ n ≤ 100) — the length of the sequence of brackets.
+
+The second line contains the sequence of brackets — these are n symbols "[" and "]". It is guaranteed that the given sequence of brackets is regular. 
+
+
+-----Output-----
+
+Print the drawn bracket sequence in the format which is given in the condition. Don't print extra (unnecessary) spaces. 
+
+
+-----Examples-----
+Input
+8
+[[][]][]
+
+Output
++-        -++- -+
+|+- -++- -+||   |
+||   ||   |||   |
+|+- -++- -+||   |
++-        -++- -+
+
+Input
+6
+[[[]]]
+
+Output
++-     -+
+|+-   -+|
+||+- -+||
+|||   |||
+||+- -+||
+|+-   -+|
++-     -+
+
+Input
+6
+[[][]]
+
+Output
++-        -+
+|+- -++- -+|
+||   ||   ||
+|+- -++- -+|
++-        -+
+
+Input
+2
+[]
+
+Output
++- -+
+|   |
++- -+
+
+Input
+4
+[][]
+
+Output
++- -++- -+
+|   ||   |
++- -++- -+
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 280
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: The on-board computer on Polycarp's car measured that the car speed at the beginning of some section of the path equals v_1 meters per second, and in the end it is v_2 meters per second. We know that this section of the route took exactly t seconds to pass.
+
+Assuming that at each of the seconds the speed is constant, and between seconds the speed can change at most by d meters per second in absolute value (i.e., the difference in the speed of any two adjacent seconds does not exceed d in absolute value), find the maximum possible length of the path section in meters.
+
+
+-----Input-----
+
+The first line contains two integers v_1 and v_2 (1 ≤ v_1, v_2 ≤ 100) — the speeds in meters per second at the beginning of the segment and at the end of the segment, respectively.
+
+The second line contains two integers t (2 ≤ t ≤ 100) — the time when the car moves along the segment in seconds, d (0 ≤ d ≤ 10) — the maximum value of the speed change between adjacent seconds.
+
+It is guaranteed that there is a way to complete the segment so that:  the speed in the first second equals v_1,  the speed in the last second equals v_2,  the absolute value of difference of speeds between any two adjacent seconds doesn't exceed d. 
+
+
+-----Output-----
+
+Print the maximum possible length of the path segment in meters. 
+
+
+-----Examples-----
+Input
+5 6
+4 2
+
+Output
+26
+Input
+10 10
+10 0
+
+Output
+100
+
+
+-----Note-----
+
+In the first sample the sequence of speeds of Polycarpus' car can look as follows: 5, 7, 8, 6. Thus, the total path is 5 + 7 + 8 + 6 = 26 meters.
+
+In the second sample, as d = 0, the car covers the whole segment at constant speed v = 10. In t = 10 seconds it covers the distance of 100 meters.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': False}
+DEBUG - Start Task 297
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Vasya should paint a fence in front of his own cottage. The fence is a sequence of n wooden boards arranged in a single row. Each board is a 1 centimeter wide rectangle. Let's number the board fence using numbers 1, 2, ..., n from left to right. The height of the i-th board is h_{i} centimeters.
+
+Vasya has a 1 centimeter wide brush and the paint of two colors, red and green. Of course, the amount of the paint is limited. Vasya counted the area he can paint each of the colors. It turned out that he can not paint over a square centimeters of the fence red, and he can not paint over b square centimeters green. Each board of the fence should be painted exactly one of the two colors. Perhaps Vasya won't need one of the colors.
+
+In addition, Vasya wants his fence to look smart. To do this, he should paint the fence so as to minimize the value that Vasya called the fence unattractiveness value. Vasya believes that two consecutive fence boards, painted different colors, look unattractive. The unattractiveness value of a fence is the total length of contact between the neighboring boards of various colors. To make the fence look nice, you need to minimize the value as low as possible. Your task is to find what is the minimum unattractiveness Vasya can get, if he paints his fence completely. $1$ 
+
+The picture shows the fence, where the heights of boards (from left to right) are 2,3,2,4,3,1. The first and the fifth boards are painted red, the others are painted green. The first and the second boards have contact length 2, the fourth and fifth boards have contact length 3, the fifth and the sixth have contact length 1. Therefore, the unattractiveness of the given painted fence is 2+3+1=6.
+
+
+-----Input-----
+
+The first line contains a single integer n (1 ≤ n ≤ 200) — the number of boards in Vasya's fence.
+
+The second line contains two integers a and b (0 ≤ a, b ≤ 4·10^4) — the area that can be painted red and the area that can be painted green, correspondingly.
+
+The third line contains a sequence of n integers h_1, h_2, ..., h_{n} (1 ≤ h_{i} ≤ 200) — the heights of the fence boards.
+
+All numbers in the lines are separated by single spaces.
+
+
+-----Output-----
+
+Print a single number — the minimum unattractiveness value Vasya can get if he paints his fence completely. If it is impossible to do, print  - 1.
+
+
+-----Examples-----
+Input
+4
+5 7
+3 3 4 1
+
+Output
+3
+
+Input
+3
+2 3
+1 3 1
+
+Output
+2
+
+Input
+3
+3 3
+2 2 2
+
+Output
+-1
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': False}
+DEBUG - Start Task 298
+DEBUG - Dataset: apps
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Vasya has got three integers $n$, $m$ and $k$. He'd like to find three integer points $(x_1, y_1)$, $(x_2, y_2)$, $(x_3, y_3)$, such that $0 \le x_1, x_2, x_3 \le n$, $0 \le y_1, y_2, y_3 \le m$ and the area of the triangle formed by these points is equal to $\frac{nm}{k}$.
+
+Help Vasya! Find such points (if it's possible). If there are multiple solutions, print any of them.
+
+
+-----Input-----
+
+The single line contains three integers $n$, $m$, $k$ ($1\le n, m \le 10^9$, $2 \le k \le 10^9$).
+
+
+-----Output-----
+
+If there are no such points, print "NO".
+
+Otherwise print "YES" in the first line. The next three lines should contain integers $x_i, y_i$ — coordinates of the points, one point per line. If there are multiple solutions, print any of them.
+
+You can print each letter in any case (upper or lower).
+
+
+-----Examples-----
+Input
+4 3 3
+
+Output
+YES
+1 0
+2 3
+4 1
+
+Input
+4 4 7
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first example area of the triangle should be equal to $\frac{nm}{k} = 4$. The triangle mentioned in the output is pictured below:  [Image] 
+
+In the second example there is no triangle with area $\frac{nm}{k} = \frac{16}{7}$.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 6
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Luba is surfing the Internet. She currently has n opened tabs in her browser, indexed from 1 to n from left to right. The mouse cursor is currently located at the pos-th tab. Luba needs to use the tabs with indices from l to r (inclusive) for her studies, and she wants to close all the tabs that don't belong to this segment as fast as possible.
+
+Each second Luba can either try moving the cursor to the left or to the right (if the cursor is currently at the tab i, then she can move it to the tab max(i - 1, a) or to the tab min(i + 1, b)) or try closing all the tabs to the left or to the right of the cursor (if the cursor is currently at the tab i, she can close all the tabs with indices from segment [a, i - 1] or from segment [i + 1, b]). In the aforementioned expressions a and b denote the minimum and maximum index of an unclosed tab, respectively. For example, if there were 7 tabs initially and tabs 1, 2 and 7 are closed, then a = 3, b = 6.
+
+What is the minimum number of seconds Luba has to spend in order to leave only the tabs with initial indices from l to r inclusive opened?
+
+
+-----Input-----
+
+The only line of input contains four integer numbers n, pos, l, r (1 ≤ n ≤ 100, 1 ≤ pos ≤ n, 1 ≤ l ≤ r ≤ n) — the number of the tabs, the cursor position and the segment which Luba needs to leave opened.
+
+
+-----Output-----
+
+Print one integer equal to the minimum number of seconds required to close all the tabs outside the segment [l, r].
+
+
+-----Examples-----
+Input
+6 3 2 4
+
+Output
+5
+
+Input
+6 3 1 3
+
+Output
+1
+
+Input
+5 2 1 5
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first test Luba can do the following operations: shift the mouse cursor to the tab 2, close all the tabs to the left of it, shift the mouse cursor to the tab 3, then to the tab 4, and then close all the tabs to the right of it.
+
+In the second test she only needs to close all the tabs to the right of the current position of the cursor.
+
+In the third test Luba doesn't need to do anything.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 26
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: You are given matrix with n rows and n columns filled with zeroes. You should put k ones in it in such a way that the resulting matrix is symmetrical with respect to the main diagonal (the diagonal that goes from the top left to the bottom right corner) and is lexicographically maximal.
+
+One matrix is lexicographically greater than the other if the first different number in the first different row from the top in the first matrix is greater than the corresponding number in the second one.
+
+If there exists no such matrix then output -1.
+
+
+-----Input-----
+
+The first line consists of two numbers n and k (1 ≤ n ≤ 100, 0 ≤ k ≤ 10^6).
+
+
+-----Output-----
+
+If the answer exists then output resulting matrix. Otherwise output -1.
+
+
+-----Examples-----
+Input
+2 1
+
+Output
+1 0 
+0 0 
+
+Input
+3 2
+
+Output
+1 0 0 
+0 1 0 
+0 0 0 
+
+Input
+2 5
+
+Output
+-1
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': False}
+DEBUG - Start Task 41
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Is it rated?
+
+Here it is. The Ultimate Question of Competitive Programming, Codeforces, and Everything. And you are here to answer it.
+
+Another Codeforces round has been conducted. No two participants have the same number of points. For each participant, from the top to the bottom of the standings, their rating before and after the round is known.
+
+It's known that if at least one participant's rating has changed, then the round was rated for sure.
+
+It's also known that if the round was rated and a participant with lower rating took a better place in the standings than a participant with higher rating, then at least one round participant's rating has changed.
+
+In this problem, you should not make any other assumptions about the rating system.
+
+Determine if the current round is rated, unrated, or it's impossible to determine whether it is rated of not.
+
+
+-----Input-----
+
+The first line contains a single integer n (2 ≤ n ≤ 1000) — the number of round participants.
+
+Each of the next n lines contains two integers a_{i} and b_{i} (1 ≤ a_{i}, b_{i} ≤ 4126) — the rating of the i-th participant before and after the round, respectively. The participants are listed in order from the top to the bottom of the standings.
+
+
+-----Output-----
+
+If the round is rated for sure, print "rated". If the round is unrated for sure, print "unrated". If it's impossible to determine whether the round is rated or not, print "maybe".
+
+
+-----Examples-----
+Input
+6
+3060 3060
+2194 2194
+2876 2903
+2624 2624
+3007 2991
+2884 2884
+
+Output
+rated
+
+Input
+4
+1500 1500
+1300 1300
+1200 1200
+1400 1400
+
+Output
+unrated
+
+Input
+5
+3123 3123
+2777 2777
+2246 2246
+2246 2246
+1699 1699
+
+Output
+maybe
+
+
+
+-----Note-----
+
+In the first example, the ratings of the participants in the third and fifth places have changed, therefore, the round was rated.
+
+In the second example, no one's rating has changed, but the participant in the second place has lower rating than the participant in the fourth place. Therefore, if the round was rated, someone's rating would've changed for sure.
+
+In the third example, no one's rating has changed, and the participants took places in non-increasing order of their rating. Therefore, it's impossible to determine whether the round is rated or not.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 47
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: After finishing eating her bun, Alyona came up with two integers n and m. She decided to write down two columns of integers — the first column containing integers from 1 to n and the second containing integers from 1 to m. Now the girl wants to count how many pairs of integers she can choose, one from the first column and the other from the second column, such that their sum is divisible by 5.
+
+Formally, Alyona wants to count the number of pairs of integers (x, y) such that 1 ≤ x ≤ n, 1 ≤ y ≤ m and $(x + y) \operatorname{mod} 5$ equals 0.
+
+As usual, Alyona has some troubles and asks you to help.
+
+
+-----Input-----
+
+The only line of the input contains two integers n and m (1 ≤ n, m ≤ 1 000 000).
+
+
+-----Output-----
+
+Print the only integer — the number of pairs of integers (x, y) such that 1 ≤ x ≤ n, 1 ≤ y ≤ m and (x + y) is divisible by 5.
+
+
+-----Examples-----
+Input
+6 12
+
+Output
+14
+
+Input
+11 14
+
+Output
+31
+
+Input
+1 5
+
+Output
+1
+
+Input
+3 8
+
+Output
+5
+
+Input
+5 7
+
+Output
+7
+
+Input
+21 21
+
+Output
+88
+
+
+
+-----Note-----
+
+Following pairs are suitable in the first sample case:   for x = 1 fits y equal to 4 or 9;  for x = 2 fits y equal to 3 or 8;  for x = 3 fits y equal to 2, 7 or 12;  for x = 4 fits y equal to 1, 6 or 11;  for x = 5 fits y equal to 5 or 10;  for x = 6 fits y equal to 4 or 9. 
+
+Only the pair (1, 4) is suitable in the third sample case.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 52
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: В Берляндском государственном университете локальная сеть между серверами не всегда работает без ошибок. При передаче двух одинаковых сообщений подряд возможна ошибка, в результате которой эти два сообщения сливаются в одно. При таком слиянии конец первого сообщения совмещается с началом второго. Конечно, совмещение может происходить только по одинаковым символам. Длина совмещения должна быть положительным числом, меньшим длины текста сообщения. 
+
+Например, при передаче двух сообщений «abrakadabra» подряд возможно, что оно будет передано с ошибкой описанного вида, и тогда будет получено сообщение вида «abrakadabrabrakadabra» или «abrakadabrakadabra» (в первом случае совмещение произошло по одному символу, а во втором — по четырем).
+
+По полученному сообщению t определите, возможно ли, что это результат ошибки описанного вида работы локальной сети, и если возможно, определите возможное значение s. 
+
+Не следует считать ошибкой ситуацию полного наложения друга на друга двух сообщений. К примеру, если получено сообщение «abcd», следует считать, что в нём ошибки нет. Аналогично, простое дописывание одного сообщения вслед за другим не является признаком ошибки. Например, если получено сообщение «abcabc», следует считать, что в нём ошибки нет.
+
+
+-----Входные данные-----
+
+В единственной строке выходных данных следует непустая строка t, состоящая из строчных букв латинского алфавита. Длина строки t не превосходит 100 символов.
+
+
+-----Выходные данные-----
+
+Если сообщение t не может содержать ошибки, выведите «NO» (без кавычек) в единственную строку выходных данных.
+
+В противном случае в первой строке выведите «YES» (без кавычек), а в следующей строке выведите строку s — возможное сообщение, которое могло привести к ошибке. Если возможных ответов несколько, разрешается вывести любой из них.
+
+
+-----Примеры-----
+Входные данные
+abrakadabrabrakadabra
+
+Выходные данные
+YES
+abrakadabra
+
+Входные данные
+acacacaca
+
+Выходные данные
+YES
+acaca
+
+Входные данные
+abcabc
+
+Выходные данные
+NO
+
+Входные данные
+abababab
+
+Выходные данные
+YES
+ababab
+
+Входные данные
+tatbt
+
+Выходные данные
+NO
+
+
+
+-----Примечание-----
+
+Во втором примере подходящим ответом также является строка acacaca.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 63
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Since most contestants do not read this part, I have to repeat that Bitlandians are quite weird. They have their own jobs, their own working method, their own lives, their own sausages and their own games!
+
+Since you are so curious about Bitland, I'll give you the chance of peeking at one of these games.
+
+BitLGM and BitAryo are playing yet another of their crazy-looking genius-needed Bitlandish games. They've got a sequence of n non-negative integers a_1, a_2, ..., a_{n}. The players make moves in turns. BitLGM moves first. Each player can and must do one of the two following actions in his turn:
+
+  Take one of the integers (we'll denote it as a_{i}). Choose integer x (1 ≤ x ≤ a_{i}). And then decrease a_{i} by x, that is, apply assignment: a_{i} = a_{i} - x.  Choose integer x $(1 \leq x \leq \operatorname{min}_{i = 1} a_{i})$. And then decrease all a_{i} by x, that is, apply assignment: a_{i} = a_{i} - x, for all i. 
+
+The player who cannot make a move loses.
+
+You're given the initial sequence a_1, a_2, ..., a_{n}. Determine who wins, if both players plays optimally well and if BitLGM and BitAryo start playing the described game in this sequence.
+
+
+-----Input-----
+
+The first line contains an integer n (1 ≤ n ≤ 3).
+
+The next line contains n integers a_1, a_2, ..., a_{n} (0 ≤ a_{i} < 300).
+
+
+-----Output-----
+
+Write the name of the winner (provided that both players play optimally well). Either "BitLGM" or "BitAryo" (without the quotes).
+
+
+-----Examples-----
+Input
+2
+1 1
+
+Output
+BitLGM
+
+Input
+2
+1 2
+
+Output
+BitAryo
+
+Input
+3
+1 2 1
+
+Output
+BitLGM
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': False}
+DEBUG - Start Task 77
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Berland Football Cup starts really soon! Commentators from all over the world come to the event.
+
+Organizers have already built $n$ commentary boxes. $m$ regional delegations will come to the Cup. Every delegation should get the same number of the commentary boxes. If any box is left unoccupied then the delegations will be upset. So each box should be occupied by exactly one delegation.
+
+If $n$ is not divisible by $m$, it is impossible to distribute the boxes to the delegations at the moment.
+
+Organizers can build a new commentary box paying $a$ burles and demolish a commentary box paying $b$ burles. They can both build and demolish boxes arbitrary number of times (each time paying a corresponding fee). It is allowed to demolish all the existing boxes.
+
+What is the minimal amount of burles organizers should pay to satisfy all the delegations (i.e. to make the number of the boxes be divisible by $m$)?
+
+
+-----Input-----
+
+The only line contains four integer numbers $n$, $m$, $a$ and $b$ ($1 \le n, m \le 10^{12}$, $1 \le a, b \le 100$), where $n$ is the initial number of the commentary boxes, $m$ is the number of delegations to come, $a$ is the fee to build a box and $b$ is the fee to demolish a box.
+
+
+-----Output-----
+
+Output the minimal amount of burles organizers should pay to satisfy all the delegations (i.e. to make the number of the boxes be divisible by $m$). It is allowed that the final number of the boxes is equal to $0$.
+
+
+-----Examples-----
+Input
+9 7 3 8
+
+Output
+15
+
+Input
+2 7 3 7
+
+Output
+14
+
+Input
+30 6 17 19
+
+Output
+0
+
+
+
+-----Note-----
+
+In the first example organizers can build $5$ boxes to make the total of $14$ paying $3$ burles for the each of them.
+
+In the second example organizers can demolish $2$ boxes to make the total of $0$ paying $7$ burles for the each of them.
+
+In the third example organizers are already able to distribute all the boxes equally among the delegations, each one get $5$ boxes.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': False, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 88
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Petr wants to make a calendar for current month. For this purpose he draws a table in which columns correspond to weeks (a week is seven consequent days from Monday to Sunday), rows correspond to weekdays, and cells contain dates. For example, a calendar for January 2017 should look like on the picture: $\left. \begin{array}{|r|r|r|r|r|r|} \hline & {2} & {9} & {16} & {23} & {30} \\ \hline & {3} & {10} & {17} & {24} & {31} \\ \hline & {4} & {11} & {18} & {25} & {} \\ \hline & {5} & {12} & {19} & {26} & {} \\ \hline & {6} & {13} & {20} & {27} & {} \\ \hline & {7} & {14} & {21} & {28} & {} \\ \hline 1 & {8} & {15} & {22} & {29} & {} \\ \hline \end{array} \right.$ 
+
+Petr wants to know how many columns his table should have given the month and the weekday of the first date of that month? Assume that the year is non-leap.
+
+
+-----Input-----
+
+The only line contain two integers m and d (1 ≤ m ≤ 12, 1 ≤ d ≤ 7) — the number of month (January is the first month, December is the twelfth) and the weekday of the first date of this month (1 is Monday, 7 is Sunday).
+
+
+-----Output-----
+
+Print single integer: the number of columns the table should have.
+
+
+-----Examples-----
+Input
+1 7
+
+Output
+6
+
+Input
+1 1
+
+Output
+5
+
+Input
+11 6
+
+Output
+5
+
+
+
+-----Note-----
+
+The first example corresponds to the January 2017 shown on the picture in the statements.
+
+In the second example 1-st January is Monday, so the whole month fits into 5 columns.
+
+In the third example 1-st November is Saturday and 5 columns is enough.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': False, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 114
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: For a given positive integer n denote its k-rounding as the minimum positive integer x, such that x ends with k or more zeros in base 10 and is divisible by n.
+
+For example, 4-rounding of 375 is 375·80 = 30000. 30000 is the minimum integer such that it ends with 4 or more zeros and is divisible by 375.
+
+Write a program that will perform the k-rounding of n.
+
+
+-----Input-----
+
+The only line contains two integers n and k (1 ≤ n ≤ 10^9, 0 ≤ k ≤ 8).
+
+
+-----Output-----
+
+Print the k-rounding of n.
+
+
+-----Examples-----
+Input
+375 4
+
+Output
+30000
+
+Input
+10000 1
+
+Output
+10000
+
+Input
+38101 0
+
+Output
+38101
+
+Input
+123456789 8
+
+Output
+12345678900000000
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': False, 'complex': True, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 135
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Katya studies in a fifth grade. Recently her class studied right triangles and the Pythagorean theorem. It appeared, that there are triples of positive integers such that you can construct a right triangle with segments of lengths corresponding to triple. Such triples are called Pythagorean triples.
+
+For example, triples (3, 4, 5), (5, 12, 13) and (6, 8, 10) are Pythagorean triples.
+
+Here Katya wondered if she can specify the length of some side of right triangle and find any Pythagorean triple corresponding to such length? Note that the side which length is specified can be a cathetus as well as hypotenuse.
+
+Katya had no problems with completing this task. Will you do the same?
+
+
+-----Input-----
+
+The only line of the input contains single integer n (1 ≤ n ≤ 10^9) — the length of some side of a right triangle.
+
+
+-----Output-----
+
+Print two integers m and k (1 ≤ m, k ≤ 10^18), such that n, m and k form a Pythagorean triple, in the only line.
+
+In case if there is no any Pythagorean triple containing integer n, print  - 1 in the only line. If there are many answers, print any of them.
+
+
+-----Examples-----
+Input
+3
+
+Output
+4 5
+Input
+6
+
+Output
+8 10
+Input
+1
+
+Output
+-1
+Input
+17
+
+Output
+144 145
+Input
+67
+
+Output
+2244 2245
+
+
+-----Note-----[Image]
+
+Illustration for the first sample.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': False, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 141
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: The mayor of the Central Town wants to modernize Central Street, represented in this problem by the $(Ox)$ axis.
+
+On this street, there are $n$ antennas, numbered from $1$ to $n$. The $i$-th antenna lies on the position $x_i$ and has an initial scope of $s_i$: it covers all integer positions inside the interval $[x_i - s_i; x_i + s_i]$.
+
+It is possible to increment the scope of any antenna by $1$, this operation costs $1$ coin. We can do this operation as much as we want (multiple times on the same antenna if we want).
+
+To modernize the street, we need to make all integer positions from $1$ to $m$ inclusive covered by at least one antenna. Note that it is authorized to cover positions outside $[1; m]$, even if it's not required.
+
+What is the minimum amount of coins needed to achieve this modernization?
+
+
+-----Input-----
+
+The first line contains two integers $n$ and $m$ ($1 \le n \le 80$ and $n \le m \le 100\ 000$).
+
+The $i$-th of the next $n$ lines contains two integers $x_i$ and $s_i$ ($1 \le x_i \le m$ and $0 \le s_i \le m$).
+
+On each position, there is at most one antenna (values $x_i$ are pairwise distinct).
+
+
+-----Output-----
+
+You have to output a single integer: the minimum amount of coins required to make all integer positions from $1$ to $m$ inclusive covered by at least one antenna.
+
+
+-----Examples-----
+Input
+3 595
+43 2
+300 4
+554 10
+
+Output
+281
+
+Input
+1 1
+1 1
+
+Output
+0
+
+Input
+2 50
+20 0
+3 1
+
+Output
+30
+
+Input
+5 240
+13 0
+50 25
+60 5
+155 70
+165 70
+
+Output
+26
+
+
+
+-----Note-----
+
+In the first example, here is a possible strategy:
+
+  Increase the scope of the first antenna by $40$, so that it becomes $2 + 40 = 42$. This antenna will cover interval $[43 - 42; 43 + 42]$ which is $[1; 85]$  Increase the scope of the second antenna by $210$, so that it becomes $4 + 210 = 214$. This antenna will cover interval $[300 - 214; 300 + 214]$, which is $[86; 514]$  Increase the scope of the third antenna by $31$, so that it becomes $10 + 31 = 41$. This antenna will cover interval $[554 - 41; 554 + 41]$, which is $[513; 595]$ 
+
+Total cost is $40 + 210 + 31 = 281$. We can prove that it's the minimum cost required to make all positions from $1$ to $595$ covered by at least one antenna.
+
+Note that positions $513$ and $514$ are in this solution covered by two different antennas, but it's not important.
+
+—
+
+In the second example, the first antenna already covers an interval $[0; 2]$ so we have nothing to do.
+
+Note that the only position that we needed to cover was position $1$; positions $0$ and $2$ are covered, but it's not important.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 143
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: A New Year party is not a New Year party without lemonade! As usual, you are expecting a lot of guests, and buying lemonade has already become a pleasant necessity.
+
+Your favorite store sells lemonade in bottles of n different volumes at different costs. A single bottle of type i has volume 2^{i} - 1 liters and costs c_{i} roubles. The number of bottles of each type in the store can be considered infinite.
+
+You want to buy at least L liters of lemonade. How many roubles do you have to spend?
+
+
+-----Input-----
+
+The first line contains two integers n and L (1 ≤ n ≤ 30; 1 ≤ L ≤ 10^9) — the number of types of bottles in the store and the required amount of lemonade in liters, respectively.
+
+The second line contains n integers c_1, c_2, ..., c_{n} (1 ≤ c_{i} ≤ 10^9) — the costs of bottles of different types.
+
+
+-----Output-----
+
+Output a single integer — the smallest number of roubles you have to pay in order to buy at least L liters of lemonade.
+
+
+-----Examples-----
+Input
+4 12
+20 30 70 90
+
+Output
+150
+
+Input
+4 3
+10000 1000 100 10
+
+Output
+10
+
+Input
+4 3
+10 100 1000 10000
+
+Output
+30
+
+Input
+5 787787787
+123456789 234567890 345678901 456789012 987654321
+
+Output
+44981600785557577
+
+
+
+-----Note-----
+
+In the first example you should buy one 8-liter bottle for 90 roubles and two 2-liter bottles for 30 roubles each. In total you'll get 12 liters of lemonade for just 150 roubles.
+
+In the second example, even though you need only 3 liters, it's cheaper to buy a single 8-liter bottle for 10 roubles.
+
+In the third example it's best to buy three 1-liter bottles for 10 roubles each, getting three liters for 30 roubles.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': False, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 148
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: R3D3 spent some time on an internship in MDCS. After earning enough money, he decided to go on a holiday somewhere far, far away. He enjoyed suntanning, drinking alcohol-free cocktails and going to concerts of popular local bands. While listening to "The White Buttons" and their hit song "Dacan the Baker", he met another robot for whom he was sure is the love of his life. Well, his summer, at least. Anyway, R3D3 was too shy to approach his potential soulmate, so he decided to write her a love letter. However, he stumbled upon a problem. Due to a terrorist threat, the Intergalactic Space Police was monitoring all letters sent in the area. Thus, R3D3 decided to invent his own alphabet, for which he was sure his love would be able to decipher.
+
+There are n letters in R3D3’s alphabet, and he wants to represent each letter as a sequence of '0' and '1', so that no letter’s sequence is a prefix of another letter's sequence. Since the Intergalactic Space Communications Service has lately introduced a tax for invented alphabets, R3D3 must pay a certain amount of money for each bit in his alphabet’s code (check the sample test for clarifications). He is too lovestruck to think clearly, so he asked you for help.
+
+Given the costs c_0 and c_1 for each '0' and '1' in R3D3’s alphabet, respectively, you should come up with a coding for the alphabet (with properties as above) with minimum total cost.
+
+
+-----Input-----
+
+The first line of input contains three integers n (2 ≤ n ≤ 10^8), c_0 and c_1 (0 ≤ c_0, c_1 ≤ 10^8) — the number of letters in the alphabet, and costs of '0' and '1', respectively. 
+
+
+-----Output-----
+
+Output a single integer — minimum possible total a cost of the whole alphabet.
+
+
+-----Example-----
+Input
+4 1 2
+
+Output
+12
+
+
+
+-----Note-----
+
+There are 4 letters in the alphabet. The optimal encoding is "00", "01", "10", "11". There are 4 zeroes and 4 ones used, so the total cost is 4·1 + 4·2 = 12.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 156
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: You might have heard about the next game in Lara Croft series coming out this year. You also might have watched its trailer. Though you definitely missed the main idea about its plot, so let me lift the veil of secrecy.
+
+Lara is going to explore yet another dangerous dungeon. Game designers decided to use good old 2D environment. The dungeon can be represented as a rectangle matrix of n rows and m columns. Cell (x, y) is the cell in the x-th row in the y-th column. Lara can move between the neighbouring by side cells in all four directions.
+
+Moreover, she has even chosen the path for herself to avoid all the traps. She enters the dungeon in cell (1, 1), that is top left corner of the matrix. Then she goes down all the way to cell (n, 1) — the bottom left corner. Then she starts moving in the snake fashion — all the way to the right, one cell up, then to the left to the cell in 2-nd column, one cell up. She moves until she runs out of non-visited cells. n and m given are such that she always end up in cell (1, 2).
+
+Lara has already moved to a neighbouring cell k times. Can you determine her current position?
+
+
+-----Input-----
+
+The only line contains three integers n, m and k (2 ≤ n, m ≤ 10^9, n is always even, 0 ≤ k < n·m). Note that k doesn't fit into 32-bit integer type!
+
+
+-----Output-----
+
+Print the cell (the row and the column where the cell is situated) where Lara ends up after she moves k times.
+
+
+-----Examples-----
+Input
+4 3 0
+
+Output
+1 1
+
+Input
+4 3 11
+
+Output
+1 2
+
+Input
+4 3 7
+
+Output
+3 2
+
+
+
+-----Note-----
+
+Here is her path on matrix 4 by 3: [Image]
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': False, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 164
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: On the way to Rio de Janeiro Ostap kills time playing with a grasshopper he took with him in a special box. Ostap builds a line of length n such that some cells of this line are empty and some contain obstacles. Then, he places his grasshopper to one of the empty cells and a small insect in another empty cell. The grasshopper wants to eat the insect.
+
+Ostap knows that grasshopper is able to jump to any empty cell that is exactly k cells away from the current (to the left or to the right). Note that it doesn't matter whether intermediate cells are empty or not as the grasshopper makes a jump over them. For example, if k = 1 the grasshopper can jump to a neighboring cell only, and if k = 2 the grasshopper can jump over a single cell.
+
+Your goal is to determine whether there is a sequence of jumps such that grasshopper will get from his initial position to the cell with an insect.
+
+
+-----Input-----
+
+The first line of the input contains two integers n and k (2 ≤ n ≤ 100, 1 ≤ k ≤ n - 1) — the number of cells in the line and the length of one grasshopper's jump.
+
+The second line contains a string of length n consisting of characters '.', '#', 'G' and 'T'. Character '.' means that the corresponding cell is empty, character '#' means that the corresponding cell contains an obstacle and grasshopper can't jump there. Character 'G' means that the grasshopper starts at this position and, finally, 'T' means that the target insect is located at this cell. It's guaranteed that characters 'G' and 'T' appear in this line exactly once.
+
+
+-----Output-----
+
+If there exists a sequence of jumps (each jump of length k), such that the grasshopper can get from his initial position to the cell with the insect, print "YES" (without quotes) in the only line of the input. Otherwise, print "NO" (without quotes).
+
+
+-----Examples-----
+Input
+5 2
+#G#T#
+
+Output
+YES
+
+Input
+6 1
+T....G
+
+Output
+YES
+
+Input
+7 3
+T..#..G
+
+Output
+NO
+
+Input
+6 2
+..GT..
+
+Output
+NO
+
+
+
+-----Note-----
+
+In the first sample, the grasshopper can make one jump to the right in order to get from cell 2 to cell 4.
+
+In the second sample, the grasshopper is only able to jump to neighboring cells but the way to the insect is free — he can get there by jumping left 5 times.
+
+In the third sample, the grasshopper can't make a single jump.
+
+In the fourth sample, the grasshopper can only jump to the cells with odd indices, thus he won't be able to reach the insect.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': False}
+DEBUG - Start Task 171
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Two bored soldiers are playing card war. Their card deck consists of exactly n cards, numbered from 1 to n, all values are different. They divide cards between them in some manner, it's possible that they have different number of cards. Then they play a "war"-like card game. 
+
+The rules are following. On each turn a fight happens. Each of them picks card from the top of his stack and puts on the table. The one whose card value is bigger wins this fight and takes both cards from the table to the bottom of his stack. More precisely, he first takes his opponent's card and puts to the bottom of his stack, and then he puts his card to the bottom of his stack. If after some turn one of the player's stack becomes empty, he loses and the other one wins. 
+
+You have to calculate how many fights will happen and who will win the game, or state that game won't end.
+
+
+-----Input-----
+
+First line contains a single integer n (2 ≤ n ≤ 10), the number of cards.
+
+Second line contains integer k_1 (1 ≤ k_1 ≤ n - 1), the number of the first soldier's cards. Then follow k_1 integers that are the values on the first soldier's cards, from top to bottom of his stack.
+
+Third line contains integer k_2 (k_1 + k_2 = n), the number of the second soldier's cards. Then follow k_2 integers that are the values on the second soldier's cards, from top to bottom of his stack.
+
+All card values are different.
+
+
+-----Output-----
+
+If somebody wins in this game, print 2 integers where the first one stands for the number of fights before end of game and the second one is 1 or 2 showing which player has won.
+
+If the game won't end and will continue forever output  - 1.
+
+
+-----Examples-----
+Input
+4
+2 1 3
+2 4 2
+
+Output
+6 2
+Input
+3
+1 2
+2 1 3
+
+Output
+-1
+
+
+-----Note-----
+
+First sample:  [Image] 
+
+Second sample:  [Image]
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': False}
+DEBUG - Start Task 173
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: In Berland each high school student is characterized by academic performance — integer value between 1 and 5.
+
+In high school 0xFF there are two groups of pupils: the group A and the group B. Each group consists of exactly n students. An academic performance of each student is known — integer value between 1 and 5.
+
+The school director wants to redistribute students between groups so that each of the two groups has the same number of students whose academic performance is equal to 1, the same number of students whose academic performance is 2 and so on. In other words, the purpose of the school director is to change the composition of groups, so that for each value of academic performance the numbers of students in both groups are equal.
+
+To achieve this, there is a plan to produce a series of exchanges of students between groups. During the single exchange the director selects one student from the class A and one student of class B. After that, they both change their groups.
+
+Print the least number of exchanges, in order to achieve the desired equal numbers of students for each academic performance.
+
+
+-----Input-----
+
+The first line of the input contains integer number n (1 ≤ n ≤ 100) — number of students in both groups.
+
+The second line contains sequence of integer numbers a_1, a_2, ..., a_{n} (1 ≤ a_{i} ≤ 5), where a_{i} is academic performance of the i-th student of the group A.
+
+The third line contains sequence of integer numbers b_1, b_2, ..., b_{n} (1 ≤ b_{i} ≤ 5), where b_{i} is academic performance of the i-th student of the group B.
+
+
+-----Output-----
+
+Print the required minimum number of exchanges or -1, if the desired distribution of students can not be obtained.
+
+
+-----Examples-----
+Input
+4
+5 4 4 4
+5 5 4 5
+
+Output
+1
+
+Input
+6
+1 1 1 1 1 1
+5 5 5 5 5 5
+
+Output
+3
+
+Input
+1
+5
+3
+
+Output
+-1
+
+Input
+9
+3 2 5 5 2 3 3 3 2
+4 1 4 1 1 2 4 4 1
+
+Output
+4
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': False, 'simple': True, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 181
+ERROR - Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-ccf140d8-d2f2-9588-9ae6-ba828bb4b26f', 'request_id': 'ccf140d8-d2f2-9588-9ae6-ba828bb4b26f'}
+DEBUG - Start Task 187
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Students in a class are making towers of blocks. Each student makes a (non-zero) tower by stacking pieces lengthwise on top of each other. n of the students use pieces made of two blocks and m of the students use pieces made of three blocks.
+
+The students don’t want to use too many blocks, but they also want to be unique, so no two students’ towers may contain the same number of blocks. Find the minimum height necessary for the tallest of the students' towers.
+
+
+-----Input-----
+
+The first line of the input contains two space-separated integers n and m (0 ≤ n, m ≤ 1 000 000, n + m > 0) — the number of students using two-block pieces and the number of students using three-block pieces, respectively.
+
+
+-----Output-----
+
+Print a single integer, denoting the minimum possible height of the tallest tower.
+
+
+-----Examples-----
+Input
+1 3
+
+Output
+9
+
+Input
+3 2
+
+Output
+8
+
+Input
+5 0
+
+Output
+10
+
+
+
+-----Note-----
+
+In the first case, the student using two-block pieces can make a tower of height 4, and the students using three-block pieces can make towers of height 3, 6, and 9 blocks. The tallest tower has a height of 9 blocks.
+
+In the second case, the students can make towers of heights 2, 4, and 8 with two-block pieces and towers of heights 3 and 6 with three-block pieces, for a maximum height of 8 blocks.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': False, 'simple': False, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 209
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Pashmak has fallen in love with an attractive girl called Parmida since one year ago...
+
+Today, Pashmak set up a meeting with his partner in a romantic garden. Unfortunately, Pashmak has forgotten where the garden is. But he remembers that the garden looks like a square with sides parallel to the coordinate axes. He also remembers that there is exactly one tree on each vertex of the square. Now, Pashmak knows the position of only two of the trees. Help him to find the position of two remaining ones.
+
+
+-----Input-----
+
+The first line contains four space-separated x_1, y_1, x_2, y_2 ( - 100 ≤ x_1, y_1, x_2, y_2 ≤ 100) integers, where x_1 and y_1 are coordinates of the first tree and x_2 and y_2 are coordinates of the second tree. It's guaranteed that the given points are distinct.
+
+
+-----Output-----
+
+If there is no solution to the problem, print -1. Otherwise print four space-separated integers x_3, y_3, x_4, y_4 that correspond to the coordinates of the two other trees. If there are several solutions you can output any of them. 
+
+Note that x_3, y_3, x_4, y_4 must be in the range ( - 1000 ≤ x_3, y_3, x_4, y_4 ≤ 1000).
+
+
+-----Examples-----
+Input
+0 0 0 1
+
+Output
+1 0 1 1
+
+Input
+0 0 1 1
+
+Output
+0 1 1 0
+
+Input
+0 0 1 2
+
+Output
+-1
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 225
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: One day, the Grasshopper was jumping on the lawn and found a piece of paper with a string. Grasshopper became interested what is the minimum jump ability he should have in order to be able to reach the far end of the string, jumping only on vowels of the English alphabet. Jump ability is the maximum possible length of his jump. 
+
+Formally, consider that at the begginning the Grasshopper is located directly in front of the leftmost character of the string. His goal is to reach the position right after the rightmost character of the string. In one jump the Grasshopper could jump to the right any distance from 1 to the value of his jump ability. [Image] The picture corresponds to the first example. 
+
+The following letters are vowels: 'A', 'E', 'I', 'O', 'U' and 'Y'.
+
+
+-----Input-----
+
+The first line contains non-empty string consisting of capital English letters. It is guaranteed that the length of the string does not exceed 100. 
+
+
+-----Output-----
+
+Print single integer a — the minimum jump ability of the Grasshopper (in the number of symbols) that is needed to overcome the given string, jumping only on vowels.
+
+
+-----Examples-----
+Input
+ABABBBACFEYUKOTT
+
+Output
+4
+Input
+AAA
+
+Output
+1
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': False, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 231
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Given is a string S of length N.
+Find the maximum length of a non-empty string that occurs twice or more in S as contiguous substrings without overlapping.
+More formally, find the maximum positive integer len such that there exist integers l_1 and l_2 ( 1 \leq l_1, l_2 \leq N - len + 1 ) that satisfy the following:
+ - l_1 + len \leq l_2
+ - S[l_1+i] = S[l_2+i] (i = 0, 1, ..., len - 1)
+If there is no such integer len, print 0.
+
+-----Constraints-----
+ - 2 \leq N \leq 5 \times 10^3
+ - |S| = N
+ - S consists of lowercase English letters.
+
+-----Input-----
+Input is given from Standard Input in the following format:
+N
+S
+
+-----Output-----
+Print the maximum length of a non-empty string that occurs twice or more in S as contiguous substrings without overlapping. If there is no such non-empty string, print 0 instead.
+
+-----Sample Input-----
+5
+ababa
+
+-----Sample Output-----
+2
+
+The strings satisfying the conditions are: a, b, ab, and ba. The maximum length among them is 2, which is the answer.
+Note that aba occurs twice in S as contiguous substrings, but there is no pair of integers l_1 and l_2 mentioned in the statement such that l_1 + len \leq l_2.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 232
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: The main street of Berland is a straight line with n houses built along it (n is an even number). The houses are located at both sides of the street. The houses with odd numbers are at one side of the street and are numbered from 1 to n - 1 in the order from the beginning of the street to the end (in the picture: from left to right). The houses with even numbers are at the other side of the street and are numbered from 2 to n in the order from the end of the street to its beginning (in the picture: from right to left). The corresponding houses with even and odd numbers are strictly opposite each other, that is, house 1 is opposite house n, house 3 is opposite house n - 2, house 5 is opposite house n - 4 and so on. [Image] 
+
+Vasya needs to get to house number a as quickly as possible. He starts driving from the beginning of the street and drives his car to house a. To get from the beginning of the street to houses number 1 and n, he spends exactly 1 second. He also spends exactly one second to drive the distance between two neighbouring houses. Vasya can park at any side of the road, so the distance between the beginning of the street at the houses that stand opposite one another should be considered the same.
+
+Your task is: find the minimum time Vasya needs to reach house a.
+
+
+-----Input-----
+
+The first line of the input contains two integers, n and a (1 ≤ a ≤ n ≤ 100 000) — the number of houses on the street and the number of the house that Vasya needs to reach, correspondingly. It is guaranteed that number n is even.
+
+
+-----Output-----
+
+Print a single integer — the minimum time Vasya needs to get from the beginning of the street to house a.
+
+
+-----Examples-----
+Input
+4 2
+
+Output
+2
+
+Input
+8 5
+
+Output
+3
+
+
+
+-----Note-----
+
+In the first sample there are only four houses on the street, two houses at each side. House 2 will be the last at Vasya's right.
+
+The second sample corresponds to picture with n = 8. House 5 is the one before last at Vasya's left.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': True, 'simple': True, 'complex': False, 'default': False, 'default_no_fsl': True, 'simple_verify': False, 'complex_verify': True, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': True}
+DEBUG - Start Task 257
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: Kicker (table football) is a board game based on football, in which players control the footballers' figures mounted on rods by using bars to get the ball into the opponent's goal. When playing two on two, one player of each team controls the goalkeeper and the full-backs (plays defence), the other player controls the half-backs and forwards (plays attack).
+
+Two teams of company Q decided to battle each other. Let's enumerate players from both teams by integers from 1 to 4. The first and second player play in the first team, the third and the fourth one play in the second team. For each of the four players we know their game skills in defence and attack. The defence skill of the i-th player is a_{i}, the attack skill is b_{i}.
+
+Before the game, the teams determine how they will play. First the players of the first team decide who will play in the attack, and who will play in the defence. Then the second team players do the same, based on the choice of their opponents.
+
+We will define a team's defence as the defence skill of player of the team who plays defence. Similarly, a team's attack is the attack skill of the player of the team who plays attack. We assume that one team is guaranteed to beat the other one, if its defence is strictly greater than the opponent's attack and its attack is strictly greater than the opponent's defence.
+
+The teams of company Q know each other's strengths and therefore arrange their teams optimally. Identify the team that is guaranteed to win (if both teams act optimally) or tell that there is no such team.
+
+
+-----Input-----
+
+The input contain the players' description in four lines. The i-th line contains two space-separated integers a_{i} and b_{i} (1 ≤ a_{i}, b_{i} ≤ 100) — the defence and the attack skill of the i-th player, correspondingly.
+
+
+-----Output-----
+
+If the first team can win, print phrase "Team 1" (without the quotes), if the second team can win, print phrase "Team 2" (without the quotes). If no of the teams can definitely win, print "Draw" (without the quotes).
+
+
+-----Examples-----
+Input
+1 100
+100 1
+99 99
+99 99
+
+Output
+Team 1
+
+Input
+1 1
+2 2
+3 3
+2 2
+
+Output
+Team 2
+
+Input
+3 3
+2 2
+1 1
+2 2
+
+Output
+Draw
+
+
+
+-----Note-----
+
+Let consider the first test sample. The first team can definitely win if it will choose the following arrangement: the first player plays attack, the second player plays defence.
+
+Consider the second sample. The order of the choosing roles for players makes sense in this sample. As the members of the first team choose first, the members of the second team can beat them (because they know the exact defence value and attack value of the first team).
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}
+DEBUG - Start Task 284
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: PolandBall is a young, clever Ball. He is interested in prime numbers. He has stated a following hypothesis: "There exists such a positive integer n that for each positive integer m number n·m + 1 is a prime number".
+
+Unfortunately, PolandBall is not experienced yet and doesn't know that his hypothesis is incorrect. Could you prove it wrong? Write a program that finds a counterexample for any n.
+
+
+-----Input-----
+
+The only number in the input is n (1 ≤ n ≤ 1000) — number from the PolandBall's hypothesis. 
+
+
+-----Output-----
+
+Output such m that n·m + 1 is not a prime number. Your answer will be considered correct if you output any suitable m such that 1 ≤ m ≤ 10^3. It is guaranteed the the answer exists.
+
+
+-----Examples-----
+Input
+3
+
+Output
+1
+Input
+4
+
+Output
+2
+
+
+-----Note-----
+
+A prime number (or a prime) is a natural number greater than 1 that has no positive divisors other than 1 and itself.
+
+For the first sample testcase, 3·1 + 1 = 4. We can output 1.
+
+In the second sample testcase, 4·1 + 1 = 5. We cannot output 1 because 5 is prime. However, m = 2 is okay since 4·2 + 1 = 9, which is not a prime number.
+DEBUG - Correctness: {'naive': True, 'naive_no_fsl': True, 'simple': True, 'complex': True, 'default': True, 'default_no_fsl': True, 'simple_verify': True, 'complex_verify': True, 'default_verify': True, 'simple_no_fsl_verify': True, 'complex_no_fsl_verify': True, 'default_no_fsl_verify': True}
+DEBUG - Start Task 296
+DEBUG - Dataset: apps
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: qwen2.5-72b-instruct
+DEBUG - description: You are given a positive integer $n$.
+
+Find a sequence of fractions $\frac{a_i}{b_i}$, $i = 1 \ldots k$ (where $a_i$ and $b_i$ are positive integers) for some $k$ such that:
+
+$$ \begin{cases} \text{$b_i$ divides $n$, $1 < b_i < n$ for $i = 1 \ldots k$} \\ \text{$1 \le a_i < b_i$ for $i = 1 \ldots k$} \\ \text{$\sum\limits_{i=1}^k \frac{a_i}{b_i} = 1 - \frac{1}{n}$} \end{cases} $$
+
+
+-----Input-----
+
+The input consists of a single integer $n$ ($2 \le n \le 10^9$).
+
+
+-----Output-----
+
+In the first line print "YES" if there exists such a sequence of fractions or "NO" otherwise.
+
+If there exists such a sequence, next lines should contain a description of the sequence in the following format.
+
+The second line should contain integer $k$ ($1 \le k \le 100\,000$) — the number of elements in the sequence. It is guaranteed that if such a sequence exists, then there exists a sequence of length at most $100\,000$.
+
+Next $k$ lines should contain fractions of the sequence with two integers $a_i$ and $b_i$ on each line.
+
+
+-----Examples-----
+Input
+2
+
+Output
+NO
+
+Input
+6
+
+Output
+YES
+2
+1 2
+1 3
+
+
+
+-----Note-----
+
+In the second example there is a sequence $\frac{1}{2}, \frac{1}{3}$ such that $\frac{1}{2} + \frac{1}{3} = 1 - \frac{1}{6}$.
+DEBUG - Correctness: {'naive': False, 'naive_no_fsl': False, 'simple': False, 'complex': False, 'default': False, 'default_no_fsl': False, 'simple_verify': False, 'complex_verify': False, 'default_verify': False, 'simple_no_fsl_verify': False, 'complex_no_fsl_verify': False, 'default_no_fsl_verify': False}

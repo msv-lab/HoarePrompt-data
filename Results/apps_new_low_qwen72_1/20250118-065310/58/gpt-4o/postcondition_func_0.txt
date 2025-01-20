@@ -1,0 +1,9 @@
+The function `func_1` takes an integer `n` and a list of `n` tuples `vertices`, where each tuple represents the coordinates of a vertex. The function returns the area of a rectangle formed by the vertices under specific conditions. 
+
+- If `n` is 1 or 3, the function returns -1.
+- If `n` is 2, the function returns the absolute difference between the x-coordinates of the two vertices multiplied by the absolute difference between their y-coordinates.
+- If `n` is 4, the function checks if there are exactly two unique x-coordinates and two unique y-coordinates among the vertices. If so, it returns the area of the rectangle formed by these vertices. Otherwise, it returns -1.
+
+Potential Edge Cases and Missing Functionality:
+- The function assumes that the input `n` is always within the range 1 to 4, and the vertices are distinct and form part of a rectangle with sides parallel to the coordinate axes. If these assumptions are not met, the function may not behave as expected.
+- The function does not handle cases where `n` is outside the range 1 to 4, which could lead to unexpected behavior or errors.

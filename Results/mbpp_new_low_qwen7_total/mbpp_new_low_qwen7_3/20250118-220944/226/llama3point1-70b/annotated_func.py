@@ -1,0 +1,9 @@
+#State of the program right berfore the function call: arr is a list of non-negative integers, and n is the length of the list such that 2 <= n.
+def func_1(arr, n):
+    odd_count = sum(1 for num in arr if num % 2 != 0)
+
+even_count = n - odd_count
+    return odd_count * even_count + odd_count * (odd_count - 1) // 2
+    #`odd_count * even_count + odd_count * (odd_count - 1) // 2`
+#Overall this is what the function does:The function `func_1` accepts a list `arr` of non-negative integers and its length `n`, and returns the value calculated as `odd_count * even_count + odd_count * (odd_count - 1) // 2`, where `odd_count` is the count of odd numbers in the list and `even_count` is the count of even numbers in the list. The function first calculates the count of odd numbers (`odd_count`) by iterating through the list `arr`. Then, it calculates the count of even numbers (`even_count`) as `n - odd_count`. Finally, it computes and returns the value based on these counts. Potential edge cases include an empty list (which would result in `odd_count` and `even_count` being 0), a list with only one element (which would violate the condition `2 <= n`), and a list with no odd or even numbers (though this is handled by the logic).
+
