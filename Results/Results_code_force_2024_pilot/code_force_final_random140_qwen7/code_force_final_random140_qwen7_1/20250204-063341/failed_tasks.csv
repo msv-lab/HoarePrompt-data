@@ -1,0 +1,30 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1925_B,human,codeforces2024,qwen2.5-7b-instruct,"from math import sqrt
+for q in range(int(input())):
+    x,n=list(map(int,input().split(' ')))
+    ans=1
+    for i in range(1,int(sqrt(x))+1):
+        if(x%i==0):
+            if((x-n*i)>=0 and (x-n*i)%i==0):
+                ans=max(ans,i)
+            if((x-n*((x//i))>=0 and x//i>0 and (x-n*((x//i))%((x//i))==0))):
+                ans=max(ans,(x//i))
+    print(ans)","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-6de658fa-d131-9580-86fd-673d08df7fdc', 'request_id': '6de658fa-d131-9580-86fd-673d08df7fdc'}",hoareprompt
+1931_E,human,codeforces2024,qwen2.5-7b-instruct,"for y in range(int(input())):
+    rev_res = ''
+    list_len, max_power = input().split()
+    operational_list = sorted(input().split(),key = lambda x : len(x.rstrip(""0"")) - len(x))
+    # print(operational_list)
+    for x in range(int(list_len)):
+        if x % 2 == 0:
+            rev_res += operational_list[x].rstrip(""0"")
+            # print(""Even"",rev_res)
+        else:
+            rev_res += operational_list[x]
+            # print(""Odd"",rev_res)
+    
+    
+    if len(rev_res) >= int(max_power)+1:
+        print('Sasha')
+    else:
+        print('Anna')",Error: Connection error.,hoareprompt
