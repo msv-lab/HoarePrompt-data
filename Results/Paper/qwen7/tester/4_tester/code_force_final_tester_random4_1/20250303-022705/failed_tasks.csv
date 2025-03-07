@@ -1,0 +1,80 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1937_B,human,codeforces2024,qwen2.5-7b-instruct,"import sys
+input = sys.stdin.readline
+t=int(input())
+for _ in range(t):
+    n=int(input())
+    a=input().strip()
+    b=input().strip()
+    ans=""""
+    i=0
+    work=True
+    while(i<len(a)):
+        if(work):
+            ans+=a[i]
+            if i+1<len(a) and b[i]<a[i+1]:
+                work=False
+            elif i+1==len(a):
+                ans+=b[i]
+                break
+            else:
+                i+=1
+        else:
+            ans+=b[i]
+            i+=1
+    print(ans)
+    counter=1
+    for j in range(len(a)-1):
+        if(a[j+1]==b[j]):
+            counter+=1
+        elif(a[j+1]==""0""and b[j]==""1""):
+            counter=1
+        else:
+            break
+    print(counter)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1924_A,human,codeforces2024,qwen2.5-7b-instruct,"t = int(input())
+ 
+for i in range(t):
+    n, k, m = map(int,input().split())
+    s = input()
+ 
+    cnt = 0
+    cur = 0
+ 
+    for ss in s:
+        cur_ss = ord(ss)-ord('a')
+        if cur & (1 << cur_ss) == 0:
+            cur += (1 << cur_ss)
+        if cur == (1<<k)-1:
+            cnt += 1
+            cur = 0
+    if cnt >= n:
+        print('YES')
+    else:
+        print('NO')
+        tmp = ''
+        ans = chr(ord('a')+k-1) * cnt
+        for i in range(k):
+            if cur & (1 << i) == 0:
+                tmp = chr(ord('a')+i)
+        ans += tmp
+        ans += 'a'*(n-cnt-1)
+        print(ans)","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-c7f585b2-10fa-97d0-90f0-811e8f96ceef', 'request_id': 'c7f585b2-10fa-97d0-90f0-811e8f96ceef'}",hoareprompt
+1971_D,human,codeforces2024,qwen2.5-7b-instruct,"import math
+t = int(input())
+for q in range(t) :
+    s =  input()
+    count=0
+    flag = 0
+    for i in range(len(s)-1) :
+        if int(s[i]) != int(s[i+1]) :
+            count+=1
+        if int(s[i]) < int(s[i+1]): flag =1
+    if flag==0 :print(count+1)
+    else : print(count)","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-7cd28536-ebb8-9905-900d-f458f569b258', 'request_id': '7cd28536-ebb8-9905-900d-f458f569b258'}",hoareprompt
+1971_A,human,codeforces2024,qwen2.5-7b-instruct,"x = int(input())
+ 
+for i in range(x):
+    x , y = list(map(int, input().split()))
+    if x > y : print(x , y)
+    else: print(y , x)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt

@@ -1,0 +1,250 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1942_B,human,codeforces2024,qwq-32b-preview,"t = int(input())  
+ 
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))  
+ 
+    p = [-1]*n
+    mex = n
+    for i in range(n-1, -1, -1):
+        p[i] = mex - a[i]
+        mex = min(mex, p[i])
+ 
+    print(*p)",Error: 'str' object has no attribute 'trim',hoareprompt
+1945_E,human,codeforces2024,qwq-32b-preview,"# sterlin
+import sys
+input = lambda: sys.stdin.readline().rstrip()
+ 
+def ii():
+    return int(input())
+ 
+def mi():
+    return map(int, input().split())
+ 
+def li():
+    return list(map(int, input().split()))
+ 
+def si():
+    return input()
+ 
+def lsi():
+    return input().split()
+ 
+ 
+ 
+t = ii()
+for _ in range(t):
+    n, x = mi()
+    p = li()
+ 
+    num_indx = {num: indx + 1 for indx, num in enumerate(p)}
+    seen = [0]*n
+    left = 0
+    right = n
+    
+ 
+    while left + 1 < right:
+        mid = left + (right - left)//2
+ 
+        seen[p[mid] - 1] = 1
+        if p[mid] <= x:
+            left = mid
+        
+        else:
+            right = mid
+    
+ 
+    if p[left] == x:
+        print(0)
+    
+    elif not seen[x - 1]:
+        print(1)
+        print(left + 1, num_indx[x])
+    else:
+        seen[p[left] - 1] = 0
+        temp = sorted([indx + 1 for indx, vis in enumerate(seen) if not vis])
+        print(2)
+        print(num_indx[temp[0]], num_indx[x])
+        print(num_indx[temp[0]], left + 1)",Error: 'str' object has no attribute 'trim',hoareprompt
+1968_C,human,codeforces2024,qwq-32b-preview,"for _ in range(int(input())):
+    n = int(input())
+    x = list(map(int, input().split()))
+    a = [0]*n
+    a[0] = 500
+    for i in range(1, n):
+        a[i] = a[i-1] + x[i-1]
+    print(*a)",Error: 'str' object has no attribute 'trim',hoareprompt
+1932_B,human,codeforces2024,qwq-32b-preview,"def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    index = 0
+    T = int(data[index])
+    index += 1
+    results = []
+    
+    for _ in range(T):
+        n = int(data[index])
+        index += 1
+        a = list(map(int, data[index:index+n]))
+        index += n
+        
+        # Start with the first sign
+        last_year = a[0]
+        
+        # Process each subsequent sign
+        for i in range(1, n):
+            # Calculate the next possible year for the current sign
+            # It must be greater than last_year
+            next_year = ((last_year + 1 + a[i] - 1) // a[i]) * a[i]
+            last_year = next_year
+        
+        # The year the last sign occurs is the answer for this test case
+        results.append(str(last_year))
+    
+    # Output all results
+    sys.stdout.write(""\n"".join(results) + ""\n"")
+ 
+if __name__ == ""__main__"":
+    main()",Error: 'str' object has no attribute 'trim',hoareprompt
+1950_A,human,codeforces2024,qwq-32b-preview,"t=int(input())
+for i in range(t):
+    a,b,c=map(int,input().split())
+    if a<b<c :
+        print('STAIR')
+    elif a==b==c:
+        print('NONE')
+    elif max(a,b,c)==b:
+        print('PEAK')
+    else:
+        print('NONE')",Error: 'str' object has no attribute 'trim',hoareprompt
+1922_A,human,codeforces2024,qwq-32b-preview,"tests = int(input())
+for i in range(tests):
+    slength = int(input())
+    a = input()
+    b = input()
+    c = input()
+    no = True
+    if c == a or c == b:
+        no = False
+        print(""NO"")
+    else:
+        counter = 0
+        for x in c:
+            if x not in a[counter] and x not in b[counter]:
+                no = False
+                print(""YES"")
+                break
+            counter += 1
+    if no:
+        print(""NO"")",Error: 'str' object has no attribute 'trim',hoareprompt
+1932_A,human,codeforces2024,qwq-32b-preview,"class Solution:
+    def Coins(self, n: int, s: str) -> int:
+        res = 0
+        i = 0
+        while i < n:
+            if s[i] == '@':
+                res += 1
+            if i + 1 < n and s[i + 1] != '*':
+                i += 1
+            elif i + 2 < n and s[i + 2] != '*':
+                i += 2
+            else:
+                break
+        return res
+ 
+solution = Solution()
+ 
+t = int(input())
+ 
+for _ in range(t):
+    n = int(input())
+    a = input()
+    print(solution.Coins(n, a))",Error: 'str' object has no attribute 'trim',hoareprompt
+1969_A,human,codeforces2024,qwq-32b-preview,"for _ in range(int(input())):
+    n=int(input())
+    l=list(map(int,input().split()))
+    i=0
+    j=0
+    while(i<=n-1):
+        if(l[i]==i+2 and l[i+1]==i+1):
+            print(2)
+            j=1
+            break
+        i+=1
+    if(j==0):
+        print(3)",Error: 'str' object has no attribute 'trim',hoareprompt
+1948_B,human,codeforces2024,qwq-32b-preview,"def thing():
+    k=int(input())
+    a=input()
+    a=list(map(int,a.split()))
+    x=0
+    y=0
+    n=0
+    c=[]
+    for i in range(len(a)):
+        if(a[i]>10 and i>0):
+            x=int(a[i]%10)
+            y=int(a[i]/10)
+            if(y>=c[n-1]):
+              if(y<=x): 
+                 c.append(y)
+                 c.append(x)
+                 n=n+2
+              else:
+                 c.append(a[i])
+                 n=n+1
+        elif(i==0 and a[i]>10):
+            x=int(a[i]%10)
+            y=int(a[i]/10)
+            if(y<=x):
+              c.append(y)
+              c.append(x)
+              n=n+2
+            else:
+               c.append(a[i])
+               n=n+1
+        else:
+           c.append(a[i])
+           n=n+1
+    d=sorted(c)
+    if(c==d):
+       b.append(1)
+    else:
+       b.append(0)
+m=int(input())
+b=[]
+for i in range(m):
+   thing()
+for i in range(m):
+   if(b[i]==1):
+      print(""YES"")
+   else:
+      print(""NO"")","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-8178e99c-03c7-9fb2-97f1-af1aad3e5210', 'request_id': '8178e99c-03c7-9fb2-97f1-af1aad3e5210'}",hoareprompt
+1931_B,human,codeforces2024,qwq-32b-preview,"def test_case(nums):
+    n = len(nums)
+ 
+    total = sum(nums)
+    if total % n != 0:
+        return ""NO""
+ 
+    mean = total // n
+    curr = 0
+ 
+    for i in range(n):
+        curr += nums[i] - mean
+ 
+        if curr < 0:
+            return ""NO""
+    return ""YES""
+ 
+ 
+t = int(input())
+ 
+for _ in range(t):
+    n = int(input())
+    nums = list(map(int, input().strip().split()))
+ 
+    print(test_case(nums))",Error: 'str' object has no attribute 'trim',hoareprompt

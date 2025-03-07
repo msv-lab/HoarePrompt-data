@@ -1,0 +1,12 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1950_A,human,codeforces2024,qwen2p5-72b-instruct,"q=int(input())
+mn=100
+for i in range(q):
+    
+    a,b,c=map(int,input().split())
+    if a<b<c:
+        print(""STAIR"")
+    if a<b>c:
+        print(""PEAK"")
+    else:
+        print(""NONE"")",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt

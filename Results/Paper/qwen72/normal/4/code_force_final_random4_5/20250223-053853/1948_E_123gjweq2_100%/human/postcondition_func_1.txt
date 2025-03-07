@@ -1,0 +1,5 @@
+The function `make_array` accepts three parameters: `left`, `right`, and `clique`. It modifies the `arr` and `cliquess` arrays such that: 
+- The elements in the range `[left, left + mid - 1]` of the `arr` array are assigned values from `small_element` to `small_element + mid - 1` in increasing order.
+- The elements in the range `[left + mid, left + mid + not_mid - 1]` of the `arr` array are assigned values from `big_element - not_mid + 1` to `big_element` in decreasing order.
+- The elements in the range `[left, right]` of the `cliquess` array are all assigned the value `clique`.
+- The parameters `left`, `right`, and `clique` remain unchanged.

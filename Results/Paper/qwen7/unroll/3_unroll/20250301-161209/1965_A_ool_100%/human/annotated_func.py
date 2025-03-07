@@ -1,0 +1,32 @@
+#State of the program right berfore the function call: arr is a list of integers representing the initial number of stones in each pile, and the length of arr (n) satisfies 1 <= n <= 2 * 10^5. Each element in arr (a_i) satisfies 1 <= a_i <= 10^9.
+def func_1(arr):
+    A = False
+    set_ = list(set(arr))
+    set_.sort()
+    if (set_[0] != 1) :
+        return 'Alice'
+        #The program returns the string 'Alice'
+    #State: `A` is False; `set_` is a list of unique elements from `arr` sorted in ascending order. The first element of `set_` is 1
+    not_c = True
+    for i in range(1, len(set_)):
+        if set_[i] - set_[i - 1] > 1:
+            not_c = False
+            break
+        
+        A = not A
+        
+    #State: Output State: `A` is True; `not_c` is False; `set_` is a list of unique elements from `arr` sorted in ascending order. The first element of `set_` is 1.
+    #
+    #Explanation: 
+    #- The loop iterates over the elements of `set_` starting from the second element (index 1) and checks the difference between consecutive elements.
+    #- If the difference is greater than 1, `not_c` is set to False and the loop breaks.
+    #- The variable `A` is toggled (flipped) between True and False with each iteration of the loop.
+    #- Since the loop starts from index 1, it will check the difference between `set_[1]` and `set_[0]`. If the difference is greater than 1, the loop will break immediately, setting `not_c` to False.
+    #- If the difference is not greater than 1 for any pair of consecutive elements, `A` will toggle between True and False based on the number of iterations, which will result in `A` being True after an even number of iterations or False after an odd number of iterations. Given the loop starts from index 1 and iterates up to `len(set_) - 1`, if `set_` has an even number of elements, `A` will end up as True (since it starts as False and toggles an even number of times). If `set_` has an odd number of elements, `A` would end up as False, but since we don't know the exact number of elements in `set_`, we can only say it ends as True based on the provided information.
+    if not_c :
+        A = not A
+    #State: `A` is True, `not_c` is False, and `set_` is a list of unique elements from `arr` sorted in ascending order with the first element being 1. If the difference between any two consecutive elements in `set_` is greater than 1, `not_c` remains False. Otherwise, `A` toggles between True and False based on the number of iterations.
+    return 'Alice' if A else 'Bob'
+    #The program returns 'Alice' if the condition A is True, otherwise it returns 'Bob'. Given that A is initially True, the program returns 'Alice'.
+#Overall this is what the function does:The function accepts a list of integers `arr`, representing the initial number of stones in each pile. It processes this list to determine if the condition `A` is True or False based on specific criteria. If the condition `A` is True, the function returns the string 'Alice'; otherwise, it returns 'Bob'. Given that `A` is initially set to True, the function always returns 'Alice'.
+

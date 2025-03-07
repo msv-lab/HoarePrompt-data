@@ -1,0 +1,70 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1926_C,human,codeforces2024,qwen2p5-coder-32b-instruct,"def problem():
+    t = int(input())
+    numbers = []
+    for _ in range(t):
+        n = int(input())
+        numbers.append(n)
+ 
+    values = [0 for _ in range(max(numbers)  + 1)]
+    sum_values = [0 for _ in range(max(numbers) + 1)]
+ 
+    total = 0
+    for i in range(10):
+        values[i] = i
+        total += i
+        sum_values[i] = total
+ 
+    for i in range(10, n + 1):
+        word = str(i)
+        last = int(word[len(word) - 1])
+        remainder = int(word[:-1])
+        values[i] = values[last] + values[remainder]
+        sum_total = values[i] + sum_values[i - 1]
+        sum_values[i] = sum_total
+ 
+    for n in numbers:
+        print(sum_values[n])
+ 
+problem()",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1944_C,human,codeforces2024,qwen2p5-coder-32b-instruct,"from collections import defaultdict
+for tc in range(int(input())): 
+    N = int(input())
+    a = list(map(int, input().split()))
+    cnt = defaultdict(int)
+    for i in range(N): cnt[a[i]] += 1
+    t = 0
+    for i in range(N):
+        if cnt[i] == 1: t += 1
+        if t >= 2 or cnt[i] == 0: 
+            print(i)
+            break",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1920_D,human,codeforces2024,qwen2p5-coder-32b-instruct,"def solve_test_case(n, operations, queries):
+    array = []
+    result = []
+ 
+    for op_type, value in operations:
+        if op_type == 1:
+            array.append(value)
+        else:
+            array.extend([array[i] for i in range(len(array))])
+ 
+    for k in queries:
+        result.append(array[(k - 1) % len(array)])
+ 
+    return result
+ 
+ 
+def main():
+    t = int(input())
+    for _ in range(t):
+        n, q = map(int, input().split())
+        operations = [list(map(int, input().split())) for _ in range(n)]
+        queries = list(map(int, input().split()))
+ 
+        result = solve_test_case(n, operations, queries)
+        print(*result)
+ 
+ 
+if __name__ == ""__main__"":
+    main()",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt

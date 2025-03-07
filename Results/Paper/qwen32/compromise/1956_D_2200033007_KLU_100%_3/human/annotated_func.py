@@ -1,0 +1,95 @@
+#State of the program right berfore the function call: start_index and end_index are integers such that 0 <= start_index <= end_index < len(arr).
+def func_1(start_index, end_index):
+    key = start_index, end_index
+    if (key in res_dict) :
+        return res_dict[key]
+        #The program returns the value associated with the key (`start_index`, `end_index`) in the dictionary `res_dict`.
+    #State: `start_index` and `end_index` are integers such that 0 <= `start_index` <= `end_index` < len(arr); `key` is the tuple (`start_index`, `end_index`); `key` is not in `res_dict`
+    if (start_index == end_index) :
+        res_dict[key] = max(1, arr[start_index])
+        return max(1, arr[start_index])
+        #The program returns `max(1, arr[start_index])`, which is the maximum value between 1 and the element at `start_index` in the array `arr`.
+    #State: `start_index` and `end_index` are integers such that 0 <= `start_index` <= `end_index` < len(arr); `key` is the tuple (`start_index`, `end_index`); `key` is not in `res_dict`; `start_index` is not equal to `end_index`
+    res = (end_index - start_index + 1) ** 2
+    for i in range(start_index + 1, end_index):
+        new_res = func_1(start_index, i - 1) + func_1(i + 1, end_index) + arr[i]
+        
+        res = max(res, new_res)
+        
+    #State: `start_index` and `end_index` are integers such that 0 <= `start_index` <= `end_index` < len(arr); `key` is the tuple (`start_index`, `end_index`); `key` is not in `res_dict`; `start_index` is not equal to `end_index`; `res` is the maximum value of `new_res` calculated over all iterations of the loop.
+    res = max(res, arr[start_index] + func_1(start_index + 1, end_index))
+    res = max(res, arr[end_index] + func_1(start_index, end_index - 1))
+    res_dict[key] = res
+    return res
+    #The program returns the maximum value between the previous `res` and `arr[start_index] + func_1(start_index + 1, end_index)` and `arr[end_index] + func_1(start_index, end_index - 1)`
+#Overall this is what the function does:The function `func_1` accepts two integer parameters, `start_index` and `end_index`, which define a subarray of `arr`. It returns the maximum value between 1 and the element at `start_index` if `start_index` equals `end_index`. Otherwise, it calculates the maximum value that can be obtained by considering the sum of elements in the subarray and recursively calling itself on subarrays defined by splitting the original subarray at each element, and stores this result in a dictionary `res_dict` for future reference.
+
+#State of the program right berfore the function call: start_index and end_index are integers such that 0 <= start_index <= end_index < len(arr).
+def func_2(start_index, end_index):
+    max_value = func_1(start_index, end_index)
+    length = end_index - start_index + 1
+    if (length == 1) :
+        if (arr[start_index] > 0) :
+            return []
+            #The program returns an empty list.
+        #State: `start_index` and `end_index` are integers such that 0 <= `start_index` <= `end_index` < len(arr); `length` is `end_index - start_index + 1` and the current value of `length` is 1; `max_value` is the value returned by `func_1(start_index, end_index)`; `arr[start_index]` is less than or equal to 0
+        return [(start_index, start_index)]
+        #The program returns [(start_index, start_index)] where start_index is an integer such that 0 <= start_index < len(arr) and arr[start_index] is less than or equal to 0.
+    #State: `start_index` and `end_index` are integers such that 0 <= `start_index` <= `end_index` < len(arr); `max_value` is the value returned by `func_1(start_index, end_index)`; `length` is `end_index - start_index + 1`. Additionally, `length` is not equal to 1.
+    if (max_value == length ** 2) :
+        res = []
+        make_stairs(length - 1)
+        res.append((start_index, end_index))
+        return res
+        #The program returns a list containing one tuple, where the tuple consists of `start_index` and `end_index`.
+    else :
+        for i in range(start_index + 1, end_index):
+            temp_res = func_1(start_index, i - 1) + func_1(i + 1, end_index) + arr[i]
+            
+            if temp_res == max_value:
+                return func_2(start_index, i - 1) + func_2(i + 1, end_index)
+            
+        #State: `start_index` and `end_index` are integers such that 0 <= `start_index` <= `end_index` < len(arr); `max_value` is the value returned by `func_1(start_index, end_index)`; `length` is `end_index - start_index + 1`. Additionally, `length` is not equal to 1, and `max_value` is not equal to `length`.
+        if (arr[start_index] + func_1(start_index + 1, end_index) == max_value) :
+            return func_2(start_index + 1, end_index)
+            #The program returns the value of `func_2(start_index + 1, end_index)`
+        else :
+            if (arr[end_index] + func_1(start_index, end_index - 1) == max_value) :
+                return func_2(start_index, end_index - 1)
+                #The program returns the value of `func_2(start_index, end_index - 1)`
+            #State: `start_index` and `end_index` are integers such that 0 <= `start_index` <= `end_index` < len(arr); `max_value` is the value returned by `func_1(start_index, end_index)`; `length` is `end_index - start_index + 1`. Additionally, `length` is not equal to 1, and `max_value` is not equal to `length`. The sum of `arr[start_index]` and `func_1(start_index + 1, end_index)` is not equal to `max_value`. The sum of `arr[end_index]` and `func_1(start_index, end_index - 1)` is not equal to `max_value`.
+        #State: `start_index` and `end_index` are integers such that 0 <= `start_index` <= `end_index` < len(arr); `max_value` is the value returned by `func_1(start_index, end_index)`; `length` is `end_index - start_index + 1`. Additionally, `length` is not equal to 1, and `max_value` is not equal to `length`. The sum of `arr[start_index]` and `func_1(start_index + 1, end_index)` is not equal to `max_value`. The sum of `arr[end_index]` and `func_1(start_index, end_index - 1)` is not equal to `max_value`.
+    #State: `start_index` and `end_index` are integers such that 0 <= `start_index` <= `end_index` < len(arr); `max_value` is the value returned by `func_1(start_index, end_index)`; `length` is `end_index - start_index + 1`. Additionally, `length` is not equal to 1, and `max_value` is not equal to `length`. The sum of `arr[start_index]` and `func_1(start_index + 1, end_index)` is not equal to `max_value`. The sum of `arr[end_index]` and `func_1(start_index, end_index - 1)` is not equal to `max_value`.
+#Overall this is what the function does:The function `func_2` takes two integer parameters, `start_index` and `end_index`, representing a subarray of `arr`. It returns a list of tuples indicating the subarrays that contribute to the maximum value calculated by `func_1` within the specified range. The function handles different cases based on the length of the subarray and the values within it, potentially returning an empty list, a single tuple, or recursively calling itself to determine the subarrays.
+
+#State of the program right berfore the function call: i is a non-negative integer representing an index in the array arr, and start_index is a non-negative integer representing the starting index of the subarray in arr that the function is currently processing.
+def make_stairs(i):
+    is_already_stairs = True
+    for j in range(i + 1):
+        if arr[start_index + j] != j:
+            is_already_stairs = False
+        
+    #State: `i` is a non-negative integer representing an index in the array `arr`, and `start_index` is a non-negative integer representing the starting index of the subarray in `arr` that the function is currently processing; `is_already_stairs` is `True` if all elements in the subarray from `arr[start_index]` to `arr[start_index + i]` satisfy `arr[start_index + j] == j` for all `j` in the range from `0` to `i`, otherwise `is_already_stairs` is `False`.
+    if is_already_stairs :
+        return
+        #The program returns nothing (None)
+    #State: `i` is a non-negative integer representing an index in the array `arr`, and `start_index` is a non-negative integer representing the starting index of the subarray in `arr` that the function is currently processing; `is_already_stairs` is `False`, indicating that not all elements in the subarray from `arr[start_index]` to `arr[start_index + i]` satisfy `arr[start_index + j] == j` for all `j` in the range from `0` to `i`.
+    if (i == 0) :
+        res.append((start_index, start_index))
+        arr[start_index] = 1
+        return
+        #The program returns nothing.
+    #State: `i` is a non-negative integer representing an index in the array `arr`, and `start_index` is a non-negative integer representing the starting index of the subarray in `arr` that the function is currently processing; `is_already_stairs` is `False`, indicating that not all elements in the subarray from `arr[start_index]` to `arr[start_index + i]` satisfy `arr[start_index + j] == j` for all `j` in the range from `0` to `i`. Additionally, `i` is not equal to 0.
+    if (arr[start_index + i] == i) :
+        make_stairs(i - 1)
+    else :
+        make_stairs(i - 1)
+        res.append((start_index, start_index + i))
+        for j in range(start_index, start_index + i + 1):
+            arr[j] = i
+            
+        #State: `i` is a non-negative integer representing an index in the array `arr`, `start_index` is a non-negative integer representing the starting index of the subarray in `arr` that the function is currently processing, `is_already_stairs` is `False`, indicating that not all elements in the subarray from `arr[start_index]` to `arr[start_index + i]` satisfy `arr[start_index + j] == j` for all `j` in the range from `0` to `i`. Additionally, `i` is not equal to 0. The element `arr[start_index + i]` is not equal to `i` (although all elements from `arr[start_index]` to `arr[start_index + i]` have been set to `i` by the loop). The function `make_stairs` has been called with the argument `i - 1`. The list `res` now includes the tuple `(start_index, start_index + i)`.
+        make_stairs(i - 1)
+    #State: `i` is a non-negative integer representing an index in the array `arr`, `start_index` is a non-negative integer representing the starting index of the subarray in `arr` that the function is currently processing, and `is_already_stairs` is `False`. The function `make_stairs(i - 1)` has been called. If `arr[start_index + i]` equals `i`, no additional changes are made to `res`. Otherwise, `res` includes the tuple `(start_index, start_index + i)` and any changes made by the recursive call `make_stairs(i - 1)` to `res`.
+#Overall this is what the function does:The function `make_stairs` modifies a subarray of `arr` starting from `start_index` to ensure that the subarray represents a "staircase" pattern where each element at index `start_index + j` is equal to `j`. If the subarray does not already meet this condition, it appends tuples to the list `res` indicating the ranges that were modified, and updates the subarray elements accordingly. The function does not return any value.
+

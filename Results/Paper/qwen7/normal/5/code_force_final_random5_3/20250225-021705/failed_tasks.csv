@@ -1,0 +1,209 @@
+task_id,unique_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1965_B,1965_B_just_average_ok_0.00%,human,codeforces2024,qwen2.5-7b-instruct,"for _ in range(int(input())):
+    n, k = map(int, input().split())
+    
+    nums = [(1<<i) for i in range(24)]
+    idx = 0
+    while k >= (1 << idx): idx+=1
+    idx -= 1
+    nums.append(k-nums[idx])
+    nums.append(k+1)
+    nums.append(k+nums[idx]+1)
+    nums.remove(1 << idx)
+    print(len(nums))
+    print(*nums)","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-e082a22a-ca32-97de-b138-fe87d91287fc', 'request_id': 'e082a22a-ca32-97de-b138-fe87d91287fc'}",hoareprompt
+1955_D,1955_D_Greninja_007_0.00%,human,codeforces2024,qwen2.5-7b-instruct,"from collections import Counter
+ 
+def count_good_subarrays(a, b, k,n,m):
+ 
+    good_subarrays = 0
+    b_freq = Counter(b)
+    window_freq = Counter(a[:m])
+    matches = sum(min(window_freq[x], b_freq[x]) for x in window_freq if x in b_freq)
+ 
+    for i in range(n - m):
+        if matches >= k:
+            good_subarrays += 1
+        # Element exiting the window
+        if a[i] in b_freq:
+            matches -= min(window_freq[a[i]], b_freq[a[i]])
+        window_freq[a[i]] -= 1
+        if window_freq[a[i]] == 0:
+            del window_freq[a[i]]
+        # Element entering the window
+        if a[i + m] in b_freq:
+            matches += min(window_freq[a[i + m]] + 1, b_freq[a[i + m]])
+        window_freq[a[i + m]] += 1
+ 
+    # Check the last window
+    if matches >= k:
+        good_subarrays += 1
+ 
+    return good_subarrays
+ 
+for _ in range(int(input())):
+    n,m,k = map(int,input().split("" ""))
+    a = list(map(int,input().split("" "")))
+    b = list(map(int,input().split("" "")))
+    print(count_good_subarrays(a, b, k,n,m))","Error: unsupported statement type: <ast.Delete object at 0x751315b35c00> del window_freq[a[i]]
+",hoareprompt
+1932_A,1932_A_verabuylova_100%,human,codeforces2024,qwen2.5-7b-instruct,"class Solution:
+    def Coins(self, n: int, s: str) -> int:
+        res = 0
+        i = 0
+        while i < n:
+            if s[i] == '@':
+                res += 1
+            if i + 1 < n and s[i + 1] != '*':
+                i += 1
+            elif i + 2 < n and s[i + 2] != '*':
+                i += 2
+            else:
+                break
+        return res
+ 
+solution = Solution()
+ 
+t = int(input())
+ 
+for _ in range(t):
+    n = int(input())
+    a = input()
+    print(solution.Coins(n, a))","Error: unsupported statement type: <ast.ClassDef object at 0x751315b43640> class Solution:
+
+    def Coins(self, n: int, s: str) ->int:
+        res = 0
+        i = 0
+        while i < n:
+            if s[i] == '@':
+                res += 1
+            if i + 1 < n and s[i + 1] != '*':
+                i += 1
+            elif i + 2 < n and s[i + 2] != '*':
+                i += 2
+            else:
+                break
+        return res
+",hoareprompt
+1930_A,1930_A_Aadyant_05_33.33%,human,codeforces2024,qwen2.5-7b-instruct,"num=input()
+out=[]
+for numbers in range(int(num)):
+    list2=[]
+    list1=[]
+    a=input()
+    a=int(a)
+    
+    b=input("""")
+    list1=b.split()
+    list1.sort()
+    
+    for i in range(a):
+        list2.append(int(list1[2*i]))
+        
+ 
+    out.append(sum(list2))
+    del list1[:]
+    del list2[:]
+    
+    
+ 
+for outputs in out:
+    print(outputs)","Error: unsupported statement type: <ast.Delete object at 0x751315c2fdf0> del list1[:]
+",hoareprompt
+1969_D,1969_D_Both_10.00%,human,codeforces2024,qwen2.5-7b-instruct,"import heapq
+import sys
+ 
+putin = sys.stdin.readline
+ 
+ 
+def inp():
+    return int(putin())
+ 
+ 
+def invert():
+    return map(int, putin().split())
+ 
+ 
+def starting_price(main_ar, sec_arr):
+    sub_summ = 0
+    for val_a in sec_arr:
+        sub_summ += val_a[0]
+    for val_b in main_ar:
+        if val_b[0] + val_b[1] >= 0:
+            sub_summ += val_b[0] + val_b[1]
+    return sub_summ
+ 
+ 
+if __name__ == ""__main__"":
+    t = inp()
+    for x in range(t):
+        arr = []
+        k_arr = []
+        temp_pop = []
+        n, k = invert()
+        a = list(invert())
+        a = [-x for x in a]
+        b = list(invert())
+        max_value = 0
+        sub_sum = 0
+        my_bool = False
+ 
+        for i in range(n):
+            arr.append([a[i], b[i]])
+        arr.sort(key=lambda y: y[1], reverse=False)
+ 
+        for k_range in range(1, k + 1):
+            if arr:
+                heapq.heappush(k_arr, arr[-1])
+                arr.pop()
+        if arr:
+            sub_sum = starting_price(arr, k_arr)
+        if sub_sum > max_value:
+            max_value = sub_sum
+        while arr:
+            if arr:
+                sub_sum -= arr[-1][1]
+                if arr[-1][1] + arr[-1][0] <= 0:
+                    sub_sum += arr[-1][0]
+                temp_pop = heapq.heappushpop(k_arr, arr[-1])
+                arr.pop()
+                if temp_pop:
+                    sub_sum -= temp_pop[0]
+            if sub_sum > max_value:
+                if k_range != 0:
+                    max_value = sub_sum
+        print(max_value)",Error: failed to parse entailment checking response,hoareprompt
+1926_E,1926_E_daniilrybakov_100%,human,codeforces2024,qwen2.5-7b-instruct,"t = int(input())
+for _ in range(t):
+    n, k = map(int, input().split())
+    # mas = []
+    # while n:
+    #     mas.append((n + 1) // 2)
+    #     n //= 2
+    # print(mas)
+    # continue
+    s = 0
+    m = 1
+    while n:
+        x = ((n + 1) // 2)
+        n //= 2
+        if (s < k) and (k <= s + x):
+            break
+        s += x
+        m *= 2
+    print((2 * (k - s) - 1) * m)
+ 
+    # n_back = n
+    # s = (n + 1) // 2
+    # n = (n + 1) // 2
+    # m = 1
+    # while s < k:
+    #     if n == 0:
+    #         s = n_back
+    #         n = 1
+    #         break
+    #     m *= 2
+    #     n //= 2
+    #     s += n
+    # # print(n, s, k, m, (k - (s - n)))
+    # print((2 * (k - (s - n)) - 1) * m)","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-3b270985-6421-9f37-beff-7ce0b968a98c', 'request_id': '3b270985-6421-9f37-beff-7ce0b968a98c'}",hoareprompt

@@ -1,0 +1,35 @@
+#State of the program right berfore the function call: x and y are strings representing integers of the same length, consisting of digits from 1 to 9.
+def func_1():
+    a = list(input())
+    b = list(input())
+    for i in range(len(a)):
+        if i <= len(a) // 2 - 1:
+            n = min(a[i], b[i])
+            m = max(a[i], b[i])
+            a[i] = m
+            b[i] = n
+        else:
+            n = min(a[i], b[i])
+            m = max(a[i], b[i])
+            a[i] = n
+            b[i] = m
+        
+    #State: After the loop executes all the iterations, `i` will be equal to the length of `a`, `a` will be a list of integers where each element has been transformed according to the rules defined within the loop. Specifically, for the first half of the list (up to the middle), the elements will be swapped such that the smaller value moves to `b` and the larger value remains in `a`. For the second half of the list, the elements will also be swapped but in reverse order, meaning the larger value moves to `b` and the smaller value remains in `a`.
+    for i in range(len(a)):
+        print(a[i], end='')
+        
+    #State: Output State: After the loop executes all its iterations, `i` will be equal to `len(a)`, and `a` will be a list of integers where each element has been transformed according to the specified rules. Specifically, for the first half of the list (up to the middle), the elements will be swapped such that the smaller value moves to `b` and the larger value remains in `a`. For the second half of the list, the elements will also be swapped but in reverse order, meaning the larger value moves to `b` and the smaller value remains in `a`.
+    #
+    #This transformation ensures that after the loop completes, the list `a` is modified based on the comparison and swapping logic described, with `i` reflecting the total length of the list `a`.
+    print()
+    #This is printed: an empty line
+    for i in range(len(b)):
+        print(b[i], end='')
+        
+    #State: Output State: After the loop executes all its iterations, `i` will be equal to the length of list `b`, and `a` will be a list of integers where each element has been transformed according to the specified rules. Specifically, for the first half of the list (up to the middle), the elements will be swapped such that the smaller value moves to `b` and the larger value remains in `a`. For the second half of the list, the elements will also be swapped but in reverse order, meaning the larger value moves to `b` and the smaller value remains in `a`. The loop iterates over the entire length of `b`, ensuring that all elements in `a` are processed and transformed as per the described logic.
+    #
+    #In simpler terms, after the loop completes, `i` will be the length of `b`, and `a` will have been modified so that for the first half of the list, smaller values are moved to `b` and larger values remain in `a`, while for the second half, larger values are moved to `b` and smaller values remain in `a`.
+    print()
+    #This is printed: ''
+#Overall this is what the function does:The function takes two strings `x` and `y` as input, where both strings consist of digits from 1 to 9 and have the same length. It then transforms these strings into lists of integers. The function swaps the elements in the first half of the lists such that the smaller value moves to the second list and the larger value remains in the first list. For the second half of the lists, the elements are swapped in reverse order, meaning the larger value moves to the second list and the smaller value remains in the first list. Finally, the function prints the modified lists of integers.
+

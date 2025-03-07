@@ -1,0 +1,8 @@
+- The program's logic is correct in simulating the worst-case scenario and ensuring that Sasha can always recover from `x` consecutive losses.
+   - However, the expression `s += s // (k - 1) + 1` is not the most straightforward way to calculate the minimum initial amount `a` required.
+   - A more direct approach would be to use the formula \( a \geq \frac{x(x + 1)}{2} \).
+
+### Conclusion:
+The program's logic is correct in simulating the worst-case scenario and ensuring that Sasha can always recover from `x` consecutive losses. However, the implementation is not the most efficient or straightforward. Despite this, the program will produce the correct output for the given problem.
+
+Correctness:

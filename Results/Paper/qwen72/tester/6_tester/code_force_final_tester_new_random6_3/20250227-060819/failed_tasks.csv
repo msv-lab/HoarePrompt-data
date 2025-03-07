@@ -1,0 +1,47 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1926_C,human,codeforces2024,qwen2p5-72b-instruct,"def problem():
+    t = int(input())
+    numbers = []
+    for _ in range(t):
+        n = int(input())
+        numbers.append(n)
+ 
+    values = [0 for _ in range(max(numbers)  + 1)]
+    sum_values = [0 for _ in range(max(numbers) + 1)]
+ 
+    total = 0
+    for i in range(10):
+        values[i] = i
+        total += i
+        sum_values[i] = total
+ 
+    for i in range(10, n + 1):
+        word = str(i)
+        last = int(word[len(word) - 1])
+        remainder = int(word[:-1])
+        values[i] = values[last] + values[remainder]
+        sum_total = values[i] + sum_values[i - 1]
+        sum_values[i] = sum_total
+ 
+    for n in numbers:
+        print(sum_values[n])
+ 
+problem()",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1972_D1,human,codeforces2024,qwen2p5-72b-instruct,"import  math
+T = int(input())
+ 
+for t in range(T):
+    info = input().split()
+ 
+    a, b = int(info[0]), int(info[1])
+ 
+    suma = 0
+    for i in range(1,b+1):
+        x = (a-(i*(i-1)))//(i**2) + 1
+        if (a-(i*(i-1)))//(i**2) + 1 > 0:
+            suma += x
+            if (a-(i*(i-1)))%(i**2) == 0 and (i*(i-1))%(i**2) == 0:
+                suma += 1
+ 
+ 
+    print(suma-2)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt

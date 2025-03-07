@@ -1,0 +1,10 @@
+The function `func_2` accepts two parameters, `start_index` and `end_index`, and returns one of the following based on the conditions checked within the function:
+
+- An empty list if the length of the subarray is 1 and its element is less than or equal to 0.
+- A list containing a single tuple `(start_index, start_index)` if the length of the subarray is 1 and its element is greater than 0.
+- A list containing a single tuple `(start_index, end_index)` if the maximum value returned by `func_1(start_index, end_index)` equals the square of the length of the subarray.
+- The sum of the results of `func_2(start_index, i - 1)` and `func_2(i + 1, end_index)` for some index `i` within the range `[start_index, end_index]` where the temporary value `temp_res` equals the maximum value.
+- The result of `func_2(start_index + 1, end_index)` if the sum of `arr[start_index]` and the result of `func_1(start_index + 1, end_index)` equals the maximum value.
+- The result of `func_2(start_index, end_index - 1)` if the sum of `arr[end_index]` and the result of `func_1(start_index, end_index - 1)` equals the maximum value.
+
+If none of the above conditions are met, the function does not return anything.

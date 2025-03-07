@@ -1,0 +1,5 @@
+The function `func_1` takes two integers `a` and `b` as input, where `b` is non-negative. It returns a tuple based on the following conditions:
+- If `b` is 0, it returns the tuple (1, 0).
+- If `a` is less than `b`, it returns the tuple (d, c), where `c` and `d` are the results of `func_1(b, a)`.
+- If `a` is greater than or equal to `b` and `a` is divisible by `b`, it returns the tuple (1, -(a // b - 1)).
+- If `a` is greater than or equal to `b` and `a` is not divisible by `b`, it returns the tuple (d, c - a // b * d), where `c` and `d` are the results of `func_1(b, a % b)`.

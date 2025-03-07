@@ -1,0 +1,2359 @@
+Task ID,unique_id,Dataset,model_created,model_run,description,Code,run_number,original correctness,summary fsl,naive correctness fsl,vanilla,vanilla_no_cot,simple tree,complex tree,summary,simple verify fsl,complex verify fsl,summary verify fsl,simple verify,complex verify,summary verify,consistency,consistency_mine,consistency_old
+1955_F,1955_F_Slata_100%,codeforces2024,human,qwen2p5-72b-instruct,"Alice and Bob gathered in the evening to play an exciting game on a sequence
+of n integers, each integer of the sequence doesn't exceed 4 . The rules of
+the game are too complex to describe, so let's just describe the winning
+condition — Alice wins if the [bitwise XOR](http://tiny.cc/xor_wiki_eng) of
+all the numbers in the sequence is non-zero; otherwise, Bob wins.
+
+The guys invited Eve to act as a judge. Initially, Alice and Bob play with n
+numbers. After one game, Eve removes one of the numbers from the sequence,
+then Alice and Bob play with n-1 numbers. Eve removes one number again, after
+which Alice and Bob play with n - 2 numbers. This continues until the sequence
+of numbers is empty.
+
+Eve seems to think that in such a game, Alice almost always wins, so she wants
+Bob to win as many times as possible. Determine the maximum number of times
+Bob can win against Alice if Eve removes the numbers optimally.
+
+Input
+
+The first line contains an integer t (1 \le t \le 10^4 ) — the number of test
+cases.
+
+The first and only line of each test case contains four integers p_i (0 \le
+p_i \le 200 ) — the number of ones, twos, threes, and fours in the sequence at
+the beginning of the game.
+
+Output
+
+For each test case, print the maximum number of times Bob will win in a
+separate line, if Eve removes the numbers optimally.
+
+Example
+
+Input
+
+    5
+    
+    1 1 1 0
+    
+    1 0 1 2
+    
+    2 2 2 0
+    
+    3 3 2 0
+    
+    0 9 9 9
+
+Output
+
+    1
+    1
+    3
+    3
+    12
+    
+Note
+
+In the first example, Bob wins when Eve has not removed any numbers yet.
+
+In the second example, Bob wins if Eve removes one one and one three.","for i in range(int(input())):
+  a,b,c,d=map(int,input().split())
+  print(a//2+b//2+c//2+d//2+int(a%2+b%2+c%2==3))",1,True,False,False,True,True,False,True,True,False,False,False,True,False,False,0.7991488459036387,0.33565881581250573,0.75
+1956_C,1956_C_danikzor_100%,codeforces2024,human,qwen2p5-72b-instruct,"The magical girl Nene has an n\times n matrix a filled with zeroes. The j -th
+element of the i -th row of matrix a is denoted as a_{i, j} .
+
+She can perform operations of the following two types with this matrix:
+
+  * Type 1 operation: choose an integer i between 1 and n and a permutation p_1, p_2, \ldots, p_n of integers from 1 to n . Assign a_{i, j}:=p_j for all 1 \le j \le n simultaneously. 
+  * Type 2 operation: choose an integer i between 1 and n and a permutation p_1, p_2, \ldots, p_n of integers from 1 to n . Assign a_{j, i}:=p_j for all 1 \le j \le n simultaneously. 
+
+Nene wants to maximize the sum of all the numbers in the matrix
+\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n}a_{i,j} . She asks you to find the
+way to perform the operations so that this sum is maximized. As she doesn't
+want to make too many operations, you should provide a solution with no more
+than 2n operations.
+
+A permutation of length n is an array consisting of n distinct integers from 1
+to n in arbitrary order. For example, [2,3,1,5,4] is a permutation, but
+[1,2,2] is not a permutation (2 appears twice in the array), and [1,3,4] is
+also not a permutation (n=3 but there is 4 in the array).
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t (1 \le t \le 500 ). The description of test cases follows.
+
+The only line of each test case contains a single integer n (1 \le n \le 500 )
+— the size of the matrix a .
+
+It is guaranteed that the sum of n^2 over all test cases does not exceed 5
+\cdot 10^5 .
+
+Output
+
+For each test case, in the first line output two integers s and m (0\leq m\leq
+2n ) — the maximum sum of the numbers in the matrix and the number of
+operations in your solution.
+
+In the k -th of the next m lines output the description of the k -th
+operation:
+
+  * an integer c (c \in \\{1, 2\\} ) — the type of the k -th operation; 
+  * an integer i (1 \le i \le n ) — the row or the column the k -th operation is applied to; 
+  * a permutation p_1, p_2, \ldots, p_n of integers from 1 to n — the permutation used in the k -th operation. 
+
+Note that you don't need to minimize the number of operations used, you only
+should use no more than 2n operations. It can be shown that the maximum
+possible sum can always be obtained in no more than 2n operations.
+
+Example
+
+Input
+
+    2
+    
+    1
+    
+    2
+
+Output
+
+    1 1
+    1 1 1
+    7 3
+    1 1 1 2
+    1 2 1 2
+    2 1 1 2
+    
+Note
+
+In the first test case, the maximum sum s=1 can be obtained in 1 operation by
+setting a_{1, 1}:=1 .
+
+In the second test case, the maximum sum s=7 can be obtained in 3 operations
+as follows:
+
+![](https://espresso.codeforces.com/4074275900ed2b8a474fda5b3a628454fc521f8a.png)
+
+It can be shown that it is impossible to make the sum of the numbers in the
+matrix larger than 7 .","def solve():
+    n = int(input())
+    print(n*(n+1)*(4*n-1)//6, 2*n)
+    for i in range(1, n+1):
+        print(1, i, *range(n, 0, -1))
+        print(2, i, *range(n, 0, -1))
+ 
+ 
+t = int(input())
+for t in range(t, 0, -1):
+    solve()",1,True,False,False,False,False,True,True,True,False,False,False,False,False,True,0.7688451478770758,0.3024658228970815,0.5833333333333334
+1945_D,1945_D_vjudge.1_100%,codeforces2024,human,qwen2p5-72b-instruct,"The guys lined up in a queue of n people, starting with person number i = 1 ,
+to ask Serafim the Owl about the meaning of life. Unfortunately, Kirill was
+very busy writing the legend for this problem, so he arrived a little later
+and stood at the end of the line after the n -th person. Kirill is completely
+dissatisfied with this situation, so he decided to bribe some people ahead of
+him.
+
+For the i -th person in the queue, Kirill knows two values: a_i and b_i . If
+at the moment Kirill is standing at position i , then he can choose any
+position j such that j < i and exchange places with the person at position j .
+In this case, Kirill will have to pay him a_j coins. And for each k such that
+j < k < i , Kirill will have to pay b_k coins to the person at position k .
+Kirill can perform this action any number of times.
+
+Kirill is thrifty, so he wants to spend as few coins as possible, but he
+doesn't want to wait too long, so Kirill believes he should be among the first
+m people in line.
+
+Help Kirill determine the minimum number of coins he will have to spend in
+order to not wait too long.
+
+Input
+
+Each test consists of several sets of input data. The first line contains a
+single integer t (1 \le t \le 10^4 ) — the number of test cases. Then follows
+the description of the test case.
+
+The first line of each test case contains two integers n and m (1 \le m \le n
+\le 200\,000 ) — the number of people in the queue besides Kirill and the
+maximum allowable final position of Kirill, respectively.
+
+The second line contains n integers a_1, a_2, \dots, a_n separated by spaces
+(1 \le a_i \le 10^9 ).
+
+The third line contains n integers b_1, b_2, \dots, b_n separated by spaces (1
+\le b_i \le 10^9 ).
+
+It is guaranteed that the sum of the values of n over all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output a single integer — the minimum number of coins
+Kirill needs to spend.
+
+Example
+
+Input
+
+    4
+    
+    4 2
+    
+    7 3 6 9
+    
+    4 3 8 5
+    
+    6 2
+    
+    6 9 7 1 8 3
+    
+    5 8 8 1 4 1
+    
+    7 7
+    
+    7 2 9 2 6 5 9
+    
+    9 1 10 7 1 4 9
+    
+    2 1
+    
+    2 3
+    
+    1 1
+
+Output
+
+    14
+    22
+    9
+    3","def solve(n, k, a, b):
+    c = [min(a[i], b[i]) for i in range(n)]
+ 
+    suff = [0] * (n + 1)
+    for i in range(n - 1, -1, -1):
+        suff[i] = suff[i + 1] + c[i]
+ 
+    ans = float('inf')
+    for i in range(k):
+        ans = min(ans, a[i] + suff[i + 1])
+ 
+    print(ans)
+ 
+t = int(input())
+for _ in range(t):
+    n, k = map(int, input().split())
+    a = list(map(int, input().split()))
+    b = list(map(int, input().split()))
+ 
+    solve(n, k, a, b)",1,True,False,False,True,False,True,True,False,True,False,False,True,True,True,0.7496610679050388,0.28756566240606496,0.6666666666666666
+1948_A,1948_A_Tirthraj_Raval_0.00%,codeforces2024,human,qwen2p5-72b-instruct,"You are given an integer n .
+
+Your task is to build a string of uppercase Latin letters. There must be
+exactly n special characters in this string. Let's call a character special if
+it is equal to exactly one of its neighbors.
+
+For example, there are 6 special characters in the AAABAACC string (at
+positions: 1 , 3 , 5 , 6 , 7 and 8 ).
+
+Print any suitable string or report that there is no such string.
+
+Input
+
+The first line contains a single integer t (1 \le t \le 50 ) — the number of
+test cases.
+
+The only line of each test case contains a single integer n (1 \le n \le 50 ).
+
+Output
+
+For each test case, print the answer as follows:
+
+  * if there is no suitable string, print one line containing the string NO; 
+  * otherwise, print two lines. The first line should contain the string YES; on the second line print a string of length at most 200  — the answer itself (it can be shown that if some answers exist, then there is an answer of length at most 200 ). If there are several solutions, print any of them. 
+
+Example
+
+Input
+
+    3
+    
+    6
+    
+    1
+    
+    2
+
+Output
+
+    YES
+    AAABAACC
+    NO
+    YES
+    MM","t = int(input())
+for _ in range(t):
+        n = int(input())
+        
+        if n % 2 == 1:
+            print(""NO"")
+        else:
+            print(""YES"")
+            pattern = []
+            for i in range(n // 2):
+                pattern.append(""AB""[i % 2])
+                pattern.append(""AB""[(i % 2) ^ 1])
+            print("""".join(pattern))",1,False,False,False,True,True,True,True,False,False,False,False,True,True,True,0.5175726262592018,0.018300057959463222,0.5833333333333334
+1968_F,1968_F_parth7042_100%,codeforces2024,human,qwen2p5-72b-instruct,"Let us call an array x_1,\dots,x_m interesting if it is possible to divide the
+array into k>1 parts so that [bitwise XOR](http://tiny.cc/xor_wiki_eng) of
+values from each part are equal.
+
+More formally, you must split array x into k consecutive segments, each
+element of x must belong to exactly 1 segment. Let y_1,\dots,y_k be the XOR of
+elements from each part respectively. Then y_1=y_2=\dots=y_k must be
+fulfilled.
+
+For example, if x = [1, 1, 2, 3, 0] , you can split it as follows:
+[\color{blue}1], [\color{green}1], [\color{red}2, \color{red}3, \color{red}0]
+. Indeed \color{blue}1=\color{green}1=\color{red}2 \oplus \color{red}3\oplus
+\color{red}0 .
+
+You are given an array a_1,\dots,a_n . Your task is to answer q queries:
+
+  * For fixed l , r , determine whether the subarray a_l,a_{l+1},\dots,a_r is interesting. 
+
+Input
+
+The first line contains a single integer t (1\le t\le 10^4 ) — the number of
+test cases.
+
+The first line of each test case contains two integers n and q (2 \le n \le 2
+\cdot 10^5 , 1 \le q \le 2 \cdot 10^5 ) — the number of elements in the array
+and the number of queries respectively.
+
+The next line contains n integers a_1,\dots,a_n (0 \le a_i < 2^{30} ) —
+elements of the array.
+
+Each of the next q lines contains two integers l and r (1 \le l < r \le n )
+describing the query.
+
+It is guaranteed that the sum of n over all testcases does not exceed 2 \cdot
+10^5 .
+
+It is guaranteed that the sum of q over all testcases does not exceed 2 \cdot
+10^5 .
+
+Output
+
+For each query, output ""YES"" if the subarray is interesting and ""NO""
+otherwise.
+
+You can output ""Yes"" and ""No"" in any case (for example, the strings ""yES"",
+""yes"", and ""Yes"" will be recognized as correct answers).
+
+Example
+
+Input
+
+    4
+    
+    5 5
+    
+    1 1 2 3 0
+    
+    1 5
+    
+    2 4
+    
+    3 5
+    
+    1 3
+    
+    3 4
+    
+    5 5
+    
+    1 2 3 4 5
+    
+    1 5
+    
+    2 4
+    
+    3 5
+    
+    1 3
+    
+    2 3
+    
+    7 4
+    
+    12 9 10 9 10 11 9
+    
+    1 5
+    
+    1 7
+    
+    2 6
+    
+    2 7
+    
+    11 4
+    
+    0 0 1 0 0 1 0 1 1 0 1
+    
+    1 2
+    
+    2 5
+    
+    6 9
+    
+    7 11
+
+Output
+
+    YES
+    YES
+    NO
+    NO
+    NO
+    
+    YES
+    NO
+    NO
+    YES
+    NO
+    
+    NO
+    NO
+    NO
+    NO
+    
+    YES
+    NO
+    YES
+    YES
+    
+Note
+
+Explanation for the first test case:
+
+The first query is described in the statement.
+
+In the second query, we should divide [1,2,3] . A possible division is
+[1,2],[3] , since 1\oplus 2=3 .
+
+It can be shown that for queries 3,4,5 , the subarrays are not interesting.","import sys
+input = sys.stdin.read
+from collections import defaultdict
+from bisect import bisect_left
+ 
+def solve():
+    data = input().split()
+    index = 0
+    
+    # Read number of test cases
+    t = int(data[index])
+    index += 1
+    
+    results = []
+    
+    for _ in range(t):
+        # Read n and q
+        n = int(data[index])
+        q = int(data[index + 1])
+        index += 2
+        
+        # Read the array
+        a = [0] * (n + 1)
+        pf = [0] * (n + 1)
+        mp = defaultdict(list)
+        
+        mp[0].append(0)
+        
+        for i in range(1, n + 1):
+            a[i] = int(data[index])
+            index += 1
+            pf[i] = pf[i - 1] ^ a[i]
+            mp[pf[i]].append(i)
+        
+        for _ in range(q):
+            l = int(data[index])
+            r = int(data[index + 1])
+            index += 2
+            
+            x = pf[r] ^ pf[l - 1]
+            if x == 0:
+                results.append(""YES"")
+                continue
+            
+            # Access lists v1 and v2 from map mp
+            v1 = mp[pf[r]]
+            v2 = mp[pf[l - 1]]
+            
+            # Find the range within v1 and v2
+            it1 = bisect_left(v1, l)
+            it2 = bisect_left(v2, r) - 1
+            
+            # Check if the found indices are valid and satisfy the condition
+            if it1 < len(v1) and it2 >= 0 and v1[it1] < v2[it2]:
+                results.append(""YES"")
+            else:
+                results.append(""NO"")
+    
+    # Print all results at the end
+    print(""\n"".join(results))
+ 
+# Run the solve function
+solve()",1,True,False,False,True,False,True,True,True,False,False,False,True,True,False,0.7313462640221646,0.25837347786750126,0.6666666666666666
+1968_B,1968_B_MALIK_ANTUPARTHI_100%,codeforces2024,human,qwen2p5-72b-instruct,"You are given two binary strings a and b . A binary string is a string
+consisting of the characters '0' and '1'.
+
+Your task is to determine the maximum possible number k such that a prefix of
+string a of length k is a subsequence of string b .
+
+A sequence a is a subsequence of a sequence b if a can be obtained from b by
+the deletion of several (possibly, zero or all) elements.
+
+Input
+
+The first line consists of a single integer t (1 \le t \le 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and m (1\le n,m \le 2
+\cdot 10^5 ) — the length of string a and the length of string b ,
+respectively.
+
+The second line of each test case contains a binary string a of length n .
+
+The third line of each test case contains a binary string b of length m .
+
+It is guaranteed that the sum of values n over all test cases does not exceed
+2 \cdot 10^5 . Similarly, the sum of values m over all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output a single number — the maximum k , such that the
+first k characters of a form a subsequence of b .
+
+Example
+
+Input
+
+    6
+    
+    5 4
+    
+    10011
+    
+    1110
+    
+    3 3
+    
+    100
+    
+    110
+    
+    1 3
+    
+    1
+    
+    111
+    
+    4 4
+    
+    1011
+    
+    1111
+    
+    3 5
+    
+    100
+    
+    11010
+    
+    3 1
+    
+    100
+    
+    0
+
+Output
+
+    2
+    2
+    1
+    1
+    3
+    0
+    
+Note
+
+In the first example, the string '10 ' is a subsequence of
+'1\color{red}11\color{red}0 ' but the string '100 ' is not. So the answer is 2
+.
+
+In the fifth example, a ='100 ', b ='1\color{red}{10}1\color{red}0 ', whole
+string a is a subsequence of string b . So the answer is 3 .
+
+In the sixth example, string b does not contain '1 ' so the answer is 0 .","a=int(input())
+for i in range(a):
+    b,c=map(int,input().split())
+    d=input()
+    e=input()
+    k=0
+    for j in range(b):
+        if d[j] in e[k:]:
+            k=e[k:].index(d[j])+1+k
+            if k==c or j==b-1:
+                k=j+1
+                break
+        else:
+            k=j
+            break
+    print(k)",1,True,False,False,True,False,True,True,True,False,False,False,True,True,True,0.5225905238974631,0.024000142121750116,0.5833333333333334
+1931_C,1931_C_Rohidul_100%,codeforces2024,human,qwen2p5-72b-instruct,"You have an array a of n integers.
+
+You can no more than once apply the following operation: select three integers
+i , j , x (1 \le i \le j \le n ) and assign all elements of the array with
+indexes from i to j the value x . The price of this operation depends on the
+selected indices and is equal to (j - i + 1) burles.
+
+For example, the array is equal to [1, 2, 3, 4, 5, 1] . If we choose i = 2, j
+= 4, x = 8 , then after applying this operation, the array will be equal to
+[1, 8, 8, 8, 5, 1] .
+
+What is the least amount of burles you need to spend to make all the elements
+of the array equal?
+
+Input
+
+The first line contains a single integer t (1 \le t \le 10^4 ) — the number of
+input test cases. The descriptions of the test cases follow.
+
+The first line of the description of each test case contains a single integer
+n (1 \le n \le 2 \cdot 10 ^ 5 ) — the size of the array.
+
+The second line of the description of each test case contains n integers a_1,
+a_2, \dots, a_n (1 \le a_i \le n ) — array elements.
+
+It is guaranteed that the sum of n for all test cases does not exceed 2 \cdot
+10^5 .
+
+Output
+
+For each test case, output one integer — the minimum number of burles that
+will have to be spent to make all the elements of the array equal. It can be
+shown that this can always be done.
+
+Example
+
+Input
+
+    8
+    
+    6
+    
+    1 2 3 4 5 1
+    
+    7
+    
+    1 1 1 1 1 1 1
+    
+    8
+    
+    8 8 8 1 2 8 8 8
+    
+    1
+    
+    1
+    
+    2
+    
+    1 2
+    
+    3
+    
+    1 2 3
+    
+    7
+    
+    4 3 2 7 1 1 3
+    
+    9
+    
+    9 9 2 9 2 5 5 5 3
+
+Output
+
+    4
+    0
+    2
+    0
+    1
+    2
+    6
+    7","for _ in range(int(input())):
+    n=int(input())
+    a=list(map(int,input().split()))
+    le=len(a)
+    l,r=0,n-1
+    st,end=1,1
+    while l<r and a[l]==a[l+1]:l+=1;st+=1
+    while r>l and a[r]==a[r-1]:r-=1;end+=1
+ 
+    ans=le-max(st,end)
+    if a[0]==a[-1]:ans=max(0,le-(st+end))
+    print(ans)",1,True,False,False,True,True,True,True,False,False,False,False,True,False,False,0.6234946723635965,0.13400807799198722,0.5833333333333334
+1978_B,1978_B__professor-_50.00%,codeforces2024,human,qwen2p5-72b-instruct,"Bob decided to open a bakery. On the opening day, he baked n buns that he can
+sell. The usual price of a bun is a coins, but to attract customers, Bob
+organized the following promotion:
+
+  * Bob chooses some integer k (0 \le k \le \min(n, b) ).
+  * Bob sells the first k buns at a modified price. In this case, the price of the i -th (1 \le i \le k ) sold bun is (b - i + 1) coins.
+  * The remaining (n - k) buns are sold at a coins each.
+
+Note that k can be equal to 0 . In this case, Bob will sell all the buns at a
+coins each.
+
+Help Bob determine the maximum profit he can obtain by selling all n buns.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 10^4 ) — the number of test cases. The description of
+the test cases follows.
+
+The only line of each test case contains three integers n , a , and b (1 \le
+n, a, b \le 10^9 ) — the number of buns, the usual price of a bun, and the
+price of the first bun to be sold at a modified price.
+
+Output
+
+For each test case, output a single integer — the maximum profit that Bob can
+obtain.
+
+Example
+
+Input
+
+    7
+    
+    4 4 5
+    
+    5 5 9
+    
+    10 10 5
+    
+    5 5 11
+    
+    1000000000 1000000000 1000000000
+    
+    1000000000 1000000000 1
+    
+    1000 1 1000
+
+Output
+
+    17
+    35
+    100
+    45
+    1000000000000000000
+    1000000000000000000
+    500500
+    
+Note
+
+In the first test case, it is optimal for Bob to choose k = 1 . Then he will
+sell one bun for 5 coins, and three buns at the usual price for 4 coins each.
+Then the profit will be 5 + 4 + 4 + 4 = 17 coins.
+
+In the second test case, it is optimal for Bob to choose k = 5 . Then he will
+sell all the buns at the modified price and obtain a profit of 9 + 8 + 7 + 6 +
+5 = 35 coins.
+
+In the third test case, it is optimal for Bob to choose k = 0 . Then he will
+sell all the buns at the usual price and obtain a profit of 10 \cdot 10 = 100
+coins.","t=int(input())
+for _ in range(t):
+    n,a,b=map(int,input().split())
+    if b<=a:
+        print(n*a)
+    else:
+        if (b-a)>=n:
+            print(int((2*b-n+1)*n/2))
+        else:
+            print(int((b-a)/2*(b-a+1)+a*n))",1,False,False,False,False,False,False,False,False,False,False,False,False,False,False,0.7709564406191117,0.30954473066548477,0.75
+1955_F,1955_F_Slata_100%,codeforces2024,human,qwen2p5-72b-instruct,"Alice and Bob gathered in the evening to play an exciting game on a sequence
+of n integers, each integer of the sequence doesn't exceed 4 . The rules of
+the game are too complex to describe, so let's just describe the winning
+condition — Alice wins if the [bitwise XOR](http://tiny.cc/xor_wiki_eng) of
+all the numbers in the sequence is non-zero; otherwise, Bob wins.
+
+The guys invited Eve to act as a judge. Initially, Alice and Bob play with n
+numbers. After one game, Eve removes one of the numbers from the sequence,
+then Alice and Bob play with n-1 numbers. Eve removes one number again, after
+which Alice and Bob play with n - 2 numbers. This continues until the sequence
+of numbers is empty.
+
+Eve seems to think that in such a game, Alice almost always wins, so she wants
+Bob to win as many times as possible. Determine the maximum number of times
+Bob can win against Alice if Eve removes the numbers optimally.
+
+Input
+
+The first line contains an integer t (1 \le t \le 10^4 ) — the number of test
+cases.
+
+The first and only line of each test case contains four integers p_i (0 \le
+p_i \le 200 ) — the number of ones, twos, threes, and fours in the sequence at
+the beginning of the game.
+
+Output
+
+For each test case, print the maximum number of times Bob will win in a
+separate line, if Eve removes the numbers optimally.
+
+Example
+
+Input
+
+    5
+    
+    1 1 1 0
+    
+    1 0 1 2
+    
+    2 2 2 0
+    
+    3 3 2 0
+    
+    0 9 9 9
+
+Output
+
+    1
+    1
+    3
+    3
+    12
+    
+Note
+
+In the first example, Bob wins when Eve has not removed any numbers yet.
+
+In the second example, Bob wins if Eve removes one one and one three.","for i in range(int(input())):
+  a,b,c,d=map(int,input().split())
+  print(a//2+b//2+c//2+d//2+int(a%2+b%2+c%2==3))",2,True,False,False,True,True,True,True,True,False,False,False,False,True,False,0.7991488459036387,0.33565881581250573,0.75
+1956_C,1956_C_danikzor_100%,codeforces2024,human,qwen2p5-72b-instruct,"The magical girl Nene has an n\times n matrix a filled with zeroes. The j -th
+element of the i -th row of matrix a is denoted as a_{i, j} .
+
+She can perform operations of the following two types with this matrix:
+
+  * Type 1 operation: choose an integer i between 1 and n and a permutation p_1, p_2, \ldots, p_n of integers from 1 to n . Assign a_{i, j}:=p_j for all 1 \le j \le n simultaneously. 
+  * Type 2 operation: choose an integer i between 1 and n and a permutation p_1, p_2, \ldots, p_n of integers from 1 to n . Assign a_{j, i}:=p_j for all 1 \le j \le n simultaneously. 
+
+Nene wants to maximize the sum of all the numbers in the matrix
+\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n}a_{i,j} . She asks you to find the
+way to perform the operations so that this sum is maximized. As she doesn't
+want to make too many operations, you should provide a solution with no more
+than 2n operations.
+
+A permutation of length n is an array consisting of n distinct integers from 1
+to n in arbitrary order. For example, [2,3,1,5,4] is a permutation, but
+[1,2,2] is not a permutation (2 appears twice in the array), and [1,3,4] is
+also not a permutation (n=3 but there is 4 in the array).
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t (1 \le t \le 500 ). The description of test cases follows.
+
+The only line of each test case contains a single integer n (1 \le n \le 500 )
+— the size of the matrix a .
+
+It is guaranteed that the sum of n^2 over all test cases does not exceed 5
+\cdot 10^5 .
+
+Output
+
+For each test case, in the first line output two integers s and m (0\leq m\leq
+2n ) — the maximum sum of the numbers in the matrix and the number of
+operations in your solution.
+
+In the k -th of the next m lines output the description of the k -th
+operation:
+
+  * an integer c (c \in \\{1, 2\\} ) — the type of the k -th operation; 
+  * an integer i (1 \le i \le n ) — the row or the column the k -th operation is applied to; 
+  * a permutation p_1, p_2, \ldots, p_n of integers from 1 to n — the permutation used in the k -th operation. 
+
+Note that you don't need to minimize the number of operations used, you only
+should use no more than 2n operations. It can be shown that the maximum
+possible sum can always be obtained in no more than 2n operations.
+
+Example
+
+Input
+
+    2
+    
+    1
+    
+    2
+
+Output
+
+    1 1
+    1 1 1
+    7 3
+    1 1 1 2
+    1 2 1 2
+    2 1 1 2
+    
+Note
+
+In the first test case, the maximum sum s=1 can be obtained in 1 operation by
+setting a_{1, 1}:=1 .
+
+In the second test case, the maximum sum s=7 can be obtained in 3 operations
+as follows:
+
+![](https://espresso.codeforces.com/4074275900ed2b8a474fda5b3a628454fc521f8a.png)
+
+It can be shown that it is impossible to make the sum of the numbers in the
+matrix larger than 7 .","def solve():
+    n = int(input())
+    print(n*(n+1)*(4*n-1)//6, 2*n)
+    for i in range(1, n+1):
+        print(1, i, *range(n, 0, -1))
+        print(2, i, *range(n, 0, -1))
+ 
+ 
+t = int(input())
+for t in range(t, 0, -1):
+    solve()",2,True,False,False,True,False,True,True,True,False,False,False,False,True,False,0.7688451478770758,0.3024658228970815,0.5833333333333334
+1945_D,1945_D_vjudge.1_100%,codeforces2024,human,qwen2p5-72b-instruct,"The guys lined up in a queue of n people, starting with person number i = 1 ,
+to ask Serafim the Owl about the meaning of life. Unfortunately, Kirill was
+very busy writing the legend for this problem, so he arrived a little later
+and stood at the end of the line after the n -th person. Kirill is completely
+dissatisfied with this situation, so he decided to bribe some people ahead of
+him.
+
+For the i -th person in the queue, Kirill knows two values: a_i and b_i . If
+at the moment Kirill is standing at position i , then he can choose any
+position j such that j < i and exchange places with the person at position j .
+In this case, Kirill will have to pay him a_j coins. And for each k such that
+j < k < i , Kirill will have to pay b_k coins to the person at position k .
+Kirill can perform this action any number of times.
+
+Kirill is thrifty, so he wants to spend as few coins as possible, but he
+doesn't want to wait too long, so Kirill believes he should be among the first
+m people in line.
+
+Help Kirill determine the minimum number of coins he will have to spend in
+order to not wait too long.
+
+Input
+
+Each test consists of several sets of input data. The first line contains a
+single integer t (1 \le t \le 10^4 ) — the number of test cases. Then follows
+the description of the test case.
+
+The first line of each test case contains two integers n and m (1 \le m \le n
+\le 200\,000 ) — the number of people in the queue besides Kirill and the
+maximum allowable final position of Kirill, respectively.
+
+The second line contains n integers a_1, a_2, \dots, a_n separated by spaces
+(1 \le a_i \le 10^9 ).
+
+The third line contains n integers b_1, b_2, \dots, b_n separated by spaces (1
+\le b_i \le 10^9 ).
+
+It is guaranteed that the sum of the values of n over all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output a single integer — the minimum number of coins
+Kirill needs to spend.
+
+Example
+
+Input
+
+    4
+    
+    4 2
+    
+    7 3 6 9
+    
+    4 3 8 5
+    
+    6 2
+    
+    6 9 7 1 8 3
+    
+    5 8 8 1 4 1
+    
+    7 7
+    
+    7 2 9 2 6 5 9
+    
+    9 1 10 7 1 4 9
+    
+    2 1
+    
+    2 3
+    
+    1 1
+
+Output
+
+    14
+    22
+    9
+    3","def solve(n, k, a, b):
+    c = [min(a[i], b[i]) for i in range(n)]
+ 
+    suff = [0] * (n + 1)
+    for i in range(n - 1, -1, -1):
+        suff[i] = suff[i + 1] + c[i]
+ 
+    ans = float('inf')
+    for i in range(k):
+        ans = min(ans, a[i] + suff[i + 1])
+ 
+    print(ans)
+ 
+t = int(input())
+for _ in range(t):
+    n, k = map(int, input().split())
+    a = list(map(int, input().split()))
+    b = list(map(int, input().split()))
+ 
+    solve(n, k, a, b)",2,True,False,False,True,True,True,True,False,True,True,True,True,True,True,0.7496610679050388,0.28756566240606496,0.6666666666666666
+1948_A,1948_A_Tirthraj_Raval_0.00%,codeforces2024,human,qwen2p5-72b-instruct,"You are given an integer n .
+
+Your task is to build a string of uppercase Latin letters. There must be
+exactly n special characters in this string. Let's call a character special if
+it is equal to exactly one of its neighbors.
+
+For example, there are 6 special characters in the AAABAACC string (at
+positions: 1 , 3 , 5 , 6 , 7 and 8 ).
+
+Print any suitable string or report that there is no such string.
+
+Input
+
+The first line contains a single integer t (1 \le t \le 50 ) — the number of
+test cases.
+
+The only line of each test case contains a single integer n (1 \le n \le 50 ).
+
+Output
+
+For each test case, print the answer as follows:
+
+  * if there is no suitable string, print one line containing the string NO; 
+  * otherwise, print two lines. The first line should contain the string YES; on the second line print a string of length at most 200  — the answer itself (it can be shown that if some answers exist, then there is an answer of length at most 200 ). If there are several solutions, print any of them. 
+
+Example
+
+Input
+
+    3
+    
+    6
+    
+    1
+    
+    2
+
+Output
+
+    YES
+    AAABAACC
+    NO
+    YES
+    MM","t = int(input())
+for _ in range(t):
+        n = int(input())
+        
+        if n % 2 == 1:
+            print(""NO"")
+        else:
+            print(""YES"")
+            pattern = []
+            for i in range(n // 2):
+                pattern.append(""AB""[i % 2])
+                pattern.append(""AB""[(i % 2) ^ 1])
+            print("""".join(pattern))",2,False,False,False,True,True,True,True,True,False,False,False,True,True,True,0.5175726262592018,0.018300057959463222,0.5833333333333334
+1968_F,1968_F_parth7042_100%,codeforces2024,human,qwen2p5-72b-instruct,"Let us call an array x_1,\dots,x_m interesting if it is possible to divide the
+array into k>1 parts so that [bitwise XOR](http://tiny.cc/xor_wiki_eng) of
+values from each part are equal.
+
+More formally, you must split array x into k consecutive segments, each
+element of x must belong to exactly 1 segment. Let y_1,\dots,y_k be the XOR of
+elements from each part respectively. Then y_1=y_2=\dots=y_k must be
+fulfilled.
+
+For example, if x = [1, 1, 2, 3, 0] , you can split it as follows:
+[\color{blue}1], [\color{green}1], [\color{red}2, \color{red}3, \color{red}0]
+. Indeed \color{blue}1=\color{green}1=\color{red}2 \oplus \color{red}3\oplus
+\color{red}0 .
+
+You are given an array a_1,\dots,a_n . Your task is to answer q queries:
+
+  * For fixed l , r , determine whether the subarray a_l,a_{l+1},\dots,a_r is interesting. 
+
+Input
+
+The first line contains a single integer t (1\le t\le 10^4 ) — the number of
+test cases.
+
+The first line of each test case contains two integers n and q (2 \le n \le 2
+\cdot 10^5 , 1 \le q \le 2 \cdot 10^5 ) — the number of elements in the array
+and the number of queries respectively.
+
+The next line contains n integers a_1,\dots,a_n (0 \le a_i < 2^{30} ) —
+elements of the array.
+
+Each of the next q lines contains two integers l and r (1 \le l < r \le n )
+describing the query.
+
+It is guaranteed that the sum of n over all testcases does not exceed 2 \cdot
+10^5 .
+
+It is guaranteed that the sum of q over all testcases does not exceed 2 \cdot
+10^5 .
+
+Output
+
+For each query, output ""YES"" if the subarray is interesting and ""NO""
+otherwise.
+
+You can output ""Yes"" and ""No"" in any case (for example, the strings ""yES"",
+""yes"", and ""Yes"" will be recognized as correct answers).
+
+Example
+
+Input
+
+    4
+    
+    5 5
+    
+    1 1 2 3 0
+    
+    1 5
+    
+    2 4
+    
+    3 5
+    
+    1 3
+    
+    3 4
+    
+    5 5
+    
+    1 2 3 4 5
+    
+    1 5
+    
+    2 4
+    
+    3 5
+    
+    1 3
+    
+    2 3
+    
+    7 4
+    
+    12 9 10 9 10 11 9
+    
+    1 5
+    
+    1 7
+    
+    2 6
+    
+    2 7
+    
+    11 4
+    
+    0 0 1 0 0 1 0 1 1 0 1
+    
+    1 2
+    
+    2 5
+    
+    6 9
+    
+    7 11
+
+Output
+
+    YES
+    YES
+    NO
+    NO
+    NO
+    
+    YES
+    NO
+    NO
+    YES
+    NO
+    
+    NO
+    NO
+    NO
+    NO
+    
+    YES
+    NO
+    YES
+    YES
+    
+Note
+
+Explanation for the first test case:
+
+The first query is described in the statement.
+
+In the second query, we should divide [1,2,3] . A possible division is
+[1,2],[3] , since 1\oplus 2=3 .
+
+It can be shown that for queries 3,4,5 , the subarrays are not interesting.","import sys
+input = sys.stdin.read
+from collections import defaultdict
+from bisect import bisect_left
+ 
+def solve():
+    data = input().split()
+    index = 0
+    
+    # Read number of test cases
+    t = int(data[index])
+    index += 1
+    
+    results = []
+    
+    for _ in range(t):
+        # Read n and q
+        n = int(data[index])
+        q = int(data[index + 1])
+        index += 2
+        
+        # Read the array
+        a = [0] * (n + 1)
+        pf = [0] * (n + 1)
+        mp = defaultdict(list)
+        
+        mp[0].append(0)
+        
+        for i in range(1, n + 1):
+            a[i] = int(data[index])
+            index += 1
+            pf[i] = pf[i - 1] ^ a[i]
+            mp[pf[i]].append(i)
+        
+        for _ in range(q):
+            l = int(data[index])
+            r = int(data[index + 1])
+            index += 2
+            
+            x = pf[r] ^ pf[l - 1]
+            if x == 0:
+                results.append(""YES"")
+                continue
+            
+            # Access lists v1 and v2 from map mp
+            v1 = mp[pf[r]]
+            v2 = mp[pf[l - 1]]
+            
+            # Find the range within v1 and v2
+            it1 = bisect_left(v1, l)
+            it2 = bisect_left(v2, r) - 1
+            
+            # Check if the found indices are valid and satisfy the condition
+            if it1 < len(v1) and it2 >= 0 and v1[it1] < v2[it2]:
+                results.append(""YES"")
+            else:
+                results.append(""NO"")
+    
+    # Print all results at the end
+    print(""\n"".join(results))
+ 
+# Run the solve function
+solve()",2,True,False,False,True,True,True,True,True,False,False,False,True,True,True,0.7313462640221646,0.25837347786750126,0.6666666666666666
+1968_B,1968_B_MALIK_ANTUPARTHI_100%,codeforces2024,human,qwen2p5-72b-instruct,"You are given two binary strings a and b . A binary string is a string
+consisting of the characters '0' and '1'.
+
+Your task is to determine the maximum possible number k such that a prefix of
+string a of length k is a subsequence of string b .
+
+A sequence a is a subsequence of a sequence b if a can be obtained from b by
+the deletion of several (possibly, zero or all) elements.
+
+Input
+
+The first line consists of a single integer t (1 \le t \le 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and m (1\le n,m \le 2
+\cdot 10^5 ) — the length of string a and the length of string b ,
+respectively.
+
+The second line of each test case contains a binary string a of length n .
+
+The third line of each test case contains a binary string b of length m .
+
+It is guaranteed that the sum of values n over all test cases does not exceed
+2 \cdot 10^5 . Similarly, the sum of values m over all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output a single number — the maximum k , such that the
+first k characters of a form a subsequence of b .
+
+Example
+
+Input
+
+    6
+    
+    5 4
+    
+    10011
+    
+    1110
+    
+    3 3
+    
+    100
+    
+    110
+    
+    1 3
+    
+    1
+    
+    111
+    
+    4 4
+    
+    1011
+    
+    1111
+    
+    3 5
+    
+    100
+    
+    11010
+    
+    3 1
+    
+    100
+    
+    0
+
+Output
+
+    2
+    2
+    1
+    1
+    3
+    0
+    
+Note
+
+In the first example, the string '10 ' is a subsequence of
+'1\color{red}11\color{red}0 ' but the string '100 ' is not. So the answer is 2
+.
+
+In the fifth example, a ='100 ', b ='1\color{red}{10}1\color{red}0 ', whole
+string a is a subsequence of string b . So the answer is 3 .
+
+In the sixth example, string b does not contain '1 ' so the answer is 0 .","a=int(input())
+for i in range(a):
+    b,c=map(int,input().split())
+    d=input()
+    e=input()
+    k=0
+    for j in range(b):
+        if d[j] in e[k:]:
+            k=e[k:].index(d[j])+1+k
+            if k==c or j==b-1:
+                k=j+1
+                break
+        else:
+            k=j
+            break
+    print(k)",2,True,False,False,True,True,True,True,True,True,True,False,True,True,False,0.5225905238974631,0.024000142121750116,0.5833333333333334
+1931_C,1931_C_Rohidul_100%,codeforces2024,human,qwen2p5-72b-instruct,"You have an array a of n integers.
+
+You can no more than once apply the following operation: select three integers
+i , j , x (1 \le i \le j \le n ) and assign all elements of the array with
+indexes from i to j the value x . The price of this operation depends on the
+selected indices and is equal to (j - i + 1) burles.
+
+For example, the array is equal to [1, 2, 3, 4, 5, 1] . If we choose i = 2, j
+= 4, x = 8 , then after applying this operation, the array will be equal to
+[1, 8, 8, 8, 5, 1] .
+
+What is the least amount of burles you need to spend to make all the elements
+of the array equal?
+
+Input
+
+The first line contains a single integer t (1 \le t \le 10^4 ) — the number of
+input test cases. The descriptions of the test cases follow.
+
+The first line of the description of each test case contains a single integer
+n (1 \le n \le 2 \cdot 10 ^ 5 ) — the size of the array.
+
+The second line of the description of each test case contains n integers a_1,
+a_2, \dots, a_n (1 \le a_i \le n ) — array elements.
+
+It is guaranteed that the sum of n for all test cases does not exceed 2 \cdot
+10^5 .
+
+Output
+
+For each test case, output one integer — the minimum number of burles that
+will have to be spent to make all the elements of the array equal. It can be
+shown that this can always be done.
+
+Example
+
+Input
+
+    8
+    
+    6
+    
+    1 2 3 4 5 1
+    
+    7
+    
+    1 1 1 1 1 1 1
+    
+    8
+    
+    8 8 8 1 2 8 8 8
+    
+    1
+    
+    1
+    
+    2
+    
+    1 2
+    
+    3
+    
+    1 2 3
+    
+    7
+    
+    4 3 2 7 1 1 3
+    
+    9
+    
+    9 9 2 9 2 5 5 5 3
+
+Output
+
+    4
+    0
+    2
+    0
+    1
+    2
+    6
+    7","for _ in range(int(input())):
+    n=int(input())
+    a=list(map(int,input().split()))
+    le=len(a)
+    l,r=0,n-1
+    st,end=1,1
+    while l<r and a[l]==a[l+1]:l+=1;st+=1
+    while r>l and a[r]==a[r-1]:r-=1;end+=1
+ 
+    ans=le-max(st,end)
+    if a[0]==a[-1]:ans=max(0,le-(st+end))
+    print(ans)",2,True,False,False,True,True,True,True,True,False,False,False,True,True,True,0.6234946723635965,0.13400807799198722,0.5833333333333334
+1978_B,1978_B__professor-_50.00%,codeforces2024,human,qwen2p5-72b-instruct,"Bob decided to open a bakery. On the opening day, he baked n buns that he can
+sell. The usual price of a bun is a coins, but to attract customers, Bob
+organized the following promotion:
+
+  * Bob chooses some integer k (0 \le k \le \min(n, b) ).
+  * Bob sells the first k buns at a modified price. In this case, the price of the i -th (1 \le i \le k ) sold bun is (b - i + 1) coins.
+  * The remaining (n - k) buns are sold at a coins each.
+
+Note that k can be equal to 0 . In this case, Bob will sell all the buns at a
+coins each.
+
+Help Bob determine the maximum profit he can obtain by selling all n buns.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 10^4 ) — the number of test cases. The description of
+the test cases follows.
+
+The only line of each test case contains three integers n , a , and b (1 \le
+n, a, b \le 10^9 ) — the number of buns, the usual price of a bun, and the
+price of the first bun to be sold at a modified price.
+
+Output
+
+For each test case, output a single integer — the maximum profit that Bob can
+obtain.
+
+Example
+
+Input
+
+    7
+    
+    4 4 5
+    
+    5 5 9
+    
+    10 10 5
+    
+    5 5 11
+    
+    1000000000 1000000000 1000000000
+    
+    1000000000 1000000000 1
+    
+    1000 1 1000
+
+Output
+
+    17
+    35
+    100
+    45
+    1000000000000000000
+    1000000000000000000
+    500500
+    
+Note
+
+In the first test case, it is optimal for Bob to choose k = 1 . Then he will
+sell one bun for 5 coins, and three buns at the usual price for 4 coins each.
+Then the profit will be 5 + 4 + 4 + 4 = 17 coins.
+
+In the second test case, it is optimal for Bob to choose k = 5 . Then he will
+sell all the buns at the modified price and obtain a profit of 9 + 8 + 7 + 6 +
+5 = 35 coins.
+
+In the third test case, it is optimal for Bob to choose k = 0 . Then he will
+sell all the buns at the usual price and obtain a profit of 10 \cdot 10 = 100
+coins.","t=int(input())
+for _ in range(t):
+    n,a,b=map(int,input().split())
+    if b<=a:
+        print(n*a)
+    else:
+        if (b-a)>=n:
+            print(int((2*b-n+1)*n/2))
+        else:
+            print(int((b-a)/2*(b-a+1)+a*n))",2,False,False,False,False,False,False,False,False,False,False,False,False,False,False,0.7709564406191117,0.30954473066548477,0.75
+1955_F,1955_F_Slata_100%,codeforces2024,human,qwen2p5-72b-instruct,"Alice and Bob gathered in the evening to play an exciting game on a sequence
+of n integers, each integer of the sequence doesn't exceed 4 . The rules of
+the game are too complex to describe, so let's just describe the winning
+condition — Alice wins if the [bitwise XOR](http://tiny.cc/xor_wiki_eng) of
+all the numbers in the sequence is non-zero; otherwise, Bob wins.
+
+The guys invited Eve to act as a judge. Initially, Alice and Bob play with n
+numbers. After one game, Eve removes one of the numbers from the sequence,
+then Alice and Bob play with n-1 numbers. Eve removes one number again, after
+which Alice and Bob play with n - 2 numbers. This continues until the sequence
+of numbers is empty.
+
+Eve seems to think that in such a game, Alice almost always wins, so she wants
+Bob to win as many times as possible. Determine the maximum number of times
+Bob can win against Alice if Eve removes the numbers optimally.
+
+Input
+
+The first line contains an integer t (1 \le t \le 10^4 ) — the number of test
+cases.
+
+The first and only line of each test case contains four integers p_i (0 \le
+p_i \le 200 ) — the number of ones, twos, threes, and fours in the sequence at
+the beginning of the game.
+
+Output
+
+For each test case, print the maximum number of times Bob will win in a
+separate line, if Eve removes the numbers optimally.
+
+Example
+
+Input
+
+    5
+    
+    1 1 1 0
+    
+    1 0 1 2
+    
+    2 2 2 0
+    
+    3 3 2 0
+    
+    0 9 9 9
+
+Output
+
+    1
+    1
+    3
+    3
+    12
+    
+Note
+
+In the first example, Bob wins when Eve has not removed any numbers yet.
+
+In the second example, Bob wins if Eve removes one one and one three.","for i in range(int(input())):
+  a,b,c,d=map(int,input().split())
+  print(a//2+b//2+c//2+d//2+int(a%2+b%2+c%2==3))",3,True,False,False,True,True,True,True,True,False,False,True,True,False,True,0.7991488459036387,0.33565881581250573,0.75
+1956_C,1956_C_danikzor_100%,codeforces2024,human,qwen2p5-72b-instruct,"The magical girl Nene has an n\times n matrix a filled with zeroes. The j -th
+element of the i -th row of matrix a is denoted as a_{i, j} .
+
+She can perform operations of the following two types with this matrix:
+
+  * Type 1 operation: choose an integer i between 1 and n and a permutation p_1, p_2, \ldots, p_n of integers from 1 to n . Assign a_{i, j}:=p_j for all 1 \le j \le n simultaneously. 
+  * Type 2 operation: choose an integer i between 1 and n and a permutation p_1, p_2, \ldots, p_n of integers from 1 to n . Assign a_{j, i}:=p_j for all 1 \le j \le n simultaneously. 
+
+Nene wants to maximize the sum of all the numbers in the matrix
+\sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n}a_{i,j} . She asks you to find the
+way to perform the operations so that this sum is maximized. As she doesn't
+want to make too many operations, you should provide a solution with no more
+than 2n operations.
+
+A permutation of length n is an array consisting of n distinct integers from 1
+to n in arbitrary order. For example, [2,3,1,5,4] is a permutation, but
+[1,2,2] is not a permutation (2 appears twice in the array), and [1,3,4] is
+also not a permutation (n=3 but there is 4 in the array).
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t (1 \le t \le 500 ). The description of test cases follows.
+
+The only line of each test case contains a single integer n (1 \le n \le 500 )
+— the size of the matrix a .
+
+It is guaranteed that the sum of n^2 over all test cases does not exceed 5
+\cdot 10^5 .
+
+Output
+
+For each test case, in the first line output two integers s and m (0\leq m\leq
+2n ) — the maximum sum of the numbers in the matrix and the number of
+operations in your solution.
+
+In the k -th of the next m lines output the description of the k -th
+operation:
+
+  * an integer c (c \in \\{1, 2\\} ) — the type of the k -th operation; 
+  * an integer i (1 \le i \le n ) — the row or the column the k -th operation is applied to; 
+  * a permutation p_1, p_2, \ldots, p_n of integers from 1 to n — the permutation used in the k -th operation. 
+
+Note that you don't need to minimize the number of operations used, you only
+should use no more than 2n operations. It can be shown that the maximum
+possible sum can always be obtained in no more than 2n operations.
+
+Example
+
+Input
+
+    2
+    
+    1
+    
+    2
+
+Output
+
+    1 1
+    1 1 1
+    7 3
+    1 1 1 2
+    1 2 1 2
+    2 1 1 2
+    
+Note
+
+In the first test case, the maximum sum s=1 can be obtained in 1 operation by
+setting a_{1, 1}:=1 .
+
+In the second test case, the maximum sum s=7 can be obtained in 3 operations
+as follows:
+
+![](https://espresso.codeforces.com/4074275900ed2b8a474fda5b3a628454fc521f8a.png)
+
+It can be shown that it is impossible to make the sum of the numbers in the
+matrix larger than 7 .","def solve():
+    n = int(input())
+    print(n*(n+1)*(4*n-1)//6, 2*n)
+    for i in range(1, n+1):
+        print(1, i, *range(n, 0, -1))
+        print(2, i, *range(n, 0, -1))
+ 
+ 
+t = int(input())
+for t in range(t, 0, -1):
+    solve()",3,True,False,False,True,False,True,True,True,False,False,False,False,True,False,0.7688451478770758,0.3024658228970815,0.5833333333333334
+1945_D,1945_D_vjudge.1_100%,codeforces2024,human,qwen2p5-72b-instruct,"The guys lined up in a queue of n people, starting with person number i = 1 ,
+to ask Serafim the Owl about the meaning of life. Unfortunately, Kirill was
+very busy writing the legend for this problem, so he arrived a little later
+and stood at the end of the line after the n -th person. Kirill is completely
+dissatisfied with this situation, so he decided to bribe some people ahead of
+him.
+
+For the i -th person in the queue, Kirill knows two values: a_i and b_i . If
+at the moment Kirill is standing at position i , then he can choose any
+position j such that j < i and exchange places with the person at position j .
+In this case, Kirill will have to pay him a_j coins. And for each k such that
+j < k < i , Kirill will have to pay b_k coins to the person at position k .
+Kirill can perform this action any number of times.
+
+Kirill is thrifty, so he wants to spend as few coins as possible, but he
+doesn't want to wait too long, so Kirill believes he should be among the first
+m people in line.
+
+Help Kirill determine the minimum number of coins he will have to spend in
+order to not wait too long.
+
+Input
+
+Each test consists of several sets of input data. The first line contains a
+single integer t (1 \le t \le 10^4 ) — the number of test cases. Then follows
+the description of the test case.
+
+The first line of each test case contains two integers n and m (1 \le m \le n
+\le 200\,000 ) — the number of people in the queue besides Kirill and the
+maximum allowable final position of Kirill, respectively.
+
+The second line contains n integers a_1, a_2, \dots, a_n separated by spaces
+(1 \le a_i \le 10^9 ).
+
+The third line contains n integers b_1, b_2, \dots, b_n separated by spaces (1
+\le b_i \le 10^9 ).
+
+It is guaranteed that the sum of the values of n over all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output a single integer — the minimum number of coins
+Kirill needs to spend.
+
+Example
+
+Input
+
+    4
+    
+    4 2
+    
+    7 3 6 9
+    
+    4 3 8 5
+    
+    6 2
+    
+    6 9 7 1 8 3
+    
+    5 8 8 1 4 1
+    
+    7 7
+    
+    7 2 9 2 6 5 9
+    
+    9 1 10 7 1 4 9
+    
+    2 1
+    
+    2 3
+    
+    1 1
+
+Output
+
+    14
+    22
+    9
+    3","def solve(n, k, a, b):
+    c = [min(a[i], b[i]) for i in range(n)]
+ 
+    suff = [0] * (n + 1)
+    for i in range(n - 1, -1, -1):
+        suff[i] = suff[i + 1] + c[i]
+ 
+    ans = float('inf')
+    for i in range(k):
+        ans = min(ans, a[i] + suff[i + 1])
+ 
+    print(ans)
+ 
+t = int(input())
+for _ in range(t):
+    n, k = map(int, input().split())
+    a = list(map(int, input().split()))
+    b = list(map(int, input().split()))
+ 
+    solve(n, k, a, b)",3,True,False,False,True,False,True,True,True,True,True,False,True,True,True,0.7496610679050388,0.28756566240606496,0.6666666666666666
+1948_A,1948_A_Tirthraj_Raval_0.00%,codeforces2024,human,qwen2p5-72b-instruct,"You are given an integer n .
+
+Your task is to build a string of uppercase Latin letters. There must be
+exactly n special characters in this string. Let's call a character special if
+it is equal to exactly one of its neighbors.
+
+For example, there are 6 special characters in the AAABAACC string (at
+positions: 1 , 3 , 5 , 6 , 7 and 8 ).
+
+Print any suitable string or report that there is no such string.
+
+Input
+
+The first line contains a single integer t (1 \le t \le 50 ) — the number of
+test cases.
+
+The only line of each test case contains a single integer n (1 \le n \le 50 ).
+
+Output
+
+For each test case, print the answer as follows:
+
+  * if there is no suitable string, print one line containing the string NO; 
+  * otherwise, print two lines. The first line should contain the string YES; on the second line print a string of length at most 200  — the answer itself (it can be shown that if some answers exist, then there is an answer of length at most 200 ). If there are several solutions, print any of them. 
+
+Example
+
+Input
+
+    3
+    
+    6
+    
+    1
+    
+    2
+
+Output
+
+    YES
+    AAABAACC
+    NO
+    YES
+    MM","t = int(input())
+for _ in range(t):
+        n = int(input())
+        
+        if n % 2 == 1:
+            print(""NO"")
+        else:
+            print(""YES"")
+            pattern = []
+            for i in range(n // 2):
+                pattern.append(""AB""[i % 2])
+                pattern.append(""AB""[(i % 2) ^ 1])
+            print("""".join(pattern))",3,False,False,False,True,True,True,True,True,False,True,False,True,True,True,0.5175726262592018,0.018300057959463222,0.5833333333333334
+1968_F,1968_F_parth7042_100%,codeforces2024,human,qwen2p5-72b-instruct,"Let us call an array x_1,\dots,x_m interesting if it is possible to divide the
+array into k>1 parts so that [bitwise XOR](http://tiny.cc/xor_wiki_eng) of
+values from each part are equal.
+
+More formally, you must split array x into k consecutive segments, each
+element of x must belong to exactly 1 segment. Let y_1,\dots,y_k be the XOR of
+elements from each part respectively. Then y_1=y_2=\dots=y_k must be
+fulfilled.
+
+For example, if x = [1, 1, 2, 3, 0] , you can split it as follows:
+[\color{blue}1], [\color{green}1], [\color{red}2, \color{red}3, \color{red}0]
+. Indeed \color{blue}1=\color{green}1=\color{red}2 \oplus \color{red}3\oplus
+\color{red}0 .
+
+You are given an array a_1,\dots,a_n . Your task is to answer q queries:
+
+  * For fixed l , r , determine whether the subarray a_l,a_{l+1},\dots,a_r is interesting. 
+
+Input
+
+The first line contains a single integer t (1\le t\le 10^4 ) — the number of
+test cases.
+
+The first line of each test case contains two integers n and q (2 \le n \le 2
+\cdot 10^5 , 1 \le q \le 2 \cdot 10^5 ) — the number of elements in the array
+and the number of queries respectively.
+
+The next line contains n integers a_1,\dots,a_n (0 \le a_i < 2^{30} ) —
+elements of the array.
+
+Each of the next q lines contains two integers l and r (1 \le l < r \le n )
+describing the query.
+
+It is guaranteed that the sum of n over all testcases does not exceed 2 \cdot
+10^5 .
+
+It is guaranteed that the sum of q over all testcases does not exceed 2 \cdot
+10^5 .
+
+Output
+
+For each query, output ""YES"" if the subarray is interesting and ""NO""
+otherwise.
+
+You can output ""Yes"" and ""No"" in any case (for example, the strings ""yES"",
+""yes"", and ""Yes"" will be recognized as correct answers).
+
+Example
+
+Input
+
+    4
+    
+    5 5
+    
+    1 1 2 3 0
+    
+    1 5
+    
+    2 4
+    
+    3 5
+    
+    1 3
+    
+    3 4
+    
+    5 5
+    
+    1 2 3 4 5
+    
+    1 5
+    
+    2 4
+    
+    3 5
+    
+    1 3
+    
+    2 3
+    
+    7 4
+    
+    12 9 10 9 10 11 9
+    
+    1 5
+    
+    1 7
+    
+    2 6
+    
+    2 7
+    
+    11 4
+    
+    0 0 1 0 0 1 0 1 1 0 1
+    
+    1 2
+    
+    2 5
+    
+    6 9
+    
+    7 11
+
+Output
+
+    YES
+    YES
+    NO
+    NO
+    NO
+    
+    YES
+    NO
+    NO
+    YES
+    NO
+    
+    NO
+    NO
+    NO
+    NO
+    
+    YES
+    NO
+    YES
+    YES
+    
+Note
+
+Explanation for the first test case:
+
+The first query is described in the statement.
+
+In the second query, we should divide [1,2,3] . A possible division is
+[1,2],[3] , since 1\oplus 2=3 .
+
+It can be shown that for queries 3,4,5 , the subarrays are not interesting.","import sys
+input = sys.stdin.read
+from collections import defaultdict
+from bisect import bisect_left
+ 
+def solve():
+    data = input().split()
+    index = 0
+    
+    # Read number of test cases
+    t = int(data[index])
+    index += 1
+    
+    results = []
+    
+    for _ in range(t):
+        # Read n and q
+        n = int(data[index])
+        q = int(data[index + 1])
+        index += 2
+        
+        # Read the array
+        a = [0] * (n + 1)
+        pf = [0] * (n + 1)
+        mp = defaultdict(list)
+        
+        mp[0].append(0)
+        
+        for i in range(1, n + 1):
+            a[i] = int(data[index])
+            index += 1
+            pf[i] = pf[i - 1] ^ a[i]
+            mp[pf[i]].append(i)
+        
+        for _ in range(q):
+            l = int(data[index])
+            r = int(data[index + 1])
+            index += 2
+            
+            x = pf[r] ^ pf[l - 1]
+            if x == 0:
+                results.append(""YES"")
+                continue
+            
+            # Access lists v1 and v2 from map mp
+            v1 = mp[pf[r]]
+            v2 = mp[pf[l - 1]]
+            
+            # Find the range within v1 and v2
+            it1 = bisect_left(v1, l)
+            it2 = bisect_left(v2, r) - 1
+            
+            # Check if the found indices are valid and satisfy the condition
+            if it1 < len(v1) and it2 >= 0 and v1[it1] < v2[it2]:
+                results.append(""YES"")
+            else:
+                results.append(""NO"")
+    
+    # Print all results at the end
+    print(""\n"".join(results))
+ 
+# Run the solve function
+solve()",3,True,False,False,True,False,False,False,True,False,False,False,True,True,True,0.7313462640221646,0.25837347786750126,0.6666666666666666
+1968_B,1968_B_MALIK_ANTUPARTHI_100%,codeforces2024,human,qwen2p5-72b-instruct,"You are given two binary strings a and b . A binary string is a string
+consisting of the characters '0' and '1'.
+
+Your task is to determine the maximum possible number k such that a prefix of
+string a of length k is a subsequence of string b .
+
+A sequence a is a subsequence of a sequence b if a can be obtained from b by
+the deletion of several (possibly, zero or all) elements.
+
+Input
+
+The first line consists of a single integer t (1 \le t \le 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and m (1\le n,m \le 2
+\cdot 10^5 ) — the length of string a and the length of string b ,
+respectively.
+
+The second line of each test case contains a binary string a of length n .
+
+The third line of each test case contains a binary string b of length m .
+
+It is guaranteed that the sum of values n over all test cases does not exceed
+2 \cdot 10^5 . Similarly, the sum of values m over all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output a single number — the maximum k , such that the
+first k characters of a form a subsequence of b .
+
+Example
+
+Input
+
+    6
+    
+    5 4
+    
+    10011
+    
+    1110
+    
+    3 3
+    
+    100
+    
+    110
+    
+    1 3
+    
+    1
+    
+    111
+    
+    4 4
+    
+    1011
+    
+    1111
+    
+    3 5
+    
+    100
+    
+    11010
+    
+    3 1
+    
+    100
+    
+    0
+
+Output
+
+    2
+    2
+    1
+    1
+    3
+    0
+    
+Note
+
+In the first example, the string '10 ' is a subsequence of
+'1\color{red}11\color{red}0 ' but the string '100 ' is not. So the answer is 2
+.
+
+In the fifth example, a ='100 ', b ='1\color{red}{10}1\color{red}0 ', whole
+string a is a subsequence of string b . So the answer is 3 .
+
+In the sixth example, string b does not contain '1 ' so the answer is 0 .","a=int(input())
+for i in range(a):
+    b,c=map(int,input().split())
+    d=input()
+    e=input()
+    k=0
+    for j in range(b):
+        if d[j] in e[k:]:
+            k=e[k:].index(d[j])+1+k
+            if k==c or j==b-1:
+                k=j+1
+                break
+        else:
+            k=j
+            break
+    print(k)",3,True,False,False,True,False,True,False,False,True,True,True,False,True,True,0.5225905238974631,0.024000142121750116,0.5833333333333334
+1931_C,1931_C_Rohidul_100%,codeforces2024,human,qwen2p5-72b-instruct,"You have an array a of n integers.
+
+You can no more than once apply the following operation: select three integers
+i , j , x (1 \le i \le j \le n ) and assign all elements of the array with
+indexes from i to j the value x . The price of this operation depends on the
+selected indices and is equal to (j - i + 1) burles.
+
+For example, the array is equal to [1, 2, 3, 4, 5, 1] . If we choose i = 2, j
+= 4, x = 8 , then after applying this operation, the array will be equal to
+[1, 8, 8, 8, 5, 1] .
+
+What is the least amount of burles you need to spend to make all the elements
+of the array equal?
+
+Input
+
+The first line contains a single integer t (1 \le t \le 10^4 ) — the number of
+input test cases. The descriptions of the test cases follow.
+
+The first line of the description of each test case contains a single integer
+n (1 \le n \le 2 \cdot 10 ^ 5 ) — the size of the array.
+
+The second line of the description of each test case contains n integers a_1,
+a_2, \dots, a_n (1 \le a_i \le n ) — array elements.
+
+It is guaranteed that the sum of n for all test cases does not exceed 2 \cdot
+10^5 .
+
+Output
+
+For each test case, output one integer — the minimum number of burles that
+will have to be spent to make all the elements of the array equal. It can be
+shown that this can always be done.
+
+Example
+
+Input
+
+    8
+    
+    6
+    
+    1 2 3 4 5 1
+    
+    7
+    
+    1 1 1 1 1 1 1
+    
+    8
+    
+    8 8 8 1 2 8 8 8
+    
+    1
+    
+    1
+    
+    2
+    
+    1 2
+    
+    3
+    
+    1 2 3
+    
+    7
+    
+    4 3 2 7 1 1 3
+    
+    9
+    
+    9 9 2 9 2 5 5 5 3
+
+Output
+
+    4
+    0
+    2
+    0
+    1
+    2
+    6
+    7","for _ in range(int(input())):
+    n=int(input())
+    a=list(map(int,input().split()))
+    le=len(a)
+    l,r=0,n-1
+    st,end=1,1
+    while l<r and a[l]==a[l+1]:l+=1;st+=1
+    while r>l and a[r]==a[r-1]:r-=1;end+=1
+ 
+    ans=le-max(st,end)
+    if a[0]==a[-1]:ans=max(0,le-(st+end))
+    print(ans)",3,True,False,False,True,True,True,False,False,False,True,False,False,True,False,0.6234946723635965,0.13400807799198722,0.5833333333333334
+1978_B,1978_B__professor-_50.00%,codeforces2024,human,qwen2p5-72b-instruct,"Bob decided to open a bakery. On the opening day, he baked n buns that he can
+sell. The usual price of a bun is a coins, but to attract customers, Bob
+organized the following promotion:
+
+  * Bob chooses some integer k (0 \le k \le \min(n, b) ).
+  * Bob sells the first k buns at a modified price. In this case, the price of the i -th (1 \le i \le k ) sold bun is (b - i + 1) coins.
+  * The remaining (n - k) buns are sold at a coins each.
+
+Note that k can be equal to 0 . In this case, Bob will sell all the buns at a
+coins each.
+
+Help Bob determine the maximum profit he can obtain by selling all n buns.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 10^4 ) — the number of test cases. The description of
+the test cases follows.
+
+The only line of each test case contains three integers n , a , and b (1 \le
+n, a, b \le 10^9 ) — the number of buns, the usual price of a bun, and the
+price of the first bun to be sold at a modified price.
+
+Output
+
+For each test case, output a single integer — the maximum profit that Bob can
+obtain.
+
+Example
+
+Input
+
+    7
+    
+    4 4 5
+    
+    5 5 9
+    
+    10 10 5
+    
+    5 5 11
+    
+    1000000000 1000000000 1000000000
+    
+    1000000000 1000000000 1
+    
+    1000 1 1000
+
+Output
+
+    17
+    35
+    100
+    45
+    1000000000000000000
+    1000000000000000000
+    500500
+    
+Note
+
+In the first test case, it is optimal for Bob to choose k = 1 . Then he will
+sell one bun for 5 coins, and three buns at the usual price for 4 coins each.
+Then the profit will be 5 + 4 + 4 + 4 = 17 coins.
+
+In the second test case, it is optimal for Bob to choose k = 5 . Then he will
+sell all the buns at the modified price and obtain a profit of 9 + 8 + 7 + 6 +
+5 = 35 coins.
+
+In the third test case, it is optimal for Bob to choose k = 0 . Then he will
+sell all the buns at the usual price and obtain a profit of 10 \cdot 10 = 100
+coins.","t=int(input())
+for _ in range(t):
+    n,a,b=map(int,input().split())
+    if b<=a:
+        print(n*a)
+    else:
+        if (b-a)>=n:
+            print(int((2*b-n+1)*n/2))
+        else:
+            print(int((b-a)/2*(b-a+1)+a*n))",3,False,False,False,False,False,False,False,False,False,False,False,False,False,False,0.7709564406191117,0.30954473066548477,0.75

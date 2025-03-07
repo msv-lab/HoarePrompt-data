@@ -1,0 +1,5 @@
+The function `func_2` does not accept any parameters. It reads two non-negative integers `x` and `y` from user input, where both `x` and `y` are between 0 and 99 inclusive. The function then prints an integer based on the following conditions:
+- If both `x` and `y` are greater than 0, it prints the sum of `math.ceil(y / 2)` and `math.ceil((x - math.ceil(y / 2) * 15 + y * 4) / 15) + 1` if the updated `x` is greater than 0, otherwise it prints `math.ceil(y / 2)`.
+- If `x` is 0 and `y` is greater than 0, it prints `math.ceil(y / 2)`.
+- If `x` is greater than 0 and `y` is 0, it prints `math.ceil(x / 15)`.
+- If both `x` and `y` are 0, it prints 0.

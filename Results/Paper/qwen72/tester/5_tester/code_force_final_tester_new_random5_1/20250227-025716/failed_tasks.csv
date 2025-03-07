@@ -1,0 +1,125 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1926_C,human,codeforces2024,qwen2p5-72b-instruct,"def main():
+ 
+    inf = 2 * (10 ** 5) + 1
+ 
+    t = int(input())
+ 
+    values = [0] * inf
+ 
+    for i in range(1, inf):
+        sum_value_digits = 0
+        for x in str(i):
+            sum_value_digits += int(x)
+        values[i] = values[i - 1] + sum_value_digits
+ 
+    for _ in range(t):
+        value = int(input())
+        print(values[value])
+ 
+ 
+main()",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1948_B,human,codeforces2024,qwen2p5-72b-instruct,"n = int(input())
+ 
+for _ in range(n):
+    m = int(input())
+    arr = [int(i) for i in input().split()]
+    ans = True
+    for i in range(m-1, 0, -1):
+        if arr[i] < arr[i-1]:
+            nums = [int(i) for i in str(arr[i-1])] + [arr[i]]
+            if nums != sorted(nums):
+                ans = False;break;
+            arr[i-1] = nums[0]
+    print([""NO"",""YES""][ans])
+#23MCA051",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1951_A,human,codeforces2024,qwen2p5-72b-instruct,"t=int(input())
+ 
+for i in range(t):
+    n=int(input())
+    a=input()
+    count=a.count('1')
+ 
+    if count==0:
+        print(""YES"")
+ 
+    elif count>2 and count%2==0:
+        print(""YES"")
+ 
+    elif count==2:
+        if a.index('1') and a[a.index('1')+1]!='1':
+            print(""YES"")
+        
+        else:
+            print(""NO"")
+    else:
+        print(""NO"")",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1921_A,human,codeforces2024,qwen2p5-72b-instruct,"t = int(input())
+for _ in range(t):
+    a = [[int(x) for x in input().split()] for i in range(4)]
+    x = [p[0] for p in a]
+    dx = max(x) - min(x)
+    print(dx * dx)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1922_E,human,codeforces2024,qwen2p5-72b-instruct,"for i in range(int(input())):
+    x=int(input())
+    max=100000000
+    min=-100000000
+    ans=[]
+    t=0
+    while x!=1:
+        if x%2==0:
+            ans.append(max)
+            max-=1
+            x=x//2
+        else:
+            ans.append(min)
+            min+=1
+            x-=1
+        t+=1
+    ans.reverse()    
+    print(t)
+    print(*ans)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1926_C,human,codeforces2024,qwen2p5-72b-instruct,"def sum_of_digits(n):
+    return sum(int(d) for d in str(n))
+soma = 0
+N = int(input())
+ 
+for _ in range(N):
+    n = int(input())
+    for i in range(n):
+        soma += sum_of_digits(i)
+ 
+print(soma)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1975_A,human,codeforces2024,qwen2p5-72b-instruct,"def can_sort_by_split_swap(arr):
+    # Check if the array is already sorted
+    if all(arr[i] <= arr[i + 1] for i in range(len(arr) - 1)):
+        return ""Yes""
+    
+    # If not, attempt to sort by simulating the split and swap operation
+    # Since the operation only rearranges elements, direct check suffices
+    return ""No"" if any(arr[i] > arr[i + 1] for i in range(len(arr) - 1)) else ""Yes""
+ 
+# Main function to read inputs and print outputs
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    index = 0
+    t = int(data[index])
+    index += 1
+    results = []
+    
+    for _ in range(t):
+        n = int(data[index])
+        index += 1
+        arr = list(map(int, data[index:index + n]))
+        index += n
+        
+        result = can_sort_by_split_swap(arr)
+        results.append(result)
+    
+    print(""\n"".join(results))
+ 
+if __name__ == ""__main__"":
+    main()",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt

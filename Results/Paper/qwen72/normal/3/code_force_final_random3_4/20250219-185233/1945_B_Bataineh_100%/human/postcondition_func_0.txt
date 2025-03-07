@@ -1,0 +1,6 @@
+The function `func` reads an integer `t` from the user, representing the number of test cases. For each test case, it reads three integers `a`, `b`, and `m` from the user. It then prints a result for each test case based on the following conditions: 
+- If `m` is less than both `a` and `b`, it prints `2`.
+- If `m` is less than `a` and greater than or equal to `b`, it prints `2 + m // b`.
+- If `m` is less than `b` and greater than or equal to `a`, it prints `2 + m // a`.
+- In all other cases, it prints `m // a + m // b + 2`. 
+The function does not return any value; it only prints the results for each test case.

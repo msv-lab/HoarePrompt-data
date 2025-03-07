@@ -1,0 +1,8 @@
+The function processes a list of distinct integers representing Cowdeforces ratings of cows. It returns a specific value based on the conditions met during its execution. Specifically, it returns:
+- \( n - 1 \) if the loop completes without finding any indices where the rating is greater than the specified cow's rating.
+- \( k - 1 \) if the first index found where the rating is greater than the specified cow's rating is 0.
+- The first index found minus 1 if there is exactly one index greater than the specified cow's rating and it is not 0.
+- The maximum of \( k - \text{index} \) and \( \text{index} - 1 \) if there is exactly one index greater than the specified cow's rating and it is 0 or less than or equal to \( k \).
+- The minimum of the second index minus 1 and \( k - 1 \) if there are exactly two indices where the rating is greater than the specified cow's rating and the first index is 0.
+- The maximum of \( \text{index}_0 - 1 \) and \( \text{index}_1 - \text{index}_0 \) if there are exactly two indices where the rating is greater than the specified cow's rating and the first index is not 0.
+- The maximum of \( \text{index}_0 - 1 \) and \( k - \text{index}_0 \) if there is exactly one index greater than the specified cow's rating and it is greater than \( k \).

@@ -1,0 +1,99 @@
+task_id,unique_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1955_D,1955_D_Greninja_007_0.00%,human,codeforces2024,qwen2.5-7b-instruct,"from collections import Counter
+ 
+def count_good_subarrays(a, b, k,n,m):
+ 
+    good_subarrays = 0
+    b_freq = Counter(b)
+    window_freq = Counter(a[:m])
+    matches = sum(min(window_freq[x], b_freq[x]) for x in window_freq if x in b_freq)
+ 
+    for i in range(n - m):
+        if matches >= k:
+            good_subarrays += 1
+        # Element exiting the window
+        if a[i] in b_freq:
+            matches -= min(window_freq[a[i]], b_freq[a[i]])
+        window_freq[a[i]] -= 1
+        if window_freq[a[i]] == 0:
+            del window_freq[a[i]]
+        # Element entering the window
+        if a[i + m] in b_freq:
+            matches += min(window_freq[a[i + m]] + 1, b_freq[a[i + m]])
+        window_freq[a[i + m]] += 1
+ 
+    # Check the last window
+    if matches >= k:
+        good_subarrays += 1
+ 
+    return good_subarrays
+ 
+for _ in range(int(input())):
+    n,m,k = map(int,input().split("" ""))
+    a = list(map(int,input().split("" "")))
+    b = list(map(int,input().split("" "")))
+    print(count_good_subarrays(a, b, k,n,m))","Error: unsupported statement type: <ast.Delete object at 0x72ed82229b70> del window_freq[a[i]]
+",hoareprompt
+1932_A,1932_A_verabuylova_100%,human,codeforces2024,qwen2.5-7b-instruct,"class Solution:
+    def Coins(self, n: int, s: str) -> int:
+        res = 0
+        i = 0
+        while i < n:
+            if s[i] == '@':
+                res += 1
+            if i + 1 < n and s[i + 1] != '*':
+                i += 1
+            elif i + 2 < n and s[i + 2] != '*':
+                i += 2
+            else:
+                break
+        return res
+ 
+solution = Solution()
+ 
+t = int(input())
+ 
+for _ in range(t):
+    n = int(input())
+    a = input()
+    print(solution.Coins(n, a))","Error: unsupported statement type: <ast.ClassDef object at 0x72ed8226e860> class Solution:
+
+    def Coins(self, n: int, s: str) ->int:
+        res = 0
+        i = 0
+        while i < n:
+            if s[i] == '@':
+                res += 1
+            if i + 1 < n and s[i + 1] != '*':
+                i += 1
+            elif i + 2 < n and s[i + 2] != '*':
+                i += 2
+            else:
+                break
+        return res
+",hoareprompt
+1930_A,1930_A_Aadyant_05_33.33%,human,codeforces2024,qwen2.5-7b-instruct,"num=input()
+out=[]
+for numbers in range(int(num)):
+    list2=[]
+    list1=[]
+    a=input()
+    a=int(a)
+    
+    b=input("""")
+    list1=b.split()
+    list1.sort()
+    
+    for i in range(a):
+        list2.append(int(list1[2*i]))
+        
+ 
+    out.append(sum(list2))
+    del list1[:]
+    del list2[:]
+    
+    
+ 
+for outputs in out:
+    print(outputs)","Error: unsupported statement type: <ast.Delete object at 0x72ed823c2440> del list1[:]
+",hoareprompt

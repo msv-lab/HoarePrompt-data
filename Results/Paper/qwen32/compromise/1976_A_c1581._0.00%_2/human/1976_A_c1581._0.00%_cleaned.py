@@ -1,0 +1,30 @@
+def func_1(password):
+    digits = []
+    letters = []
+    for char in password:
+        if char.isdigit():
+            digits.append(char)
+        else:
+            letters.append(char)
+    last_digit_index = -1
+    for (i, char) in enumerate(password):
+        if char.isdigit():
+            last_digit_index = i
+        elif last_digit_index != -1:
+            return 'NO'
+    if digits != sorted(digits):
+        return 'NO'
+    if letters != sorted(letters):
+        return 'NO'
+    return 'YES'
+input = sys.stdin.read
+data = input().split()
+t = int(data[0])
+index = 1
+results = []
+for _ in range(t):
+    n = int(data[index])
+    password = data[index + 1]
+    index += 2
+    results.append(func_1(password))
+print('\n'.join(results))

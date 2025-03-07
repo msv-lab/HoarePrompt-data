@@ -1,0 +1,5 @@
+The function accepts an integer \( x \) such that \( 2 \leq x \leq 1000 \). It returns the largest integer \( y \) that satisfies one of the following conditions:
+1. \( y \) is a divisor of \( x \) and \( x > 1 \) and \( x \leq 2y \).
+2. \( x \) is divisible by \( y-1 \) and \( 2(y-1) < x \).
+3. \( y = x - 2 \) when \( x > 2 \).
+If no such \( y \) exists, it returns 1.

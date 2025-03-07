@@ -1,0 +1,22 @@
+#State of the program right berfore the function call: The function should accept a single integer n as input, where 3 ≤ n ≤ 78, representing the encoded word.
+def func():
+    alphabet = string.ascii_lowercase
+    for i in range(int(input())):
+        n = int(input())
+        
+        word = ''
+        
+        if n > 52:
+            word += alphabet[n - 53] + 'zz'
+        elif n > 27:
+            word += 'a' + alphabet[n - 28] + 'z'
+        elif n == 27:
+            word = 'aay'
+        else:
+            word += 'aa' + alphabet[n - 3]
+        
+        print(word)
+        
+    #State: The loop prints a series of words based on the value of `n` for each iteration. After all iterations, the value of `n` and `word` will be the last values assigned during the final iteration. The `alphabet` string remains unchanged.
+#Overall this is what the function does:The function `func` does not accept any parameters and does not return any value. It reads an integer from the user, which specifies the number of iterations. For each iteration, it reads another integer `n` (where 3 ≤ n ≤ 78) from the user and prints a decoded word based on the value of `n`. The decoded word is determined by a specific mapping: if `n` is greater than 52, the word is formed by appending the corresponding character from the alphabet (offset by 53) followed by 'zz'; if `n` is between 28 and 52, the word is 'a' followed by the corresponding character (offset by 28) and 'z'; if `n` is 27, the word is 'aay'; otherwise, the word is 'aa' followed by the corresponding character (offset by 3). After all iterations, the function completes, and the `alphabet` string remains unchanged.
+

@@ -1,0 +1,24 @@
+#State of the program right berfore the function call: cities is a list of lists where each sublist contains n integers (0 ≤ n ≤ 10^5) representing the coordinates of cities in ascending order (a_1 < a_2 < ... < a_n). Each integer in the sublist satisfies 0 ≤ a_i ≤ 10^9. The function receives an additional parameter n, which is the number of test cases (1 ≤ t ≤ 10^4). For each test case, there are m queries (1 ≤ m ≤ 10^5), and each query consists of two integers x_i and y_i (1 ≤ x_i, y_i ≤ n; x_i ≠ y_i) representing the cities between which the minimum travel cost needs to be calculated. The sum of n over all test cases does not exceed 10^5, and the sum of m over all test cases does not exceed 10^5. For every city in each test case, the closest city is uniquely determined.
+def func_1(cities, n):
+    prog_cities = [0] * (n - 1)
+    for i in range(n - 1):
+        back = -99999999999999999999
+        
+        forward = 999999999999999999
+        
+        if i > 0:
+            back = cities[i - 1]
+        
+        if i < n - 1:
+            forward = cities[i + 1]
+        
+        if abs(forward - cities[i]) < abs(cities[i] - back):
+            prog_cities[i] = 1
+        else:
+            prog_cities[i] = abs(forward - cities[i])
+        
+    #State: prog_cities is a list of n-1 elements where each element is either 1 (if the next city is closer) or the distance to the next city (if the previous city is closer).
+    return prog_cities
+    #The program returns the list `prog_cities` which contains `n-1` elements where each element is either 1 (if the next city is closer) or the distance to the next city (if the previous city is closer).
+#Overall this is what the function does:The function `func_1` accepts a list `cities` representing the coordinates of cities in ascending order and an integer `n` which is the number of test cases. It calculates, for each city (except the last one), whether the next city is closer or the previous city is closer, and returns a list `prog_cities` of `n-1` elements. Each element in `prog_cities` is either `1` if the next city is closer or the distance to the previous city if the previous city is closer.
+

@@ -1,0 +1,93 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1946_D,human,codeforces2024,qwen2p5-coder-32b-instruct,"def thing(arr, x):
+ 
+ 
+ 
+	def find_max(cur_arr, bit):
+		if bit == -1:
+			return len(cur_arr)
+ 
+		new_arr = []
+		xor = 0
+		thing1 = 0
+ 
+		for i in cur_arr:
+			xor ^= i
+			if not (xor >> bit) & 1:
+				new_arr.append(xor)
+				xor = 0
+		if (xor >> bit) & 1:
+			thing1 = -1
+		else:
+			thing1 = find_max(new_arr, bit - 1)
+ 
+		#we can either have the bit in the array or not
+		#make two arrays and return max val
+		if (x >> bit) & 1:
+			return max(find_max(cur_arr, bit - 1), len(new_arr))
+		#we must not have the bit in the array
+		else:
+			return thing1
+ 
+	return find_max(arr, 31)
+ 
+testcases = range(int(input()))
+ 
+for case in testcases:
+	n, k = [int(i) for i in input().split("" "")]
+	arr = [int(i) for i in input().split("" "")]
+	print(thing(arr, k))",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1972_D1,human,codeforces2024,qwen2p5-coder-32b-instruct,"import  math
+T = int(input())
+ 
+for t in range(T):
+    info = input().split()
+ 
+    a, b = int(info[0]), int(info[1])
+ 
+    suma = 0
+    for i in range(1,b+1):
+        x = (a-(i*(i-1)))//(i**2) + 1
+        if (a-(i*(i-1)))//(i**2) + 1 > 0:
+            suma += x
+            if (a-(i*(i-1)))%(i**2) == 0 and (i*(i-1))%(i**2) == 0:
+                suma += 1
+ 
+ 
+    print(suma-2)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1978_A,human,codeforces2024,qwen2p5-coder-32b-instruct,"t = int(input())
+for _ in range(t):
+    n = int(input())
+    nums = list(map(int, input().split()))
+    nums.sort(reverse=True)
+    print(nums[0] + nums[1])",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1957_B,human,codeforces2024,qwen2p5-coder-32b-instruct,"t = int(input())
+def highest_set_bit(n):
+    if n == 0:
+        return -1  # No bits are set in 0
+    position = 0
+    while n != 0:
+        n >>= 1
+        position += 1
+    return position - 1
+for _ in range(t):
+    n,k = [int(x) for x in input().split()]
+    arr = []
+    if n>1:
+        counter = highest_set_bit(k)
+        arr.append(2**(counter)-1)
+        arr.append(k-arr[-1])
+        for _ in range(n-2):
+            arr.append(0)
+        print(*arr)
+    else:
+        print(k)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1950_A,human,codeforces2024,qwen2p5-coder-32b-instruct,"n = int(input())
+for i in range(n):
+    a, b, c = map(int, input().split())
+    if a<b<c:
+        print(""STAIR"")
+    elif a<b and b>c:
+        print(""PEAK"")
+    else:
+        print( ""NONE"" )",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt

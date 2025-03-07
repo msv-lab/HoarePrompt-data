@@ -1,0 +1,41 @@
+#State of the program right berfore the function call: t is an integer where 1 ≤ t ≤ 10^4, representing the number of test cases. Each test case contains: n is an integer where 2 ≤ n ≤ 2·10^5, representing the length of the array a; a is a list of n integers where 1 ≤ a_i ≤ 10^6; q is an integer where 1 ≤ q ≤ 2·10^5, representing the number of queries; each query is a pair of integers l and r where 1 ≤ l < r ≤ n. The sum of n and q across all test cases does not exceed 2·10^5.
+def func_1():
+    input = sys.stdin.readline
+    N = int(input())
+    nums = list(map(int, input().split()))
+    s = 0
+    e = 0
+    num = nums[0]
+    arr = []
+    nums.append(-1)
+    for i in range(N + 1):
+        if nums[i] != num:
+            arr.append((1 + s, i, num))
+            s = i
+        
+        num = nums[i]
+        
+    #State: `N` is the same integer value read from the input, `nums` is the same list of integers obtained by splitting the input string and converting each element to an integer with `-1` appended to the end, `s` is `N`, `e` is 0, `num` is `-1`, `arr` is a list of tuples where each tuple represents the start and end indices of a segment in `nums` that contains the same integer value, and the integer value itself.
+    LA = len(arr) - 1
+    for _ in range(int(input())):
+        l, r = tuple(map(int, input().split()))
+        
+        eli = bisect_left(arr, (l, 0, 0))
+        
+        s, e, _ = arr[min(eli, LA)]
+        
+        if s > l:
+            if s == 1 or s > r:
+                print(-1, -1)
+            else:
+                print(s - 1, s)
+        elif e >= r:
+            print(-1, -1)
+        elif e < N or e < l:
+            print(s, e + 1)
+        else:
+            print(-1, -1)
+        
+    #State: N remains the same, nums remains the same, s remains N, e remains 0, num remains -1, arr remains the same, LA remains len(arr) - 1.
+#Overall this is what the function does:The function `func_1` processes a series of test cases. Each test case starts with an integer `N` representing the length of an array `nums`, followed by the array itself. The function then reads a number of queries `q`, each consisting of a pair of integers `(l, r)`. For each query, the function determines and prints a pair of indices `(s, e)` such that `s` and `e` are the start and end of a segment in `nums` where all elements are the same, and the segment overlaps with the range `[l, r]`. If no such segment exists, it prints `(-1, -1)`. After processing all queries, the function leaves the input variables `N`, `nums`, `s`, `e`, `num`, `arr`, and `LA` in their final states as described in the annotations.
+
