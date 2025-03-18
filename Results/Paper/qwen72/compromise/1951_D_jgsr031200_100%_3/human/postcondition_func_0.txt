@@ -1,8 +1,0 @@
-The function `func_1` accepts two positive integers `n` and `k` (where 1 <= n, k <= 10^18) and performs the following actions based on the values of `n` and `k`:
-
-1. If `n` is equal to `k`, it prints 'YES', followed by two '1's.
-2. If `n` is less than `k`, it prints 'NO'.
-3. If `n` is greater than or equal to `k` and the sum of `n // (n - k + 1)` and `n // 1` is less than `k`, it prints 'NO'.
-4. If `n` is greater than or equal to `k` and the sum of `n // (n - k + 1)` and `n // 1` is greater than or equal to `k`, it prints 'YES', followed by '2' and the elements of the list `[n - k + 1, 1]`.
-
-In all cases, the function does not return any value.

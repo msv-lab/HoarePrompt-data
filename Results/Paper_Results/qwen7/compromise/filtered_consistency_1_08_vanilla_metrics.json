@@ -1,0 +1,149 @@
+{
+    "total_valid_rows": {
+        "value": 138,
+        "description": "Total number of valid rows after preprocessing and removing invalid entries."
+    },
+    "summary fsl": {
+        "agreement_count": "55",
+        "agreement_percentage": 39.85507246376812,
+        "mcc": 0.1322827023079821,
+        "accuracy": 0.39855072463768115,
+        "precision": 1.0,
+        "recall": 0.04597701149425287,
+        "f1_score": 0.08791208791208792,
+        "balanced_accuracy": 0.5229885057471264,
+        "description": "Agreement analysis between 'summary fsl' and 'original correctness'."
+    },
+    "naive correctness fsl": {
+        "agreement_count": "54",
+        "agreement_percentage": 39.130434782608695,
+        "mcc": 0.11413509505569112,
+        "accuracy": 0.391304347826087,
+        "precision": 1.0,
+        "recall": 0.034482758620689655,
+        "f1_score": 0.06666666666666667,
+        "balanced_accuracy": 0.5172413793103449,
+        "description": "Agreement analysis between 'naive correctness fsl' and 'original correctness'."
+    },
+    "simple tree": {
+        "agreement_count": "75",
+        "agreement_percentage": 54.347826086956516,
+        "mcc": -0.04459400256346491,
+        "accuracy": 0.5434782608695652,
+        "precision": 0.6176470588235294,
+        "recall": 0.7241379310344828,
+        "f1_score": 0.6666666666666667,
+        "balanced_accuracy": 0.47971602434077076,
+        "description": "Agreement analysis between 'simple tree' and 'original correctness'."
+    },
+    "complex tree": {
+        "agreement_count": "73",
+        "agreement_percentage": 52.89855072463768,
+        "mcc": -0.07878273786212134,
+        "accuracy": 0.5289855072463768,
+        "precision": 0.6078431372549019,
+        "recall": 0.7126436781609196,
+        "f1_score": 0.6560846560846562,
+        "balanced_accuracy": 0.46416497633536175,
+        "description": "Agreement analysis between 'complex tree' and 'original correctness'."
+    },
+    "vanilla": {
+        "agreement_count": "76",
+        "agreement_percentage": 55.072463768115945,
+        "mcc": 0.01183525802462171,
+        "accuracy": 0.5507246376811594,
+        "precision": 0.6344086021505376,
+        "recall": 0.6781609195402298,
+        "f1_score": 0.6555555555555556,
+        "balanced_accuracy": 0.5057471264367815,
+        "description": "Agreement analysis between 'vanilla' and 'original correctness'."
+    },
+    "vanilla_no_cot": {
+        "agreement_count": "54",
+        "agreement_percentage": 39.130434782608695,
+        "mcc": -0.09149337884239739,
+        "accuracy": 0.391304347826087,
+        "precision": 0.5483870967741935,
+        "recall": 0.19540229885057472,
+        "f1_score": 0.288135593220339,
+        "balanced_accuracy": 0.460446247464503,
+        "description": "Agreement analysis between 'vanilla_no_cot' and 'original correctness'."
+    },
+    "summary": {
+        "agreement_count": "68",
+        "agreement_percentage": 49.275362318840585,
+        "mcc": -0.07132469564322277,
+        "accuracy": 0.4927536231884058,
+        "precision": 0.6024096385542169,
+        "recall": 0.5747126436781609,
+        "f1_score": 0.5882352941176471,
+        "balanced_accuracy": 0.4638269100743746,
+        "description": "Agreement analysis between 'summary' and 'original correctness'."
+    },
+    "simple verify": {
+        "agreement_count": "70",
+        "agreement_percentage": 50.72463768115942,
+        "mcc": 0.030729556323660902,
+        "accuracy": 0.5072463768115942,
+        "precision": 0.6461538461538462,
+        "recall": 0.4827586206896552,
+        "f1_score": 0.5526315789473685,
+        "balanced_accuracy": 0.5158891142663963,
+        "description": "Agreement analysis between 'simple verify' and 'original correctness'."
+    },
+    "complex verify": {
+        "agreement_count": "67",
+        "agreement_percentage": 48.55072463768116,
+        "mcc": -0.02611157421285149,
+        "accuracy": 0.4855072463768116,
+        "precision": 0.6176470588235294,
+        "recall": 0.4827586206896552,
+        "f1_score": 0.5419354838709678,
+        "balanced_accuracy": 0.48647734956051386,
+        "description": "Agreement analysis between 'complex verify' and 'original correctness'."
+    },
+    "summary verify": {
+        "agreement_count": "70",
+        "agreement_percentage": 50.72463768115942,
+        "mcc": 0.05475390287647638,
+        "accuracy": 0.5072463768115942,
+        "precision": 0.6610169491525424,
+        "recall": 0.4482758620689655,
+        "f1_score": 0.5342465753424658,
+        "balanced_accuracy": 0.5280594996619337,
+        "description": "Agreement analysis between 'summary verify' and 'original correctness'."
+    },
+    "simple verify fsl": {
+        "agreement_count": "68",
+        "agreement_percentage": 49.275362318840585,
+        "mcc": 0.05747126436781609,
+        "accuracy": 0.4927536231884058,
+        "precision": 0.6666666666666666,
+        "recall": 0.39080459770114945,
+        "f1_score": 0.4927536231884057,
+        "balanced_accuracy": 0.5287356321839081,
+        "description": "Agreement analysis between 'simple verify fsl' and 'original correctness'."
+    },
+    "complex verify fsl": {
+        "agreement_count": "70",
+        "agreement_percentage": 50.72463768115942,
+        "mcc": 0.05475390287647638,
+        "accuracy": 0.5072463768115942,
+        "precision": 0.6610169491525424,
+        "recall": 0.4482758620689655,
+        "f1_score": 0.5342465753424658,
+        "balanced_accuracy": 0.5280594996619337,
+        "description": "Agreement analysis between 'complex verify fsl' and 'original correctness'."
+    },
+    "summary verify fsl": {
+        "agreement_count": "67",
+        "agreement_percentage": 48.55072463768116,
+        "mcc": -0.02611157421285149,
+        "accuracy": 0.4855072463768116,
+        "precision": 0.6176470588235294,
+        "recall": 0.4827586206896552,
+        "f1_score": 0.5419354838709678,
+        "balanced_accuracy": 0.48647734956051386,
+        "description": "Agreement analysis between 'summary verify fsl' and 'original correctness'."
+    }
+}

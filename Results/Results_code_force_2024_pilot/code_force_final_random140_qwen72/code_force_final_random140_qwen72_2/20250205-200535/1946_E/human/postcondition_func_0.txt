@@ -1,8 +1,0 @@
-The function `func_1` takes two integers `a` and `b` where `b` is non-negative and returns a tuple of two integers. Depending on the relationship between `a` and `b`, the function behaves as follows: 
-
-1. If `b` is 0, the function returns the tuple `(1, 0)`.
-2. If `a` is less than `b`, the function returns a tuple with the elements swapped from the result of `func_1(b, a)`.
-3. If `a` is exactly divisible by `b`, the function returns the tuple `(1, -(a // b - 1))`.
-4. If `a` is greater than or equal to `b` and not divisible by `b`, the function returns a tuple `(d, c - a // b * d)`, where `c` and `d` are the results of `func_1(b, a % b)`.
-
-In all cases, the function modifies the input values through recursive calls and arithmetic operations to produce the final tuple.

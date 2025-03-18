@@ -1,0 +1,4 @@
+Functionality: The function `is_prime` takes a non-negative integer `num` as input and determines if it is a prime number. 
+- If `num` is less than 2, the function returns False.
+- For `num` greater than or equal to 2, the function checks if `num` is a perfect square. If it is, the function verifies if `num` is divisible by any number between 2 and the square root of `num` inclusive. If divisible, it returns False; otherwise, it does not return anything.
+- The function correctly handles the case where `num` is a perfect square and appropriately checks for divisibility, returning False if divisible.

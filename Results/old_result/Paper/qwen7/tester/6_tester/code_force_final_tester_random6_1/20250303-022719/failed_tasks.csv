@@ -1,0 +1,76 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1931_A,human,codeforces2024,qwen2.5-7b-instruct,"import string
+ 
+alphabet = string.ascii_lowercase
+ 
+for i in range(int(input())):
+    n = int(input())
+    word = """"
+    if n > 52:
+        word += alphabet[n - 53] + ""zz""
+    elif n > 27:
+        word += ""a"" + alphabet[n - 28] + ""z""
+    elif n == 27:
+        word = ""aay""
+    else:
+        word += ""aa"" + alphabet[n - 3]
+    print(word)","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-65cf7b11-84a5-9834-9828-2b714b52d73e', 'request_id': '65cf7b11-84a5-9834-9828-2b714b52d73e'}",hoareprompt
+1969_B,human,codeforces2024,qwen2.5-7b-instruct,"# LUOGU_RID: 160731685
+def main():
+    n = int(input())
+    for _ in range(n):
+        s = list(map(int, input().strip()))
+        zeroes = s.count(0)
+        cnt = [0, 0]
+        ans = 0
+        for c in s:
+            cnt[c] += 1
+            if c == 0:
+                ans += 1 if cnt[1] > 0 else 0
+            else:
+                ans += (zeroes - cnt[0])
+        print(ans)
+ 
+if __name__ == ""__main__"":
+    main()","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-077f71cc-f6a5-9a54-a449-bb4de31faf20', 'request_id': '077f71cc-f6a5-9a54-a449-bb4de31faf20'}",hoareprompt
+1931_C,human,codeforces2024,qwen2.5-7b-instruct,"t = int(input())
+for r in range(t):
+    n = int(input())
+    f = 1
+    num = [int(_) for _ in input().split()]
+    for j in range(n -1):
+        if num[j] != num[j + 1]:
+            f = 0
+            break
+    if n == 1 or f == 1:
+        print(0)
+        continue
+    onum = num.copy()
+    onum.reverse()
+    cn = 1
+    ck = 1
+    f = 1 
+    symb1 = num[0]
+    symb2 = onum[0]
+    for i in range(n - 1):
+        if num[i] == num[i + 1]:
+            cn += 1
+        else:
+            break
+    for ii in range(n - 1):
+        if onum[ii] == onum[ii + 1]:
+            ck += 1
+        else:
+            break        
+    if symb1 == symb2:
+        cn += ck
+    print(n - max(cn, ck))",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1950_A,human,codeforces2024,qwen2.5-7b-instruct,"n = int(input())
+for i in range(n):
+    a, b, c = map(int, input().split())
+    if a<b<c:
+        print(""STAIR"")
+    elif a<b and b>c:
+        print(""PEAK"")
+    else:
+        print( ""NONE"" )",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt

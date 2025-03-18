@@ -1,0 +1,12 @@
+#State of the program right berfore the function call: string is a non-empty string, and substring is a non-empty string that is a valid substring of string.
+def func_1(string, substring):
+    start = string.find(substring)
+    if (start == -1) :
+        return None
+        #The program returns None, indicating that the substring was not found in the string since the value of start is -1.
+    #State of the program after the if block has been executed: *`string` is a non-empty string, `substring` is a non-empty string that is a valid substring of `string`, `start` is an integer representing the index of `substring` in `string, and `start` is not equal to -1.
+    end = start + len(substring)
+    return substring, start, end - 1
+    #The program returns the substring, its starting index, and its ending index minus one, where 'substring' is a valid substring of 'string' located at index 'start' and 'end' is calculated as 'start' plus the length of 'substring'
+#Overall this is what the function does:The function accepts two non-empty strings, `string` and `substring`, and returns None if `substring` is not found in `string`. If `substring` is found, it returns the `substring`, its starting index, and its ending index minus one in `string`. The function assumes that `substring` is a valid substring of `string`, as indicated by the initial comment, but it does not handle cases where `substring` is actually not present in `string`, which would lead to an incorrect assumption based on the annotations.
+

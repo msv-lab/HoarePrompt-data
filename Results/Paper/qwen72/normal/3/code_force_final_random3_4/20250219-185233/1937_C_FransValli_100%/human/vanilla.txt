@@ -1,9 +1,0 @@
-- The first loop ensures that `maxi` is the index of the maximum value in the permutation.
-  - The second loop ensures that `arr` contains all indices `i` such that `p_i` is equal to `p_maxi`.
-  - The third loop ensures that `mini` is the index of the minimum value among the candidates in `arr`.
-  - The pair `(maxi, mini)` is then outputted, which should maximize `p_i \oplus p_j` because `p_maxi` is the maximum value and `p_mini` is the minimum value among the candidates.
-
-### Conclusion:
-The program correctly follows the problem's constraints and logic to find a pair of indices that maximizes the bitwise XOR operation, using at most `3n` queries. Therefore, the program is correct.
-
-### Correctness:

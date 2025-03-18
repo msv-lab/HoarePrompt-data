@@ -1,0 +1,136 @@
+#State of the program right berfore the function call: None of the variables in the function `func_1` are described in the function signature or within the function itself. The function reads an integer input from standard input (stdin) and returns it as an integer. However, based on the context provided, it seems the function should be part of a larger solution and might be reading the number of test cases (`t`) or other inputs required for the main logic.
+def func_1():
+    return int(sys.stdin.buffer.readline())
+    #The program returns an integer read from standard input (stdin)
+#Overall this is what the function does:The function reads an integer from standard input (stdin) and returns it as an integer. This integer could represent various things depending on the context in which the function is used, such as the number of test cases or any other numerical input required for further processing.
+
+#State of the program right berfore the function call: t is an integer such that 1 ≤ t ≤ 10^4; for each test case, n and m are integers such that 1 ≤ n, m ≤ 2 ⋅ 10^6; the sum of n and the sum of m over all test cases do not exceed 2 ⋅ 10^6.
+def func_2():
+    return map(int, sys.stdin.buffer.readline().split())
+    #The program returns two integers read from standard input, split and converted to integers.
+#Overall this is what the function does:The function reads two integers from standard input, splits them, and converts them to integers, then returns these two integers.
+
+#State of the program right berfore the function call: t is an integer such that 1 ≤ t ≤ 10^4, and for each test case, n and m are integers such that 1 ≤ n, m ≤ 2 ⋅ 10^6.
+def func_3():
+    return list(map(int, sys.stdin.buffer.readline().split()))
+    #The program returns a list of two integers, where the first integer is the value of n and the second integer is the value of m from the input.
+#Overall this is what the function does:The function reads a line of input from the standard buffer, splits it into two integers, and returns them as a list. The first element of the list is the value of \( n \) and the second element is the value of \( m \).
+
+#State of the program right berfore the function call: rows_number is a non-negative integer such that 0 <= rows_number <= 10^4.
+def func_4(rows_number):
+    return [func_3() for _ in range(rows_number)]
+    #A list containing the result of func_3() called `rows_number` times
+#Overall this is what the function does:The function accepts a non-negative integer `rows_number` (0 ≤ `rows_number` ≤ 10^4) and returns a list. This list contains the result of calling another function `func_3()` exactly `rows_number` times.
+
+#State of the program right berfore the function call: None of the variables in the function signature are provided in the given code snippet. The function `func_5` reads a line from standard input, strips any trailing whitespace, and returns it. However, there are no input parameters mentioned in the function signature.
+def func_5():
+    return sys.stdin.buffer.readline().rstrip()
+    #The program reads a line from standard input, strips any trailing whitespace, and returns it.
+#Overall this is what the function does:The function reads a line from standard input, removes any trailing whitespace, and returns the modified line.
+
+#State of the program right berfore the function call: None of the variables in the function signature are provided in the given code snippet. The function `func_6()` does not take any parameters.
+def func_6():
+    return sys.stdin.buffer.readline().rstrip().decode()
+    #The program returns a decoded string that is the result of reading a line from standard input, stripping the trailing newline character, and decoding it from bytes to a string.
+#Overall this is what the function does:The function reads a line from standard input, removes the trailing newline character, and decodes the remaining bytes into a string before returning it.
+
+#State of the program right berfore the function call: t is an integer such that 1 ≤ t ≤ 10^4, and for each test case, n and m are integers such that 1 ≤ n, m ≤ 2 ⋅ 10^6.
+def func_7():
+    return [int(i) for i in input().split()]
+    #The program returns a list of integers obtained by splitting the input string on spaces and converting each element to an integer.
+#Overall this is what the function does:The function reads a string input from the standard input, splits it into individual elements based on spaces, converts each element to an integer, and returns a list of these integers.
+
+#State of the program right berfore the function call: rows is a non-negative integer representing the number of test cases.
+def func_8(rows):
+    return [func_7() for _ in range(rows)]
+    #The program returns a list containing the result of func_7() called 'rows' times.
+#Overall this is what the function does:The function accepts a non-negative integer `rows` representing the number of test cases. It returns a list containing the result of calling another function `func_7()` exactly `rows` times.
+
+#State of the program right berfore the function call: There is no input parameter for the function `func_9`. The function reads input from the standard input stream, which includes the number of test cases `t`, followed by `t` pairs of integers `n` and `m`.
+def func_9():
+    return input()
+    #The program returns a string containing the number of test cases 't', followed by 't' pairs of integers 'n' and 'm' as input from the standard input stream.
+#Overall this is what the function does:The function `func_9` reads the number of test cases `t` and then reads `t` pairs of integers `n` and `m` from the standard input stream. It returns a string containing this input data.
+
+#State of the program right berfore the function call: None of the variables in the function signature are present, implying that the function does not take any input parameters. However, it returns an integer which represents the number of test cases (t).
+def func_10():
+    return int(input())
+    #The program returns an integer input by the user, representing the number of test cases (t).
+#Overall this is what the function does:The function reads an integer input from the user, representing the number of test cases (t), and returns this integer value.
+
+#State of the program right berfore the function call: t is an integer such that 1 ≤ t ≤ 10^4, and for each test case, n and m are integers such that 1 ≤ n, m ≤ 2⋅10^6.
+def func_11():
+    return input().split()
+    #The program returns a list of strings containing the values of `n` and `m` separated by spaces.
+#Overall this is what the function does:The function reads input from the standard input, splits it into two parts, and returns them as a list of strings. The list contains the values of `n` and `m`, which are separated by spaces.
+
+#State of the program right berfore the function call: d is a dictionary where keys are integers and values are lists of integers; processing is a list of integers of length max(da) where all elements are initially 0; da is an integer key present in the dictionary d; rank is a list of integers of length max(da) where all elements are initially 0.
+def func_12(d, processing, da, rank):
+    tmp = 10 ** 9
+    if (len(d[da]) == 1) :
+        return 1
+        #The program returns 1
+    #State: `d` is a dictionary where keys are integers and values are lists of integers; `processing` is a list of integers of length max(`da`) where all elements are initially 0; `rank` is a list of integers of length max(`da`) where all elements are initially 0; `tmp` is 10; the length of `d[da]` is greater than 1
+    for di in d[da]:
+        if processing[di - 1] == 0:
+            processing[di - 1] = 1
+            tmp = min(tmp, func_12(d, processing, di, rank))
+            processing[di - 1] = 0
+        
+    #State: Output State: `d` is a dictionary where keys are integers and values are lists of integers; `processing` is a list of integers of length max(`da`) where all elements are initially 0; `rank` is a list of integers of length max(`da`) where all elements are initially 0; `tmp` is 10; for each `di` in `d[da]`, if `di-1` was processed (changed from 0 to 1 and back to 0) during the loop, the corresponding element in `processing` remains 0, otherwise it remains 0; the minimum value of `tmp` is updated based on the function `func_12(d, processing, di, rank)` for each `di` in `d[da]`.
+    rank[da - 1] = tmp + 1
+    return tmp + 1
+    #The program returns 11
+#Overall this is what the function does:The function `func_12` processes a dictionary `d` and updates a list `rank` based on the values in `d`. It returns either 1 or 11. If the length of `d[da]` is 1, the function immediately returns 1. Otherwise, it iterates through the list `d[da]`, marks elements in the `processing` list, recursively calls itself for each element, and updates the `tmp` variable with the minimum value obtained from these recursive calls. Finally, it sets the corresponding element in the `rank` list to `tmp + 1` and returns `tmp + 1`.
+
+#State of the program right berfore the function call: a and b are positive integers such that \(1 \leq a \leq n\), \(1 \leq b \leq m\), and \(b \neq 0\).
+def func_13(a, b):
+    if (b == 0) :
+        x = 1
+        y = 0
+        return x, y, a
+        #The program returns x which is 1, y which is 0, and a which is within the range of 1 to n.
+    #State: a and b are positive integers such that \(1 \leq a \leq n\), \(1 \leq b \leq m\), and \(b \neq 0\)
+    x, y, g = func_13(b, a % b)
+    return y, x - a // b * y, g
+    #The program returns y, x - a // b * y, g
+#Overall this is what the function does:The function `func_13` accepts two positive integer parameters `a` and `b`, both constrained such that \(1 \leq a \leq n\) and \(1 \leq b \leq m\). If `b` is zero, the function returns `(1, 0, a)`. Otherwise, it recursively calculates values using the Euclidean algorithm and returns `(y, x - a // b * y, g)`, where `x` and `y` are intermediate results derived from the inputs. The final output represents a solution to a particular mathematical problem, likely related to finding the greatest common divisor (GCD) and Bézout coefficients.
+
+#State of the program right berfore the function call: a is a list of integers, n and m are non-negative integers such that 0 <= n, m <= 2 * 10^6, and k is an integer.
+def func_14(a, n, m, k):
+    for i in range(n):
+        if a[i] < m:
+            k -= m - a[i]
+        
+    #State: a is a list of integers where each element is at least m, and k is the original value minus the total difference between each element in a less than m and m.
+    if (k >= 0) :
+        return 1
+        #The program returns 1
+    #State: a is a list of integers where each element is at least m, and k is the original value minus the total difference between each element in a less than m and m. Additionally, k is less than 0
+    return -1
+    #The program returns -1
+#Overall this is what the function does:The function accepts a list of integers `a`, two non-negative integers `n` and `m`, and an integer `k`. It iterates through the first `n` elements of `a` and adjusts `k` based on the difference between each element and `m`. If `k` is non-negative after the adjustments, the function returns 1; otherwise, it returns -1.
+
+#State of the program right berfore the function call: n and m are positive integers such that 1 ≤ n, m ≤ 2 ⋅ 10^6 and n + m ≤ 2 ⋅ 10^6.
+def func_15():
+    n, m = func_7()
+    i = 1
+    ans = 0
+    while i <= m and i * i <= n + i:
+        ans += (n + i) // (i * i)
+        
+        i += 1
+        
+    #State: The value of `ans` is the sum of \((n + i)\) divided by \(i^2\) for all valid `i` from 1 up to the maximum value of `i` where both `i <= m` and \(i^2 <= n + i` hold true.
+    return ans - 1
+    #The program returns the sum of (n + i) divided by i^2 for all valid i from 1 up to the maximum value of i where both i <= m and i^2 <= n + i, minus 1.
+#Overall this is what the function does:The function accepts no parameters and calculates the sum of \((n + i)\) divided by \(i^2\) for all valid \(i\) from 1 up to the maximum value of \(i\) where both \(i \leq m\) and \(i^2 \leq n + i\) hold true, then returns this sum minus 1.
+
+#State of the program right berfore the function call: t is an integer such that 1 ≤ t ≤ 10^4; for each test case, n and m are integers such that 1 ≤ n, m ≤ 2 ⋅ 10^6, and the sum of n or m over all test cases does not exceed 2 ⋅ 10^6.
+def func_16():
+    for _ in range(func_10()):
+        sys.stdout.write(str(func_15()) + '\n')
+        
+    #State: t test cases are executed, and for each test case, the value returned by func_15() is written to the standard output followed by a newline.
+#Overall this is what the function does:The function processes a series of test cases, each containing two integers \( n \) and \( m \), where \( 1 \leq n, m \leq 2 \cdot 10^6 \). For each test case, it calls another function `func_15()` to compute some value based on \( n \) and \( m \), and writes the result to the standard output followed by a newline. After processing all test cases, the function concludes without returning any value.
+

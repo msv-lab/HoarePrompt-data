@@ -1,0 +1,74 @@
+#State of the program right berfore the function call: n is an integer where 2 ≤ n ≤ 24. The input consists of n lines, each containing n characters representing the partial transition video plan between scenarios. Characters can be F (funny), S (scary), ?, or . (no transition video needed). It is guaranteed that at most \lfloor \frac{n}{2} \rfloor transition videos are already decided, and all other characters are undecided (?).
+def func():
+    n = int(input())
+    a = [0] * (n + 1)
+    b = [0] * (n + 1)
+    xx = ['']
+    for i in range(1, n + 1):
+        x = input()
+        
+        for j in range(1, n + 1):
+            if x[j - 1] == 'F':
+                a[i] += 1
+                a[j] += 1
+            elif x[j - 1] == 'S':
+                b[i] += 1
+                b[j] += 1
+        
+        xx.append(x)
+        
+    #State: Output State: `a` is a list of length `n + 1`, where each element is the number of times the character 'F' appears in the corresponding position of the input strings. `b` is a list of length `n + 1`, where each element is the number of times the character 'S' appears in the corresponding position of the input strings. `xx` is a list containing `n` input strings.
+    sa = []
+    sb = []
+    for i in range(1, n + 1):
+        if a[i] > 0 and b[i] == 0:
+            sa.append(i)
+        
+        if b[i] > 0 and a[i] == 0:
+            sb.append(i)
+        
+    #State: Output State: `sa` is a list containing indices `i` from 1 to `n+1` where `a[i] > 0` and `b[i] == 0`. `sb` is a list containing indices `i` from 1 to `n+1` where `b[i] > 0` and `a[i] == 0`. `a` and `b` remain unchanged, `xx` remains an unchanged list of `n` input strings.
+    if (len(sa) >= len(sb)) :
+        t = len(sa)
+        for i in range(1, n + 1):
+            if a[i] == 0 and b[i] == 0:
+                sa.append(i)
+            
+        #State: Output State: `t` is now the length of `sa`, which contains all indices `i` from 1 to `n+1` where both `a[i] == 0` and `b[i] == 0`. The variable `sb` remains unchanged, containing indices `i` from 1 to `n+1` where `b[i] > 0` and `a[i] == 0`. The variables `a`, `b`, and `xx` remain unchanged.
+        for i in range(1, n + 1):
+            nx = ''
+            
+            for j in range(1, n + 1):
+                if xx[i][j - 1] != '?':
+                    nx += xx[i][j - 1]
+                elif i in sa[:n // 4 - 1] or j in sa[:n // 4 - 1]:
+                    nx += 'F'
+                else:
+                    nx += 'S'
+            
+            print(nx)
+            
+        #State: nx is a list of strings where each string is constructed based on the conditions given in the loop. For each `i` in the range 1 to `n`, `nx[i-1]` is built by either appending characters from `xx[i]` or appending 'F' or 'S' based on whether `i` or `j` (for all `j` from 1 to `n`) is in the first quarter of `sa`. If `xx[i][j-1]` is not '?', it appends that character. Otherwise, it appends 'F' if either `i` or `j` is in the first quarter of `sa`, and 'S' otherwise.
+    else :
+        for i in range(1, n + 1):
+            if a[i] == 0 and b[i] == 0:
+                sb.append(i)
+            
+        #State: Output State: `sa` is a list containing indices `i` from 1 to `n+1` where `a[i] > 0` and `b[i] == 0`. `sb` is a list containing indices `i` from 1 to `n+1` where `b[i] == 0` and `a[i] == 0`, including all indices that were originally in `sa` plus any additional indices where both `a[i]` and `b[i]` are 0 after the loop executes. `a` and `b` remain unchanged, `xx` remains an unchanged list of `n` input strings. The length of `sb` is now equal to or greater than the length of `sa`.
+        for i in range(1, n + 1):
+            nx = ''
+            
+            for j in range(1, n + 1):
+                if xx[i][j - 1] != '?':
+                    nx += xx[i][j - 1]
+                elif i in sb[:n // 4 - 1] or j in sb[:n // 4 - 1]:
+                    nx += 'S'
+                else:
+                    nx += 'F'
+            
+            print(nx)
+            
+        #State: Output State: `sa` is a list containing indices `i` from 1 to `n+1` where `a[i] > 0` and `b[i] == 0`. `sb` is a list containing indices `i` from 1 to `n+1` where `b[i] == 0` and `a[i] == 0`, including all indices that were originally in `sa` plus any additional indices where both `a[i]` and `b[i]` are 0 after the loop executes. `a` and `b` remain unchanged, `xx` remains an unchanged list of `n` input strings. The length of `sb` is now equal to or greater than the length of `sa`. After the loop executes, each string `nx` is constructed based on the rules provided within the loop body, with no changes to `sa` or `sb` lists.
+    #State: `sa` is a list containing indices `i` from 1 to `n+1` where `a[i] > 0` and `b[i] == 0`. `sb` is a list containing indices `i` from 1 to `n+1` where `b[i] > 0` and `a[i] == 0`. The length of `sb` is now equal to or greater than the length of `sa`. `a` and `b` remain unchanged, `xx` remains an unchanged list of `n` input strings. For each `i` in the range 1 to `n`, `nx[i-1]` is constructed based on the following rules: if `len(sa) >= len(sb)`, `nx[i-1]` is built by appending characters from `xx[i]` or appending 'F' or 'S' based on whether `i` or `j` (for all `j` from 1 to `n`) is in the first quarter of `sa`. If `xx[i][j-1]` is not '?', it appends that character. Otherwise, it appends 'F' if either `i` or `j` is in the first quarter of `sa`, and 'S' otherwise. If `len(sa) < len(sb)`, `nx[i-1]` is constructed based on the same rules as described above.
+#Overall this is what the function does:The function processes an n x n grid (where n is between 2 and 24) containing undecided ('?'), funny ('F'), and scary ('S') transition video characters. It determines the type of transition video needed for each undecided position based on the surrounding cells. If a cell is already decided (either 'F' or 'S'), it keeps that decision. For undecided positions, it decides whether to use a funny ('F') or scary ('S') video based on the majority of surrounding decisions. If the number of undecided positions is greater, it uses more 'F' videos; otherwise, it uses more 'S' videos. The function outputs a new n x n grid with the determined transition videos for all positions.
+

@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: arr is a list of lists, where each sublist represents a test case and contains three parts: an integer n (1 ≤ n ≤ 100), a list a of length n with integers (1 ≤ a_1 ≤ a_2 ≤ ... ≤ a_n ≤ 10^9), and a list b of length n with integers (1 ≤ b_1 ≤ b_2 ≤ ... ≤ b_n ≤ 10^9). The first element of arr is the number of test cases t (1 ≤ t ≤ 100).
+def func_1(arr):
+    return sorted(arr, reverse=True)
+    #The program returns the list `arr` sorted in descending order. The first element of the sorted list is the number of test cases `t`, and the subsequent elements are the test cases themselves, each represented as a list containing an integer `n`, a list `a` of length `n`, and a list `b` of length `n`, all sorted in descending order based on their natural lexicographical order.
+#Overall this is what the function does:The function accepts a list `arr` where the first element is the number of test cases `t`, and the subsequent elements are test cases each containing an integer `n`, a list `a` of length `n`, and a list `b` of length `n`. The function returns the list `arr` sorted in descending order, with the test cases themselves sorted in descending lexicographical order.
+

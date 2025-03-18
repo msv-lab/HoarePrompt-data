@@ -1,0 +1,68 @@
+# Include necessary imports if any
+# Assume the provided program is saved as 'program.py' and can be imported from the same dir.
+
+import io
+import sys
+from program import func
+
+def run_program_with_captured_io(input_data):
+    original_stdin = sys.stdin
+    original_stdout = sys.stdout
+
+    try:
+        sys.stdin = io.StringIO(input_data)
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
+
+        func()
+
+        return captured_output.getvalue().strip()
+    
+    finally:
+        sys.stdin = original_stdin
+        sys.stdout = original_stdout
+
+# Write your test cases below
+# Each test case should include assertions based on the problem description
+
+# Test case 1
+input_data = "6\n11010\n00000000\n1\n10\n0001111\n0110"
+expected_output = "3\n1\n1\n2\n1\n2"
+assert run_program_with_captured_io(input_data) == expected_output
+
+# Test case 2: All zeros
+input_data = "1\n00000000"
+expected_output = "1"
+assert run_program_with_captured_io(input_data) == expected_output
+
+# Test case 3: All ones
+input_data = "1\n11111111"
+expected_output = "1"
+assert run_program_with_captured_io(input_data) == expected_output
+
+# Test case 4: Single character (0)
+input_data = "1\n0"
+expected_output = "1"
+assert run_program_with_captured_io(input_data) == expected_output
+
+# Test case 5: Single character (1)
+input_data = "1\n1"
+expected_output = "1"
+assert run_program_with_captured_io(input_data) == expected_output
+
+# Test case 6: Alternating 0s and 1s
+input_data = "1\n01010101"
+expected_output = "7"
+assert run_program_with_captured_io(input_data) == expected_output
+
+# Test case 7: Multiple test cases with different patterns
+input_data = "3\n101010\n111000\n000111"
+expected_output = "5\n2\n1"
+assert run_program_with_captured_io(input_data) == expected_output
+
+# Test case 8: Edge case with mixed patterns
+input_data = "4\n110011\n001100\n1010101010\n0101010101"
+expected_output = "3\n3\n9\n9"
+assert run_program_with_captured_io(input_data) == expected_output
+
+# End of script

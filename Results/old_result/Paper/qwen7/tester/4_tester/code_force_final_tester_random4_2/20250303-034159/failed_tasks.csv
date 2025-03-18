@@ -1,0 +1,150 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1951_E,human,codeforces2024,qwen2.5-7b-instruct,"def Palindrome(s) -> bool:
+	return s == s[::-1]
+def solve():
+	s = input()
+	n,x=len(s),-1
+	if Palindrome(s[0:])==False:
+		print(""YES"")
+		print(1)
+		print(s)
+		return
+	for i in range(1,n):
+		if s[i] != s[0]:
+			x=i
+			break
+	if(x==-1):
+		print(""NO"")
+		return
+	if Palindrome(s[x+1:])==False:
+		print(""YES"")
+		print(2)
+		print(s[:x+1],"" "",s[x+1:])
+	elif(x==1 or x==n//2):
+		print(""NO"")
+	else:
+		print(""YES"")
+		print(2)
+		print(s[:x+2],"" "",s[x+2:])
+ 
+			
+ 
+for _ in range(int(input())):
+	solve()",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1936_A,human,codeforces2024,qwen2.5-7b-instruct,"#!/usr/bin/python3
+ 
+import sys
+ 
+def ask(a, b, c, d):
+	request = f""? {a} {b} {c} {d}""
+	print(request, flush=True)
+	return input()
+	
+ 
+def solve(n):
+	max_item_idx = 0
+	for i in range(1, n):
+		ans = ask(max_item_idx, max_item_idx, i, i)
+		if ans == ""<"":
+			max_item_idx = i
+ 
+	pair_idx = max_item_idx
+	
+	for i in range(n):
+		ans1 = ask(max_item_idx, pair_idx, max_item_idx, i)
+ 
+		if ans1 == ""<"":
+			pair_idx = i
+		elif ans1 == ""="":
+			ans2 = ask(pair_idx, pair_idx, i, i)
+			if ans2 == "">"":
+				pair_idx = i
+ 
+	print(f""! {max_item_idx} {pair_idx}"")
+ 
+t = int(input())
+ 
+for _ in range(t):
+	n = int(input())
+	solve(n)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1968_D,human,codeforces2024,qwen2.5-7b-instruct,"t=int(input())
+for i in range(t):
+    n,k,b,s=list(map(int,input().split()))
+    p=list(map(int,input().split()))
+    a=list(map(int,input().split()))
+    b-=1
+    s-=1
+    sp=a[s]
+    bp=a[b]
+    bm=a[b]*k
+    sm=a[s]*k
+    for i in range(n):
+        k-=1
+        if k==0:
+            break
+        b=p[b]-1
+        s=p[s]-1
+        bm+=max(bm,a[b]*k+bp)
+        sm+=max(sm,a[s]*k+sp)
+        sp+=a[s]
+        bp+=a[b]
+    if bm>sm:
+        print('Bodya')
+    elif bm<sm:
+        print('Sasha')
+    else:
+        print('Draw')","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-b4214da5-d9a5-95c2-8c10-a017250e487b', 'request_id': 'b4214da5-d9a5-95c2-8c10-a017250e487b'}",hoareprompt
+1951_D,human,codeforces2024,qwen2.5-7b-instruct,"""""""
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    arr = list(map(int,input().split()))
+ 
+ 
+# Read tree as graph
+# Generic BS
+def bs(arr,x):
+    n = len(arr)
+    l, r = 0, n - 1
+    if x < arr[0]: return -1
+    if x > arr[-1]: return n+1
+ 
+    while l + 1 != r:
+        mid = (l + r) // 2
+        if x <= arr[mid]:
+            r = mid
+        else:
+            l = mid
+    return (l,r)
+ 
+""""""
+import math as m
+import collections as c
+def proD(n,k):
+    if n==k:
+        print('YES')
+        print(1)
+        print(1)
+        return
+    if n < k:
+        print('NO')
+        return
+    costs = [n-k+1,1]
+    h = 0
+    for i in costs:
+        curr = n//i
+        h += curr
+        n -= i*curr
+    if h < k:
+        print('NO')
+    else:
+    
+        print('YES')
+        print(2)
+        print(*costs)
+ 
+t = int(input())
+for _ in range(t):
+    n,k = list(map(int,input().split()))
+    #arr = list(map(int,input().split()))
+    proD(n,k)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt

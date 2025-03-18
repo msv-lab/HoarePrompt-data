@@ -1,0 +1,57 @@
+#State of the program right berfore the function call: n is an integer such that 1 ≤ n ≤ 1000, and for each i in range(n), x[i], y[i] are integers such that -10^9 ≤ x[i], y[i] ≤ 10^9, and r[i] is an integer such that 1 ≤ r[i] ≤ 10^9.
+def func_1():
+    n = int(input())
+    x = [None] * n
+    y = [None] * n
+    r = [None] * n
+    visited = [False] * n
+    coef0 = [None] * n
+    coef1 = [None] * n
+    nodes = []
+    for i in range(n):
+        x[i], y[i], r[i] = map(int, input().split())
+        
+    #State: Output State: `nodes` is an empty list, `coef0` is a list of length `n` filled with `None`, `x` is a list of length `n` where each element is an integer read from input, `y` is a list of length `n` where each element is an integer read from input, `r` is a list of length `n` where each element is an integer read from input, `visited` is a list of length `n` filled with `False`, `coef1` is a list of length `n` filled with `None`.
+    ok = False
+    for i in range(n):
+        if not visited[i]:
+            coef0[i] = 0
+            coef1[i] = 1
+            nodes = []
+            dfs(i)
+            c0 = 0
+            c1 = 0
+            for j in nodes:
+                c0 += coef0[j]
+                c1 += coef1[j]
+            ok = ok or c1 != 0
+        
+    #State: Output State: `nodes` is an empty list, `coef0` is a list of length `n` where each element is `0` if the corresponding node was not visited or `0` otherwise, `x` is a list of length `n` where each element is an integer read from input, `y` is a list of length `n` where each element is an integer read from input, `r` is a list of length `n` where each element is an integer read from input, `visited` is a list of length `n` where each element is `True` if the corresponding node was visited or `False` otherwise, `coef1` is a list of length `n` where each element is `1` if the corresponding node was visited or `None` otherwise, `ok` is `True` if at least one node had `coef1` equal to `1` and `c1` not equal to `0` during any iteration of the loop, otherwise `False`.
+    if ok :
+        print('YES')
+        #This is printed: YES
+    else :
+        print('NO')
+        #This is printed: NO
+    #State: `nodes` is an empty list, `coef0` is a list of length `n` where each element is `0` if the corresponding node was not visited or `0` otherwise, `x` is a list of length `n` where each element is an integer read from input, `y` is a list of length `n` where each element is an integer read from input, `r` is a list of length `n` where each element is an integer read from input, `visited` is a list of length `n` where each element is `True` if the corresponding node was visited or `False` otherwise, `coef1` is a list of length `n` where each element is `1` if the corresponding node was visited or `None` otherwise, `ok` remains unchanged (it is `True` if at least one node had `coef1` equal to `1` and `c1` not equal to `0` during any iteration of the loop, otherwise `False`).
+#Overall this is what the function does:The function processes a list of nodes, each represented by coordinates (x[i], y[i]) and a radius r[i]. It performs a depth-first search (DFS) on each unvisited node, setting coefficients coef0 and coef1 based on the DFS traversal. If any node has a coef1 value of 1 and a non-zero sum of coef1 values during the DFS, it prints 'YES'. Otherwise, it prints 'NO'. The function does not return any value but modifies the input lists x, y, r, visited, coef0, and coef1.
+
+#State of the program right berfore the function call: n is an integer representing the number of disks, x is a list of integers representing the x-coordinates of the centers of the disks, y is a list of integers representing the y-coordinates of the centers of the disks, r is a list of integers representing the radii of the disks, and visited is a list of boolean values indicating whether each disk has been visited or not, and coef0 and coef1 are lists of floats initialized to None.
+def dfs(i):
+    if (not visited[i]) :
+        visited[i] = True
+        nodes.append(i)
+        for j in range(n):
+            dx = x[i] - x[j]
+            
+            dy = y[i] - y[j]
+            
+            if not visited[j] and (r[i] + r[j]) ** 2 == dx ** 2 + dy ** 2:
+                coef0[j] = r[i] + r[j] - coef0[i]
+                coef1[j] = -coef1[i]
+                dfs(j)
+            
+        #State: nodes is a list containing the integer i, n is an integer representing the number of disks, x is a list of integers representing the x-coordinates of the centers of the disks, y is a list of integers representing the y-coordinates of the centers of the disks, r is a list of integers representing the radii of the disks, visited is a list of boolean values indicating whether each disk has been visited or not with visited[i] set to True, coef0 is a list of floats where for each j, if there exists a disk j such that the distance between the i-th disk and the j-th disk is equal to the sum of their radii and j has not been visited, then coef0[j] is updated to r[i] + r[j] - coef0[i], otherwise it remains None, and coef1 is a list of floats where for each j, if there exists a disk j such that the distance between the i-th disk and the j-th disk is equal to the sum of their radii and j has not been visited, then coef1[j] is updated to -coef1[i], otherwise it remains None.
+    #State: `x`, `y`, `r`, `visited`, `coef0`, and `coef1` are as follows: `visited[i]` is set to True. For each `j`, if there exists a disk `j` such that the distance between the `i`-th disk and the `j`-th disk is equal to the sum of their radii and `j` has not been visited, then `coef0[j]` is updated to `r[i] + r[j] - coef0[i]` and `coef1[j]` is updated to `-coef1[i]`, otherwise `coef0[j]` and `coef1[j]` remain `None`.
+#Overall this is what the function does:The function performs a depth-first search starting from the disk indexed by `i`. It marks the current disk as visited and updates the `coef0` and `coef1` lists for any unvisited disks that are tangent to the current disk. After the function concludes, all disks that are reachable from the initial disk `i` will have been marked as visited, and the `coef0` and `coef1` lists will be updated for those disks that are tangent to the current disk.
+

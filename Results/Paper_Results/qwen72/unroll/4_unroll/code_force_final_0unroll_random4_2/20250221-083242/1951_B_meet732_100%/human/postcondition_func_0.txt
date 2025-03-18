@@ -1,0 +1,10 @@
+The function `func_1` accepts a list `a` of `n` distinct integers, where each integer represents the Cowdeforces rating of a cow. It returns an integer based on the following conditions:
+- If there are no elements in `a` greater than the k-th element's rating (`a[k]`), it returns `n - 1`.
+- If there is exactly one element in `a` greater than `a[k]`:
+  - If this element is at index 0, it returns `k - 1`.
+  - If this element's index is greater than `k`, it returns the index of this element minus 1.
+  - Otherwise, it returns the maximum value between `k - ind[0]` and `ind[0] - 1`, where `ind[0]` is the index of this element.
+- If there are exactly two elements in `a` greater than `a[k]`:
+  - If the first of these elements is at index 0, it returns the minimum value between `ind[1] - 1` and `k - 1`, where `ind[1]` is the index of the second element.
+  - If `k` is greater than the index of the second element, it returns the maximum value between `ind[0] - 1` and `ind[1] - ind[0]`.
+  - Otherwise, it returns the maximum value between `ind[0] - 1` and `k - ind[0]`.

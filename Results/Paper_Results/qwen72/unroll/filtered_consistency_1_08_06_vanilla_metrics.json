@@ -1,0 +1,39 @@
+{
+    "total_valid_rows": {
+        "value": 28,
+        "description": "Total number of valid rows after preprocessing and removing invalid entries."
+    },
+    "complex tree": {
+        "agreement_count": "15",
+        "agreement_percentage": 53.57142857142857,
+        "mcc": -0.25819888974716115,
+        "accuracy": 0.5357142857142857,
+        "precision": 0.6,
+        "recall": 0.8333333333333334,
+        "f1_score": 0.6976744186046512,
+        "balanced_accuracy": 0.4166666666666667,
+        "description": "Agreement analysis between 'complex tree' and 'original correctness'."
+    },
+    "vanilla": {
+        "agreement_count": "20",
+        "agreement_percentage": 71.42857142857143,
+        "mcc": 0.3721042037676254,
+        "accuracy": 0.7142857142857143,
+        "precision": 0.6923076923076923,
+        "recall": 1.0,
+        "f1_score": 0.8181818181818181,
+        "balanced_accuracy": 0.6,
+        "description": "Agreement analysis between 'vanilla' and 'original correctness'."
+    },
+    "vanilla_no_cot": {
+        "agreement_count": "17",
+        "agreement_percentage": 60.71428571428571,
+        "mcc": 0.16351748504193217,
+        "accuracy": 0.6071428571428571,
+        "precision": 0.7058823529411765,
+        "recall": 0.6666666666666666,
+        "f1_score": 0.6857142857142857,
+        "balanced_accuracy": 0.5833333333333333,
+        "description": "Agreement analysis between 'vanilla_no_cot' and 'original correctness'."
+    }
+}

@@ -1,0 +1,658 @@
+Task ID,unique_id,Dataset,model_created,model_run,description,Code,run_number,original correctness,summary fsl,naive correctness fsl,vanilla,vanilla_no_cot,simple tree,complex tree,summary,simple verify fsl,complex verify fsl,summary verify fsl,simple verify,complex verify,summary verify,consistency,consistency_mine,consistency_old
+1942_C2,1942_C2_Campass_6.67%,codeforces2024,human,qwen2p5-coder-32b-instruct,"[Proof Geometric Construction Can Solve All Love Affairs -
+manbo-p](https://soundcloud.com/alice-law-314125270/manbo-p-proof-geometric-
+construction-can-solve-all-love-affairs)
+
+⠀
+
+This is the hard version of the problem. The only difference between the two
+versions is the constraint on y . In this version 0 \leq y \leq n - x . You
+can make hacks only if both versions are solved.
+
+Bessie has received a birthday cake from her best friend Elsie, and it came in
+the form of a regular polygon with n sides. The vertices of the cake are
+numbered from 1 to n clockwise. You and Bessie are going to choose some of
+those vertices to cut non-intersecting diagonals into the cake. In other
+words, the endpoints of the diagonals must be part of the chosen vertices.
+
+Bessie would only like to give out pieces of cake which result in a triangle
+to keep consistency. The size of the pieces doesn't matter, and the whole cake
+does not have to be separated into all triangles (other shapes are allowed in
+the cake, but those will not be counted).
+
+Bessie has already chosen x of those vertices that can be used to form
+diagonals. She wants you to choose no more than y other vertices such that the
+number of triangular pieces of cake she can give out is maximized.
+
+What is the maximum number of triangular pieces of cake Bessie can give out?
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case consists of three integers, n , x , and y (4
+\leq n \leq 10^9 , 2 \leq x \leq \min(n, 2 \cdot 10^5) , 0 \leq y \leq n - x )
+— the number of sides of the polygon, number of vertices Bessie has chosen,
+and the maximum number of other vertices you can choose.
+
+The second line consists of x distinct integers from 1 to n , representing the
+vertices Bessie has chosen.
+
+It is guaranteed the sum of x over all test cases does not exceed 2 \cdot 10^5
+.
+
+Output
+
+For each test case, output a single integer: the maximum number of non-
+intersecting triangular pieces of cake she can give out.
+
+Example
+
+Input
+
+    3
+    
+    8 4 2
+    
+    1 6 2 5
+    
+    7 3 1
+    
+    6 4 3
+    
+    4 2 2
+    
+    1 3
+
+Output
+
+    6
+    5
+    2
+    
+Note
+
+In test cases 1 , 2 and 3 , you can get 6 , 5 and 2 non-intersecting
+triangular pieces of cake, respectively. A possible construction is shown in
+the following pictures:
+
+The green dots represent vertices that Bessie chose, the yellow dots represent
+vertices that you chose, the blue lines represent diagonals that are drawn,
+and the red numbers represent triangles that are counted.
+
+![](https://espresso.codeforces.com/13b28beb7f5f0d100798f357f58c804c5314c869.png)","R = lambda: map(int, input().split())
+t,=R()
+while t:
+    t -= 1
+    n,x,y= R()
+    sx=0;
+    l = list(R())
+    l.sort()
+    l.append(n+l[0])
+    val=[]
+    for i in range(1,x+1):
+        c=l[i]-l[i-1]-1
+        if c==1: sx+=1
+        val.append(c)
+    val.sort(key= lambda x:(1-x&1,x))
+    for i in val:
+        c=i//2
+        if y<c :
+            sx+=y*2 
+            break
+        sx+=i
+        y-=c
+    
+    cons=x+sx-2
+    cons=min(n-2,cons)
+    print(cons)  # 使用 print 函数打印列表元素，而不是调用 P 函数",1,False,False,False,True,False,True,True,True,False,True,False,True,True,True,0.5260587368554075,0.024145370660688354,0.6666666666666666
+1942_C2,1942_C2_Campass_6.67%,codeforces2024,human,qwen2p5-coder-32b-instruct,"[Proof Geometric Construction Can Solve All Love Affairs -
+manbo-p](https://soundcloud.com/alice-law-314125270/manbo-p-proof-geometric-
+construction-can-solve-all-love-affairs)
+
+⠀
+
+This is the hard version of the problem. The only difference between the two
+versions is the constraint on y . In this version 0 \leq y \leq n - x . You
+can make hacks only if both versions are solved.
+
+Bessie has received a birthday cake from her best friend Elsie, and it came in
+the form of a regular polygon with n sides. The vertices of the cake are
+numbered from 1 to n clockwise. You and Bessie are going to choose some of
+those vertices to cut non-intersecting diagonals into the cake. In other
+words, the endpoints of the diagonals must be part of the chosen vertices.
+
+Bessie would only like to give out pieces of cake which result in a triangle
+to keep consistency. The size of the pieces doesn't matter, and the whole cake
+does not have to be separated into all triangles (other shapes are allowed in
+the cake, but those will not be counted).
+
+Bessie has already chosen x of those vertices that can be used to form
+diagonals. She wants you to choose no more than y other vertices such that the
+number of triangular pieces of cake she can give out is maximized.
+
+What is the maximum number of triangular pieces of cake Bessie can give out?
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case consists of three integers, n , x , and y (4
+\leq n \leq 10^9 , 2 \leq x \leq \min(n, 2 \cdot 10^5) , 0 \leq y \leq n - x )
+— the number of sides of the polygon, number of vertices Bessie has chosen,
+and the maximum number of other vertices you can choose.
+
+The second line consists of x distinct integers from 1 to n , representing the
+vertices Bessie has chosen.
+
+It is guaranteed the sum of x over all test cases does not exceed 2 \cdot 10^5
+.
+
+Output
+
+For each test case, output a single integer: the maximum number of non-
+intersecting triangular pieces of cake she can give out.
+
+Example
+
+Input
+
+    3
+    
+    8 4 2
+    
+    1 6 2 5
+    
+    7 3 1
+    
+    6 4 3
+    
+    4 2 2
+    
+    1 3
+
+Output
+
+    6
+    5
+    2
+    
+Note
+
+In test cases 1 , 2 and 3 , you can get 6 , 5 and 2 non-intersecting
+triangular pieces of cake, respectively. A possible construction is shown in
+the following pictures:
+
+The green dots represent vertices that Bessie chose, the yellow dots represent
+vertices that you chose, the blue lines represent diagonals that are drawn,
+and the red numbers represent triangles that are counted.
+
+![](https://espresso.codeforces.com/13b28beb7f5f0d100798f357f58c804c5314c869.png)","R = lambda: map(int, input().split())
+t,=R()
+while t:
+    t -= 1
+    n,x,y= R()
+    sx=0;
+    l = list(R())
+    l.sort()
+    l.append(n+l[0])
+    val=[]
+    for i in range(1,x+1):
+        c=l[i]-l[i-1]-1
+        if c==1: sx+=1
+        val.append(c)
+    val.sort(key= lambda x:(1-x&1,x))
+    for i in val:
+        c=i//2
+        if y<c :
+            sx+=y*2 
+            break
+        sx+=i
+        y-=c
+    
+    cons=x+sx-2
+    cons=min(n-2,cons)
+    print(cons)  # 使用 print 函数打印列表元素，而不是调用 P 函数",1,False,False,False,True,False,True,True,True,False,False,False,True,True,False,0.5260587368554075,0.024145370660688354,0.6666666666666666
+1942_C2,1942_C2_Campass_6.67%,codeforces2024,human,qwen2p5-coder-32b-instruct,"[Proof Geometric Construction Can Solve All Love Affairs -
+manbo-p](https://soundcloud.com/alice-law-314125270/manbo-p-proof-geometric-
+construction-can-solve-all-love-affairs)
+
+⠀
+
+This is the hard version of the problem. The only difference between the two
+versions is the constraint on y . In this version 0 \leq y \leq n - x . You
+can make hacks only if both versions are solved.
+
+Bessie has received a birthday cake from her best friend Elsie, and it came in
+the form of a regular polygon with n sides. The vertices of the cake are
+numbered from 1 to n clockwise. You and Bessie are going to choose some of
+those vertices to cut non-intersecting diagonals into the cake. In other
+words, the endpoints of the diagonals must be part of the chosen vertices.
+
+Bessie would only like to give out pieces of cake which result in a triangle
+to keep consistency. The size of the pieces doesn't matter, and the whole cake
+does not have to be separated into all triangles (other shapes are allowed in
+the cake, but those will not be counted).
+
+Bessie has already chosen x of those vertices that can be used to form
+diagonals. She wants you to choose no more than y other vertices such that the
+number of triangular pieces of cake she can give out is maximized.
+
+What is the maximum number of triangular pieces of cake Bessie can give out?
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case consists of three integers, n , x , and y (4
+\leq n \leq 10^9 , 2 \leq x \leq \min(n, 2 \cdot 10^5) , 0 \leq y \leq n - x )
+— the number of sides of the polygon, number of vertices Bessie has chosen,
+and the maximum number of other vertices you can choose.
+
+The second line consists of x distinct integers from 1 to n , representing the
+vertices Bessie has chosen.
+
+It is guaranteed the sum of x over all test cases does not exceed 2 \cdot 10^5
+.
+
+Output
+
+For each test case, output a single integer: the maximum number of non-
+intersecting triangular pieces of cake she can give out.
+
+Example
+
+Input
+
+    3
+    
+    8 4 2
+    
+    1 6 2 5
+    
+    7 3 1
+    
+    6 4 3
+    
+    4 2 2
+    
+    1 3
+
+Output
+
+    6
+    5
+    2
+    
+Note
+
+In test cases 1 , 2 and 3 , you can get 6 , 5 and 2 non-intersecting
+triangular pieces of cake, respectively. A possible construction is shown in
+the following pictures:
+
+The green dots represent vertices that Bessie chose, the yellow dots represent
+vertices that you chose, the blue lines represent diagonals that are drawn,
+and the red numbers represent triangles that are counted.
+
+![](https://espresso.codeforces.com/13b28beb7f5f0d100798f357f58c804c5314c869.png)","R = lambda: map(int, input().split())
+t,=R()
+while t:
+    t -= 1
+    n,x,y= R()
+    sx=0;
+    l = list(R())
+    l.sort()
+    l.append(n+l[0])
+    val=[]
+    for i in range(1,x+1):
+        c=l[i]-l[i-1]-1
+        if c==1: sx+=1
+        val.append(c)
+    val.sort(key= lambda x:(1-x&1,x))
+    for i in val:
+        c=i//2
+        if y<c :
+            sx+=y*2 
+            break
+        sx+=i
+        y-=c
+    
+    cons=x+sx-2
+    cons=min(n-2,cons)
+    print(cons)  # 使用 print 函数打印列表元素，而不是调用 P 函数",1,False,True,False,False,False,True,True,True,False,False,False,True,True,False,0.5260587368554075,0.024145370660688354,0.6666666666666666
+1957_C,1957_C_hx199411_100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","t = int(input())
+while t:
+    t -= 1
+    n,k = list(map(int,input().split(' ')))
+    num = 0
+    for i in range(k):
+        c,r = list(map(int,input().split(' ')))
+        if c == r:
+            num += 1
+        else:
+            num += 2
+    m = n - num
+    if m == 0:
+        print(1)
+    elif m == 1:
+        print(1)
+    else:
+        dp = [0 for i in range(m+1)]
+        dp[1] = 1
+        dp[2] = 3
+        for i in range(3,m+1):
+            dp[i] = (dp[i-1] + (i-1)*dp[i-2]*2)%(10**9+7)
+        print(dp[m])",1,True,False,False,True,False,True,True,True,False,False,False,True,True,True,0.40849978776192514,-0.09525744994067215,0.5
+1957_C,1957_C_hx199411_100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","t = int(input())
+while t:
+    t -= 1
+    n,k = list(map(int,input().split(' ')))
+    num = 0
+    for i in range(k):
+        c,r = list(map(int,input().split(' ')))
+        if c == r:
+            num += 1
+        else:
+            num += 2
+    m = n - num
+    if m == 0:
+        print(1)
+    elif m == 1:
+        print(1)
+    else:
+        dp = [0 for i in range(m+1)]
+        dp[1] = 1
+        dp[2] = 3
+        for i in range(3,m+1):
+            dp[i] = (dp[i-1] + (i-1)*dp[i-2]*2)%(10**9+7)
+        print(dp[m])",1,True,True,False,True,False,True,True,True,True,False,False,True,True,True,0.40849978776192514,-0.09525744994067215,0.5
+1957_C,1957_C_hx199411_100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","t = int(input())
+while t:
+    t -= 1
+    n,k = list(map(int,input().split(' ')))
+    num = 0
+    for i in range(k):
+        c,r = list(map(int,input().split(' ')))
+        if c == r:
+            num += 1
+        else:
+            num += 2
+    m = n - num
+    if m == 0:
+        print(1)
+    elif m == 1:
+        print(1)
+    else:
+        dp = [0 for i in range(m+1)]
+        dp[1] = 1
+        dp[2] = 3
+        for i in range(3,m+1):
+            dp[i] = (dp[i-1] + (i-1)*dp[i-2]*2)%(10**9+7)
+        print(dp[m])",1,True,False,False,True,False,True,True,True,False,False,False,True,True,True,0.40849978776192514,-0.09525744994067215,0.5

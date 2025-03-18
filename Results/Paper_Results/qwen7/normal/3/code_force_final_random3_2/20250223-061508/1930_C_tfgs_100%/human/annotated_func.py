@@ -1,0 +1,43 @@
+#State of the program right berfore the function call: t is an integer such that 1 ≤ t ≤ 10^4. For each test case, n is an integer such that 1 ≤ n ≤ 3 ⋅ 10^5, and a is a list of n integers such that 1 ≤ a_i ≤ 10^9. The sum of n over all test cases does not exceed 3 ⋅ 10^5.
+def func_1():
+    n = int(input())
+    a = list(map(int, input().split()))
+    for i in range(n):
+        a[i] += i + 1
+        
+    #State: Output State: The value of `a[i]` for each valid index `i` will be the original value of `a[i]` plus the sum of `(i + 1)` for each iteration `i` from `0` to `n-1`.
+    #
+    #In more detail, after the loop has executed all its iterations, each element `a[i]` (where `0 ≤ i < n`) will have been incremented by `i + 1` for every `i` in the range `0` to `n-1`. Therefore, the final value of `a[i]` will be the initial value of `a[i]` plus the sum of the series `(1 + 2 + ... + n)`, which is `n * (n + 1) / 2`. 
+    #
+    #So, the output state can be described as: Each element in the list `a` is incremented by the sum of the first `n` natural numbers starting from 1.
+    counter = Counter(a)
+    cur = 0
+    a = list(set(a))
+    a.sort(reverse=True)
+    cnt = n - len(a)
+    ans = []
+    for i in range(len(a)):
+        if i > 0:
+            adv = min(a[i - 1] - a[i] - 1, cnt, cur)
+            for j in range(adv):
+                ans.append(a[i - 1] - j - 1)
+            cnt -= adv
+            cur -= adv
+        
+        ans.append(a[i])
+        
+        counter[a[i]] -= 1
+        
+        cur += counter[a[i]]
+        
+    #State: All elements in the list `a` are appended to `ans`, `cnt` is 0, `cur` is 0, and `ans` contains all the calculated values based on the differences between consecutive elements in `a`.
+    for _ in range(cnt):
+        ans.append(ans[-1] - 1)
+        
+    #State: Output State: The loop will execute `cnt` times, which is 1 time based on the given information. After the loop executes, `ans` is a list where each element is one less than the previous element, starting from the initial state where `ans` contains all elements from the list `a`. The last element of `ans` will be `a[0] - cnt`.
+    #
+    #In simpler terms, after the loop finishes executing, `ans` will be a list where each element is reduced by 1 for every iteration of the loop, starting from the original elements of list `a`. Since the loop runs only once (`cnt` is 1), each element in `ans` will be exactly 1 less than its corresponding element in the original list `a`.
+    print(*ans)
+    #This is printed: a0-1 a1-1 a2-1 ... an-1-1
+#Overall this is what the function does:The function processes a list of integers `a` for each test case. It first increments each element in the list by the sum of the first `n` natural numbers. Then, it creates a new list `ans` by appending elements from the modified list `a` and adjusting the values based on the differences between consecutive elements. Finally, it appends additional elements to `ans` to ensure all elements are decremented by a certain count, and prints the resulting list.
+

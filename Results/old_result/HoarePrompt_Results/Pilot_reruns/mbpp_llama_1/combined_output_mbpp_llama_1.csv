@@ -1,0 +1,421 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,naive no fsl correctness,data file
+Mbpp_280,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).,"def sequential_search(arr, elem):
+    for i, x in enumerate(arr):
+        if x == elem:
+            return (True, i)
+    return (False, -1)
+",,True,post,True,True,True,True,pilot_mbpp3.json
+Mbpp_280,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).,"def sequential_search(arr, element):
+    for index, value in enumerate(arr):
+        if value == element:
+            return (True, index)
+    return (False, -1)
+
+# Test cases
+assert sequential_search([11,23,58,31,56,77,43,12,65,19],31) == (True, 3)
+assert sequential_search([12, 32, 45, 62, 35, 47, 44, 61],61) == (True, 7)
+assert sequential_search([9, 10, 17, 19, 22, 39, 48, 56],48) == (True, 6)
+",,True,post,True,True,True,True,pilot_mbpp3.json
+Mbpp_11,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s, c):
+    first_occ = s.find(c)
+    last_occ = s.rfind(c)
+    if first_occ != -1 and last_occ != -1:
+        return s[:first_occ] + s[first_occ+1:last_occ] + s[last_occ+1:]
+    else:
+        return s
+",,True,post,True,False,False,False,pilot_mbpp3.json
+Mbpp_11,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s: str, ch: str) -> str:
+    first_index = s.find(ch)
+    last_index = s.rfind(ch)
+    
+    if first_index == -1 or last_index == -1 or first_index == last_index:
+        return s  # No removal needed if ch is not found or only one occurrence
+    
+    # Create a new string without the first and last occurrence of ch
+    return s[:first_index] + s[first_index + 1:last_index] + s[last_index + 1:]
+
+# Testing the function with the provided test cases
+assert remove_Occ(""hello"", ""l"") == ""heo""
+assert remove_Occ(""abcda"", ""a"") == ""bcd""
+assert remove_Occ(""PHP"", ""P"") == ""H""
+",,True,post,False,True,False,True,pilot_mbpp3.json
+Mbpp_562,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to find the length of the longest sublists.,"def Find_Max_Length(lists):
+    return max(len(sublist) for sublist in lists)
+",,False,post,True,True,False,True,pilot_mbpp3.json
+Mbpp_562,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to find the length of the longest sublists.,"def Find_Max_Length(list_of_lists):
+    max_length = 0
+    for sublist in list_of_lists:
+        if len(sublist) > max_length:
+            max_length = len(sublist)
+    return max_length
+
+# Test cases
+assert Find_Max_Length([[1],[1,4],[5,6,7,8]]) == 4
+assert Find_Max_Length([[0,1],[2,2,],[3,2,1]]) == 3
+assert Find_Max_Length([[7],[22,23],[13,14,15],[10,20,30,40,50]]) == 5
+",,True,post,True,True,True,True,pilot_mbpp3.json
+Mbpp_109,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.,"def odd_Equivalent(s, n):
+    s = s * (n // len(s) + 1)
+    count = 0
+    for i in range(n):
+        temp = s[i:i+len(s)]
+        count += temp.count('1') % 2
+    return count
+",,False,post,False,False,False,False,pilot_mbpp3.json
+Mbpp_109,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.,"def odd_Equivalent(binary_str, num_rotations):
+    count = 0
+    for _ in range(num_rotations):
+        # Rotate the string by moving the last character to the front
+        binary_str = binary_str[-1] + binary_str[:-1]
+        # Convert the rotated binary string to an integer
+        integer_value = int(binary_str, 2)
+        # Check if the integer is odd
+        if integer_value % 2 == 1:
+            count += 1
+    return count
+
+# Testing the function with the provided test cases
+assert odd_Equivalent(""011001"", 6) == 3
+assert odd_Equivalent(""11011"", 5) == 4
+assert odd_Equivalent(""1010"", 4) == 2
+",,True,post,False,True,False,True,pilot_mbpp3.json
+Mbpp_618,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to divide two lists element wise.,"def div_list(list1, list2):
+    if len(list1) != len(list2):
+        raise ValueError(""Both lists must be of the same length"")
+    return [x/y for x, y in zip(list1, list2)]
+",,False,post,True,False,False,False,pilot_mbpp3.json
+Mbpp_618,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to divide two lists element wise.,"def div_list(list1, list2):
+    return [a / b for a, b in zip(list1, list2)]
+
+# Testing the function with provided test cases
+assert div_list([4,5,6],[1, 2, 3]) == [4.0, 2.5, 2.0]
+assert div_list([3,2],[1,4]) == [3.0, 0.5]
+assert div_list([90,120],[50,70]) == [1.8, 1.7142857142857142]
+",,True,post,True,False,True,False,pilot_mbpp3.json
+Mbpp_567,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to check whether a specified list is sorted or not.,"def issort_list(lst):
+    return all(lst[i] <= lst[i+1] for i in range(len(lst)-1))
+",,True,post,True,True,True,True,pilot_mbpp2.json
+Mbpp_567,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to check whether a specified list is sorted or not.,"def issort_list(lst):
+    for i in range(len(lst) - 1):
+        if lst[i] > lst[i + 1]:
+            return False
+    return True
+
+# Test cases
+assert issort_list([1, 2, 4, 6, 8, 10, 12, 14, 16, 17]) == True
+assert issort_list([1, 2, 4, 6, 8, 10, 12, 14, 20, 17]) == False
+assert issort_list([1, 2, 4, 6, 8, 10, 15, 14, 20]) == False
+",,True,post,True,True,True,True,pilot_mbpp2.json
+Mbpp_744,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to check if the given tuple has any none value or not.,"def check_none(tup):
+    return any(x is None for x in tup)
+",,True,post,True,True,True,True,pilot_mbpp2.json
+Mbpp_744,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to check if the given tuple has any none value or not.,"def check_none(tup):
+    for item in tup:
+        if item is None:
+            return True
+    return False
+
+# Test cases to validate the solution
+assert check_none((10, 4, 5, 6, None)) == True
+assert check_none((7, 8, 9, 11, 14)) == False
+assert check_none((1, 2, 3, 4, None)) == True
+",,True,post,True,True,True,True,pilot_mbpp2.json
+Mbpp_741,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to check whether all the characters are same or not.,"def all_Characters_Same(s: str) -> bool:
+    return len(set(s)) == 1
+",,False,post,False,True,True,True,pilot_mbpp2.json
+Mbpp_741,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to check whether all the characters are same or not.,"def all_Characters_Same(s):
+    if not s:  # If the string is empty, return True (edge case)
+        return True
+    first_char = s[0]
+    for char in s:
+        if char != first_char:
+            return False
+    return True
+
+# Tests
+assert all_Characters_Same(""python"") == False
+assert all_Characters_Same(""aaa"") == True
+assert all_Characters_Same(""data"") == False
+",,False,post,True,True,True,True,pilot_mbpp2.json
+Mbpp_722,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,"The input is given as - a dictionary with a student name as a key and a tuple of float (student_height, student_weight) as a value, - minimal height, - minimal weight. Write a function to filter students that have height and weight above the minimum.","def filter_data(student_data, min_height, min_weight):
+    return {name: (height, weight) for name, (height, weight) in student_data.items() if height >= min_height and weight >= min_weight}
+",,True,post,False,True,True,True,pilot_mbpp2.json
+Mbpp_722,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,"The input is given as - a dictionary with a student name as a key and a tuple of float (student_height, student_weight) as a value, - minimal height, - minimal weight. Write a function to filter students that have height and weight above the minimum.","def filter_data(student_dict, min_height, min_weight):
+    return {name: (height, weight) for name, (height, weight) in student_dict.items() if height >= min_height and weight >= min_weight}
+
+# Test cases
+assert filter_data({'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)},6.0,70) == {'Cierra Vega': (6.2, 70)}
+assert filter_data({'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)},5.9,67) == {'Cierra Vega': (6.2, 70),'Kierra Gentry': (6.0, 68)}
+assert filter_data({'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)},5.7,64) == {'Cierra Vega': (6.2, 70),'Alden Cantrell': (5.9, 65),'Kierra Gentry': (6.0, 68),'Pierre Cox': (5.8, 66)}
+",,True,post,False,True,False,True,pilot_mbpp2.json
+Mbpp_166,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function that counts the number of pairs of integers in a list that xor to an even number.,"def find_even_pair(nums):
+    count = 0
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if (nums[i] ^ nums[j]) % 2 == 0:
+                count += 1
+    return count
+",,True,post,True,True,True,True,pilot_mbpp2.json
+Mbpp_166,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function that counts the number of pairs of integers in a list that xor to an even number.,"def find_even_pair(lst):
+    even_count = sum(1 for x in lst if x % 2 == 0)
+    odd_count = len(lst) - even_count  # total count minus even count gives odd count
+
+    # Calculate the number of pairs that XOR to an even number
+    even_pairs = even_count * (even_count - 1) // 2
+    odd_pairs = odd_count * (odd_count - 1) // 2
+    
+    return even_pairs + odd_pairs
+
+# Test cases
+assert find_even_pair([5, 4, 7, 2, 1]) == 4
+assert find_even_pair([7, 2, 8, 1, 0, 5, 11]) == 9
+assert find_even_pair([1, 2, 3]) == 1
+",,False,post,True,True,False,True,pilot_mbpp2.json
+Mbpp_278,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to find the number of elements that occurs before the tuple element in the given tuple.,"def count_first_elements(tup):
+    for elem in tup:
+        if isinstance(elem, tuple):
+            return tup.index(elem)
+    return len(tup)
+",,False,post,False,False,False,False,pilot_mbpp5.json
+Mbpp_278,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to find the number of elements that occurs before the tuple element in the given tuple.,"def count_first_elements(tup):
+    count = 0
+    for elem in tup:
+        if isinstance(elem, tuple):
+            break
+        count += 1
+    return count
+
+# Test cases
+assert count_first_elements((1, 5, 7, (4, 6), 10)) == 3
+assert count_first_elements((2, 9, (5, 7), 11)) == 2
+assert count_first_elements((11, 15, 5, 8, (2, 3), 8)) == 4
+",,True,post,False,True,True,True,pilot_mbpp5.json
+Mbpp_628,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to replace all spaces in the given string with '%20'.,"def replace_spaces(s: str) -> str:
+    return s.replace(' ', '%20')
+",,True,post,True,True,True,True,pilot_mbpp5.json
+Mbpp_628,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to replace all spaces in the given string with '%20'.,"def replace_spaces(input_string):
+    return input_string.replace(' ', '%20')
+
+# Test cases
+assert replace_spaces(""My Name is Dawood"") == 'My%20Name%20is%20Dawood'
+assert replace_spaces(""I am a Programmer"") == 'I%20am%20a%20Programmer'
+assert replace_spaces(""I love Coding"") == 'I%20love%20Coding'
+",,True,post,True,True,True,True,pilot_mbpp5.json
+Mbpp_624,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to convert a given string to uppercase.,"def is_upper(s: str) -> str:
+    return s.upper()
+",,False,post,True,True,False,True,pilot_mbpp5.json
+Mbpp_624,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to convert a given string to uppercase.,"def is_upper(s):
+    return s.upper()
+
+# Tests to validate the solution
+assert is_upper(""person"") == ""PERSON""
+assert is_upper(""final"") == ""FINAL""
+assert is_upper(""Valid"") == ""VALID""
+",,True,post,True,True,True,True,pilot_mbpp5.json
+Mbpp_297,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to flatten a given nested list structure.,"def flatten_list(nested_list):
+    flat_list = []
+    for element in nested_list:
+        if isinstance(element, list):
+            flat_list.extend(flatten_list(element))
+        else:
+            flat_list.append(element)
+    return flat_list
+",,False,post,True,True,True,True,pilot_mbpp5.json
+Mbpp_297,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to flatten a given nested list structure.,"def flatten_list(nested_list):
+    flat_list = []
+    
+    for item in nested_list:
+        if isinstance(item, list):
+            flat_list.extend(flatten_list(item))
+        else:
+            flat_list.append(item)
+    
+    return flat_list
+
+# Testing the function with the provided test cases
+assert flatten_list([0, 10, [20, 30], 40, 50, [60, 70, 80], [90, 100, 110, 120]]) == [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]
+assert flatten_list([[10, 20], [40], [30, 56, 25], [10, 20], [33], [40]]) == [10, 20, 40, 30, 56, 25, 10, 20, 33, 40]
+assert flatten_list([[1,2,3], [4,5,6], [10,11,12], [7,8,9]]) == [1, 2, 3, 4, 5, 6, 10, 11, 12, 7, 8, 9]
+",,False,post,True,True,True,True,pilot_mbpp5.json
+Mbpp_769,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to get the difference between two lists.,"def Diff(list1, list2):
+    return sorted(list(set(list1) ^ set(list2)))
+",,True,post,False,True,True,True,pilot_mbpp5.json
+Mbpp_769,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to get the difference between two lists.,"def Diff(list1, list2):
+    # Convert lists to sets and find their symmetric difference
+    set1 = set(list1)
+    set2 = set(list2)
+    diff_elements = set1.symmetric_difference(set2)
+    
+    # Convert the set back to a list and sort it to ensure the order matches the expected results
+    result_list = list(diff_elements)
+    result_list.sort(key=lambda x: (list1 + list2).index(x))
+    
+    return result_list
+
+# Test cases
+assert Diff([10, 15, 20, 25, 30, 35, 40], [25, 40, 35]) == [10, 20, 30, 15]
+assert Diff([1,2,3,4,5], [6,7,1]) == [2,3,4,5,6,7]
+assert Diff([1,2,3], [6,7,1]) == [2,3,6,7]
+",,False,post,False,True,False,False,pilot_mbpp5.json
+Mbpp_256,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function that takes in a non-negative number and returns the number of prime numbers less than the given non-negative number.,"def count_Primes_nums(n: int) -> int:
+    def is_prime(num: int) -> bool:
+        if num < 2:
+            return False
+        for i in range(2, int(num**0.5) + 1):
+            if num % i == 0:
+                return False
+        return True
+
+    count = 0
+    for num in range(2, n):
+        if is_prime(num):
+            count += 1
+    return count
+",,False,post,True,True,False,True,pilot_mbpp1.json
+Mbpp_256,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function that takes in a non-negative number and returns the number of prime numbers less than the given non-negative number.,"def count_Primes_nums(n):
+    if n <= 2:
+        return 0
+    
+    # Initialize a list to keep track of prime status for each number up to n-1
+    is_prime = [True] * n
+    is_prime[0] = is_prime[1] = False # 0 and 1 are not prime numbers
+    
+    # Sieve of Eratosthenes
+    for i in range(2, int(n ** 0.5) + 1):
+        if is_prime[i]:
+            for j in range(i * i, n, i):
+                is_prime[j] = False
+    
+    # Count primes less than n
+    return sum(is_prime)
+
+# Test cases
+assert count_Primes_nums(5) == 2
+assert count_Primes_nums(10) == 4
+assert count_Primes_nums(100) == 25
+",,True,post,True,True,True,True,pilot_mbpp1.json
+Mbpp_637,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to check whether the given amount has no profit and no loss,"def noprofit_noloss(cost_price, selling_price):
+    return cost_price == selling_price
+",,True,post,True,True,True,True,pilot_mbpp1.json
+Mbpp_637,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to check whether the given amount has no profit and no loss,"def noprofit_noloss(cost_price, selling_price):
+    return cost_price == selling_price
+
+# Tests
+assert noprofit_noloss(1500, 1200) == False
+assert noprofit_noloss(100, 100) == True
+assert noprofit_noloss(2000, 5000) == False
+",,True,post,True,True,True,True,pilot_mbpp1.json
+Mbpp_750,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to add the given tuple to the given list.,"def add_tuple(lst, tup):
+    return lst + list(tup)
+",,False,post,True,True,False,True,pilot_mbpp1.json
+Mbpp_750,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to add the given tuple to the given list.,"def add_tuple(lst, tpl):
+    return lst + list(tpl)
+
+# Test cases
+assert add_tuple([5, 6, 7], (9, 10)) == [5, 6, 7, 9, 10]
+assert add_tuple([6, 7, 8], (10, 11)) == [6, 7, 8, 10, 11]
+assert add_tuple([7, 8, 9], (11, 12)) == [7, 8, 9, 11, 12]
+",,False,post,True,True,False,True,pilot_mbpp1.json
+Mbpp_577,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to find the last digit in factorial of a given number.,"def last_Digit_Factorial(n: int) -> int:
+    if n < 2:
+        return n
+    elif n == 2 or n == 3:
+        return n
+    elif n == 4:
+        return 4
+    else:
+        return 0
+",,False,post,False,False,False,False,pilot_mbpp1.json
+Mbpp_577,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to find the last digit in factorial of a given number.,"def last_Digit_Factorial(n):
+    if n >= 5:
+        return 0
+    else:
+        factorial = 1
+        for i in range(1, n + 1):
+            factorial *= i
+        return factorial % 10
+
+# Testing the function
+assert last_Digit_Factorial(4) == 4
+assert last_Digit_Factorial(21) == 0
+assert last_Digit_Factorial(30) == 0
+",,False,post,False,True,False,True,pilot_mbpp1.json
+Mbpp_276,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function that takes in the radius and height of a cylinder and returns the the volume.,"import math
+
+def volume_cylinder(radius, height):
+    return math.pi * (radius ** 2) * height
+",,True,post,True,True,True,True,pilot_mbpp1.json
+Mbpp_276,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function that takes in the radius and height of a cylinder and returns the the volume.,"import math
+
+def volume_cylinder(radius, height):
+    # Calculate the volume using the formula for the volume of a cylinder
+    volume = math.pi * (radius ** 2) * height
+    return volume
+
+# Tests to validate the function
+assert math.isclose(volume_cylinder(10, 5), 1570.7500000000002, rel_tol=0.001)
+assert math.isclose(volume_cylinder(4, 5), 251.32000000000002, rel_tol=0.001)
+assert math.isclose(volume_cylinder(4, 10), 502.64000000000004, rel_tol=0.001)
+",,False,post,True,True,False,True,pilot_mbpp1.json
+Mbpp_612,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,"Write a python function which takes a list of lists, where each sublist has two elements, and returns a list of two lists where the first list has the first element of each sublist and the second one has the second.","def merge(list_of_lists):
+    return [list(element[0] for element in list_of_lists), list(element[1] for element in list_of_lists)]
+",,True,post,True,True,True,True,pilot_mbpp4.json
+Mbpp_612,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,"Write a python function which takes a list of lists, where each sublist has two elements, and returns a list of two lists where the first list has the first element of each sublist and the second one has the second.","def merge(list_of_lists):
+    first_elements = [sublist[0] for sublist in list_of_lists]
+    second_elements = [sublist[1] for sublist in list_of_lists]
+    return [first_elements, second_elements]
+
+# Test cases
+assert merge([['x', 'y'], ['a', 'b'], ['m', 'n']]) == [['x', 'a', 'm'], ['y', 'b', 'n']]
+assert merge([[1, 2], [3, 4], [5, 6], [7, 8]]) == [[1, 3, 5, 7], [2, 4, 6, 8]]
+assert merge([[[1], [2]], [[3], [4]], [[5], [6]], [[7], [8]]]) == [[[1], [3], [5], [7]], [[2], [4], [6], [8]]]
+
+print(""All test cases passed!"")
+",,False,post,True,True,False,True,pilot_mbpp4.json
+Mbpp_250,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function that takes in a tuple and an element and counts the occcurences of the element in the tuple.,"def count_X(tup, elem):
+    return tup.count(elem)
+",,True,post,True,True,True,True,pilot_mbpp4.json
+Mbpp_250,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function that takes in a tuple and an element and counts the occcurences of the element in the tuple.,"def count_X(tup, element):
+    return tup.count(element)
+
+# Tests
+assert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),4) == 0
+assert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),10) == 3
+assert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),8) == 4
+",,True,post,True,True,True,True,pilot_mbpp4.json
+Mbpp_252,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to convert complex numbers to polar coordinates.,"import cmath
+def convert(c):
+    return (abs(c), cmath.phase(c))
+",,True,post,False,True,False,True,pilot_mbpp4.json
+Mbpp_252,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to convert complex numbers to polar coordinates.,"import cmath
+
+def convert(num):
+    return cmath.polar(complex(num))
+
+# Test cases
+assert convert(1) == (1.0, 0.0)
+assert convert(4) == (4.0, 0.0)
+assert convert(5) == (5.0, 0.0)
+",,False,post,False,False,False,False,pilot_mbpp4.json
+Mbpp_478,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to remove lowercase substrings from a given string.,"def remove_lowercase(s: str) -> str:
+    return ''.join(c for c in s if c.isupper())
+",,False,post,True,False,False,False,pilot_mbpp4.json
+Mbpp_478,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a function to remove lowercase substrings from a given string.,"def remove_lowercase(s: str) -> str:
+    return ''.join([char for char in s if char.isupper()])
+
+# Testing the function
+assert remove_lowercase(""PYTHon"") == 'PYTH'
+assert remove_lowercase(""FInD"") == 'FID'
+assert remove_lowercase(""STRinG"") == 'STRG'
+",,False,post,True,False,False,False,pilot_mbpp4.json
+Mbpp_309,mbpp,llama3-70b,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to find the maximum of two numbers.,"def maximum(a, b):
+    return max(a, b)
+",,True,post,True,True,True,True,pilot_mbpp4.json
+Mbpp_309,mbpp,gpt-4o,meta-llama/Meta-Llama-3.1-70B-Instruct,Write a python function to find the maximum of two numbers.,"def maximum(a, b):
+    return a if a > b else b
+
+# Test cases to verify the implementation
+assert maximum(5, 10) == 10
+assert maximum(-1, -2) == -1
+assert maximum(9, 7) == 9
+",,True,post,True,True,True,True,pilot_mbpp4.json

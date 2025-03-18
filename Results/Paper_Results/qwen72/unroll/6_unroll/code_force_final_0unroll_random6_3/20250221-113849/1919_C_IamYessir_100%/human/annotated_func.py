@@ -1,0 +1,52 @@
+#State of the program right berfore the function call: The function `func` is intended to solve a problem with multiple test cases. Each test case includes an integer n (1 ≤ n ≤ 2·10^5) representing the size of the array a, and the array a itself, which contains n integers (1 ≤ a_i ≤ n). The total number of test cases t is a positive integer (1 ≤ t ≤ 10^4), and the sum of n over all test cases does not exceed 2·10^5.
+def func():
+    for _ in range(int(input())):
+        n = int(input())
+        
+        lit = list(map(int, input().split()))
+        
+        a, b = [], []
+        
+        cp = 0
+        
+        for i in range(0, n):
+            if len(a) == 0:
+                x = float('inf')
+            else:
+                x = a[-1]
+            if len(b) == 0:
+                y = float('inf')
+            else:
+                y = b[-1]
+            if x > y:
+                if y >= lit[i]:
+                    b.append(lit[i])
+                elif lit[i] > x:
+                    b.append(lit[i])
+                elif x >= lit[i] and lit[i] > y:
+                    a.append(lit[i])
+            elif x == y:
+                a.append(lit[i])
+            elif x < y:
+                if x >= lit[i]:
+                    a.append(lit[i])
+                elif lit[i] > y:
+                    a.append(lit[i])
+                elif y >= lit[i] and lit[i] > x:
+                    b.append(lit[i])
+        
+        s = 0
+        
+        for i in range(1, len(a)):
+            if a[i] > a[i - 1]:
+                s += 1
+        
+        for i in range(1, len(b)):
+            if b[i] > b[i - 1]:
+                s += 1
+        
+        print(s)
+        
+    #State: The loop iterates through each test case, reads the integer n and the array a, and then processes the array to distribute its elements into two lists, a and b, based on certain conditions. After processing, it calculates the number of increasing pairs in both lists a and b and prints this number for each test case. The variables a and b are reset to empty lists for each new test case, and the variable s, which counts the increasing pairs, is reset to 0 for each test case.
+#Overall this is what the function does:The function `func` processes multiple test cases, each containing an integer `n` and an array `a` of `n` integers. For each test case, it distributes the elements of `a` into two lists, `a` and `b`, based on specific conditions. It then calculates the number of increasing pairs in both lists and prints this number. The lists `a` and `b` are reset to empty for each new test case, and the variable `s`, which counts the increasing pairs, is reset to 0 for each test case. The function does not return any values; it only prints the results.
+

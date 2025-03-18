@@ -1,0 +1,8 @@
+The function `func_2` accepts a string `start` representing the initial configuration of a 2x2 sliding puzzle, where 'A', 'B', and 'C' are the labels of the tiles and 'X' is the empty cell. It uses a breadth-first search algorithm to explore all possible moves from the initial state, ensuring that each unique reachable state is visited exactly once. The function returns a set containing all unique reachable states from the initial state `start`.
+
+The function starts by initializing a queue with the initial state and a set to track visited states. It then iterates through each state in the queue, determining the position of the empty cell ('X') and exploring all possible moves within the 2x2 grid boundaries. For each valid move, it generates a new state, adds it to the visited set, and appends it to the queue if it hasn't been visited before. The loop continues until all reachable states have been explored.
+
+Potential edge cases include:
+- If the initial state `start` is already in the visited set, the function will not explore any further states.
+- If the initial state is not a valid 2x2 sliding puzzle configuration (e.g., not containing exactly one 'X'), the function will either raise an error or behave unpredictably.
+- The function assumes that the initial state is a string of length 4, representing a 2x2 grid. Any deviation from this format will result in incorrect behavior or errors.

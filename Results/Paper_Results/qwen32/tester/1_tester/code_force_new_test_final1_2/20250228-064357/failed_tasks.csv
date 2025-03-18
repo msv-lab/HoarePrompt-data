@@ -1,0 +1,252 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1945_C,human,codeforces2024,qwen2p5-coder-32b-instruct,"t=int(input())
+for _ in range(t):
+    n=int(input())
+    s=input()
+    
+    if n%2==0:
+        pk=n/2
+    else:
+        pk=(n/2) 
+    
+    sl=list(s)
+    o=sl.count(""1"")
+    z=sl.count(""0"")
+    
+    zero,one=0,0
+    lst=[]
+    mini=pow(10,8)
+    for i in range(n-1):
+        if s[i]==""0"":
+            zero+=1
+        else:
+            one+=1
+        
+        zero_perc=(zero*100)//(i+1)
+        one_perc=((o-one)*100)//(n-i-1)
+        #print(zero_perc,one_perc,""hulu"",i)
+        if zero_perc>=50 and one_perc>=50:
+            lst.append(i+1)
+        #print(lst)
+ 
+    #print(mini,""le"")
+    #print(lst)
+    #print(pk)
+    for ele in lst:
+        mini=min(mini,abs(pk-ele))
+    final=[]
+    #print(mini,""88"")
+    for elem in lst:
+        if abs(pk-elem)==mini:
+            final.append(elem)
+    
+    final.sort()
+    if len(final)==0:
+        c1=(o*100)//n
+        if c1>=50:
+            final.append(0)
+        else:
+            final.append(n)
+        
+    print(final[0])",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1974_B,human,codeforces2024,qwen2p5-coder-32b-instruct,"def symmetric_encode(s):
+    # Create a list of unique characters from the input string
+    unique_chars = sorted(list({char for char in s}))
+    
+    i, j = 0, len(unique_chars) - 1
+    
+    # Encode the input string
+    for char in s:
+        if char in unique_chars:
+            # Replace the current character with its symmetric counterpart
+            s = s.replace(char, unique_chars[j])
+            j -= 1
+        else:
+            # Add the new character to the unique_chars list
+            unique_chars.insert(i, char)
+            
+            # Update i and j
+            i += 1
+            j += 1
+    
+    return ''.join(unique_chars)
+ 
+# Main function
+if __name__ == ""__main__"":
+    t = int(input())
+    
+    for _ in range(t):
+        n = int(input())
+        b = input()
+        
+        # Get the encoded string
+        encoded_str = symmetric_encode(b)
+        
+        # Print the encoded string
+        print(encoded_str)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1937_D,human,codeforces2024,qwen2p5-coder-32b-instruct,"t = int(input())
+ 
+ 
+ 
+def solve(s):
+    n = len(s)
+    A = [] 
+    idx_A = []
+    for i in range(0, n):
+        if s[i] == '>':
+            if (len(idx_A) == 0):
+                A.append(0)
+            else:
+                x = A[len(A) - 1] + (i - idx_A[len(idx_A) - 1]) * len(idx_A)
+                A.append(x)
+            idx_A.append(i)
+    B = []
+    idx_B = []
+    for j in range(0, n):
+        i = n - 1 - j
+        if s[i] == '<':
+            if (len(idx_B) == 0):
+                B.append(0)
+            else:
+                x = B[len(B) - 1] + (idx_B[len(B) - 1] - i) * len(idx_B)
+                B.append(x)
+            idx_B.append(i)
+    l = 0
+    r = len(B)
+ 
+    for i in range(0, n):
+        if (s[i] == '>'):
+            if l < r:
+                a = A[l]
+                x = r - (l + 2)
+                b = B[r - 1]
+                if x >= 0:
+                    b = b - B[x]
+                    b = b - (idx_B[x] - idx_B[r - 1]) * (x + 1)
+                b = (idx_B[r - 1] - i) * (l + 1)
+                print(a * 2 + b * 2 + i + 1, end = "" "")
+            else:
+                if (r == 0):
+                    print(n - i, end = "" "")
+                else:
+                    a = B[r - 1] + (idx_B[r - 1] - i) * r
+                    b = A[l - 1]
+                    if l - r > 0:
+                        b = b - A[l - r - 1]
+                        b = b - (idx_A[l - 1] - idx_A[l - r - 1]) * (l - r)
+                    b = b + (i - idx_A[l - 1]) * r
+                    print(a * 2 + b * 2 + (n - i), end = "" "")
+            l += 1
+        else:
+            r -= 1
+            if (l <= r):
+                if (l == 0):
+                    print(i + 1, end = "" "")
+                else:
+                    a = A[l - 1]
+                    a = a + (i - idx_A[l - 1]) * l
+                    b = B[r]
+                    if r - l >= 0:
+                        b = b - B[r - l]
+                        b = b - (idx_B[r - l] - i) * (r - l)
+                    b = b + (idx_B[r] - i) * l
+                    print(a * 2 + b * 2 + i + 1, end = "" "")
+            else:
+                if (r == 0):
+                    print((n - i) + (i - idx_A[l - 1]) * 2, end = "" "")
+                else:
+                    a = B[r]
+                    b = A[l - 1]
+                    if l - r - 1 > 0:
+                        b = b - A[l - r - 2]
+                        b = b - (idx_A[l - 1] - idx_A[l - r - 2]) * (l - r - 1)
+                    b = b + (i - idx_A[l - 1]) * (r + 1)
+                    print(a * 2 + b * 2 + (n - i), end = "" "")
+ 
+ 
+for i in range(0, t):
+    n = int(input())
+    s = input()
+    solve(s)
+    print()",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1941_B,human,codeforces2024,qwen2p5-coder-32b-instruct,"numTest = int(input())
+ 
+for _ in range (0, numTest):
+    n = int(input())
+    a = [int(x) for x in input().split()]
+    stop = False
+    for i in range (0, n-2):
+        if a[i] < 0:
+            print(""NO"")
+            stop = True
+            break
+        opNum = a[i]
+        a[i] -= opNum
+        a[i+1] -= 2*opNum
+        a[i+2] -= opNum
+    if stop == True:
+        continue
+    if a[len(a)-1]!=0 or a[len(a)-2]!=0:
+        print(""NO"")
+    else:
+        print(""YES"")",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1949_I,human,codeforces2024,qwen2p5-coder-32b-instruct,"def main():
+    n = int(input())
+    x = [None] * n
+    y = [None] * n
+    r = [None] * n
+    visited = [False] * n
+    coef = [None] * n
+    for i in range(n):
+        x[i], y[i], r[i] = map(int, input().split())
+ 
+    tot = 0
+    bipartite = True
+ 
+    def dfs(i):
+        nonlocal tot, bipartite
+        if not visited[i]:
+            visited[i] = True
+            tot += coef[i]
+            for j in range(n):
+                dx = x[i] - x[j]
+                dy = y[i] - y[j]
+                if (r[i] + r[j]) ** 2 == dx ** 2 + dy ** 2:
+                    if not visited[j]:
+                        coef[j] = -coef[i]
+                        dfs(j)
+                    else:
+                        bipartite = bipartite and coef[j] == -coef[i]
+ 
+    ok = False
+    for i in range(n):
+        if not visited[i]:
+            coef[i] = 1
+            tot = 0
+            bipartite = True
+            dfs(i)
+            ok = ok or (bipartite and tot != 0)
+    if ok:
+        print(""YES"")
+    else:
+        print(""NO"")
+ 
+main()",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1926_C,human,codeforces2024,qwen2p5-coder-32b-instruct,"def convertNumber(num):
+    a =0
+    while num!=0:
+        a = a+num%10
+        num=int(num/10)
+    return a
+ 
+A=[]
+sum =0
+for i in range(1,200001):
+    a=convertNumber(i)
+    sum=sum+a
+    A.append(sum)
+ 
+ 
+for t in range(int(input())):
+    n= int(input())
+    print(A[n-1])",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt

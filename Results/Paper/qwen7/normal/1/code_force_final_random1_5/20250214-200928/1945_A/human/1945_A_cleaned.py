@@ -1,4 +1,0 @@
-for s in [*open(0)][1:]:
-    (a, b, c) = map(int, s.split())
-    b += c
-    print((a - -b // 3, -1)[c < b % 3])

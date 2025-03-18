@@ -1,0 +1,166 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1931_A,human,codeforces2024,qwen2p5-72b-instruct,"cases=int(input())
+for i in range(cases):
+    arr=[]
+    lex=int(input())
+    for j in range(2):
+        if(lex<=26):
+            arr.append(1)
+            lex=lex-1
+        elif(lex<52):
+            arr.append(26)
+            lex=lex-26
+        else:
+            arr.append(26)
+            lex=lex-26    
+    arr.append(lex)
+    arr.sort()
+    for k in range(3):
+        print(chr(arr[k]+96), end='')",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1969_A,human,codeforces2024,qwen2p5-72b-instruct,"n=int(input())
+for i in range(n):
+    x=int(input())
+    l=list(map(int,input().strip().split()))
+    for i in range(0,x):
+        
+        if l[l[i]-1]==l[i]-1:
+            flag=True
+            print(2)
+            break
+    else:
+        print(3)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1946_A,human,codeforces2024,qwen2p5-72b-instruct,"import heapq
+ 
+def icecreamParlor(t, test_cases):
+    results = []
+    
+    for i in range(t):
+        n, arr = test_cases[i]
+        arr.sort()
+        median_index = n // 2
+        current_median = arr[median_index]
+        
+        # Use a min-heap to keep track of elements from median_index to end
+        heap = arr[median_index:]
+        heapq.heapify(heap)
+        
+        operations = 0
+        while heap[0] <= current_median:
+            # Increase the smallest element in the heap
+            smallest = heapq.heappop(heap)
+            heapq.heappush(heap, smallest + 1)
+            operations += 1
+            
+        results.append(operations)
+    
+    return results
+ 
+if __name__ == '__main__':
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    t = int(data[0])
+    index = 1
+    test_cases = []
+    
+    for _ in range(t):
+        n = int(data[index])
+        arr = list(map(int, data[index + 1: index + 1 + n]))
+        test_cases.append((n, arr))
+        index += 1 + n
+    
+    results = icecreamParlor(t, test_cases)
+    for result in results:
+        print(result)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1950_C,human,codeforces2024,qwen2p5-72b-instruct,"for _ in range(int(input())):
+    h,m = map(str,input().split(':'))
+    h1,m1 = '',m
+    time = ''
+    if h == '01':
+        h1 = '01'
+        time = 'AM'
+    elif h == '02':
+        h1 = '02'
+        time = 'AM'
+    elif h == '03':
+        h1 = '03'
+        time = 'AM'
+    elif h == '04':
+        h1 = '04'
+        time = 'AM'
+    elif h == '05':
+        h1 = '05'
+        time = 'AM'
+    elif h == '06':
+        h1 = '06'
+        time = 'AM'
+    elif h == '07':
+        h1 = '07'
+        time = 'AM'
+    elif h == '08':
+        h1 = '08'
+        time = 'AM'
+    elif h == '09':
+        h1 = '09'
+        time = 'AM'
+    elif h == '10':
+        h1 = '10'
+        time = 'AM'
+    elif h == '11':
+        h1 = '11'
+        time = 'AM'
+    elif h == '12':
+        h1 = '12'
+        time = 'PM'
+    elif h == '13':
+        h1 = '01'
+        time = 'PM'
+    elif h == '14':
+        h1 = '02'
+        time = 'PM'
+    elif h == '15':
+        h1 = '03'
+        time = 'PM'
+    elif h == '16':
+        h1 = '04'
+        time = 'PM'
+    elif h == '17':
+        h1 = '05'
+        time = 'PM'
+    elif h == '18':
+        h1 = '06'
+        time = 'PM'
+    elif h == '19':
+        h1 = '07'
+        time = 'PM'
+    elif h == '20':
+        h1 = '08'
+        time = 'PM'
+    elif h == '21':
+        h1 = '09'
+        time = 'PM'
+    elif h == '22':
+        h1 = '10'
+        time = 'PM'
+    elif h == '23':
+        h1 = '11'
+        time = 'PM'
+    elif h == '00':
+        h1 = '12'
+        time = 'AM'
+ 
+    print(h1,':',m,' ',time,sep='')",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1943_A,human,codeforces2024,qwen2p5-72b-instruct,"for _ in range(int(input())):
+    n= int(input())
+    a=list(map(int, input().split()))
+    cntl=[0 for _ in range(n+1)]
+    for i in a:
+        cntl[i]+=1
+    if cntl[0]==0:print(0)
+    else:
+        c=min(2,cntl[0])
+        for j in range(1,n+1):
+            if cntl[j]<2:
+                c-=1
+                if not c or j==n:print(j);break",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt

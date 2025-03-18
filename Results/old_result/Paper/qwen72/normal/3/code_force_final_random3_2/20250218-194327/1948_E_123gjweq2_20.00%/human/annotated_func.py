@@ -1,0 +1,42 @@
+#State of the program right berfore the function call: n is a positive integer such that 2 <= n <= 40, and k is a positive integer such that 1 <= k <= 2n.
+def func_1(n, k):
+    cliques = ceil(n / k)
+    arr = [0] * n
+    cliquess = [0] * n
+    for i in range(cliques):
+        make_array(i * k, min((i + 1) * k - 1, n - 1), i + 1)
+        
+    #State: `n` is a positive integer such that 2 <= n <= 40, `k` is a positive integer such that 1 <= k <= 2n, `cliques` is the ceiling of `n / k` and must be greater than or equal to 1, `arr` is a list of `n` integers where each integer is the index of the clique it belongs to (1 to `cliques`), `cliquess` is a list of `n` zeros, `i` is `cliques - 1`.
+    print(*arr)
+    #This is printed: 1 1 1 2 2 2 3 3 3 4
+    print(cliques)
+    #This is printed: - The output will be the integer value of `cliques`, which is the ceiling of \(n / k\).
+    #
+    #Output:
+    print(*cliquess)
+    #This is printed: - Since `cliquess` is a list of `n` zeros, the `print` statement will print `n` zeros separated by spaces.
+    #
+    #Therefore, the output will be:
+    #Output:
+#Overall this is what the function does:The function `func_1` accepts two parameters, `n` and `k`, where `n` is a positive integer between 2 and 40, and `k` is a positive integer between 1 and 2n. It calculates the number of cliques as the ceiling of `n / k` and assigns each element in a list `arr` of length `n` to a clique index (1 to the number of cliques). The function then prints the elements of `arr`, followed by the number of cliques, and finally prints a list `cliquess` of `n` zeros. The function does not return any value.
+
+#State of the program right berfore the function call: left and right are non-negative integers such that left <= right, and clique is a positive integer.
+def make_array(left, right, clique):
+    small_element = left + 1
+    big_element = right + 1
+    mid = (big_element - small_element) // 2
+    not_mid = right - left + 1 - mid
+    for i in range(mid):
+        arr[left + i] = small_element + i
+        
+        cliquess[left + i] = clique
+        
+    #State: `left` and `right` are non-negative integers such that `left` <= `right`, `clique` is a positive integer, `small_element` is `left + 1`, `big_element` is `right + 1`, `mid` is `(right - left) // 2` and must be greater than 0, `not_mid` is `(right - left + 1) - mid`, `arr[left + i]` is `left + 1 + i` for all `i` in the range `[0, mid-1]`, and `cliquess[left + i]` is `clique` for all `i` in the range `[0, mid-1]`.
+    for i in range(not_mid):
+        arr[left + mid + i] = big_element - i
+        
+        cliquess[left + mid + i] = clique
+        
+    #State: After the loop executes all the iterations, `left` and `right` remain non-negative integers such that `left` < `right`, `clique` is a positive integer, `small_element` is `left + 1`, `big_element` is `right + 1`, `mid` is `(right - left) // 2` and must be greater than 0, `not_mid` is `(right - left + 1) - mid`. The array `arr` is updated such that `arr[left + i]` is `left + 1 + i` for all `i` in the range `[0, mid-1]`, and `arr[left + mid + i]` is `right + 1 - i` for all `i` in the range `[0, not_mid-1]`. The array `cliquess` is updated such that `cliquess[left + i]` is `clique` for all `i` in the range `[0, mid-1]`, and `cliquess[left + mid + i]` is `clique` for all `i` in the range `[0, not_mid-1]`.
+#Overall this is what the function does:The function `make_array` accepts three parameters: `left`, `right`, and `clique`, where `left` and `right` are non-negative integers with `left` ≤ `right`, and `clique` is a positive integer. The function updates two arrays, `arr` and `cliquess`, such that the elements in `arr` from index `left` to `right` are filled with a sequence of integers starting from `left + 1` up to `right + 1`, with the first half of the sequence in ascending order and the second half in descending order. The elements in `cliquess` from index `left` to `right` are all set to the value of `clique`. The function does not return any value.
+

@@ -1,0 +1,38 @@
+import io
+import sys
+from program import func
+
+def run_program_with_captured_io(input_data):
+    original_stdin = sys.stdin
+    original_stdout = sys.stdout
+
+    try:
+        sys.stdin = io.StringIO(input_data)
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
+
+        func()
+
+        return captured_output.getvalue().strip()
+    
+    finally:
+        sys.stdin = original_stdin
+        sys.stdout = original_stdout
+
+# Test cases
+# Each test case includes input data and the expected output
+test_cases = [
+    ("3\n6\n1\n2", "YES\nAAABAACC\nNO\nYES\nMM"),
+    ("1\n2", "YES\nAA"),
+    ("1\n1", "NO"),
+    ("1\n4", "YES\nAABB"),
+    ("2\n2\n3", "YES\nAA\nNO"),
+    ("5\n2\n4\n6\n8\n10", "YES\nAA\nYES\nAABB\nYES\nAAABAACC\nYES\nAAAABBBB\nYES\nAAABAACCDD"),
+    ("1\n20", "YES\nAAAAAAAAAAAAAAAAAAAA"),
+]
+
+# Run assertions for each test case
+for i, (input_data, expected_output) in enumerate(test_cases):
+    assert run_program_with_captured_io(input_data) == expected_output, f"Test case {i+1} failed"
+
+print("All test cases passed!")

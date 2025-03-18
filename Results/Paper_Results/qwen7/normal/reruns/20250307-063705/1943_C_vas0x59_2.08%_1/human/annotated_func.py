@@ -1,0 +1,81 @@
+#State of the program right berfore the function call: l is a list of integers.
+def func_1(l):
+    return max(range(len(l)), key=lambda x: l[x])
+    #The program returns the index of the maximum value in the list 'l'
+#Overall this is what the function does:The function accepts a list of integers and returns the index of the maximum value within that list.
+
+#State of the program right berfore the function call: n is an integer such that 1 ≤ n ≤ 2 \cdot 10^3. u2vs is a list of length n where each element is a list of integers representing the neighbors of the corresponding vertex in the tree.
+def func_2():
+    n = int(input())
+    u2vs = [[] for _ in range(n)]
+    for _ in range(n - 1):
+        u, v = tuple(map(int, input().split()))
+        
+        u -= 1
+        
+        v -= 1
+        
+        u2vs[u].append(v)
+        
+        u2vs[v].append(u)
+        
+    #State: Output State: After the loop executes all its iterations, `n` must be at least 2, `u2vs` is a list of `n` empty lists initially, but after the loop, each list `u2vs[i]` (where `0 ≤ i < n`) will contain all integers from `0` to `n-1` except `i`. This means that for each index `i`, the list `u2vs[i]` will have all other indices as its elements.
+    #
+    #In simpler terms, after the loop completes, each list in `u2vs` will contain all indices from `0` to `n-1` except for the index of the list itself.
+    d, _ = bfs(0)
+    a = func_1(d)
+    d, previous = bfs(a)
+    b = func_1(d)
+    path_ba = [b]
+    while True:
+        n = previous[path_ba[-1]]
+        
+        if n == -1:
+            break
+        
+        path_ba.append(n)
+        
+    #State: Output State: `a` is the result of `func_1(d)`, `b` is the result of `func_1(d)`, `d` is the result of BFS starting from node `0`, `previous` is the second value returned by `bfs(a)`, `path_ba` is a list containing nodes traversed until `n` equals `-1`.
+    #
+    #Explanation: The loop continues to append the value of `n` (which is determined by `previous[path_ba[-1]]`) to `path_ba` until `n` equals `-1`. Once this condition is met, the loop breaks. Therefore, `path_ba` will contain all the nodes traversed from the start node (determined by `a`) until the loop terminates. The other variables (`a`, `b`, `d`, and `previous`) remain unchanged as they are not affected by the loop.
+    ops = []
+    if (len(path_ba) % 2 == 1) :
+        ci = len(path_ba) // 2
+        c = path_ba[ci]
+        for i in range(ci + 1):
+            ops.append((c, i))
+            
+        #State: Output State: `ci` is 0, `i` is 3, `ops` is a list containing tuples `[(0, 1), (0, 1), (0, 2), (0, 3)]`.
+        #
+        #Explanation: The loop runs from `i = 0` to `i = ci + 1`, where `ci` starts at 0. After each iteration, `i` increases by 1. Given that the loop has executed 3 times, `i` will be 3 when the loop finishes. Therefore, `ci` remains 0 (since it is not modified within the loop), `i` becomes 3, and `ops` accumulates tuples `(c, i)` for each iteration, resulting in `[(0, 1), (0, 1), (0, 2), (0, 3)]`.
+    else :
+        c2 = len(path_ba) // 2
+        c1 = c2 - 1
+        for i in range(1, len(path_ba) - c1, 2):
+            ops.append((c1, i))
+            
+            ops.append((c2, i))
+            
+        #State: Output State: `a` is the result of `func_1(d)`, `b` is the result of `func_1(d)`, `d` is the result of BFS starting from node `0`, `previous` is the second value returned by `bfs(a)`, `path_ba` is a list containing nodes traversed until `n` equals `-1` that must have more than 0 elements, `ops` is a list containing twelve tuples, `c2` is half the length of `path_ba`, and `c1` is `c2 - 1`.
+        #
+        #To understand this final state, let's break it down:
+        #- The loop runs as long as `len(path_ba) - c1 > 0`. Given that `c1 = c2 - 1` and `c2 = len(path_ba) / 2`, we can see that the loop will run until `len(path_ba) / 2 > 0`, which is always true as long as `path_ba` has more than 0 elements.
+        #- Each iteration of the loop appends two tuples to `ops`: `(c1, i)` and `(c2, i)`, where `i` starts from the smallest odd number less than `len(path_ba) / 2 + 1` and increases by 2 in each subsequent iteration.
+        #- After the loop completes, if `path_ba` has `n` elements (where `n` is even), the loop will append a total of `n/2` iterations, resulting in appending `n` tuples to `ops`.
+        #- Since `c1 = c2 - 1` and `c2 = n/2`, `c1 = n/2 - 1`.
+        #- Therefore, after all iterations, `ops` will contain 12 tuples, with the first 5 being `(c1, i)`, followed by another `(c1, i)`, then `(c1, i)`, `(c2, i)`, and finally `(c1, i)`, and the last one being `(c2, i)` where `i` is `len(path_ba) - c1`.
+        #
+        #All other variables (`a`, `b`, `d`, `previous`, and `path_ba`) remain unchanged from their initial or previous states after the loop.
+    #State: `a` is the result of `func_1(d)`, `b` is the result of `func_1(d)`, `d` is the result of BFS starting from node `0`, `previous` is the second value returned by `bfs(a)`, `path_ba` is a list containing nodes traversed until `n` equals `-1`, `ops` is a list containing either 4 tuples if `len(path_ba) % 2 == 1` or 12 tuples if `len(path_ba) % 2 == 0`, `ci` is 0, and `i` is 3.
+    print(len(ops))
+    #This is printed: 4 or 12
+    print(*map(lambda x: f'{x[0] + 1} {x[1]}', ops), sep='\n')
+    #This is printed: - Each tuple in `ops` will be formatted as `f'{x[0] + 1} {x[1]}'`.
+    #   - For 4 tuples, the output will have 4 lines.
+    #   - For 12 tuples, the output will have 12 lines.
+    #
+    #Given the above analysis, the output will be a series of strings, each representing a tuple from `ops` with the first element incremented by 1 and the second element unchanged.
+    return None
+    #The program returns None
+#Overall this is what the function does:The function processes an input integer `n` and a tree represented by a list of neighbor lists `u2vs`. It performs breadth-first searches (BFS) starting from specific nodes, constructs a list of traversal operations `ops`, and prints the count and details of these operations. The function ultimately returns `None`.
+

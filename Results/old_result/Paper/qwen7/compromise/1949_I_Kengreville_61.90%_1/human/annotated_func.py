@@ -1,0 +1,61 @@
+#State of the program right berfore the function call: n is an integer such that 1 ≤ n ≤ 1000, x and y are lists of n integers each, representing the x and y coordinates of the centers of the disks respectively, and r is a list of n integers, representing the radii of the disks respectively.
+def func_1():
+    n = int(input())
+    x = [None] * n
+    y = [None] * n
+    r = [None] * n
+    visited = [False] * n
+    coef0 = [None] * n
+    coef1 = [None] * n
+    nodes = []
+    for i in range(n):
+        x[i], y[i], r[i] = map(int, input().split())
+        
+    #State: After the loop executes all the iterations, `i` is equal to `n-1`, `n` is an input integer, `x` is a list of `n` integers, `y` is a list of `n` integers, `r` is a list of `n` integers, `visited` is a list of `n` `False` values, and `coef1` is a list of `n` `None` values. The lists `x`, `y`, and `r` contain integers input by the user, with each list having `n` elements corresponding to the integer `n` provided as input.
+    ok = False
+    for i in range(n):
+        if not visited[i]:
+            coef0[i] = 0
+            coef1[i] = 1
+            nodes = []
+            dfs(i)
+            c0 = 0
+            c1 = 0
+            for j in nodes:
+                c0 += coef0[j]
+                c1 += coef1[j]
+            ok = ok or c1 != 0
+        
+    #State: Output State: After the loop executes all the iterations, `i` will be equal to `n`, `n` must be a positive integer, `nodes` will be a list that may contain elements based on the DFS calls but will be empty if no nodes are visited, `c0` will be the sum of all `coef0[j]` for each `j` in `nodes`, `c1` will be the sum of all `coef1[j]` for each `j` in `nodes`, and `ok` will be True if `c1` is not equal to 0, otherwise `ok` will remain unchanged.
+    #
+    #This means that after all iterations of the loop, the variable `i` will have incremented to `n`, indicating that the loop has completed all its iterations. The `nodes` list will reflect any nodes that were visited during the DFS calls within the loop, but it will be empty if no nodes were visited. The values of `c0` and `c1` will be updated based on the sum of `coef0[j]` and `coef1[j]` for all visited nodes, respectively. The `ok` variable will be True if there was at least one node with `coef1[j]` not equal to 0, otherwise, it will remain unchanged from its initial value.
+    if ok :
+        print('YES')
+        #This is printed: YES
+    else :
+        print('NO')
+        #This is printed: NO
+    #State: After the if-else block executes, `i` will be equal to `n`, `n` must be a positive integer, `nodes` will be a list that may contain elements based on the DFS calls but will be empty if no nodes are visited, `c0` will be the sum of all `coef0[j]` for each `j` in `nodes`, `c1` will be the sum of all `coef1[j]` for each `j` in `nodes`, and `ok` will be True if `c1` is not equal to 0, otherwise `ok` will remain unchanged.
+#Overall this is what the function does:The function accepts an integer `n` and two lists `x` and `y` of length `n` containing integers, representing the x and y coordinates of the centers of disks, and a list `r` of length `n` containing integers representing the radii of the disks. It then performs a depth-first search (DFS) on the disks to determine if there exists at least one disk where the coefficient `coef1` is non-zero. If such a disk is found, it prints 'YES'; otherwise, it prints 'NO'. The function does not return any value but modifies the `visited` and `coef0`, `coef1` lists during its execution.
+
+#State of the program right berfore the function call: n is an integer representing the number of disks, x is a list of integers representing the x-coordinates of the centers of the disks, y is a list of integers representing the y-coordinates of the centers of the disks, r is a list of integers representing the radii of the disks, and visited is a boolean list of length n indicating whether each disk has been visited or not.
+def dfs(i):
+    if (not visited[i]) :
+        visited[i] = True
+        nodes.append(i)
+        for j in range(n):
+            dx = x[i] - x[j]
+            
+            dy = y[i] - y[j]
+            
+            if not visited[j] and (r[i] + r[j]) ** 2 == dx ** 2 + dy ** 2:
+                coef0[j] = r[i] + r[j] - coef0[i]
+                coef1[j] = -coef1[i]
+                dfs(j)
+            
+        #State: Output State: All disks (i.e., for every index `j` from 0 to `n-1`) will have their `visited[j]` value set to True. The values of `coef0[j]` and `coef1[j]` will be updated based on the conditions specified in the loop body: if the distance condition `(r[i] + r[j]) ** 2 == dx ** 2 + dy ** 2` is met and `visited[j]` was False before, then `coef0[j]` will be set to `r[i] + r[j] - coef0[i]` and `coef1[j]` will be set to `-coef1[i]`. If the condition is not met or `visited[j]` was already True, the values of `coef0[j]` and `coef1[j]` will remain unchanged. The variable `j` will take on all values from 0 to `n-1` during the iterations, and the `dfs(j)` function will be called if the distance condition is met and `visited[j]` is False.
+        #
+        #In summary, after the loop completes, every disk will have been visited, and the `coef0[j]` and `coef1[j]` values will reflect the conditions under which they were updated during the iterations.
+    #State: All disks will have their `visited[j]` value set to True. For every index `j` from 0 to `n-1`, if the distance condition `(r[i] + r[j])
+#Overall this is what the function does:The function performs a depth-first search (DFS) starting from disk `i`. It marks all disks as visited and updates the `coef0[j]` and `coef1[j]` values for each disk `j` that is within the radius of disk `i` and has not been visited yet. After the function concludes, all disks will have been visited, and the `coef0[j]` and `coef1[j]` values will reflect the conditions under which they were updated during the DFS traversal.
+

@@ -1,0 +1,43 @@
+# Import the helper function to run the program with captured IO
+import io
+import sys
+
+def run_program_with_captured_io(input_data):
+    original_stdin = sys.stdin
+    original_stdout = sys.stdout
+
+    try:
+        sys.stdin = io.StringIO(input_data)
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
+
+        with open("program.py", "r", encoding="utf-8") as f:
+            code = f.read()
+            exec(code, {})
+
+        return captured_output.getvalue().strip()
+    
+    finally:
+        sys.stdin = original_stdin
+        sys.stdout = original_stdout
+
+# Define test cases based on the problem description
+test_cases = [
+    ("1\n1 2 3", "3"),
+    ("1\n1 4 1", "-1"),
+    ("1\n1 4 2", "3"),
+    ("1\n1 1 1", "-1"),
+    ("1\n1 3 2", "3"),
+    ("1\n19 7 18", "28"),
+    ("1\n0 0 0", "0"),
+    ("1\n7 0 0", "7"),
+    ("1\n0 24 0", "8"),
+    ("1\n1000000000 1000000000 1000000000", "1666666667"),
+    ("3\n1 2 3\n1 4 1\n1 4 2", "3\n-1\n3"),
+]
+
+# Run the test cases
+for i, (input_data, expected_output) in enumerate(test_cases):
+    assert run_program_with_captured_io(input_data) == expected_output, f"Test case {i+1} failed"
+
+print("All test cases passed!")

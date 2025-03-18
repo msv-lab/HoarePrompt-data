@@ -1,9 +1,0 @@
-The function `func_1` accepts three parameters: `n`, `k`, and `edges`. 
-
-- `n` is an integer representing the number of vertices in the tree.
-- `k` is an integer representing the number of edges to be removed.
-- `edges` is a list of tuples, where each tuple `(a, b)` represents an edge connecting vertices `a` and `b`.
-
-The function constructs an adjacency list representation of the tree using the `edges` list. It then performs a binary search to find a value `r` such that `check(mid)` returns false, where `mid` is the midpoint of the current search range. After the loop, the function prints the value of `r`, which indicates the maximum number of edges that can be removed without violating certain conditions.
-
-If `k` is greater than `n-1`, the function does not return any value due to an implicit error condition. Otherwise, the function implicitly returns the list of edges after potentially removing `k` edges, although this is not explicitly stated in the provided code.

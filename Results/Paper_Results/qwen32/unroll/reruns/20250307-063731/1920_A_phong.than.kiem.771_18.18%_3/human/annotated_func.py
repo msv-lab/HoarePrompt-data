@@ -1,0 +1,113 @@
+#State of the program right berfore the function call: isOne is a boolean value where False indicates the function should return an integer input from the user, and True indicates the function should return the integer 1.
+def func_1(isOne):
+    if (not isOne) :
+        return int(input())
+        #The program returns an integer input from the user.
+    else :
+        return 1
+        #The program returns 1
+#Overall this is what the function does:The function accepts a boolean parameter `isOne`. If `isOne` is `False`, it returns an integer input from the user. If `isOne` is `True`, it returns the integer 1.
+
+#State of the program right berfore the function call: space is a boolean indicating whether the input line should be split by spaces, and to_int is a boolean indicating whether the split items should be converted to integers.
+def func_2(space, to_int):
+    line = input()
+    if space :
+        items = line.split()
+    else :
+        items = list(line)
+    #State: `space` and `to_int` are booleans, and `line` is the input string. If `space` is True, `items` is a list of substrings of `line` split by spaces. If `space` is False, `items` is a list of characters from `line`.
+    if to_int :
+        return [int(i) for i in items]
+        #The program returns a list of integers where each integer is derived from converting each substring or character in `items` to an integer. `items` is a list of substrings of `line` split by spaces if `space` is True, or a list of characters from `line` if `space` is False.
+    else :
+        return items
+        #The program returns `items`, which is a list of substrings of `line` split by spaces if `space` is True, or a list of characters from `line` if `space` is False. Since `to_int` is False, the items are not converted to integers.
+#Overall this is what the function does:The function reads a line of input and processes it based on the `space` and `to_int` parameters. If `space` is True, it splits the line into substrings separated by spaces; if False, it splits the line into individual characters. If `to_int` is True, it converts each substring or character to an integer and returns a list of these integers. If `to_int` is False, it returns the list of substrings or characters without conversion.
+
+#State of the program right berfore the function call: arr is a list of elements, and sym is a string.
+def func_3(arr, sym):
+    string = ''
+    for i in arr:
+        string += str(i) + sym
+        
+    #State: `arr` is a list of elements, `sym` is a string, `string` is a concatenation of all elements of `arr` with `sym` appended after each element.
+    return string
+    #The program returns a string that is the concatenation of all elements of `arr` with `sym` appended after each element.
+#Overall this is what the function does:The function takes a list of elements `arr` and a string `sym`, and returns a string that is the concatenation of all elements of `arr` with `sym` appended after each element.
+
+#State of the program right berfore the function call: string is a string, and substring is a string.
+def func_4(string, substring):
+    indices = []
+    index = string.find(substring)
+    while index != -1:
+        indices.append(index)
+        
+        index = string.find(substring, index + 1)
+        
+    #State: - `string` remains unchanged.
+    #- `substring` remains unchanged.
+    #- `indices` is a list containing all starting indices of `substring` in `string`.
+    #- `index` is -1.
+    #
+    #### Natural Language Description:
+    #The output state after the loop completes is that the `indices` list contains all the starting positions of each occurrence of `substring` within `string`. The `string` and `substring` remain unchanged, and the `index` variable is set to -1, indicating that no further occurrences of `substring` were found in `string`.
+    #
+    #Output State:
+    return indices
+    #The program returns `indices`, which is a list containing all the starting positions of each occurrence of `substring` within `string`. The `string` and `substring` remain unchanged, and the `index` variable is set to -1, indicating that no further occurrences of `substring` were found in `string`.
+#Overall this is what the function does:The function takes two strings, `string` and `substring`, and returns a list of all starting indices where `substring` occurs within `string`. If `substring` is not found, the list is empty. The original `string` and `substring` remain unchanged.
+
+#State of the program right berfore the function call: arr is a list of values, and element is a value of the same type as the elements in arr.
+def func_5(arr, element):
+    return [index for index, value in enumerate(arr) if value == element]
+    #The program returns a list of indices from the list `arr` where the elements are equal to the value of `element`.
+#Overall this is what the function does:The function takes a list `arr` and a value `element`, and returns a list of indices where the elements in `arr` match the value of `element`.
+
+#State of the program right berfore the function call: arr is a list of lists (2D list), index is a non-negative integer, value is a value of any type, and index is a valid index for the sublists in arr.
+def func_6(arr, index, value):
+    for subArray in arr:
+        if subArray[index] == value:
+            return subArray
+        
+    #State: arr is a list of lists (2D list), index is a non-negative integer, value is a value of any type, subArray is the last sublist in arr, and no sublist in arr has subArray[index] equal to value.
+    return None
+    #The program returns None
+#Overall this is what the function does:The function `func_6` searches through a 2D list `arr` for a sublist where the element at the specified `index` matches the given `value`. If such a sublist is found, it returns that sublist; otherwise, it returns `None`.
+
+#State of the program right berfore the function call: n is an integer such that 2 <= n <= 100, start and end are integers where start is initialized to -1 and end is initialized to 1000000000, num is a list that will store integers. t is an integer that can be 1, 2, or 3, and v is an integer such that 1 <= v <= 10^9.
+def func_7():
+    n = int(input())
+    start = -1
+    end = 1000000000.0
+    num = []
+    for i in range(n):
+        t, v = tuple(map(int, input().split()))
+        
+        if t == 1:
+            if start < v:
+                start = v
+        
+        if t == 2:
+            if end > v:
+                end = v
+        
+        if t == 3:
+            num.append(v)
+        
+    #State: `start` is the maximum value of `v` where `t == 1`, `end` is the minimum value of `v` where `t == 2`, `num` is a list of all `v` where `t == 3`, `t` and `v` are the values from the last iteration.
+    count_num = 0
+    for i in num:
+        if i < start or i > end:
+            continue
+        else:
+            count_num += 1
+        
+    #State: start is the maximum value of `v` where `t == 1`, end is the minimum value of `v` where `t == 2`, num is a list of all `v` where `t == 3`, t and v are the values from the last iteration, count_num is the number of elements in `num` that are within the range `[start, end]`.
+    if (start > end) :
+        return 0
+        #The program returns 0
+    #State: start is the maximum value of `v` where `t == 1`, end is the minimum value of `v` where `t == 2`, num is a list of all `v` where `t == 3`, t and v are the values from the last iteration, count_num is the number of elements in `num` that are within the range `[start, end]`, and start is less than or equal to end
+    return end - start + 1 - count_num if end - start + 1 >= count_num else 0
+    #The program returns the difference between the total number of integers from `start` to `end` inclusive and the count of integers from `num` within that range if the difference is non-negative, otherwise it returns 0.
+#Overall this is what the function does:The function reads a series of integer pairs, updating the maximum value (`start`) and minimum value (`end`) based on certain conditions, and collects a list of integers. It then calculates the number of integers within the range `[start, end]` that are not in the collected list and returns this count if it is non-negative; otherwise, it returns 0.
+

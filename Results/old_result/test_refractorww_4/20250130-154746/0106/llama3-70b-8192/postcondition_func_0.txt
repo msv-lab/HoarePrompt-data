@@ -1,0 +1,10 @@
+The function calculates the minimum time required for two entities to move between specified positions on a grid. The function accepts no parameters directly but reads two integers \(a\) and \(b\) from input, where \(1 \leq a, b \leq n \cdot m \cdot k\), and \(a \neq b\). Here, \(n\), \(m\), and \(k\) are positive integers representing dimensions and a scaling factor, respectively, with \(1 \leq n, m, k \leq 1000\).
+
+1. It first determines the block and floor indices for both \(a\) and \(b\).
+2. It calculates the minimum time to move between the blocks containing \(a\) and \(b\), which is either \(15 \times \min(|a\_block - b\_block|, n - |a\_block - b\_block|)\) or \(15 \times (n - \min(|a\_block - b\_block|, n - |a\_block - b_block|))\), depending on the relative block positions.
+3. It then calculates the minimum time to move between the floors within the same block, considering the direction of movement and adding a fixed delay of 10 units if the move crosses a boundary.
+4. Finally, it prints the total minimum time as the sum of the block and floor times.
+
+Potential edge cases and missing functionality:
+- The function handles the case where \(a\) and \(b\) are in the same block but does not explicitly handle the case where they are in the same floor within the same block.
+- The function assumes that the input values for \(a\) and \(b\) are always valid and within the specified range, but it does not provide any error handling for invalid inputs.

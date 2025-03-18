@@ -1,0 +1,73 @@
+#State of the program right berfore the function call: n is an integer such that 2 ≤ n ≤ 24. The input consists of n lines, where the j-th character of the i-th line represents the transition video between the i-th and the j-th scenarios. This character can be 'F' (funny), 'S' (scary), '?' (undecided), or '.' (no transition video needed when i = j). It is guaranteed that at most \lfloor \frac{n}{2} \rfloor transition videos are already decided (i.e., at most 2 \lfloor \frac{n}{2} \rfloor characters in the input are 'F' or 'S').
+def func():
+    n = int(input())
+    a = [0] * (n + 1)
+    b = [0] * (n + 1)
+    xx = ['']
+    for i in range(1, n + 1):
+        x = input()
+        
+        for j in range(1, n + 1):
+            if x[j - 1] == 'F':
+                a[i] += 1
+                a[j] += 1
+            elif x[j - 1] == 'S':
+                b[i] += 1
+                b[j] += 1
+        
+        xx.append(x)
+        
+    #State: Output State: `n` is an input integer between 2 and 24; `a` is a list of length `n + 1` where each element is the count of 'F' received from the corresponding index in `x`; `b` is a list of length `n + 1` where each element is the count of 'S' received from the corresponding index in `x`; `xx` is a list containing `n` strings, each string being the input received in each iteration of the loop.
+    sa = []
+    sb = []
+    for i in range(1, n + 1):
+        if a[i] > 0 and b[i] == 0:
+            sa.append(i)
+        
+        if b[i] > 0 and a[i] == 0:
+            sb.append(i)
+        
+    #State: Output State: `n` is an input integer between 2 and 24; `a` is a list of length `n + 1` where each element is the count of 'F' received from the corresponding index in `x`; `b` is a list of length `n + 1` where each element is the count of 'S' received from the corresponding index in `x`; `xx` is a list containing `n` strings, each string being the input received in each iteration of the loop; `sa` is a list containing indices `i` where `a[i] > 0` and `b[i] == 0`; `sb` is a list containing indices `i` where `b[i] > 0` and `a[i] == 0`.
+    if (len(sa) >= len(sb)) :
+        for i in range(1, n + 1):
+            if a[i] == 0 and b[i] == 0:
+                sa.append(i)
+            
+        #State: Output State: `n` is an input integer between 2 and 24; `a` is a list of length `n + 1` where each element is the count of 'F' received from the corresponding index in `x`; `b` is a list of length `n + 1` where each element is the count of 'S' received from the corresponding index in `x`; `xx` is a list containing `n` strings, each string being the input received in each iteration of the loop; `sa` is a list containing indices `i` where `a[i] == 0` and `b[i] == 0`; `sb` is a list containing indices `i` where `b[i] > 0` and `a[i] == 0`. The length of `sa` is greater than or equal to the length of `sb`.
+        for i in range(1, n + 1):
+            nx = ''
+            
+            for j in range(1, n + 1):
+                if xx[i][j - 1] != '?':
+                    nx += xx[i][j - 1]
+                elif i in sa[:n // 4] or j in sa[:n // 4]:
+                    nx += 'F'
+                else:
+                    nx += 'S'
+            
+            print(nx)
+            
+        #State: Output State: `n` is an input integer between 2 and 24; `a` is a list of length `n + 1` where each element is the count of 'F' received from the corresponding index in `x`; `b` is a list of length `n + 1` where each element is the count of 'S' received from the corresponding index in `x`; `xx` is a list containing `n` strings, each string being the result of the inner loop processing where each character is either 'F', 'S', or the non-'?' value from the corresponding position in the original `xx[i][j-1]`; `sa` is a list containing indices `i` where `a[i] == 0` and `b[i] == 0`; `sb` is a list containing indices `i` where `b[i] > 0` and `a[i] == 0`. The length of `sa` is greater than or equal to the length of `sb`.
+    else :
+        for i in range(1, n + 1):
+            if a[i] == 0 and b[i] == 0:
+                sb.append(i)
+            
+        #State: Output State: `n` is an input integer between 2 and 24; `a` is a list of length `n + 1` where each element is the count of 'F' received from the corresponding index in `x`; `b` is a list of length `n + 1` where each element is the count of 'S' received from the corresponding index in `x`; `xx` is a list containing `n` strings, each string being the input received in each iteration of the loop; `sa` is a list containing indices `i` where `a[i] > 0` and `b[i] == 0`; `sb` is a list containing indices `i` where `b[i] > 0` and `a[i] == 0`, and after the loop executes, `sb` will contain all indices `i` where `b[i] > 0` and `a[i] == 0`.
+        for i in range(1, n + 1):
+            nx = ''
+            
+            for j in range(1, n + 1):
+                if xx[i][j - 1] != '?':
+                    nx += xx[i][j - 1]
+                elif i in sb[:n // 4] or j in sb[:n // 4]:
+                    nx += 'S'
+                else:
+                    nx += 'F'
+            
+            print(nx)
+            
+        #State: Output State: `n` is an input integer between 2 and 24; `a` is a list of length `n + 1` where each element is the count of 'F' received from the corresponding index in `x`; `b` is a list of length `n + 1` where each element is the count of 'S' received from the corresponding index in `x`; `xx` is a list containing `n` strings, each string being the result of the inner loop processing based on the rules specified in the loop body; `sa` is a list containing indices `i` where `a[i] > 0` and `b[i] == 0`; `sb` is a list containing indices `i` where `b[i] > 0` and `a[i] == 0`, and after the loop executes, `sb` will contain all indices `i` where `b[i] > 0` and `a[i] == 0`.
+    #State: `n` is an input integer between 2 and 24; `a` is a list of length `n + 1` where each element is the count of 'F' received from the corresponding index in `x`; `b` is a list of length `n + 1` where each element is the count of 'S' received from the corresponding index in `x`; `xx` is a list containing `n` strings, each string being the result of the inner loop processing based on the rules specified in the loop body; `sa` is a list containing indices `i` where `a[i] == 0` and `b[i] == 0` or `a[i] > 0` and `b[i] == 0`; `sb` is a list containing indices `i` where `b[i] > 0` and `a[i] == 0`. The length of `sa` is greater than or equal to the length of `sb` after the if-else block executes.
+#Overall this is what the function does:The function processes an input consisting of `n` lines, where each line represents transitions between scenarios. Each character in the line indicates the type of transition video ('F' for funny, 'S' for scary, '?' for undecided, or '.' for no transition needed). The function determines the undecided transitions ('?') based on the counts of 'F' and 'S' already decided and returns the filled matrix of transitions. If the number of indices with only 'F' transitions is greater than or equal to those with only 'S' transitions, it sets undecided transitions to 'F'; otherwise, it sets them to 'S'.
+

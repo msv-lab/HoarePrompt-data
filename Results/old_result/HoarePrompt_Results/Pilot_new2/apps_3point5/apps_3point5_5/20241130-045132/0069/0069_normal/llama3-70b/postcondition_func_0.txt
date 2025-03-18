@@ -1,0 +1,6 @@
+Functionality: The function `func` reads an integer `T` and then iterates `T` times. For each iteration, it reads integers `n` and `x`, as well as a binary string `s` of length `n`. It calculates the difference in counts of '0's and '1's in `s`, referred to as `balance`. Based on the value of `balance` compared to `x`, the function prints different values: 
+- If `balance` equals `x`, it prints `n + 1`.
+- If `(x - balance) % (cnt0 - cnt1) == 0`, it prints -1.
+- Otherwise, it prints `(x - balance) // (cnt0 - cnt1) + 1`.
+
+The functionality should cover potential edge cases like division by zero errors if `cnt0` is equal to `cnt1`, and any other edge cases that may exist in the input or calculations.

@@ -1,1 +1,0 @@
-The function `func_16` accepts two parameters, `n` and `mod`. It returns a list `dearr` of length `n + 1`, starting with `[1, 0]`. For each index `i` from 3 to `n + 1`, the value of `dearr[i]` is calculated as `(i - 1) \% mod \times (dearr[i - 1] + dearr[i - 2]) \% mod`. The final state of the program after the function concludes is that it returns this list `dearr`.

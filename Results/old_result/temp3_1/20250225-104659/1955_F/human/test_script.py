@@ -1,0 +1,73 @@
+# Include necessary imports if any
+import io
+import sys
+
+# Helper function to capture input/output
+def run_program_with_captured_io(input_data):
+    original_stdin = sys.stdin
+    original_stdout = sys.stdout
+
+    try:
+        sys.stdin = io.StringIO(input_data)
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
+
+        with open("program.py", "r", encoding="utf-8") as f:
+            code = f.read()
+            exec(code, {})
+
+        return captured_output.getvalue().strip()
+    
+    finally:
+        sys.stdin = original_stdin
+        sys.stdout = original_stdout
+
+# Test cases
+test_cases = [
+    (
+        "5\n1 1 1 0\n1 0 1 2\n2 2 2 0\n3 3 2 0\n0 9 9 9",
+        "1\n1\n3\n3\n12"
+    ),
+    (
+        "1\n0 0 0 0",
+        "0"
+    ),
+    (
+        "1\n4 0 0 0",
+        "2"
+    ),
+    (
+        "1\n0 4 0 0",
+        "2"
+    ),
+    (
+        "1\n0 0 4 0",
+        "2"
+    ),
+    (
+        "1\n0 0 0 4",
+        "2"
+    ),
+    (
+        "1\n1 1 1 1",
+        "1"
+    ),
+    (
+        "1\n2 2 2 2",
+        "4"
+    ),
+    (
+        "1\n1 2 3 4",
+        "3"
+    ),
+    (
+        "1\n100 100 100 100",
+        "200"
+    )
+]
+
+# Run tests
+for i, (input_data, expected_output) in enumerate(test_cases):
+    assert run_program_with_captured_io(input_data) == expected_output, f"Test case {i+1} failed"
+
+print("All test cases passed!")

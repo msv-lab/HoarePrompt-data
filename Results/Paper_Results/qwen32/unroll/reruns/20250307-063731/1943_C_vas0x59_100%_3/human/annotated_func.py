@@ -1,0 +1,69 @@
+#State of the program right berfore the function call: l is a list of integers.
+def func_1(l):
+    return max(range(len(l)), key=lambda x: l[x])
+    #The program returns the index of the maximum value in the list `l`.
+#Overall this is what the function does:The function accepts a list of integers and returns the index of the maximum value in the list.
+
+#State of the program right berfore the function call: u2vs is a list of lists where each inner list contains integers representing the neighbors of a vertex in a tree, n is an integer representing the number of vertices in the tree, and the relationship is that each vertex has a corresponding list of its connected vertices in u2vs.
+def func_2():
+    n = int(input())
+    u2vs = [[] for _ in range(n)]
+    for _ in range(n - 1):
+        u, v = tuple(map(int, input().split()))
+        
+        u -= 1
+        
+        v -= 1
+        
+        u2vs[u].append(v)
+        
+        u2vs[v].append(u)
+        
+    #State: `u2vs` is a list of `n` lists, where each list contains the indices of the vertices that are directly connected to the corresponding vertex in the tree. Each vertex index is 0-based.
+    d, _ = bfs(0)
+    a = func_1(d)
+    d, previous = bfs(a)
+    b = func_1(d)
+    path_ba = [b]
+    while True:
+        n = previous[path_ba[-1]]
+        
+        if n == -1:
+            break
+        
+        path_ba.append(n)
+        
+    #State: `path_ba` contains the shortest path from `b` to `a` in reverse order, with the first element being `b` and the last element being `a`.
+    ops = []
+    if (len(path_ba) % 2 == 1) :
+        ci = len(path_ba) // 2
+        c = path_ba[ci]
+        for i in range(ci + 1):
+            ops.append((c, i))
+            
+        #State: - `path_ba` remains unchanged.
+        #- `ops` will contain `ci + 1` tuples, each of the form `(c, i)` where `i` ranges from `0` to `ci`.
+        #- `ci` remains unchanged.
+        #- `c` remains unchanged.
+        #
+        #Output State:
+    else :
+        ci2 = len(path_ba) // 2
+        ci1 = ci2 - 1
+        c1 = path_ba[ci1]
+        c2 = path_ba[ci2]
+        for i in range(1, len(path_ba) - ci1, 2):
+            ops.append((c1, i))
+            
+            ops.append((c2, i))
+            
+        #State: path_ba contains the shortest path from b to a in reverse order, with the first element being b and the last element being a; ops is a list of tuples [(c1, 1), (c2, 1), (c1, 3), (c2, 3), ...], where c1 and c2 are the middle two elements of path_ba; ci2 is len(path_ba) // 2; ci1 is len(path_ba) // 2 - 1; c1 is path_ba[len(path_ba) // 2 - 1]; c2 is path_ba[len(path_ba) // 2].
+    #State: `path_ba` contains the shortest path from `b` to `a` in reverse order, with the first element being `b` and the last element being `a`. If the length of `path_ba` is odd, `ops` remains an empty list. If the length of `path_ba` is even, `ops` is a list of tuples `[(c1, 1), (c2, 1), (c1, 3), (c2, 3), ...]`, where `c1` and `c2` are the middle two elements of `path_ba`. Specifically, `ci2` is `len(path_ba) // 2`, `ci1` is `len(path_ba) // 2 - 1`, `c1` is `path_ba[len(path_ba) // 2 - 1]`, and `c2` is `path_ba[len(path_ba) // 2]`.
+    print(len(ops))
+    #This is printed: 0 if the length of `path_ba` is odd, otherwise a positive integer (where the positive integer is the number of tuples in `ops` based on the pattern described)
+    print(*map(lambda x: f'{x[0] + 1} {x[1]}', ops), sep='\n')
+    #This is printed: (empty string if the length of `path_ba` is odd, or a series of formatted strings '{c1+1} 1', '{c2+1} 1', '{c1+1} 3', '{c2+1} 3', ... if the length of `path_ba` is even)
+    return None
+    #The program returns None
+#Overall this is what the function does:The function reads input to construct a tree represented by adjacency lists, finds the longest path in the tree, and then determines a specific set of operations based on the length of this path. If the path length is even, it generates a list of operations involving pairs of vertices from the middle of the path. The function prints the number of operations and their details, and returns None.
+

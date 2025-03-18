@@ -1,0 +1,58 @@
+#State of the program right berfore the function call: t is a positive integer such that 1 ≤ t ≤ 10^4; for each test case, n is an integer such that 1 ≤ n ≤ 10^5; the second line of each test case contains n integers a_1, a_2, ..., a_n such that 1 ≤ a_i ≤ 10^9, and the sum of all n values across all test cases does not exceed 10^5.
+def func_1():
+    print('-----------------')
+    #This is printed: -----------------
+    n = int(input())
+    arr = list(map(int, input().split()))
+    prefix = [0]
+    for v in arr:
+        prefix.append(v ^ prefix[-1])
+        
+    #State: Output State: `t` is a positive integer such that 1 ≤ t ≤ 10^4; `n` is an integer such that 1 ≤ n ≤ 10^5; `arr` is a list of integers created from the input split and mapped to integers; `prefix` is a list where each element at index i (starting from 0) is the XOR of all elements in `arr` from index 0 to i.
+    #
+    #In simpler terms, the `prefix` list will contain the cumulative XOR of all elements in `arr` up to each index.
+    print(arr, prefix)
+    #This is printed: [arr], [prefix]
+    pre = [[0, 0] for _ in range(32)]
+    suf = [[0, 0] for _ in range(32)]
+    for i in range(32):
+        pre[i][0] += 1
+        
+    #State: Output State: `pre` is a list of lists where each inner list has its first element incremented by 1 for 32 times; `t`, `n`, `arr`, `prefix`, and `suf` remain unchanged.
+    for i in range(n, 0, -1):
+        cur = prefix[i]
+        
+        for j in range(32):
+            if cur >> j & 1:
+                suf[j][1] += 1
+            else:
+                suf[j][0] += 1
+        
+    #State: `pre` remains unchanged, `t`, `n`, `arr`, `prefix`, and `suf` remain unchanged. For each bit position `j` from 0 to 31, `suf[j][0]` contains the count of positions in `prefix` where the `j`-th bit is 0, and `suf[j][1]` contains the count of positions where the `j`-th bit is 1.
+    print(pre)
+    #This is printed: pre (where pre retains its previous value)
+    print(suf)
+    #This is printed: [[suf[0][0], suf[0][1]], [suf[1][0], suf[1][1]], ..., [suf[31][0], suf[31][1]]]
+    ans = 0
+    for i in range(1, n + 1):
+        y = arr[i - 1]
+        
+        k = y.bit_length() - 1
+        
+        ans += pre[k][0] * suf[k][0] + pre[k][1] * suf[k][1]
+        
+        c = prefix[i]
+        
+        for j in range(32):
+            if c >> j & 1:
+                pre[j][1] += 1
+                suf[j][1] -= 1
+            else:
+                pre[j][0] += 1
+                suf[j][0] -= 1
+        
+    #State: Output State: `ans` is the sum of `pre[k][0] * suf[k][0] + pre[k][1] * suf[k][1]` for each `k` from 0 to 31, where `pre[j][0]` and `pre[j][1]` are incremented based on the bits of `prefix[i]`, and `suf[j][0]` and `suf[j][1]` are decremented accordingly for each `i` from 1 to `n`. The variables `pre`, `suf`, `prefix`, and `arr` are updated during the loop execution, but their exact values are not specified in the initial state.
+    print(ans)
+    #This is printed: ans (where ans is the sum of pre[k][0] * suf[k][0] + pre[k][1] * suf[k][1] for k from 0 to 31)
+#Overall this is what the function does:The function processes multiple test cases, each consisting of a positive integer t, an integer n, and a list of n integers. It calculates and returns a result for each test case based on the XOR properties of the input list and the counts of bit positions in the prefix XOR array. Specifically, it computes the sum of products of counts of zeros and ones for each bit position across the prefix XOR array.
+

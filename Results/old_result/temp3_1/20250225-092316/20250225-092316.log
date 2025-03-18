@@ -1,0 +1,1647 @@
+DEBUG - Start Task 1978_A
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: Alice has n books. The 1 -st book contains a_1 pages, the 2 -nd book contains
+a_2 pages, \ldots , the n -th book contains a_n pages. Alice does the
+following:
+
+  * She divides all the books into two non-empty piles. Thus, each book ends up in exactly one of the two piles.
+  * Alice reads one book with the highest number in each pile.
+
+Alice loves reading very much. Help her find the maximum total number of pages
+she can read by dividing the books into two piles.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 500 ) — the number of test cases. The description of
+the test cases follows.
+
+The first line of each test case contains a single integer n (2 \le n \le 100
+) — the number of books Alice has.
+
+The second line of each test case contains n integers a_1, a_2, \ldots, a_n (1
+\le a_i \le 10^9 ) — the number of pages in each book.
+
+Output
+
+For each test case, output a single integer — the maximum number of pages
+Alice can read.
+
+Example
+
+Input
+
+    5
+    
+    2
+    
+    1 1
+    
+    4
+    
+    2 3 3 1
+    
+    5
+    
+    2 2 3 2 2
+    
+    2
+    
+    10 3
+    
+    3
+    
+    1 2 3
+
+Output
+
+    2
+    4
+    5
+    13
+    5
+    
+Note
+
+In the first test case, Alice can put book number 1 in the first pile, and
+book number 2 in the second pile. Then she will read a_1 + a_2 = 1 + 1 = 2
+pages.
+
+In the second test case, Alice can put books with numbers 2 and 3 in the first
+pile, and books with numbers 1 and 4 in the second pile. Then she will read
+the book with the highest number 3 from the first pile, and the book with the
+highest number 4 from the second pile. Then she will read a_3 + a_4 = 3 + 1 =
+4 pages.
+DEBUG - Correctness: {'tester': 'True'}
+DEBUG - Start Task 1930_B
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: You are given a positive integer n .
+
+Find a permutation^\dagger p of length n such that there do not exist two
+distinct indices i and j (1 \leq i, j < n ; i \neq j ) such that p_i divides
+p_j and p_{i+1} divides p_{j+1} .
+
+Refer to the Notes section for some examples.
+
+Under the constraints of this problem, it can be proven that at least one p
+exists.
+
+^\dagger A permutation of length n is an array consisting of n distinct
+integers from 1 to n in arbitrary order. For example, [2,3,1,5,4] is a
+permutation, but [1,2,2] is not a permutation (2 appears twice in the array),
+and [1,3,4] is also not a permutation (n=3 but there is 4 in the array).
+
+Input
+
+Each test contains multiple test cases. The first line contains a single
+integer t (1 \leq t \leq 10^3 ) — the number of test cases. The description of
+the test cases follows.
+
+The first line of each test case contains a single integer n (3 \leq n \leq
+10^5 ) — the length of the permutation p .
+
+It is guaranteed that the sum of n over all test cases does not exceed 10^5 .
+
+Output
+
+For each test case, output p_1, p_2, \ldots, p_n .
+
+If there are multiple solutions, you may output any one of them.
+
+Example
+
+Input
+
+    2
+    
+    4
+    
+    3
+
+Output
+
+    4 1 2 3
+    1 2 3
+    
+Note
+
+In the first test case, p=[4,1,2,3] is a valid permutation. However, the
+permutation p=[1,2,3,4] is not a valid permutation as we can choose i=1 and
+j=3 . Then p_1=1 divides p_3=3 and p_2=2 divides p_4=4 . Note that the
+permutation p=[3, 4, 2, 1] is also not a valid permutation as we can choose
+i=3 and j=2 . Then p_3=2 divides p_2=4 and p_4=1 divides p_3=2 .
+
+In the second test case, p=[1,2,3] is a valid permutation. In fact, all 6
+permutations of length 3 are valid.
+DEBUG - Correctness: {'tester': 'Failed'}
+DEBUG - Start Task 1926_E
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: Vladislav has n cards numbered 1, 2, \dots, n . He wants to lay them down in a
+row as follows:
+
+  * First, he lays down all the odd-numbered cards from smallest to largest. 
+  * Next, he lays down all cards that are twice an odd number from smallest to largest (i.e. 2 multiplied by an odd number). 
+  * Next, he lays down all cards that are 3 times an odd number from smallest to largest (i.e. 3 multiplied by an odd number). 
+  * Next, he lays down all cards that are 4 times an odd number from smallest to largest (i.e. 4 multiplied by an odd number). 
+  * And so on, until all cards are laid down. 
+
+What is the k -th card he lays down in this process? Once Vladislav puts a
+card down, he cannot use that card again.
+
+Input
+
+The first line contains an integer t (1 \leq t \leq 5 \cdot 10^4 ) — the
+number of test cases.
+
+The only line of each test case contains two integers n and k (1 \leq k \leq n
+\leq 10^9 ) — the number of cards Vlad has, and the position of the card you
+need to output.
+
+Output
+
+For each test case, output a single integer — the k -th card Vladislav lays
+down.
+
+Example
+
+Input
+
+    11
+    
+    7 1
+    
+    7 2
+    
+    7 3
+    
+    7 4
+    
+    7 5
+    
+    7 6
+    
+    7 7
+    
+    1 1
+    
+    34 14
+    
+    84 19
+    
+    1000000000 1000000000
+
+Output
+
+    1
+    3
+    5
+    7
+    2
+    6
+    4
+    1
+    27
+    37
+    536870912
+    
+Note
+
+In the first seven test cases, n=7 . Vladislav lays down the cards as follows:
+
+  * First — all the odd-numbered cards in the order 1 , 3 , 5 , 7 . 
+  * Next — all cards that are twice an odd number in the order 2 , 6 . 
+  * Next, there are no remaining cards that are 3 times an odd number. (Vladislav has only one of each card.) 
+  * Next — all cards that are 4 times an odd number, and there is only one such card: 4 . 
+  * There are no more cards left, so Vladislav stops. 
+
+Thus the order of cards is 1 , 3 , 5 , 7 , 2 , 6 , 4 .
+DEBUG - Correctness: {'tester': 'Failed'}
+DEBUG - Start Task 1946_C
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: You are given a tree with n vertices.
+
+Your task is to find the maximum number x such that it is possible to remove
+exactly k edges from this tree in such a way that the size of each remaining
+connected component^{\dagger} is at least x .
+
+^{\dagger} Two vertices v and u are in the same connected component if there
+exists a sequence of numbers t_1, t_2, \ldots, t_k of arbitrary length k ,
+such that t_1 = v , t_k = u , and for each i from 1 to k - 1 , vertices t_i
+and t_{i+1} are connected by an edge.
+
+Input
+
+Each test consists of several sets of input data. The first line contains a
+single integer t (1 \le t \le 10^4 ) — the number of sets of input data. This
+is followed by a description of the sets of input data.
+
+The first line of each set of input data contains two integers n and k (1 \le
+k < n \le 10^5 ) — the number of vertices in the tree and the number of edges
+to be removed.
+
+Each of the next n - 1 lines of each set of input data contains two integers v
+and u (1 \le v, u \le n ) — the next edge of the tree.
+
+It is guaranteed that the sum of the values of n for all sets of input data
+does not exceed 10^5 .
+
+Output
+
+For each set of input data, output a single line containing the maximum number
+x such that it is possible to remove exactly k edges from the tree in such a
+way that the size of each remaining connected component is at least x .
+
+Example
+
+Input
+
+    6
+    
+    5 1
+    
+    1 2
+    
+    1 3
+    
+    3 4
+    
+    3 5
+    
+    2 1
+    
+    1 2
+    
+    6 1
+    
+    1 2
+    
+    2 3
+    
+    3 4
+    
+    4 5
+    
+    5 6
+    
+    3 1
+    
+    1 2
+    
+    1 3
+    
+    8 2
+    
+    1 2
+    
+    1 3
+    
+    2 4
+    
+    2 5
+    
+    3 6
+    
+    3 7
+    
+    3 8
+    
+    6 2
+    
+    1 2
+    
+    2 3
+    
+    1 4
+    
+    4 5
+    
+    5 6
+
+Output
+
+    2
+    1
+    3
+    1
+    1
+    2
+    
+Note
+
+The tree in the first set of input data:
+
+![](https://espresso.codeforces.com/799bacd3be0dda357800fdfc3eadbf38ab259c51.png)
+
+After removing the edge 1 — 3 , the tree will look as follows:
+
+![](https://espresso.codeforces.com/a59ae10eeac1212e1e56fc7fe5f6a47764269104.png)
+
+The tree has split into two connected components. The first component consists
+of two vertices: 1 and 2 . The second connected component consists of three
+vertices: 3, 4 and 5 . In both connected components, there are at least two
+vertices. It can be shown that the answer 3 is not achievable, so the answer
+is 2 .
+DEBUG - Correctness: {'tester': 'Failed'}
+DEBUG - Start Task 1978_B
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: Bob decided to open a bakery. On the opening day, he baked n buns that he can
+sell. The usual price of a bun is a coins, but to attract customers, Bob
+organized the following promotion:
+
+  * Bob chooses some integer k (0 \le k \le \min(n, b) ).
+  * Bob sells the first k buns at a modified price. In this case, the price of the i -th (1 \le i \le k ) sold bun is (b - i + 1) coins.
+  * The remaining (n - k) buns are sold at a coins each.
+
+Note that k can be equal to 0 . In this case, Bob will sell all the buns at a
+coins each.
+
+Help Bob determine the maximum profit he can obtain by selling all n buns.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 10^4 ) — the number of test cases. The description of
+the test cases follows.
+
+The only line of each test case contains three integers n , a , and b (1 \le
+n, a, b \le 10^9 ) — the number of buns, the usual price of a bun, and the
+price of the first bun to be sold at a modified price.
+
+Output
+
+For each test case, output a single integer — the maximum profit that Bob can
+obtain.
+
+Example
+
+Input
+
+    7
+    
+    4 4 5
+    
+    5 5 9
+    
+    10 10 5
+    
+    5 5 11
+    
+    1000000000 1000000000 1000000000
+    
+    1000000000 1000000000 1
+    
+    1000 1 1000
+
+Output
+
+    17
+    35
+    100
+    45
+    1000000000000000000
+    1000000000000000000
+    500500
+    
+Note
+
+In the first test case, it is optimal for Bob to choose k = 1 . Then he will
+sell one bun for 5 coins, and three buns at the usual price for 4 coins each.
+Then the profit will be 5 + 4 + 4 + 4 = 17 coins.
+
+In the second test case, it is optimal for Bob to choose k = 5 . Then he will
+sell all the buns at the modified price and obtain a profit of 9 + 8 + 7 + 6 +
+5 = 35 coins.
+
+In the third test case, it is optimal for Bob to choose k = 0 . Then he will
+sell all the buns at the usual price and obtain a profit of 10 \cdot 10 = 100
+coins.
+DEBUG - Correctness: {'tester': 'Failed'}
+DEBUG - Start Task 1919_C
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: You are given an array a of size n . You will do the following process to
+calculate your penalty:
+
+  1. Split array a into two (possibly empty) subsequences^\dagger s and t such that every element of a is either in s or t^\ddagger . 
+  2. For an array b of size m , define the penalty p(b) of an array b as the number of indices i between 1 and m - 1 where b_i < b_{i + 1} . 
+  3. The total penalty you will receive is p(s) + p(t) . 
+
+If you perform the above process optimally, find the minimum possible penalty
+you will receive.
+
+^\dagger A sequence x is a subsequence of a sequence y if x can be obtained
+from y by the deletion of several (possibly, zero or all) elements.
+
+^\ddagger Some valid ways to split array a=[3,1,4,1,5] into (s,t) are
+([3,4,1,5],[1]) , ([1,1],[3,4,5]) and ([\,],[3,1,4,1,5]) while some invalid
+ways to split a are ([3,4,5],[1]) , ([3,1,4,1],[1,5]) and ([1,3,4],[5,1]) .
+
+Input
+
+Each test contains multiple test cases. The first line contains a single
+integer t (1 \leq t \leq 10^4 ) — the number of test cases. The description of
+the test cases follows.
+
+The first line of each test case contains a single integer n (1\le n\le 2\cdot
+10^5 ) — the size of the array a .
+
+The second line contains n integers a_1, a_2, \ldots, a_n (1 \le a_i \le n ) —
+the elements of the array a .
+
+It is guaranteed that the sum of n over all test cases does not exceed 2\cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer representing the minimum possible
+penalty you will receive.
+
+Example
+
+Input
+
+    5
+    
+    5
+    
+    1 2 3 4 5
+    
+    8
+    
+    8 2 3 1 1 7 4 3
+    
+    5
+    
+    3 3 3 3 3
+    
+    1
+    
+    1
+    
+    2
+    
+    2 1
+
+Output
+
+    3
+    1
+    0
+    0
+    0
+    
+Note
+
+In the first test case, a possible way to split a is s=[2,4,5] and t=[1,3] .
+The penalty is p(s)+p(t)=2 + 1 =3 .
+
+In the second test case, a possible way to split a is s=[8,3,1] and
+t=[2,1,7,4,3] . The penalty is p(s)+p(t)=0 + 1 =1 .
+
+In the third test case, a possible way to split a is s=[\,] and t=[3,3,3,3,3]
+. The penalty is p(s)+p(t)=0 + 0 =0 .
+DEBUG - Correctness: {'tester': 'Failed'}
+DEBUG - Start Task 1930_A
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: There are 2n positive integers written on a whiteboard. Being bored, you
+decided to play a one-player game with the numbers on the whiteboard.
+
+You start with a score of 0 . You will increase your score by performing the
+following move exactly n times:
+
+  * Choose two integers x and y that are written on the whiteboard. 
+  * Add \min(x,y) to your score. 
+  * Erase x and y from the whiteboard. 
+
+Note that after performing the move n times, there will be no more integers
+written on the whiteboard.
+
+Find the maximum final score you can achieve if you optimally perform the n
+moves.
+
+Input
+
+Each test contains multiple test cases. The first line contains a single
+integer t (1 \leq t \leq 5000 ) — the number of test cases. The description of
+the test cases follows.
+
+The first line of each test case contains a single integer n (1 \leq n \leq 50
+) — the number of integers written on the whiteboard is 2n .
+
+The second line of each test case contains 2n integers a_1,a_2,\ldots,a_{2n}
+(1 \leq a_i \leq 10^7 ) — the numbers written on the whiteboard.
+
+Output
+
+For each test case, output the maximum final score that you can achieve.
+
+Example
+
+Input
+
+    3
+    
+    1
+    
+    2 3
+    
+    2
+    
+    1 1 2 1
+    
+    3
+    
+    1 1 1 1 1 1
+
+Output
+
+    2
+    2
+    3
+    
+Note
+
+In the first test case, you can only make one move. You select x=2 and y=3 ,
+and your score will be \min(x,y)=2 .
+
+In the second test case, the following is a sequence of moves that achieves a
+final score of 2 :
+
+  * In the first move, select x=1 and y=1 . Then, add \min(x,y)=1 to the score. After erasing x and y , the integers left on the whiteboard are 1 and 2 . 
+  * In the second move, select x=1 and y=2 . Then, add \min(x,y)=1 to the score. After removing x and y , no more integers will be left on the whiteboard. 
+
+It can be proved that it is not possible to get a score greater than 2 .
+
+In the third test case, you will perform the move thrice, adding 1 to the
+score each time.
+DEBUG - Correctness: {'tester': 'Failed'}
+DEBUG - Start Task 1927_A
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: You have a horizontal strip of n cells. Each cell is either white or black.
+
+You can choose a continuous segment of cells once and paint them all white.
+After this action, all the black cells in this segment will become white, and
+the white ones will remain white.
+
+What is the minimum length of the segment that needs to be painted white in
+order for all n cells to become white?
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 10^4 ) —
+the number of test cases. The descriptions of the test cases follow.
+
+The first line of each test case contains a single integer n (1 \le n \le 10 )
+— the length of the strip.
+
+The second line of each test case contains a string s , consisting of n
+characters, each of which is either 'W' or 'B'. The symbol 'W' denotes a white
+cell, and 'B' — a black one. It is guaranteed that at least one cell of the
+given strip is black.
+
+Output
+
+For each test case, output a single number — the minimum length of a
+continuous segment of cells that needs to be painted white in order for the
+entire strip to become white.
+
+Example
+
+Input
+
+    8
+    
+    6
+    
+    WBBWBW
+    
+    1
+    
+    B
+    
+    2
+    
+    WB
+    
+    3
+    
+    BBW
+    
+    4
+    
+    BWWB
+    
+    6
+    
+    BWBWWB
+    
+    6
+    
+    WWBBWB
+    
+    9
+    
+    WBWBWWWBW
+
+Output
+
+    4
+    1
+    1
+    2
+    4
+    6
+    4
+    7
+    
+Note
+
+In the first test case of the example for the strip "WBBWBW", the minimum
+length of the segment to be repainted white is 4 . It is necessary to repaint
+to white the segment from the 2 -nd to the 5 -th cell (the cells are numbered
+from 1 from left to right).
+DEBUG - Correctness: {'tester': 'Failed'}
+DEBUG - Start Task 1968_E
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: You are given an integer n . You choose n cells (x_1,y_1),
+(x_2,y_2),\dots,(x_n,y_n) in the grid n\times n where 1\le x_i\le n and 1\le
+y_i\le n .
+
+Let \mathcal{H} be the set of distinct Manhattan distances between any pair of
+cells. Your task is to maximize the size of \mathcal{H} . Examples of sets and
+their construction are given in the notes.
+
+If there exists more than one solution, you are allowed to output any.
+
+Manhattan distance between cells (x_1,y_1) and (x_2,y_2) equals
+|x_1-x_2|+|y_1-y_2| .
+
+Input
+
+The first line contains a single integer t (1\le t\le 50 ) — the number of
+test cases.
+
+Each of the following t lines contains a single integer n (2\le n\le 10^3 ).
+
+Output
+
+For each test case, output n points which maximize the size of \mathcal{H} .
+It is not necessary to output an empty line at the end of the answer for each
+test case.
+
+Example
+
+Input
+
+    5
+    
+    2
+    
+    3
+    
+    4
+    
+    5
+    
+    6
+
+Output
+
+    1 1
+    1 2
+    
+    2 1
+    2 3
+    3 1
+    
+    1 1
+    1 3
+    4 3
+    4 4
+    
+    1 1
+    1 3
+    1 4
+    2 1
+    5 5
+    
+    1 4
+    1 5
+    1 6
+    5 2
+    5 5
+    6 1
+    
+Note
+
+In the first testcase we have n=2 . One of the possible arrangements is:
+
+![](https://espresso.codeforces.com/4d7adaa08c9ee5ebf2a0caba13185ac968d6bcd9.png)
+The arrangement with cells located in (1,1) and (1,2) . In this case
+\mathcal{H}=\\{|1-1|+|1-1|,|1-1|+|2-2|,|1-1|+|1-2|\\}=\\{0,0,1\\}=\\{0,1\\} .
+Hence, the size of \mathcal{H} is 2 . It can be shown that it is the greatest
+possible answer.
+
+In the second testcase we have n=3 . The optimal arrangement is:
+
+![](https://espresso.codeforces.com/52d127e3dbe0141bb58dbdf4158586772a208758.png)
+The arrangement with cells located in (2,1) , (2,3) and (3,1) .
+
+\mathcal{H}
+=\\{|2-2|+|1-1|,|2-2|+|3-3|,|3-3|+|1-1|,|2-2|+|1-3|,|2-3|+|1-1|,|2-3|+|3-1|\\}
+=\\{0,0,0,2,1,3\\} =\\{0,1,2,3\\} .
+
+For n=4 a possible arrangement is:
+
+![](https://espresso.codeforces.com/575a6758d1f67174ceb877b32a1e89770cd2281a.png)
+
+For n=5 a possible arrangement is:
+
+![](https://espresso.codeforces.com/b790401b426625982c00d04cff13aceec53918b4.png)
+
+For n=6 a possible arrangement is:
+
+![](https://espresso.codeforces.com/d0f498905660a67115d9f58c6cbc1439ba6e509c.png)
+DEBUG - Correctness: {'tester': 'Failed'}
+DEBUG - Start Task 1971_E
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: Timur is in a car traveling on the number line from point 0 to point n . The
+car starts moving from point 0 at minute 0 .
+
+There are k+1 signs on the line at points 0, a_1, a_2, \dots, a_k , and Timur
+knows that the car will arrive there at minutes 0, b_1, b_2, \dots, b_k ,
+respectively. The sequences a and b are strictly increasing with a_k = n .
+
+![](https://espresso.codeforces.com/eaf3bfb8e7a8fa4f5e8673f9a02116761cb86c93.png)
+
+Between any two adjacent signs, the car travels with a constant speed. Timur
+has q queries: each query will be an integer d , and Timur wants you to output
+how many minutes it takes the car to reach point d , rounded down to the
+nearest integer.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains three integers n , k , and q , (k
+\leq n \leq 10^9 ; 1 \leq k, q \leq 10^5 ) — the final destination, the number
+of points Timur knows the time for, and the number of queries respectively.
+
+The second line of each test case contains k integers a_i (1 \leq a_i \leq n ;
+a_i < a_{i+1} for every 1 \leq i \leq k-1 ; a_k = n ).
+
+The third line of each test case contains k integers b_i (1 \leq b_i \leq 10^9
+; b_i < b_{i+1} for every 1 \leq i \leq k-1 ).
+
+Each of the following q lines contains a single integer d (0 \leq d \leq n ) —
+the distance that Timur asks the minutes passed for.
+
+The sum of k over all test cases doesn't exceed 10^5 , and the sum of q over
+all test cases doesn't exceed 10^5 .
+
+Output
+
+For each query, output a single integer — the number of minutes passed until
+the car reaches the point d , rounded down.
+
+Example
+
+Input
+
+    4
+    
+    10 1 3
+    
+    10
+    
+    10
+    
+    0
+    
+    6
+    
+    7
+    
+    10 2 4
+    
+    4 10
+    
+    4 7
+    
+    6
+    
+    4
+    
+    2
+    
+    7
+    
+    1000000000 1 1
+    
+    1000000000
+    
+    1000000000
+    
+    99999999
+    
+    6 1 3
+    
+    6
+    
+    5
+    
+    2
+    
+    6
+    
+    5
+
+Output
+
+    0 6 7 
+    5 4 2 5 
+    99999999 
+    1 5 4 
+    
+Note
+
+For the first test case, the car goes from point 0 to point 10 in 10 minutes,
+so the speed is 1 unit per minute and:
+
+  * At point 0 , the time will be 0 minutes. 
+  * At point 6 , the time will be 6 minutes. 
+  * At point 7 , the time will be 7 minutes. 
+
+For the second test case, between points 0 and 4 , the car travels at a speed
+of 1 unit per minute and between 4 and 10 with a speed of 2 units per minute
+and:
+
+  * At point 6 , the time will be 5 minutes. 
+  * At point 4 , the time will be 4 minutes. 
+  * At point 2 , the time will be 2 minutes. 
+  * At point 7 , the time will be 5.5 minutes, so the answer is 5 . 
+
+For the fourth test case, the car travels with 1.2 units per minute, so the
+answers to the queries are:
+
+  * At point 2 , the time will be 1.66\dots minutes, so the answer is 1 . 
+  * At point 6 , the time will be 5 minutes. 
+  * At point 5 , the time will be 4.16\dots minutes, so the answer is 4 .
+DEBUG - Correctness: {'tester': 'Failed'}
+DEBUG - Start Task 1931_A
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: Nikita had a word consisting of exactly 3 lowercase Latin letters. The letters
+in the Latin alphabet are numbered from 1 to 26 , where the letter "a" has the
+index 1 , and the letter "z" has the index 26 .
+
+He encoded this word as the sum of the positions of all the characters in the
+alphabet. For example, the word "cat" he would encode as the integer 3 + 1 +
+20 = 24 , because the letter "c" has the index 3 in the alphabet, the letter
+"a" has the index 1 , and the letter "t" has the index 20 .
+
+However, this encoding turned out to be ambiguous! For example, when encoding
+the word "ava", the integer 1 + 22 + 1 = 24 is also obtained.
+
+Determine the lexicographically smallest word of 3 letters that could have
+been encoded.
+
+A string a is lexicographically smaller than a string b if and only if one of
+the following holds:
+
+  * a is a prefix of b , but a \ne b ;
+  * in the first position where a and b differ, the string a has a letter that appears earlier in the alphabet than the corresponding letter in b .
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 100 ) —
+the number of test cases in the test.
+
+This is followed by the descriptions of the test cases.
+
+The first and only line of each test case contains an integer n (3 \le n \le
+78 ) — the encoded word.
+
+Output
+
+For each test case, output the lexicographically smallest three-letter word
+that could have been encoded on a separate line.
+
+Example
+
+Input
+
+    5
+    
+    24
+    
+    70
+    
+    3
+    
+    55
+    
+    48
+
+Output
+
+    aav
+    rzz
+    aaa
+    czz
+    auz
+DEBUG - Correctness: {'tester': 'Failed'}
+DEBUG - Start Task 1973_D
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: This is an interactive problem.
+
+Fox gave Cat two positive integers n and k . She has a hidden array a_1,
+\ldots , a_n of length n , such that 1 \leq a_i \leq n for every i . Now they
+are going to play the following game:
+
+For any two integers l, r such that 1 \leq l \leq r \leq n , define f(l, r) =
+(r - l + 1) \cdot \max\limits_{x=l}^r a_x . In other words, f(l, r) is equal
+to the maximum of the subarray a_l, \ldots, a_r multiplied by its size.
+
+Cat can ask Fox at most 2 n questions about the array. He will tell her two
+integers l and x (1 \leq l \leq n, 1 \leq x \leq 10^9 ), and she will tell him
+one integer p as the answer — the smallest positive integer r such that f(l,
+r) = x , or n+1 if no such r exists.
+
+Now, Cat needs to find the largest value m such that there exists a sequence
+c_1, \ldots, c_{k-1} such that 1 \leq c_1 < \ldots < c_{k-1} < n and f(1, c_1)
+= f(c_1 + 1, c_2) = \ldots = f(c_{k-1}+1, n) = m . If no such m exists, he
+should indicate this and take -1 as the answer. Note that for k = 1 , m is
+always equal to f(1, n) .
+
+In other words, the goal is to find the largest m such that you can split the
+array into exactly k subarrays (k is the constant given to you in the
+beginning of the interaction) so that all the subarrays have the product of
+their length and their maximum equal to m , or determine that no such m
+exists. Every element should belong in exactly one of the subarrays.
+
+Cat doesn't know what he should do, so he asked you to play the game for him.
+
+Interaction
+
+Each test contains multiple test cases. The first line contains a single
+integer t (1 \leq t \leq 10^3 ) — the number of test cases. The description of
+the test cases follows.
+
+The first line of each test case contains two positive integers n and k (1
+\leq k \leq n \leq 10^4 ) — the length of the hidden array and the number of
+subarrays in the desired split.
+
+Now you are allowed to make queries in the following way — print one line of
+the form "\mathtt{?} \ l \ x " (it must hold that 1 \leq l \leq n , 1 \leq x
+\leq 10^9 ) and you will receive the smallest integer r such that l \leq r
+\leq n and f(l, r) = x , or n + 1 if no such r exists.
+
+If you want to print the answer, output "\mathtt{!} \ m " and you will recieve
+1 if your answer is correct and -1 otherwise. In the first case, the
+interaction continues with the next test case. Note that printing the answer
+doesn't count towards the number of queries made. Please note that you don't
+receive the values for the next test case immediately, you will first have to
+read whether your answer to the last test case was correct.
+
+If you receive the integer -1 at any moment, it means your program has made an
+invalid query, exceeded the query limit, or gave an incorrect answer. Your
+program must terminate immediately to receive a Wrong Answer verdict.
+Otherwise, you can get an arbitrary verdict because your solution will
+continue to read from a closed stream.
+
+After printing a query, do not forget to output end of line and flush the
+output. Otherwise, you will get Idleness limit exceeded. To do this, use:
+
+  * fflush(stdout) or cout.flush() in C++; 
+  * System.out.flush() in Java; 
+  * flush(output) in Pascal; 
+  * stdout.flush() in Python; 
+  * see documentation for other languages. 
+
+It is guaranteed that the total sum of n over the test cases won't exceed 10^4
+.
+
+Hacks
+
+The format of the hacks should be the following: the first line should contain
+one integer t (1 \leq t \leq 10^3 ) — the number of test cases. The
+description of the test cases should follow.
+
+The first line of each test case should contain two integers n and k (1 \leq k
+\leq n \leq 10^4 ) — the length of the array a and the number of subarrays you
+want to split it into.
+
+The second line should contain n integers a_1, a_2, \ldots, a_n (1 \leq a_i
+\leq n ).
+
+The sum of n over all test cases should not exceed 10^4 .
+
+Example
+
+Input
+
+Copy
+
+    3
+    1 1
+    
+    1
+    2 2
+    
+    1
+    
+    3
+    
+    1
+    6 3
+    
+    7
+    
+    2
+    
+    3
+    
+    6
+    
+    1
+
+Output
+
+Copy
+
+    ! 1
+    
+    ? 1 1
+    
+    ? 2 1
+    
+    ! -1
+    
+    ? 1 9
+    
+    ? 1 6
+    
+    ? 3 6
+    
+    ? 4 6
+    
+    ! 6
+
+Note
+
+The hidden arrays in the three testcases are [1] , [1, 2] and [1, 3, 6, 1, 2,
+1] . In the second testcase, no split satisfies the constraints, so the answer
+is -1 .
+
+The answer for the first query of the third testcase is 7 since no valid r
+exists. For the second query of the third testcase, since 2 \cdot \max(1, 3) =
+6 , we will get 2 as the answer, since r = 1 doesn't satisfy the constraint.
+
+The sample interaction guessed all three answers (1, -1 and 6 ) correctly, so
+it received 1 after each answer.
+DEBUG - Correctness: {'tester': 'Failed'}
+DEBUG - Start Task 1948_A
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: You are given an integer n .
+
+Your task is to build a string of uppercase Latin letters. There must be
+exactly n special characters in this string. Let's call a character special if
+it is equal to exactly one of its neighbors.
+
+For example, there are 6 special characters in the AAABAACC string (at
+positions: 1 , 3 , 5 , 6 , 7 and 8 ).
+
+Print any suitable string or report that there is no such string.
+
+Input
+
+The first line contains a single integer t (1 \le t \le 50 ) — the number of
+test cases.
+
+The only line of each test case contains a single integer n (1 \le n \le 50 ).
+
+Output
+
+For each test case, print the answer as follows:
+
+  * if there is no suitable string, print one line containing the string NO; 
+  * otherwise, print two lines. The first line should contain the string YES; on the second line print a string of length at most 200  — the answer itself (it can be shown that if some answers exist, then there is an answer of length at most 200 ). If there are several solutions, print any of them. 
+
+Example
+
+Input
+
+    3
+    
+    6
+    
+    1
+    
+    2
+
+Output
+
+    YES
+    AAABAACC
+    NO
+    YES
+    MM
+DEBUG - Correctness: {'tester': 'False'}
+DEBUG - Start Task 1971_D
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: You are given a binary string^{\dagger} . Please find the minimum number of
+pieces you need to cut it into, so that the resulting pieces can be rearranged
+into a sorted binary string.
+
+![](https://espresso.codeforces.com/76039f9769ba94c1817dbbc5e1fb1b5e4f60950f.png)
+
+Note that:
+
+  * each character must lie in exactly one of the pieces; 
+  * the pieces must be contiguous substrings of the original string; 
+  * you must use all the pieces in the rearrangement. 
+
+^{\dagger} A binary string is a string consisting of characters \texttt{0} and
+\texttt{1} . A sorted binary string is a binary string such that all
+characters \texttt{0} come before all characters \texttt{1} .
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 500 ) — the number
+of test cases.
+
+The only line of each test case contains a single string s (1 \leq |s| \leq
+500 ) consisting of characters \texttt{0} and \texttt{1} , where |s| denotes
+the length of the string s .
+
+Output
+
+For each test case, output a single integer — the minimum number of pieces
+needed to be able to rearrange the string into a sorted binary string.
+
+Example
+
+Input
+
+    6
+    
+    11010
+    
+    00000000
+    
+    1
+    
+    10
+    
+    0001111
+    
+    0110
+
+Output
+
+    3
+    1
+    1
+    2
+    1
+    2
+    
+Note
+
+The first test case is pictured in the statement. It can be proven that you
+can't use fewer than 3 pieces.
+
+In the second and third test cases, the binary string is already sorted, so
+only 1 piece is needed.
+
+In the fourth test case, you need to make a single cut between the two
+characters and rearrange them to make the string \texttt{01} .
+DEBUG - Correctness: {'tester': 'False'}
+DEBUG - Start Task 1968_A
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: You are given an integer x . Your task is to find any integer y (1\le y<x)
+such that \gcd(x,y)+y is maximum possible.
+
+Note that if there is more than one y which satisfies the statement, you are
+allowed to find any.
+
+\gcd(a,b) is the Greatest Common Divisor of a and b . For example, \gcd(6,4)=2
+.
+
+Input
+
+The first line contains a single integer t (1 \le t \le 1000 ) — the number of
+test cases.
+
+Each of the following t lines contains a single integer x (2 \le x \le 1000 ).
+
+Output
+
+For each test case, output any y (1 \le y < x ), which satisfies the
+statement.
+
+Example
+
+Input
+
+    7
+    
+    10
+    
+    7
+    
+    21
+    
+    100
+    
+    2
+    
+    1000
+    
+    6
+
+Output
+
+    5
+    6
+    18
+    98
+    1
+    750
+    3
+DEBUG - Correctness: {'tester': 'Failed'}
+DEBUG - Start Task 1946_E
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: Some permutation of length n is guessed.
+
+You are given the indices of its prefix maximums and suffix maximums.
+
+Recall that a permutation of length k is an array of size k such that each
+integer from 1 to k occurs exactly once.
+
+Prefix maximums are the elements that are the maximum on the prefix ending at
+that element. More formally, the element a_i is a prefix maximum if a_i > a_j
+for every j < i .
+
+Similarly, suffix maximums are defined, the element a_i is a suffix maximum if
+a_i > a_j for every j > i .
+
+You need to output the number of different permutations that could have been
+guessed.
+
+As this number can be very large, output the answer modulo 10^9 + 7 .
+
+Input
+
+Each test consists of several test cases. The first line contains a single
+integer t (1 \le t \le 10^4 ) — the number of test cases. Then follows the
+description of the test cases.
+
+The first line of each test case contains three integers n, m_1 and m_2 (1 \le
+m_1, m_2 \le n \le 2 \cdot 10^5 ) — the length of the permutation, the number
+of prefix maximums, and the number of suffix maximums, respectively.
+
+The second line of each test case contains m_1 integers p_1 < p_2 < \ldots <
+p_{m_1} (1 \le p_i \le n ) — the indices of the prefix maximums in increasing
+order.
+
+The third line of each test case contains m_2 integers s_1 < s_2 < \ldots <
+s_{m_2} (1 \le s_i \le n ) — the indices of the suffix maximums in increasing
+order.
+
+It is guaranteed that the sum of the values of n for all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output a single integer on a separate line — the number of
+suitable permutations modulo 10^9 + 7 .
+
+Example
+
+Input
+
+    6
+    
+    1 1 1
+    
+    1
+    
+    1
+    
+    4 2 3
+    
+    1 2
+    
+    2 3 4
+    
+    3 3 1
+    
+    1 2 3
+    
+    3
+    
+    5 3 4
+    
+    1 2 3
+    
+    2 3 4 5
+    
+    20 5 4
+    
+    1 2 3 4 12
+    
+    12 13 18 20
+    
+    6 2 3
+    
+    1 3
+    
+    3 4 6
+
+Output
+
+    1
+    3
+    1
+    0
+    317580808
+    10
+    
+Note
+
+The following permutations are suitable for the second set of input data:
+
+  * [1, 4, 3, 2] 
+  * [2, 4, 3, 1] 
+  * [3, 4, 2, 1] 
+
+The following permutations are suitable for the sixth set of input data:
+
+  * [2, 1, 6, 5, 3, 4] 
+  * [3, 1, 6, 5, 2, 4] 
+  * [3, 2, 6, 5, 1, 4] 
+  * [4, 1, 6, 5, 2, 3] 
+  * [4, 2, 6, 5, 1, 3] 
+  * [4, 3, 6, 5, 1, 2] 
+  * [5, 1, 6, 4, 2, 3] 
+  * [5, 2, 6, 4, 1, 3] 
+  * [5, 3, 6, 4, 1, 2] 
+  * [5, 4, 6, 3, 1, 2]
+DEBUG - Correctness: {'tester': 'Timeout'}
+DEBUG - Start Task 1932_A
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: During your journey through computer universes, you stumbled upon a very
+interesting world. It is a path with n consecutive cells, each of which can
+either be empty, contain thorns, or a coin. In one move, you can move one or
+two cells along the path, provided that the destination cell does not contain
+thorns (and belongs to the path). If you move to the cell with a coin, you
+pick it up.
+
+![](https://espresso.codeforces.com/34bd88a4aba4a1ae98e5681455c4a47900b7b9a8.png)
+Here, green arrows correspond to legal moves, and the red arrow corresponds to
+an illegal move.
+
+You want to collect as many coins as possible. Find the maximum number of
+coins you can collect in the discovered world if you start in the leftmost
+cell of the path.
+
+Input
+
+The first line of input contains a single integer t (1 \le t \le 1000 ) — the
+number of test cases. Then the descriptions of the test cases follow.
+
+The first line of each test case contains a single integer n (1 \le n \le 50 )
+— the length of the path.
+
+The second line of each test case contains a string of n characters, the
+description of the path. The character '.' denotes an empty cell, '@' denotes
+a cell with a coin, and '*' denotes a cell with thorns. It is guaranteed that
+the first cell is empty.
+
+Output
+
+For each test case, output a single integer, the maximum number of coins you
+can collect.
+
+Example
+
+Input
+
+    3
+    
+    10
+    
+    .@@*@.**@@
+    
+    5
+    
+    .@@@@
+    
+    15
+    
+    .@@..@***..@@@*
+
+Output
+
+    3
+    4
+    3
+    
+Note
+
+The picture for the first example is in the problem statement.
+
+Here is the picture for the second example:
+
+![](https://espresso.codeforces.com/68fd7116585f37e79535fbc164a552cc8e148b75.png)
+
+And here is the picture for the third example:
+
+![](https://espresso.codeforces.com/1695fc45669a1bf1d6e1b3d4901cdd3cda38273c.png)
+DEBUG - Correctness: {'tester': 'Failed'}
+DEBUG - Start Task 1928_A
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: Bob has a rectangle of size a \times b . He tries to cut this rectangle into
+two rectangles with integer sides by making a cut parallel to one of the sides
+of the original rectangle. Then Bob tries to form some other rectangle from
+the two resulting rectangles, and he can rotate and move these two rectangles
+as he wishes.
+
+Note that if two rectangles differ only by a 90^{\circ} rotation, they are
+considered the same. For example, the rectangles 6 \times 4 and 4 \times 6 are
+considered the same.
+
+Thus, from the 2 \times 6 rectangle, another rectangle can be formed, because
+it can be cut into two 2 \times 3 rectangles, and then these two rectangles
+can be used to form the 4 \times 3 rectangle, which is different from the 2
+\times 6 rectangle.
+
+![](https://espresso.codeforces.com/670958570876245598e151e6877e3b0231a7c60e.png)
+
+However, from the 2 \times 1 rectangle, another rectangle cannot be formed,
+because it can only be cut into two rectangles of 1 \times 1 , and from these,
+only the 1 \times 2 and 2 \times 1 rectangles can be formed, which are
+considered the same.
+
+![](https://espresso.codeforces.com/1463aaa4fa7eb1e7432c1d8b5813e7ae91147066.png)
+
+Help Bob determine if he can obtain some other rectangle, or if he is just
+wasting his time.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \leq t \leq 10^4 ) — the number of test cases. This is followed
+by the description of the test cases.
+
+The single line of each test case contains two integers a and b (1 \le a, b
+\le 10^9 ) — the size of Bob's rectangle.
+
+Output
+
+For each test case, output "Yes" if Bob can obtain another rectangle from the
+a \times b rectangle. Otherwise, output "No".
+
+You can output the answer in any case (upper or lower). For example, the
+strings "yEs", "yes", "Yes", and "YES" will be recognized as positive answers.
+
+Example
+
+Input
+
+    7
+    
+    1 1
+    
+    2 1
+    
+    2 6
+    
+    3 2
+    
+    2 2
+    
+    2 4
+    
+    6 3
+
+Output
+
+    No
+    No
+    Yes
+    Yes
+    Yes
+    Yes
+    No
+    
+Note
+
+In the first test case, the 1 \times 1 rectangle cannot be cut into two
+rectangles, so another rectangle cannot be obtained from it.
+
+In the fourth test case, the 3 \times 2 rectangle can be cut into two 3 \times
+1 rectangles, and from these, the 1 \times 6 rectangle can be formed.
+
+In the fifth test case, the 2 \times 2 rectangle can be cut into two 1 \times
+2 rectangles, and from these, the 1 \times 4 rectangle can be formed.
+DEBUG - Correctness: {'tester': 'Failed'}
+DEBUG - Start Task 1926_C
+DEBUG - Dataset: codeforces2024
+DEBUG - model_created: human
+DEBUG - model_run: qwen2.5-coder-32b-instruct
+DEBUG - description: Please note that the time limit for this problem is only 0.5 seconds per test.
+
+Vladislav wrote the integers from 1 to n , inclusive, on the board. Then he
+replaced each integer with the sum of its digits.
+
+What is the sum of the numbers on the board now?
+
+For example, if n=12 then initially the numbers on the board are:
+
+Then after the replacement, the numbers become:
+
+The sum of these numbers is 1+2+3+4+5+6+7+8+9+1+2+3=51 . Thus, for n=12 the
+answer is 51 .
+
+Input
+
+The first line contains an integer t (1 \leq t \leq 10^4 ) — the number of
+test cases.
+
+The only line of each test case contains a single integer n (1 \leq n \leq 2
+\cdot 10^5 ) — the largest number Vladislav writes.
+
+Output
+
+For each test case, output a single integer — the sum of the numbers at the
+end of the process.
+
+Example
+
+Input
+
+    7
+    
+    12
+    
+    1
+    
+    2
+    
+    3
+    
+    1434
+    
+    2024
+    
+    200000
+
+Output
+
+    51
+    1
+    3
+    6
+    18465
+    28170
+    4600002
+DEBUG - Correctness: {'tester': 'Failed'}
+DEBUG - Start Task 1941_B

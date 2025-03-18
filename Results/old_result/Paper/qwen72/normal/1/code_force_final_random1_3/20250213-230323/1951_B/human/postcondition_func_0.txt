@@ -1,0 +1,11 @@
+The function `func_1` takes a list `a` of at least 2 distinct integers within the range [1, 10^9] and an implicit parameter `k` (the index of an element in `a`). It identifies the indices of up to the first two elements in `a` that are greater than the element at index `k`. Depending on the number of such elements found and their positions relative to `k`, the function returns one of the following:
+
+1. If no elements greater than `a[k]` are found, it returns `n - 1`, where `n` is the length of the list `a`.
+2. If exactly one element greater than `a[k]` is found and its index is 0, it returns `k - 1`.
+3. If exactly one element greater than `a[k]` is found and its index is greater than `k`, it returns the index of this element minus 1.
+4. If exactly one element greater than `a[k]` is found and its index is less than or equal to `k`, it returns the maximum value between `k - ind[0]` and `ind[0] - 1`.
+5. If two elements greater than `a[k]` are found and the first index is 0, it returns the minimum value between `ind[1] - 1` and `k - 1`.
+6. If two elements greater than `a[k]` are found and `k` is greater than the second index, it returns the maximum value between `ind[0] - 1` and `ind[1] - ind[0]`.
+7. If two elements greater than `a[k]` are found and `k` is less than or equal to the second index, it returns the maximum value between `ind[0] - 1` and `k - ind[0]`.
+
+The function does not modify the input list `a`.

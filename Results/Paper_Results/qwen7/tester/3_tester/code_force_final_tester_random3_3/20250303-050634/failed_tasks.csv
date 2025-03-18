@@ -1,0 +1,189 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1945_B,human,codeforces2024,qwen2.5-7b-instruct,"t=int(input())
+for _ in range(t):
+    a,b,m=map(int,input().split())
+    A=int(m/a)+1
+    B=int(m/b)+1
+    print(A+B)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1928_C,human,codeforces2024,qwen2.5-7b-instruct,"def divisors(n):
+    # get factors and their counts
+    factors = {}
+    nn = n
+    i = 2
+    while i*i <= nn:
+        while nn % i == 0:
+            factors[i] = factors.get(i, 0) + 1
+            nn //= i
+        i += 1
+    if nn > 1:
+        factors[nn] = factors.get(nn, 0) + 1
+ 
+    primes = list(factors.keys())
+ 
+    # generates factors from primes[k:] subset
+    def generate(k):
+        if k == len(primes):
+            yield 1
+        else:
+            rest = generate(k+1)
+            prime = primes[k]
+            for factor in rest:
+                prime_to_i = 1
+                # prime_to_i iterates prime**i values, i being all possible exponents
+                for _ in range(factors[prime] + 1):
+                    yield factor * prime_to_i
+                    prime_to_i *= prime
+ 
+    # in python3, `yield from generate(0)` would also work
+    for factor in generate(0):
+        yield factor
+ 
+for _  in range(int(input())):
+    # n = int(input())
+    n, x = map(int, input().split())
+    # arr = list(map(int, input().split()))
+ 
+    ans = 1
+ 
+    h = n-x
+    ans = set(k for k in divisors(h) if not k%2 and k/2+1 >= x) # divisors of h >=  max(x, 2)
+ 
+    # print(list(divisors(h)))
+ 
+    ans2 = set()
+    if x!=1:
+        h = n + x-2
+        ans2 = set(k for k in divisors(h) if not k%2 and k/2+1 >= x)
+ 
+    # for f in sorted(ans):
+    #     print(f//2+1, end='\t')
+    # print()
+ 
+    # print(sorted(ans))
+    # print(sorted(ans2))
+    ans = ans.union(ans2)
+    print(len(ans))
+    # print()","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-f92b703a-9f3e-99bd-9490-05027f00d1a8', 'request_id': 'f92b703a-9f3e-99bd-9490-05027f00d1a8'}",hoareprompt
+1922_A,human,codeforces2024,qwen2.5-7b-instruct,"def solve():
+    t = int(input())
+    for _ in range(t):
+        n = int(input())
+        a = input().strip()
+        b = input().strip()
+        c = input().strip()
+ 
+        possible = False
+        
+        for i in range(n):
+            if a[i] == b[i]:
+                if c[i] != a[i]:
+                    possible = True
+                    break
+            else:
+                if c[i] == a[i] or c[i] == b[i]:
+                    continue
+                else:
+                    possible = True
+                    break
+        
+        if possible:
+            print(""YES"")
+        else:
+            print(""NO"")
+ 
+solve()","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-4fc100ca-a585-905e-b30e-395377e720c2', 'request_id': '4fc100ca-a585-905e-b30e-395377e720c2'}",hoareprompt
+1948_D,human,codeforces2024,qwen2.5-7b-instruct,"t = int(input())
+ 
+ 
+def solve():
+    s = list(input())
+    n = len(s)
+    for j in range(n // 2, 0, -1):
+        count = 0
+        for k in range(0, n - j):
+            if s[k] == '?' or s[k + j] == '?' or s[k] == s[k + j]:
+                count += 1
+            else:
+                count = 0
+            if count == j:
+                print(count * 2)
+                return
+    print(0)
+ 
+for i in range(t):
+    
+ 
+    solve()","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-556c74c2-d18f-9f85-abbe-1483adb5e638', 'request_id': '556c74c2-d18f-9f85-abbe-1483adb5e638'}",hoareprompt
+1974_B,human,codeforces2024,qwen2.5-7b-instruct,"import sys
+from typing import List
+ 
+input = sys.stdin.readline
+ 
+def decode(encoded: str) -> str:
+    mapping = {}
+    decoded = []
+ 
+    for char in encoded:
+        if char in mapping:
+            decoded.append(mapping[char])
+        else:
+            # Find the next unused letter from 'a' to 'z'
+            for c in range(ord('a'), ord('z') + 1):
+                if chr(c) not in mapping.values():
+                    mapping[chr(c)] = char
+                    break
+            decoded.append(chr(c))
+ 
+    return """".join(decoded)
+ 
+if __name__ == ""__main__"":
+    num_cases = int(input().strip())
+ 
+    for _ in range(num_cases):
+        n = int(input().strip())
+        encoded = input().strip()
+        decoded = decode(encoded)
+        print(decoded)","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-b1aa4ddc-c2a3-9646-a85b-d2dbab64c344', 'request_id': 'b1aa4ddc-c2a3-9646-a85b-d2dbab64c344'}",hoareprompt
+1970_C2,human,codeforces2024,qwen2.5-7b-instruct,"from functools import reduce
+import math
+from collections import deque, defaultdict
+ 
+ 
+def dfs(nodes, start, parent=None):
+	if len(nodes[start]) == 1 and nodes[start][0] == parent:
+		return [0]
+	distances = []
+	for node in nodes[start]:
+		if node != parent:
+			distances.extend([1 + dist for dist in dfs(nodes, node, start)])
+	return distances
+ 
+ 
+def testcase():
+	n, t = map(int, input().split())
+	edges = []
+	empty = True
+	nodes = defaultdict(list)
+	for i in range(n - 1):
+		u, v = map(int, input().split())
+		nodes[u].append(v)
+		nodes[v].append(u)
+	
+	leaves = deque()
+	for key in nodes:
+		if len(nodes[key]) == 1:
+			leaves.append(key)
+	
+	start = int(input())
+	moves = dfs(nodes, start)
+	
+	if any([move % 2 == 1 for move in moves]):
+		print(""Ron"")
+	else:
+		print(""Hermione"")
+ 
+ 
+t = 1 # int(input())
+ 
+for i in range(t):
+	testcase()",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt

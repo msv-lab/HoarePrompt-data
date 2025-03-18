@@ -1,0 +1,153 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1974_B,human,codeforces2024,qwen2.5-7b-instruct,"def decode_string(encoded):
+    # Get unique characters and sort them to form 'r'
+    r = ''.join(sorted(set(encoded)))
+    # Create the mapping dictionary
+    mapping = {r[i]: r[-(i+1)] for i in range(len(r))}
+    # Decode the string using the mapping
+    return ''.join(mapping[char] for char in encoded)
+ 
+# Reading input
+import sys
+input = sys.stdin.read
+data = input().split()
+ 
+index = 0
+t = int(data[index])
+index += 1
+results = []
+ 
+for _ in range(t):
+    n = int(data[index])
+    index += 1
+    b = data[index]
+    index += 1
+    results.append(decode_string(b))
+ 
+# Output the results
+print('\n'.join(results))","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-f997b87b-87f6-974e-b648-b3686a4f6e1e', 'request_id': 'f997b87b-87f6-974e-b648-b3686a4f6e1e'}",hoareprompt
+1971_D,human,codeforces2024,qwen2.5-7b-instruct,"t = int(input())
+ 
+for _ in range(t):
+    a = input()
+    cut0 = 0
+    cut1 = 0
+    for i in range(len(a)-1):
+        if a[i] == '1' and a[i+1] == '0':
+            cut1 += 1
+        if a[i] == '0' and a[i+1] == '1':
+            cut0 += 1
+    if cut0 == 0:
+        print(cut1+1)
+    else:
+        print(cut0+cut1)
+ 
+# 011 0 111 0 11
+# 1 011","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-b1664be8-e37b-9440-84ed-360e704cbdb0', 'request_id': 'b1664be8-e37b-9440-84ed-360e704cbdb0'}",hoareprompt
+1974_B,human,codeforces2024,qwen2.5-7b-instruct,"def symmetric_encode(s):
+    # Create a list of unique characters from the input string
+    unique_chars = sorted(list({char for char in s}))
+    
+    i, j = 0, len(unique_chars) - 1
+    
+    # Encode the input string
+    for char in s:
+        if char in unique_chars:
+            # Replace the current character with its symmetric counterpart
+            s = s.replace(char, unique_chars[j])
+            j -= 1
+        else:
+            # Add the new character to the unique_chars list
+            unique_chars.insert(i, char)
+            
+            # Update i and j
+            i += 1
+            j += 1
+    
+    return ''.join(unique_chars)
+ 
+# Main function
+if __name__ == ""__main__"":
+    t = int(input())
+    
+    for _ in range(t):
+        n = int(input())
+        b = input()
+        
+        # Get the encoded string
+        encoded_str = symmetric_encode(b)
+        
+        # Print the encoded string
+        print(encoded_str)","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-f67f73e0-134e-99bf-87c0-8f4b8bec52ba', 'request_id': 'f67f73e0-134e-99bf-87c0-8f4b8bec52ba'}",hoareprompt
+1950_C,human,codeforces2024,qwen2.5-7b-instruct,"def gb114():
+    for t in range(int(input())):
+        s = input()
+        h = s[:2]
+        if h == '00':
+            print('12', end='')
+        elif int(h) <= 12:
+            print(h, end='')
+        else:
+            print('0{}'.format(int(h) - 12), end='')
+        print(s[2:], ['AM', 'PM'][int(h) >= 12])
+gb114()",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1949_D,human,codeforces2024,qwen2.5-7b-instruct,"n = int(input())
+a = [0]*(n+1)
+b = [0]*(n+1)
+xx = [""""]
+for i in range(1,n+1):
+    x = input()
+    for j in range(1,n+1):
+        if x[j-1] == ""F"":
+            a[i] += 1
+            a[j] += 1
+        elif x[j-1] == ""S"":
+            b[i] += 1
+            b[j] += 1
+    xx.append(x)
+ 
+sa = []
+sb = []
+for i in range(1,n+1):
+    if a[i] > 0 and b[i] == 0:
+        sa.append(i)
+    if b[i] > 0 and a[i] == 0:
+        sb.append(i)
+if len(sa) >= len(sb):
+    for i in range(1,n+1):
+        if a[i] == 0 and b[i] == 0:
+            sa.append(i)
+    for i in range(1,n+1):
+        nx = """"
+        for j in range(1,n+1):
+            if xx[i][j-1] != ""?"":
+                nx += xx[i][j-1]
+            elif i in sa[:n//4] or j in sa[:n//4]:
+                nx += ""F""
+            else:
+                nx += ""S""
+        print(nx)
+else:
+    for i in range(1,n+1):
+        if a[i] == 0 and b[i] == 0:
+            sb.append(i)
+    for i in range(1,n+1):
+        nx = """"
+        for j in range(1,n+1):
+            if xx[i][j-1] != ""?"":
+                nx += xx[i][j-1]
+            elif i in sb[:n//4] or j in sb[:n//4]:
+                nx += ""S""
+            else:
+                nx += ""F""
+        print(nx)","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-d714bf1f-4593-9b81-bd84-5035c5e4cd26', 'request_id': 'd714bf1f-4593-9b81-bd84-5035c5e4cd26'}",hoareprompt
+1955_A,human,codeforces2024,qwen2.5-7b-instruct,"for i in range(int(input())):
+    A, B, C = map(int,input().split())
+    if (B *2) < C:
+        print(A*B)
+    else:
+        if A % 2 == 0:
+            print(int((A * C)/2))
+        else:
+            X = A // 2
+            print((X * C) + B)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt

@@ -1,0 +1,49 @@
+#State of the program right berfore the function call: nodes is a dictionary where each key is a node (an integer between 1 and n) and its value is a list of integers representing its neighbors, excluding the parent node if provided. start is an integer representing the starting node, and parent is an optional integer representing the parent node of the current node being processed (default is None).
+def func_1(nodes, start, parent):
+    if (len(nodes[start]) == 1 and nodes[start][0] == parent) :
+        return [0]
+        #The program returns a list containing the single element 0.
+    #State: nodes is a dictionary where each key is a node (an integer between 1 and n) and its value is a list of integers representing its neighbors, excluding the parent node if provided. start is an integer representing the starting node, and parent is an optional integer representing the parent node of the current node being processed (default is None). The length of the neighbors list for the start node is not 1 or the first neighbor is not equal to the parent.
+    distances = []
+    for node in nodes[start]:
+        if node != parent:
+            distances.extend([(1 + dist) for dist in func_1(nodes, node, start)])
+        
+    #State: Output State: The `distances` list will contain elements which are 1 plus the distances returned by `func_1(nodes, node, start)` for every node in `nodes[start]` that is not equal to the parent. This process will repeat for each node connected to the starting node, effectively collecting all possible path lengths (from the start node to other nodes in the graph) that do not go through the parent node. The final `distances` list will include all such path lengths for the entire graph starting from the initial node, considering all connected nodes and their respective distances, without revisiting the parent node.
+    return distances
+    #The program returns a list `distances` that contains the path lengths from the start node to all other nodes in the graph, calculated by adding 1 to the distances returned by `func_1(nodes, node, start)` for every node in `nodes[start]` that is not equal to the parent. This process is repeated for each node connected to the starting node, ensuring no path goes through the parent node, and includes all such path lengths for the entire graph starting from the initial node.
+#Overall this is what the function does:The function accepts a dictionary `nodes` where each key is a node (an integer) and its value is a list of integers representing its neighbors, excluding the parent node if provided. It also accepts an integer `start` representing the starting node and an optional integer `parent` representing the parent node of the current node being processed (default is None). The function returns a list containing the path lengths from the start node to all other nodes in the graph, calculated by adding 1 to the distances returned by recursive calls to `func_1(nodes, node, start)` for every node in `nodes[start]` that is not equal to the parent. If no valid path is found, it returns a list containing the single element 0.
+
+#State of the program right berfore the function call: n is an integer such that 2 ≤ n ≤ 2×10^5, t is an integer such that t = 1, edges is a list of tuples representing the edges of the tree, start is an integer such that 1 ≤ start ≤ n, and nodes is a dictionary representing the adjacency list of the tree where each key is a node and its value is a list of its neighbors.
+def func_2():
+    n, t = map(int, input().split())
+    edges = []
+    empty = True
+    nodes = defaultdict(list)
+    for i in range(n - 1):
+        u, v = map(int, input().split())
+        
+        nodes[u].append(v)
+        
+        nodes[v].append(u)
+        
+    #State: Output State: The loop will have executed \(n-1\) times, with `i` being \(n-2\). The variable `n` remains an integer such that \(2 \leq n \leq 2 \times 10^5\). For each iteration \(i\) from 0 to \(n-2\), two integers `u` and `v` are read from input. The nodes dictionary `nodes` is updated such that both `u` and `v` are appended to each other's lists. Therefore, after all iterations, `nodes[v]` will contain all nodes `u` that are connected to `v` through edges defined by the input.
+    #
+    #In simpler terms, after the loop completes all its iterations, the `nodes` dictionary will represent the entire graph structure where each node points to all nodes it is directly connected to, forming an undirected graph.
+    leaves = deque()
+    for key in nodes:
+        if len(nodes[key]) == 1:
+            leaves.append(key)
+        
+    #State: The `leaves` list contains all keys from the `nodes` dictionary whose associated list has a length of exactly 1.
+    start = int(input())
+    moves = func_1(nodes, start)
+    if any([(move % 2 == 1) for move in moves]) :
+        print('Ron')
+        #This is printed: Ron
+    else :
+        print('Hermione')
+        #This is printed: Hermione
+    #State: Postcondition: `moves` is the result of the function call `func_1(nodes, start)`, `leaves` list contains all keys from the `nodes` dictionary whose associated list has a length of exactly 1, `start` is an input integer. If there exists at least one move in `moves` that is an odd number, then this condition holds. Otherwise, every move in `moves` is even.
+#Overall this is what the function does:The function processes an undirected tree represented by its nodes and edges. It first reads the tree structure from input, including the number of nodes, edges, and a starting node. Then, it identifies all leaf nodes (nodes with only one connection) and stores them in a queue. After determining the sequence of moves from the starting node using another function `func_1`, it checks if any move in the sequence is odd. If an odd move is found, it prints 'Ron'; otherwise, it prints 'Hermione'.
+

@@ -1,0 +1,65 @@
+#State of the program right berfore the function call: path is a string consisting of '@' and '*' characters, where '@' represents a valid sign and '*' represents an invalid sign. The length of path is at least 0 and at most 1000.
+def func_1(path):
+    n = len(path)
+    if (n == 0) :
+        return 0
+        #The program returns 0
+    #State: `path` is a string consisting of '@' and '*' characters, where '@' represents a valid sign and '*' represents an invalid sign; `n` is the length of the string `path`, and `n` is not equal to 0
+    dp = [0] * n
+    if (path[0] == '@') :
+        dp[0] = 1
+    else :
+        if (path[0] == '*') :
+            dp[0] = -float('inf')
+        #State: Postcondition: `path` is a string consisting of '@' and '*' characters, where '@' represents a valid sign and '*' represents an invalid sign; `n` is the length of the string `path`, and `n` is not equal to 0; `dp` is a list of `n` zeros. If the first character of `path` is '*', the first element of `dp` is set to -inf.
+    #State: Postcondition: `path` is a string consisting of '@' and '*' characters, where '@' represents a valid sign and '*' represents an invalid sign; `n` is the length of the string `path`, and `n` is not equal to 0; `dp` is a list of `n` zeros. If the first character of `path` is '@', the first element of `dp` is 1. If the first character of `path` is '*', the first element of `dp` is set to -inf.
+    if (n > 1) :
+        if (path[1] == '*') :
+            dp[1] = -float('inf')
+        else :
+            dp[1] = dp[0] + (1 if path[1] == '@' else 0)
+        #State: Postcondition: `path` is a string consisting of '@' and '*' characters, where the first character is either '@' or '*', and `n` is the length of the string `path`, with `n` being greater than 1; `dp` is a list of `n` elements where the first element is set to -inf if the first character of `path` is '*', otherwise it is set to 1. The second element of `dp` is `dp[0] + 1` if the first character of `path` is '@', and `dp[0] + (1 if path[1] == '@' else 0)` if the first character of `path` is '*'.
+    #State: Postcondition: `path` is a string consisting of '@' and '*' characters, where the first character is either '@' or '*', and `n` is the length of the string `path`, with `n` being greater than 1; `dp` is a list of `n` elements where the first element is set to -inf if the first character of `path` is '*', otherwise it is set to 1. If the first character of `path` is '@', the second element of `dp` is `dp[0] + 1`. If the first character of `path` is '*', the second element of `dp` is `dp[0] + 1` if the second character of `path` is '@', and `dp[0] + 0` if the second character of `path` is '*'.
+    for i in range(2, n):
+        if path[i] == '*':
+            dp[i] = -float('inf')
+        else:
+            dp[i] = max(dp[i - 1], dp[i - 2]) + (1 if path[i] == '@' else 0)
+        
+    #State: Postcondition: `i` is equal to `n`, meaning the loop has completed all its iterations. For every index `j` from 2 to `n-1`, `dp[j]` is set as follows:
+    #- If `path[j]` is '*', then `dp[j]` is `-float('inf')`.
+    #- If `path[j]` is '@', then `dp[j]` is the maximum of `dp[j-1]` and `dp[j-2]` plus 1.
+    #- If `path[j]` is '*', and `path[j+1]` is '@', then `dp[j]` is the maximum of `dp[j-1]` and `dp[j-2]`.
+    #
+    #All other variables remain in their initial or updated states according to the loop's execution.
+    return max(x for x in dp if x > -float('inf'))
+    #The program returns the maximum value among the elements in the dp list that are greater than negative infinity.
+#Overall this is what the function does:The function accepts a string `path` consisting of '@' and '*' characters, where '@' represents a valid sign and '*' represents an invalid sign. It initializes a list `dp` of the same length as `path` to zero. Depending on the first character of `path`, it sets the first element of `dp` to 1 or -infinity. For each subsequent character in `path`, it updates `dp` based on whether the character is '@' or '*'. After processing all characters, it returns the maximum value in `dp` that is greater than -infinity, or 0 if no such value exists.
+
+#State of the program right berfore the function call: t is an integer such that 1 ≤ t ≤ 1000, representing the number of test cases. For each test case, n is an integer such that 1 ≤ n ≤ 100, representing the number of signs. The following line contains n space-separated integers a_1, a_2, a_3, ..., a_n such that 1 ≤ a_i ≤ 10^6, representing the periodicities of the signs.
+def func_2():
+    input = sys.stdin.read
+    data = input().split()
+    t = int(data[0])
+    index = 1
+    results = []
+    for _ in range(t):
+        n = int(data[index])
+        
+        index += 1
+        
+        path = data[index]
+        
+        index += 1
+        
+        results.append(func_1(path))
+        
+    #State: Output State: `results` is a list containing the return values of `func_1(path)` for all iterations, `t` is the integer value from the first line of the `data` list minus the total number of iterations (which is `t`), `data` remains a list of strings containing `t` space-separated lines, `index` is `2 * t + 2`, `n` is the integer value from the second line of the `data` list, and `path` is the string from the `2 * t + 3`rd line of the `data` list.
+    #
+    #In simpler terms, after the loop completes all its iterations, `results` will contain the output of `func_1(path)` for each iteration. The variable `t` will be reduced by the number of iterations, `index` will point to the position right after the last path value in the `data` list, `n` will still hold the integer from the second line, and `path` will hold the last path value from the `data` list.
+    for result in results:
+        print(result)
+        
+    #State: `results` is a list containing the output of `func_1(path)` for all iterations, `t` is reduced to 0, `data` remains a list of strings with the length equal to the initial `t` times 2 plus the number of lines in `path`, `index` points to the position right after the last path value in the `data` list, `n` still holds the integer from the second line, and `path` holds the last path value from the `data` list.
+#Overall this is what the function does:The function processes a series of test cases, each consisting of an integer t (1 ≤ t ≤ 1000) indicating the number of test cases, followed by t sets of data. Each set includes an integer n (1 ≤ n ≤ 100) representing the number of signs, and n space-separated integers a_1, a_2, ..., a_n (1 ≤ a_i ≤ 10^6) representing the periodicities of the signs. For each set, it calls `func_1(path)` to determine the least common multiple (LCM) of the given periodicities and stores the result. After processing all test cases, it prints the LCM for each set.
+

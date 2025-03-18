@@ -1,0 +1,17 @@
+This part of the condition is also correct.
+
+However, there is a missing edge case in the provided program:
+- The program does not account for the scenario where `n < m`. Although the condition `n >= m` handles this, the logic `(n - m) % 2 == 0` is not applicable in this case. When `n < m`, the only way to have `m` cubes is if `n` is large enough to make up the difference, but the logic should handle this directly.
+
+### Correctness Check:
+- The program handles the cases where `n >= m` and `(n - m) % 2 == 0` correctly.
+- However, the program should handle the case where `n < m` separately. If `n < m`, the program should check if `(m - n) % 2 == 0` to determine if it is possible to reach `m` cubes by adding cubes.
+
+### Counterexample:
+Let's consider the test case:
+- Input: `1\n3 1`
+- Expected Output: `Yes` (Nikita can add 1 cube and then remove 2 cubes to end up with 1 cube after 3 moves).
+- Actual Output: `NO` (The program incorrectly outputs `NO` because `n < m` and `(n - m) % 2 == 0` is not checked).
+
+### Conclusion:
+The program is incorrect because it does not handle the case where `n < m` correctly.

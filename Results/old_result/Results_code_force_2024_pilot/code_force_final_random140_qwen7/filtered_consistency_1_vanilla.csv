@@ -1,0 +1,2627 @@
+Task ID,unique_id,Dataset,model_created,model_run,description,Code,run_number,original correctness,summary fsl,naive correctness fsl,vanilla,vanilla_no_cot,simple tree,complex tree,summary,simple verify fsl,complex verify fsl,summary verify fsl,simple verify,complex verify,summary verify,consistency,consistency_mine,consistency_old
+1926_E,1926_E_daniilrybakov_11.11%,codeforces2024,human,qwen2.5-7b-instruct,"Vladislav has n cards numbered 1, 2, \dots, n . He wants to lay them down in a
+row as follows:
+
+  * First, he lays down all the odd-numbered cards from smallest to largest. 
+  * Next, he lays down all cards that are twice an odd number from smallest to largest (i.e. 2 multiplied by an odd number). 
+  * Next, he lays down all cards that are 3 times an odd number from smallest to largest (i.e. 3 multiplied by an odd number). 
+  * Next, he lays down all cards that are 4 times an odd number from smallest to largest (i.e. 4 multiplied by an odd number). 
+  * And so on, until all cards are laid down. 
+
+What is the k -th card he lays down in this process? Once Vladislav puts a
+card down, he cannot use that card again.
+
+Input
+
+The first line contains an integer t (1 \leq t \leq 5 \cdot 10^4 ) — the
+number of test cases.
+
+The only line of each test case contains two integers n and k (1 \leq k \leq n
+\leq 10^9 ) — the number of cards Vlad has, and the position of the card you
+need to output.
+
+Output
+
+For each test case, output a single integer — the k -th card Vladislav lays
+down.
+
+Example
+
+Input
+
+    11
+    
+    7 1
+    
+    7 2
+    
+    7 3
+    
+    7 4
+    
+    7 5
+    
+    7 6
+    
+    7 7
+    
+    1 1
+    
+    34 14
+    
+    84 19
+    
+    1000000000 1000000000
+
+Output
+
+    1
+    3
+    5
+    7
+    2
+    6
+    4
+    1
+    27
+    37
+    536870912
+    
+Note
+
+In the first seven test cases, n=7 . Vladislav lays down the cards as follows:
+
+  * First — all the odd-numbered cards in the order 1 , 3 , 5 , 7 . 
+  * Next — all cards that are twice an odd number in the order 2 , 6 . 
+  * Next, there are no remaining cards that are 3 times an odd number. (Vladislav has only one of each card.) 
+  * Next — all cards that are 4 times an odd number, and there is only one such card: 4 . 
+  * There are no more cards left, so Vladislav stops. 
+
+Thus the order of cards is 1 , 3 , 5 , 7 , 2 , 6 , 4 .","t = int(input())
+for _ in range(t):
+    n, k = map(int, input().split())
+    n_back = n
+    s = (n + 1) // 2
+    n = (n + 1) // 2
+    m = 1
+    while s < k:
+        if n == 0:
+            s = n_back
+            n = 1
+            break
+        m *= 2
+        n //= 2
+        s += n
+    # print(n, s, k, m, (k - (s - n)))
+    print((2 * (k - (s - n)) - 1) * m)",1,False,False,False,True,False,True,True,True,False,True,True,True,True,False,,,
+1968_E,1968_E_muzi123456_100%,codeforces2024,human,qwen2.5-7b-instruct,"You are given an integer n . You choose n cells (x_1,y_1),
+(x_2,y_2),\dots,(x_n,y_n) in the grid n\times n where 1\le x_i\le n and 1\le
+y_i\le n .
+
+Let \mathcal{H} be the set of distinct Manhattan distances between any pair of
+cells. Your task is to maximize the size of \mathcal{H} . Examples of sets and
+their construction are given in the notes.
+
+If there exists more than one solution, you are allowed to output any.
+
+Manhattan distance between cells (x_1,y_1) and (x_2,y_2) equals
+|x_1-x_2|+|y_1-y_2| .
+
+Input
+
+The first line contains a single integer t (1\le t\le 50 ) — the number of
+test cases.
+
+Each of the following t lines contains a single integer n (2\le n\le 10^3 ).
+
+Output
+
+For each test case, output n points which maximize the size of \mathcal{H} .
+It is not necessary to output an empty line at the end of the answer for each
+test case.
+
+Example
+
+Input
+
+    5
+    
+    2
+    
+    3
+    
+    4
+    
+    5
+    
+    6
+
+Output
+
+    1 1
+    1 2
+    
+    2 1
+    2 3
+    3 1
+    
+    1 1
+    1 3
+    4 3
+    4 4
+    
+    1 1
+    1 3
+    1 4
+    2 1
+    5 5
+    
+    1 4
+    1 5
+    1 6
+    5 2
+    5 5
+    6 1
+    
+Note
+
+In the first testcase we have n=2 . One of the possible arrangements is:
+
+![](https://espresso.codeforces.com/4d7adaa08c9ee5ebf2a0caba13185ac968d6bcd9.png)
+The arrangement with cells located in (1,1) and (1,2) . In this case
+\mathcal{H}=\\{|1-1|+|1-1|,|1-1|+|2-2|,|1-1|+|1-2|\\}=\\{0,0,1\\}=\\{0,1\\} .
+Hence, the size of \mathcal{H} is 2 . It can be shown that it is the greatest
+possible answer.
+
+In the second testcase we have n=3 . The optimal arrangement is:
+
+![](https://espresso.codeforces.com/52d127e3dbe0141bb58dbdf4158586772a208758.png)
+The arrangement with cells located in (2,1) , (2,3) and (3,1) .
+
+\mathcal{H}
+=\\{|2-2|+|1-1|,|2-2|+|3-3|,|3-3|+|1-1|,|2-2|+|1-3|,|2-3|+|1-1|,|2-3|+|3-1|\\}
+=\\{0,0,0,2,1,3\\} =\\{0,1,2,3\\} .
+
+For n=4 a possible arrangement is:
+
+![](https://espresso.codeforces.com/575a6758d1f67174ceb877b32a1e89770cd2281a.png)
+
+For n=5 a possible arrangement is:
+
+![](https://espresso.codeforces.com/b790401b426625982c00d04cff13aceec53918b4.png)
+
+For n=6 a possible arrangement is:
+
+![](https://espresso.codeforces.com/d0f498905660a67115d9f58c6cbc1439ba6e509c.png)","t=int(input())
+while t:
+    t-=1
+    n=int(input())
+    print(n,end=' ')
+    print(n)
+    print(n,end=' ')
+    print(n-1)
+    if n==3:
+        print(2,end=' ')
+        print(1)
+    else:
+        for i in range(1,n-1):
+            print(i,end=' ')
+            print(i)
+    print(' ')",1,True,False,False,False,False,False,False,False,False,False,False,False,False,False,,,
+1971_E,1971_E_M2024_100%,codeforces2024,human,qwen2.5-7b-instruct,"Timur is in a car traveling on the number line from point 0 to point n . The
+car starts moving from point 0 at minute 0 .
+
+There are k+1 signs on the line at points 0, a_1, a_2, \dots, a_k , and Timur
+knows that the car will arrive there at minutes 0, b_1, b_2, \dots, b_k ,
+respectively. The sequences a and b are strictly increasing with a_k = n .
+
+![](https://espresso.codeforces.com/eaf3bfb8e7a8fa4f5e8673f9a02116761cb86c93.png)
+
+Between any two adjacent signs, the car travels with a constant speed. Timur
+has q queries: each query will be an integer d , and Timur wants you to output
+how many minutes it takes the car to reach point d , rounded down to the
+nearest integer.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains three integers n , k , and q , (k
+\leq n \leq 10^9 ; 1 \leq k, q \leq 10^5 ) — the final destination, the number
+of points Timur knows the time for, and the number of queries respectively.
+
+The second line of each test case contains k integers a_i (1 \leq a_i \leq n ;
+a_i < a_{i+1} for every 1 \leq i \leq k-1 ; a_k = n ).
+
+The third line of each test case contains k integers b_i (1 \leq b_i \leq 10^9
+; b_i < b_{i+1} for every 1 \leq i \leq k-1 ).
+
+Each of the following q lines contains a single integer d (0 \leq d \leq n ) —
+the distance that Timur asks the minutes passed for.
+
+The sum of k over all test cases doesn't exceed 10^5 , and the sum of q over
+all test cases doesn't exceed 10^5 .
+
+Output
+
+For each query, output a single integer — the number of minutes passed until
+the car reaches the point d , rounded down.
+
+Example
+
+Input
+
+    4
+    
+    10 1 3
+    
+    10
+    
+    10
+    
+    0
+    
+    6
+    
+    7
+    
+    10 2 4
+    
+    4 10
+    
+    4 7
+    
+    6
+    
+    4
+    
+    2
+    
+    7
+    
+    1000000000 1 1
+    
+    1000000000
+    
+    1000000000
+    
+    99999999
+    
+    6 1 3
+    
+    6
+    
+    5
+    
+    2
+    
+    6
+    
+    5
+
+Output
+
+    0 6 7 
+    5 4 2 5 
+    99999999 
+    1 5 4 
+    
+Note
+
+For the first test case, the car goes from point 0 to point 10 in 10 minutes,
+so the speed is 1 unit per minute and:
+
+  * At point 0 , the time will be 0 minutes. 
+  * At point 6 , the time will be 6 minutes. 
+  * At point 7 , the time will be 7 minutes. 
+
+For the second test case, between points 0 and 4 , the car travels at a speed
+of 1 unit per minute and between 4 and 10 with a speed of 2 units per minute
+and:
+
+  * At point 6 , the time will be 5 minutes. 
+  * At point 4 , the time will be 4 minutes. 
+  * At point 2 , the time will be 2 minutes. 
+  * At point 7 , the time will be 5.5 minutes, so the answer is 5 . 
+
+For the fourth test case, the car travels with 1.2 units per minute, so the
+answers to the queries are:
+
+  * At point 2 , the time will be 1.66\dots minutes, so the answer is 1 . 
+  * At point 6 , the time will be 5 minutes. 
+  * At point 5 , the time will be 4.16\dots minutes, so the answer is 4 .","from bisect import bisect_left
+t = int(input())
+ 
+for _ in range(t):
+    n, k, q = map(int, input().split())
+    a = [0] + list(map(int, input().split()))
+    b = [0] + list(map(int, input().split()))
+    ad = [0]
+    bd = [0]
+    for i in range(1, len(a)):
+        ad.append(a[i]-a[i-1])
+    for i in range(1, len(b)):
+        bd.append(b[i]-b[i-1])
+    v = [0]
+    for i in range(1,len(a)):
+        v.append(ad[i]/bd[i])    
+    for l in range(q):
+        m = 0
+        i = 1
+        ql = int(input())
+        s = bisect_left(a, ql)
+        if a[s] == ql:
+            print(b[s], end=' ')
+            continue
+        ql -= a[s-1]
+        m += b[s-1]
+        m += bd[s] * ql//ad[s]
+        print(m, end=' ')
+    print()",1,True,False,False,True,True,True,True,True,True,True,True,False,False,True,,,
+1977_A,1977_A_VSS201445_HashirWaqar_20.00%,codeforces2024,human,qwen2.5-7b-instruct,"The little boy Nikita was given some cubes as a present. He decided to build a
+tower out of them.
+
+Initially, the tower doesn't have any cubes. In one move, Nikita either puts
+exactly 1 cube on top of the tower or removes exactly 1 cube from the top of
+the tower. Is it possible that after n moves, the resulting tower has exactly
+m cubes?
+
+Input
+
+Each test contains multiple test cases. The first line of input contains a
+single integer t (1 \le t \le 100 ) — the number of test cases. The
+description of the test cases follows.
+
+The only line of each test case contains two integers n and m (1 \le n, m \le
+100 ).
+
+Output
+
+For each test case, output ""Yes"" (without quotes) if Nikita can obtain a tower
+with m cubes, and ""No"" (without quotes) otherwise.
+
+You can output each letter in any case (lowercase or uppercase). For example,
+the strings ""yEs"", ""yes"", ""Yes"", and ""YES"" will be accepted as a positive
+answer.
+
+Example
+
+Input
+
+    3
+    
+    3 3
+    
+    2 4
+    
+    5 3
+
+Output
+
+    Yes
+    No
+    Yes
+    
+Note
+
+In the first test case, Nikita can put 1 cube on top of the tower 3 times in a
+row, so the answer is ""Yes"".
+
+In the second test case, Nikita can only end up with either a tower with no
+blocks or a tower with 2 blocks, so the answer is ""No"".","for _ in range(int(input())):
+    n,m=map(int,input().split())
+    if n<m:print('NO')
+    elif n&1 and m&1 or n%2==0 and m%2==0:print('YES')",1,False,False,False,False,False,True,False,False,False,False,False,True,True,False,,,
+1970_F1,1970_F1_osvarp_21.43%,codeforces2024,human,qwen2.5-7b-instruct,"This afternoon, you decided to enjoy the first days of Spring by taking a walk
+outside. As you come near the Quidditch field, you hear screams. Once again,
+there is a conflict about the score: the two teams are convinced that they won
+the game! To prevent this problem from happening one more time, you decide to
+get involved in the refereeing of the matches.
+
+Now, you will stay in the stadium to watch the game and count the score. At
+the end of the game, you will decide the winner.
+
+Today, two teams are competing: the red Gryffindor (R) and the blue Ravenclaw
+(B) team. Each team is composed of P players (1 \leq P \leq 10 ).
+
+The field is a rectangle of N lines and M columns (3 \leq N, M \leq 99 , N and
+M are odd). All the positions are integers, and several entities are allowed
+to be at the same position in the field. At the beginning of the game, the
+field contains goals for the two teams (each team can own between one and five
+goals), the players, and exactly one Quaffle. Other types of balls will be
+available in the harder versions of the problem.
+
+A game is composed of T steps (0 \leq T \leq 10000 ). At each step, one entity
+on the field (a player or a ball) performs one action. All entities can move.
+A player can also catch a ball or throw the Quaffle that it is carrying. To
+catch a ball, a player must be located on the same cell as it. The Quaffle
+does not perform any action while it is being carried; it only follows the
+movements of the player. If a player carrying the Quaffle decides to throw it,
+the Quaffle is simply put at the current position of the player.
+
+To win a point, a player must leave the Quaffle at a goal of the other team.
+When it does, the team of the player wins one point, and the Quaffle instantly
+moves to the middle of the field (the cell at the (M+1)/2 -th column of the
+(N+1)/2 -th line of the field, starting from 1). There is no goal in the
+middle of the field. If a player puts the ball in its own goal, the other team
+wins the point.
+
+Input
+
+On the first line, the integers N and M .
+
+The description of the field follows: N lines of M pairs of characters
+separated by spaces. Each pair of characters represents a position on the
+field. It can be either:
+
+  * .. to represent an empty cell 
+  * R0, ..., R9, B0, ..., B9 to represent a player. The first character is the team of the player, and the second is the number of the player in the team. Each pair of characters is unique, but it is not guaranteed that all the pairs appear in the grid. 
+  * RG or BG to represent a goal. The blue team tries to put the ball in a red goal (RG) while the red team tries to put the ball in a blue goal (BG). 
+  * .Q to represent the Quaffle, which is the ball that the players use to score goals. 
+
+The next line contains T , the number of steps that compose the game. T lines
+follow, each describing one action. It contains several pieces of information
+separated by a space. First, a pair of characters representing the entity that
+must perform the action. Second, the description of the action:
+
+  * U, D, L, R indicate that the entity moves on the grid. It can move to the top of the grid (U), to the bottom (D), to the left (L), or to the right (R). Each entity moves by only one cell at a time. 
+  * C indicates that the player catches the ball (only a player can catch a ball). Then, there is a space followed by a pair of characters: the description of the ball caught by the player. This information is needed since in the next versions of the problem, several balls may be in the same cell. 
+  * T indicates that the player throws the Quaffle that it is carrying. 
+
+All the actions performed by the entities are guaranteed to be valid: the
+players stay in the field, don't catch a ball if they are not in the same
+cell, don't release the Quaffle if they are not carrying it, ...
+
+Output
+
+You must output the description of the main events of the game, one event per
+line. More precisely:
+
+  * Each time a team scores, you must print t RED GOAL or t BLUE GOAL, depending on the team who scored, where t is the current time (the position of the action in the list of actions, starting from 0). In the case where a player scores in the wrong goal (a red player scores in the red goal, or a blue player scores in the blue goal), you must print the name of the team who wins one point, that is, the other team. 
+
+The events must be printed in ascending order of t.
+
+At the end of the game, you must print the final score as: FINAL SCORE: r b,
+where r is the score of the red team and b is the score of the blue team.
+
+Examples
+
+Input
+
+    5 5
+    
+    .. R1 .. B1 ..
+    
+    RG .. .. .. BG
+    
+    RG R0 .Q B0 BG
+    
+    RG .. .. .. BG
+    
+    .. R2 .. B2 ..
+    
+    13
+    
+    B2 U
+    
+    B2 U
+    
+    B2 L
+    
+    B2 C .Q
+    
+    B2 L
+    
+    B2 L
+    
+    B2 T
+    
+    R0 R
+    
+    R0 C .Q
+    
+    R0 D
+    
+    R0 R
+    
+    R0 R
+    
+    R0 T
+
+Output
+
+    6 BLUE GOAL
+    12 RED GOAL
+    FINAL SCORE: 1 1
+    
+Input
+
+    3 5
+    
+    .. .. R0 .. ..
+    
+    RG .. .Q .. BG
+    
+    .. .. B0 .. ..
+    
+    12
+    
+    R0 D
+    
+    R0 C .Q
+    
+    R0 R
+    
+    R0 T
+    
+    R0 D
+    
+    B0 R
+    
+    B0 U
+    
+    B0 C .Q
+    
+    B0 L
+    
+    B0 L
+    
+    B0 L
+    
+    B0 T
+
+Output
+
+    11 BLUE GOAL
+    FINAL SCORE: 0 1
+    
+Input
+
+    3 5
+    
+    .. .. R0 .. ..
+    
+    RG .. .Q .. BG
+    
+    .. .. B0 .. ..
+    
+    5
+    
+    R0 D
+    
+    R0 C .Q
+    
+    R0 L
+    
+    R0 L
+    
+    R0 T
+
+Output
+
+    4 BLUE GOAL
+    FINAL SCORE: 0 1
+    
+Note
+
+In the first example, a blue player goes to the middle of the grid, at the
+position of the Quaffle. He takes it, goes to the goal of the red team, and
+lets the ball there. He scores! The ball gets back to the middle of the field,
+a red player takes it and scores too.
+
+In the second example, the red player takes the Quaffle, move it and throw it.
+The blue player catches the ball, goes to the red goal and scores.
+
+In the third example, the red player takes the ball and scores in the goal of
+their own team: the blue team wins a point.","from sys import stdin
+ 
+mov = {'U':(-1,0),'D':(1,0),'L':(0,-1),'R':(0,1),'T':(0,0)};
+GoalName = [""RED"", ""BLUE""]
+ 
+def main():
+    n,m = map(int,stdin.readline().strip().split());
+    grid = [];
+    elements = {"".B"":(0,0)};
+    allPlayers = {};
+    goal = [[],[]]
+    points= [0,0];
+    
+    def goalIn( pos ):
+        res = 0 if ( pos in goal[0] ) else ( 1 if ( pos in goal[1] ) else -1 );
+        return res;
+    def isPlayer( el ):
+        res = (el[0] == 'B' or el[0] == 'R')and(el[1]!='G');
+        return res;
+    
+    for i in range(n):
+        line = stdin.readline().strip().split();
+        grid.append( line );
+        for ind in range(len(line)):
+            if ( line[ind] != "".."" ):
+                elements[line[ind]] = (i,ind);
+                if ( isPlayer( line[ind] ) ):
+                    allPlayers[line[ind]] = False;
+                elif ( line[ind][1]=='G' ):
+                    tmp = 0 if line[ind][0] =='B' else 1;
+                    goal[tmp].append( (i,ind) );
+    
+    t = int(stdin.readline().strip());
+    for time in range( t ):
+        comand = stdin.readline().strip().split();
+        if ( len(comand) == 3 ):
+            obj, com, el = comand;
+            if ( el == "".Q"" ):
+                # print(""lo agarra en (%d, %d)"" % ( elements[obj][0], elements[obj][1] ) );
+                allPlayers[obj] = True;
+            elif ( el == "".S"" ):
+                team = 1 if obj[0] =='B' else 0;
+                points[team] += 10;
+                print( ""%d %s CATCH GOLDEN SNITCH"" % ( time, GoalName[team] ) );
+        else:
+            obj, com = comand;
+            pos = elements[obj];
+            nxt = (pos[0]+mov[com][0], pos[1]+mov[com][1] );
+            if ( ( obj == "".B"" and isPlayer(grid[nxt[0]][nxt[1]]) ) or ( isPlayer(obj) and elements["".B""]==nxt ) ):
+                player =  obj if isPlayer(obj) else grid[nxt[0]][nxt[1]];
+                print( ""%d %s ELIMINATED"" % (time, player ) );
+            elif ( com=='T' ):
+                allPlayers[obj] = False;
+                if ( goalIn(pos)!=-1 ):
+                    team=goalIn(pos);
+                    print( ""%d %s GOAL"" %( time, GoalName[team] ) );
+                    points[team] += 1;
+            elif( isPlayer(obj) ):
+                elements[obj] = nxt;
+            
+            if ( obj == "".B"" ):
+                elements[obj] = nxt;
+            
+    print(""FINAL SCORE: %d %d""%( points[0], points[1] ));
+                
+                
+                
+ 
+main();",1,False,False,False,True,False,True,True,True,False,True,False,False,False,False,,,
+1927_F,1927_F_tesfaymebre_100%,codeforces2024,human,qwen2.5-7b-instruct,"Given an undirected weighted graph with n vertices and m edges. There is at
+most one edge between each pair of vertices in the graph, and the graph does
+not contain loops (edges from a vertex to itself). The graph is not
+necessarily connected.
+
+A cycle in the graph is called simple if it doesn't pass through the same
+vertex twice and doesn't contain the same edge twice.
+
+Find any simple cycle in this graph in which the weight of the lightest edge
+is minimal.
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 10^4 ) —
+the number of test cases. Then follow the descriptions of the test cases.
+
+The first line of each test case contains two integers n and m (3 \le n \le m
+\le \min(\frac{n\cdot(n - 1)}{2}, 2 \cdot 10^5) ) — the size of the graph and
+the number of edges.
+
+The next m lines of the test case contain three integers u , v , and w (1 \le
+u, v \le n , u \ne v , 1 \le w \le 10^6 ) — vertices u and v are connected by
+an edge of weight w .
+
+It is guaranteed that there is at most one edge between each pair of vertices.
+Note that under the given constraints, there is always at least one simple
+cycle in the graph.
+
+It is guaranteed that the sum of the values of m for all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output a pair of numbers b and k , where:
+
+  * b — the minimum weight of the edge in the found cycle, 
+  * k — the number of vertices in the found cycle. 
+
+On the next line, output k numbers from 1 to n — the vertices of the cycle in
+traversal order.
+
+Note that the answer always exists, as under the given constraints, there is
+always at least one simple cycle in the graph.
+
+Example
+
+Input
+
+    5
+    
+    6 6
+    
+    1 2 1
+    
+    2 3 1
+    
+    3 1 1
+    
+    4 5 1
+    
+    5 6 1
+    
+    6 4 1
+    
+    6 6
+    
+    1 2 10
+    
+    2 3 8
+    
+    3 1 5
+    
+    4 5 100
+    
+    5 6 40
+    
+    6 4 3
+    
+    6 15
+    
+    1 2 4
+    
+    5 2 8
+    
+    6 1 7
+    
+    6 3 10
+    
+    6 5 1
+    
+    3 2 8
+    
+    4 3 4
+    
+    5 3 6
+    
+    2 6 6
+    
+    5 4 5
+    
+    4 1 3
+    
+    6 4 5
+    
+    4 2 1
+    
+    3 1 7
+    
+    1 5 5
+    
+    4 6
+    
+    2 3 2
+    
+    1 3 10
+    
+    1 4 1
+    
+    3 4 7
+    
+    2 4 5
+    
+    1 2 2
+    
+    4 5
+    
+    2 1 10
+    
+    3 1 3
+    
+    4 2 6
+    
+    1 4 7
+    
+    2 3 3
+
+Output
+
+    1 3
+    1 2 3 
+    3 3
+    6 4 5 
+    1 5
+    4 2 1 6 3 
+    1 4
+    1 4 3 2 
+    3 3
+    2 3 1","from collections import defaultdict, deque
+import sys
+import threading
+ 
+class DSU:
+    def __init__(self, n):
+        self.parent = [i for i in range(n)]
+        self.size = [1] * n
+ 
+    def find(self, x):
+        while self.parent[x] != x:
+            self.parent[x] = self.parent[self.parent[x]]
+            x = self.parent[x]
+ 
+        return x
+ 
+    def union(self, a, b):
+        parent_a = self.find(a)
+        parent_b = self.find(b)
+ 
+        if parent_a != parent_b:
+            if self.size[parent_a] < self.size[parent_b]:
+                parent_a, parent_b = parent_b, parent_a
+ 
+            self.size[parent_a] += self.size[parent_b]
+            self.parent[parent_b] = parent_a
+ 
+        return
+    
+def int_input():
+    return int(sys.stdin.readline().strip())
+ 
+def string():
+    return sys.stdin.readline().strip()
+ 
+def map_int():
+    return map(int, sys.stdin.readline().strip().split())
+ 
+def list_int_input():
+    return list(map(int, sys.stdin.readline().strip().split()))
+ 
+def list_string_input():
+    return list(sys.stdin.readline().strip().split())
+ 
+def solve():
+    n,m = map_int()
+    graph = defaultdict(list)
+    edges = []
+ 
+    for i in range(m):
+        u,v,w = map_int()
+        graph[u].append(v)
+        graph[v].append(u)
+ 
+        edges.append((w,u,v))
+ 
+ 
+    edges.sort(reverse=True)
+ 
+    
+    dsu = DSU(n+1)
+    _min_edge = float('inf')
+    start = -1
+    end = -1
+ 
+    for w,u,v in edges:
+        parent_u = dsu.find(u)
+        parent_v = dsu.find(v)
+        if parent_u == parent_v:
+            _min_edge = w
+            start = u
+            end = v
+        else:
+            dsu.union(u,v)
+ 
+    # path = []
+    # visited = set()
+ 
+    # def dfs(node):
+    #     visited.add(node)
+    #     for nei in graph[node]:
+    #         if nei in visited or (node == start and nei == end):
+    #             continue
+    #         if nei == end or dfs(nei):
+    #             path.append(node)
+    #             return True
+    #     return False
+    
+    # dfs(start)
+    # path.append(end)
+    # print(_min_edge,len(path))
+    # print(*path)
+ 
+    que = deque([start])
+    prev = {start: -1}
+ 
+    while que:
+        node = que.popleft()
+ 
+        if node == end:
+            break
+ 
+        for nei in graph[node]:
+            if node == start and nei == end:
+                continue
+ 
+            if nei not in prev:
+                prev[nei] = node
+                que.append(nei)
+ 
+    path = []
+    curr = end
+ 
+    while curr != -1:
+        path.append(curr)
+        curr = prev[curr]
+ 
+    print(_min_edge,len(path))
+    print(*path[::-1])
+ 
+def main():
+    test_cases = int_input()
+    for _ in range(test_cases):
+        solve()
+ 
+if __name__ == '__main__':
+    sys.setrecursionlimit(1 << 30)
+    threading.stack_size(1 << 27)
+ 
+    main_thread = threading.Thread(target=main)
+    main_thread.start()
+    main_thread.join()",1,True,False,False,True,True,True,True,True,True,False,True,True,True,True,,,
+1926_A,1926_A_maftuna_hamroyeva_0.00%,codeforces2024,human,qwen2.5-7b-instruct,"Vladislav has a string of length 5 , whose characters are each either
+\texttt{A} or \texttt{B} .
+
+Which letter appears most frequently: \texttt{A} or \texttt{B} ?
+
+Input
+
+The first line of the input contains an integer t (1 \leq t \leq 32 ) — the
+number of test cases.
+
+The only line of each test case contains a string of length 5 consisting of
+letters \texttt{A} and \texttt{B} .
+
+All t strings in a test are different (distinct).
+
+Output
+
+For each test case, output one letter (\texttt{A} or \texttt{B} ) denoting the
+character that appears most frequently in the string.
+
+Example
+
+Input
+
+    8
+    
+    ABABB
+    
+    ABABA
+    
+    BBBAB
+    
+    AAAAA
+    
+    BBBBB
+    
+    BABAA
+    
+    AAAAB
+    
+    BAAAA
+
+Output
+
+    B
+    A
+    B
+    A
+    B
+    A
+    A
+    A","t=int(input())
+l=0
+h=0
+for i in range(t):
+    a=str(input())
+    for j in a :
+        if j in 'A' :
+            l+=1
+        else:
+            h+=1
+    if(l>h):
+        print('A')
+    elif(l<h):
+        print('B')",1,False,False,False,True,False,True,True,False,False,True,True,True,True,True,,,
+1926_E,1926_E_daniilrybakov_11.11%,codeforces2024,human,qwen2.5-7b-instruct,"Vladislav has n cards numbered 1, 2, \dots, n . He wants to lay them down in a
+row as follows:
+
+  * First, he lays down all the odd-numbered cards from smallest to largest. 
+  * Next, he lays down all cards that are twice an odd number from smallest to largest (i.e. 2 multiplied by an odd number). 
+  * Next, he lays down all cards that are 3 times an odd number from smallest to largest (i.e. 3 multiplied by an odd number). 
+  * Next, he lays down all cards that are 4 times an odd number from smallest to largest (i.e. 4 multiplied by an odd number). 
+  * And so on, until all cards are laid down. 
+
+What is the k -th card he lays down in this process? Once Vladislav puts a
+card down, he cannot use that card again.
+
+Input
+
+The first line contains an integer t (1 \leq t \leq 5 \cdot 10^4 ) — the
+number of test cases.
+
+The only line of each test case contains two integers n and k (1 \leq k \leq n
+\leq 10^9 ) — the number of cards Vlad has, and the position of the card you
+need to output.
+
+Output
+
+For each test case, output a single integer — the k -th card Vladislav lays
+down.
+
+Example
+
+Input
+
+    11
+    
+    7 1
+    
+    7 2
+    
+    7 3
+    
+    7 4
+    
+    7 5
+    
+    7 6
+    
+    7 7
+    
+    1 1
+    
+    34 14
+    
+    84 19
+    
+    1000000000 1000000000
+
+Output
+
+    1
+    3
+    5
+    7
+    2
+    6
+    4
+    1
+    27
+    37
+    536870912
+    
+Note
+
+In the first seven test cases, n=7 . Vladislav lays down the cards as follows:
+
+  * First — all the odd-numbered cards in the order 1 , 3 , 5 , 7 . 
+  * Next — all cards that are twice an odd number in the order 2 , 6 . 
+  * Next, there are no remaining cards that are 3 times an odd number. (Vladislav has only one of each card.) 
+  * Next — all cards that are 4 times an odd number, and there is only one such card: 4 . 
+  * There are no more cards left, so Vladislav stops. 
+
+Thus the order of cards is 1 , 3 , 5 , 7 , 2 , 6 , 4 .","t = int(input())
+for _ in range(t):
+    n, k = map(int, input().split())
+    n_back = n
+    s = (n + 1) // 2
+    n = (n + 1) // 2
+    m = 1
+    while s < k:
+        if n == 0:
+            s = n_back
+            n = 1
+            break
+        m *= 2
+        n //= 2
+        s += n
+    # print(n, s, k, m, (k - (s - n)))
+    print((2 * (k - (s - n)) - 1) * m)",2,False,False,False,True,False,False,True,True,True,False,False,True,True,True,,,
+1971_E,1971_E_M2024_100%,codeforces2024,human,qwen2.5-7b-instruct,"Timur is in a car traveling on the number line from point 0 to point n . The
+car starts moving from point 0 at minute 0 .
+
+There are k+1 signs on the line at points 0, a_1, a_2, \dots, a_k , and Timur
+knows that the car will arrive there at minutes 0, b_1, b_2, \dots, b_k ,
+respectively. The sequences a and b are strictly increasing with a_k = n .
+
+![](https://espresso.codeforces.com/eaf3bfb8e7a8fa4f5e8673f9a02116761cb86c93.png)
+
+Between any two adjacent signs, the car travels with a constant speed. Timur
+has q queries: each query will be an integer d , and Timur wants you to output
+how many minutes it takes the car to reach point d , rounded down to the
+nearest integer.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains three integers n , k , and q , (k
+\leq n \leq 10^9 ; 1 \leq k, q \leq 10^5 ) — the final destination, the number
+of points Timur knows the time for, and the number of queries respectively.
+
+The second line of each test case contains k integers a_i (1 \leq a_i \leq n ;
+a_i < a_{i+1} for every 1 \leq i \leq k-1 ; a_k = n ).
+
+The third line of each test case contains k integers b_i (1 \leq b_i \leq 10^9
+; b_i < b_{i+1} for every 1 \leq i \leq k-1 ).
+
+Each of the following q lines contains a single integer d (0 \leq d \leq n ) —
+the distance that Timur asks the minutes passed for.
+
+The sum of k over all test cases doesn't exceed 10^5 , and the sum of q over
+all test cases doesn't exceed 10^5 .
+
+Output
+
+For each query, output a single integer — the number of minutes passed until
+the car reaches the point d , rounded down.
+
+Example
+
+Input
+
+    4
+    
+    10 1 3
+    
+    10
+    
+    10
+    
+    0
+    
+    6
+    
+    7
+    
+    10 2 4
+    
+    4 10
+    
+    4 7
+    
+    6
+    
+    4
+    
+    2
+    
+    7
+    
+    1000000000 1 1
+    
+    1000000000
+    
+    1000000000
+    
+    99999999
+    
+    6 1 3
+    
+    6
+    
+    5
+    
+    2
+    
+    6
+    
+    5
+
+Output
+
+    0 6 7 
+    5 4 2 5 
+    99999999 
+    1 5 4 
+    
+Note
+
+For the first test case, the car goes from point 0 to point 10 in 10 minutes,
+so the speed is 1 unit per minute and:
+
+  * At point 0 , the time will be 0 minutes. 
+  * At point 6 , the time will be 6 minutes. 
+  * At point 7 , the time will be 7 minutes. 
+
+For the second test case, between points 0 and 4 , the car travels at a speed
+of 1 unit per minute and between 4 and 10 with a speed of 2 units per minute
+and:
+
+  * At point 6 , the time will be 5 minutes. 
+  * At point 4 , the time will be 4 minutes. 
+  * At point 2 , the time will be 2 minutes. 
+  * At point 7 , the time will be 5.5 minutes, so the answer is 5 . 
+
+For the fourth test case, the car travels with 1.2 units per minute, so the
+answers to the queries are:
+
+  * At point 2 , the time will be 1.66\dots minutes, so the answer is 1 . 
+  * At point 6 , the time will be 5 minutes. 
+  * At point 5 , the time will be 4.16\dots minutes, so the answer is 4 .","from bisect import bisect_left
+t = int(input())
+ 
+for _ in range(t):
+    n, k, q = map(int, input().split())
+    a = [0] + list(map(int, input().split()))
+    b = [0] + list(map(int, input().split()))
+    ad = [0]
+    bd = [0]
+    for i in range(1, len(a)):
+        ad.append(a[i]-a[i-1])
+    for i in range(1, len(b)):
+        bd.append(b[i]-b[i-1])
+    v = [0]
+    for i in range(1,len(a)):
+        v.append(ad[i]/bd[i])    
+    for l in range(q):
+        m = 0
+        i = 1
+        ql = int(input())
+        s = bisect_left(a, ql)
+        if a[s] == ql:
+            print(b[s], end=' ')
+            continue
+        ql -= a[s-1]
+        m += b[s-1]
+        m += bd[s] * ql//ad[s]
+        print(m, end=' ')
+    print()",2,True,False,False,True,True,True,True,True,True,True,True,True,True,True,,,
+1977_A,1977_A_VSS201445_HashirWaqar_20.00%,codeforces2024,human,qwen2.5-7b-instruct,"The little boy Nikita was given some cubes as a present. He decided to build a
+tower out of them.
+
+Initially, the tower doesn't have any cubes. In one move, Nikita either puts
+exactly 1 cube on top of the tower or removes exactly 1 cube from the top of
+the tower. Is it possible that after n moves, the resulting tower has exactly
+m cubes?
+
+Input
+
+Each test contains multiple test cases. The first line of input contains a
+single integer t (1 \le t \le 100 ) — the number of test cases. The
+description of the test cases follows.
+
+The only line of each test case contains two integers n and m (1 \le n, m \le
+100 ).
+
+Output
+
+For each test case, output ""Yes"" (without quotes) if Nikita can obtain a tower
+with m cubes, and ""No"" (without quotes) otherwise.
+
+You can output each letter in any case (lowercase or uppercase). For example,
+the strings ""yEs"", ""yes"", ""Yes"", and ""YES"" will be accepted as a positive
+answer.
+
+Example
+
+Input
+
+    3
+    
+    3 3
+    
+    2 4
+    
+    5 3
+
+Output
+
+    Yes
+    No
+    Yes
+    
+Note
+
+In the first test case, Nikita can put 1 cube on top of the tower 3 times in a
+row, so the answer is ""Yes"".
+
+In the second test case, Nikita can only end up with either a tower with no
+blocks or a tower with 2 blocks, so the answer is ""No"".","for _ in range(int(input())):
+    n,m=map(int,input().split())
+    if n<m:print('NO')
+    elif n&1 and m&1 or n%2==0 and m%2==0:print('YES')",2,False,False,False,False,False,False,False,False,False,False,True,False,False,True,,,
+1970_F1,1970_F1_osvarp_21.43%,codeforces2024,human,qwen2.5-7b-instruct,"This afternoon, you decided to enjoy the first days of Spring by taking a walk
+outside. As you come near the Quidditch field, you hear screams. Once again,
+there is a conflict about the score: the two teams are convinced that they won
+the game! To prevent this problem from happening one more time, you decide to
+get involved in the refereeing of the matches.
+
+Now, you will stay in the stadium to watch the game and count the score. At
+the end of the game, you will decide the winner.
+
+Today, two teams are competing: the red Gryffindor (R) and the blue Ravenclaw
+(B) team. Each team is composed of P players (1 \leq P \leq 10 ).
+
+The field is a rectangle of N lines and M columns (3 \leq N, M \leq 99 , N and
+M are odd). All the positions are integers, and several entities are allowed
+to be at the same position in the field. At the beginning of the game, the
+field contains goals for the two teams (each team can own between one and five
+goals), the players, and exactly one Quaffle. Other types of balls will be
+available in the harder versions of the problem.
+
+A game is composed of T steps (0 \leq T \leq 10000 ). At each step, one entity
+on the field (a player or a ball) performs one action. All entities can move.
+A player can also catch a ball or throw the Quaffle that it is carrying. To
+catch a ball, a player must be located on the same cell as it. The Quaffle
+does not perform any action while it is being carried; it only follows the
+movements of the player. If a player carrying the Quaffle decides to throw it,
+the Quaffle is simply put at the current position of the player.
+
+To win a point, a player must leave the Quaffle at a goal of the other team.
+When it does, the team of the player wins one point, and the Quaffle instantly
+moves to the middle of the field (the cell at the (M+1)/2 -th column of the
+(N+1)/2 -th line of the field, starting from 1). There is no goal in the
+middle of the field. If a player puts the ball in its own goal, the other team
+wins the point.
+
+Input
+
+On the first line, the integers N and M .
+
+The description of the field follows: N lines of M pairs of characters
+separated by spaces. Each pair of characters represents a position on the
+field. It can be either:
+
+  * .. to represent an empty cell 
+  * R0, ..., R9, B0, ..., B9 to represent a player. The first character is the team of the player, and the second is the number of the player in the team. Each pair of characters is unique, but it is not guaranteed that all the pairs appear in the grid. 
+  * RG or BG to represent a goal. The blue team tries to put the ball in a red goal (RG) while the red team tries to put the ball in a blue goal (BG). 
+  * .Q to represent the Quaffle, which is the ball that the players use to score goals. 
+
+The next line contains T , the number of steps that compose the game. T lines
+follow, each describing one action. It contains several pieces of information
+separated by a space. First, a pair of characters representing the entity that
+must perform the action. Second, the description of the action:
+
+  * U, D, L, R indicate that the entity moves on the grid. It can move to the top of the grid (U), to the bottom (D), to the left (L), or to the right (R). Each entity moves by only one cell at a time. 
+  * C indicates that the player catches the ball (only a player can catch a ball). Then, there is a space followed by a pair of characters: the description of the ball caught by the player. This information is needed since in the next versions of the problem, several balls may be in the same cell. 
+  * T indicates that the player throws the Quaffle that it is carrying. 
+
+All the actions performed by the entities are guaranteed to be valid: the
+players stay in the field, don't catch a ball if they are not in the same
+cell, don't release the Quaffle if they are not carrying it, ...
+
+Output
+
+You must output the description of the main events of the game, one event per
+line. More precisely:
+
+  * Each time a team scores, you must print t RED GOAL or t BLUE GOAL, depending on the team who scored, where t is the current time (the position of the action in the list of actions, starting from 0). In the case where a player scores in the wrong goal (a red player scores in the red goal, or a blue player scores in the blue goal), you must print the name of the team who wins one point, that is, the other team. 
+
+The events must be printed in ascending order of t.
+
+At the end of the game, you must print the final score as: FINAL SCORE: r b,
+where r is the score of the red team and b is the score of the blue team.
+
+Examples
+
+Input
+
+    5 5
+    
+    .. R1 .. B1 ..
+    
+    RG .. .. .. BG
+    
+    RG R0 .Q B0 BG
+    
+    RG .. .. .. BG
+    
+    .. R2 .. B2 ..
+    
+    13
+    
+    B2 U
+    
+    B2 U
+    
+    B2 L
+    
+    B2 C .Q
+    
+    B2 L
+    
+    B2 L
+    
+    B2 T
+    
+    R0 R
+    
+    R0 C .Q
+    
+    R0 D
+    
+    R0 R
+    
+    R0 R
+    
+    R0 T
+
+Output
+
+    6 BLUE GOAL
+    12 RED GOAL
+    FINAL SCORE: 1 1
+    
+Input
+
+    3 5
+    
+    .. .. R0 .. ..
+    
+    RG .. .Q .. BG
+    
+    .. .. B0 .. ..
+    
+    12
+    
+    R0 D
+    
+    R0 C .Q
+    
+    R0 R
+    
+    R0 T
+    
+    R0 D
+    
+    B0 R
+    
+    B0 U
+    
+    B0 C .Q
+    
+    B0 L
+    
+    B0 L
+    
+    B0 L
+    
+    B0 T
+
+Output
+
+    11 BLUE GOAL
+    FINAL SCORE: 0 1
+    
+Input
+
+    3 5
+    
+    .. .. R0 .. ..
+    
+    RG .. .Q .. BG
+    
+    .. .. B0 .. ..
+    
+    5
+    
+    R0 D
+    
+    R0 C .Q
+    
+    R0 L
+    
+    R0 L
+    
+    R0 T
+
+Output
+
+    4 BLUE GOAL
+    FINAL SCORE: 0 1
+    
+Note
+
+In the first example, a blue player goes to the middle of the grid, at the
+position of the Quaffle. He takes it, goes to the goal of the red team, and
+lets the ball there. He scores! The ball gets back to the middle of the field,
+a red player takes it and scores too.
+
+In the second example, the red player takes the Quaffle, move it and throw it.
+The blue player catches the ball, goes to the red goal and scores.
+
+In the third example, the red player takes the ball and scores in the goal of
+their own team: the blue team wins a point.","from sys import stdin
+ 
+mov = {'U':(-1,0),'D':(1,0),'L':(0,-1),'R':(0,1),'T':(0,0)};
+GoalName = [""RED"", ""BLUE""]
+ 
+def main():
+    n,m = map(int,stdin.readline().strip().split());
+    grid = [];
+    elements = {"".B"":(0,0)};
+    allPlayers = {};
+    goal = [[],[]]
+    points= [0,0];
+    
+    def goalIn( pos ):
+        res = 0 if ( pos in goal[0] ) else ( 1 if ( pos in goal[1] ) else -1 );
+        return res;
+    def isPlayer( el ):
+        res = (el[0] == 'B' or el[0] == 'R')and(el[1]!='G');
+        return res;
+    
+    for i in range(n):
+        line = stdin.readline().strip().split();
+        grid.append( line );
+        for ind in range(len(line)):
+            if ( line[ind] != "".."" ):
+                elements[line[ind]] = (i,ind);
+                if ( isPlayer( line[ind] ) ):
+                    allPlayers[line[ind]] = False;
+                elif ( line[ind][1]=='G' ):
+                    tmp = 0 if line[ind][0] =='B' else 1;
+                    goal[tmp].append( (i,ind) );
+    
+    t = int(stdin.readline().strip());
+    for time in range( t ):
+        comand = stdin.readline().strip().split();
+        if ( len(comand) == 3 ):
+            obj, com, el = comand;
+            if ( el == "".Q"" ):
+                # print(""lo agarra en (%d, %d)"" % ( elements[obj][0], elements[obj][1] ) );
+                allPlayers[obj] = True;
+            elif ( el == "".S"" ):
+                team = 1 if obj[0] =='B' else 0;
+                points[team] += 10;
+                print( ""%d %s CATCH GOLDEN SNITCH"" % ( time, GoalName[team] ) );
+        else:
+            obj, com = comand;
+            pos = elements[obj];
+            nxt = (pos[0]+mov[com][0], pos[1]+mov[com][1] );
+            if ( ( obj == "".B"" and isPlayer(grid[nxt[0]][nxt[1]]) ) or ( isPlayer(obj) and elements["".B""]==nxt ) ):
+                player =  obj if isPlayer(obj) else grid[nxt[0]][nxt[1]];
+                print( ""%d %s ELIMINATED"" % (time, player ) );
+            elif ( com=='T' ):
+                allPlayers[obj] = False;
+                if ( goalIn(pos)!=-1 ):
+                    team=goalIn(pos);
+                    print( ""%d %s GOAL"" %( time, GoalName[team] ) );
+                    points[team] += 1;
+            elif( isPlayer(obj) ):
+                elements[obj] = nxt;
+            
+            if ( obj == "".B"" ):
+                elements[obj] = nxt;
+            
+    print(""FINAL SCORE: %d %d""%( points[0], points[1] ));
+                
+                
+                
+ 
+main();",2,False,False,False,True,False,True,True,True,True,True,False,True,False,False,,,
+1926_E,1926_E_daniilrybakov_11.11%,codeforces2024,human,qwen2.5-7b-instruct,"Vladislav has n cards numbered 1, 2, \dots, n . He wants to lay them down in a
+row as follows:
+
+  * First, he lays down all the odd-numbered cards from smallest to largest. 
+  * Next, he lays down all cards that are twice an odd number from smallest to largest (i.e. 2 multiplied by an odd number). 
+  * Next, he lays down all cards that are 3 times an odd number from smallest to largest (i.e. 3 multiplied by an odd number). 
+  * Next, he lays down all cards that are 4 times an odd number from smallest to largest (i.e. 4 multiplied by an odd number). 
+  * And so on, until all cards are laid down. 
+
+What is the k -th card he lays down in this process? Once Vladislav puts a
+card down, he cannot use that card again.
+
+Input
+
+The first line contains an integer t (1 \leq t \leq 5 \cdot 10^4 ) — the
+number of test cases.
+
+The only line of each test case contains two integers n and k (1 \leq k \leq n
+\leq 10^9 ) — the number of cards Vlad has, and the position of the card you
+need to output.
+
+Output
+
+For each test case, output a single integer — the k -th card Vladislav lays
+down.
+
+Example
+
+Input
+
+    11
+    
+    7 1
+    
+    7 2
+    
+    7 3
+    
+    7 4
+    
+    7 5
+    
+    7 6
+    
+    7 7
+    
+    1 1
+    
+    34 14
+    
+    84 19
+    
+    1000000000 1000000000
+
+Output
+
+    1
+    3
+    5
+    7
+    2
+    6
+    4
+    1
+    27
+    37
+    536870912
+    
+Note
+
+In the first seven test cases, n=7 . Vladislav lays down the cards as follows:
+
+  * First — all the odd-numbered cards in the order 1 , 3 , 5 , 7 . 
+  * Next — all cards that are twice an odd number in the order 2 , 6 . 
+  * Next, there are no remaining cards that are 3 times an odd number. (Vladislav has only one of each card.) 
+  * Next — all cards that are 4 times an odd number, and there is only one such card: 4 . 
+  * There are no more cards left, so Vladislav stops. 
+
+Thus the order of cards is 1 , 3 , 5 , 7 , 2 , 6 , 4 .","t = int(input())
+for _ in range(t):
+    n, k = map(int, input().split())
+    n_back = n
+    s = (n + 1) // 2
+    n = (n + 1) // 2
+    m = 1
+    while s < k:
+        if n == 0:
+            s = n_back
+            n = 1
+            break
+        m *= 2
+        n //= 2
+        s += n
+    # print(n, s, k, m, (k - (s - n)))
+    print((2 * (k - (s - n)) - 1) * m)",3,False,False,False,True,False,False,True,True,True,True,False,True,True,True,,,
+1968_E,1968_E_muzi123456_100%,codeforces2024,human,qwen2.5-7b-instruct,"You are given an integer n . You choose n cells (x_1,y_1),
+(x_2,y_2),\dots,(x_n,y_n) in the grid n\times n where 1\le x_i\le n and 1\le
+y_i\le n .
+
+Let \mathcal{H} be the set of distinct Manhattan distances between any pair of
+cells. Your task is to maximize the size of \mathcal{H} . Examples of sets and
+their construction are given in the notes.
+
+If there exists more than one solution, you are allowed to output any.
+
+Manhattan distance between cells (x_1,y_1) and (x_2,y_2) equals
+|x_1-x_2|+|y_1-y_2| .
+
+Input
+
+The first line contains a single integer t (1\le t\le 50 ) — the number of
+test cases.
+
+Each of the following t lines contains a single integer n (2\le n\le 10^3 ).
+
+Output
+
+For each test case, output n points which maximize the size of \mathcal{H} .
+It is not necessary to output an empty line at the end of the answer for each
+test case.
+
+Example
+
+Input
+
+    5
+    
+    2
+    
+    3
+    
+    4
+    
+    5
+    
+    6
+
+Output
+
+    1 1
+    1 2
+    
+    2 1
+    2 3
+    3 1
+    
+    1 1
+    1 3
+    4 3
+    4 4
+    
+    1 1
+    1 3
+    1 4
+    2 1
+    5 5
+    
+    1 4
+    1 5
+    1 6
+    5 2
+    5 5
+    6 1
+    
+Note
+
+In the first testcase we have n=2 . One of the possible arrangements is:
+
+![](https://espresso.codeforces.com/4d7adaa08c9ee5ebf2a0caba13185ac968d6bcd9.png)
+The arrangement with cells located in (1,1) and (1,2) . In this case
+\mathcal{H}=\\{|1-1|+|1-1|,|1-1|+|2-2|,|1-1|+|1-2|\\}=\\{0,0,1\\}=\\{0,1\\} .
+Hence, the size of \mathcal{H} is 2 . It can be shown that it is the greatest
+possible answer.
+
+In the second testcase we have n=3 . The optimal arrangement is:
+
+![](https://espresso.codeforces.com/52d127e3dbe0141bb58dbdf4158586772a208758.png)
+The arrangement with cells located in (2,1) , (2,3) and (3,1) .
+
+\mathcal{H}
+=\\{|2-2|+|1-1|,|2-2|+|3-3|,|3-3|+|1-1|,|2-2|+|1-3|,|2-3|+|1-1|,|2-3|+|3-1|\\}
+=\\{0,0,0,2,1,3\\} =\\{0,1,2,3\\} .
+
+For n=4 a possible arrangement is:
+
+![](https://espresso.codeforces.com/575a6758d1f67174ceb877b32a1e89770cd2281a.png)
+
+For n=5 a possible arrangement is:
+
+![](https://espresso.codeforces.com/b790401b426625982c00d04cff13aceec53918b4.png)
+
+For n=6 a possible arrangement is:
+
+![](https://espresso.codeforces.com/d0f498905660a67115d9f58c6cbc1439ba6e509c.png)","t=int(input())
+while t:
+    t-=1
+    n=int(input())
+    print(n,end=' ')
+    print(n)
+    print(n,end=' ')
+    print(n-1)
+    if n==3:
+        print(2,end=' ')
+        print(1)
+    else:
+        for i in range(1,n-1):
+            print(i,end=' ')
+            print(i)
+    print(' ')",3,True,False,False,False,False,False,False,False,False,False,False,False,True,False,,,
+1971_E,1971_E_M2024_100%,codeforces2024,human,qwen2.5-7b-instruct,"Timur is in a car traveling on the number line from point 0 to point n . The
+car starts moving from point 0 at minute 0 .
+
+There are k+1 signs on the line at points 0, a_1, a_2, \dots, a_k , and Timur
+knows that the car will arrive there at minutes 0, b_1, b_2, \dots, b_k ,
+respectively. The sequences a and b are strictly increasing with a_k = n .
+
+![](https://espresso.codeforces.com/eaf3bfb8e7a8fa4f5e8673f9a02116761cb86c93.png)
+
+Between any two adjacent signs, the car travels with a constant speed. Timur
+has q queries: each query will be an integer d , and Timur wants you to output
+how many minutes it takes the car to reach point d , rounded down to the
+nearest integer.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains three integers n , k , and q , (k
+\leq n \leq 10^9 ; 1 \leq k, q \leq 10^5 ) — the final destination, the number
+of points Timur knows the time for, and the number of queries respectively.
+
+The second line of each test case contains k integers a_i (1 \leq a_i \leq n ;
+a_i < a_{i+1} for every 1 \leq i \leq k-1 ; a_k = n ).
+
+The third line of each test case contains k integers b_i (1 \leq b_i \leq 10^9
+; b_i < b_{i+1} for every 1 \leq i \leq k-1 ).
+
+Each of the following q lines contains a single integer d (0 \leq d \leq n ) —
+the distance that Timur asks the minutes passed for.
+
+The sum of k over all test cases doesn't exceed 10^5 , and the sum of q over
+all test cases doesn't exceed 10^5 .
+
+Output
+
+For each query, output a single integer — the number of minutes passed until
+the car reaches the point d , rounded down.
+
+Example
+
+Input
+
+    4
+    
+    10 1 3
+    
+    10
+    
+    10
+    
+    0
+    
+    6
+    
+    7
+    
+    10 2 4
+    
+    4 10
+    
+    4 7
+    
+    6
+    
+    4
+    
+    2
+    
+    7
+    
+    1000000000 1 1
+    
+    1000000000
+    
+    1000000000
+    
+    99999999
+    
+    6 1 3
+    
+    6
+    
+    5
+    
+    2
+    
+    6
+    
+    5
+
+Output
+
+    0 6 7 
+    5 4 2 5 
+    99999999 
+    1 5 4 
+    
+Note
+
+For the first test case, the car goes from point 0 to point 10 in 10 minutes,
+so the speed is 1 unit per minute and:
+
+  * At point 0 , the time will be 0 minutes. 
+  * At point 6 , the time will be 6 minutes. 
+  * At point 7 , the time will be 7 minutes. 
+
+For the second test case, between points 0 and 4 , the car travels at a speed
+of 1 unit per minute and between 4 and 10 with a speed of 2 units per minute
+and:
+
+  * At point 6 , the time will be 5 minutes. 
+  * At point 4 , the time will be 4 minutes. 
+  * At point 2 , the time will be 2 minutes. 
+  * At point 7 , the time will be 5.5 minutes, so the answer is 5 . 
+
+For the fourth test case, the car travels with 1.2 units per minute, so the
+answers to the queries are:
+
+  * At point 2 , the time will be 1.66\dots minutes, so the answer is 1 . 
+  * At point 6 , the time will be 5 minutes. 
+  * At point 5 , the time will be 4.16\dots minutes, so the answer is 4 .","from bisect import bisect_left
+t = int(input())
+ 
+for _ in range(t):
+    n, k, q = map(int, input().split())
+    a = [0] + list(map(int, input().split()))
+    b = [0] + list(map(int, input().split()))
+    ad = [0]
+    bd = [0]
+    for i in range(1, len(a)):
+        ad.append(a[i]-a[i-1])
+    for i in range(1, len(b)):
+        bd.append(b[i]-b[i-1])
+    v = [0]
+    for i in range(1,len(a)):
+        v.append(ad[i]/bd[i])    
+    for l in range(q):
+        m = 0
+        i = 1
+        ql = int(input())
+        s = bisect_left(a, ql)
+        if a[s] == ql:
+            print(b[s], end=' ')
+            continue
+        ql -= a[s-1]
+        m += b[s-1]
+        m += bd[s] * ql//ad[s]
+        print(m, end=' ')
+    print()",3,True,False,False,False,True,True,True,True,True,True,True,True,True,True,,,
+1977_A,1977_A_VSS201445_HashirWaqar_20.00%,codeforces2024,human,qwen2.5-7b-instruct,"The little boy Nikita was given some cubes as a present. He decided to build a
+tower out of them.
+
+Initially, the tower doesn't have any cubes. In one move, Nikita either puts
+exactly 1 cube on top of the tower or removes exactly 1 cube from the top of
+the tower. Is it possible that after n moves, the resulting tower has exactly
+m cubes?
+
+Input
+
+Each test contains multiple test cases. The first line of input contains a
+single integer t (1 \le t \le 100 ) — the number of test cases. The
+description of the test cases follows.
+
+The only line of each test case contains two integers n and m (1 \le n, m \le
+100 ).
+
+Output
+
+For each test case, output ""Yes"" (without quotes) if Nikita can obtain a tower
+with m cubes, and ""No"" (without quotes) otherwise.
+
+You can output each letter in any case (lowercase or uppercase). For example,
+the strings ""yEs"", ""yes"", ""Yes"", and ""YES"" will be accepted as a positive
+answer.
+
+Example
+
+Input
+
+    3
+    
+    3 3
+    
+    2 4
+    
+    5 3
+
+Output
+
+    Yes
+    No
+    Yes
+    
+Note
+
+In the first test case, Nikita can put 1 cube on top of the tower 3 times in a
+row, so the answer is ""Yes"".
+
+In the second test case, Nikita can only end up with either a tower with no
+blocks or a tower with 2 blocks, so the answer is ""No"".","for _ in range(int(input())):
+    n,m=map(int,input().split())
+    if n<m:print('NO')
+    elif n&1 and m&1 or n%2==0 and m%2==0:print('YES')",3,False,False,False,False,False,False,True,False,False,False,False,True,False,False,,,
+1970_F1,1970_F1_osvarp_21.43%,codeforces2024,human,qwen2.5-7b-instruct,"This afternoon, you decided to enjoy the first days of Spring by taking a walk
+outside. As you come near the Quidditch field, you hear screams. Once again,
+there is a conflict about the score: the two teams are convinced that they won
+the game! To prevent this problem from happening one more time, you decide to
+get involved in the refereeing of the matches.
+
+Now, you will stay in the stadium to watch the game and count the score. At
+the end of the game, you will decide the winner.
+
+Today, two teams are competing: the red Gryffindor (R) and the blue Ravenclaw
+(B) team. Each team is composed of P players (1 \leq P \leq 10 ).
+
+The field is a rectangle of N lines and M columns (3 \leq N, M \leq 99 , N and
+M are odd). All the positions are integers, and several entities are allowed
+to be at the same position in the field. At the beginning of the game, the
+field contains goals for the two teams (each team can own between one and five
+goals), the players, and exactly one Quaffle. Other types of balls will be
+available in the harder versions of the problem.
+
+A game is composed of T steps (0 \leq T \leq 10000 ). At each step, one entity
+on the field (a player or a ball) performs one action. All entities can move.
+A player can also catch a ball or throw the Quaffle that it is carrying. To
+catch a ball, a player must be located on the same cell as it. The Quaffle
+does not perform any action while it is being carried; it only follows the
+movements of the player. If a player carrying the Quaffle decides to throw it,
+the Quaffle is simply put at the current position of the player.
+
+To win a point, a player must leave the Quaffle at a goal of the other team.
+When it does, the team of the player wins one point, and the Quaffle instantly
+moves to the middle of the field (the cell at the (M+1)/2 -th column of the
+(N+1)/2 -th line of the field, starting from 1). There is no goal in the
+middle of the field. If a player puts the ball in its own goal, the other team
+wins the point.
+
+Input
+
+On the first line, the integers N and M .
+
+The description of the field follows: N lines of M pairs of characters
+separated by spaces. Each pair of characters represents a position on the
+field. It can be either:
+
+  * .. to represent an empty cell 
+  * R0, ..., R9, B0, ..., B9 to represent a player. The first character is the team of the player, and the second is the number of the player in the team. Each pair of characters is unique, but it is not guaranteed that all the pairs appear in the grid. 
+  * RG or BG to represent a goal. The blue team tries to put the ball in a red goal (RG) while the red team tries to put the ball in a blue goal (BG). 
+  * .Q to represent the Quaffle, which is the ball that the players use to score goals. 
+
+The next line contains T , the number of steps that compose the game. T lines
+follow, each describing one action. It contains several pieces of information
+separated by a space. First, a pair of characters representing the entity that
+must perform the action. Second, the description of the action:
+
+  * U, D, L, R indicate that the entity moves on the grid. It can move to the top of the grid (U), to the bottom (D), to the left (L), or to the right (R). Each entity moves by only one cell at a time. 
+  * C indicates that the player catches the ball (only a player can catch a ball). Then, there is a space followed by a pair of characters: the description of the ball caught by the player. This information is needed since in the next versions of the problem, several balls may be in the same cell. 
+  * T indicates that the player throws the Quaffle that it is carrying. 
+
+All the actions performed by the entities are guaranteed to be valid: the
+players stay in the field, don't catch a ball if they are not in the same
+cell, don't release the Quaffle if they are not carrying it, ...
+
+Output
+
+You must output the description of the main events of the game, one event per
+line. More precisely:
+
+  * Each time a team scores, you must print t RED GOAL or t BLUE GOAL, depending on the team who scored, where t is the current time (the position of the action in the list of actions, starting from 0). In the case where a player scores in the wrong goal (a red player scores in the red goal, or a blue player scores in the blue goal), you must print the name of the team who wins one point, that is, the other team. 
+
+The events must be printed in ascending order of t.
+
+At the end of the game, you must print the final score as: FINAL SCORE: r b,
+where r is the score of the red team and b is the score of the blue team.
+
+Examples
+
+Input
+
+    5 5
+    
+    .. R1 .. B1 ..
+    
+    RG .. .. .. BG
+    
+    RG R0 .Q B0 BG
+    
+    RG .. .. .. BG
+    
+    .. R2 .. B2 ..
+    
+    13
+    
+    B2 U
+    
+    B2 U
+    
+    B2 L
+    
+    B2 C .Q
+    
+    B2 L
+    
+    B2 L
+    
+    B2 T
+    
+    R0 R
+    
+    R0 C .Q
+    
+    R0 D
+    
+    R0 R
+    
+    R0 R
+    
+    R0 T
+
+Output
+
+    6 BLUE GOAL
+    12 RED GOAL
+    FINAL SCORE: 1 1
+    
+Input
+
+    3 5
+    
+    .. .. R0 .. ..
+    
+    RG .. .Q .. BG
+    
+    .. .. B0 .. ..
+    
+    12
+    
+    R0 D
+    
+    R0 C .Q
+    
+    R0 R
+    
+    R0 T
+    
+    R0 D
+    
+    B0 R
+    
+    B0 U
+    
+    B0 C .Q
+    
+    B0 L
+    
+    B0 L
+    
+    B0 L
+    
+    B0 T
+
+Output
+
+    11 BLUE GOAL
+    FINAL SCORE: 0 1
+    
+Input
+
+    3 5
+    
+    .. .. R0 .. ..
+    
+    RG .. .Q .. BG
+    
+    .. .. B0 .. ..
+    
+    5
+    
+    R0 D
+    
+    R0 C .Q
+    
+    R0 L
+    
+    R0 L
+    
+    R0 T
+
+Output
+
+    4 BLUE GOAL
+    FINAL SCORE: 0 1
+    
+Note
+
+In the first example, a blue player goes to the middle of the grid, at the
+position of the Quaffle. He takes it, goes to the goal of the red team, and
+lets the ball there. He scores! The ball gets back to the middle of the field,
+a red player takes it and scores too.
+
+In the second example, the red player takes the Quaffle, move it and throw it.
+The blue player catches the ball, goes to the red goal and scores.
+
+In the third example, the red player takes the ball and scores in the goal of
+their own team: the blue team wins a point.","from sys import stdin
+ 
+mov = {'U':(-1,0),'D':(1,0),'L':(0,-1),'R':(0,1),'T':(0,0)};
+GoalName = [""RED"", ""BLUE""]
+ 
+def main():
+    n,m = map(int,stdin.readline().strip().split());
+    grid = [];
+    elements = {"".B"":(0,0)};
+    allPlayers = {};
+    goal = [[],[]]
+    points= [0,0];
+    
+    def goalIn( pos ):
+        res = 0 if ( pos in goal[0] ) else ( 1 if ( pos in goal[1] ) else -1 );
+        return res;
+    def isPlayer( el ):
+        res = (el[0] == 'B' or el[0] == 'R')and(el[1]!='G');
+        return res;
+    
+    for i in range(n):
+        line = stdin.readline().strip().split();
+        grid.append( line );
+        for ind in range(len(line)):
+            if ( line[ind] != "".."" ):
+                elements[line[ind]] = (i,ind);
+                if ( isPlayer( line[ind] ) ):
+                    allPlayers[line[ind]] = False;
+                elif ( line[ind][1]=='G' ):
+                    tmp = 0 if line[ind][0] =='B' else 1;
+                    goal[tmp].append( (i,ind) );
+    
+    t = int(stdin.readline().strip());
+    for time in range( t ):
+        comand = stdin.readline().strip().split();
+        if ( len(comand) == 3 ):
+            obj, com, el = comand;
+            if ( el == "".Q"" ):
+                # print(""lo agarra en (%d, %d)"" % ( elements[obj][0], elements[obj][1] ) );
+                allPlayers[obj] = True;
+            elif ( el == "".S"" ):
+                team = 1 if obj[0] =='B' else 0;
+                points[team] += 10;
+                print( ""%d %s CATCH GOLDEN SNITCH"" % ( time, GoalName[team] ) );
+        else:
+            obj, com = comand;
+            pos = elements[obj];
+            nxt = (pos[0]+mov[com][0], pos[1]+mov[com][1] );
+            if ( ( obj == "".B"" and isPlayer(grid[nxt[0]][nxt[1]]) ) or ( isPlayer(obj) and elements["".B""]==nxt ) ):
+                player =  obj if isPlayer(obj) else grid[nxt[0]][nxt[1]];
+                print( ""%d %s ELIMINATED"" % (time, player ) );
+            elif ( com=='T' ):
+                allPlayers[obj] = False;
+                if ( goalIn(pos)!=-1 ):
+                    team=goalIn(pos);
+                    print( ""%d %s GOAL"" %( time, GoalName[team] ) );
+                    points[team] += 1;
+            elif( isPlayer(obj) ):
+                elements[obj] = nxt;
+            
+            if ( obj == "".B"" ):
+                elements[obj] = nxt;
+            
+    print(""FINAL SCORE: %d %d""%( points[0], points[1] ));
+                
+                
+                
+ 
+main();",3,False,False,False,True,False,True,True,True,True,False,True,True,True,True,,,
+1927_F,1927_F_tesfaymebre_100%,codeforces2024,human,qwen2.5-7b-instruct,"Given an undirected weighted graph with n vertices and m edges. There is at
+most one edge between each pair of vertices in the graph, and the graph does
+not contain loops (edges from a vertex to itself). The graph is not
+necessarily connected.
+
+A cycle in the graph is called simple if it doesn't pass through the same
+vertex twice and doesn't contain the same edge twice.
+
+Find any simple cycle in this graph in which the weight of the lightest edge
+is minimal.
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 10^4 ) —
+the number of test cases. Then follow the descriptions of the test cases.
+
+The first line of each test case contains two integers n and m (3 \le n \le m
+\le \min(\frac{n\cdot(n - 1)}{2}, 2 \cdot 10^5) ) — the size of the graph and
+the number of edges.
+
+The next m lines of the test case contain three integers u , v , and w (1 \le
+u, v \le n , u \ne v , 1 \le w \le 10^6 ) — vertices u and v are connected by
+an edge of weight w .
+
+It is guaranteed that there is at most one edge between each pair of vertices.
+Note that under the given constraints, there is always at least one simple
+cycle in the graph.
+
+It is guaranteed that the sum of the values of m for all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output a pair of numbers b and k , where:
+
+  * b — the minimum weight of the edge in the found cycle, 
+  * k — the number of vertices in the found cycle. 
+
+On the next line, output k numbers from 1 to n — the vertices of the cycle in
+traversal order.
+
+Note that the answer always exists, as under the given constraints, there is
+always at least one simple cycle in the graph.
+
+Example
+
+Input
+
+    5
+    
+    6 6
+    
+    1 2 1
+    
+    2 3 1
+    
+    3 1 1
+    
+    4 5 1
+    
+    5 6 1
+    
+    6 4 1
+    
+    6 6
+    
+    1 2 10
+    
+    2 3 8
+    
+    3 1 5
+    
+    4 5 100
+    
+    5 6 40
+    
+    6 4 3
+    
+    6 15
+    
+    1 2 4
+    
+    5 2 8
+    
+    6 1 7
+    
+    6 3 10
+    
+    6 5 1
+    
+    3 2 8
+    
+    4 3 4
+    
+    5 3 6
+    
+    2 6 6
+    
+    5 4 5
+    
+    4 1 3
+    
+    6 4 5
+    
+    4 2 1
+    
+    3 1 7
+    
+    1 5 5
+    
+    4 6
+    
+    2 3 2
+    
+    1 3 10
+    
+    1 4 1
+    
+    3 4 7
+    
+    2 4 5
+    
+    1 2 2
+    
+    4 5
+    
+    2 1 10
+    
+    3 1 3
+    
+    4 2 6
+    
+    1 4 7
+    
+    2 3 3
+
+Output
+
+    1 3
+    1 2 3 
+    3 3
+    6 4 5 
+    1 5
+    4 2 1 6 3 
+    1 4
+    1 4 3 2 
+    3 3
+    2 3 1","from collections import defaultdict, deque
+import sys
+import threading
+ 
+class DSU:
+    def __init__(self, n):
+        self.parent = [i for i in range(n)]
+        self.size = [1] * n
+ 
+    def find(self, x):
+        while self.parent[x] != x:
+            self.parent[x] = self.parent[self.parent[x]]
+            x = self.parent[x]
+ 
+        return x
+ 
+    def union(self, a, b):
+        parent_a = self.find(a)
+        parent_b = self.find(b)
+ 
+        if parent_a != parent_b:
+            if self.size[parent_a] < self.size[parent_b]:
+                parent_a, parent_b = parent_b, parent_a
+ 
+            self.size[parent_a] += self.size[parent_b]
+            self.parent[parent_b] = parent_a
+ 
+        return
+    
+def int_input():
+    return int(sys.stdin.readline().strip())
+ 
+def string():
+    return sys.stdin.readline().strip()
+ 
+def map_int():
+    return map(int, sys.stdin.readline().strip().split())
+ 
+def list_int_input():
+    return list(map(int, sys.stdin.readline().strip().split()))
+ 
+def list_string_input():
+    return list(sys.stdin.readline().strip().split())
+ 
+def solve():
+    n,m = map_int()
+    graph = defaultdict(list)
+    edges = []
+ 
+    for i in range(m):
+        u,v,w = map_int()
+        graph[u].append(v)
+        graph[v].append(u)
+ 
+        edges.append((w,u,v))
+ 
+ 
+    edges.sort(reverse=True)
+ 
+    
+    dsu = DSU(n+1)
+    _min_edge = float('inf')
+    start = -1
+    end = -1
+ 
+    for w,u,v in edges:
+        parent_u = dsu.find(u)
+        parent_v = dsu.find(v)
+        if parent_u == parent_v:
+            _min_edge = w
+            start = u
+            end = v
+        else:
+            dsu.union(u,v)
+ 
+    # path = []
+    # visited = set()
+ 
+    # def dfs(node):
+    #     visited.add(node)
+    #     for nei in graph[node]:
+    #         if nei in visited or (node == start and nei == end):
+    #             continue
+    #         if nei == end or dfs(nei):
+    #             path.append(node)
+    #             return True
+    #     return False
+    
+    # dfs(start)
+    # path.append(end)
+    # print(_min_edge,len(path))
+    # print(*path)
+ 
+    que = deque([start])
+    prev = {start: -1}
+ 
+    while que:
+        node = que.popleft()
+ 
+        if node == end:
+            break
+ 
+        for nei in graph[node]:
+            if node == start and nei == end:
+                continue
+ 
+            if nei not in prev:
+                prev[nei] = node
+                que.append(nei)
+ 
+    path = []
+    curr = end
+ 
+    while curr != -1:
+        path.append(curr)
+        curr = prev[curr]
+ 
+    print(_min_edge,len(path))
+    print(*path[::-1])
+ 
+def main():
+    test_cases = int_input()
+    for _ in range(test_cases):
+        solve()
+ 
+if __name__ == '__main__':
+    sys.setrecursionlimit(1 << 30)
+    threading.stack_size(1 << 27)
+ 
+    main_thread = threading.Thread(target=main)
+    main_thread.start()
+    main_thread.join()",3,True,False,False,True,True,True,True,True,True,True,True,True,True,True,,,
+1926_A,1926_A_maftuna_hamroyeva_0.00%,codeforces2024,human,qwen2.5-7b-instruct,"Vladislav has a string of length 5 , whose characters are each either
+\texttt{A} or \texttt{B} .
+
+Which letter appears most frequently: \texttt{A} or \texttt{B} ?
+
+Input
+
+The first line of the input contains an integer t (1 \leq t \leq 32 ) — the
+number of test cases.
+
+The only line of each test case contains a string of length 5 consisting of
+letters \texttt{A} and \texttt{B} .
+
+All t strings in a test are different (distinct).
+
+Output
+
+For each test case, output one letter (\texttt{A} or \texttt{B} ) denoting the
+character that appears most frequently in the string.
+
+Example
+
+Input
+
+    8
+    
+    ABABB
+    
+    ABABA
+    
+    BBBAB
+    
+    AAAAA
+    
+    BBBBB
+    
+    BABAA
+    
+    AAAAB
+    
+    BAAAA
+
+Output
+
+    B
+    A
+    B
+    A
+    B
+    A
+    A
+    A","t=int(input())
+l=0
+h=0
+for i in range(t):
+    a=str(input())
+    for j in a :
+        if j in 'A' :
+            l+=1
+        else:
+            h+=1
+    if(l>h):
+        print('A')
+    elif(l<h):
+        print('B')",3,False,False,False,True,False,False,False,True,True,True,True,False,True,True,,,

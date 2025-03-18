@@ -1,0 +1,8 @@
+The function processes input data consisting of `n` participants' ratings before and after a round. It initializes two flags, `is_rated` and `is_unrated`, to track whether any participant's rating changed and whether the ratings are in non-decreasing order. After processing the ratings, it prints one of three possible outcomes: 'rated', 'unrated', or 'maybe'. The function determines the outcome based on the following criteria:
+- If any participant's rating changed (`is_rated` is `True`), it prints 'rated'.
+- If no participant's rating changed (`is_rated` is `False`) and the ratings are in non-decreasing order (`is_unrated` is `True`), it prints 'unrated'.
+- If no participant's rating changed (`is_rated` is `False`) and the ratings are not in non-decreasing order (`is_unrated` is `False`), it prints 'maybe'.
+
+Potential edge cases:
+- If the input `n` is less than 2, the function will still process the input as if `n` were 2, but the loop will not execute, keeping `ratings` an empty list and `is_rated` and `is_unrated` in their initial states.
+- The function assumes that the ratings are valid integers within the given range, but no validation is performed on the input data.

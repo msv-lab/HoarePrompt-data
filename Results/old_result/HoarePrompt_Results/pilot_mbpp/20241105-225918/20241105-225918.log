@@ -1,0 +1,70 @@
+DEBUG - Start Task Mbpp/612
+DEBUG - Dataset: mbpp
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: gpt-3.5-turbo-0125
+DEBUG - description: Write a python function which takes a list of lists, where each sublist has two elements, and returns a list of two lists where the first list has the first element of each sublist and the second one has the second.
+DEBUG - Postcondition: The function accepts a parameter `list_of_lists`, which is a list of lists with exactly two elements in each sublist. It then returns two new lists: one containing the first elements of each sublist in `list_of_lists`, and the other containing the second elements of each sublist. The code does not handle cases where the input `list_of_lists` is empty or contains sublists with fewer or more than two elements.
+DEBUG - Correctness: True
+DEBUG - Start Task Mbpp/612
+DEBUG - Dataset: mbpp
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: gpt-3.5-turbo-0125
+DEBUG - description: Write a python function which takes a list of lists, where each sublist has two elements, and returns a list of two lists where the first list has the first element of each sublist and the second one has the second.
+DEBUG - Postcondition: The function accepts a parameter list_of_lists, extracts the first elements of each sublist into first_elements, and the second elements of each sublist into second_elements. It then returns a list containing first_elements and second_elements. The function assumes that list_of_lists is a list of lists where each sublist contains exactly two elements.
+DEBUG - Correctness: True
+DEBUG - Start Task Mbpp/250
+DEBUG - Dataset: mbpp
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: gpt-3.5-turbo-0125
+DEBUG - description: Write a python function that takes in a tuple and an element and counts the occcurences of the element in the tuple.
+DEBUG - Postcondition: The function accepts a tuple `tup` and an element `elem`, and returns the count of `elem` in `tup`. The function assumes that `elem` is present in `tup`.
+DEBUG - Correctness: True
+DEBUG - Start Task Mbpp/250
+DEBUG - Dataset: mbpp
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: gpt-3.5-turbo-0125
+DEBUG - description: Write a python function that takes in a tuple and an element and counts the occcurences of the element in the tuple.
+DEBUG - Postcondition: The function accepts a tuple `tup` and an element `element`, and returns the count of `element` in `tup`. The function accurately calculates the count of `element` in `tup` for all data types of `element` within the tuple.
+DEBUG - Correctness: True
+DEBUG - Start Task Mbpp/252
+DEBUG - Dataset: mbpp
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: gpt-3.5-turbo-0125
+DEBUG - description: Write a python function to convert complex numbers to polar coordinates.
+DEBUG - Postcondition: The function `func` accepts a complex number `c` as a parameter and returns the absolute value and phase of `c`.
+DEBUG - Correctness: True
+DEBUG - Start Task Mbpp/252
+DEBUG - Dataset: mbpp
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: gpt-3.5-turbo-0125
+DEBUG - description: Write a python function to convert complex numbers to polar coordinates.
+DEBUG - Postcondition: The function accepts a complex number `num` and returns its polar coordinates.
+DEBUG - Correctness: True
+DEBUG - Start Task Mbpp/478
+DEBUG - Dataset: mbpp
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: gpt-3.5-turbo-0125
+DEBUG - description: Write a function to remove lowercase substrings from a given string.
+DEBUG - Postcondition: The function accepts a string `s` and returns a new string containing only the uppercase characters from the input string. If the input string has no uppercase characters, the function will return an empty string.
+DEBUG - Correctness: True
+DEBUG - Start Task Mbpp/478
+DEBUG - Dataset: mbpp
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: gpt-3.5-turbo-0125
+DEBUG - description: Write a function to remove lowercase substrings from a given string.
+DEBUG - Postcondition: The function accepts a string `s` and returns a new string containing only the uppercase letters from the original string `s`.
+DEBUG - Correctness: True
+DEBUG - Start Task Mbpp/309
+DEBUG - Dataset: mbpp
+DEBUG - model_created: llama3-70b
+DEBUG - model_run: gpt-3.5-turbo-0125
+DEBUG - description: Write a python function to find the maximum of two numbers.
+DEBUG - Postcondition: The function accepts two integer parameters a and b, and returns the maximum value between them.
+DEBUG - Correctness: True
+DEBUG - Start Task Mbpp/309
+DEBUG - Dataset: mbpp
+DEBUG - model_created: gpt-4o
+DEBUG - model_run: gpt-3.5-turbo-0125
+DEBUG - description: Write a python function to find the maximum of two numbers.
+DEBUG - Postcondition: The function accepts two integer parameters `a` and `b` and returns the greater value between them. If `a` is equal to `b`, the function returns either `a` or `b`, as both are the same.
+DEBUG - Correctness: True

@@ -1,1 +1,0 @@
-The function `func_13` accepts two positive integers `a` and `b` (1 ≤ a, b ≤ 2 * 10^6 and b ≠ 0) and returns three values: `x`, `y`, and `g`. If `b` is 0, it returns `x` as 1, `y` as 0, and `a` unchanged. Otherwise, it recursively calls itself with `b` and `a % b`, then returns `y`, `x - a // b * y`, and `g`, where `y`, `x`, and `g` are the results of the recursive call.

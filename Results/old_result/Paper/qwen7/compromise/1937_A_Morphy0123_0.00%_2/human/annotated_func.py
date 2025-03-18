@@ -1,0 +1,21 @@
+#State of the program right berfore the function call: t is an integer such that 1 ≤ t ≤ 10^4, and for each test case, n is an integer such that 1 ≤ n ≤ 10^9.
+def func():
+    n_cases = int(input())
+    for i in range(n_cases):
+        n = int(input())
+        
+        if n == 1:
+            print(1)
+        else:
+            power = 1
+            while power < log2(n):
+                power += 1
+            if power == n:
+                print(2 ** power)
+            else:
+                power -= 1
+                print(2 ** power)
+        
+    #State: All cases have been processed, and the loop has executed exactly `n_cases` times. For each case, if the input `n` is 1, the output is 1. If `n` is greater than 32768, the output is the largest power of 2 less than or equal to `n`. If `n` is between 16384 and 32768, the output is 16384. If `n` is between 8192 and 16383, the output is 8192. If `n` is between 4096 and 8191, the output is 4096. If `n` is between 2048 and 4095, the output is 2048. If `n` is between 1024 and 2047, the output is 1024. If `n` is between 512 and 1023, the output is 512. If `n` is between 256 and 511, the output is 256. If `n` is between 128 and 255, the output is 128. If `n` is between 64 and 127, the output is 64. If `n` is between 32 and 63, the output is 32. If `n` is between 16 and 31, the output is 16. If `n` is between 8 and 15, the output is 8. If `n` is between 4 and 7, the output is 4. If `n` is between 2 and 3, the output is 2. If `n` is 1, the output is 1.
+#Overall this is what the function does:The function processes a series of test cases, each containing an integer \( n \). For each \( n \), it determines and prints the largest power of 2 that is less than or equal to \( n \). If \( n \) is 1, it simply prints 1. The function reads the number of test cases from the input first, then iterates through each case, performing the necessary calculations and printing the result.
+

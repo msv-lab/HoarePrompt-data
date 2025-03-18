@@ -1,0 +1,100 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,annotated correctness simple,naive no fsl correctness,Correctness no fsl,data file,simple verify,complex verify,default verify,simple verify no fsl,complex verify no fsl,default verify no fsl,unique_id,consistency
+161,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find the n'th lucas number.,"def find_lucas(n):
+    if n == 0:
+        return 2
+    elif n == 1:
+        return 1
+    else:
+        a, b = 2, 1
+        for _ in range(2, n + 1):
+            a, b = b, a + b
+        return b
+
+# Test cases
+assert find_lucas(9) == 76
+assert find_lucas(4) == 7
+assert find_lucas(3) == 4
+",,False,post,True,False,False,False,False,False,selected_pilot_75_mbpp.json,False,False,False,False,False,False,161_gpt-4o,0.75
+186,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to extract the elementwise and tuples from the given two tuples.,"def and_tuples(tuple1, tuple2):
+    return tuple(a & b for a, b in zip(tuple1, tuple2))
+
+# Testing the function with the provided test cases
+assert and_tuples((10, 4, 6, 9), (5, 2, 3, 3)) == (0, 0, 2, 1)
+assert and_tuples((1, 2, 3, 4), (5, 6, 7, 8)) == (1, 2, 3, 0)
+assert and_tuples((8, 9, 11, 12), (7, 13, 14, 17)) == (0, 9, 10, 0)
+",,True,post,True,False,False,False,True,True,selected_pilot_75_mbpp.json,False,False,False,True,True,True,186_gpt-4o,0.8333333333333334
+125,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    return [lst[i::n] for i in range(n)]
+",,False,post,True,False,True,True,True,True,selected_pilot_75_mbpp.json,False,False,False,True,True,False,125_llama3point1-70b,0.5
+125,mbppplus,gpt-4o,qwen2.5-7b-instruct,"Write a function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists.","def list_split(lst, n):
+    result = [[] for _ in range(n)]
+    for i, element in enumerate(lst):
+        result[i % n].append(element)
+    return result
+
+# Test cases
+assert list_split(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'], 3) == [['a', 'd', 'g', 'j', 'm'], ['b', 'e', 'h', 'k', 'n'], ['c', 'f', 'i', 'l']]
+assert list_split([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], 3) == [[1, 4, 7, 10, 13], [2, 5, 8, 11, 14], [3, 6, 9, 12]]
+assert list_split(['python', 'java', 'C', 'C++', 'DBMS', 'SQL'], 2) == [['python', 'C', 'DBMS'], ['java', 'C++', 'SQL']]
+",,True,post,True,False,True,True,True,True,selected_pilot_75_mbpp.json,False,False,False,True,True,True,125_gpt-4o,0.8333333333333334
+45,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to check whether the given number is undulating or not.,"def is_undulating(n):
+    s = str(n)
+    if len(s) < 3:
+        return False
+    first_digit = s[0]
+    second_digit = s[1]
+    if first_digit == second_digit:
+        return False
+    
+    for i in range(2, len(s)):
+        if i % 2 == 0 and s[i] != first_digit:
+            return False
+        if i % 2 == 1 and s[i] != second_digit:
+            return False
+            
+    return True
+
+# Test cases
+assert is_undulating(1212121) == True
+assert is_undulating(1991) == False
+assert is_undulating(121) == True
+",,True,post,False,True,True,True,True,False,selected_pilot_75_mbpp.json,True,True,False,True,True,False,45_gpt-4o,0.9166666666666666
+114,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a python function that takes in a tuple and an element and counts the occcurences of the element in the tuple.,"def count_X(tup, element):
+    return tup.count(element)
+
+# Tests
+assert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),4) == 0
+assert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),10) == 3
+assert count_X((10, 8, 5, 2, 10, 15, 10, 8, 5, 8, 8, 2),8) == 4
+",,False,post,True,False,True,True,False,True,selected_pilot_75_mbpp.json,True,True,True,True,True,False,114_gpt-4o,0.9166666666666666
+14,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to find whether a given array of integers contains any duplicate element.,"def test_duplicate(arr):
+    return len(arr) != len(set(arr))
+",,True,post,True,True,True,True,True,False,selected_pilot_75_mbpp.json,True,True,True,True,True,False,14_llama3point1-70b,0.6666666666666666
+326,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a python function to find the minimum difference between any two elements in a given array.,"def find_min_diff(arr, target):
+    arr = sorted(arr)
+    min_diff = float('inf')
+    for i in range(len(arr) - 1):
+        diff = abs(arr[i] - arr[i + 1])
+        if diff < min_diff:
+            min_diff = diff
+    return min_diff
+",,False,post,True,True,True,True,True,False,selected_pilot_75_mbpp.json,True,True,False,True,False,False,326_llama3point1-70b,0.6666666666666666
+302,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a function to find the index of the first occurrence of a given number in a sorted array.,"def find_first_occurrence(arr, target):
+    low, high = 0, len(arr) - 1
+    result = -1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == target:
+            result = mid
+            high = mid - 1  # Look on the left side of mid
+        elif arr[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return result
+
+# Test cases
+assert find_first_occurrence([2, 5, 5, 5, 6, 6, 8, 9, 9, 9], 5) == 1
+assert find_first_occurrence([2, 3, 5, 5, 6, 6, 8, 9, 9, 9], 5) == 2
+assert find_first_occurrence([1, 2, 4, 5, 6, 6, 8, 9, 9, 9], 6) == 4
+",,False,post,True,True,True,False,True,False,selected_pilot_75_mbpp.json,False,True,False,True,True,False,302_gpt-4o,0.6666666666666666

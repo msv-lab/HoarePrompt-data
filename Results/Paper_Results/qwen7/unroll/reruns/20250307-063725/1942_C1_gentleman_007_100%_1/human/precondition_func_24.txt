@@ -1,0 +1,30 @@
+The provided function `func_25` does not seem to relate to the problem description at all. It appears to be a breadth-first search (BFS) function that prints the order in which vertices are visited. However, the problem requires a solution to determine the maximum number of non-intersecting triangular pieces of cake that can be formed.
+
+Given the problem description and the variables in the function signature, we need to focus on the input variables and their relationships. Here's the relevant information extracted:
+
+### Problem Description
+Bessie has a regular polygon with \( n \) sides, and she has already chosen \( x \) vertices. You need to determine the maximum number of non-intersecting triangular pieces of cake that can be formed by choosing up to \( y \) additional vertices. Note that \( y = 0 \) in this version of the problem.
+
+### Function Signature
+```python
+def func(n, x, y, chosen_vertices):
+    # Implementation details are missing, but we need to focus on the input variables
+    pass
+```
+
+### Precondition
+**n is an integer representing the number of sides of the polygon, where 4 ≤ n ≤ 10^9.**
+**x is an integer representing the number of vertices Bessie has chosen, where 2 ≤ x ≤ min(n, 2 * 10^5).**
+**y is an integer representing the maximum number of additional vertices you can choose, where y = 0.**
+**chosen_vertices is a list of x distinct integers from 1 to n, representing the vertices Bessie has chosen.**
+
+### Precondition
+**n is an integer such that 4 ≤ n ≤ 10^9.**
+**x is an integer such that 2 ≤ x ≤ min(n, 2 * 10^5).**
+**y is an integer such that y = 0.**
+**chosen_vertices is a list of x distinct integers from 1 to n.**
+
+Combining these, the final precondition is:
+```
+**n is an integer such that 4 ≤ n ≤ 10^9, x is an integer such that 2 ≤ x ≤ min(n, 2 * 10^5), and y is an integer such that y = 0. chosen_vertices is a list of x distinct integers from 1 to n.**
+```

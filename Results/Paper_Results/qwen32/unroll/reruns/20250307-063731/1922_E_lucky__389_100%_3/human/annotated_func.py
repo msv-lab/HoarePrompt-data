@@ -1,0 +1,65 @@
+#State of the program right berfore the function call: t is an integer such that 1 <= t <= 1000, and for each of the t test cases, X is an integer such that 2 <= X <= 10^18.
+def func_1():
+    x = int(input())
+    subseq_lens = []
+    mx = 0
+    if (x == 2) :
+        print(1)
+        #This is printed: 1
+        print(0)
+        #This is printed: 0
+        return
+        #The program returns nothing (None)
+    #State: `t` is an integer such that 1 <= t <= 1000, `x` is the integer read from the input and is not equal to 2, `subseq_lens` is an empty list, `mx` is 0.
+    while x != 0:
+        i = 0
+        
+        while 2 ** i <= x:
+            i += 1
+        
+        if i == 0:
+            break
+        else:
+            subseq_lens.append(i - 1)
+            x -= 2 ** (i - 1)
+            mx = max(mx, i - 1)
+        
+    #State: To determine the output state after the loop has finished executing, we need to analyze the behavior of the given code.
+    #
+    #The loop continues as long as `x` is not equal to 0. Inside the loop, it finds the largest power of 2 that is less than or equal to `x`, subtracts this power of 2 from `x`, and appends the exponent of this power of 2 (which is `i-1` after the inner loop) to `subseq_lens`. It also updates `mx` to be the maximum of its current value and the exponent `i-1`.
+    #
+    #Let's break it down step by step:
+    #
+    #1. **Initialization**: `subseq_lens` is an empty list, `mx` is 0, and `x` is the integer read from the input, not equal to 2.
+    #2. **Outer Loop**: The loop runs as long as `x` is not 0.
+    #3. **Inner Loop**: For each iteration of the outer loop, the inner loop calculates the largest power of 2 that is less than or equal to `x` by incrementing `i` until `2 ** i` exceeds `x`. The value of `i-1` is then the exponent of the largest power of 2 less than or equal to `x`.
+    #4. **Appending to List**: The exponent `i-1` is appended to `subseq_lens`.
+    #5. **Subtracting**: The largest power of 2 (i.e., `2 ** (i-1)`) is subtracted from `x`.
+    #6. **Updating Maximum**: `mx` is updated to be the maximum of its current value and `i-1`.
+    #7. **Termination**: The loop terminates when `x` becomes 0.
+    #
+    #After the loop finishes, `x` will be 0, `subseq_lens` will contain the exponents of the powers of 2 that were subtracted from the original `x` in descending order, and `mx` will be the maximum of these exponents.
+    #
+    #**Output State**: **`x` is 0, `subseq_lens` contains the exponents of the powers of 2 that summed up to the original `x`, and `mx` is the maximum of these exponents.**
+    #
+    #In simpler terms, after the loop, `x` will be 0, `subseq_lens` will have a list of the exponents of the binary representation of the original `x` in descending order, and `mx` will be the highest exponent in this list.
+    ansv = [i for i in range(mx)]
+    for i in range(1, len(subseq_lens)):
+        ansv.append(subseq_lens[i])
+        
+    #State: - `x` remains 0.
+    #  - `subseq_lens` remains the same (empty or [0]).
+    #  - `mx` remains the same (undefined or 0).
+    #  - `ansv` remains an empty list.
+    #
+    #Output State:
+    print(len(ansv))
+    #This is printed: 0
+    for i in range(len(ansv)):
+        print(ansv[i], end=' ')
+        
+    #State: x remains 0. subseq_lens remains the same (empty or [0]). mx remains the same (undefined or 0). ansv remains an empty list.
+    print()
+    #This is printed: (newline)
+#Overall this is what the function does:The function reads an integer `x` from the input. If `x` is 2, it prints 1 followed by 0. Otherwise, it calculates the exponents of the largest powers of 2 that sum up to `x`, constructs a list from these exponents, and prints the length of this list followed by the exponents themselves. The function returns nothing.
+

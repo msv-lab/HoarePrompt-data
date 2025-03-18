@@ -1,0 +1,256 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1921_E,human,codeforces2024,qwq-32b-preview,"for i in range(int(input())):
+    h,w,xa,ya,xb,yb= map(int,input().split())
+    
+    if xa>xb: print('Draw')
+    else:
+        x=abs(xa-xb)//2
+        if abs(xa-xb)%2:
+            l=max(1,yb-x)
+            r=min(w,yb+x)
+            # print('###',l,r,x,abs(xa-xb),abs(l-ya),abs(r-ya))
+            print(*(['Draw'],['Alice'])[abs(l-ya)<=x+1 and abs(r-ya)<=x+1])
+        else:
+            l=max(1,ya-x)
+            r=min(w,yb+x)
+            # print('@@@',l,r,x,abs(xa-xb),abs(l-yb),abs(r-yb))
+            print(*(['Draw'],['Bob'])[abs(l-yb)<=x and abs(r-yb)<=x])",Error: 'str' object has no attribute 'trim',hoareprompt
+1941_E,human,codeforces2024,qwq-32b-preview,"from typing import List
+ 
+ 
+def best_solution(row: List[int], d: int):
+    for i in range(0, d - 1):
+        row[i] = row[i] + 1
+    for i in range(d - 1, len(row)):
+        row[i] = (min(row[max(0, i - (d + 1)) : i]) if i > 0 else 0) + row[i] + 1
+    return row[-1]
+ 
+ 
+def solve():
+    n, m, k, d = (int(e) for e in input().split("" ""))
+    rows = [[int(e) for e in input().split("" "")] for _ in range(n)]
+    costs = [best_solution(row, d) for row in rows]
+    total_costs = []
+    for i in range(len(costs) - (k - 1)):
+        total_costs.append(sum(costs[i : i + k]))
+    print(min(total_costs))
+ 
+ 
+if __name__ == ""__main__"":
+    for _ in range(int(input())):
+        solve()",Error: 'str' object has no attribute 'trim',hoareprompt
+1951_D,human,codeforces2024,qwq-32b-preview,"""""""
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    arr = list(map(int,input().split()))
+ 
+ 
+# Read tree as graph
+# Generic BS
+def bs(arr,x):
+    n = len(arr)
+    l, r = 0, n - 1
+    if x < arr[0]: return -1
+    if x > arr[-1]: return n+1
+ 
+    while l + 1 != r:
+        mid = (l + r) // 2
+        if x <= arr[mid]:
+            r = mid
+        else:
+            l = mid
+    return (l,r)
+ 
+""""""
+import math as m
+import collections as c
+def proD(n,k):
+    if n==k:
+        print('YES')
+        print(1)
+        print(1)
+        return
+    if n < k:
+        print('NO')
+        return
+    costs = [n-k+1,1]
+    h = 0
+    for i in costs:
+        curr = n//i
+        h += curr
+        n -= i*curr
+    if h < k:
+        print('NO')
+    else:
+        print(2)
+        print('YES')
+        print(*costs)
+ 
+t = int(input())
+for _ in range(t):
+    n,k = list(map(int,input().split()))
+    #arr = list(map(int,input().split()))
+    proD(n,k)",Error: 'str' object has no attribute 'trim',hoareprompt
+1956_A,human,codeforces2024,qwq-32b-preview,"n=int(input())
+def checker(a,b):
+    if a<=b:
+        return a-1
+    else:
+        return b
+    
+for i in range(n):
+    og=str(input())
+    og_list=og.split()
+    k=int(og_list[0])
+    q=int(og_list[1])
+ 
+    k_wali=str(input())
+    k_wali_list=k_wali.split()
+    q_wali=str(input())
+    q_wali_list=q_wali.split()
+ 
+    for j in range(len(q_wali_list)):
+        print(checker(int(k_wali_list[0]),int(q_wali_list[j])) , end=' ')
+    print('\n')",Error: 'str' object has no attribute 'trim',hoareprompt
+1946_D,human,codeforces2024,qwq-32b-preview,"import sys
+input = sys.stdin.readline
+ 
+def readList():
+    return list(map(int, input().split()))
+def readInt():
+    return int(input())
+def readInts():
+    return map(int, input().split())
+def readStr():
+    return input().strip()
+ 
+# BF-OB5, EC, DB, CC, CL
+def solve():
+    n, x = readInts()
+    a = readList()
+    t, ans = [], -1
+    for i in range(29, -1, -1):
+        u, v = (x >> i) & 1, sum([(val >> i) & 1 for val in a])
+        if u == v == 0:
+            continue
+            
+        if u == 0:
+            if v % 2:
+                return ans
+            else:
+                op = ai = 0
+                for val in a:
+                    op ^= (val >> i) & 1
+                    ai ^= val
+                    if not op:
+                        t.append(ai)
+                        ai = 0
+                a, t = t, []
+ 
+        else:
+            if v % 2:
+                continue
+            elif v:
+                op = cnt = 0
+                for val in a:
+                    op ^= (val >> i) & 1
+                    if not op:
+                        cnt += 1
+                ans = max(ans, cnt)
+            else:
+                break
+    return max(ans, len(a))
+ 
+ 
+for _ in range(int(input())):
+    print(solve())",Error: 'str' object has no attribute 'trim',hoareprompt
+1965_B,human,codeforces2024,qwq-32b-preview,"t = int(input())
+ 
+for tc in range(t):
+    n, k = map(int, input().split())
+ 
+    i = 0
+    while (1 << (i + 1)) <= k:
+        i = i + 1
+ 
+    ans = [k - (1 << i), k + 1, k + 1 + (1 << i)]
+ 
+    for j in range(20):
+        if j != i:
+            ans.append(1 << j);
+ 
+    print(len(ans))
+    print(*ans)",Error: 'str' object has no attribute 'trim',hoareprompt
+1944_B,human,codeforces2024,qwq-32b-preview,"t=int(input())
+for q in range(t):
+    n,k=list(map(int,input().split(' ')))
+    a=list(map(int,input().split(' ')))
+    b=a[:n]
+    c=a[n:]
+    b.sort()
+    c.sort()
+    ans1=[]
+    ans2=[]
+    k=2*k
+    req=k
+    l=[]
+    if(b[0]!=b[1]):
+        l.append(b[0])
+    if(b[n-2]!=b[n-1]):
+        l.append(b[n-1])
+    else:
+        ans1.append(b[n-1])
+        ans1.append(b[n-1])
+        k-=2
+    for i in range(1,n-1):
+        if(k==0):
+            break
+        if(b[i]==b[i-1]):
+            ans1.append(b[i])
+            ans1.append(b[i])
+            k-=2
+        else:
+            if(b[i]!=b[i+1]):
+                l.append(b[i])
+    k=req
+    for i in range(1,n):
+        if(k==0):
+            break
+        if(c[i]==c[i-1]):
+            ans2.append(c[i])
+            ans2.append(c[i]) 
+            k-=2  
+    for i in range(len(l)):
+        if(k==0):
+            break
+        ans1.append(l[i])
+        ans2.append(l[i])
+        k-=1
+    print(*ans1)
+    print(*ans2)",Error: 'str' object has no attribute 'trim',hoareprompt
+1975_C,human,codeforces2024,qwq-32b-preview,"t = int(input())
+for _ in range(t):
+    n=int(input())
+    a=list(map(int, input().split()))
+    max=0
+    for i in range(1,n):
+        if min(a[i],a[i-1])>max:
+            max=min(a[i],a[i-1])
+    # print('result=',max)
+    print(max)",Error: 'str' object has no attribute 'trim',hoareprompt
+1969_B,human,codeforces2024,qwq-32b-preview,"# LUOGU_RID: 160729345
+def main():
+    n = int(input())
+    for _ in range(n):
+        s = list(map(int, input().strip()))
+        zeroes = s.count(0)
+        cnt = [0, 0]
+        ans = 0
+        for c in s:
+            cnt[c] += 1
+            if c == 0:
+                ans += 1 if cnt[1] > 0 else 0
+            else:
+                ans += (zeroes - cnt[0])
+        print(ans)",Error: 'str' object has no attribute 'trim',hoareprompt

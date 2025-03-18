@@ -1,0 +1,95 @@
+import io
+import sys
+from math import gcd
+
+def run_program_with_captured_io(input_data):
+    original_stdin = sys.stdin
+    original_stdout = sys.stdout
+
+    try:
+        sys.stdin = io.StringIO(input_data)
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
+
+        with open("program.py", "r", encoding="utf-8") as f:
+            code = f.read()
+            exec(code, {})
+
+        return captured_output.getvalue().strip()
+    
+    finally:
+        sys.stdin = original_stdin
+        sys.stdout = original_stdout
+
+# Test cases
+def func_1(numbers):
+    hcf = numbers[0]
+    for num in numbers[1:]:
+        hcf = gcd(hcf, num)
+    return hcf
+
+# Test case 1
+input_data_1 = """6
+3
+3 2 7
+2
+3 3
+5
+5 5 5 5 5
+6
+7 9 3 17 9 13
+3
+6 3 2
+5
+9 4 6 8 3"""
+expected_output_1 = """27 41 12
+1 1
+-1
+1989 1547 4641 819 1547 1071
+-1
+8 18 12 9 24"""
+assert run_program_with_captured_io(input_data_1) == expected_output_1
+
+# Test case 2: Single test case with a single outcome
+input_data_2 = """1
+1
+2"""
+expected_output_2 = """1"""
+assert run_program_with_captured_io(input_data_2) == expected_output_2
+
+# Test case 3: All multipliers are the same
+input_data_3 = """1
+3
+2 2 2"""
+expected_output_3 = """-1"""
+assert run_program_with_captured_io(input_data_3) == expected_output_3
+
+# Test case 4: Large number of outcomes with different multipliers
+input_data_4 = """1
+50
+2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"""
+expected_output_4 = """-1"""
+assert run_program_with_captured_io(input_data_4) == expected_output_4
+
+# Test case 5: Multipliers that allow a solution
+input_data_5 = """1
+4
+2 3 5 7"""
+expected_output_5 = """105 70 42 30"""
+assert run_program_with_captured_io(input_data_5) == expected_output_5
+
+# Test case 6: Edge case with minimum number of outcomes and multipliers
+input_data_6 = """1
+2
+2 3"""
+expected_output_6 = """3 2"""
+assert run_program_with_captured_io(input_data_6) == expected_output_6
+
+# Test case 7: Edge case with maximum number of outcomes and multipliers
+input_data_7 = """1
+50
+20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20 20"""
+expected_output_7 = """-1"""
+assert run_program_with_captured_io(input_data_7) == expected_output_7
+
+print("All test cases passed!")

@@ -1,0 +1,42 @@
+# Include necessary imports if any
+# Assume the provided program is saved as 'program.py' and can be imported from the same dir.
+
+from program import func
+
+# Write your test cases below
+# Each test case should include assertions based on the problem description
+
+# Test Case 1: Simple example with n = 7 and k = 1
+assert func() == 1
+
+# Test Case 2: Simple example with n = 7 and k = 2
+assert func() == 3
+
+# Test Case 3: Simple example with n = 7 and k = 3
+assert func() == 5
+
+# Test Case 4: Simple example with n = 7 and k = 4
+assert func() == 7
+
+# Test Case 5: Simple example with n = 7 and k = 5
+assert func() == 2
+
+# Test Case 6: Simple example with n = 7 and k = 6
+assert func() == 6
+
+# Test Case 7: Simple example with n = 7 and k = 7
+assert func() == 4
+
+# Test Case 8: Single card scenario
+assert func() == 1
+
+# Test Case 9: Larger example with n = 34 and k = 14
+assert func() == 27
+
+# Test Case 10: Larger example with n = 84 and k = 19
+assert func() == 37
+
+# Test Case 11: Maximum value scenario with n = 1000000000 and k = 1000000000
+assert func() == 536870912
+
+# End of script

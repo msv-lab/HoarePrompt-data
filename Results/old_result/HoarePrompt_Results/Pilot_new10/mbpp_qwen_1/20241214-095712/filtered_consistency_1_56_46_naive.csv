@@ -1,0 +1,45 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Correctness,Post,original correctness,naive correctness,annotated correctness,annotated correctness simple,naive no fsl correctness,Correctness no fsl,data file,simple verify,complex verify,default verify,simple verify no fsl,complex verify no fsl,default verify no fsl,unique_id,consistency
+222,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to remove lowercase substrings from a given string.,"def remove_lowercase(s):
+    result = ''
+    for char in s:
+        if char.isupper():
+            result += char
+    return result
+",,False,post,True,False,False,False,False,False,selected_pilot_75_mbpp.json,False,False,False,False,False,False,222_llama3point1-70b,0.5
+335,mbppplus,llama3point1-70b,qwen2.5-7b-instruct,Write a function to find the occurrence and position of the substrings within a string. Return None if there is no match.,"def occurance_substring(string, substring):
+    start = string.find(substring)
+    if start == -1:
+        return None
+    end = start + len(substring)
+    return (substring, start, end - 1)
+",,False,post,False,True,True,True,True,False,selected_pilot_75_mbpp.json,True,True,False,True,True,False,335_llama3point1-70b,0.5
+307,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a python function to find the index of smallest triangular number with n digits.,"def find_Index(n):
+    k = 1
+    while True:
+        triangular_number = k * (k + 1) // 2
+        if len(str(triangular_number)) == n:
+            return k
+        k += 1
+
+# Test cases
+assert find_Index(2) == 4
+assert find_Index(3) == 14
+assert find_Index(4) == 45
+",,True,post,False,True,True,True,True,True,selected_pilot_75_mbpp.json,True,True,True,True,True,True,307_gpt-4o,0.5
+216,mbppplus,gpt-4o,qwen2.5-7b-instruct,Write a python function to check whether the given list contains consecutive numbers or not.,"def check_Consecutive(lst):
+    if not lst:  # If the list is empty, it cannot be consecutive
+        return False
+    
+    lst_sorted = sorted(lst)
+    
+    for i in range(len(lst_sorted) - 1):
+        if lst_sorted[i + 1] - lst_sorted[i] != 1:
+            return False
+    
+    return True
+
+# Test cases
+assert check_Consecutive([1, 2, 3, 4, 5]) == True
+assert check_Consecutive([1, 2, 3, 5, 6]) == False
+assert check_Consecutive([1, 2, 1]) == False
+",,True,post,True,True,True,True,True,True,selected_pilot_75_mbpp.json,True,True,True,True,True,True,216_gpt-4o,0.5

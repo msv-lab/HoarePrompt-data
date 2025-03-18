@@ -1,0 +1,71 @@
+# Import the function from the provided program
+from program import func_1
+
+# Test cases based on the problem description
+def test_func_1():
+    # Test case 1 from the example
+    test_cases_1 = [
+        {'params': (6, 5, 2), 'array': [1, 2, 7, 4, 9, 6]}
+    ]
+    expected_output_1 = [2]
+    assert func_1(1, test_cases_1) == expected_output_1, f"Test case 1 failed: {func_1(1, test_cases_1)} != {expected_output_1}"
+
+    # Test case 2 from the example
+    test_cases_2 = [
+        {'params': (7, 9, 5), 'array': [1, 10, 15, 3, 8, 12, 15]}
+    ]
+    expected_output_2 = [0]
+    assert func_1(1, test_cases_2) == expected_output_2, f"Test case 2 failed: {func_1(1, test_cases_2)} != {expected_output_2}"
+
+    # Test case 3 from the example
+    test_cases_3 = [
+        {'params': (9, 4, 10), 'array': [14, 10, 2, 2, 11, 11, 13, 5, 6]}
+    ]
+    expected_output_3 = [1]
+    assert func_1(1, test_cases_3) == expected_output_3, f"Test case 3 failed: {func_1(1, test_cases_3)} != {expected_output_3}"
+
+    # Test case 4 from the example
+    test_cases_4 = [
+        {'params': (9, 5, 6), 'array': [10, 7, 6, 7, 9, 7, 7, 10, 10]}
+    ]
+    expected_output_4 = [3]
+    assert func_1(1, test_cases_4) == expected_output_4, f"Test case 4 failed: {func_1(1, test_cases_4)} != {expected_output_4}"
+
+    # Test case 5 from the example
+    test_cases_5 = [
+        {'params': (9, 6, 2), 'array': [4, 9, 7, 1, 2, 2, 13, 3, 15]}
+    ]
+    expected_output_5 = [5]
+    assert func_1(1, test_cases_5) == expected_output_5, f"Test case 5 failed: {func_1(1, test_cases_5)} != {expected_output_5}"
+
+    # Test case 6 from the example
+    test_cases_6 = [
+        {'params': (9, 2, 3), 'array': [14, 6, 1, 15, 12, 15, 8, 2, 15]}
+    ]
+    expected_output_6 = [7]
+    assert func_1(1, test_cases_6) == expected_output_6, f"Test case 6 failed: {func_1(1, test_cases_6)} != {expected_output_6}"
+
+    # Test case 7 from the example
+    test_cases_7 = [
+        {'params': (10, 5, 7), 'array': [13, 3, 3, 2, 12, 11, 3, 7, 13, 14]}
+    ]
+    expected_output_7 = [0]
+    assert func_1(1, test_cases_7) == expected_output_7, f"Test case 7 failed: {func_1(1, test_cases_7)} != {expected_output_7}"
+
+    # Additional test case: Multiple test cases in one input
+    test_cases_multiple = [
+        {'params': (6, 5, 2), 'array': [1, 2, 7, 4, 9, 6]},
+        {'params': (7, 9, 5), 'array': [1, 10, 15, 3, 8, 12, 15]},
+        {'params': (9, 4, 10), 'array': [14, 10, 2, 2, 11, 11, 13, 5, 6]},
+        {'params': (9, 5, 6), 'array': [10, 7, 6, 7, 9, 7, 7, 10, 10]},
+        {'params': (9, 6, 2), 'array': [4, 9, 7, 1, 2, 2, 13, 3, 15]},
+        {'params': (9, 2, 3), 'array': [14, 6, 1, 15, 12, 15, 8, 2, 15]},
+        {'params': (10, 5, 7), 'array': [13, 3, 3, 2, 12, 11, 3, 7, 13, 14]}
+    ]
+    expected_output_multiple = [2, 0, 1, 3, 5, 7, 0]
+    assert func_1(7, test_cases_multiple) == expected_output_multiple, f"Multiple test cases failed: {func_1(7, test_cases_multiple)} != {expected_output_multiple}"
+
+    print("All test cases passed!")
+
+# Run the test function
+test_func_1()

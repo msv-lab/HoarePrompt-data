@@ -1,0 +1,8 @@
+The function `func_1` accepts a list `a` of unique integers, where the length of the list `n` is between 2 and 10^5, and each integer in the list is between 1 and 10^9. It returns an integer based on the following conditions:
+- If no elements in `a` are greater than the element at index `k`, it returns `n - 1`.
+- If the first element in `a` (index 0) is greater than the element at index `k` and it is the only such element, it returns `k - 1`.
+- If the first element in `a` that is greater than the element at index `k` is at an index greater than `k`, it returns the index of that element minus 1.
+- If the first element in `a` that is greater than the element at index `k` is at an index less than or equal to `k`, it returns the maximum value between `k - ind[0]` and `ind[0] - 1`.
+- If there are two elements in `a` that are greater than the element at index `k`, and the first element is at index 0, it returns the minimum value between `ind[1] - 1` and `k - 1`.
+- If there are two elements in `a` that are greater than the element at index `k`, and `k` is greater than the index of the second such element, it returns the maximum value between `ind[0] - 1` and `ind[1] - ind[0]`.
+- If there are two elements in `a` that are greater than the element at index `k`, and `k` is less than or equal to the index of the second such element, it returns the maximum value between `ind[0] - 1` and `k - ind[0]`.

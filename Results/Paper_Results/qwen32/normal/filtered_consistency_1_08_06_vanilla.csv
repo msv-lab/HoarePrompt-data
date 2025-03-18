@@ -1,0 +1,2892 @@
+Task ID,unique_id,Dataset,model_created,model_run,description,Code,run_number,original correctness,summary fsl,naive correctness fsl,vanilla,vanilla_no_cot,simple tree,complex tree,summary,simple verify fsl,complex verify fsl,summary verify fsl,simple verify,complex verify,summary verify,consistency,consistency_mine,consistency_old
+1942_C2,1942_C2_Campass_6.67%,codeforces2024,human,qwen2.5-coder-32b-instruct,"[Proof Geometric Construction Can Solve All Love Affairs -
+manbo-p](https://soundcloud.com/alice-law-314125270/manbo-p-proof-geometric-
+construction-can-solve-all-love-affairs)
+
+⠀
+
+This is the hard version of the problem. The only difference between the two
+versions is the constraint on y . In this version 0 \leq y \leq n - x . You
+can make hacks only if both versions are solved.
+
+Bessie has received a birthday cake from her best friend Elsie, and it came in
+the form of a regular polygon with n sides. The vertices of the cake are
+numbered from 1 to n clockwise. You and Bessie are going to choose some of
+those vertices to cut non-intersecting diagonals into the cake. In other
+words, the endpoints of the diagonals must be part of the chosen vertices.
+
+Bessie would only like to give out pieces of cake which result in a triangle
+to keep consistency. The size of the pieces doesn't matter, and the whole cake
+does not have to be separated into all triangles (other shapes are allowed in
+the cake, but those will not be counted).
+
+Bessie has already chosen x of those vertices that can be used to form
+diagonals. She wants you to choose no more than y other vertices such that the
+number of triangular pieces of cake she can give out is maximized.
+
+What is the maximum number of triangular pieces of cake Bessie can give out?
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case consists of three integers, n , x , and y (4
+\leq n \leq 10^9 , 2 \leq x \leq \min(n, 2 \cdot 10^5) , 0 \leq y \leq n - x )
+— the number of sides of the polygon, number of vertices Bessie has chosen,
+and the maximum number of other vertices you can choose.
+
+The second line consists of x distinct integers from 1 to n , representing the
+vertices Bessie has chosen.
+
+It is guaranteed the sum of x over all test cases does not exceed 2 \cdot 10^5
+.
+
+Output
+
+For each test case, output a single integer: the maximum number of non-
+intersecting triangular pieces of cake she can give out.
+
+Example
+
+Input
+
+    3
+    
+    8 4 2
+    
+    1 6 2 5
+    
+    7 3 1
+    
+    6 4 3
+    
+    4 2 2
+    
+    1 3
+
+Output
+
+    6
+    5
+    2
+    
+Note
+
+In test cases 1 , 2 and 3 , you can get 6 , 5 and 2 non-intersecting
+triangular pieces of cake, respectively. A possible construction is shown in
+the following pictures:
+
+The green dots represent vertices that Bessie chose, the yellow dots represent
+vertices that you chose, the blue lines represent diagonals that are drawn,
+and the red numbers represent triangles that are counted.
+
+![](https://espresso.codeforces.com/13b28beb7f5f0d100798f357f58c804c5314c869.png)","R = lambda: map(int, input().split())
+t,=R()
+while t:
+    t -= 1
+    n,x,y= R()
+    sx=0;
+    l = list(R())
+    l.sort()
+    l.append(n+l[0])
+    val=[]
+    for i in range(1,x+1):
+        c=l[i]-l[i-1]-1
+        if c==1: sx+=1
+        val.append(c)
+    val.sort(key= lambda x:(1-x&1,x))
+    for i in val:
+        c=i//2
+        if y<c :
+            sx+=y*2 
+            break
+        sx+=i
+        y-=c
+    
+    cons=x+sx-2
+    cons=min(n-2,cons)
+    print(cons)  # 使用 print 函数打印列表元素，而不是调用 P 函数",1,False,False,True,False,True,False,True,True,True,True,True,True,True,True,0.5260587368554075,0.024145370660688354,0.6666666666666666
+1942_C2,1942_C2_Campass_6.67%,codeforces2024,human,qwen2.5-coder-32b-instruct,"[Proof Geometric Construction Can Solve All Love Affairs -
+manbo-p](https://soundcloud.com/alice-law-314125270/manbo-p-proof-geometric-
+construction-can-solve-all-love-affairs)
+
+⠀
+
+This is the hard version of the problem. The only difference between the two
+versions is the constraint on y . In this version 0 \leq y \leq n - x . You
+can make hacks only if both versions are solved.
+
+Bessie has received a birthday cake from her best friend Elsie, and it came in
+the form of a regular polygon with n sides. The vertices of the cake are
+numbered from 1 to n clockwise. You and Bessie are going to choose some of
+those vertices to cut non-intersecting diagonals into the cake. In other
+words, the endpoints of the diagonals must be part of the chosen vertices.
+
+Bessie would only like to give out pieces of cake which result in a triangle
+to keep consistency. The size of the pieces doesn't matter, and the whole cake
+does not have to be separated into all triangles (other shapes are allowed in
+the cake, but those will not be counted).
+
+Bessie has already chosen x of those vertices that can be used to form
+diagonals. She wants you to choose no more than y other vertices such that the
+number of triangular pieces of cake she can give out is maximized.
+
+What is the maximum number of triangular pieces of cake Bessie can give out?
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case consists of three integers, n , x , and y (4
+\leq n \leq 10^9 , 2 \leq x \leq \min(n, 2 \cdot 10^5) , 0 \leq y \leq n - x )
+— the number of sides of the polygon, number of vertices Bessie has chosen,
+and the maximum number of other vertices you can choose.
+
+The second line consists of x distinct integers from 1 to n , representing the
+vertices Bessie has chosen.
+
+It is guaranteed the sum of x over all test cases does not exceed 2 \cdot 10^5
+.
+
+Output
+
+For each test case, output a single integer: the maximum number of non-
+intersecting triangular pieces of cake she can give out.
+
+Example
+
+Input
+
+    3
+    
+    8 4 2
+    
+    1 6 2 5
+    
+    7 3 1
+    
+    6 4 3
+    
+    4 2 2
+    
+    1 3
+
+Output
+
+    6
+    5
+    2
+    
+Note
+
+In test cases 1 , 2 and 3 , you can get 6 , 5 and 2 non-intersecting
+triangular pieces of cake, respectively. A possible construction is shown in
+the following pictures:
+
+The green dots represent vertices that Bessie chose, the yellow dots represent
+vertices that you chose, the blue lines represent diagonals that are drawn,
+and the red numbers represent triangles that are counted.
+
+![](https://espresso.codeforces.com/13b28beb7f5f0d100798f357f58c804c5314c869.png)","R = lambda: map(int, input().split())
+t,=R()
+while t:
+    t -= 1
+    n,x,y= R()
+    sx=0;
+    l = list(R())
+    l.sort()
+    l.append(n+l[0])
+    val=[]
+    for i in range(1,x+1):
+        c=l[i]-l[i-1]-1
+        if c==1: sx+=1
+        val.append(c)
+    val.sort(key= lambda x:(1-x&1,x))
+    for i in val:
+        c=i//2
+        if y<c :
+            sx+=y*2 
+            break
+        sx+=i
+        y-=c
+    
+    cons=x+sx-2
+    cons=min(n-2,cons)
+    print(cons)  # 使用 print 函数打印列表元素，而不是调用 P 函数",2,False,True,False,True,True,True,True,False,False,False,False,True,True,True,0.5260587368554075,0.024145370660688354,0.6666666666666666
+1942_C2,1942_C2_Campass_6.67%,codeforces2024,human,qwen2.5-coder-32b-instruct,"[Proof Geometric Construction Can Solve All Love Affairs -
+manbo-p](https://soundcloud.com/alice-law-314125270/manbo-p-proof-geometric-
+construction-can-solve-all-love-affairs)
+
+⠀
+
+This is the hard version of the problem. The only difference between the two
+versions is the constraint on y . In this version 0 \leq y \leq n - x . You
+can make hacks only if both versions are solved.
+
+Bessie has received a birthday cake from her best friend Elsie, and it came in
+the form of a regular polygon with n sides. The vertices of the cake are
+numbered from 1 to n clockwise. You and Bessie are going to choose some of
+those vertices to cut non-intersecting diagonals into the cake. In other
+words, the endpoints of the diagonals must be part of the chosen vertices.
+
+Bessie would only like to give out pieces of cake which result in a triangle
+to keep consistency. The size of the pieces doesn't matter, and the whole cake
+does not have to be separated into all triangles (other shapes are allowed in
+the cake, but those will not be counted).
+
+Bessie has already chosen x of those vertices that can be used to form
+diagonals. She wants you to choose no more than y other vertices such that the
+number of triangular pieces of cake she can give out is maximized.
+
+What is the maximum number of triangular pieces of cake Bessie can give out?
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case consists of three integers, n , x , and y (4
+\leq n \leq 10^9 , 2 \leq x \leq \min(n, 2 \cdot 10^5) , 0 \leq y \leq n - x )
+— the number of sides of the polygon, number of vertices Bessie has chosen,
+and the maximum number of other vertices you can choose.
+
+The second line consists of x distinct integers from 1 to n , representing the
+vertices Bessie has chosen.
+
+It is guaranteed the sum of x over all test cases does not exceed 2 \cdot 10^5
+.
+
+Output
+
+For each test case, output a single integer: the maximum number of non-
+intersecting triangular pieces of cake she can give out.
+
+Example
+
+Input
+
+    3
+    
+    8 4 2
+    
+    1 6 2 5
+    
+    7 3 1
+    
+    6 4 3
+    
+    4 2 2
+    
+    1 3
+
+Output
+
+    6
+    5
+    2
+    
+Note
+
+In test cases 1 , 2 and 3 , you can get 6 , 5 and 2 non-intersecting
+triangular pieces of cake, respectively. A possible construction is shown in
+the following pictures:
+
+The green dots represent vertices that Bessie chose, the yellow dots represent
+vertices that you chose, the blue lines represent diagonals that are drawn,
+and the red numbers represent triangles that are counted.
+
+![](https://espresso.codeforces.com/13b28beb7f5f0d100798f357f58c804c5314c869.png)","R = lambda: map(int, input().split())
+t,=R()
+while t:
+    t -= 1
+    n,x,y= R()
+    sx=0;
+    l = list(R())
+    l.sort()
+    l.append(n+l[0])
+    val=[]
+    for i in range(1,x+1):
+        c=l[i]-l[i-1]-1
+        if c==1: sx+=1
+        val.append(c)
+    val.sort(key= lambda x:(1-x&1,x))
+    for i in val:
+        c=i//2
+        if y<c :
+            sx+=y*2 
+            break
+        sx+=i
+        y-=c
+    
+    cons=x+sx-2
+    cons=min(n-2,cons)
+    print(cons)  # 使用 print 函数打印列表元素，而不是调用 P 函数",4,False,True,True,True,True,True,True,False,False,False,True,True,False,True,0.5260587368554075,0.024145370660688354,0.6666666666666666
+1951_C,1951_C_sky_raider_100%,codeforces2024,human,qwen2.5-coder-32b-instruct,"[Maître Gims - Est-ce que tu m'aimes ?](https://youtu.be/6TpyRE_juyA)
+
+ඞ
+
+As the CEO of a startup company, you want to reward each of your k employees
+with a ticket to the upcoming concert. The tickets will be on sale for n days,
+and by some time travelling, you have predicted that the price per ticket at
+day i will be a_i . However, to prevent ticket hoarding, the concert
+organizers have implemented the following measures:
+
+  * A person may purchase no more than m tickets per day. 
+  * If a person purchases x tickets on day i , all subsequent days (i.e. from day i+1 onwards) will have their prices per ticket increased by x . 
+
+For example, if a = [1, 3, 8, 4, 5] and you purchase 2 tickets on day 1 , they
+will cost 2 in total, and the prices from day 2 onwards will become [5, 10, 6,
+7] . If you then purchase 3 more tickets on day 2 , they will cost in total an
+additional 15 , and the prices from day 3 onwards will become [13, 9, 10] .
+
+Find the minimum spending to purchase k tickets.
+
+Input
+
+Each test contains multiple test cases. The first line contains an integer t
+(1 \le t \le 10^4 ) — the number of test cases. The description of the test
+cases follows.
+
+The first line of each test case contains three integers n , m , and k (1 \le
+n \le 3 \cdot 10^5, 1 \le m \le 10^9, 1 \le k \le \min(nm, 10^9) ) — the
+number of sale days, the maximum amount of ticket purchasable each day, and
+the number of tickets to be bought at the end.
+
+The second line of each test case contains n integers a_1, a_2, \ldots, a_n (1
+\le a_i \le 10^9 ) — the price per ticket for each of the upcoming n days.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, print one integer: the minimum amount of money needed to
+purchase exactly k tickets.
+
+Example
+
+Input
+
+    4
+    
+    4 2 3
+    
+    8 6 4 2
+    
+    4 2 8
+    
+    8 6 4 2
+    
+    5 100 1
+    
+    10000 1 100 10 1000
+    
+    6 3 9
+    
+    5 5 5 5 5 5
+
+Output
+
+    10
+    64
+    1
+    72
+    
+Note
+
+In the first test case, one optimal way to buy 3 tickets is as follows:
+
+  * Buy 0 tickets on the first day. The prices per ticket for the remaining days are [6, 4, 2] . 
+  * Buy 0 tickets on the second day. The prices per ticket for the remaining days are [4, 2] . 
+  * Buy 1 ticket on the third day with cost 4 . The price per ticket for the remaining day is [3] . 
+  * Buy 2 tickets on the fourth day with cost 6 . 
+
+In the second test case, there is only one way to buy 8 tickets:
+
+  * Buy 2 tickets on the first day with cost 16 . The prices per ticket for the remaining days are [8, 6, 4] . 
+  * Buy 2 tickets on the second day with cost 16 . The prices per ticket for the remaining days are [8, 6] . 
+  * Buy 2 tickets on the third day with cost 16 . The price per ticket for the remaining day is [8] . 
+  * Buy 2 tickets on the fourth day with cost 16 .","for i in range(int(input())):
+    n,m,k = map(int,input().split())
+    l = list(map(int,input().split()))
+    l.sort()
+    t = 0
+    s = 0
+    c = 0
+ 
+    for i in range(n):
+        s = min(m,k)
+        
+        c += s*(l[i] + t)
+        t += s
+        k -= s
+    print(int(c))",3,True,True,False,True,False,True,True,False,True,False,False,True,True,True,0.42403453121753,-0.07512856677486242,0.5833333333333334
+1951_C,1951_C_sky_raider_100%,codeforces2024,human,qwen2.5-coder-32b-instruct,"[Maître Gims - Est-ce que tu m'aimes ?](https://youtu.be/6TpyRE_juyA)
+
+ඞ
+
+As the CEO of a startup company, you want to reward each of your k employees
+with a ticket to the upcoming concert. The tickets will be on sale for n days,
+and by some time travelling, you have predicted that the price per ticket at
+day i will be a_i . However, to prevent ticket hoarding, the concert
+organizers have implemented the following measures:
+
+  * A person may purchase no more than m tickets per day. 
+  * If a person purchases x tickets on day i , all subsequent days (i.e. from day i+1 onwards) will have their prices per ticket increased by x . 
+
+For example, if a = [1, 3, 8, 4, 5] and you purchase 2 tickets on day 1 , they
+will cost 2 in total, and the prices from day 2 onwards will become [5, 10, 6,
+7] . If you then purchase 3 more tickets on day 2 , they will cost in total an
+additional 15 , and the prices from day 3 onwards will become [13, 9, 10] .
+
+Find the minimum spending to purchase k tickets.
+
+Input
+
+Each test contains multiple test cases. The first line contains an integer t
+(1 \le t \le 10^4 ) — the number of test cases. The description of the test
+cases follows.
+
+The first line of each test case contains three integers n , m , and k (1 \le
+n \le 3 \cdot 10^5, 1 \le m \le 10^9, 1 \le k \le \min(nm, 10^9) ) — the
+number of sale days, the maximum amount of ticket purchasable each day, and
+the number of tickets to be bought at the end.
+
+The second line of each test case contains n integers a_1, a_2, \ldots, a_n (1
+\le a_i \le 10^9 ) — the price per ticket for each of the upcoming n days.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, print one integer: the minimum amount of money needed to
+purchase exactly k tickets.
+
+Example
+
+Input
+
+    4
+    
+    4 2 3
+    
+    8 6 4 2
+    
+    4 2 8
+    
+    8 6 4 2
+    
+    5 100 1
+    
+    10000 1 100 10 1000
+    
+    6 3 9
+    
+    5 5 5 5 5 5
+
+Output
+
+    10
+    64
+    1
+    72
+    
+Note
+
+In the first test case, one optimal way to buy 3 tickets is as follows:
+
+  * Buy 0 tickets on the first day. The prices per ticket for the remaining days are [6, 4, 2] . 
+  * Buy 0 tickets on the second day. The prices per ticket for the remaining days are [4, 2] . 
+  * Buy 1 ticket on the third day with cost 4 . The price per ticket for the remaining day is [3] . 
+  * Buy 2 tickets on the fourth day with cost 6 . 
+
+In the second test case, there is only one way to buy 8 tickets:
+
+  * Buy 2 tickets on the first day with cost 16 . The prices per ticket for the remaining days are [8, 6, 4] . 
+  * Buy 2 tickets on the second day with cost 16 . The prices per ticket for the remaining days are [8, 6] . 
+  * Buy 2 tickets on the third day with cost 16 . The price per ticket for the remaining day is [8] . 
+  * Buy 2 tickets on the fourth day with cost 16 .","for i in range(int(input())):
+    n,m,k = map(int,input().split())
+    l = list(map(int,input().split()))
+    l.sort()
+    t = 0
+    s = 0
+    c = 0
+ 
+    for i in range(n):
+        s = min(m,k)
+        
+        c += s*(l[i] + t)
+        t += s
+        k -= s
+    print(int(c))",2,True,True,False,True,False,True,True,True,True,True,True,True,True,True,0.42403453121753,-0.07512856677486242,0.5833333333333334
+1951_C,1951_C_sky_raider_100%,codeforces2024,human,qwen2.5-coder-32b-instruct,"[Maître Gims - Est-ce que tu m'aimes ?](https://youtu.be/6TpyRE_juyA)
+
+ඞ
+
+As the CEO of a startup company, you want to reward each of your k employees
+with a ticket to the upcoming concert. The tickets will be on sale for n days,
+and by some time travelling, you have predicted that the price per ticket at
+day i will be a_i . However, to prevent ticket hoarding, the concert
+organizers have implemented the following measures:
+
+  * A person may purchase no more than m tickets per day. 
+  * If a person purchases x tickets on day i , all subsequent days (i.e. from day i+1 onwards) will have their prices per ticket increased by x . 
+
+For example, if a = [1, 3, 8, 4, 5] and you purchase 2 tickets on day 1 , they
+will cost 2 in total, and the prices from day 2 onwards will become [5, 10, 6,
+7] . If you then purchase 3 more tickets on day 2 , they will cost in total an
+additional 15 , and the prices from day 3 onwards will become [13, 9, 10] .
+
+Find the minimum spending to purchase k tickets.
+
+Input
+
+Each test contains multiple test cases. The first line contains an integer t
+(1 \le t \le 10^4 ) — the number of test cases. The description of the test
+cases follows.
+
+The first line of each test case contains three integers n , m , and k (1 \le
+n \le 3 \cdot 10^5, 1 \le m \le 10^9, 1 \le k \le \min(nm, 10^9) ) — the
+number of sale days, the maximum amount of ticket purchasable each day, and
+the number of tickets to be bought at the end.
+
+The second line of each test case contains n integers a_1, a_2, \ldots, a_n (1
+\le a_i \le 10^9 ) — the price per ticket for each of the upcoming n days.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, print one integer: the minimum amount of money needed to
+purchase exactly k tickets.
+
+Example
+
+Input
+
+    4
+    
+    4 2 3
+    
+    8 6 4 2
+    
+    4 2 8
+    
+    8 6 4 2
+    
+    5 100 1
+    
+    10000 1 100 10 1000
+    
+    6 3 9
+    
+    5 5 5 5 5 5
+
+Output
+
+    10
+    64
+    1
+    72
+    
+Note
+
+In the first test case, one optimal way to buy 3 tickets is as follows:
+
+  * Buy 0 tickets on the first day. The prices per ticket for the remaining days are [6, 4, 2] . 
+  * Buy 0 tickets on the second day. The prices per ticket for the remaining days are [4, 2] . 
+  * Buy 1 ticket on the third day with cost 4 . The price per ticket for the remaining day is [3] . 
+  * Buy 2 tickets on the fourth day with cost 6 . 
+
+In the second test case, there is only one way to buy 8 tickets:
+
+  * Buy 2 tickets on the first day with cost 16 . The prices per ticket for the remaining days are [8, 6, 4] . 
+  * Buy 2 tickets on the second day with cost 16 . The prices per ticket for the remaining days are [8, 6] . 
+  * Buy 2 tickets on the third day with cost 16 . The price per ticket for the remaining day is [8] . 
+  * Buy 2 tickets on the fourth day with cost 16 .","for i in range(int(input())):
+    n,m,k = map(int,input().split())
+    l = list(map(int,input().split()))
+    l.sort()
+    t = 0
+    s = 0
+    c = 0
+ 
+    for i in range(n):
+        s = min(m,k)
+        
+        c += s*(l[i] + t)
+        t += s
+        k -= s
+    print(int(c))",3,True,True,True,True,False,True,True,True,True,True,True,True,True,True,0.42403453121753,-0.07512856677486242,0.5833333333333334
+1936_A,1936_A_shade34_5.88%,codeforces2024,human,qwen2p5-coder-32b-instruct,"This is an interactive problem.
+
+There is a secret sequence p_0, p_1, \ldots, p_{n-1} , which is a permutation
+of \\{0,1,\ldots,n-1\\} .
+
+You need to find any two indices i and j such that p_i \oplus p_j is
+maximized, where \oplus denotes the [bitwise XOR
+operation](https://en.wikipedia.org/wiki/Bitwise_operation#XOR).
+
+To do this, you can ask queries. Each query has the following form: you pick arbitrary indices a , b , c , and d (0 \le a,b,c,d < n ). Next, the jury calculates x = (p_a \mid p_b) and y = (p_c \mid p_d) , where | denotes the [bitwise OR operation](https://en.wikipedia.org/wiki/Bitwise_operation#OR). Finally, you receive the result of comparison between x and y . In other words, you are told if x < y , x > y , or x = y .
+
+Please find any two indices i and j (0 \le i,j < n ) such that p_i \oplus p_j
+is maximum among all such pairs, using at most 3n queries. If there are
+multiple pairs of indices satisfying the condition, you may output any one of
+them.
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t (1 \le t \le 10^3 ). The description of the test cases follows.
+
+Interaction
+
+The first line of each test case contains one integer n (2 \le n \le 10^4 ).
+At this moment, the permutation p_0, p_1, \ldots, p_{n-1} is chosen. The
+interactor in this task is not adaptive. In other words, the sequence p is
+fixed in every test case and does not change during the interaction.
+
+To ask a query, you need to pick four indices a , b , c , and d (0 \le a,b,c,d
+< n ) and print the line of the following form:
+
+  * ""? a b c d"" 
+
+After that, you receive:
+
+  * ""<"" if (p_a \mid p_b) < (p_c \mid p_d) ; 
+  * ""="" if (p_a \mid p_b) = (p_c \mid p_d) ; 
+  * "">"" if (p_a \mid p_b) > (p_c \mid p_d) . 
+
+You can make at most 3n queries of this form.
+
+Next, if your program has found a pair of indices i and j (0 \le i, j < n )
+such that p_i \oplus p_j is maximized, print the line of the following form:
+
+  * ""! i j"" 
+
+Note that this line is not considered a query and is not taken into account
+when counting the number of queries asked.
+
+After this, proceed to the next test case.
+
+If you make more than 3n queries during an interaction, your program must
+terminate immediately, and you will receive the Wrong Answer verdict.
+Otherwise, you can get an arbitrary verdict because your solution will
+continue to read from a closed stream.
+
+After printing a query or the answer for a test case, do not forget to output
+the end of line and flush the output. Otherwise, you will get the verdict
+Idleness Limit Exceeded. To do this, use:
+
+  * fflush(stdout) or cout.flush() in C++; 
+  * System.out.flush() in Java; 
+  * flush(output) in Pascal; 
+  * stdout.flush() in Python; 
+  * see the documentation for other languages. 
+
+It is guaranteed that the sum of n over all test cases does not exceed 10^4 .
+
+Hacks
+
+To hack, follow the test format below.
+
+The first line contains the number of test cases t (1 \le t \le 10^3 ). The
+description of the test cases follows.
+
+The first line of each test case contains one integer n (2 \le n \le 10^4 ).
+
+The second line of each test case contains n integers p_0,p_1,\ldots,p_{n-1} ,
+which represent a permutation of integers from 0 to n - 1 .
+
+The sum of n over all test cases should not exceed 10^4 .
+
+Example
+
+Input
+
+    2
+    4
+    
+    <
+    
+    =
+    
+    >
+    
+    2
+    
+Output
+
+    ? 0 2 3 1
+    
+    ? 1 1 2 3
+    
+    ? 1 2 0 3
+    
+    ! 3 2
+    
+    ! 0 1
+    
+Note
+
+In the first test case, the hidden permutation is p=[0,3,1,2] .
+
+For the query ""? 0 2 3 1"", the jury return ""<"" because (p_0 \mid p_2) = (0
+\mid 1) =1 < (p_3 \mid p_1) = (2 \mid 3) = 3 .
+
+For the query ""? 1 1 2 3"", the jury return ""="" because (p_1 \mid p_1) = (3\mid
+3)= 3 = (p_2 \mid p_3) = (1 \mid 2)=3 .
+
+For the query ""? 1 2 0 3"", the jury return "">"" because (p_1 \mid p_2) = (3
+\mid 1) = 3 > (p_0 \mid p_3) = (0\mid 2)=2 .
+
+The answer i = 3 and j = 2 is valid: (p_3 \oplus p_2) = (2 \oplus 1) = 3 is
+indeed equal to the maximum possible value of p_i \oplus p_j . Another valid
+answer would be i=0 and j=1 . As the number of queries does not exceed 3n=12 ,
+the answer is considered correct.
+
+In the second test case, n = 2 , so p is either [0, 1] or [1, 0] . In any
+case, p_0 \oplus p_1 = 1 is maximum possible.","import sys
+ 
+for _ in range(int(input())):
+    n = int(input())
+    #a, b = map(int, input().split())
+    #a = list(map(int, input().split()))
+    #s = str(input())
+    mak = 0
+    for i in range(1, n):
+        print(""?"", mak, mak, i, i)
+        sys.stdout.flush()
+        if str(input()) == ""<"":
+            mak = i
+    mak2 = mak
+    pans = []
+    for i in range(n):
+        print(""?"", mak, mak2, i, mak2)
+        sys.stdout.flush()
+        s = str(input())
+        if s == ""<"":
+            mak = i
+            pans = [i]
+        elif s == ""="":
+            pans.append(i)
+    mak = 0
+    for i in range(1, len(pans)):
+        print(""?"", pans[mak], pans[mak], pans[i], pans[i])
+        sys.stdout.flush()
+        if str(input()) == "">"":
+            mak = i
+    print(""!"", mak2, mak)
+    sys.stdout.flush()",1,False,False,False,False,False,True,False,False,False,False,False,False,False,False,0.40054826163175894,-0.09338609632712679,0.5833333333333334
+1936_A,1936_A_shade34_5.88%,codeforces2024,human,qwen2p5-coder-32b-instruct,"This is an interactive problem.
+
+There is a secret sequence p_0, p_1, \ldots, p_{n-1} , which is a permutation
+of \\{0,1,\ldots,n-1\\} .
+
+You need to find any two indices i and j such that p_i \oplus p_j is
+maximized, where \oplus denotes the [bitwise XOR
+operation](https://en.wikipedia.org/wiki/Bitwise_operation#XOR).
+
+To do this, you can ask queries. Each query has the following form: you pick arbitrary indices a , b , c , and d (0 \le a,b,c,d < n ). Next, the jury calculates x = (p_a \mid p_b) and y = (p_c \mid p_d) , where | denotes the [bitwise OR operation](https://en.wikipedia.org/wiki/Bitwise_operation#OR). Finally, you receive the result of comparison between x and y . In other words, you are told if x < y , x > y , or x = y .
+
+Please find any two indices i and j (0 \le i,j < n ) such that p_i \oplus p_j
+is maximum among all such pairs, using at most 3n queries. If there are
+multiple pairs of indices satisfying the condition, you may output any one of
+them.
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t (1 \le t \le 10^3 ). The description of the test cases follows.
+
+Interaction
+
+The first line of each test case contains one integer n (2 \le n \le 10^4 ).
+At this moment, the permutation p_0, p_1, \ldots, p_{n-1} is chosen. The
+interactor in this task is not adaptive. In other words, the sequence p is
+fixed in every test case and does not change during the interaction.
+
+To ask a query, you need to pick four indices a , b , c , and d (0 \le a,b,c,d
+< n ) and print the line of the following form:
+
+  * ""? a b c d"" 
+
+After that, you receive:
+
+  * ""<"" if (p_a \mid p_b) < (p_c \mid p_d) ; 
+  * ""="" if (p_a \mid p_b) = (p_c \mid p_d) ; 
+  * "">"" if (p_a \mid p_b) > (p_c \mid p_d) . 
+
+You can make at most 3n queries of this form.
+
+Next, if your program has found a pair of indices i and j (0 \le i, j < n )
+such that p_i \oplus p_j is maximized, print the line of the following form:
+
+  * ""! i j"" 
+
+Note that this line is not considered a query and is not taken into account
+when counting the number of queries asked.
+
+After this, proceed to the next test case.
+
+If you make more than 3n queries during an interaction, your program must
+terminate immediately, and you will receive the Wrong Answer verdict.
+Otherwise, you can get an arbitrary verdict because your solution will
+continue to read from a closed stream.
+
+After printing a query or the answer for a test case, do not forget to output
+the end of line and flush the output. Otherwise, you will get the verdict
+Idleness Limit Exceeded. To do this, use:
+
+  * fflush(stdout) or cout.flush() in C++; 
+  * System.out.flush() in Java; 
+  * flush(output) in Pascal; 
+  * stdout.flush() in Python; 
+  * see the documentation for other languages. 
+
+It is guaranteed that the sum of n over all test cases does not exceed 10^4 .
+
+Hacks
+
+To hack, follow the test format below.
+
+The first line contains the number of test cases t (1 \le t \le 10^3 ). The
+description of the test cases follows.
+
+The first line of each test case contains one integer n (2 \le n \le 10^4 ).
+
+The second line of each test case contains n integers p_0,p_1,\ldots,p_{n-1} ,
+which represent a permutation of integers from 0 to n - 1 .
+
+The sum of n over all test cases should not exceed 10^4 .
+
+Example
+
+Input
+
+    2
+    4
+    
+    <
+    
+    =
+    
+    >
+    
+    2
+    
+Output
+
+    ? 0 2 3 1
+    
+    ? 1 1 2 3
+    
+    ? 1 2 0 3
+    
+    ! 3 2
+    
+    ! 0 1
+    
+Note
+
+In the first test case, the hidden permutation is p=[0,3,1,2] .
+
+For the query ""? 0 2 3 1"", the jury return ""<"" because (p_0 \mid p_2) = (0
+\mid 1) =1 < (p_3 \mid p_1) = (2 \mid 3) = 3 .
+
+For the query ""? 1 1 2 3"", the jury return ""="" because (p_1 \mid p_1) = (3\mid
+3)= 3 = (p_2 \mid p_3) = (1 \mid 2)=3 .
+
+For the query ""? 1 2 0 3"", the jury return "">"" because (p_1 \mid p_2) = (3
+\mid 1) = 3 > (p_0 \mid p_3) = (0\mid 2)=2 .
+
+The answer i = 3 and j = 2 is valid: (p_3 \oplus p_2) = (2 \oplus 1) = 3 is
+indeed equal to the maximum possible value of p_i \oplus p_j . Another valid
+answer would be i=0 and j=1 . As the number of queries does not exceed 3n=12 ,
+the answer is considered correct.
+
+In the second test case, n = 2 , so p is either [0, 1] or [1, 0] . In any
+case, p_0 \oplus p_1 = 1 is maximum possible.","import sys
+ 
+for _ in range(int(input())):
+    n = int(input())
+    #a, b = map(int, input().split())
+    #a = list(map(int, input().split()))
+    #s = str(input())
+    mak = 0
+    for i in range(1, n):
+        print(""?"", mak, mak, i, i)
+        sys.stdout.flush()
+        if str(input()) == ""<"":
+            mak = i
+    mak2 = mak
+    pans = []
+    for i in range(n):
+        print(""?"", mak, mak2, i, mak2)
+        sys.stdout.flush()
+        s = str(input())
+        if s == ""<"":
+            mak = i
+            pans = [i]
+        elif s == ""="":
+            pans.append(i)
+    mak = 0
+    for i in range(1, len(pans)):
+        print(""?"", pans[mak], pans[mak], pans[i], pans[i])
+        sys.stdout.flush()
+        if str(input()) == "">"":
+            mak = i
+    print(""!"", mak2, mak)
+    sys.stdout.flush()",2,False,False,False,False,False,True,True,False,False,False,False,False,False,False,0.40054826163175894,-0.09338609632712679,0.5833333333333334
+1957_C,1957_C_hx199411_100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","t = int(input())
+while t:
+    t -= 1
+    n,k = list(map(int,input().split(' ')))
+    num = 0
+    for i in range(k):
+        c,r = list(map(int,input().split(' ')))
+        if c == r:
+            num += 1
+        else:
+            num += 2
+    m = n - num
+    if m == 0:
+        print(1)
+    elif m == 1:
+        print(1)
+    else:
+        dp = [0 for i in range(m+1)]
+        dp[1] = 1
+        dp[2] = 3
+        for i in range(3,m+1):
+            dp[i] = (dp[i-1] + (i-1)*dp[i-2]*2)%(10**9+7)
+        print(dp[m])",2,True,False,False,True,True,True,True,True,False,False,False,True,True,True,0.40849978776192514,-0.09525744994067215,0.5
+1948_A,1948_A_Tirthraj_Raval_0.00%,codeforces2024,human,qwen2p5-coder-32b-instruct,"You are given an integer n .
+
+Your task is to build a string of uppercase Latin letters. There must be
+exactly n special characters in this string. Let's call a character special if
+it is equal to exactly one of its neighbors.
+
+For example, there are 6 special characters in the AAABAACC string (at
+positions: 1 , 3 , 5 , 6 , 7 and 8 ).
+
+Print any suitable string or report that there is no such string.
+
+Input
+
+The first line contains a single integer t (1 \le t \le 50 ) — the number of
+test cases.
+
+The only line of each test case contains a single integer n (1 \le n \le 50 ).
+
+Output
+
+For each test case, print the answer as follows:
+
+  * if there is no suitable string, print one line containing the string NO; 
+  * otherwise, print two lines. The first line should contain the string YES; on the second line print a string of length at most 200  — the answer itself (it can be shown that if some answers exist, then there is an answer of length at most 200 ). If there are several solutions, print any of them. 
+
+Example
+
+Input
+
+    3
+    
+    6
+    
+    1
+    
+    2
+
+Output
+
+    YES
+    AAABAACC
+    NO
+    YES
+    MM","t = int(input())
+for _ in range(t):
+        n = int(input())
+        
+        if n % 2 == 1:
+            print(""NO"")
+        else:
+            print(""YES"")
+            pattern = []
+            for i in range(n // 2):
+                pattern.append(""AB""[i % 2])
+                pattern.append(""AB""[(i % 2) ^ 1])
+            print("""".join(pattern))",2,False,True,False,True,False,True,True,True,False,False,False,True,True,True,0.5175726262592018,0.018300057959463222,0.5833333333333334
+1968_B,1968_B_MALIK_ANTUPARTHI_100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"You are given two binary strings a and b . A binary string is a string
+consisting of the characters '0' and '1'.
+
+Your task is to determine the maximum possible number k such that a prefix of
+string a of length k is a subsequence of string b .
+
+A sequence a is a subsequence of a sequence b if a can be obtained from b by
+the deletion of several (possibly, zero or all) elements.
+
+Input
+
+The first line consists of a single integer t (1 \le t \le 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and m (1\le n,m \le 2
+\cdot 10^5 ) — the length of string a and the length of string b ,
+respectively.
+
+The second line of each test case contains a binary string a of length n .
+
+The third line of each test case contains a binary string b of length m .
+
+It is guaranteed that the sum of values n over all test cases does not exceed
+2 \cdot 10^5 . Similarly, the sum of values m over all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output a single number — the maximum k , such that the
+first k characters of a form a subsequence of b .
+
+Example
+
+Input
+
+    6
+    
+    5 4
+    
+    10011
+    
+    1110
+    
+    3 3
+    
+    100
+    
+    110
+    
+    1 3
+    
+    1
+    
+    111
+    
+    4 4
+    
+    1011
+    
+    1111
+    
+    3 5
+    
+    100
+    
+    11010
+    
+    3 1
+    
+    100
+    
+    0
+
+Output
+
+    2
+    2
+    1
+    1
+    3
+    0
+    
+Note
+
+In the first example, the string '10 ' is a subsequence of
+'1\color{red}11\color{red}0 ' but the string '100 ' is not. So the answer is 2
+.
+
+In the fifth example, a ='100 ', b ='1\color{red}{10}1\color{red}0 ', whole
+string a is a subsequence of string b . So the answer is 3 .
+
+In the sixth example, string b does not contain '1 ' so the answer is 0 .","a=int(input())
+for i in range(a):
+    b,c=map(int,input().split())
+    d=input()
+    e=input()
+    k=0
+    for j in range(b):
+        if d[j] in e[k:]:
+            k=e[k:].index(d[j])+1+k
+            if k==c or j==b-1:
+                k=j+1
+                break
+        else:
+            k=j
+            break
+    print(k)",2,True,False,False,False,False,False,False,False,False,False,False,False,False,False,0.5225905238974631,0.024000142121750116,0.5833333333333334
+1948_A,1948_A_Tirthraj_Raval_0.00%,codeforces2024,human,qwen2p5-coder-32b-instruct,"You are given an integer n .
+
+Your task is to build a string of uppercase Latin letters. There must be
+exactly n special characters in this string. Let's call a character special if
+it is equal to exactly one of its neighbors.
+
+For example, there are 6 special characters in the AAABAACC string (at
+positions: 1 , 3 , 5 , 6 , 7 and 8 ).
+
+Print any suitable string or report that there is no such string.
+
+Input
+
+The first line contains a single integer t (1 \le t \le 50 ) — the number of
+test cases.
+
+The only line of each test case contains a single integer n (1 \le n \le 50 ).
+
+Output
+
+For each test case, print the answer as follows:
+
+  * if there is no suitable string, print one line containing the string NO; 
+  * otherwise, print two lines. The first line should contain the string YES; on the second line print a string of length at most 200  — the answer itself (it can be shown that if some answers exist, then there is an answer of length at most 200 ). If there are several solutions, print any of them. 
+
+Example
+
+Input
+
+    3
+    
+    6
+    
+    1
+    
+    2
+
+Output
+
+    YES
+    AAABAACC
+    NO
+    YES
+    MM","t = int(input())
+for _ in range(t):
+        n = int(input())
+        
+        if n % 2 == 1:
+            print(""NO"")
+        else:
+            print(""YES"")
+            pattern = []
+            for i in range(n // 2):
+                pattern.append(""AB""[i % 2])
+                pattern.append(""AB""[(i % 2) ^ 1])
+            print("""".join(pattern))",5,False,True,False,True,False,True,True,True,False,False,False,False,True,True,0.5175726262592018,0.018300057959463222,0.5833333333333334
+1968_B,1968_B_MALIK_ANTUPARTHI_100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"You are given two binary strings a and b . A binary string is a string
+consisting of the characters '0' and '1'.
+
+Your task is to determine the maximum possible number k such that a prefix of
+string a of length k is a subsequence of string b .
+
+A sequence a is a subsequence of a sequence b if a can be obtained from b by
+the deletion of several (possibly, zero or all) elements.
+
+Input
+
+The first line consists of a single integer t (1 \le t \le 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and m (1\le n,m \le 2
+\cdot 10^5 ) — the length of string a and the length of string b ,
+respectively.
+
+The second line of each test case contains a binary string a of length n .
+
+The third line of each test case contains a binary string b of length m .
+
+It is guaranteed that the sum of values n over all test cases does not exceed
+2 \cdot 10^5 . Similarly, the sum of values m over all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output a single number — the maximum k , such that the
+first k characters of a form a subsequence of b .
+
+Example
+
+Input
+
+    6
+    
+    5 4
+    
+    10011
+    
+    1110
+    
+    3 3
+    
+    100
+    
+    110
+    
+    1 3
+    
+    1
+    
+    111
+    
+    4 4
+    
+    1011
+    
+    1111
+    
+    3 5
+    
+    100
+    
+    11010
+    
+    3 1
+    
+    100
+    
+    0
+
+Output
+
+    2
+    2
+    1
+    1
+    3
+    0
+    
+Note
+
+In the first example, the string '10 ' is a subsequence of
+'1\color{red}11\color{red}0 ' but the string '100 ' is not. So the answer is 2
+.
+
+In the fifth example, a ='100 ', b ='1\color{red}{10}1\color{red}0 ', whole
+string a is a subsequence of string b . So the answer is 3 .
+
+In the sixth example, string b does not contain '1 ' so the answer is 0 .","a=int(input())
+for i in range(a):
+    b,c=map(int,input().split())
+    d=input()
+    e=input()
+    k=0
+    for j in range(b):
+        if d[j] in e[k:]:
+            k=e[k:].index(d[j])+1+k
+            if k==c or j==b-1:
+                k=j+1
+                break
+        else:
+            k=j
+            break
+    print(k)",5,True,False,False,False,False,False,False,False,False,False,False,False,False,False,0.5225905238974631,0.024000142121750116,0.5833333333333334
+1957_C,1957_C_hx199411_100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","t = int(input())
+while t:
+    t -= 1
+    n,k = list(map(int,input().split(' ')))
+    num = 0
+    for i in range(k):
+        c,r = list(map(int,input().split(' ')))
+        if c == r:
+            num += 1
+        else:
+            num += 2
+    m = n - num
+    if m == 0:
+        print(1)
+    elif m == 1:
+        print(1)
+    else:
+        dp = [0 for i in range(m+1)]
+        dp[1] = 1
+        dp[2] = 3
+        for i in range(3,m+1):
+            dp[i] = (dp[i-1] + (i-1)*dp[i-2]*2)%(10**9+7)
+        print(dp[m])",6,True,True,True,True,False,True,True,True,True,True,True,False,False,False,0.40849978776192514,-0.09525744994067215,0.5
+1948_A,1948_A_Tirthraj_Raval_0.00%,codeforces2024,human,qwen2p5-coder-32b-instruct,"You are given an integer n .
+
+Your task is to build a string of uppercase Latin letters. There must be
+exactly n special characters in this string. Let's call a character special if
+it is equal to exactly one of its neighbors.
+
+For example, there are 6 special characters in the AAABAACC string (at
+positions: 1 , 3 , 5 , 6 , 7 and 8 ).
+
+Print any suitable string or report that there is no such string.
+
+Input
+
+The first line contains a single integer t (1 \le t \le 50 ) — the number of
+test cases.
+
+The only line of each test case contains a single integer n (1 \le n \le 50 ).
+
+Output
+
+For each test case, print the answer as follows:
+
+  * if there is no suitable string, print one line containing the string NO; 
+  * otherwise, print two lines. The first line should contain the string YES; on the second line print a string of length at most 200  — the answer itself (it can be shown that if some answers exist, then there is an answer of length at most 200 ). If there are several solutions, print any of them. 
+
+Example
+
+Input
+
+    3
+    
+    6
+    
+    1
+    
+    2
+
+Output
+
+    YES
+    AAABAACC
+    NO
+    YES
+    MM","t = int(input())
+for _ in range(t):
+        n = int(input())
+        
+        if n % 2 == 1:
+            print(""NO"")
+        else:
+            print(""YES"")
+            pattern = []
+            for i in range(n // 2):
+                pattern.append(""AB""[i % 2])
+                pattern.append(""AB""[(i % 2) ^ 1])
+            print("""".join(pattern))",6,False,False,False,True,True,True,True,True,False,False,True,True,True,True,0.5175726262592018,0.018300057959463222,0.5833333333333334
+1968_B,1968_B_MALIK_ANTUPARTHI_100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"You are given two binary strings a and b . A binary string is a string
+consisting of the characters '0' and '1'.
+
+Your task is to determine the maximum possible number k such that a prefix of
+string a of length k is a subsequence of string b .
+
+A sequence a is a subsequence of a sequence b if a can be obtained from b by
+the deletion of several (possibly, zero or all) elements.
+
+Input
+
+The first line consists of a single integer t (1 \le t \le 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and m (1\le n,m \le 2
+\cdot 10^5 ) — the length of string a and the length of string b ,
+respectively.
+
+The second line of each test case contains a binary string a of length n .
+
+The third line of each test case contains a binary string b of length m .
+
+It is guaranteed that the sum of values n over all test cases does not exceed
+2 \cdot 10^5 . Similarly, the sum of values m over all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output a single number — the maximum k , such that the
+first k characters of a form a subsequence of b .
+
+Example
+
+Input
+
+    6
+    
+    5 4
+    
+    10011
+    
+    1110
+    
+    3 3
+    
+    100
+    
+    110
+    
+    1 3
+    
+    1
+    
+    111
+    
+    4 4
+    
+    1011
+    
+    1111
+    
+    3 5
+    
+    100
+    
+    11010
+    
+    3 1
+    
+    100
+    
+    0
+
+Output
+
+    2
+    2
+    1
+    1
+    3
+    0
+    
+Note
+
+In the first example, the string '10 ' is a subsequence of
+'1\color{red}11\color{red}0 ' but the string '100 ' is not. So the answer is 2
+.
+
+In the fifth example, a ='100 ', b ='1\color{red}{10}1\color{red}0 ', whole
+string a is a subsequence of string b . So the answer is 3 .
+
+In the sixth example, string b does not contain '1 ' so the answer is 0 .","a=int(input())
+for i in range(a):
+    b,c=map(int,input().split())
+    d=input()
+    e=input()
+    k=0
+    for j in range(b):
+        if d[j] in e[k:]:
+            k=e[k:].index(d[j])+1+k
+            if k==c or j==b-1:
+                k=j+1
+                break
+        else:
+            k=j
+            break
+    print(k)",6,True,False,False,False,False,False,False,False,False,False,False,False,False,False,0.5225905238974631,0.024000142121750116,0.5833333333333334
+1970_A1,1970_A1_tah23seen_100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"A parentheses sequence is a string consisting of characters ""("" and "")"", for
+example ""(()(("".
+
+A balanced parentheses sequence is a parentheses sequence which can become a
+valid mathematical expression after inserting numbers and operations into it,
+for example ""(()(()))"".
+
+The balance of a parentheses sequence is defined as the number of opening
+parentheses ""("" minus the number of closing parentheses "")"". For example, the
+balance of the sequence ""(()(("" is 3.
+
+A balanced parentheses sequence can also be defined as a parentheses sequence
+with balance 0 such that each of its prefixes has a non-negative balance.
+
+We define the balanced shuffle operation that takes a parentheses sequence and
+returns a parentheses sequence as follows: first, for every character of the
+input sequence, we compute the balance of the prefix of the sequence before
+that character and write those down in a table together with the positions of
+the characters in the input sequence, for example:
+
+Prefix balance| 0| 1| 2| 1| 2| 3| 2| 1  
+---|---|---|---|---|---|---|---|---  
+Position| 1| 2| 3| 4| 5| 6| 7| 8  
+Character| (| (| )| (| (| )| )| )  
+  
+Then, we sort the columns of this table in increasing order of prefix balance,
+breaking ties in decreasing order of position. In the above example, we get:
+
+Prefix balance| 0| 1| 1| 1| 2| 2| 2| 3  
+---|---|---|---|---|---|---|---|---  
+Position| 1| 8| 4| 2| 7| 5| 3| 6  
+Character| (| )| (| (| )| (| )| )  
+  
+The last row of this table forms another parentheses sequence, in this case
+""()(()())"". This sequence is called the result of applying the balanced
+shuffle operation to the input sequence, or in short just the balanced shuffle
+of the input sequence.
+
+You are given a balanced parentheses sequence. Print its balanced shuffle.
+
+Input
+
+The only line of input contains a string s consisting only of characters ""(""
+and "")"". This string is guaranteed to be a non-empty balanced parentheses
+sequence with its length not exceeding 500\,000 .
+
+Output
+
+Print the parentheses sequence t — the balanced shuffle of s .
+
+Example
+
+Input
+
+    (()(()))
+    
+Output
+
+    ()(()())","def solve(s):
+  n=len(s)
+  ans=''
+  d={}
+  d[0]=0
+  for i in range(len(s)):
+    if s[i]=='(':
+      d[i+1]=d[i]+1
+    else:
+      d[i+1]=d[i]-1
+  d.pop(n)
+  d=sorted(d.items(), key=lambda x:(x[1],-x[0]))
+  for i , j in d:
+    ans+=s[i]
+  return ans
+ 
+ 
+n=input()
+print(solve(n))",1,True,True,False,False,False,True,True,True,True,True,True,False,False,False,0.4195130007963795,-0.07554800008647701,0.5833333333333334
+1972_B,1972_B_r1813._100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"There are n coins on the table forming a circle, and each coin is either
+facing up or facing down. Alice and Bob take turns to play the following game,
+and Alice goes first.
+
+In each operation, the player chooses a facing-up coin, removes the coin, and
+flips the two coins that are adjacent to it. If (before the operation) there
+are only two coins left, then one will be removed and the other won't be
+flipped (as it would be flipped twice). If (before the operation) there is
+only one coin left, no coins will be flipped. If (before the operation) there
+are no facing-up coins, the player loses.
+
+Decide who will win the game if they both play optimally. It can be proved
+that the game will end in a finite number of operations, and one of them will
+win.
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t (1\le t\le 100 ). The description of the test cases follows.
+
+The first line of each test case contains only one positive integer n (1 \leq
+n \leq 100 ), representing the number of the coins.
+
+A string s of length n follows on the second line of each test case,
+containing only ""U"" and ""D"", representing that each coin is facing up or
+facing down.
+
+Output
+
+For each test case, print ""YES"" if Alice will win the game, and ""NO""
+otherwise.
+
+You can output the answer in any case (upper or lower). For example, the
+strings ""yEs"", ""yes"", ""Yes"", and ""YES"" will be recognized as positive
+responses.
+
+Example
+
+Input
+
+    3
+    
+    5
+    
+    UUDUD
+    
+    5
+    
+    UDDUD
+    
+    2
+    
+    UU
+
+Output
+
+    YES
+    NO
+    NO
+    
+Note
+
+In the first test case, the game may go as follows.
+
+  * Alice chooses the first coin and s becomes ""DDUU"". 
+  * Bob chooses the last coin and s becomes ""UDD"". 
+  * Alice chooses the first coin and s becomes ""UU"". 
+  * Bob chooses the first coin and s becomes ""U"". 
+  * Alice chooses the only coin and s becomes empty. 
+  * Bob can't choose any coin now, and he loses the game. 
+
+It can be proved that Bob will always lose if they both play optimally.","def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    t = int(data[0])
+    index = 1
+    for _ in range(t):
+        n = int(data[index])
+        s = data[index + 1]
+        index += 2
+        
+        count_u = s.count('U')
+        if count_u % 2 == 1:
+            print(""YES"")
+        else:
+            print(""NO"")
+ 
+if __name__ == ""__main__"":
+    main()",1,True,True,True,True,True,True,True,True,True,True,True,True,True,True,0.5452847324327054,0.04922400613493482,0.5833333333333334
+1970_A1,1970_A1_tah23seen_100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"A parentheses sequence is a string consisting of characters ""("" and "")"", for
+example ""(()(("".
+
+A balanced parentheses sequence is a parentheses sequence which can become a
+valid mathematical expression after inserting numbers and operations into it,
+for example ""(()(()))"".
+
+The balance of a parentheses sequence is defined as the number of opening
+parentheses ""("" minus the number of closing parentheses "")"". For example, the
+balance of the sequence ""(()(("" is 3.
+
+A balanced parentheses sequence can also be defined as a parentheses sequence
+with balance 0 such that each of its prefixes has a non-negative balance.
+
+We define the balanced shuffle operation that takes a parentheses sequence and
+returns a parentheses sequence as follows: first, for every character of the
+input sequence, we compute the balance of the prefix of the sequence before
+that character and write those down in a table together with the positions of
+the characters in the input sequence, for example:
+
+Prefix balance| 0| 1| 2| 1| 2| 3| 2| 1  
+---|---|---|---|---|---|---|---|---  
+Position| 1| 2| 3| 4| 5| 6| 7| 8  
+Character| (| (| )| (| (| )| )| )  
+  
+Then, we sort the columns of this table in increasing order of prefix balance,
+breaking ties in decreasing order of position. In the above example, we get:
+
+Prefix balance| 0| 1| 1| 1| 2| 2| 2| 3  
+---|---|---|---|---|---|---|---|---  
+Position| 1| 8| 4| 2| 7| 5| 3| 6  
+Character| (| )| (| (| )| (| )| )  
+  
+The last row of this table forms another parentheses sequence, in this case
+""()(()())"". This sequence is called the result of applying the balanced
+shuffle operation to the input sequence, or in short just the balanced shuffle
+of the input sequence.
+
+You are given a balanced parentheses sequence. Print its balanced shuffle.
+
+Input
+
+The only line of input contains a string s consisting only of characters ""(""
+and "")"". This string is guaranteed to be a non-empty balanced parentheses
+sequence with its length not exceeding 500\,000 .
+
+Output
+
+Print the parentheses sequence t — the balanced shuffle of s .
+
+Example
+
+Input
+
+    (()(()))
+    
+Output
+
+    ()(()())","def solve(s):
+  n=len(s)
+  ans=''
+  d={}
+  d[0]=0
+  for i in range(len(s)):
+    if s[i]=='(':
+      d[i+1]=d[i]+1
+    else:
+      d[i+1]=d[i]-1
+  d.pop(n)
+  d=sorted(d.items(), key=lambda x:(x[1],-x[0]))
+  for i , j in d:
+    ans+=s[i]
+  return ans
+ 
+ 
+n=input()
+print(solve(n))",2,True,True,False,True,False,True,True,True,False,False,False,True,False,True,0.4195130007963795,-0.07554800008647701,0.5833333333333334
+1972_B,1972_B_r1813._100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"There are n coins on the table forming a circle, and each coin is either
+facing up or facing down. Alice and Bob take turns to play the following game,
+and Alice goes first.
+
+In each operation, the player chooses a facing-up coin, removes the coin, and
+flips the two coins that are adjacent to it. If (before the operation) there
+are only two coins left, then one will be removed and the other won't be
+flipped (as it would be flipped twice). If (before the operation) there is
+only one coin left, no coins will be flipped. If (before the operation) there
+are no facing-up coins, the player loses.
+
+Decide who will win the game if they both play optimally. It can be proved
+that the game will end in a finite number of operations, and one of them will
+win.
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t (1\le t\le 100 ). The description of the test cases follows.
+
+The first line of each test case contains only one positive integer n (1 \leq
+n \leq 100 ), representing the number of the coins.
+
+A string s of length n follows on the second line of each test case,
+containing only ""U"" and ""D"", representing that each coin is facing up or
+facing down.
+
+Output
+
+For each test case, print ""YES"" if Alice will win the game, and ""NO""
+otherwise.
+
+You can output the answer in any case (upper or lower). For example, the
+strings ""yEs"", ""yes"", ""Yes"", and ""YES"" will be recognized as positive
+responses.
+
+Example
+
+Input
+
+    3
+    
+    5
+    
+    UUDUD
+    
+    5
+    
+    UDDUD
+    
+    2
+    
+    UU
+
+Output
+
+    YES
+    NO
+    NO
+    
+Note
+
+In the first test case, the game may go as follows.
+
+  * Alice chooses the first coin and s becomes ""DDUU"". 
+  * Bob chooses the last coin and s becomes ""UDD"". 
+  * Alice chooses the first coin and s becomes ""UU"". 
+  * Bob chooses the first coin and s becomes ""U"". 
+  * Alice chooses the only coin and s becomes empty. 
+  * Bob can't choose any coin now, and he loses the game. 
+
+It can be proved that Bob will always lose if they both play optimally.","def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    t = int(data[0])
+    index = 1
+    for _ in range(t):
+        n = int(data[index])
+        s = data[index + 1]
+        index += 2
+        
+        count_u = s.count('U')
+        if count_u % 2 == 1:
+            print(""YES"")
+        else:
+            print(""NO"")
+ 
+if __name__ == ""__main__"":
+    main()",2,True,True,True,True,True,True,True,True,True,True,True,True,True,True,0.5452847324327054,0.04922400613493482,0.5833333333333334
+1970_A1,1970_A1_tah23seen_100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"A parentheses sequence is a string consisting of characters ""("" and "")"", for
+example ""(()(("".
+
+A balanced parentheses sequence is a parentheses sequence which can become a
+valid mathematical expression after inserting numbers and operations into it,
+for example ""(()(()))"".
+
+The balance of a parentheses sequence is defined as the number of opening
+parentheses ""("" minus the number of closing parentheses "")"". For example, the
+balance of the sequence ""(()(("" is 3.
+
+A balanced parentheses sequence can also be defined as a parentheses sequence
+with balance 0 such that each of its prefixes has a non-negative balance.
+
+We define the balanced shuffle operation that takes a parentheses sequence and
+returns a parentheses sequence as follows: first, for every character of the
+input sequence, we compute the balance of the prefix of the sequence before
+that character and write those down in a table together with the positions of
+the characters in the input sequence, for example:
+
+Prefix balance| 0| 1| 2| 1| 2| 3| 2| 1  
+---|---|---|---|---|---|---|---|---  
+Position| 1| 2| 3| 4| 5| 6| 7| 8  
+Character| (| (| )| (| (| )| )| )  
+  
+Then, we sort the columns of this table in increasing order of prefix balance,
+breaking ties in decreasing order of position. In the above example, we get:
+
+Prefix balance| 0| 1| 1| 1| 2| 2| 2| 3  
+---|---|---|---|---|---|---|---|---  
+Position| 1| 8| 4| 2| 7| 5| 3| 6  
+Character| (| )| (| (| )| (| )| )  
+  
+The last row of this table forms another parentheses sequence, in this case
+""()(()())"". This sequence is called the result of applying the balanced
+shuffle operation to the input sequence, or in short just the balanced shuffle
+of the input sequence.
+
+You are given a balanced parentheses sequence. Print its balanced shuffle.
+
+Input
+
+The only line of input contains a string s consisting only of characters ""(""
+and "")"". This string is guaranteed to be a non-empty balanced parentheses
+sequence with its length not exceeding 500\,000 .
+
+Output
+
+Print the parentheses sequence t — the balanced shuffle of s .
+
+Example
+
+Input
+
+    (()(()))
+    
+Output
+
+    ()(()())","def solve(s):
+  n=len(s)
+  ans=''
+  d={}
+  d[0]=0
+  for i in range(len(s)):
+    if s[i]=='(':
+      d[i+1]=d[i]+1
+    else:
+      d[i+1]=d[i]-1
+  d.pop(n)
+  d=sorted(d.items(), key=lambda x:(x[1],-x[0]))
+  for i , j in d:
+    ans+=s[i]
+  return ans
+ 
+ 
+n=input()
+print(solve(n))",6,True,True,False,True,False,True,True,True,False,False,False,True,True,True,0.4195130007963795,-0.07554800008647701,0.5833333333333334
+1972_B,1972_B_r1813._100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"There are n coins on the table forming a circle, and each coin is either
+facing up or facing down. Alice and Bob take turns to play the following game,
+and Alice goes first.
+
+In each operation, the player chooses a facing-up coin, removes the coin, and
+flips the two coins that are adjacent to it. If (before the operation) there
+are only two coins left, then one will be removed and the other won't be
+flipped (as it would be flipped twice). If (before the operation) there is
+only one coin left, no coins will be flipped. If (before the operation) there
+are no facing-up coins, the player loses.
+
+Decide who will win the game if they both play optimally. It can be proved
+that the game will end in a finite number of operations, and one of them will
+win.
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t (1\le t\le 100 ). The description of the test cases follows.
+
+The first line of each test case contains only one positive integer n (1 \leq
+n \leq 100 ), representing the number of the coins.
+
+A string s of length n follows on the second line of each test case,
+containing only ""U"" and ""D"", representing that each coin is facing up or
+facing down.
+
+Output
+
+For each test case, print ""YES"" if Alice will win the game, and ""NO""
+otherwise.
+
+You can output the answer in any case (upper or lower). For example, the
+strings ""yEs"", ""yes"", ""Yes"", and ""YES"" will be recognized as positive
+responses.
+
+Example
+
+Input
+
+    3
+    
+    5
+    
+    UUDUD
+    
+    5
+    
+    UDDUD
+    
+    2
+    
+    UU
+
+Output
+
+    YES
+    NO
+    NO
+    
+Note
+
+In the first test case, the game may go as follows.
+
+  * Alice chooses the first coin and s becomes ""DDUU"". 
+  * Bob chooses the last coin and s becomes ""UDD"". 
+  * Alice chooses the first coin and s becomes ""UU"". 
+  * Bob chooses the first coin and s becomes ""U"". 
+  * Alice chooses the only coin and s becomes empty. 
+  * Bob can't choose any coin now, and he loses the game. 
+
+It can be proved that Bob will always lose if they both play optimally.","def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    t = int(data[0])
+    index = 1
+    for _ in range(t):
+        n = int(data[index])
+        s = data[index + 1]
+        index += 2
+        
+        count_u = s.count('U')
+        if count_u % 2 == 1:
+            print(""YES"")
+        else:
+            print(""NO"")
+ 
+if __name__ == ""__main__"":
+    main()",6,True,True,True,True,True,True,True,True,True,True,True,True,True,True,0.5452847324327054,0.04922400613493482,0.5833333333333334
+1974_A,1974_A_chiwuu_0.00%,codeforces2024,human,qwen2p5-coder-32b-instruct,"Little Rosie has a phone with a desktop (or launcher, as it is also called).
+The desktop can consist of several screens. Each screen is represented as a
+grid of size 5 \times 3 , i.e., five rows and three columns.
+
+There are x applications with an icon size of 1 \times 1 cells; such an icon
+occupies only one cell of the screen. There are also y applications with an
+icon size of 2 \times 2 cells; such an icon occupies a square of 4 cells on
+the screen. Each cell of each screen can be occupied by no more than one icon.
+
+Rosie wants to place the application icons on the minimum number of screens.
+Help her find the minimum number of screens needed.
+
+Input
+
+The first line of the input contains t (1 \leq t \leq 10^4 ) — the number of
+test cases.
+
+The first and only line of each test case contains two integers x and y (0
+\leq x, y \leq 99 ) — the number of applications with a 1 \times 1 icon and
+the number of applications with a 2 \times 2 icon, respectively.
+
+Output
+
+For each test case, output the minimal number of required screens on a
+separate line.
+
+Example
+
+Input
+
+    11
+    
+    1 1
+    
+    7 2
+    
+    12 4
+    
+    0 3
+    
+    1 0
+    
+    8 1
+    
+    0 0
+    
+    2 0
+    
+    15 0
+    
+    8 2
+    
+    0 9
+
+Output
+
+    1
+    1
+    2
+    2
+    1
+    1
+    0
+    1
+    1
+    2
+    5
+    
+Note
+
+The solution for the first test case can look as follows:
+
+![](https://espresso.codeforces.com/f9882979f0d9b5c31c5260fd626217227c2f05de.png)
+Blue squares represent empty spaces for icons, green squares represent 1
+\times 1 icons, red squares represent 2 \times 2 icons
+
+The solution for the third test case can look as follows:
+
+![](https://espresso.codeforces.com/0e737a290e056a29f38918bf06c13be790307a8d.png)","n=int(input())
+for i in range(n):
+    a,b=input().split()
+    a=int(a)
+    b=int(b)
+    t=b*2
+    if t%5==0:
+        t=t//5
+    else:
+        t=t//5+1
+    t1=t*15-b*4
+    if t1>=a:
+        t=t
+    else:
+        t2=a-t1
+        if t2%15==0:
+            t=t+t2//15
+        else:
+            t=t+t2//15+1
+    print(t)",1,False,False,True,False,False,False,False,False,True,True,False,False,False,False,0.5034942620944419,0.003558429730204223,0.5
+1957_C,1957_C_DevK01_100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","def sol(n):
+ 
+    dp=[1,1]
+    for i in range(2,n+1):
+        dp+=[(dp[-1]+2*(i-1)*dp[-2])%(7+10**9)]
+        dp.pop(0)
+    return dp[-1]
+ 
+t=int(input())
+for _ in range(t):
+    L=list(map(int,input().split()))
+    n,k=L[0],L[1]
+    for j in range(k):
+        L1=list(map(int,input().split()))
+        a,b=L1[0],L1[1]
+        if a!=b:
+            n-=2
+        else:
+            n-=1
+    print(sol(n))
+    continue",1,True,True,False,True,False,True,True,True,False,False,True,True,True,True,0.5721055503863547,0.07567107112319255,0.5833333333333334
+1974_A,1974_A_chiwuu_0.00%,codeforces2024,human,qwen2p5-coder-32b-instruct,"Little Rosie has a phone with a desktop (or launcher, as it is also called).
+The desktop can consist of several screens. Each screen is represented as a
+grid of size 5 \times 3 , i.e., five rows and three columns.
+
+There are x applications with an icon size of 1 \times 1 cells; such an icon
+occupies only one cell of the screen. There are also y applications with an
+icon size of 2 \times 2 cells; such an icon occupies a square of 4 cells on
+the screen. Each cell of each screen can be occupied by no more than one icon.
+
+Rosie wants to place the application icons on the minimum number of screens.
+Help her find the minimum number of screens needed.
+
+Input
+
+The first line of the input contains t (1 \leq t \leq 10^4 ) — the number of
+test cases.
+
+The first and only line of each test case contains two integers x and y (0
+\leq x, y \leq 99 ) — the number of applications with a 1 \times 1 icon and
+the number of applications with a 2 \times 2 icon, respectively.
+
+Output
+
+For each test case, output the minimal number of required screens on a
+separate line.
+
+Example
+
+Input
+
+    11
+    
+    1 1
+    
+    7 2
+    
+    12 4
+    
+    0 3
+    
+    1 0
+    
+    8 1
+    
+    0 0
+    
+    2 0
+    
+    15 0
+    
+    8 2
+    
+    0 9
+
+Output
+
+    1
+    1
+    2
+    2
+    1
+    1
+    0
+    1
+    1
+    2
+    5
+    
+Note
+
+The solution for the first test case can look as follows:
+
+![](https://espresso.codeforces.com/f9882979f0d9b5c31c5260fd626217227c2f05de.png)
+Blue squares represent empty spaces for icons, green squares represent 1
+\times 1 icons, red squares represent 2 \times 2 icons
+
+The solution for the third test case can look as follows:
+
+![](https://espresso.codeforces.com/0e737a290e056a29f38918bf06c13be790307a8d.png)","n=int(input())
+for i in range(n):
+    a,b=input().split()
+    a=int(a)
+    b=int(b)
+    t=b*2
+    if t%5==0:
+        t=t//5
+    else:
+        t=t//5+1
+    t1=t*15-b*4
+    if t1>=a:
+        t=t
+    else:
+        t2=a-t1
+        if t2%15==0:
+            t=t+t2//15
+        else:
+            t=t+t2//15+1
+    print(t)",2,False,True,False,True,False,False,True,False,False,False,False,False,False,False,0.5034942620944419,0.003558429730204223,0.5
+1957_C,1957_C_DevK01_100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","def sol(n):
+ 
+    dp=[1,1]
+    for i in range(2,n+1):
+        dp+=[(dp[-1]+2*(i-1)*dp[-2])%(7+10**9)]
+        dp.pop(0)
+    return dp[-1]
+ 
+t=int(input())
+for _ in range(t):
+    L=list(map(int,input().split()))
+    n,k=L[0],L[1]
+    for j in range(k):
+        L1=list(map(int,input().split()))
+        a,b=L1[0],L1[1]
+        if a!=b:
+            n-=2
+        else:
+            n-=1
+    print(sol(n))
+    continue",2,True,False,False,True,False,False,False,False,True,False,False,True,False,False,0.5721055503863547,0.07567107112319255,0.5833333333333334
+1974_A,1974_A_chiwuu_0.00%,codeforces2024,human,qwen2p5-coder-32b-instruct,"Little Rosie has a phone with a desktop (or launcher, as it is also called).
+The desktop can consist of several screens. Each screen is represented as a
+grid of size 5 \times 3 , i.e., five rows and three columns.
+
+There are x applications with an icon size of 1 \times 1 cells; such an icon
+occupies only one cell of the screen. There are also y applications with an
+icon size of 2 \times 2 cells; such an icon occupies a square of 4 cells on
+the screen. Each cell of each screen can be occupied by no more than one icon.
+
+Rosie wants to place the application icons on the minimum number of screens.
+Help her find the minimum number of screens needed.
+
+Input
+
+The first line of the input contains t (1 \leq t \leq 10^4 ) — the number of
+test cases.
+
+The first and only line of each test case contains two integers x and y (0
+\leq x, y \leq 99 ) — the number of applications with a 1 \times 1 icon and
+the number of applications with a 2 \times 2 icon, respectively.
+
+Output
+
+For each test case, output the minimal number of required screens on a
+separate line.
+
+Example
+
+Input
+
+    11
+    
+    1 1
+    
+    7 2
+    
+    12 4
+    
+    0 3
+    
+    1 0
+    
+    8 1
+    
+    0 0
+    
+    2 0
+    
+    15 0
+    
+    8 2
+    
+    0 9
+
+Output
+
+    1
+    1
+    2
+    2
+    1
+    1
+    0
+    1
+    1
+    2
+    5
+    
+Note
+
+The solution for the first test case can look as follows:
+
+![](https://espresso.codeforces.com/f9882979f0d9b5c31c5260fd626217227c2f05de.png)
+Blue squares represent empty spaces for icons, green squares represent 1
+\times 1 icons, red squares represent 2 \times 2 icons
+
+The solution for the third test case can look as follows:
+
+![](https://espresso.codeforces.com/0e737a290e056a29f38918bf06c13be790307a8d.png)","n=int(input())
+for i in range(n):
+    a,b=input().split()
+    a=int(a)
+    b=int(b)
+    t=b*2
+    if t%5==0:
+        t=t//5
+    else:
+        t=t//5+1
+    t1=t*15-b*4
+    if t1>=a:
+        t=t
+    else:
+        t2=a-t1
+        if t2%15==0:
+            t=t+t2//15
+        else:
+            t=t+t2//15+1
+    print(t)",7,False,False,False,False,False,True,True,False,True,False,False,False,False,False,0.5034942620944419,0.003558429730204223,0.5
+1957_C,1957_C_DevK01_100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","def sol(n):
+ 
+    dp=[1,1]
+    for i in range(2,n+1):
+        dp+=[(dp[-1]+2*(i-1)*dp[-2])%(7+10**9)]
+        dp.pop(0)
+    return dp[-1]
+ 
+t=int(input())
+for _ in range(t):
+    L=list(map(int,input().split()))
+    n,k=L[0],L[1]
+    for j in range(k):
+        L1=list(map(int,input().split()))
+        a,b=L1[0],L1[1]
+        if a!=b:
+            n-=2
+        else:
+            n-=1
+    print(sol(n))
+    continue",7,True,False,False,True,False,True,False,False,False,False,False,True,False,False,0.5721055503863547,0.07567107112319255,0.5833333333333334
+1957_C,1957_C_hx199411_100%,codeforces2024,human,qwen2p5-coder-32b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","t = int(input())
+while t:
+    t -= 1
+    n,k = list(map(int,input().split(' ')))
+    num = 0
+    for i in range(k):
+        c,r = list(map(int,input().split(' ')))
+        if c == r:
+            num += 1
+        else:
+            num += 2
+    m = n - num
+    if m == 0:
+        print(1)
+    elif m == 1:
+        print(1)
+    else:
+        dp = [0 for i in range(m+1)]
+        dp[1] = 1
+        dp[2] = 3
+        for i in range(3,m+1):
+            dp[i] = (dp[i-1] + (i-1)*dp[i-2]*2)%(10**9+7)
+        print(dp[m])",1,True,True,False,True,True,True,True,True,False,False,False,True,True,True,0.40849978776192514,-0.09525744994067215,0.5

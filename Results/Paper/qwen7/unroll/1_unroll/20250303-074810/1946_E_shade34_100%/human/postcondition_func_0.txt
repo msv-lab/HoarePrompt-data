@@ -1,5 +1,0 @@
-The function accepts two positive integers `a` and `b` (with `b` not being zero) and returns a tuple. Depending on the values of `a` and `b`, it can return one of four possible outcomes:
-1. A tuple containing 1 and 0.
-2. A tuple where the first element is the second return value from `func_1(b, a % b)` and the second element is the difference between `c` minus the floor division of `a` by `b` multiplied by the second return value from `func_1(b, a % b)`.
-3. A tuple containing 1 and the negative of `(a // b - 1)`.
-4. A tuple where the first element is the second return value from `func_1(b, a)` and the second element is `d`, where `c` and `d` are the results of `func_1(b, a)`.

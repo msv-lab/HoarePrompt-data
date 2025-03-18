@@ -1,0 +1,6 @@
+The function `dfs` performs a depth-first search (DFS) on a graph starting from a given vertex `curr`. It accepts three parameters: `curr` (the current vertex being visited), `parent` (the previously visited vertex), and `path` (the current path of vertices being explored). The function returns one of the following:
+- A list `path` representing the current path of vertices being explored.
+- A non-empty list `res` containing elements found during the DFS traversal, if `node_v` is present in this list.
+- The result of the DFS function call for a neighbor `nei` of the current vertex `curr`, if `nei` is not colored 2, not equal to `parent`, and either `res` is empty or `nei` is not in `set_res`.
+- A set containing the elements of the original `res` list.
+- An empty list, if no valid path or result is found.

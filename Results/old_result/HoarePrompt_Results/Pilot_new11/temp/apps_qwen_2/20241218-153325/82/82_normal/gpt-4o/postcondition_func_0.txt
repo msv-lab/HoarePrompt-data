@@ -1,0 +1,8 @@
+The function `func_1` accepts two positive integer parameters `x` and `y`. It uses the Euclidean algorithm to compute the greatest common divisor (GCD) of `x` and `y`. The function modifies `x` to be the GCD of the initial values of `x` and `y`, and sets `y` to 0. The function returns these two values: the GCD of `x` and `y`, and `y` which is 0. 
+
+Potential edge cases and missing functionality:
+- The function correctly handles the case where `x` and `y` are positive integers.
+- The function correctly handles the case where `x` or `y` is equal to 1, as the GCD of any number and 1 is 1.
+- The function correctly handles the case where `x` and `y` are equal, as the GCD would be the value of `x` (or `y`).
+- The function correctly handles the case where one of the inputs is 0, as the GCD of any number and 0 is the non-zero number itself.
+- The function does not handle the case where either `x` or `y` is negative, although the initial conditions specify that both are positive integers.

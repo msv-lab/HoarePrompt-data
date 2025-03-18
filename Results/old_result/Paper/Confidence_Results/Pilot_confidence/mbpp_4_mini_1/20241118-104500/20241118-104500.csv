@@ -1,0 +1,466 @@
+Task ID,Dataset,model_created,model_run,description,Code,Test Result,Post,original correctness,confidence1,confidence2,correctness1,correctness2,data file
+Mbpp_280,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).,"def sequential_search(arr, elem):
+    for i, x in enumerate(arr):
+        if x == elem:
+            return (True, i)
+    return (False, -1)
+",,post,True,0.8008595813208681,100,True,,pilot_mbpp3.json
+Mbpp_280,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).,"def sequential_search(arr, elem):
+    for i, x in enumerate(arr):
+        if x == elem:
+            return (True, i)
+    return (False, -1)
+",,post,True,0.800565317497241,100,True,,pilot_mbpp3.json
+Mbpp_280,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).,"def sequential_search(arr, elem):
+    for i, x in enumerate(arr):
+        if x == elem:
+            return (True, i)
+    return (False, -1)
+",,post,True,0.8008595813208681,95,True,,pilot_mbpp3.json
+Mbpp_280,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).,"def sequential_search(arr, elem):
+    for i, x in enumerate(arr):
+        if x == elem:
+            return (True, i)
+    return (False, -1)
+",,post,True,0.16043761426375297,100,True,,pilot_mbpp3.json
+Mbpp_280,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).,"def sequential_search(arr, elem):
+    for i, x in enumerate(arr):
+        if x == elem:
+            return (True, i)
+    return (False, -1)
+",,post,True,0.800565317497241,90,True,,pilot_mbpp3.json
+Mbpp_280,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).,"def sequential_search(arr, element):
+    for index, value in enumerate(arr):
+        if value == element:
+            return (True, index)
+    return (False, -1)
+
+# Test cases
+assert sequential_search([11,23,58,31,56,77,43,12,65,19],31) == (True, 3)
+assert sequential_search([12, 32, 45, 62, 35, 47, 44, 61],61) == (True, 7)
+assert sequential_search([9, 10, 17, 19, 22, 39, 48, 56],48) == (True, 6)
+",,post,True,0.8124863669966995,95,True,,pilot_mbpp3.json
+Mbpp_280,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).,"def sequential_search(arr, element):
+    for index, value in enumerate(arr):
+        if value == element:
+            return (True, index)
+    return (False, -1)
+
+# Test cases
+assert sequential_search([11,23,58,31,56,77,43,12,65,19],31) == (True, 3)
+assert sequential_search([12, 32, 45, 62, 35, 47, 44, 61],61) == (True, 7)
+assert sequential_search([9, 10, 17, 19, 22, 39, 48, 56],48) == (True, 6)
+",,post,True,0.8076000848330984,95,True,,pilot_mbpp3.json
+Mbpp_280,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).,"def sequential_search(arr, element):
+    for index, value in enumerate(arr):
+        if value == element:
+            return (True, index)
+    return (False, -1)
+
+# Test cases
+assert sequential_search([11,23,58,31,56,77,43,12,65,19],31) == (True, 3)
+assert sequential_search([12, 32, 45, 62, 35, 47, 44, 61],61) == (True, 7)
+assert sequential_search([9, 10, 17, 19, 22, 39, 48, 56],48) == (True, 6)
+",,post,True,0.8107224457469276,95,True,,pilot_mbpp3.json
+Mbpp_280,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).,"def sequential_search(arr, element):
+    for index, value in enumerate(arr):
+        if value == element:
+            return (True, index)
+    return (False, -1)
+
+# Test cases
+assert sequential_search([11,23,58,31,56,77,43,12,65,19],31) == (True, 3)
+assert sequential_search([12, 32, 45, 62, 35, 47, 44, 61],61) == (True, 7)
+assert sequential_search([9, 10, 17, 19, 22, 39, 48, 56],48) == (True, 6)
+",,post,True,0.8107224457469276,90,True,,pilot_mbpp3.json
+Mbpp_280,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found).,"def sequential_search(arr, element):
+    for index, value in enumerate(arr):
+        if value == element:
+            return (True, index)
+    return (False, -1)
+
+# Test cases
+assert sequential_search([11,23,58,31,56,77,43,12,65,19],31) == (True, 3)
+assert sequential_search([12, 32, 45, 62, 35, 47, 44, 61],61) == (True, 7)
+assert sequential_search([9, 10, 17, 19, 22, 39, 48, 56],48) == (True, 6)
+",,post,True,0.8107224457469276,90,True,,pilot_mbpp3.json
+Mbpp_11,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s, c):
+    first_occ = s.find(c)
+    last_occ = s.rfind(c)
+    if first_occ != -1 and last_occ != -1:
+        return s[:first_occ] + s[first_occ+1:last_occ] + s[last_occ+1:]
+    else:
+        return s
+",,post,True,0.21761304855769398,90,False,,pilot_mbpp3.json
+Mbpp_11,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s, c):
+    first_occ = s.find(c)
+    last_occ = s.rfind(c)
+    if first_occ != -1 and last_occ != -1:
+        return s[:first_occ] + s[first_occ+1:last_occ] + s[last_occ+1:]
+    else:
+        return s
+",,post,True,0.21761304855769398,90,False,,pilot_mbpp3.json
+Mbpp_11,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s, c):
+    first_occ = s.find(c)
+    last_occ = s.rfind(c)
+    if first_occ != -1 and last_occ != -1:
+        return s[:first_occ] + s[first_occ+1:last_occ] + s[last_occ+1:]
+    else:
+        return s
+",,post,True,0.0030884744978305566,90,False,,pilot_mbpp3.json
+Mbpp_11,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s, c):
+    first_occ = s.find(c)
+    last_occ = s.rfind(c)
+    if first_occ != -1 and last_occ != -1:
+        return s[:first_occ] + s[first_occ+1:last_occ] + s[last_occ+1:]
+    else:
+        return s
+",,post,True,0.8170383350476287,100,True,,pilot_mbpp3.json
+Mbpp_11,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s, c):
+    first_occ = s.find(c)
+    last_occ = s.rfind(c)
+    if first_occ != -1 and last_occ != -1:
+        return s[:first_occ] + s[first_occ+1:last_occ] + s[last_occ+1:]
+    else:
+        return s
+",,post,True,0.8170383350476287,90,False,,pilot_mbpp3.json
+Mbpp_11,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s: str, ch: str) -> str:
+    first_index = s.find(ch)
+    last_index = s.rfind(ch)
+    
+    if first_index == -1 or last_index == -1 or first_index == last_index:
+        return s  # No removal needed if ch is not found or only one occurrence
+    
+    # Create a new string without the first and last occurrence of ch
+    return s[:first_index] + s[first_index + 1:last_index] + s[last_index + 1:]
+
+# Testing the function with the provided test cases
+assert remove_Occ(""hello"", ""l"") == ""heo""
+assert remove_Occ(""abcda"", ""a"") == ""bcd""
+assert remove_Occ(""PHP"", ""P"") == ""H""
+",,post,False,0.7653619628541296,90,False,,pilot_mbpp3.json
+Mbpp_11,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s: str, ch: str) -> str:
+    first_index = s.find(ch)
+    last_index = s.rfind(ch)
+    
+    if first_index == -1 or last_index == -1 or first_index == last_index:
+        return s  # No removal needed if ch is not found or only one occurrence
+    
+    # Create a new string without the first and last occurrence of ch
+    return s[:first_index] + s[first_index + 1:last_index] + s[last_index + 1:]
+
+# Testing the function with the provided test cases
+assert remove_Occ(""hello"", ""l"") == ""heo""
+assert remove_Occ(""abcda"", ""a"") == ""bcd""
+assert remove_Occ(""PHP"", ""P"") == ""H""
+",,post,False,0.765392623103105,90,False,,pilot_mbpp3.json
+Mbpp_11,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s: str, ch: str) -> str:
+    first_index = s.find(ch)
+    last_index = s.rfind(ch)
+    
+    if first_index == -1 or last_index == -1 or first_index == last_index:
+        return s  # No removal needed if ch is not found or only one occurrence
+    
+    # Create a new string without the first and last occurrence of ch
+    return s[:first_index] + s[first_index + 1:last_index] + s[last_index + 1:]
+
+# Testing the function with the provided test cases
+assert remove_Occ(""hello"", ""l"") == ""heo""
+assert remove_Occ(""abcda"", ""a"") == ""bcd""
+assert remove_Occ(""PHP"", ""P"") == ""H""
+",,post,False,0.7774686774330529,90,False,,pilot_mbpp3.json
+Mbpp_11,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s: str, ch: str) -> str:
+    first_index = s.find(ch)
+    last_index = s.rfind(ch)
+    
+    if first_index == -1 or last_index == -1 or first_index == last_index:
+        return s  # No removal needed if ch is not found or only one occurrence
+    
+    # Create a new string without the first and last occurrence of ch
+    return s[:first_index] + s[first_index + 1:last_index] + s[last_index + 1:]
+
+# Testing the function with the provided test cases
+assert remove_Occ(""hello"", ""l"") == ""heo""
+assert remove_Occ(""abcda"", ""a"") == ""bcd""
+assert remove_Occ(""PHP"", ""P"") == ""H""
+",,post,False,0.7795409037644283,90,False,,pilot_mbpp3.json
+Mbpp_11,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to remove first and last occurrence of a given character from the string.,"def remove_Occ(s: str, ch: str) -> str:
+    first_index = s.find(ch)
+    last_index = s.rfind(ch)
+    
+    if first_index == -1 or last_index == -1 or first_index == last_index:
+        return s  # No removal needed if ch is not found or only one occurrence
+    
+    # Create a new string without the first and last occurrence of ch
+    return s[:first_index] + s[first_index + 1:last_index] + s[last_index + 1:]
+
+# Testing the function with the provided test cases
+assert remove_Occ(""hello"", ""l"") == ""heo""
+assert remove_Occ(""abcda"", ""a"") == ""bcd""
+assert remove_Occ(""PHP"", ""P"") == ""H""
+",,post,False,0.7771851081970353,90,False,,pilot_mbpp3.json
+Mbpp_562,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a python function to find the length of the longest sublists.,"def Find_Max_Length(lists):
+    return max(len(sublist) for sublist in lists)
+",,post,True,0.8120085210269218,80,False,,pilot_mbpp3.json
+Mbpp_562,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a python function to find the length of the longest sublists.,"def Find_Max_Length(lists):
+    return max(len(sublist) for sublist in lists)
+",,post,True,0.8120085210269218,90,False,,pilot_mbpp3.json
+Mbpp_562,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a python function to find the length of the longest sublists.,"def Find_Max_Length(lists):
+    return max(len(sublist) for sublist in lists)
+",,post,True,0.034594858715393494,90,False,,pilot_mbpp3.json
+Mbpp_562,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a python function to find the length of the longest sublists.,"def Find_Max_Length(lists):
+    return max(len(sublist) for sublist in lists)
+",,post,True,0.24465911613391786,90,False,,pilot_mbpp3.json
+Mbpp_562,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a python function to find the length of the longest sublists.,"def Find_Max_Length(lists):
+    return max(len(sublist) for sublist in lists)
+",,post,True,0.24465911613391786,80,False,,pilot_mbpp3.json
+Mbpp_562,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the length of the longest sublists.,"def Find_Max_Length(list_of_lists):
+    max_length = 0
+    for sublist in list_of_lists:
+        if len(sublist) > max_length:
+            max_length = len(sublist)
+    return max_length
+
+# Test cases
+assert Find_Max_Length([[1],[1,4],[5,6,7,8]]) == 4
+assert Find_Max_Length([[0,1],[2,2,],[3,2,1]]) == 3
+assert Find_Max_Length([[7],[22,23],[13,14,15],[10,20,30,40,50]]) == 5
+",,post,True,0.7945538379427995,90,True,,pilot_mbpp3.json
+Mbpp_562,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the length of the longest sublists.,"def Find_Max_Length(list_of_lists):
+    max_length = 0
+    for sublist in list_of_lists:
+        if len(sublist) > max_length:
+            max_length = len(sublist)
+    return max_length
+
+# Test cases
+assert Find_Max_Length([[1],[1,4],[5,6,7,8]]) == 4
+assert Find_Max_Length([[0,1],[2,2,],[3,2,1]]) == 3
+assert Find_Max_Length([[7],[22,23],[13,14,15],[10,20,30,40,50]]) == 5
+",,post,True,0.7945538379427995,90,True,,pilot_mbpp3.json
+Mbpp_562,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the length of the longest sublists.,"def Find_Max_Length(list_of_lists):
+    max_length = 0
+    for sublist in list_of_lists:
+        if len(sublist) > max_length:
+            max_length = len(sublist)
+    return max_length
+
+# Test cases
+assert Find_Max_Length([[1],[1,4],[5,6,7,8]]) == 4
+assert Find_Max_Length([[0,1],[2,2,],[3,2,1]]) == 3
+assert Find_Max_Length([[7],[22,23],[13,14,15],[10,20,30,40,50]]) == 5
+",,post,True,0.2232481542269795,100,True,,pilot_mbpp3.json
+Mbpp_562,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the length of the longest sublists.,"def Find_Max_Length(list_of_lists):
+    max_length = 0
+    for sublist in list_of_lists:
+        if len(sublist) > max_length:
+            max_length = len(sublist)
+    return max_length
+
+# Test cases
+assert Find_Max_Length([[1],[1,4],[5,6,7,8]]) == 4
+assert Find_Max_Length([[0,1],[2,2,],[3,2,1]]) == 3
+assert Find_Max_Length([[7],[22,23],[13,14,15],[10,20,30,40,50]]) == 5
+",,post,True,0.7951252413070912,90,True,,pilot_mbpp3.json
+Mbpp_562,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the length of the longest sublists.,"def Find_Max_Length(list_of_lists):
+    max_length = 0
+    for sublist in list_of_lists:
+        if len(sublist) > max_length:
+            max_length = len(sublist)
+    return max_length
+
+# Test cases
+assert Find_Max_Length([[1],[1,4],[5,6,7,8]]) == 4
+assert Find_Max_Length([[0,1],[2,2,],[3,2,1]]) == 3
+assert Find_Max_Length([[7],[22,23],[13,14,15],[10,20,30,40,50]]) == 5
+",,post,True,0.7951252413070912,95,True,,pilot_mbpp3.json
+Mbpp_109,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.,"def odd_Equivalent(s, n):
+    s = s * (n // len(s) + 1)
+    count = 0
+    for i in range(n):
+        temp = s[i:i+len(s)]
+        count += temp.count('1') % 2
+    return count
+",,post,False,0.833959937790157,90,False,,pilot_mbpp3.json
+Mbpp_109,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.,"def odd_Equivalent(s, n):
+    s = s * (n // len(s) + 1)
+    count = 0
+    for i in range(n):
+        temp = s[i:i+len(s)]
+        count += temp.count('1') % 2
+    return count
+",,post,False,0.18893844590709014,90,False,,pilot_mbpp3.json
+Mbpp_109,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.,"def odd_Equivalent(s, n):
+    s = s * (n // len(s) + 1)
+    count = 0
+    for i in range(n):
+        temp = s[i:i+len(s)]
+        count += temp.count('1') % 2
+    return count
+",,post,False,0.20896623202418185,90,False,,pilot_mbpp3.json
+Mbpp_109,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.,"def odd_Equivalent(s, n):
+    s = s * (n // len(s) + 1)
+    count = 0
+    for i in range(n):
+        temp = s[i:i+len(s)]
+        count += temp.count('1') % 2
+    return count
+",,post,False,0.8314991147432934,90,False,,pilot_mbpp3.json
+Mbpp_109,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.,"def odd_Equivalent(s, n):
+    s = s * (n // len(s) + 1)
+    count = 0
+    for i in range(n):
+        temp = s[i:i+len(s)]
+        count += temp.count('1') % 2
+    return count
+",,post,False,0.8315519985213891,90,False,,pilot_mbpp3.json
+Mbpp_109,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.,"def odd_Equivalent(binary_str, num_rotations):
+    count = 0
+    for _ in range(num_rotations):
+        # Rotate the string by moving the last character to the front
+        binary_str = binary_str[-1] + binary_str[:-1]
+        # Convert the rotated binary string to an integer
+        integer_value = int(binary_str, 2)
+        # Check if the integer is odd
+        if integer_value % 2 == 1:
+            count += 1
+    return count
+
+# Testing the function with the provided test cases
+assert odd_Equivalent(""011001"", 6) == 3
+assert odd_Equivalent(""11011"", 5) == 4
+assert odd_Equivalent(""1010"", 4) == 2
+",,post,False,0.5314117477730732,90,True,,pilot_mbpp3.json
+Mbpp_109,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.,"def odd_Equivalent(binary_str, num_rotations):
+    count = 0
+    for _ in range(num_rotations):
+        # Rotate the string by moving the last character to the front
+        binary_str = binary_str[-1] + binary_str[:-1]
+        # Convert the rotated binary string to an integer
+        integer_value = int(binary_str, 2)
+        # Check if the integer is odd
+        if integer_value % 2 == 1:
+            count += 1
+    return count
+
+# Testing the function with the provided test cases
+assert odd_Equivalent(""011001"", 6) == 3
+assert odd_Equivalent(""11011"", 5) == 4
+assert odd_Equivalent(""1010"", 4) == 2
+",,post,False,0.2397052105454011,90,False,,pilot_mbpp3.json
+Mbpp_109,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.,"def odd_Equivalent(binary_str, num_rotations):
+    count = 0
+    for _ in range(num_rotations):
+        # Rotate the string by moving the last character to the front
+        binary_str = binary_str[-1] + binary_str[:-1]
+        # Convert the rotated binary string to an integer
+        integer_value = int(binary_str, 2)
+        # Check if the integer is odd
+        if integer_value % 2 == 1:
+            count += 1
+    return count
+
+# Testing the function with the provided test cases
+assert odd_Equivalent(""011001"", 6) == 3
+assert odd_Equivalent(""11011"", 5) == 4
+assert odd_Equivalent(""1010"", 4) == 2
+",,post,False,0.7897677295336366,90,False,,pilot_mbpp3.json
+Mbpp_109,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.,"def odd_Equivalent(binary_str, num_rotations):
+    count = 0
+    for _ in range(num_rotations):
+        # Rotate the string by moving the last character to the front
+        binary_str = binary_str[-1] + binary_str[:-1]
+        # Convert the rotated binary string to an integer
+        integer_value = int(binary_str, 2)
+        # Check if the integer is odd
+        if integer_value % 2 == 1:
+            count += 1
+    return count
+
+# Testing the function with the provided test cases
+assert odd_Equivalent(""011001"", 6) == 3
+assert odd_Equivalent(""11011"", 5) == 4
+assert odd_Equivalent(""1010"", 4) == 2
+",,post,False,0.7927570123516217,90,False,,pilot_mbpp3.json
+Mbpp_109,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a python function to find the number of numbers with an odd value when rotating a binary string the given number of times.,"def odd_Equivalent(binary_str, num_rotations):
+    count = 0
+    for _ in range(num_rotations):
+        # Rotate the string by moving the last character to the front
+        binary_str = binary_str[-1] + binary_str[:-1]
+        # Convert the rotated binary string to an integer
+        integer_value = int(binary_str, 2)
+        # Check if the integer is odd
+        if integer_value % 2 == 1:
+            count += 1
+    return count
+
+# Testing the function with the provided test cases
+assert odd_Equivalent(""011001"", 6) == 3
+assert odd_Equivalent(""11011"", 5) == 4
+assert odd_Equivalent(""1010"", 4) == 2
+",,post,False,0.7927570123516217,90,True,,pilot_mbpp3.json
+Mbpp_618,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a function to divide two lists element wise.,"def div_list(list1, list2):
+    if len(list1) != len(list2):
+        raise ValueError(""Both lists must be of the same length"")
+    return [x/y for x, y in zip(list1, list2)]
+",,post,True,0.24468962702801447,80,False,,pilot_mbpp3.json
+Mbpp_618,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a function to divide two lists element wise.,"def div_list(list1, list2):
+    if len(list1) != len(list2):
+        raise ValueError(""Both lists must be of the same length"")
+    return [x/y for x, y in zip(list1, list2)]
+",,post,True,0.24468962702801447,80,False,,pilot_mbpp3.json
+Mbpp_618,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a function to divide two lists element wise.,"def div_list(list1, list2):
+    if len(list1) != len(list2):
+        raise ValueError(""Both lists must be of the same length"")
+    return [x/y for x, y in zip(list1, list2)]
+",,post,True,0.8114949683321584,90,False,,pilot_mbpp3.json
+Mbpp_618,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a function to divide two lists element wise.,"def div_list(list1, list2):
+    if len(list1) != len(list2):
+        raise ValueError(""Both lists must be of the same length"")
+    return [x/y for x, y in zip(list1, list2)]
+",,post,True,0.8114949683321584,90,False,,pilot_mbpp3.json
+Mbpp_618,mbpp,llama3-70b,gpt-4o-mini-2024-07-18,Write a function to divide two lists element wise.,"def div_list(list1, list2):
+    if len(list1) != len(list2):
+        raise ValueError(""Both lists must be of the same length"")
+    return [x/y for x, y in zip(list1, list2)]
+",,post,True,0.8116885853176825,80,False,,pilot_mbpp3.json
+Mbpp_618,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to divide two lists element wise.,"def div_list(list1, list2):
+    return [a / b for a, b in zip(list1, list2)]
+
+# Testing the function with provided test cases
+assert div_list([4,5,6],[1, 2, 3]) == [4.0, 2.5, 2.0]
+assert div_list([3,2],[1,4]) == [3.0, 0.5]
+assert div_list([90,120],[50,70]) == [1.8, 1.7142857142857142]
+",,post,True,0.803816267040605,90,False,,pilot_mbpp3.json
+Mbpp_618,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to divide two lists element wise.,"def div_list(list1, list2):
+    return [a / b for a, b in zip(list1, list2)]
+
+# Testing the function with provided test cases
+assert div_list([4,5,6],[1, 2, 3]) == [4.0, 2.5, 2.0]
+assert div_list([3,2],[1,4]) == [3.0, 0.5]
+assert div_list([90,120],[50,70]) == [1.8, 1.7142857142857142]
+",,post,True,0.8057906779349391,90,False,,pilot_mbpp3.json
+Mbpp_618,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to divide two lists element wise.,"def div_list(list1, list2):
+    return [a / b for a, b in zip(list1, list2)]
+
+# Testing the function with provided test cases
+assert div_list([4,5,6],[1, 2, 3]) == [4.0, 2.5, 2.0]
+assert div_list([3,2],[1,4]) == [3.0, 0.5]
+assert div_list([90,120],[50,70]) == [1.8, 1.7142857142857142]
+",,post,True,0.803816267040605,90,False,,pilot_mbpp3.json
+Mbpp_618,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to divide two lists element wise.,"def div_list(list1, list2):
+    return [a / b for a, b in zip(list1, list2)]
+
+# Testing the function with provided test cases
+assert div_list([4,5,6],[1, 2, 3]) == [4.0, 2.5, 2.0]
+assert div_list([3,2],[1,4]) == [3.0, 0.5]
+assert div_list([90,120],[50,70]) == [1.8, 1.7142857142857142]
+",,post,True,0.21311034409895785,90,False,,pilot_mbpp3.json
+Mbpp_618,mbpp,gpt-4o,gpt-4o-mini-2024-07-18,Write a function to divide two lists element wise.,"def div_list(list1, list2):
+    return [a / b for a, b in zip(list1, list2)]
+
+# Testing the function with provided test cases
+assert div_list([4,5,6],[1, 2, 3]) == [4.0, 2.5, 2.0]
+assert div_list([3,2],[1,4]) == [3.0, 0.5]
+assert div_list([90,120],[50,70]) == [1.8, 1.7142857142857142]
+",,post,True,0.8054501538717026,90,False,,pilot_mbpp3.json

@@ -1,6 +1,0 @@
-The function `func_1` accepts a non-negative integer `n` and returns the count of trailing zeroes in `n!`. It does this by iteratively calculating the sum of `n // (5^k)` for each power of 5 until `n < 5^(k+1)`. The function starts with `power_of_5` set to 5 and increases it by multiplying by 5 in each iteration of the loop. The loop continues as long as `n` is greater than or equal to `power_of_5`. After the loop completes, the function returns the accumulated count. This count represents the total number of factors of 5 in the numbers from 1 to `n`, which directly corresponds to the number of trailing zeroes in `n!`.
-
-Potential edge cases and missing functionality:
-- The function correctly handles the case when `n` is 0, as `0! = 1`, which has 0 trailing zeroes. In this case, the function will return 0 immediately without entering the loop.
-- The function also correctly handles the case when `n` is 1, as `1! = 1`, which also has 0 trailing zeroes. In this case, the function will return 0 immediately without entering the loop.
-- The function correctly handles large values of `n` by iteratively dividing `n` by increasing powers of 5 and summing up the results. There are no missing functionalities related to handling large inputs.

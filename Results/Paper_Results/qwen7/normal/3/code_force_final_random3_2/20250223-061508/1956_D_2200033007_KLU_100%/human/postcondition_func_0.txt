@@ -1,0 +1,5 @@
+The function `func_1` accepts two parameters, `start_index` and `end_index`, which define a range within a list `arr` of non-negative integers. It returns the maximum value computed based on the following rules:
+
+1. If the result for the key `(start_index, end_index)` is already in the dictionary `res_dict`, it returns the stored value.
+2. If `start_index` equals `end_index`, it returns the maximum value between 1 and the element in `arr` at `start_index`.
+3. Otherwise, it recursively calculates the maximum value by splitting the range at each index `i` within `[start_index + 1, end_index]`, summing the results of the recursive calls for the two subranges, and adding the element at index `i`. It also considers the boundary conditions by including the elements at `start_index` and `end_index` in the calculation. The final result is stored in `res_dict` under the key `(start_index, end_index)` and returned.

@@ -1,0 +1,2139 @@
+Task ID,unique_id,Dataset,model_created,model_run,description,Code,run_number,original correctness,summary fsl,naive correctness fsl,vanilla,vanilla_no_cot,simple tree,complex tree,summary,simple verify fsl,complex verify fsl,summary verify fsl,simple verify,complex verify,summary verify,consistency,consistency_mine,consistency_old
+1942_C2,1942_C2_BooMeR1OP_100%,codeforces2024,human,qwen2.5-coder-32b-instruct,"[Proof Geometric Construction Can Solve All Love Affairs -
+manbo-p](https://soundcloud.com/alice-law-314125270/manbo-p-proof-geometric-
+construction-can-solve-all-love-affairs)
+
+⠀
+
+This is the hard version of the problem. The only difference between the two
+versions is the constraint on y . In this version 0 \leq y \leq n - x . You
+can make hacks only if both versions are solved.
+
+Bessie has received a birthday cake from her best friend Elsie, and it came in
+the form of a regular polygon with n sides. The vertices of the cake are
+numbered from 1 to n clockwise. You and Bessie are going to choose some of
+those vertices to cut non-intersecting diagonals into the cake. In other
+words, the endpoints of the diagonals must be part of the chosen vertices.
+
+Bessie would only like to give out pieces of cake which result in a triangle
+to keep consistency. The size of the pieces doesn't matter, and the whole cake
+does not have to be separated into all triangles (other shapes are allowed in
+the cake, but those will not be counted).
+
+Bessie has already chosen x of those vertices that can be used to form
+diagonals. She wants you to choose no more than y other vertices such that the
+number of triangular pieces of cake she can give out is maximized.
+
+What is the maximum number of triangular pieces of cake Bessie can give out?
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case consists of three integers, n , x , and y (4
+\leq n \leq 10^9 , 2 \leq x \leq \min(n, 2 \cdot 10^5) , 0 \leq y \leq n - x )
+— the number of sides of the polygon, number of vertices Bessie has chosen,
+and the maximum number of other vertices you can choose.
+
+The second line consists of x distinct integers from 1 to n , representing the
+vertices Bessie has chosen.
+
+It is guaranteed the sum of x over all test cases does not exceed 2 \cdot 10^5
+.
+
+Output
+
+For each test case, output a single integer: the maximum number of non-
+intersecting triangular pieces of cake she can give out.
+
+Example
+
+Input
+
+    3
+    
+    8 4 2
+    
+    1 6 2 5
+    
+    7 3 1
+    
+    6 4 3
+    
+    4 2 2
+    
+    1 3
+
+Output
+
+    6
+    5
+    2
+    
+Note
+
+In test cases 1 , 2 and 3 , you can get 6 , 5 and 2 non-intersecting
+triangular pieces of cake, respectively. A possible construction is shown in
+the following pictures:
+
+The green dots represent vertices that Bessie chose, the yellow dots represent
+vertices that you chose, the blue lines represent diagonals that are drawn,
+and the red numbers represent triangles that are counted.
+
+![](https://espresso.codeforces.com/13b28beb7f5f0d100798f357f58c804c5314c869.png)","t = int(input())
+ 
+for _ in range(t):
+    n, x, y = list(map(int, input().split()))
+    a = list(map(int,input().split()))
+ 
+    a = [num - 1 for num in a]  
+ 
+    ans = x - 2
+    st = set(a)
+    a.sort()
+ 
+    for i in range(x):
+        t1 = (a[i] + 1) % n
+        t2 = (a[i] + 2) % n
+        if t1 not in st and t2 in st:
+            ans += 1
+ 
+    odd = []
+    even = []
+ 
+    for i in range(x):
+        next_elem = a[0] + n if i == x - 1 else a[i + 1]
+        gap = next_elem - a[i] - 1
+        if gap > 1 and gap % 2 == 1:
+            odd.append(gap)
+        elif gap > 0 and gap % 2 == 0:
+            even.append(gap)
+ 
+    odd.sort()
+    even.sort()
+ 
+    for gap in odd:
+        if y < gap // 2:
+            ans += 2 * y
+            y = 0
+            break
+        ans += gap
+        y -= gap // 2
+ 
+    for gap in even:
+        if y < gap // 2:
+            ans += 2 * y
+            y = 0
+            break
+        ans += gap
+        y -= gap // 2
+ 
+    print(ans)",1,True,True,True,False,True,True,True,True,True,False,True,False,False,False,0.9252151831298633,0.669705065746223,0.75
+1926_E,1926_E_Venkatesh0987_100%,codeforces2024,human,qwen2.5-coder-32b-instruct,"Vladislav has n cards numbered 1, 2, \dots, n . He wants to lay them down in a
+row as follows:
+
+  * First, he lays down all the odd-numbered cards from smallest to largest. 
+  * Next, he lays down all cards that are twice an odd number from smallest to largest (i.e. 2 multiplied by an odd number). 
+  * Next, he lays down all cards that are 3 times an odd number from smallest to largest (i.e. 3 multiplied by an odd number). 
+  * Next, he lays down all cards that are 4 times an odd number from smallest to largest (i.e. 4 multiplied by an odd number). 
+  * And so on, until all cards are laid down. 
+
+What is the k -th card he lays down in this process? Once Vladislav puts a
+card down, he cannot use that card again.
+
+Input
+
+The first line contains an integer t (1 \leq t \leq 5 \cdot 10^4 ) — the
+number of test cases.
+
+The only line of each test case contains two integers n and k (1 \leq k \leq n
+\leq 10^9 ) — the number of cards Vlad has, and the position of the card you
+need to output.
+
+Output
+
+For each test case, output a single integer — the k -th card Vladislav lays
+down.
+
+Example
+
+Input
+
+    11
+    
+    7 1
+    
+    7 2
+    
+    7 3
+    
+    7 4
+    
+    7 5
+    
+    7 6
+    
+    7 7
+    
+    1 1
+    
+    34 14
+    
+    84 19
+    
+    1000000000 1000000000
+
+Output
+
+    1
+    3
+    5
+    7
+    2
+    6
+    4
+    1
+    27
+    37
+    536870912
+    
+Note
+
+In the first seven test cases, n=7 . Vladislav lays down the cards as follows:
+
+  * First — all the odd-numbered cards in the order 1 , 3 , 5 , 7 . 
+  * Next — all cards that are twice an odd number in the order 2 , 6 . 
+  * Next, there are no remaining cards that are 3 times an odd number. (Vladislav has only one of each card.) 
+  * Next — all cards that are 4 times an odd number, and there is only one such card: 4 . 
+  * There are no more cards left, so Vladislav stops. 
+
+Thus the order of cards is 1 , 3 , 5 , 7 , 2 , 6 , 4 .","for _ in range(int(input())):
+    n, k = map(int, input().split())
+    s = 0
+    i = 0
+    d = n
+    h = n
+    p = 1
+    g = 0
+ 
+    if k > (n + 1) // 2:
+        while s < k and d > 0:
+            s += (d + 1) // 2
+            d -= (d + 1) // 2
+            i += 1
+        
+        while p <= (i - 1):
+            g += (h + 1) // 2
+            h -= (h + 1) // 2
+            p += 1
+        
+        f = k - g
+        y = (2**(i-1)) *(2*f-1)
+        print(y)
+    else:
+        print(2*k - 1)",1,True,True,True,True,True,True,True,True,True,True,True,True,False,True,0.866662898260995,0.42296210383230587,0.75
+1932_B,1932_B_permaximum_100%,codeforces2024,human,qwen2.5-coder-32b-instruct,"The Chaya tribe believes that there are n signs of the apocalypse. Over time,
+it has been found out that the i -th sign occurs every a_i years (in years a_i
+, 2 \cdot a_i , 3 \cdot a_i , \dots ).
+
+According to the legends, for the apocalypse to happen, the signs must occur
+sequentially. That is, first they wait for the first sign to occur, then
+strictly after it, the second sign will occur, and so on. That is, if the i
+-th sign occurred in the year x , the tribe starts waiting for the occurrence
+of the (i+1) -th sign, starting from the year x+1 .
+
+In which year will the n -th sign occur and the apocalypse will happen?
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 1000 ) —
+the number of test cases. Then follow the descriptions of the test cases.
+
+The first line of each test case contains a single integer n (1 \le n \le 100
+) — the number of signs.
+
+The second line of each test case contains n integers a_1, a_2, a_3, \dots,
+a_n (1 \le a_i \le 10^6 ) — the periodicities of the signs.
+
+Output
+
+For each test case, output a single integer — the year in which all n signs
+will occur.
+
+Example
+
+Input
+
+    4
+    
+    6
+    
+    3 2 4 5 9 18
+    
+    5
+    
+    1 2 3 4 5
+    
+    5
+    
+    1 1 1 1 1
+    
+    6
+    
+    50 30 711 200 503 1006
+
+Output
+
+    36
+    5
+    5
+    2012
+    
+Note
+
+In the first set of input data of the example:
+
+  * The tribe will wait for the first sign in the 3 -rd year; 
+  * the tribe will wait for the second sign in the 4 -th year (since year 2 have already passed); 
+  * the tribe will wait for the third sign in the 8 -th year (since the second sign has already occurred in the 4 -th year); 
+  * the tribe will wait for the fourth sign in the 10 -th year (since year 5 have already passed); 
+  * the tribe will wait for the fifth sign in the 18 -th year (since year 9 have already passed); 
+  * the tribe will wait for the sixth sign in the 36 -th year (since the fifth sign has already occurred in the 18 -th year).","def apocalypse(t, test_cases):
+    results = []
+    for test in test_cases:
+        n, a = test
+        current_year = 0
+        for ai in a:
+            # Find the next year when the sign ai occurs
+            if current_year % ai == 0:
+                next_year = current_year + ai
+            else:
+                next_year = ((current_year // ai) + 1) * ai
+            current_year = next_year
+        results.append(current_year)
+    return results
+ 
+# Read input
+t = int(input().strip())
+test_cases = []
+for _ in range(t):
+    n = int(input().strip())
+    a = list(map(int, input().strip().split()))
+    test_cases.append((n, a))
+ 
+# Get results
+results = apocalypse(t, test_cases)
+ 
+# Print results
+for result in results:
+    print(result)",1,True,True,True,True,True,True,True,True,True,True,True,True,True,True,,,
+1926_E,1926_E_Joyboy1730_100%,codeforces2024,human,qwen2.5-coder-32b-instruct,"Vladislav has n cards numbered 1, 2, \dots, n . He wants to lay them down in a
+row as follows:
+
+  * First, he lays down all the odd-numbered cards from smallest to largest. 
+  * Next, he lays down all cards that are twice an odd number from smallest to largest (i.e. 2 multiplied by an odd number). 
+  * Next, he lays down all cards that are 3 times an odd number from smallest to largest (i.e. 3 multiplied by an odd number). 
+  * Next, he lays down all cards that are 4 times an odd number from smallest to largest (i.e. 4 multiplied by an odd number). 
+  * And so on, until all cards are laid down. 
+
+What is the k -th card he lays down in this process? Once Vladislav puts a
+card down, he cannot use that card again.
+
+Input
+
+The first line contains an integer t (1 \leq t \leq 5 \cdot 10^4 ) — the
+number of test cases.
+
+The only line of each test case contains two integers n and k (1 \leq k \leq n
+\leq 10^9 ) — the number of cards Vlad has, and the position of the card you
+need to output.
+
+Output
+
+For each test case, output a single integer — the k -th card Vladislav lays
+down.
+
+Example
+
+Input
+
+    11
+    
+    7 1
+    
+    7 2
+    
+    7 3
+    
+    7 4
+    
+    7 5
+    
+    7 6
+    
+    7 7
+    
+    1 1
+    
+    34 14
+    
+    84 19
+    
+    1000000000 1000000000
+
+Output
+
+    1
+    3
+    5
+    7
+    2
+    6
+    4
+    1
+    27
+    37
+    536870912
+    
+Note
+
+In the first seven test cases, n=7 . Vladislav lays down the cards as follows:
+
+  * First — all the odd-numbered cards in the order 1 , 3 , 5 , 7 . 
+  * Next — all cards that are twice an odd number in the order 2 , 6 . 
+  * Next, there are no remaining cards that are 3 times an odd number. (Vladislav has only one of each card.) 
+  * Next — all cards that are 4 times an odd number, and there is only one such card: 4 . 
+  * There are no more cards left, so Vladislav stops. 
+
+Thus the order of cards is 1 , 3 , 5 , 7 , 2 , 6 , 4 .","t=int(input())
+for _ in range(t):
+    n,k=map(int,input().split())
+    L=[]
+    while n:
+        m=(n+1)//2
+        n-=m
+        L.append(m)
+    tot=0;pow=1
+    for a in L:
+        if tot<k and k<=tot+a:
+            print(pow*(2*(k-tot)-1))
+        tot+=a
+        pow*=2",1,True,True,False,True,True,True,True,True,False,True,False,True,True,True,0.8235307948498144,0.38206886246208754,0.6666666666666666
+1966_C,1966_C_kapilshhh_100%,codeforces2024,human,qwen2.5-coder-32b-instruct,"Alice and Bob are playing a game on n piles of stones. On each player's turn,
+they select a positive integer k that is at most the size of the smallest
+nonempty pile and remove k stones from each nonempty pile at once. The first
+player who is unable to make a move (because all piles are empty) loses.
+
+Given that Alice goes first, who will win the game if both players play
+optimally?
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 10^4 ) —
+the number of test cases. The description of the test cases follows.
+
+The first line of each test case contains a single integer n (1 \le n \le
+2\cdot 10^5 ) — the number of piles in the game.
+
+The next line of each test case contains n integers a_1, a_2, \ldots a_n (1
+\le a_i \le 10^9 ), where a_i is the initial number of stones in the i -th
+pile.
+
+It is guaranteed that the sum of n over all test cases does not exceed 2\cdot
+10^5 .
+
+Output
+
+For each test case, print a single line with the name of the winner, assuming
+both players play optimally. If Alice wins, print ""Alice"", otherwise print
+""Bob"" (without quotes).
+
+Example
+
+Input
+
+    7
+    
+    5
+    
+    3 3 3 3 3
+    
+    2
+    
+    1 7
+    
+    7
+    
+    1 3 9 7 4 2 100
+    
+    3
+    
+    1 2 3
+    
+    6
+    
+    2 1 3 4 2 4
+    
+    8
+    
+    5 7 2 9 6 3 3 2
+    
+    1
+    
+    1000000000
+
+Output
+
+    Alice
+    Bob
+    Alice
+    Alice
+    Bob
+    Alice
+    Alice
+    
+Note
+
+In the first test case, Alice can win by choosing k=3 on her first turn, which
+will empty all of the piles at once.
+
+In the second test case, Alice must choose k=1 on her first turn since there
+is a pile of size 1 , so Bob can win on the next turn by choosing k=6 .","tc = int(input())
+ 
+while tc > 0:
+    n = int(input())
+    arr = sorted(list(set([int(x) for x in input().split(' ')])), reverse=True) + [0]
+    dp = True
+    n = len(arr) - 1
+    for i in range(1, n):
+        dp = (arr[i] - arr[i+1] > 1) or not dp
+    print('Alice' if dp else 'Bob')
+    tc -= 1",1,True,False,False,False,False,True,False,False,False,False,False,False,False,False,0.7324511351716554,0.2553859836054619,0.75
+1921_C,1921_C_Pardhiv_123_100%,codeforces2024,human,qwen2.5-coder-32b-instruct,"Stepan is a very busy person. Today he needs to send n messages at moments
+m_1, m_2, \dots m_n (m_i < m_{i + 1} ). Unfortunately, by the moment 0 , his
+phone only has f units of charge left. At the moment 0 , the phone is turned
+on.
+
+The phone loses a units of charge for each unit of time it is on. Also, at any
+moment, Stepan can turn off the phone and turn it on later. This action
+consumes b units of energy each time. Consider turning on and off to be
+instantaneous, so you can turn it on at moment x and send a message at the
+same moment, and vice versa, send a message at moment x and turn off the phone
+at the same moment.
+
+If at any point the charge level drops to 0 (becomes \le 0 ), it is impossible
+to send a message at that moment.
+
+Since all messages are very important to Stepan, he wants to know if he can
+send all the messages without the possibility of charging the phone.
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 10^4 ) —
+the number of test cases. This is followed by the descriptions of the test
+cases.
+
+The first line of each test case contains four integers n , f , a , and b (1
+\le n \le 2 \cdot 10^5 , 1 \le f, a, b \le 10^9 ) — the number of messages,
+the initial phone's charge, the charge consumption per unit of time, and the
+consumption when turned off and on sequentially.
+
+The second line of each test case contains n integers m_1, m_2, \dots, m_n (1
+\le m_i \le 10^9 , m_i < m_{i + 1} ) — the moments at which messages need to
+be sent.
+
+It is guaranteed that in a test the sum of n over all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output ""YES"" if Stepan can send all the messages, and ""NO""
+otherwise.
+
+You can output each letter in any case (lowercase or uppercase). For example,
+the strings ""yEs"", ""yes"", ""Yes"", and ""YES"" will be accepted as a positive
+answer.
+
+Example
+
+Input
+
+    6
+    
+    1 3 1 5
+    
+    3
+    
+    7 21 1 3
+    
+    4 6 10 13 17 20 26
+    
+    5 10 1 2
+    
+    1 2 3 4 5
+    
+    1 1000000000 1000000000 1000000000
+    
+    1000000000
+    
+    3 11 9 6
+    
+    6 8 10
+    
+    12 621526648 2585904 3566299
+    
+    51789 61859 71998 73401 247675 298086 606959 663464 735972 806043 806459 919683
+
+Output
+
+    NO
+    YES
+    YES
+    NO
+    NO
+    YES
+    
+Note
+
+In the first test case of the example, at moment 0 , the phone's charge is 3 .
+When sending a message at moment 3 without turning it off, (3 - 0) \cdot 1 = 3
+units of charge will be spent. In this case, the charge will drop to 0 and
+Stepan will not be able to send the message. When turning off and on, the
+phone's charge will decrease by 5 , so it will not be possible to send the
+message in this way.
+
+In the third test case of the example, at moment 0 , the phone's charge is 10
+. The phone loses 1 unit of charge per unit of time, and when turned off and
+on, it loses 2 units of charge. To send all messages, the following actions
+can be taken:
+
+  * Turn off the phone at moment 0 and turn it on at moment 1 , after which 10 - 2 = 8 units of charge will remain; 
+  * send a message at moment 1 ; 
+  * send a message at moment 2 , after which 8 - (2 - 1) \cdot 1 = 7 units of charge will remain; 
+  * Turn off the phone at moment 2 and turn it on at moment 3 , after which 7 - 2 = 5 units of charge will remain; 
+  * send a message at moment 3 ; 
+  * Turn off the phone at moment 3 and turn it on at moment 4 , after which 5 - 2 = 3 units of charge will remain; 
+  * send a message at moment 4 ; 
+  * Turn off the phone at moment 4 and turn it on at moment 5 , after which 3 - 2 = 1 unit of charge will remain; 
+  * send a message at moment 5 . 
+
+The last (sixth) test set of the example may fail if there is an integer
+overflow in your solution.","t=int(input(""""))
+while(t>0):
+    n,f,a,b=map(int,input("""").split("" ""))
+    ls=[0]+list(map(int,input("""").split("" "")))
+    for i in range(1,n+1):
+        f=f-min(a*(ls[i]-ls[i-1]),b)
+    if(f>0):
+        print(""YES"")
+    else:
+        print(""NO"")
+    t-=1",1,True,True,True,True,False,True,True,True,True,True,True,True,True,True,0.7967034931565101,0.33788583169121406,0.6666666666666666
+1942_C2,1942_C2_Campass_6.67%,codeforces2024,human,qwen2.5-coder-32b-instruct,"[Proof Geometric Construction Can Solve All Love Affairs -
+manbo-p](https://soundcloud.com/alice-law-314125270/manbo-p-proof-geometric-
+construction-can-solve-all-love-affairs)
+
+⠀
+
+This is the hard version of the problem. The only difference between the two
+versions is the constraint on y . In this version 0 \leq y \leq n - x . You
+can make hacks only if both versions are solved.
+
+Bessie has received a birthday cake from her best friend Elsie, and it came in
+the form of a regular polygon with n sides. The vertices of the cake are
+numbered from 1 to n clockwise. You and Bessie are going to choose some of
+those vertices to cut non-intersecting diagonals into the cake. In other
+words, the endpoints of the diagonals must be part of the chosen vertices.
+
+Bessie would only like to give out pieces of cake which result in a triangle
+to keep consistency. The size of the pieces doesn't matter, and the whole cake
+does not have to be separated into all triangles (other shapes are allowed in
+the cake, but those will not be counted).
+
+Bessie has already chosen x of those vertices that can be used to form
+diagonals. She wants you to choose no more than y other vertices such that the
+number of triangular pieces of cake she can give out is maximized.
+
+What is the maximum number of triangular pieces of cake Bessie can give out?
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case consists of three integers, n , x , and y (4
+\leq n \leq 10^9 , 2 \leq x \leq \min(n, 2 \cdot 10^5) , 0 \leq y \leq n - x )
+— the number of sides of the polygon, number of vertices Bessie has chosen,
+and the maximum number of other vertices you can choose.
+
+The second line consists of x distinct integers from 1 to n , representing the
+vertices Bessie has chosen.
+
+It is guaranteed the sum of x over all test cases does not exceed 2 \cdot 10^5
+.
+
+Output
+
+For each test case, output a single integer: the maximum number of non-
+intersecting triangular pieces of cake she can give out.
+
+Example
+
+Input
+
+    3
+    
+    8 4 2
+    
+    1 6 2 5
+    
+    7 3 1
+    
+    6 4 3
+    
+    4 2 2
+    
+    1 3
+
+Output
+
+    6
+    5
+    2
+    
+Note
+
+In test cases 1 , 2 and 3 , you can get 6 , 5 and 2 non-intersecting
+triangular pieces of cake, respectively. A possible construction is shown in
+the following pictures:
+
+The green dots represent vertices that Bessie chose, the yellow dots represent
+vertices that you chose, the blue lines represent diagonals that are drawn,
+and the red numbers represent triangles that are counted.
+
+![](https://espresso.codeforces.com/13b28beb7f5f0d100798f357f58c804c5314c869.png)","R = lambda: map(int, input().split())
+t,=R()
+while t:
+    t -= 1
+    n,x,y= R()
+    sx=0;
+    l = list(R())
+    l.sort()
+    l.append(n+l[0])
+    val=[]
+    for i in range(1,x+1):
+        c=l[i]-l[i-1]-1
+        if c==1: sx+=1
+        val.append(c)
+    val.sort(key= lambda x:(1-x&1,x))
+    for i in val:
+        c=i//2
+        if y<c :
+            sx+=y*2 
+            break
+        sx+=i
+        y-=c
+    
+    cons=x+sx-2
+    cons=min(n-2,cons)
+    print(cons)  # 使用 print 函数打印列表元素，而不是调用 P 函数",1,False,False,True,False,True,False,True,True,True,True,True,True,True,True,0.5260587368554075,0.024145370660688354,0.6666666666666666
+1945_D,1945_D_joaod_12.50%,codeforces2024,human,qwen2.5-coder-32b-instruct,"The guys lined up in a queue of n people, starting with person number i = 1 ,
+to ask Serafim the Owl about the meaning of life. Unfortunately, Kirill was
+very busy writing the legend for this problem, so he arrived a little later
+and stood at the end of the line after the n -th person. Kirill is completely
+dissatisfied with this situation, so he decided to bribe some people ahead of
+him.
+
+For the i -th person in the queue, Kirill knows two values: a_i and b_i . If
+at the moment Kirill is standing at position i , then he can choose any
+position j such that j < i and exchange places with the person at position j .
+In this case, Kirill will have to pay him a_j coins. And for each k such that
+j < k < i , Kirill will have to pay b_k coins to the person at position k .
+Kirill can perform this action any number of times.
+
+Kirill is thrifty, so he wants to spend as few coins as possible, but he
+doesn't want to wait too long, so Kirill believes he should be among the first
+m people in line.
+
+Help Kirill determine the minimum number of coins he will have to spend in
+order to not wait too long.
+
+Input
+
+Each test consists of several sets of input data. The first line contains a
+single integer t (1 \le t \le 10^4 ) — the number of test cases. Then follows
+the description of the test case.
+
+The first line of each test case contains two integers n and m (1 \le m \le n
+\le 200\,000 ) — the number of people in the queue besides Kirill and the
+maximum allowable final position of Kirill, respectively.
+
+The second line contains n integers a_1, a_2, \dots, a_n separated by spaces
+(1 \le a_i \le 10^9 ).
+
+The third line contains n integers b_1, b_2, \dots, b_n separated by spaces (1
+\le b_i \le 10^9 ).
+
+It is guaranteed that the sum of the values of n over all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output a single integer — the minimum number of coins
+Kirill needs to spend.
+
+Example
+
+Input
+
+    4
+    
+    4 2
+    
+    7 3 6 9
+    
+    4 3 8 5
+    
+    6 2
+    
+    6 9 7 1 8 3
+    
+    5 8 8 1 4 1
+    
+    7 7
+    
+    7 2 9 2 6 5 9
+    
+    9 1 10 7 1 4 9
+    
+    2 1
+    
+    2 3
+    
+    1 1
+
+Output
+
+    14
+    22
+    9
+    3","cases = int(input())
+ 
+for c in range(cases):
+    na_frente, pos_final = map(int, input().split())
+    custo_pra_trocar_a = list(map(int, input().split()))
+    custo_pra_passar_b = list(map(int, input().split()))
+ 
+    na_frente -= 1
+    pos_final -= 1
+ 
+    total = 0
+    best = 10**12
+    for v in range(na_frente, -1, -1):
+        if(v <= pos_final):
+            if(best > total + custo_pra_trocar_a[v]):
+                best = total + custo_pra_trocar_a[v]
+ 
+            if(custo_pra_trocar_a[v] < custo_pra_passar_b[v]):
+                total += custo_pra_trocar_a[v]
+            else:
+                total += custo_pra_passar_b[v]
+        else:
+            if(custo_pra_trocar_a[v] < custo_pra_passar_b[v]):
+                total += custo_pra_trocar_a[v]
+            else:
+                total += custo_pra_passar_b[v]
+    
+    print(best)",1,False,False,False,False,False,False,False,False,False,False,False,False,False,False,0.9811870441747692,0.8819696870179068,0.9166666666666666
+1977_A,1977_A_vjudge.3_40.00%,codeforces2024,human,qwen2.5-coder-32b-instruct,"The little boy Nikita was given some cubes as a present. He decided to build a
+tower out of them.
+
+Initially, the tower doesn't have any cubes. In one move, Nikita either puts
+exactly 1 cube on top of the tower or removes exactly 1 cube from the top of
+the tower. Is it possible that after n moves, the resulting tower has exactly
+m cubes?
+
+Input
+
+Each test contains multiple test cases. The first line of input contains a
+single integer t (1 \le t \le 100 ) — the number of test cases. The
+description of the test cases follows.
+
+The only line of each test case contains two integers n and m (1 \le n, m \le
+100 ).
+
+Output
+
+For each test case, output ""Yes"" (without quotes) if Nikita can obtain a tower
+with m cubes, and ""No"" (without quotes) otherwise.
+
+You can output each letter in any case (lowercase or uppercase). For example,
+the strings ""yEs"", ""yes"", ""Yes"", and ""YES"" will be accepted as a positive
+answer.
+
+Example
+
+Input
+
+    3
+    
+    3 3
+    
+    2 4
+    
+    5 3
+
+Output
+
+    Yes
+    No
+    Yes
+    
+Note
+
+In the first test case, Nikita can put 1 cube on top of the tower 3 times in a
+row, so the answer is ""Yes"".
+
+In the second test case, Nikita can only end up with either a tower with no
+blocks or a tower with 2 blocks, so the answer is ""No"".","t = int(input())
+for i in range(t):
+    n, m = [int(i) for i in input().split()]
+    if n==m:
+        print('Yes')
+    elif m>n:
+        print('No')
+    else:
+        if m==n-1:
+            print('Yes')
+        else:
+            if m%2==0 and n%2==0:
+                print('Yes')
+            elif m%2!=0 and n%2!=0:
+                print('Yes')
+            else:
+                print('No')",1,False,False,False,True,False,False,False,False,False,False,False,False,True,True,0.8406589805407234,0.4020539772037928,0.75
+1923_A,1923_A_RGS45_100%,codeforces2024,human,qwen2.5-coder-32b-instruct,"There is a ribbon divided into n cells, numbered from 1 to n from left to
+right. Each cell either contains a chip or is free.
+
+You can perform the following operation any number of times (possibly zero):
+choose a chip and move it to the closest free cell to the left. You can choose
+any chip that you want, provided that there is at least one free cell to the
+left of it. When you move the chip, the cell where it was before the operation
+becomes free.
+
+Your goal is to move the chips in such a way that they form a single block,
+without any free cells between them. What is the minimum number of operations
+you have to perform?
+
+Input
+
+The first line contains one integer t (1 \le t \le 1000 ) — the number of test
+cases.
+
+Each test case consists of two lines:
+
+  * the first line contains one integer n (2 \le n \le 50 ) — the number of cells; 
+  * the second line contains n integers a_1, a_2, \dots, a_n (0 \le a_i \le 1 ); a_i = 0 means that the i -th cell is free; a_i = 1 means that the i -th cell contains a chip. 
+
+Additional constraint on the input: in each test case, at least one cell
+contains a chip.
+
+Output
+
+For each test case, print one integer — the minimum number of operations you
+have to perform so that all chips form a single block without any free cells
+between them.
+
+Example
+
+Input
+
+    5
+    
+    8
+    
+    0 1 1 1 0 1 1 0
+    
+    6
+    
+    0 1 0 0 0 0
+    
+    6
+    
+    1 1 1 1 1 1
+    
+    5
+    
+    1 0 1 0 1
+    
+    9
+    
+    0 1 1 0 0 0 1 1 0
+
+Output
+
+    1
+    0
+    0
+    2
+    3
+    
+Note
+
+In the first example, you can perform the operation on the chip in the 7 -th
+cell. The closest free cell to the left is the 5 -th cell, so it moves there.
+After that, all chips form a single block.
+
+In the second example, all chips are already in a single block. Same for the
+third example.","t=int(input(""""))
+for _ in range(t):
+    n=int(input(""""))
+    arr="""".join(input("""").split())
+    x=arr.find(""1"")
+    y=(arr[::-1]).find(""1"")
+    z=arr[x:n-y]
+    print(z.count(""0""))",1,True,True,False,False,False,True,False,False,False,False,False,False,False,False,0.6841452693011232,0.18938868293528766,0.5
+1942_B,1942_B_Ahsan612_100%,codeforces2024,human,qwen2.5-coder-32b-instruct,"[MOOO! - Doja Cat](https://soundcloud.com/amalaofficial/mooo)
+
+⠀
+
+Farmer John has a permutation p_1, p_2, \ldots, p_n , where every integer from
+0 to n-1 occurs exactly once. He gives Bessie an array a of length n and
+challenges her to construct p based on a .
+
+The array a is constructed so that a_i = \texttt{MEX}(p_1, p_2, \ldots, p_i) -
+p_i , where the \texttt{MEX} of an array is the minimum non-negative integer
+that does not appear in that array. For example, \texttt{MEX}(1, 2, 3) = 0 and
+\texttt{MEX}(3, 1, 0) = 2 .
+
+Help Bessie construct any valid permutation p that satisfies a . The input is
+given in such a way that at least one valid p exists. If there are multiple
+possible p , it is enough to print one of them.
+
+Input
+
+The first line contains t (1 \leq t \leq 10^4 ) — the number of test cases.
+
+The first line of each test case contains an integer n (1 \leq n \leq 2 \cdot
+10^5 ) — the lengths of p and a .
+
+The second line of each test case contains n integers a_1, a_2, \ldots, a_n
+(-n \leq a_i \leq n ) — the elements of array a .
+
+It is guaranteed that there is at least one valid p for the given data.
+
+It is guaranteed that the sum of n over all test cases does not exceed 2 \cdot
+10^5 .
+
+Output
+
+For each test case, output n integers on a new line, the elements of p .
+
+If there are multiple solutions, print any of them.
+
+Example
+
+Input
+
+    3
+    
+    5
+    
+    1 1 -2 1 2
+    
+    5
+    
+    1 1 1 1 1
+    
+    3
+    
+    -2 1 2
+
+Output
+
+    0 1 4 2 3 
+    0 1 2 3 4 
+    2 0 1 
+    
+Note
+
+In the first case, p = [0, 1, 4, 2, 3] is one possible output.
+
+a will then be calculated as a_1 = \texttt{MEX}(0) - 0 = 1 , a_2 =
+\texttt{MEX}(0, 1) - 1 = 1 , a_3 = \texttt{MEX}(0, 1, 4) - 4 = -2 , a_4 =
+\texttt{MEX}(0, 1, 4, 2) - 2 = 1 , a_5 = \texttt{MEX}(0, 1, 4, 2, 3) - 3 = 2 .
+
+So, as required, a will be [1, 1, -2, 1, 2] .","from collections import deque
+for _ in range(int(input())):
+    n =int(input())
+    ar = list(map(int,input().split()))
+ 
+    res = [None] * n
+    mex = n
+    for i in range(len(ar)-1,-1,-1):
+        res[i] = mex - ar[i]
+        if mex > mex - ar[i]:
+            mex = mex - ar[i]
+    print("" "".join(str(x) for x in res))",1,True,False,False,True,False,False,True,True,False,False,False,True,False,False,0.8932880393347323,0.529380303004821,0.75
+1928_A,1928_A_danileo.lopez.v_100%,codeforces2024,human,qwen2.5-coder-32b-instruct,"Bob has a rectangle of size a \times b . He tries to cut this rectangle into
+two rectangles with integer sides by making a cut parallel to one of the sides
+of the original rectangle. Then Bob tries to form some other rectangle from
+the two resulting rectangles, and he can rotate and move these two rectangles
+as he wishes.
+
+Note that if two rectangles differ only by a 90^{\circ} rotation, they are
+considered the same. For example, the rectangles 6 \times 4 and 4 \times 6 are
+considered the same.
+
+Thus, from the 2 \times 6 rectangle, another rectangle can be formed, because
+it can be cut into two 2 \times 3 rectangles, and then these two rectangles
+can be used to form the 4 \times 3 rectangle, which is different from the 2
+\times 6 rectangle.
+
+![](https://espresso.codeforces.com/670958570876245598e151e6877e3b0231a7c60e.png)
+
+However, from the 2 \times 1 rectangle, another rectangle cannot be formed,
+because it can only be cut into two rectangles of 1 \times 1 , and from these,
+only the 1 \times 2 and 2 \times 1 rectangles can be formed, which are
+considered the same.
+
+![](https://espresso.codeforces.com/1463aaa4fa7eb1e7432c1d8b5813e7ae91147066.png)
+
+Help Bob determine if he can obtain some other rectangle, or if he is just
+wasting his time.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \leq t \leq 10^4 ) — the number of test cases. This is followed
+by the description of the test cases.
+
+The single line of each test case contains two integers a and b (1 \le a, b
+\le 10^9 ) — the size of Bob's rectangle.
+
+Output
+
+For each test case, output ""Yes"" if Bob can obtain another rectangle from the
+a \times b rectangle. Otherwise, output ""No"".
+
+You can output the answer in any case (upper or lower). For example, the
+strings ""yEs"", ""yes"", ""Yes"", and ""YES"" will be recognized as positive answers.
+
+Example
+
+Input
+
+    7
+    
+    1 1
+    
+    2 1
+    
+    2 6
+    
+    3 2
+    
+    2 2
+    
+    2 4
+    
+    6 3
+
+Output
+
+    No
+    No
+    Yes
+    Yes
+    Yes
+    Yes
+    No
+    
+Note
+
+In the first test case, the 1 \times 1 rectangle cannot be cut into two
+rectangles, so another rectangle cannot be obtained from it.
+
+In the fourth test case, the 3 \times 2 rectangle can be cut into two 3 \times
+1 rectangles, and from these, the 1 \times 6 rectangle can be formed.
+
+In the fifth test case, the 2 \times 2 rectangle can be cut into two 1 \times
+2 rectangles, and from these, the 1 \times 4 rectangle can be formed.","t = int(input())  # Número de casos de prueba
+ 
+for _ in range(t):
+    a, b = map(int, input().split())  # Leer las dimensiones del rectángulo
+    
+    # Si cualquiera de las dimensiones es par
+    if a % 2 == 0 or b % 2 == 0:
+        # Hacer un corte en la dimensión par
+        if a % 2 == 0:  # Dividir a en dos partes si es par
+            a1, a2 = a // 2, a // 2
+            if a1 != b:  # Verificar que no se forme un cuadrado al dividir
+                print(""Yes"")
+                continue
+        
+        if b % 2 == 0:  # Dividir b en dos partes si es par
+            b1, b2 = b // 2, b // 2
+            if b1 != a:  # Verificar que no se forme un cuadrado al dividir
+                print(""Yes"")
+                continue
+ 
+        # Si no se puede formar un nuevo rectángulo
+        print(""No"")
+    else:
+        # Si ambos lados son impares, no se puede formar otro rectángulo
+        print(""No"")",1,True,True,False,False,False,False,True,True,False,False,False,False,False,True,0.7877748978182266,0.3060317847167209,0.6666666666666666
+1929_B,1929_B_avaniagr_100%,codeforces2024,human,qwen2.5-coder-32b-instruct,"Even in kindergarten, Sasha liked a girl. Therefore, he wanted to give her a
+drawing and attract her attention.
+
+As a drawing, he decided to draw a square grid of size n \times n , in which
+some cells are colored. But coloring the cells is difficult, so he wants to
+color as few cells as possible. But at the same time, he wants at least k
+diagonals to have at least one colored cell. Note that the square grid of size
+n \times n has a total of 4n - 2 diagonals.
+
+Help little Sasha to make the girl fall in love with him and tell him the
+minimum number of cells he needs to color.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 1000 ) — the number of test cases. The description of
+the test cases follows.
+
+The only line of each test case contains two integers n and k (2 \leq n \leq
+10^8 , 1 \leq k \leq 4n - 2 ) — the size of the square grid and the minimum
+number of diagonals in which there should be at least one colored cell.
+
+Output
+
+For each test case, output a single integer — the minimum number of cells that
+need to be colored.
+
+Example
+
+Input
+
+    7
+    
+    3 4
+    
+    3 3
+    
+    3 10
+    
+    3 9
+    
+    4 7
+    
+    7 11
+    
+    2 3
+
+Output
+
+    2
+    2
+    6
+    5
+    4
+    6
+    2
+    
+Note
+
+In the pictures below, the colored cells are marked in black, and all
+diagonals are marked in purple.
+
+In the first test case, you can color 2 cells so that 4 diagonals contain at
+least one colored cell:
+
+![](https://espresso.codeforces.com/c88e80de5be4f91764dbe5bdc534c50fec115db3.png)
+
+In the third test case, you can color 6 cells so that all 10 diagonals contain
+at least one colored cell:
+
+![](https://espresso.codeforces.com/624a36083689f6fb20bf243e5d1707fdcd71ef60.png)","import math
+for s in [*open(0)][1:]:
+    n,k=map(int,s.split())
+    if k<=(4*n-4):
+        print(math.ceil(k/2))
+    elif k==(4*n-3):
+        print(2*n-1)
+    elif k==(4*n-2):
+        print(2*n)",1,True,True,False,False,False,True,True,True,False,False,False,False,False,True,0.8942604470162633,0.5332130615157586,0.75
+1937_D,1937_D_Dipta_bar_100%,codeforces2024,human,qwen2.5-coder-32b-instruct,"There is a one-dimensional grid of length n . The i -th cell of the grid
+contains a character s_i , which is either '<' or '>'.
+
+When a pinball is placed on one of the cells, it moves according to the
+following rules:
+
+  * If the pinball is on the i -th cell and s_i is '<', the pinball moves one cell to the left in the next second. If s_i is '>', it moves one cell to the right. 
+  * After the pinball has moved, the character s_i is inverted (i. e. if s_i used to be '<', it becomes '>', and vice versa). 
+  * The pinball stops moving when it leaves the grid: either from the left border or from the right one. 
+
+You need to answer n independent queries. In the i -th query, a pinball will
+be placed on the i -th cell. Note that we always place a pinball on the
+initial grid.
+
+For each query, calculate how many seconds it takes the pinball to leave the
+grid. It can be shown that the pinball will always leave the grid within a
+finite number of steps.
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t (1 \le t \le 10^5 ). The description of the test cases follows.
+
+The first line of each test case contains an integer n (1 \le n \le 5 \cdot
+10^5 ).
+
+The second line of each test case contains a string s_1s_2 \ldots s_{n} of
+length n consisting of characters '<' and '>'.
+
+It is guaranteed that the sum of n over all test cases does not exceed 5 \cdot
+10^5 .
+
+Output
+
+For each test case, for each i (1 \le i \le n ) output the answer if a pinball
+is initially placed on the i -th cell.
+
+Example
+
+Input
+
+    3
+    
+    3
+    
+    ><<
+    
+    4
+    
+    <<<<
+    
+    6
+    
+    <><<<>
+
+Output
+
+    3 6 5 
+    1 2 3 4 
+    1 4 7 10 8 1 
+    
+Note
+
+In the first test case, the movement of the pinball for i=1 is shown in the
+following pictures. It takes the pinball 3 seconds to leave the grid.
+
+![](https://espresso.codeforces.com/775b656d27e63ce8901e1ef80487972d536b4a54.png)
+
+The movement of the pinball for i=2 is shown in the following pictures. It
+takes the pinball 6 seconds to leave the grid.
+
+![](https://espresso.codeforces.com/515bd5576868cf33d4190893928faa21e69dd5c7.png)","t = int(input())
+ 
+ 
+ 
+def solve(s):
+    n = len(s)
+    A = [] 
+    idx_A = []
+    for i in range(0, n):
+        if s[i] == '>':
+            if (len(idx_A) == 0):
+                A.append(0)
+            else:
+                x = A[len(A) - 1] + (i - idx_A[len(idx_A) - 1]) * len(idx_A)
+                A.append(x)
+            idx_A.append(i)
+    B = []
+    idx_B = []
+    for j in range(0, n):
+        i = n - 1 - j
+        if s[i] == '<':
+            if (len(idx_B) == 0):
+                B.append(0)
+            else:
+                x = B[len(B) - 1] + (idx_B[len(B) - 1] - i) * len(idx_B)
+                B.append(x)
+            idx_B.append(i)
+    l = 0
+    r = len(B)
+ 
+ 
+    for i in range(0, n):
+        if (s[i] == '>'):
+            if l < r:
+                a = A[l]
+                x = r - (l + 2)
+                b = B[r - 1]
+                if x >= 0:
+                    b = b - B[x]
+                    b = b - (idx_B[x] - idx_B[r - 1]) * (x + 1)
+                b = b + (idx_B[r - 1] - i) * (l + 1)
+                print(a * 2 + b * 2 + i + 1, end = "" "")
+            else:
+                if (r == 0):
+                    print(n - i, end = "" "")
+                else:
+                    a = B[r - 1] + (idx_B[r - 1] - i) * r
+                    b = A[l - 1]
+                    if l - r > 0:
+                        b = b - A[l - r - 1]
+                        b = b - (idx_A[l - 1] - idx_A[l - r - 1]) * (l - r)
+                    b = b + (i - idx_A[l - 1]) * r
+                    print(a * 2 + b * 2 + (n - i), end = "" "")
+            l += 1
+        else:
+            r -= 1
+            if (l <= r):
+                if (l == 0):
+                    print(i + 1, end = "" "")
+                else:
+                    a = A[l - 1]
+                    a = a + (i - idx_A[l - 1]) * l
+                    b = B[r]
+                    if r - l >= 0:
+                        b = b - B[r - l]
+                        b = b - (idx_B[r - l] - i) * (r - l)
+                    b = b + (idx_B[r] - i) * l
+                    print(a * 2 + b * 2 + i + 1, end = "" "")
+            else:
+                if (r == 0):
+                    print((n - i) + (i - idx_A[l - 1]) * 2, end = "" "")
+                else:
+                    a = B[r]
+                    b = A[l - 1]
+                    if l - r - 1 > 0:
+                        b = b - A[l - r - 2]
+                        b = b - (idx_A[l - 1] - idx_A[l - r - 2]) * (l - r - 1)
+                    b = b + (i - idx_A[l - 1]) * (r + 1)
+                    print(a * 2 + b * 2 + (n - i), end = "" "")
+ 
+ 
+for i in range(0, t):
+    n = int(input())
+    s = input()
+    solve(s)
+    print()",1,True,True,False,False,False,True,True,True,True,True,True,False,False,False,0.6950857119714432,0.1985501014051871,0.6666666666666666
+1937_C,1937_C_moonsong98_100%,codeforces2024,human,qwen2.5-coder-32b-instruct,"This is an interactive problem.
+
+There is a secret sequence p_0, p_1, \ldots, p_{n-1} , which is a permutation
+of \\{0,1,\ldots,n-1\\} .
+
+You need to find any two indices i and j such that p_i \oplus p_j is
+maximized, where \oplus denotes the [bitwise XOR
+operation](https://en.wikipedia.org/wiki/Bitwise_operation#XOR).
+
+To do this, you can ask queries. Each query has the following form: you pick arbitrary indices a , b , c , and d (0 \le a,b,c,d < n ). Next, the jury calculates x = (p_a \mid p_b) and y = (p_c \mid p_d) , where | denotes the [bitwise OR operation](https://en.wikipedia.org/wiki/Bitwise_operation#OR). Finally, you receive the result of comparison between x and y . In other words, you are told if x < y , x > y , or x = y .
+
+Please find any two indices i and j (0 \le i,j < n ) such that p_i \oplus p_j
+is maximum among all such pairs, using at most 3n queries. If there are
+multiple pairs of indices satisfying the condition, you may output any one of
+them.
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t (1 \le t \le 10^3 ). The description of the test cases follows.
+
+Interaction
+
+The first line of each test case contains one integer n (2 \le n \le 10^4 ).
+At this moment, the permutation p_0, p_1, \ldots, p_{n-1} is chosen. The
+interactor in this task is not adaptive. In other words, the sequence p is
+fixed in every test case and does not change during the interaction.
+
+To ask a query, you need to pick four indices a , b , c , and d (0 \le a,b,c,d
+< n ) and print the line of the following form:
+
+  * ""? a b c d"" 
+
+After that, you receive:
+
+  * ""<"" if (p_a \mid p_b) < (p_c \mid p_d) ; 
+  * ""="" if (p_a \mid p_b) = (p_c \mid p_d) ; 
+  * "">"" if (p_a \mid p_b) > (p_c \mid p_d) . 
+
+You can make at most 3n queries of this form.
+
+Next, if your program has found a pair of indices i and j (0 \le i, j < n )
+such that p_i \oplus p_j is maximized, print the line of the following form:
+
+  * ""! i j"" 
+
+Note that this line is not considered a query and is not taken into account
+when counting the number of queries asked.
+
+After this, proceed to the next test case.
+
+If you make more than 3n queries during an interaction, your program must
+terminate immediately, and you will receive the Wrong Answer verdict.
+Otherwise, you can get an arbitrary verdict because your solution will
+continue to read from a closed stream.
+
+After printing a query or the answer for a test case, do not forget to output
+the end of line and flush the output. Otherwise, you will get the verdict
+Idleness Limit Exceeded. To do this, use:
+
+  * fflush(stdout) or cout.flush() in C++; 
+  * System.out.flush() in Java; 
+  * flush(output) in Pascal; 
+  * stdout.flush() in Python; 
+  * see the documentation for other languages. 
+
+It is guaranteed that the sum of n over all test cases does not exceed 10^4 .
+
+Hacks
+
+To hack, follow the test format below.
+
+The first line contains the number of test cases t (1 \le t \le 10^3 ). The
+description of the test cases follows.
+
+The first line of each test case contains one integer n (2 \le n \le 10^4 ).
+
+The second line of each test case contains n integers p_0,p_1,\ldots,p_{n-1} ,
+which represent a permutation of integers from 0 to n - 1 .
+
+The sum of n over all test cases should not exceed 10^4 .
+
+Example
+
+Input
+
+    2
+    4
+    
+    <
+    
+    =
+    
+    >
+    
+    2
+    
+Output
+
+    ? 0 2 3 1
+    
+    ? 1 1 2 3
+    
+    ? 1 2 0 3
+    
+    ! 3 2
+    
+    ! 0 1
+    
+Note
+
+In the first test case, the hidden permutation is p=[0,3,1,2] .
+
+For the query ""? 0 2 3 1"", the jury return ""<"" because (p_0 \mid p_2) = (0
+\mid 1) =1 < (p_3 \mid p_1) = (2 \mid 3) = 3 .
+
+For the query ""? 1 1 2 3"", the jury return ""="" because (p_1 \mid p_1) = (3\mid
+3)= 3 = (p_2 \mid p_3) = (1 \mid 2)=3 .
+
+For the query ""? 1 2 0 3"", the jury return "">"" because (p_1 \mid p_2) = (3
+\mid 1) = 3 > (p_0 \mid p_3) = (0\mid 2)=2 .
+
+The answer i = 3 and j = 2 is valid: (p_3 \oplus p_2) = (2 \oplus 1) = 3 is
+indeed equal to the maximum possible value of p_i \oplus p_j . Another valid
+answer would be i=0 and j=1 . As the number of queries does not exceed 3n=12 ,
+the answer is considered correct.
+
+In the second test case, n = 2 , so p is either [0, 1] or [1, 0] . In any
+case, p_0 \oplus p_1 = 1 is maximum possible.","import sys
+ 
+input = sys.stdin.readline
+sys.setrecursionlimit(int(1e9))
+ 
+ 
+def check(a, b, c, d):
+    print(f""? {a} {b} {c} {d}"")
+    sys.stdout.flush()
+    return input().strip()
+ 
+ 
+def answer(a, b):
+    print(f""! {a} {b}"")
+    sys.stdout.flush()
+ 
+ 
+def solve():
+    n = int(input())
+ 
+    if n == 2:
+        answer(0, 1)
+        return
+ 
+    # debug
+ 
+    max_index = 0
+ 
+    for i in range(0, n):
+        res = check(0, max_index, 0, i)
+        if res == ""<"":
+            max_index = i
+ 
+    min_indices = [max_index]
+    for i in range(0, n):
+        res = check(max_index, min_indices[0], max_index, i)
+        if res == ""<"":
+            min_indices = [i]
+        elif res == ""="":
+            min_indices.append(i)
+ 
+    min_index = min_indices[0]
+    for i in min_indices:
+        if i == max_index:
+            continue
+        res = check(min_index, min_index, min_index, i)
+        if res == ""="":
+            min_index = i
+ 
+    answer(max_index, min_index)
+ 
+ 
+T = int(input())
+ 
+for _ in range(T):
+    solve()",1,True,False,False,False,False,True,False,True,False,False,False,False,True,False,0.6572929462468227,0.1617790335001941,0.6666666666666666
+1957_C,1957_C_Phyber_Optik_100%,codeforces2024,human,qwen2.5-coder-32b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","import sys
+ 
+sys.setrecursionlimit(400000)
+ 
+dp = [-1 for _ in range(300007)]
+ 
+def go(n):
+    # if n <= 1:
+    #     return 1
+ 
+    # if dp[n] != -1:
+    #     return dp[n]
+ 
+    # dp[n] = (go(n - 1) + 2 * (n - 1) * go(n - 2)) % 1000000007
+ 
+    # return dp[n]
+    dp[1] = 1
+    dp[2] = 3
+    for i in range(3, n + 1):
+        dp[i] = (dp[i - 1] + 2 * (i - 1) * dp[i - 2]) % 1000000007
+ 
+go(300000)
+t = int(input())
+ 
+for _ in range(t):
+    n, k = map(int, input().split())
+    invalid = set([])
+ 
+    for _ in range(k):
+        r, c = map(int, input().split())
+        invalid.add(r)
+        invalid.add(c)
+ 
+ 
+    print(max(1, dp[n - len(invalid)]))",1,True,False,False,False,False,True,True,True,False,False,True,False,False,False,0.8952528185874715,0.4797126352451899,0.8333333333333334
+1937_C,1937_C_FransValli_5.88%,codeforces2024,human,qwen2.5-coder-32b-instruct,"This is an interactive problem.
+
+There is a secret sequence p_0, p_1, \ldots, p_{n-1} , which is a permutation
+of \\{0,1,\ldots,n-1\\} .
+
+You need to find any two indices i and j such that p_i \oplus p_j is
+maximized, where \oplus denotes the [bitwise XOR
+operation](https://en.wikipedia.org/wiki/Bitwise_operation#XOR).
+
+To do this, you can ask queries. Each query has the following form: you pick arbitrary indices a , b , c , and d (0 \le a,b,c,d < n ). Next, the jury calculates x = (p_a \mid p_b) and y = (p_c \mid p_d) , where | denotes the [bitwise OR operation](https://en.wikipedia.org/wiki/Bitwise_operation#OR). Finally, you receive the result of comparison between x and y . In other words, you are told if x < y , x > y , or x = y .
+
+Please find any two indices i and j (0 \le i,j < n ) such that p_i \oplus p_j
+is maximum among all such pairs, using at most 3n queries. If there are
+multiple pairs of indices satisfying the condition, you may output any one of
+them.
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t (1 \le t \le 10^3 ). The description of the test cases follows.
+
+Interaction
+
+The first line of each test case contains one integer n (2 \le n \le 10^4 ).
+At this moment, the permutation p_0, p_1, \ldots, p_{n-1} is chosen. The
+interactor in this task is not adaptive. In other words, the sequence p is
+fixed in every test case and does not change during the interaction.
+
+To ask a query, you need to pick four indices a , b , c , and d (0 \le a,b,c,d
+< n ) and print the line of the following form:
+
+  * ""? a b c d"" 
+
+After that, you receive:
+
+  * ""<"" if (p_a \mid p_b) < (p_c \mid p_d) ; 
+  * ""="" if (p_a \mid p_b) = (p_c \mid p_d) ; 
+  * "">"" if (p_a \mid p_b) > (p_c \mid p_d) . 
+
+You can make at most 3n queries of this form.
+
+Next, if your program has found a pair of indices i and j (0 \le i, j < n )
+such that p_i \oplus p_j is maximized, print the line of the following form:
+
+  * ""! i j"" 
+
+Note that this line is not considered a query and is not taken into account
+when counting the number of queries asked.
+
+After this, proceed to the next test case.
+
+If you make more than 3n queries during an interaction, your program must
+terminate immediately, and you will receive the Wrong Answer verdict.
+Otherwise, you can get an arbitrary verdict because your solution will
+continue to read from a closed stream.
+
+After printing a query or the answer for a test case, do not forget to output
+the end of line and flush the output. Otherwise, you will get the verdict
+Idleness Limit Exceeded. To do this, use:
+
+  * fflush(stdout) or cout.flush() in C++; 
+  * System.out.flush() in Java; 
+  * flush(output) in Pascal; 
+  * stdout.flush() in Python; 
+  * see the documentation for other languages. 
+
+It is guaranteed that the sum of n over all test cases does not exceed 10^4 .
+
+Hacks
+
+To hack, follow the test format below.
+
+The first line contains the number of test cases t (1 \le t \le 10^3 ). The
+description of the test cases follows.
+
+The first line of each test case contains one integer n (2 \le n \le 10^4 ).
+
+The second line of each test case contains n integers p_0,p_1,\ldots,p_{n-1} ,
+which represent a permutation of integers from 0 to n - 1 .
+
+The sum of n over all test cases should not exceed 10^4 .
+
+Example
+
+Input
+
+    2
+    4
+    
+    <
+    
+    =
+    
+    >
+    
+    2
+    
+Output
+
+    ? 0 2 3 1
+    
+    ? 1 1 2 3
+    
+    ? 1 2 0 3
+    
+    ! 3 2
+    
+    ! 0 1
+    
+Note
+
+In the first test case, the hidden permutation is p=[0,3,1,2] .
+
+For the query ""? 0 2 3 1"", the jury return ""<"" because (p_0 \mid p_2) = (0
+\mid 1) =1 < (p_3 \mid p_1) = (2 \mid 3) = 3 .
+
+For the query ""? 1 1 2 3"", the jury return ""="" because (p_1 \mid p_1) = (3\mid
+3)= 3 = (p_2 \mid p_3) = (1 \mid 2)=3 .
+
+For the query ""? 1 2 0 3"", the jury return "">"" because (p_1 \mid p_2) = (3
+\mid 1) = 3 > (p_0 \mid p_3) = (0\mid 2)=2 .
+
+The answer i = 3 and j = 2 is valid: (p_3 \oplus p_2) = (2 \oplus 1) = 3 is
+indeed equal to the maximum possible value of p_i \oplus p_j . Another valid
+answer would be i=0 and j=1 . As the number of queries does not exceed 3n=12 ,
+the answer is considered correct.
+
+In the second test case, n = 2 , so p is either [0, 1] or [1, 0] . In any
+case, p_0 \oplus p_1 = 1 is maximum possible.","for _ in range(int(input())):
+    n = int(input())
+ 
+    #Find first item
+    k = 1
+    for i in range(2, n):
+        print('?', 0, k, 0, i, flush=True)
+        res = input()
+        if res == '<':
+            k = i
+ 
+    #Find second item    
+    best = 0
+    for i in range(1, n):
+        print('?', k, best, k, i, flush=True)
+        res = input()
+        if res == '<':
+            best = i
+ 
+    print('!', k, best, flush = True)",1,False,True,False,False,True,True,False,True,False,False,False,False,False,False,0.9431417787833534,0.659543783321007,0.8333333333333334
+1932_B,1932_B_permaximum_0.00%,codeforces2024,human,qwen2.5-coder-32b-instruct,"The Chaya tribe believes that there are n signs of the apocalypse. Over time,
+it has been found out that the i -th sign occurs every a_i years (in years a_i
+, 2 \cdot a_i , 3 \cdot a_i , \dots ).
+
+According to the legends, for the apocalypse to happen, the signs must occur
+sequentially. That is, first they wait for the first sign to occur, then
+strictly after it, the second sign will occur, and so on. That is, if the i
+-th sign occurred in the year x , the tribe starts waiting for the occurrence
+of the (i+1) -th sign, starting from the year x+1 .
+
+In which year will the n -th sign occur and the apocalypse will happen?
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 1000 ) —
+the number of test cases. Then follow the descriptions of the test cases.
+
+The first line of each test case contains a single integer n (1 \le n \le 100
+) — the number of signs.
+
+The second line of each test case contains n integers a_1, a_2, a_3, \dots,
+a_n (1 \le a_i \le 10^6 ) — the periodicities of the signs.
+
+Output
+
+For each test case, output a single integer — the year in which all n signs
+will occur.
+
+Example
+
+Input
+
+    4
+    
+    6
+    
+    3 2 4 5 9 18
+    
+    5
+    
+    1 2 3 4 5
+    
+    5
+    
+    1 1 1 1 1
+    
+    6
+    
+    50 30 711 200 503 1006
+
+Output
+
+    36
+    5
+    5
+    2012
+    
+Note
+
+In the first set of input data of the example:
+
+  * The tribe will wait for the first sign in the 3 -rd year; 
+  * the tribe will wait for the second sign in the 4 -th year (since year 2 have already passed); 
+  * the tribe will wait for the third sign in the 8 -th year (since the second sign has already occurred in the 4 -th year); 
+  * the tribe will wait for the fourth sign in the 10 -th year (since year 5 have already passed); 
+  * the tribe will wait for the fifth sign in the 18 -th year (since year 9 have already passed); 
+  * the tribe will wait for the sixth sign in the 36 -th year (since the fifth sign has already occurred in the 18 -th year).","t = int(input())
+ 
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    year = 0
+    for ai in a:
+        year += (year % ai) or ai
+    print(year)",1,False,True,True,True,True,True,True,True,True,True,False,True,True,True,,,
+1971_D,1971_D_Macjony_100%,codeforces2024,human,qwen2.5-coder-32b-instruct,"You are given a binary string^{\dagger} . Please find the minimum number of
+pieces you need to cut it into, so that the resulting pieces can be rearranged
+into a sorted binary string.
+
+![](https://espresso.codeforces.com/76039f9769ba94c1817dbbc5e1fb1b5e4f60950f.png)
+
+Note that:
+
+  * each character must lie in exactly one of the pieces; 
+  * the pieces must be contiguous substrings of the original string; 
+  * you must use all the pieces in the rearrangement. 
+
+^{\dagger} A binary string is a string consisting of characters \texttt{0} and
+\texttt{1} . A sorted binary string is a binary string such that all
+characters \texttt{0} come before all characters \texttt{1} .
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 500 ) — the number
+of test cases.
+
+The only line of each test case contains a single string s (1 \leq |s| \leq
+500 ) consisting of characters \texttt{0} and \texttt{1} , where |s| denotes
+the length of the string s .
+
+Output
+
+For each test case, output a single integer — the minimum number of pieces
+needed to be able to rearrange the string into a sorted binary string.
+
+Example
+
+Input
+
+    6
+    
+    11010
+    
+    00000000
+    
+    1
+    
+    10
+    
+    0001111
+    
+    0110
+
+Output
+
+    3
+    1
+    1
+    2
+    1
+    2
+    
+Note
+
+The first test case is pictured in the statement. It can be proven that you
+can't use fewer than 3 pieces.
+
+In the second and third test cases, the binary string is already sorted, so
+only 1 piece is needed.
+
+In the fourth test case, you need to make a single cut between the two
+characters and rearrange them to make the string \texttt{01} .","t=int(input())
+for i in range(t):
+    s=input()
+    count=1
+    flag=False
+    j=0
+    while j<len(s)-1:
+        if s[j]!=s[j+1]:
+            count+=1
+            if s[j]=='0' and s[j+1]=='1':
+                flag=True
+        j+=1
+    if flag:
+        count-=1
+    print(count)",1,True,True,True,False,True,True,True,True,False,True,True,False,True,True,0.8004422626990536,0.30768907805742246,0.75
+1919_A,1919_A_vjudge.9_0.00%,codeforces2024,human,qwen2.5-coder-32b-instruct,"Alice and Bob are bored, so they decide to play a game with their wallets.
+Alice has a coins in her wallet, while Bob has b coins in his wallet.
+
+Both players take turns playing, with Alice making the first move. In each
+turn, the player will perform the following steps in order:
+
+  1. Choose to exchange wallets with their opponent, or to keep their current wallets. 
+  2. Remove 1 coin from the player's current wallet. The current wallet cannot have 0 coins before performing this step. 
+
+The player who cannot make a valid move on their turn loses. If both Alice and
+Bob play optimally, determine who will win the game.
+
+Input
+
+Each test contains multiple test cases. The first line contains a single
+integer t (1 \leq t \leq 1000 ) — the number of test cases. The description of
+the test cases follows.
+
+The first and only line of each test case contains two integers a and b (1 \le
+a, b \le 10^9 ) — the number of coins in Alice's and Bob's wallets,
+respectively.
+
+Output
+
+For each test case, output ""Alice"" if Alice will win the game, and ""Bob"" if
+Bob will win the game.
+
+Example
+
+Input
+
+    10
+    
+    1 1
+    
+    1 4
+    
+    5 3
+    
+    4 5
+    
+    11 9
+    
+    83 91
+    
+    1032 9307
+    
+    839204 7281
+    
+    1000000000 1000000000
+    
+    53110 2024
+
+Output
+
+    Bob
+    Alice
+    Bob
+    Alice
+    Bob
+    Bob
+    Alice
+    Alice
+    Bob
+    Bob
+    
+Note
+
+In the first test case, an example of the game is shown below:
+
+  * Alice chooses to not swap wallets with Bob in step 1 of her move. Now, a=0 and b=1 . 
+  * Since Alice's wallet is empty, Bob must choose to not swap their wallets in step 1 of his move. Now, a=0 and b=0 . 
+  * Since both Alice's and Bob's wallets are empty, Alice is unable to make a move. Hence, Bob wins. 
+
+In the second test case, an example of the game is shown below:
+
+  * Alice chooses to swap wallets with Bob in step 1 of her move. Now, a=3 and b=1 . 
+  * Bob chooses to swap wallets with Alice in step 1 of his move. Now, a=1 and b=2 . 
+  * Alice chooses to not swap wallets with Bob in step 1 of her move. Now, a=0 and b=2 . 
+  * Since Alice's wallet is empty, Bob can only choose to not swap wallets with Alice in step 1 of his move. Now, a=0 and b=1 . 
+  * Since Alice's wallet is empty, Alice can only choose to swap wallets with Bob in step 1 of her move. Now, a=0 and b=0 . 
+  * Since both Alice's wallet and Bob's wallet are empty, Bob is unable to make a move. Hence, Alice wins.","def determine_winner(a, b):
+    # If the sum of coins is odd, Alice wins, because she can always force Bob
+    # to face an empty wallet scenario first due to having the first move advantage.
+    # For an even sum, Bob wins, by following Alice's strategy and ensuring
+    # that Alice faces the empty wallet scenario first.
+    if (a + b) % 2 == 0:
+        return ""Bob""
+    else:
+        return ""Alice""
+ 
+def main():
+    t = int(input(""Enter the number of test cases: ""))  # Read the number of test cases
+    
+    results = []
+    
+    for _ in range(t):
+        a, b = map(int, input().strip().split())  # Read the number of coins in Alice's and Bob's wallets
+        winner = determine_winner(a, b)
+        results.append(winner)
+    
+    for result in results:
+        print(result)
+ 
+if __name__ == ""__main__"":
+    main()",1,False,True,True,True,True,True,True,True,True,True,True,True,True,True,0.9330968445441384,0.6451700861708208,0.8333333333333334

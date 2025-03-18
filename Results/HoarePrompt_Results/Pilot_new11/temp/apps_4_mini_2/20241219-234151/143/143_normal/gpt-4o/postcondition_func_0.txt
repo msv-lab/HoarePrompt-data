@@ -1,9 +1,0 @@
-The function accepts three parameters: `n`, a positive integer indicating the number of different bottle types; `L`, a positive integer representing the total amount available for spending; and `costs`, a list of integers detailing the cost of each bottle type. The function calculates and returns the minimum cost required to buy bottles such that the total volume of the bottles meets or exceeds `L`.
-
-The function operates as follows:
-1. It initializes a dynamic programming list, `dp`, to track the minimum cost of bottles for volumes from 0 up to 30 (with 31 indices) and fills it with a maximum cost placeholder.
-2. It updates the `dp` list to reflect the minimum costs for the first `n` bottle types.
-3. It then iterates through the `dp` list, updating it to account for the doubling of previous values to compute costs for additional volumes.
-4. Finally, it computes the minimum cost by checking how many different volume powers of two can be used to meet the requirement `L`, updating the `current_cost` accordingly, and considers additional costs based on any remaining `L`.
-
-The function ultimately returns the minimum value between the initially set maximum answer and a calculated total that considers how many bottles can be purchased with the provided budget based on their respective costs. Edge cases include scenarios where `L` is larger than what can be achieved with available bottle types, as well as cases where `n` could be at its minimum or maximum limits. The function ensures that the total costs remain within the bounds of available costs, and it handles situations where some bottle types may not be necessary for achieving the desired volume due to cost constraints.

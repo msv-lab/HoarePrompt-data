@@ -1,9 +1,0 @@
-The function `func_1` accepts three parameters: `n`, `m`, and `edges`. 
-
-- `n` is an integer representing the number of vertices, with the constraint 2 ≤ n ≤ 500.
-- `m` is an integer representing the number of edges, with the constraint 1 ≤ m ≤ min(n(n - 1), 100000).
-- `edges` is a list of tuples where each tuple (u, v) represents a directed edge from vertex u to vertex v, with the constraints 1 ≤ u, v ≤ n and u ≠ v.
-
-The function constructs a directed graph using the provided edges. It then checks if the graph contains a cycle using the `has_cycle(graph)` function. If the graph contains no cycle initially, it returns 'YES'. Otherwise, it iterates over each edge in the graph, temporarily removing the edge and checking if the graph still contains a cycle. If removing an edge breaks the cycle, it returns 'YES'. If no such edge is found and the graph remains cyclic, it returns 'NO'.
-
-This function effectively determines whether the graph can be made acyclic by removing a single directed edge. The final state of the program after executing the function is either 'YES', indicating that a single edge can be removed to break all cycles, or 'NO', indicating that no single edge can be removed to break all cycles.

@@ -1,0 +1,10 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1978_A,human,codeforces2024,qwen2.5-7b-instruct,"t = int(input().strip())
+ 
+for i in range(t):
+    # n is no. books
+    n = int(input().strip())
+    ls = input().split()
+    last = int(ls.pop())
+    other = int(sorted(ls).pop())
+    print(last + other)",Error: [Errno 2] No such file or directory: '/home/jim/HoarePrompt-data/Results/old/temp2_1/20250218-113117/1978_A/human/program.py',hoareprompt

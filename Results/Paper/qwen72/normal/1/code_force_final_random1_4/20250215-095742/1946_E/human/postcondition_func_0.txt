@@ -1,6 +1,0 @@
-The function `func_1` takes two non-negative integers, `a` and `b`, with the constraint that `b` is less than or equal to `a`. It returns a tuple of two integers. Depending on the values of `a` and `b`, the function can return one of the following:
-
-1. If `b` is 0, the function returns the tuple (1, 0).
-2. If `a` is less than `b`, the function swaps the values of `a` and `b` and returns the results of `func_1(b, a)`, swapping the order of the returned tuple.
-3. If `a` is divisible by `b` with no remainder, the function returns the tuple (1, -((a // b) - 1)).
-4. If none of the above conditions are met, the function recursively calls itself with `b` and `a % b`, and returns a tuple where the first element is the second result of the recursive call, and the second element is the first result of the recursive call minus the product of `a` divided by `b` (integer division) and the second result of the recursive call.

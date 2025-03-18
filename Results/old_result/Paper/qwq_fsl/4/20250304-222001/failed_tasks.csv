@@ -1,0 +1,160 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1955_C,human,codeforces2024,qwq-32b-preview,"# -*- coding: utf-8 -*-
+""""""
+    @Time : 2024/8/26 17:59
+    @Author : Zhiliang.L
+    @Email : 2410103062@mails.edu.cn
+    @File : 1955-C.py
+""""""
+T = int(input())
+while T:
+    T -= 1
+    n, k = input().split()
+    n = int(n)
+    k = int(k)
+    a = input().split()
+    a = list(map(lambda x: int(x), a))
+    l = 0
+    r = n - 1
+    ans = 0
+    while l < r and k > 0:
+        mi = min(a[l], a[r])
+        if mi * 2 <= k:
+            a[l] -= mi
+            a[r] -= mi
+            k -= (mi * 2)
+            if a[l] == 0:
+                ans += 1
+                l += 1
+            if a[r] == 0:
+                ans += 1
+                r -= 1
+        else:
+            t = k % 2
+            if mi - t - k // 2 == 0:
+                ans += 1
+            break
+    if l == r:
+        ans += (k >= a[l])
+    print(ans)",Error: 'str' object has no attribute 'trim',hoareprompt
+1926_B,human,codeforces2024,qwq-32b-preview,"a=int(input())
+for i in range(a):
+    k=[]
+    for _ in range(int(input())):
+        b=input()
+        if '1' in b:
+            k.append(b.count('1'))
+    if k[0]==k[1]:
+        print(k)",Error: 'str' object has no attribute 'trim',hoareprompt
+1931_B,human,codeforces2024,qwq-32b-preview,"def make_equal(n, a):
+    total_water = sum(a)
+    
+    # If total water isn't divisible by n, equal distribution isn't possible
+    if total_water % n != 0:
+        return 'No'
+    
+    target = total_water // n
+    container = 0  # Tracks the net water that needs to be redistributed
+    
+    # Traverse through the containers
+    for water in a:
+        container += water - target
+        # If at any point the redistribution fails, return 'No'
+        if container < 0:
+            return 'No'
+    
+    return 'Yes'
+ 
+# Input reading optimized
+import sys
+input = sys.stdin.read
+data = input().split()
+n = int(data[0])
+a = list(map(int, data[1:]))
+ 
+# Output the result
+print(make_equal(n, a))",Error: 'str' object has no attribute 'trim',hoareprompt
+1945_E,human,codeforces2024,qwq-32b-preview,"def inp(): return map(int, input().split())
+def linp(): return list(inp())
+ 
+def solve():
+  n, k = inp()
+  arr = linp()
+  
+  pos = -1
+  for i in range(n):
+    if arr[i] == k:
+      pos = i
+  
+  low, high = 0, n-1
+  st = set()
+  
+  while low+1 < high:
+    mid = (low + high)//2
+    st.add(mid)
+    
+    if arr[mid] > k:
+      high = mid
+    else:
+      low = mid
+  
+  if arr[low] == k:
+    print(0)
+  else:
+    print(1)
+    print(low+1, pos+1)
+      
+ 
+for _ in range(int(input())):
+  solve()",Error: 'str' object has no attribute 'trim',hoareprompt
+1942_C2,human,codeforces2024,qwq-32b-preview,"def solve():
+    n, x, y = map(int, input().split())
+    a = list(map(int, input().split()))
+    a = [num - 1 for num in a]  # Convert to 0-based indexing
+ 
+    a.sort()
+    present = set(a)  # Use a set for fast lookups
+    ans = x - 2
+ 
+    # Check the conditions for incrementing the answer
+    for i in range(x):
+        t1 = (a[i] + 1) % n
+        t2 = (a[i] + 2) % n
+        if t1 not in present and t2 in present:
+            ans += 1
+ 
+    # Calculate gaps
+    gaps = []
+    for i in range(x):
+        next_elem = a[(i + 1) % x] + (n if i == x - 1 else 0)
+        gap = next_elem - a[i] - 1
+        if gap > 0:
+            gaps.append(gap)
+ 
+    # Process gaps
+    gaps.sort()
+    for gap in gaps:
+        pairs = gap // 2
+        if y >= pairs:
+            ans += gap
+            y -= pairs
+        else:
+            ans += 2 * y
+            break
+ 
+    print(ans)
+ 
+# Main function to handle multiple test cases
+if __name__ == ""__main__"":
+    t = int(input())
+    for _ in range(t):
+        solve()",Error: 'str' object has no attribute 'trim',hoareprompt
+1928_A,human,codeforces2024,qwq-32b-preview,"n = int(input())
+for i in range(n):
+    a, b = [int(i) for i in input().split()]
+    if(a%2!=0 and b%2!=0):
+      print(""NO"")
+    elif(a/2==b or b/2==a):
+      print(""NO"")
+    else:
+      print(""YES"")",Error: 'str' object has no attribute 'trim',hoareprompt

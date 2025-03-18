@@ -1,0 +1,42 @@
+#State of the program right berfore the function call: n is an integer representing the number of nodes in the tree, edges is a list of tuples representing the edges of the tree, and start is an integer representing the starting node for the first round. The tree has exactly two leaves, and all nodes are initially inactive.
+def func_1(n, edges, start):
+    tree = defaultdict(list)
+    for (u, v) in edges:
+        tree[u].append(v)
+        
+        tree[v].append(u)
+        
+    #State: All nodes in the tree will have their corresponding `tree[node]` lists filled with all other nodes connected to them through a series of edges, forming a fully interconnected representation of the tree.
+    leaves = [node for node in tree if len(tree[node]) == 1]
+    dist1 = bfs(start, leaves[0])
+    dist2 = bfs(start, leaves[1])
+    if (dist1 % 2 == 0 or dist2 % 2 == 0) :
+        return 'Ron'
+        #The program returns 'Ron'
+    else :
+        return 'Hermione'
+        #The program returns 'Hermione'
+#Overall this is what the function does:The function `func_1` accepts an integer `n` representing the number of nodes in a tree, a list of tuples `edges` representing the tree's edges, and an integer `start` indicating the starting node. It constructs a fully interconnected representation of the tree and identifies its two leaves. The function then calculates the shortest distances from the starting node to each leaf using breadth-first search (BFS). If either of these distances is even, the function returns 'Ron'; otherwise, it returns 'Hermione'.
+
+#State of the program right berfore the function call: start is an integer representing the starting node, and target is an integer representing one of the two leaves of the tree. Both start and target are within the range 1 to n (inclusive), where n is the number of nodes in the tree. The variable tree is an adjacency list representation of the tree, where tree[i] is a list of integers representing the neighbors of node i.
+def bfs(start, target):
+    queue = deque([(start, 0)])
+    visited = set([start])
+    while queue:
+        current, dist = queue.popleft()
+        
+        if current == target:
+            return dist
+        
+        for neighbor in tree[current]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append((neighbor, dist + 1))
+        
+    #State: Output State: The `current` node will be the target node, `dist` will hold the shortest distance from the `start` node to the `target` node, `queue` will be empty, and `visited` will contain all nodes that have been visited during the traversal, including the `start` and `target` nodes. The `tree` structure remains unchanged, and the loop terminates when the `target` node is found and its distance is returned.
+    #
+    #In simpler terms, after the loop has executed all its iterations, the algorithm has successfully found the shortest path from the `start` node to the `target` node. The `current` node will be the `target` node, `dist` will represent the shortest distance between them, `queue` will be empty because there are no more nodes to process, `visited` will include all nodes along the shortest path, and the `tree` structure remains the same as when the loop started.
+    return -1
+    #The program returns -1, indicating that the target node was not found during the traversal. The current node is undefined, dist is undefined, queue is empty, visited contains all nodes that were checked, and the tree structure remains unchanged.
+#Overall this is what the function does:The function `bfs` accepts two parameters, `start` and `target`, both integers representing nodes in a tree. It performs a breadth-first search to find the shortest path from the `start` node to the `target` node. If the `target` node is found, it returns the distance from the `start` node to the `target` node. If the `target` node is not found, it returns -1. The function modifies the `visited` set to keep track of all nodes that have been checked and uses a queue to explore nodes level by level. After the function concludes, the `queue` is empty, the `visited` set contains all nodes that were checked, and the `tree` structure remains unchanged.
+

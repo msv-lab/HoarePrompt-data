@@ -1,9 +1,0 @@
-The function `func_1` accepts two positive integers `n` and `k` (1 <= n, k <= 10^18) and performs the following actions based on the values of `n` and `k`:
-
-1. If `n` is equal to `k`, it prints "YES", followed by two "1"s, and then returns.
-2. If `n` is less than `k`, it prints "NO" and returns.
-3. If `n` is greater than or equal to `k`, it calculates the number of operations required to reduce `n` to 0 using specific costs and prints:
-   - "NO" if the total number of operations is less than `k`.
-   - "YES", followed by "2" and the elements of the list `costs` if the total number of operations is greater than or equal to `k`.
-
-In all cases, the function does not return any value. After the function concludes, `n` is 0, `k` remains unchanged, and `costs` contains the initial values `[n - k + 1, 1]`.

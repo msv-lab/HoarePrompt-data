@@ -1,0 +1,5 @@
+The function `func_1` processes a series of test cases, each defined by a tuple containing (n, m_1, m_2, p, s). It reads three integers (N, M1, M2) and two lists of integers (L, R) from user input. The function returns 0 if any of the following conditions are met: 
+1. The last element of L is not equal to the first element of R.
+2. The first element of L is not 1 or the first element of R is not N.
+3. Both M1 and M2 are greater than 1, and the second-to-last element of L is equal to the second element of R. 
+Otherwise, it calculates a value `ans` based on binomial coefficients and products of integers, all taken modulo `MOD`. Specifically, `ans` is the combination of `N - 1` choose `L[-1] - 1`, multiplied by the product of all integers from `L[-1] - 2` down to 1 modulo `MOD`, and further multiplied by the product of all integers from `N - R[0] - 1` down to 1 modulo `MOD` if `M2` > 1. The final state of the program is that `ans` is returned.

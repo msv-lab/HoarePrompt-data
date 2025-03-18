@@ -1,8 +1,0 @@
-The function accepts three parameters \( n \), \( m \), and \( k \), where \( n \) and \( m \) are positive integers within the range \( 1 \le n, m \le 10^9 \) and \( k \) is an integer within the range \( 2 \le k \le 10^9 \). It calculates the area as \( \text{area} = \frac{n \times m}{k} \). If \( \text{area} \) is not an integer, the function prints 'NO'. If \( \text{area} \) is an integer, it checks several conditions and prints specific outputs based on those conditions. The final state of the program includes the following:
-
-- If \( \text{area} = 0 \), the function prints 'NO'.
-- If \( 2 \times \text{area} \leq n \), the function prints '0 1' and '0 0', and exits.
-- If \( 2 \times \text{area} > n \) and \( 2 \times \text{area} \leq m \), the function prints '1 0' and '1 0', and exits.
-- Otherwise, the function prints '0 \(\frac{m}{2}\)' and '0 \(\frac{m}{2}\)', and exits.
-
-The function does not return any value; instead, it only prints the necessary outputs to the console. Potential edge cases include when \( n \) or \( m \) is exactly \( 1 \) or \( k \) is at its maximum, which might affect the calculation of \( \text{area} \).

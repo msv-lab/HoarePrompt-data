@@ -1,0 +1,66 @@
+#State of the program right berfore the function call: l is a list of integers.
+def func_1(l):
+    return max(range(len(l)), key=lambda x: l[x])
+    #The program returns the index of the maximum value in the list 'l'
+#Overall this is what the function does:The function accepts a list of integers `l` and returns the index of the maximum value within that list. If the list is empty, the function will raise a `ValueError`.
+
+#State of the program right berfore the function call: n is an integer representing the number of vertices in the tree, where 1 ≤ n ≤ 2 \cdot 10^3. u2vs is a list of lists where u2vs[i] is a list of integers representing the neighbors of vertex i in the tree. Each edge is represented exactly once in the input.
+def func_2():
+    n = int(input())
+    u2vs = [[] for _ in range(n)]
+    for _ in range(n - 1):
+        u, v = tuple(map(int, input().split()))
+        
+        u -= 1
+        
+        v -= 1
+        
+        u2vs[u].append(v)
+        
+        u2vs[v].append(u)
+        
+    #State: Output State: `n` is an integer input value, `u2vs` is a list of `n` empty lists where each index `i` contains a list of all indices `j` such that there is an edge between `i` and `j` in the input graph, with both `i` and `j` zero-indexed.
+    d, _ = bfs(0)
+    a = func_1(d)
+    d, previous = bfs(a)
+    b = func_1(d)
+    path_ba = [b]
+    while True:
+        n = previous[path_ba[-1]]
+        
+        if n == -1:
+            break
+        
+        path_ba.append(n)
+        
+    #State: Output State: `b` remains the return value of `func_1(d)`, `n` remains the integer input value, `u2vs` remains a list of `n` empty lists, `d` remains the distance from node 0 to all other nodes using BFS, `previous` remains the variable storing the previous node in the BFS traversal, `a` remains the return value from `func_1(d)` which has been updated to the return value of `bfs(a)`, `path_ba` is a list containing the value `b` and a sequence of nodes forming a path from `b` back to `-1` as determined by the `previous` array during the BFS traversal until it reaches a node with value `-1`.
+    #
+    #The loop continues to append nodes to `path_ba` based on the `previous` array, starting from the last element of `path_ba` and following the trail of previous nodes until it hits a node with value `-1`. Once this node is reached, the loop breaks. Therefore, `path_ba` will contain a path from the initial node `b` to the first node with value `-1` found in the graph.
+    ops = []
+    if (len(path_ba) % 2 == 1) :
+        ci = len(path_ba) // 2
+        c = path_ba[ci]
+        for i in range(ci + 1):
+            ops.append((c, i))
+            
+        #State: Output State: `ops` is a list containing `(c, 0), (c, 1), ..., (c, ci)`. `b` remains the return value of `func_1(d)`, `n` remains the integer input value, `u2vs` remains a list of `n` empty lists, `d` remains the distance from node 0 to all other nodes using BFS, `previous` remains the variable storing the previous node in the BFS traversal, `a` remains the return value from `func_1(d)` which has been updated to the return value of `bfs(a)`, `path_ba` is a list containing the value `b` and a sequence of nodes forming a path from `b` back to `-1` as determined by the `previous` array during the BFS traversal until it reaches a node with value `-1`, `ci` remains the length of `path_ba` divided by 2, `c` is the middle element of `path_ba`.
+    else :
+        ci2 = len(path_ba) // 2
+        ci1 = ci2 - 1
+        c1 = path_ba[ci1]
+        c2 = path_ba[ci2]
+        for i in range(1, len(path_ba) - ci1, 2):
+            ops.append((c1, i))
+            
+            ops.append((c2, i))
+            
+        #State: Output State: `ci1` is increased by the number of iterations in the loop; `c1` is the value of `path_ba[ci1]`; `ci2` is 2; `ops` is a list containing tuples where each tuple consists of either `c1` or `c2` and an index `i`, with `i` ranging from `1` to `len(path_ba) - ci1 - 1` in steps of `2`; `b` remains the return value of `func_1(d)`, `n` remains the integer input value, `u2vs` remains a list of `n` empty lists, `d` remains the distance from node 0 to all other nodes using BFS, `previous` remains the variable storing the previous node in the BFS traversal, `a` remains the return value from `func_1(d)` which has been updated to the return value of `bfs(a)`, `path_ba` is a list containing the value `b` and a sequence of nodes forming a path from `b` back to `-1` as determined by the `previous` array during the BFS traversal until it reaches a node with value `-1`, and the length of `path_ba` is even; `c2` is the value of `path_ba[2]`.
+    #State: `ops` is a list. If the length of `path_ba` is odd, `ops` contains tuples of the form `(c, i)` where `c` is the middle element of `path_ba` and `i` ranges from `0` to `ci`. If the length of `path_ba` is even, `ops` contains tuples of the form `(c1, i)` or `(c2, i)` where `c1` is the element at index `ci1` of `path_ba`, `c2` is the element at index `2` of `path_ba`, and `i` ranges from `1` to `len(path_ba) - ci1 - 1` in steps of `2`. `b` remains the return value of `func_1(d)`, `n` remains the integer input value, `u2vs` remains a list of `n` empty lists, `d` remains the distance from node 0 to all other nodes using BFS, `previous` remains the variable storing the previous node in the BFS traversal, `a` remains the return value from `func_1(d)` which has been updated to the return value of `bfs(a)`, and `path_ba` is a list containing the value `b` and a sequence of nodes forming a path from `b` back to `-1` as determined by the `previous` array during the BFS traversal until it reaches a node with value `-1`.
+    print(len(ops))
+    #This is printed: len(path_ba) // 2 + 1 (where len(path_ba) is the length of the path_ba list)
+    print(*map(lambda x: f'{x[0] + 1} {x[1]}', ops), sep='\n')
+    #This is printed: \n'.join(map(lambda x: f'{x[0] + 1} {x[1]}', ops))
+    return None
+    #The program returns None
+#Overall this is what the function does:The function processes an undirected tree represented by `n` vertices and their adjacency list `u2vs`. It performs a breadth-first search (BFS) twice to find a specific path within the tree. Based on the length of this path, it constructs a list of operations (`ops`) that involve pairs of nodes and indices. Finally, it prints the length of `ops` and the contents of `ops` in a specific format, then returns `None`.
+

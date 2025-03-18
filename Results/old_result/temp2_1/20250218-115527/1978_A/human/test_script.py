@@ -1,0 +1,59 @@
+# Include necessary imports if any
+# Assume the provided program is saved as 'program.py' and can be imported from the same dir.
+
+from program import *
+import io
+import sys
+
+def capture_output(func, input_data):
+    sys.stdin = io.StringIO(input_data)
+    captured_output = io.StringIO()
+    sys.stdout = captured_output
+    func()
+    sys.stdout = sys.__stdout__
+    return captured_output.getvalue().strip()
+
+# Write your test cases below
+# Each test case should include assertions based on the problem description
+
+# Test Case 1: Two books with equal pages
+input_data = "1\n2\n1 1\n"
+expected_output = "2"
+assert capture_output(func, input_data) == expected_output
+
+# Test Case 2: Four books with different pages
+input_data = "1\n4\n2 3 3 1\n"
+expected_output = "4"
+assert capture_output(func, input_data) == expected_output
+
+# Test Case 3: Five books with mixed pages
+input_data = "1\n5\n2 2 3 2 2\n"
+expected_output = "5"
+assert capture_output(func, input_data) == expected_output
+
+# Test Case 4: Two books with different pages
+input_data = "1\n2\n10 3\n"
+expected_output = "13"
+assert capture_output(func, input_data) == expected_output
+
+# Test Case 5: Three books with sequential pages
+input_data = "1\n3\n1 2 3\n"
+expected_output = "5"
+assert capture_output(func, input_data) == expected_output
+
+# Test Case 6: Large number of books with mixed pages
+input_data = "1\n5\n9 8 7 6 5\n"
+expected_output = "17"
+assert capture_output(func, input_data) == expected_output
+
+# Test Case 7: All books have the same page count
+input_data = "1\n4\n5 5 5 5\n"
+expected_output = "10"
+assert capture_output(func, input_data) == expected_output
+
+# Test Case 8: Two books with large page counts
+input_data = "1\n2\n1000000000 1000000000\n"
+expected_output = "2000000000"
+assert capture_output(func, input_data) == expected_output
+
+# End of script

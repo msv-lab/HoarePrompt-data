@@ -1,0 +1,7 @@
+#State of the program right berfore the function call: tup is a tuple, and elements is a list of elements that can be of any type.
+def func_1(tup, elements):
+    count = sum(tup.count(element) for element in elements)
+    return count
+    #The program returns the total occurrences of elements in the list 'elements' that are found in the tuple 'tup'
+#Overall this is what the function does:The function accepts a tuple `tup` and a list `elements`, and returns the total number of occurrences of each element in `elements` that is found in `tup`. If an element in `elements` does not exist in the tuple, it contributes zero to the count. The function performs a count for each unique element in `elements`, leading to a final count that reflects the total occurrences in `tup`.
+

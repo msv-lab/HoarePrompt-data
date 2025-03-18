@@ -1,0 +1,40 @@
+import io
+import sys
+from program import func
+
+def capture_output(func, input_data):
+    sys.stdin = io.StringIO(input_data)
+    captured_output = io.StringIO()
+    sys.stdout = captured_output
+    func()
+    sys.stdout = sys.__stdout__
+    return captured_output.getvalue().strip()
+
+# Test cases
+input_data_1 = """3\n6\n1\n2"""
+expected_output_1 = """YES
+AAABAACC
+NO
+YES
+MM"""
+
+input_data_2 = """1\n5"""
+expected_output_2 = """NO"""
+
+input_data_3 = """2\n4\n8"""
+expected_output_3 = """YES
+AABB
+YES
+AABBCCDD"""
+
+# Run and assert
+output_1 = capture_output(func, input_data_1)
+assert output_1 == expected_output_1, f"Output: {output_1}, Expected: {expected_output_1}"
+
+output_2 = capture_output(func, input_data_2)
+assert output_2 == expected_output_2, f"Output: {output_2}, Expected: {expected_output_2}"
+
+output_3 = capture_output(func, input_data_3)
+assert output_3 == expected_output_3, f"Output: {output_3}, Expected: {expected_output_3}"
+
+print("All tests passed!")

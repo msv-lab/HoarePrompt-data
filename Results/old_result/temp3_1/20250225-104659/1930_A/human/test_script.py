@@ -1,0 +1,75 @@
+# Include necessary imports if any
+# Assume the provided program is saved as 'program.py' and can be imported from the same dir.
+
+# If there is a specific function we can call, import it
+from program import func
+
+# Otherwise, use the run_program_with_captured_io(input_data) function to run the program and capture the output
+import io
+import sys
+
+def run_program_with_captured_io(input_data):
+    original_stdin = sys.stdin
+    original_stdout = sys.stdout
+
+    try:
+        sys.stdin = io.StringIO(input_data)
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
+
+        with open("program.py", "r", encoding="utf-8") as f:
+            code = f.read()
+            exec(code, {})
+
+        return captured_output.getvalue().strip()
+    
+    finally:
+        sys.stdin = original_stdin
+        sys.stdout = original_stdout
+
+
+# Write your test cases below
+# Each test case should include assertions based on the problem description
+
+# Test case 1 from the example
+input_data_1 = "3\n1\n2 3\n2\n1 1 2 1\n3\n1 1 1 1 1 1"
+expected_output_1 = "2\n2\n3"
+assert run_program_with_captured_io(input_data_1) == expected_output_1
+
+# Additional test cases
+# Test case 2: Single pair
+input_data_2 = "1\n1\n5 10"
+expected_output_2 = "5"
+assert run_program_with_captured_io(input_data_2) == expected_output_2
+
+# Test case 3: All elements are the same
+input_data_3 = "1\n3\n7 7 7 7 7 7"
+expected_output_3 = "21"
+assert run_program_with_captured_io(input_data_3) == expected_output_3
+
+# Test case 4: Already sorted in ascending order
+input_data_4 = "1\n2\n1 2 3 4"
+expected_output_4 = "3"
+assert run_program_with_captured_io(input_data_4) == expected_output_4
+
+# Test case 5: Already sorted in descending order
+input_data_5 = "1\n2\n4 3 2 1"
+expected_output_5 = "3"
+assert run_program_with_captured_io(input_data_5) == expected_output_5
+
+# Test case 6: Mixed values
+input_data_6 = "1\n4\n9 1 8 2 7 3 6 4"
+expected_output_6 = "10"
+assert run_program_with_captured_io(input_data_6) == expected_output_6
+
+# Test case 7: Large values
+input_data_7 = "1\n2\n10000000 1 10000000 1"
+expected_output_7 = "2"
+assert run_program_with_captured_io(input_data_7) == expected_output_7
+
+# Test case 8: Multiple test cases with different n values
+input_data_8 = "4\n1\n1 2\n2\n1 3 2 4\n3\n5 5 5 5 5 5\n4\n1 2 3 4 5 6 7 8"
+expected_output_8 = "1\n3\n15\n10"
+assert run_program_with_captured_io(input_data_8) == expected_output_8
+
+# End of script

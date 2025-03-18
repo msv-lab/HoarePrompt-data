@@ -1,0 +1,2954 @@
+Task ID,unique_id,Dataset,model_created,model_run,description,Code,run_number,original correctness,summary fsl,naive correctness fsl,vanilla,vanilla_no_cot,simple tree,complex tree,summary,simple verify fsl,complex verify fsl,summary verify fsl,simple verify,complex verify,summary verify,consistency,consistency_mine,consistency_old
+1966_C,1966_C_kapilshhh_100%,codeforces2024,human,qwen2.5-7b-instruct,"Alice and Bob are playing a game on n piles of stones. On each player's turn,
+they select a positive integer k that is at most the size of the smallest
+nonempty pile and remove k stones from each nonempty pile at once. The first
+player who is unable to make a move (because all piles are empty) loses.
+
+Given that Alice goes first, who will win the game if both players play
+optimally?
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 10^4 ) —
+the number of test cases. The description of the test cases follows.
+
+The first line of each test case contains a single integer n (1 \le n \le
+2\cdot 10^5 ) — the number of piles in the game.
+
+The next line of each test case contains n integers a_1, a_2, \ldots a_n (1
+\le a_i \le 10^9 ), where a_i is the initial number of stones in the i -th
+pile.
+
+It is guaranteed that the sum of n over all test cases does not exceed 2\cdot
+10^5 .
+
+Output
+
+For each test case, print a single line with the name of the winner, assuming
+both players play optimally. If Alice wins, print ""Alice"", otherwise print
+""Bob"" (without quotes).
+
+Example
+
+Input
+
+    7
+    
+    5
+    
+    3 3 3 3 3
+    
+    2
+    
+    1 7
+    
+    7
+    
+    1 3 9 7 4 2 100
+    
+    3
+    
+    1 2 3
+    
+    6
+    
+    2 1 3 4 2 4
+    
+    8
+    
+    5 7 2 9 6 3 3 2
+    
+    1
+    
+    1000000000
+
+Output
+
+    Alice
+    Bob
+    Alice
+    Alice
+    Bob
+    Alice
+    Alice
+    
+Note
+
+In the first test case, Alice can win by choosing k=3 on her first turn, which
+will empty all of the piles at once.
+
+In the second test case, Alice must choose k=1 on her first turn since there
+is a pile of size 1 , so Bob can win on the next turn by choosing k=6 .","tc = int(input())
+ 
+while tc > 0:
+    n = int(input())
+    arr = sorted(list(set([int(x) for x in input().split(' ')])), reverse=True) + [0]
+    dp = True
+    n = len(arr) - 1
+    for i in range(1, n):
+        dp = (arr[i] - arr[i+1] > 1) or not dp
+    print('Alice' if dp else 'Bob')
+    tc -= 1",1,True,False,False,False,False,False,False,False,False,False,False,False,False,False,0.7324511351716554,0.2553859836054619,0.75
+1966_C,1966_C_kapilshhh_100%,codeforces2024,human,qwen2.5-7b-instruct,"Alice and Bob are playing a game on n piles of stones. On each player's turn,
+they select a positive integer k that is at most the size of the smallest
+nonempty pile and remove k stones from each nonempty pile at once. The first
+player who is unable to make a move (because all piles are empty) loses.
+
+Given that Alice goes first, who will win the game if both players play
+optimally?
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 10^4 ) —
+the number of test cases. The description of the test cases follows.
+
+The first line of each test case contains a single integer n (1 \le n \le
+2\cdot 10^5 ) — the number of piles in the game.
+
+The next line of each test case contains n integers a_1, a_2, \ldots a_n (1
+\le a_i \le 10^9 ), where a_i is the initial number of stones in the i -th
+pile.
+
+It is guaranteed that the sum of n over all test cases does not exceed 2\cdot
+10^5 .
+
+Output
+
+For each test case, print a single line with the name of the winner, assuming
+both players play optimally. If Alice wins, print ""Alice"", otherwise print
+""Bob"" (without quotes).
+
+Example
+
+Input
+
+    7
+    
+    5
+    
+    3 3 3 3 3
+    
+    2
+    
+    1 7
+    
+    7
+    
+    1 3 9 7 4 2 100
+    
+    3
+    
+    1 2 3
+    
+    6
+    
+    2 1 3 4 2 4
+    
+    8
+    
+    5 7 2 9 6 3 3 2
+    
+    1
+    
+    1000000000
+
+Output
+
+    Alice
+    Bob
+    Alice
+    Alice
+    Bob
+    Alice
+    Alice
+    
+Note
+
+In the first test case, Alice can win by choosing k=3 on her first turn, which
+will empty all of the piles at once.
+
+In the second test case, Alice must choose k=1 on her first turn since there
+is a pile of size 1 , so Bob can win on the next turn by choosing k=6 .","tc = int(input())
+ 
+while tc > 0:
+    n = int(input())
+    arr = sorted(list(set([int(x) for x in input().split(' ')])), reverse=True) + [0]
+    dp = True
+    n = len(arr) - 1
+    for i in range(1, n):
+        dp = (arr[i] - arr[i+1] > 1) or not dp
+    print('Alice' if dp else 'Bob')
+    tc -= 1",1,True,False,False,False,False,False,False,False,False,False,False,False,False,False,0.7324511351716554,0.2553859836054619,0.75
+1966_C,1966_C_kapilshhh_100%,codeforces2024,human,qwen2.5-7b-instruct,"Alice and Bob are playing a game on n piles of stones. On each player's turn,
+they select a positive integer k that is at most the size of the smallest
+nonempty pile and remove k stones from each nonempty pile at once. The first
+player who is unable to make a move (because all piles are empty) loses.
+
+Given that Alice goes first, who will win the game if both players play
+optimally?
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 10^4 ) —
+the number of test cases. The description of the test cases follows.
+
+The first line of each test case contains a single integer n (1 \le n \le
+2\cdot 10^5 ) — the number of piles in the game.
+
+The next line of each test case contains n integers a_1, a_2, \ldots a_n (1
+\le a_i \le 10^9 ), where a_i is the initial number of stones in the i -th
+pile.
+
+It is guaranteed that the sum of n over all test cases does not exceed 2\cdot
+10^5 .
+
+Output
+
+For each test case, print a single line with the name of the winner, assuming
+both players play optimally. If Alice wins, print ""Alice"", otherwise print
+""Bob"" (without quotes).
+
+Example
+
+Input
+
+    7
+    
+    5
+    
+    3 3 3 3 3
+    
+    2
+    
+    1 7
+    
+    7
+    
+    1 3 9 7 4 2 100
+    
+    3
+    
+    1 2 3
+    
+    6
+    
+    2 1 3 4 2 4
+    
+    8
+    
+    5 7 2 9 6 3 3 2
+    
+    1
+    
+    1000000000
+
+Output
+
+    Alice
+    Bob
+    Alice
+    Alice
+    Bob
+    Alice
+    Alice
+    
+Note
+
+In the first test case, Alice can win by choosing k=3 on her first turn, which
+will empty all of the piles at once.
+
+In the second test case, Alice must choose k=1 on her first turn since there
+is a pile of size 1 , so Bob can win on the next turn by choosing k=6 .","tc = int(input())
+ 
+while tc > 0:
+    n = int(input())
+    arr = sorted(list(set([int(x) for x in input().split(' ')])), reverse=True) + [0]
+    dp = True
+    n = len(arr) - 1
+    for i in range(1, n):
+        dp = (arr[i] - arr[i+1] > 1) or not dp
+    print('Alice' if dp else 'Bob')
+    tc -= 1",1,True,False,False,False,False,False,False,False,False,False,True,True,False,True,0.7324511351716554,0.2553859836054619,0.75
+1921_C,1921_C_Pardhiv_123_100%,codeforces2024,human,qwen2.5-7b-instruct,"Stepan is a very busy person. Today he needs to send n messages at moments
+m_1, m_2, \dots m_n (m_i < m_{i + 1} ). Unfortunately, by the moment 0 , his
+phone only has f units of charge left. At the moment 0 , the phone is turned
+on.
+
+The phone loses a units of charge for each unit of time it is on. Also, at any
+moment, Stepan can turn off the phone and turn it on later. This action
+consumes b units of energy each time. Consider turning on and off to be
+instantaneous, so you can turn it on at moment x and send a message at the
+same moment, and vice versa, send a message at moment x and turn off the phone
+at the same moment.
+
+If at any point the charge level drops to 0 (becomes \le 0 ), it is impossible
+to send a message at that moment.
+
+Since all messages are very important to Stepan, he wants to know if he can
+send all the messages without the possibility of charging the phone.
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 10^4 ) —
+the number of test cases. This is followed by the descriptions of the test
+cases.
+
+The first line of each test case contains four integers n , f , a , and b (1
+\le n \le 2 \cdot 10^5 , 1 \le f, a, b \le 10^9 ) — the number of messages,
+the initial phone's charge, the charge consumption per unit of time, and the
+consumption when turned off and on sequentially.
+
+The second line of each test case contains n integers m_1, m_2, \dots, m_n (1
+\le m_i \le 10^9 , m_i < m_{i + 1} ) — the moments at which messages need to
+be sent.
+
+It is guaranteed that in a test the sum of n over all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output ""YES"" if Stepan can send all the messages, and ""NO""
+otherwise.
+
+You can output each letter in any case (lowercase or uppercase). For example,
+the strings ""yEs"", ""yes"", ""Yes"", and ""YES"" will be accepted as a positive
+answer.
+
+Example
+
+Input
+
+    6
+    
+    1 3 1 5
+    
+    3
+    
+    7 21 1 3
+    
+    4 6 10 13 17 20 26
+    
+    5 10 1 2
+    
+    1 2 3 4 5
+    
+    1 1000000000 1000000000 1000000000
+    
+    1000000000
+    
+    3 11 9 6
+    
+    6 8 10
+    
+    12 621526648 2585904 3566299
+    
+    51789 61859 71998 73401 247675 298086 606959 663464 735972 806043 806459 919683
+
+Output
+
+    NO
+    YES
+    YES
+    NO
+    NO
+    YES
+    
+Note
+
+In the first test case of the example, at moment 0 , the phone's charge is 3 .
+When sending a message at moment 3 without turning it off, (3 - 0) \cdot 1 = 3
+units of charge will be spent. In this case, the charge will drop to 0 and
+Stepan will not be able to send the message. When turning off and on, the
+phone's charge will decrease by 5 , so it will not be possible to send the
+message in this way.
+
+In the third test case of the example, at moment 0 , the phone's charge is 10
+. The phone loses 1 unit of charge per unit of time, and when turned off and
+on, it loses 2 units of charge. To send all messages, the following actions
+can be taken:
+
+  * Turn off the phone at moment 0 and turn it on at moment 1 , after which 10 - 2 = 8 units of charge will remain; 
+  * send a message at moment 1 ; 
+  * send a message at moment 2 , after which 8 - (2 - 1) \cdot 1 = 7 units of charge will remain; 
+  * Turn off the phone at moment 2 and turn it on at moment 3 , after which 7 - 2 = 5 units of charge will remain; 
+  * send a message at moment 3 ; 
+  * Turn off the phone at moment 3 and turn it on at moment 4 , after which 5 - 2 = 3 units of charge will remain; 
+  * send a message at moment 4 ; 
+  * Turn off the phone at moment 4 and turn it on at moment 5 , after which 3 - 2 = 1 unit of charge will remain; 
+  * send a message at moment 5 . 
+
+The last (sixth) test set of the example may fail if there is an integer
+overflow in your solution.","t=int(input(""""))
+while(t>0):
+    n,f,a,b=map(int,input("""").split("" ""))
+    ls=[0]+list(map(int,input("""").split("" "")))
+    for i in range(1,n+1):
+        f=f-min(a*(ls[i]-ls[i-1]),b)
+    if(f>0):
+        print(""YES"")
+    else:
+        print(""NO"")
+    t-=1",1,True,False,False,True,False,True,True,True,False,False,True,True,True,True,0.7967034931565101,0.33788583169121406,0.6666666666666666
+1921_C,1921_C_Pardhiv_123_100%,codeforces2024,human,qwen2.5-7b-instruct,"Stepan is a very busy person. Today he needs to send n messages at moments
+m_1, m_2, \dots m_n (m_i < m_{i + 1} ). Unfortunately, by the moment 0 , his
+phone only has f units of charge left. At the moment 0 , the phone is turned
+on.
+
+The phone loses a units of charge for each unit of time it is on. Also, at any
+moment, Stepan can turn off the phone and turn it on later. This action
+consumes b units of energy each time. Consider turning on and off to be
+instantaneous, so you can turn it on at moment x and send a message at the
+same moment, and vice versa, send a message at moment x and turn off the phone
+at the same moment.
+
+If at any point the charge level drops to 0 (becomes \le 0 ), it is impossible
+to send a message at that moment.
+
+Since all messages are very important to Stepan, he wants to know if he can
+send all the messages without the possibility of charging the phone.
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 10^4 ) —
+the number of test cases. This is followed by the descriptions of the test
+cases.
+
+The first line of each test case contains four integers n , f , a , and b (1
+\le n \le 2 \cdot 10^5 , 1 \le f, a, b \le 10^9 ) — the number of messages,
+the initial phone's charge, the charge consumption per unit of time, and the
+consumption when turned off and on sequentially.
+
+The second line of each test case contains n integers m_1, m_2, \dots, m_n (1
+\le m_i \le 10^9 , m_i < m_{i + 1} ) — the moments at which messages need to
+be sent.
+
+It is guaranteed that in a test the sum of n over all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output ""YES"" if Stepan can send all the messages, and ""NO""
+otherwise.
+
+You can output each letter in any case (lowercase or uppercase). For example,
+the strings ""yEs"", ""yes"", ""Yes"", and ""YES"" will be accepted as a positive
+answer.
+
+Example
+
+Input
+
+    6
+    
+    1 3 1 5
+    
+    3
+    
+    7 21 1 3
+    
+    4 6 10 13 17 20 26
+    
+    5 10 1 2
+    
+    1 2 3 4 5
+    
+    1 1000000000 1000000000 1000000000
+    
+    1000000000
+    
+    3 11 9 6
+    
+    6 8 10
+    
+    12 621526648 2585904 3566299
+    
+    51789 61859 71998 73401 247675 298086 606959 663464 735972 806043 806459 919683
+
+Output
+
+    NO
+    YES
+    YES
+    NO
+    NO
+    YES
+    
+Note
+
+In the first test case of the example, at moment 0 , the phone's charge is 3 .
+When sending a message at moment 3 without turning it off, (3 - 0) \cdot 1 = 3
+units of charge will be spent. In this case, the charge will drop to 0 and
+Stepan will not be able to send the message. When turning off and on, the
+phone's charge will decrease by 5 , so it will not be possible to send the
+message in this way.
+
+In the third test case of the example, at moment 0 , the phone's charge is 10
+. The phone loses 1 unit of charge per unit of time, and when turned off and
+on, it loses 2 units of charge. To send all messages, the following actions
+can be taken:
+
+  * Turn off the phone at moment 0 and turn it on at moment 1 , after which 10 - 2 = 8 units of charge will remain; 
+  * send a message at moment 1 ; 
+  * send a message at moment 2 , after which 8 - (2 - 1) \cdot 1 = 7 units of charge will remain; 
+  * Turn off the phone at moment 2 and turn it on at moment 3 , after which 7 - 2 = 5 units of charge will remain; 
+  * send a message at moment 3 ; 
+  * Turn off the phone at moment 3 and turn it on at moment 4 , after which 5 - 2 = 3 units of charge will remain; 
+  * send a message at moment 4 ; 
+  * Turn off the phone at moment 4 and turn it on at moment 5 , after which 3 - 2 = 1 unit of charge will remain; 
+  * send a message at moment 5 . 
+
+The last (sixth) test set of the example may fail if there is an integer
+overflow in your solution.","t=int(input(""""))
+while(t>0):
+    n,f,a,b=map(int,input("""").split("" ""))
+    ls=[0]+list(map(int,input("""").split("" "")))
+    for i in range(1,n+1):
+        f=f-min(a*(ls[i]-ls[i-1]),b)
+    if(f>0):
+        print(""YES"")
+    else:
+        print(""NO"")
+    t-=1",1,True,False,False,True,False,True,True,True,False,True,True,False,True,True,0.7967034931565101,0.33788583169121406,0.6666666666666666
+1921_C,1921_C_Pardhiv_123_100%,codeforces2024,human,qwen2.5-7b-instruct,"Stepan is a very busy person. Today he needs to send n messages at moments
+m_1, m_2, \dots m_n (m_i < m_{i + 1} ). Unfortunately, by the moment 0 , his
+phone only has f units of charge left. At the moment 0 , the phone is turned
+on.
+
+The phone loses a units of charge for each unit of time it is on. Also, at any
+moment, Stepan can turn off the phone and turn it on later. This action
+consumes b units of energy each time. Consider turning on and off to be
+instantaneous, so you can turn it on at moment x and send a message at the
+same moment, and vice versa, send a message at moment x and turn off the phone
+at the same moment.
+
+If at any point the charge level drops to 0 (becomes \le 0 ), it is impossible
+to send a message at that moment.
+
+Since all messages are very important to Stepan, he wants to know if he can
+send all the messages without the possibility of charging the phone.
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 10^4 ) —
+the number of test cases. This is followed by the descriptions of the test
+cases.
+
+The first line of each test case contains four integers n , f , a , and b (1
+\le n \le 2 \cdot 10^5 , 1 \le f, a, b \le 10^9 ) — the number of messages,
+the initial phone's charge, the charge consumption per unit of time, and the
+consumption when turned off and on sequentially.
+
+The second line of each test case contains n integers m_1, m_2, \dots, m_n (1
+\le m_i \le 10^9 , m_i < m_{i + 1} ) — the moments at which messages need to
+be sent.
+
+It is guaranteed that in a test the sum of n over all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output ""YES"" if Stepan can send all the messages, and ""NO""
+otherwise.
+
+You can output each letter in any case (lowercase or uppercase). For example,
+the strings ""yEs"", ""yes"", ""Yes"", and ""YES"" will be accepted as a positive
+answer.
+
+Example
+
+Input
+
+    6
+    
+    1 3 1 5
+    
+    3
+    
+    7 21 1 3
+    
+    4 6 10 13 17 20 26
+    
+    5 10 1 2
+    
+    1 2 3 4 5
+    
+    1 1000000000 1000000000 1000000000
+    
+    1000000000
+    
+    3 11 9 6
+    
+    6 8 10
+    
+    12 621526648 2585904 3566299
+    
+    51789 61859 71998 73401 247675 298086 606959 663464 735972 806043 806459 919683
+
+Output
+
+    NO
+    YES
+    YES
+    NO
+    NO
+    YES
+    
+Note
+
+In the first test case of the example, at moment 0 , the phone's charge is 3 .
+When sending a message at moment 3 without turning it off, (3 - 0) \cdot 1 = 3
+units of charge will be spent. In this case, the charge will drop to 0 and
+Stepan will not be able to send the message. When turning off and on, the
+phone's charge will decrease by 5 , so it will not be possible to send the
+message in this way.
+
+In the third test case of the example, at moment 0 , the phone's charge is 10
+. The phone loses 1 unit of charge per unit of time, and when turned off and
+on, it loses 2 units of charge. To send all messages, the following actions
+can be taken:
+
+  * Turn off the phone at moment 0 and turn it on at moment 1 , after which 10 - 2 = 8 units of charge will remain; 
+  * send a message at moment 1 ; 
+  * send a message at moment 2 , after which 8 - (2 - 1) \cdot 1 = 7 units of charge will remain; 
+  * Turn off the phone at moment 2 and turn it on at moment 3 , after which 7 - 2 = 5 units of charge will remain; 
+  * send a message at moment 3 ; 
+  * Turn off the phone at moment 3 and turn it on at moment 4 , after which 5 - 2 = 3 units of charge will remain; 
+  * send a message at moment 4 ; 
+  * Turn off the phone at moment 4 and turn it on at moment 5 , after which 3 - 2 = 1 unit of charge will remain; 
+  * send a message at moment 5 . 
+
+The last (sixth) test set of the example may fail if there is an integer
+overflow in your solution.","t=int(input(""""))
+while(t>0):
+    n,f,a,b=map(int,input("""").split("" ""))
+    ls=[0]+list(map(int,input("""").split("" "")))
+    for i in range(1,n+1):
+        f=f-min(a*(ls[i]-ls[i-1]),b)
+    if(f>0):
+        print(""YES"")
+    else:
+        print(""NO"")
+    t-=1",1,True,False,False,True,False,True,True,True,False,True,False,True,True,True,0.7967034931565101,0.33788583169121406,0.6666666666666666
+1942_C2,1942_C2_Campass_6.67%,codeforces2024,human,qwen2.5-7b-instruct,"[Proof Geometric Construction Can Solve All Love Affairs -
+manbo-p](https://soundcloud.com/alice-law-314125270/manbo-p-proof-geometric-
+construction-can-solve-all-love-affairs)
+
+⠀
+
+This is the hard version of the problem. The only difference between the two
+versions is the constraint on y . In this version 0 \leq y \leq n - x . You
+can make hacks only if both versions are solved.
+
+Bessie has received a birthday cake from her best friend Elsie, and it came in
+the form of a regular polygon with n sides. The vertices of the cake are
+numbered from 1 to n clockwise. You and Bessie are going to choose some of
+those vertices to cut non-intersecting diagonals into the cake. In other
+words, the endpoints of the diagonals must be part of the chosen vertices.
+
+Bessie would only like to give out pieces of cake which result in a triangle
+to keep consistency. The size of the pieces doesn't matter, and the whole cake
+does not have to be separated into all triangles (other shapes are allowed in
+the cake, but those will not be counted).
+
+Bessie has already chosen x of those vertices that can be used to form
+diagonals. She wants you to choose no more than y other vertices such that the
+number of triangular pieces of cake she can give out is maximized.
+
+What is the maximum number of triangular pieces of cake Bessie can give out?
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case consists of three integers, n , x , and y (4
+\leq n \leq 10^9 , 2 \leq x \leq \min(n, 2 \cdot 10^5) , 0 \leq y \leq n - x )
+— the number of sides of the polygon, number of vertices Bessie has chosen,
+and the maximum number of other vertices you can choose.
+
+The second line consists of x distinct integers from 1 to n , representing the
+vertices Bessie has chosen.
+
+It is guaranteed the sum of x over all test cases does not exceed 2 \cdot 10^5
+.
+
+Output
+
+For each test case, output a single integer: the maximum number of non-
+intersecting triangular pieces of cake she can give out.
+
+Example
+
+Input
+
+    3
+    
+    8 4 2
+    
+    1 6 2 5
+    
+    7 3 1
+    
+    6 4 3
+    
+    4 2 2
+    
+    1 3
+
+Output
+
+    6
+    5
+    2
+    
+Note
+
+In test cases 1 , 2 and 3 , you can get 6 , 5 and 2 non-intersecting
+triangular pieces of cake, respectively. A possible construction is shown in
+the following pictures:
+
+The green dots represent vertices that Bessie chose, the yellow dots represent
+vertices that you chose, the blue lines represent diagonals that are drawn,
+and the red numbers represent triangles that are counted.
+
+![](https://espresso.codeforces.com/13b28beb7f5f0d100798f357f58c804c5314c869.png)","R = lambda: map(int, input().split())
+t,=R()
+while t:
+    t -= 1
+    n,x,y= R()
+    sx=0;
+    l = list(R())
+    l.sort()
+    l.append(n+l[0])
+    val=[]
+    for i in range(1,x+1):
+        c=l[i]-l[i-1]-1
+        if c==1: sx+=1
+        val.append(c)
+    val.sort(key= lambda x:(1-x&1,x))
+    for i in val:
+        c=i//2
+        if y<c :
+            sx+=y*2 
+            break
+        sx+=i
+        y-=c
+    
+    cons=x+sx-2
+    cons=min(n-2,cons)
+    print(cons)  # 使用 print 函数打印列表元素，而不是调用 P 函数",1,False,False,False,True,False,True,True,True,False,False,False,False,True,False,0.5260587368554075,0.024145370660688354,0.6666666666666666
+1942_C2,1942_C2_Campass_6.67%,codeforces2024,human,qwen2.5-7b-instruct,"[Proof Geometric Construction Can Solve All Love Affairs -
+manbo-p](https://soundcloud.com/alice-law-314125270/manbo-p-proof-geometric-
+construction-can-solve-all-love-affairs)
+
+⠀
+
+This is the hard version of the problem. The only difference between the two
+versions is the constraint on y . In this version 0 \leq y \leq n - x . You
+can make hacks only if both versions are solved.
+
+Bessie has received a birthday cake from her best friend Elsie, and it came in
+the form of a regular polygon with n sides. The vertices of the cake are
+numbered from 1 to n clockwise. You and Bessie are going to choose some of
+those vertices to cut non-intersecting diagonals into the cake. In other
+words, the endpoints of the diagonals must be part of the chosen vertices.
+
+Bessie would only like to give out pieces of cake which result in a triangle
+to keep consistency. The size of the pieces doesn't matter, and the whole cake
+does not have to be separated into all triangles (other shapes are allowed in
+the cake, but those will not be counted).
+
+Bessie has already chosen x of those vertices that can be used to form
+diagonals. She wants you to choose no more than y other vertices such that the
+number of triangular pieces of cake she can give out is maximized.
+
+What is the maximum number of triangular pieces of cake Bessie can give out?
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case consists of three integers, n , x , and y (4
+\leq n \leq 10^9 , 2 \leq x \leq \min(n, 2 \cdot 10^5) , 0 \leq y \leq n - x )
+— the number of sides of the polygon, number of vertices Bessie has chosen,
+and the maximum number of other vertices you can choose.
+
+The second line consists of x distinct integers from 1 to n , representing the
+vertices Bessie has chosen.
+
+It is guaranteed the sum of x over all test cases does not exceed 2 \cdot 10^5
+.
+
+Output
+
+For each test case, output a single integer: the maximum number of non-
+intersecting triangular pieces of cake she can give out.
+
+Example
+
+Input
+
+    3
+    
+    8 4 2
+    
+    1 6 2 5
+    
+    7 3 1
+    
+    6 4 3
+    
+    4 2 2
+    
+    1 3
+
+Output
+
+    6
+    5
+    2
+    
+Note
+
+In test cases 1 , 2 and 3 , you can get 6 , 5 and 2 non-intersecting
+triangular pieces of cake, respectively. A possible construction is shown in
+the following pictures:
+
+The green dots represent vertices that Bessie chose, the yellow dots represent
+vertices that you chose, the blue lines represent diagonals that are drawn,
+and the red numbers represent triangles that are counted.
+
+![](https://espresso.codeforces.com/13b28beb7f5f0d100798f357f58c804c5314c869.png)","R = lambda: map(int, input().split())
+t,=R()
+while t:
+    t -= 1
+    n,x,y= R()
+    sx=0;
+    l = list(R())
+    l.sort()
+    l.append(n+l[0])
+    val=[]
+    for i in range(1,x+1):
+        c=l[i]-l[i-1]-1
+        if c==1: sx+=1
+        val.append(c)
+    val.sort(key= lambda x:(1-x&1,x))
+    for i in val:
+        c=i//2
+        if y<c :
+            sx+=y*2 
+            break
+        sx+=i
+        y-=c
+    
+    cons=x+sx-2
+    cons=min(n-2,cons)
+    print(cons)  # 使用 print 函数打印列表元素，而不是调用 P 函数",1,False,False,False,True,False,True,True,True,False,False,False,True,True,True,0.5260587368554075,0.024145370660688354,0.6666666666666666
+1942_C2,1942_C2_Campass_6.67%,codeforces2024,human,qwen2.5-7b-instruct,"[Proof Geometric Construction Can Solve All Love Affairs -
+manbo-p](https://soundcloud.com/alice-law-314125270/manbo-p-proof-geometric-
+construction-can-solve-all-love-affairs)
+
+⠀
+
+This is the hard version of the problem. The only difference between the two
+versions is the constraint on y . In this version 0 \leq y \leq n - x . You
+can make hacks only if both versions are solved.
+
+Bessie has received a birthday cake from her best friend Elsie, and it came in
+the form of a regular polygon with n sides. The vertices of the cake are
+numbered from 1 to n clockwise. You and Bessie are going to choose some of
+those vertices to cut non-intersecting diagonals into the cake. In other
+words, the endpoints of the diagonals must be part of the chosen vertices.
+
+Bessie would only like to give out pieces of cake which result in a triangle
+to keep consistency. The size of the pieces doesn't matter, and the whole cake
+does not have to be separated into all triangles (other shapes are allowed in
+the cake, but those will not be counted).
+
+Bessie has already chosen x of those vertices that can be used to form
+diagonals. She wants you to choose no more than y other vertices such that the
+number of triangular pieces of cake she can give out is maximized.
+
+What is the maximum number of triangular pieces of cake Bessie can give out?
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case consists of three integers, n , x , and y (4
+\leq n \leq 10^9 , 2 \leq x \leq \min(n, 2 \cdot 10^5) , 0 \leq y \leq n - x )
+— the number of sides of the polygon, number of vertices Bessie has chosen,
+and the maximum number of other vertices you can choose.
+
+The second line consists of x distinct integers from 1 to n , representing the
+vertices Bessie has chosen.
+
+It is guaranteed the sum of x over all test cases does not exceed 2 \cdot 10^5
+.
+
+Output
+
+For each test case, output a single integer: the maximum number of non-
+intersecting triangular pieces of cake she can give out.
+
+Example
+
+Input
+
+    3
+    
+    8 4 2
+    
+    1 6 2 5
+    
+    7 3 1
+    
+    6 4 3
+    
+    4 2 2
+    
+    1 3
+
+Output
+
+    6
+    5
+    2
+    
+Note
+
+In test cases 1 , 2 and 3 , you can get 6 , 5 and 2 non-intersecting
+triangular pieces of cake, respectively. A possible construction is shown in
+the following pictures:
+
+The green dots represent vertices that Bessie chose, the yellow dots represent
+vertices that you chose, the blue lines represent diagonals that are drawn,
+and the red numbers represent triangles that are counted.
+
+![](https://espresso.codeforces.com/13b28beb7f5f0d100798f357f58c804c5314c869.png)","R = lambda: map(int, input().split())
+t,=R()
+while t:
+    t -= 1
+    n,x,y= R()
+    sx=0;
+    l = list(R())
+    l.sort()
+    l.append(n+l[0])
+    val=[]
+    for i in range(1,x+1):
+        c=l[i]-l[i-1]-1
+        if c==1: sx+=1
+        val.append(c)
+    val.sort(key= lambda x:(1-x&1,x))
+    for i in val:
+        c=i//2
+        if y<c :
+            sx+=y*2 
+            break
+        sx+=i
+        y-=c
+    
+    cons=x+sx-2
+    cons=min(n-2,cons)
+    print(cons)  # 使用 print 函数打印列表元素，而不是调用 P 函数",1,False,False,False,True,False,True,True,True,False,True,True,True,True,True,0.5260587368554075,0.024145370660688354,0.6666666666666666
+1927_E,1927_E_matheusFranco_0.00%,codeforces2024,human,qwen2.5-7b-instruct,"You are given two integers n and k (k \le n ), where k is even.
+
+A permutation of length n is an array consisting of n distinct integers from 1
+to n in any order. For example, [2,3,1,5,4] is a permutation, but [1,2,2] is
+not a permutation (as 2 appears twice in the array) and [0,1,2] is also not a
+permutation (as n=3 , but 3 is not present in the array).
+
+Your task is to construct a k -level permutation of length n .
+
+A permutation is called k -level if, among all the sums of continuous segments
+of length k (of which there are exactly n - k + 1 ), any two sums differ by no
+more than 1 .
+
+More formally, to determine if the permutation p is k -level, first construct
+an array s of length n - k + 1 , where s_i=\sum_{j=i}^{i+k-1} p_j , i.e., the
+i -th element is equal to the sum of p_i, p_{i+1}, \dots, p_{i+k-1} .
+
+A permutation is called k -level if \max(s) - \min(s) \le 1 .
+
+Find any k -level permutation of length n .
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 10^4 ) —
+the number of test cases. This is followed by the description of the test
+cases.
+
+The first and only line of each test case contains two integers n and k (2 \le
+k \le n \le 2 \cdot 10^5 , k is even), where n is the length of the desired
+permutation.
+
+It is guaranteed that the sum of n for all test cases does not exceed 2 \cdot
+10^5 .
+
+Output
+
+For each test case, output any k -level permutation of length n .
+
+It is guaranteed that such a permutation always exists given the constraints.
+
+Example
+
+Input
+
+    5
+    
+    2 2
+    
+    3 2
+    
+    10 4
+    
+    13 4
+    
+    7 4
+
+Output
+
+    2 1
+    1 3 2
+    1 8 4 10 2 7 5 9 3 6
+    4 10 1 13 5 9 2 12 6 8 3 11 7
+    1 6 3 7 2 5 4
+    
+Note
+
+In the second test case of the example:
+
+  * p_1 + p_2 = 3 + 1 = 4 ; 
+  * p_2 + p_3 = 1 + 2 = 3 . 
+
+The maximum among the sums is 4 , and the minimum is 3 .","# https://codeforces.com/problemset/problem/1927/E
+ 
+ 
+def case():
+    n,k = map(int,input().split("" ""))
+ 
+    permutation = [0] * n
+ 
+    idx = 0
+    idx_v = 1
+ 
+    curr_v = 1
+    for i in range(k):
+        multiples_of_k_plus_i = i
+        while multiples_of_k_plus_i < len(permutation):
+            permutation[multiples_of_k_plus_i] = curr_v
+            curr_v += 1
+            multiples_of_k_plus_i += k
+ 
+    result = "" "".join([str(v) for v in permutation])
+    print(result)
+ 
+ 
+def main():
+    t = int(input())
+    while t > 0:
+        case()
+        t -= 1
+ 
+if __name__ == ""__main__"":
+    main()",1,False,False,False,True,False,True,True,True,True,False,False,False,False,False,0.7856614795568755,0.3090875273725005,0.6666666666666666
+1927_E,1927_E_matheusFranco_0.00%,codeforces2024,human,qwen2.5-7b-instruct,"You are given two integers n and k (k \le n ), where k is even.
+
+A permutation of length n is an array consisting of n distinct integers from 1
+to n in any order. For example, [2,3,1,5,4] is a permutation, but [1,2,2] is
+not a permutation (as 2 appears twice in the array) and [0,1,2] is also not a
+permutation (as n=3 , but 3 is not present in the array).
+
+Your task is to construct a k -level permutation of length n .
+
+A permutation is called k -level if, among all the sums of continuous segments
+of length k (of which there are exactly n - k + 1 ), any two sums differ by no
+more than 1 .
+
+More formally, to determine if the permutation p is k -level, first construct
+an array s of length n - k + 1 , where s_i=\sum_{j=i}^{i+k-1} p_j , i.e., the
+i -th element is equal to the sum of p_i, p_{i+1}, \dots, p_{i+k-1} .
+
+A permutation is called k -level if \max(s) - \min(s) \le 1 .
+
+Find any k -level permutation of length n .
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 10^4 ) —
+the number of test cases. This is followed by the description of the test
+cases.
+
+The first and only line of each test case contains two integers n and k (2 \le
+k \le n \le 2 \cdot 10^5 , k is even), where n is the length of the desired
+permutation.
+
+It is guaranteed that the sum of n for all test cases does not exceed 2 \cdot
+10^5 .
+
+Output
+
+For each test case, output any k -level permutation of length n .
+
+It is guaranteed that such a permutation always exists given the constraints.
+
+Example
+
+Input
+
+    5
+    
+    2 2
+    
+    3 2
+    
+    10 4
+    
+    13 4
+    
+    7 4
+
+Output
+
+    2 1
+    1 3 2
+    1 8 4 10 2 7 5 9 3 6
+    4 10 1 13 5 9 2 12 6 8 3 11 7
+    1 6 3 7 2 5 4
+    
+Note
+
+In the second test case of the example:
+
+  * p_1 + p_2 = 3 + 1 = 4 ; 
+  * p_2 + p_3 = 1 + 2 = 3 . 
+
+The maximum among the sums is 4 , and the minimum is 3 .","# https://codeforces.com/problemset/problem/1927/E
+ 
+ 
+def case():
+    n,k = map(int,input().split("" ""))
+ 
+    permutation = [0] * n
+ 
+    idx = 0
+    idx_v = 1
+ 
+    curr_v = 1
+    for i in range(k):
+        multiples_of_k_plus_i = i
+        while multiples_of_k_plus_i < len(permutation):
+            permutation[multiples_of_k_plus_i] = curr_v
+            curr_v += 1
+            multiples_of_k_plus_i += k
+ 
+    result = "" "".join([str(v) for v in permutation])
+    print(result)
+ 
+ 
+def main():
+    t = int(input())
+    while t > 0:
+        case()
+        t -= 1
+ 
+if __name__ == ""__main__"":
+    main()",1,False,False,False,False,False,False,False,True,True,True,False,False,True,True,0.7856614795568755,0.3090875273725005,0.6666666666666666
+1927_E,1927_E_matheusFranco_0.00%,codeforces2024,human,qwen2.5-7b-instruct,"You are given two integers n and k (k \le n ), where k is even.
+
+A permutation of length n is an array consisting of n distinct integers from 1
+to n in any order. For example, [2,3,1,5,4] is a permutation, but [1,2,2] is
+not a permutation (as 2 appears twice in the array) and [0,1,2] is also not a
+permutation (as n=3 , but 3 is not present in the array).
+
+Your task is to construct a k -level permutation of length n .
+
+A permutation is called k -level if, among all the sums of continuous segments
+of length k (of which there are exactly n - k + 1 ), any two sums differ by no
+more than 1 .
+
+More formally, to determine if the permutation p is k -level, first construct
+an array s of length n - k + 1 , where s_i=\sum_{j=i}^{i+k-1} p_j , i.e., the
+i -th element is equal to the sum of p_i, p_{i+1}, \dots, p_{i+k-1} .
+
+A permutation is called k -level if \max(s) - \min(s) \le 1 .
+
+Find any k -level permutation of length n .
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 10^4 ) —
+the number of test cases. This is followed by the description of the test
+cases.
+
+The first and only line of each test case contains two integers n and k (2 \le
+k \le n \le 2 \cdot 10^5 , k is even), where n is the length of the desired
+permutation.
+
+It is guaranteed that the sum of n for all test cases does not exceed 2 \cdot
+10^5 .
+
+Output
+
+For each test case, output any k -level permutation of length n .
+
+It is guaranteed that such a permutation always exists given the constraints.
+
+Example
+
+Input
+
+    5
+    
+    2 2
+    
+    3 2
+    
+    10 4
+    
+    13 4
+    
+    7 4
+
+Output
+
+    2 1
+    1 3 2
+    1 8 4 10 2 7 5 9 3 6
+    4 10 1 13 5 9 2 12 6 8 3 11 7
+    1 6 3 7 2 5 4
+    
+Note
+
+In the second test case of the example:
+
+  * p_1 + p_2 = 3 + 1 = 4 ; 
+  * p_2 + p_3 = 1 + 2 = 3 . 
+
+The maximum among the sums is 4 , and the minimum is 3 .","# https://codeforces.com/problemset/problem/1927/E
+ 
+ 
+def case():
+    n,k = map(int,input().split("" ""))
+ 
+    permutation = [0] * n
+ 
+    idx = 0
+    idx_v = 1
+ 
+    curr_v = 1
+    for i in range(k):
+        multiples_of_k_plus_i = i
+        while multiples_of_k_plus_i < len(permutation):
+            permutation[multiples_of_k_plus_i] = curr_v
+            curr_v += 1
+            multiples_of_k_plus_i += k
+ 
+    result = "" "".join([str(v) for v in permutation])
+    print(result)
+ 
+ 
+def main():
+    t = int(input())
+    while t > 0:
+        case()
+        t -= 1
+ 
+if __name__ == ""__main__"":
+    main()",1,False,False,False,True,False,False,False,False,False,False,True,False,False,False,0.7856614795568755,0.3090875273725005,0.6666666666666666
+1957_C,1957_C_hx199411_2.78%,codeforces2024,human,qwen2.5-7b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","t = int(input())
+while t:
+    t -= 1
+    n,k = list(map(int,input().split(' ')))
+    num = 0
+    for i in range(k):
+        c,r = list(map(int,input().split(' ')))
+        if c == r:
+            num += 1
+        else:
+            num += 2
+    m = n - num
+    if m == 0:
+        print(0)
+    elif m == 1:
+        print(1)
+    else:
+        dp = [0 for i in range(m+1)]
+        dp[1] = 1
+        dp[2] = 3
+        for i in range(3,m+1):
+            dp[i] = (dp[i-1] + (i-1)*dp[i-2]*2)%(10**9+7)
+        print(dp[m])",1,False,False,False,True,True,True,True,True,False,True,True,True,True,True,0.7433089548186087,0.3209398334641705,0.5833333333333334
+1957_C,1957_C_hx199411_2.78%,codeforces2024,human,qwen2.5-7b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","t = int(input())
+while t:
+    t -= 1
+    n,k = list(map(int,input().split(' ')))
+    num = 0
+    for i in range(k):
+        c,r = list(map(int,input().split(' ')))
+        if c == r:
+            num += 1
+        else:
+            num += 2
+    m = n - num
+    if m == 0:
+        print(0)
+    elif m == 1:
+        print(1)
+    else:
+        dp = [0 for i in range(m+1)]
+        dp[1] = 1
+        dp[2] = 3
+        for i in range(3,m+1):
+            dp[i] = (dp[i-1] + (i-1)*dp[i-2]*2)%(10**9+7)
+        print(dp[m])",1,False,False,False,True,True,True,True,True,False,False,True,True,True,False,0.7433089548186087,0.3209398334641705,0.5833333333333334
+1957_C,1957_C_hx199411_2.78%,codeforces2024,human,qwen2.5-7b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","t = int(input())
+while t:
+    t -= 1
+    n,k = list(map(int,input().split(' ')))
+    num = 0
+    for i in range(k):
+        c,r = list(map(int,input().split(' ')))
+        if c == r:
+            num += 1
+        else:
+            num += 2
+    m = n - num
+    if m == 0:
+        print(0)
+    elif m == 1:
+        print(1)
+    else:
+        dp = [0 for i in range(m+1)]
+        dp[1] = 1
+        dp[2] = 3
+        for i in range(3,m+1):
+            dp[i] = (dp[i-1] + (i-1)*dp[i-2]*2)%(10**9+7)
+        print(dp[m])",1,False,False,False,True,True,True,True,True,True,False,False,True,True,True,0.7433089548186087,0.3209398334641705,0.5833333333333334
+1957_C,1957_C_hx199411_100%,codeforces2024,human,qwen2.5-7b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","t = int(input())
+while t:
+    t -= 1
+    n,k = list(map(int,input().split(' ')))
+    num = 0
+    for i in range(k):
+        c,r = list(map(int,input().split(' ')))
+        if c == r:
+            num += 1
+        else:
+            num += 2
+    m = n - num
+    if m == 0:
+        print(1)
+    elif m == 1:
+        print(1)
+    else:
+        dp = [0 for i in range(m+1)]
+        dp[1] = 1
+        dp[2] = 3
+        for i in range(3,m+1):
+            dp[i] = (dp[i-1] + (i-1)*dp[i-2]*2)%(10**9+7)
+        print(dp[m])",1,True,False,False,True,False,True,True,True,True,True,True,True,True,False,0.40849978776192514,-0.09525744994067215,0.5
+1957_C,1957_C_hx199411_100%,codeforces2024,human,qwen2.5-7b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","t = int(input())
+while t:
+    t -= 1
+    n,k = list(map(int,input().split(' ')))
+    num = 0
+    for i in range(k):
+        c,r = list(map(int,input().split(' ')))
+        if c == r:
+            num += 1
+        else:
+            num += 2
+    m = n - num
+    if m == 0:
+        print(1)
+    elif m == 1:
+        print(1)
+    else:
+        dp = [0 for i in range(m+1)]
+        dp[1] = 1
+        dp[2] = 3
+        for i in range(3,m+1):
+            dp[i] = (dp[i-1] + (i-1)*dp[i-2]*2)%(10**9+7)
+        print(dp[m])",1,True,False,False,True,False,True,True,True,False,True,False,False,False,False,0.40849978776192514,-0.09525744994067215,0.5
+1957_C,1957_C_hx199411_100%,codeforces2024,human,qwen2.5-7b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","t = int(input())
+while t:
+    t -= 1
+    n,k = list(map(int,input().split(' ')))
+    num = 0
+    for i in range(k):
+        c,r = list(map(int,input().split(' ')))
+        if c == r:
+            num += 1
+        else:
+            num += 2
+    m = n - num
+    if m == 0:
+        print(1)
+    elif m == 1:
+        print(1)
+    else:
+        dp = [0 for i in range(m+1)]
+        dp[1] = 1
+        dp[2] = 3
+        for i in range(3,m+1):
+            dp[i] = (dp[i-1] + (i-1)*dp[i-2]*2)%(10**9+7)
+        print(dp[m])",1,True,False,False,True,False,True,True,True,False,True,True,True,True,False,0.40849978776192514,-0.09525744994067215,0.5
+1921_B,1921_B_AmirSol_7.69%,codeforces2024,human,qwen2.5-7b-instruct,"In order to test the hypothesis about the cats, the scientists must arrange
+the cats in the boxes in a specific way. Of course, they would like to test
+the hypothesis and publish a sensational article as quickly as possible,
+because they are too engrossed in the next hypothesis about the phone's
+battery charge.
+
+Scientists have n boxes in which cats may or may not sit. Let the current
+state of the boxes be denoted by the sequence b_1, \dots, b_n : b_i = 1 if
+there is a cat in box number i , and b_i = 0 otherwise.
+
+Fortunately, the unlimited production of cats has already been established, so
+in one day, the scientists can perform one of the following operations:
+
+  * Take a new cat and place it in a box (for some i such that b_i = 0 , assign b_i = 1 ). 
+  * Remove a cat from a box and send it into retirement (for some i such that b_i = 1 , assign b_i = 0 ). 
+  * Move a cat from one box to another (for some i, j such that b_i = 1, b_j = 0 , assign b_i = 0, b_j = 1 ). 
+
+It has also been found that some boxes were immediately filled with cats.
+Therefore, the scientists know the initial position of the cats in the boxes
+s_1, \dots, s_n and the desired position f_1, \dots, f_n .
+
+Due to the large amount of paperwork, the scientists do not have time to solve
+this problem. Help them for the sake of science and indicate the minimum
+number of days required to test the hypothesis.
+
+Input
+
+Each test consists of several test cases. The first line contains a single
+integer t (1 \le t \le 10^4 ) — the number of test cases. This is followed by
+descriptions of the test cases.
+
+Each test case consists of three lines.
+
+The first line of each test case contains a single integer n (1 \le n \le 10^5
+) — the number of boxes.
+
+The second line of each test case contains a string s of n characters, where
+the i -th character is '1' if there is a cat in the i -th box and '0'
+otherwise.
+
+The third line of each test case contains a string f of n characters, where
+the i -th character is '1' if there should be a cat in the i -th box and '0'
+otherwise.
+
+It is guaranteed that in a test the sum of n over all test cases does not
+exceed 10^5 .
+
+Output
+
+For each test case, output a single integer on a separate line — the minimum
+number of operations required to obtain the desired position from the initial
+position. It can be shown that a solution always exists.
+
+Example
+
+Input
+
+    6
+    
+    5
+    
+    10010
+    
+    00001
+    
+    1
+    
+    1
+    
+    1
+    
+    3
+    
+    000
+    
+    111
+    
+    4
+    
+    0101
+    
+    1010
+    
+    3
+    
+    100
+    
+    101
+    
+    8
+    
+    10011001
+    
+    11111110
+
+Output
+
+    2
+    0
+    3
+    2
+    1
+    4
+    
+Note
+
+In the first test case, you can first move the cat from the first box to the
+fifth, and then remove the cat from the fourth box.
+
+In the second test case, there is nothing to do — the only cat is already
+sitting in the correct box.
+
+In the third test case of input data, it takes three days to place a cat in
+each box.","def solution(n: int, s1: str, s2: str) -> int:
+    counter = 0
+    i = 0
+    while i < n:
+        if s1[i] != s2[i]:
+            if i < n - 1 and s1[i + 1] != s2[i + 1] and s1[i] != s1[i + 1]:
+                counter += 1
+                i += 2
+            else:
+                counter += 1
+                i += 1
+        else:
+            i += 1
+    return counter
+ 
+# Input and output handling
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    s1 = input()
+    s2 = input()
+    print(solution(n, s1, s2))",1,False,False,False,False,False,False,False,False,False,False,False,False,True,True,0.6997874324774109,0.20896872931554,0.6666666666666666
+1921_B,1921_B_AmirSol_7.69%,codeforces2024,human,qwen2.5-7b-instruct,"In order to test the hypothesis about the cats, the scientists must arrange
+the cats in the boxes in a specific way. Of course, they would like to test
+the hypothesis and publish a sensational article as quickly as possible,
+because they are too engrossed in the next hypothesis about the phone's
+battery charge.
+
+Scientists have n boxes in which cats may or may not sit. Let the current
+state of the boxes be denoted by the sequence b_1, \dots, b_n : b_i = 1 if
+there is a cat in box number i , and b_i = 0 otherwise.
+
+Fortunately, the unlimited production of cats has already been established, so
+in one day, the scientists can perform one of the following operations:
+
+  * Take a new cat and place it in a box (for some i such that b_i = 0 , assign b_i = 1 ). 
+  * Remove a cat from a box and send it into retirement (for some i such that b_i = 1 , assign b_i = 0 ). 
+  * Move a cat from one box to another (for some i, j such that b_i = 1, b_j = 0 , assign b_i = 0, b_j = 1 ). 
+
+It has also been found that some boxes were immediately filled with cats.
+Therefore, the scientists know the initial position of the cats in the boxes
+s_1, \dots, s_n and the desired position f_1, \dots, f_n .
+
+Due to the large amount of paperwork, the scientists do not have time to solve
+this problem. Help them for the sake of science and indicate the minimum
+number of days required to test the hypothesis.
+
+Input
+
+Each test consists of several test cases. The first line contains a single
+integer t (1 \le t \le 10^4 ) — the number of test cases. This is followed by
+descriptions of the test cases.
+
+Each test case consists of three lines.
+
+The first line of each test case contains a single integer n (1 \le n \le 10^5
+) — the number of boxes.
+
+The second line of each test case contains a string s of n characters, where
+the i -th character is '1' if there is a cat in the i -th box and '0'
+otherwise.
+
+The third line of each test case contains a string f of n characters, where
+the i -th character is '1' if there should be a cat in the i -th box and '0'
+otherwise.
+
+It is guaranteed that in a test the sum of n over all test cases does not
+exceed 10^5 .
+
+Output
+
+For each test case, output a single integer on a separate line — the minimum
+number of operations required to obtain the desired position from the initial
+position. It can be shown that a solution always exists.
+
+Example
+
+Input
+
+    6
+    
+    5
+    
+    10010
+    
+    00001
+    
+    1
+    
+    1
+    
+    1
+    
+    3
+    
+    000
+    
+    111
+    
+    4
+    
+    0101
+    
+    1010
+    
+    3
+    
+    100
+    
+    101
+    
+    8
+    
+    10011001
+    
+    11111110
+
+Output
+
+    2
+    0
+    3
+    2
+    1
+    4
+    
+Note
+
+In the first test case, you can first move the cat from the first box to the
+fifth, and then remove the cat from the fourth box.
+
+In the second test case, there is nothing to do — the only cat is already
+sitting in the correct box.
+
+In the third test case of input data, it takes three days to place a cat in
+each box.","def solution(n: int, s1: str, s2: str) -> int:
+    counter = 0
+    i = 0
+    while i < n:
+        if s1[i] != s2[i]:
+            if i < n - 1 and s1[i + 1] != s2[i + 1] and s1[i] != s1[i + 1]:
+                counter += 1
+                i += 2
+            else:
+                counter += 1
+                i += 1
+        else:
+            i += 1
+    return counter
+ 
+# Input and output handling
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    s1 = input()
+    s2 = input()
+    print(solution(n, s1, s2))",1,False,False,False,False,False,False,False,False,False,False,False,False,False,False,0.6997874324774109,0.20896872931554,0.6666666666666666
+1921_B,1921_B_AmirSol_7.69%,codeforces2024,human,qwen2.5-7b-instruct,"In order to test the hypothesis about the cats, the scientists must arrange
+the cats in the boxes in a specific way. Of course, they would like to test
+the hypothesis and publish a sensational article as quickly as possible,
+because they are too engrossed in the next hypothesis about the phone's
+battery charge.
+
+Scientists have n boxes in which cats may or may not sit. Let the current
+state of the boxes be denoted by the sequence b_1, \dots, b_n : b_i = 1 if
+there is a cat in box number i , and b_i = 0 otherwise.
+
+Fortunately, the unlimited production of cats has already been established, so
+in one day, the scientists can perform one of the following operations:
+
+  * Take a new cat and place it in a box (for some i such that b_i = 0 , assign b_i = 1 ). 
+  * Remove a cat from a box and send it into retirement (for some i such that b_i = 1 , assign b_i = 0 ). 
+  * Move a cat from one box to another (for some i, j such that b_i = 1, b_j = 0 , assign b_i = 0, b_j = 1 ). 
+
+It has also been found that some boxes were immediately filled with cats.
+Therefore, the scientists know the initial position of the cats in the boxes
+s_1, \dots, s_n and the desired position f_1, \dots, f_n .
+
+Due to the large amount of paperwork, the scientists do not have time to solve
+this problem. Help them for the sake of science and indicate the minimum
+number of days required to test the hypothesis.
+
+Input
+
+Each test consists of several test cases. The first line contains a single
+integer t (1 \le t \le 10^4 ) — the number of test cases. This is followed by
+descriptions of the test cases.
+
+Each test case consists of three lines.
+
+The first line of each test case contains a single integer n (1 \le n \le 10^5
+) — the number of boxes.
+
+The second line of each test case contains a string s of n characters, where
+the i -th character is '1' if there is a cat in the i -th box and '0'
+otherwise.
+
+The third line of each test case contains a string f of n characters, where
+the i -th character is '1' if there should be a cat in the i -th box and '0'
+otherwise.
+
+It is guaranteed that in a test the sum of n over all test cases does not
+exceed 10^5 .
+
+Output
+
+For each test case, output a single integer on a separate line — the minimum
+number of operations required to obtain the desired position from the initial
+position. It can be shown that a solution always exists.
+
+Example
+
+Input
+
+    6
+    
+    5
+    
+    10010
+    
+    00001
+    
+    1
+    
+    1
+    
+    1
+    
+    3
+    
+    000
+    
+    111
+    
+    4
+    
+    0101
+    
+    1010
+    
+    3
+    
+    100
+    
+    101
+    
+    8
+    
+    10011001
+    
+    11111110
+
+Output
+
+    2
+    0
+    3
+    2
+    1
+    4
+    
+Note
+
+In the first test case, you can first move the cat from the first box to the
+fifth, and then remove the cat from the fourth box.
+
+In the second test case, there is nothing to do — the only cat is already
+sitting in the correct box.
+
+In the third test case of input data, it takes three days to place a cat in
+each box.","def solution(n: int, s1: str, s2: str) -> int:
+    counter = 0
+    i = 0
+    while i < n:
+        if s1[i] != s2[i]:
+            if i < n - 1 and s1[i + 1] != s2[i + 1] and s1[i] != s1[i + 1]:
+                counter += 1
+                i += 2
+            else:
+                counter += 1
+                i += 1
+        else:
+            i += 1
+    return counter
+ 
+# Input and output handling
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    s1 = input()
+    s2 = input()
+    print(solution(n, s1, s2))",1,False,False,False,False,False,True,True,False,False,False,False,False,False,False,0.6997874324774109,0.20896872931554,0.6666666666666666
+1979_F,1979_F_Cryptic10_0.00%,codeforces2024,human,qwen2.5-7b-instruct,"This is an interactive problem.
+
+Kostyanych has chosen a complete undirected graph^{\dagger} with n vertices,
+and then removed exactly (n - 2) edges from it. You can ask queries of the
+following type:
+
+  * ""? d "" — Kostyanych tells you the number of vertex v with a degree at least d . Among all possible such vertices, he selects the vertex with the minimum degree, and if there are several such vertices, he selects the one with the minimum number. He also tells you the number of another vertex in the graph, with which v is not connected by an edge (if none is found, then 0 is reported). Among all possible such vertices, he selects the one with the minimum number. Then he removes the vertex v and all edges coming out of it. If the required vertex v is not found, then ""0\ 0 "" is reported. 
+
+Find a Hamiltonian path^{\ddagger} in the original graph in at most n queries.
+It can be proven that under these constraints, a Hamiltonian path always
+exists.
+
+^{\dagger} A complete undirected graph is a graph in which there is exactly
+one undirected edge between any pair of distinct vertices. Thus, a complete
+undirected graph with n vertices contains \frac{n(n-1)}{2} edges.
+
+^{\ddagger} A Hamiltonian path in a graph is a path that passes through each
+vertex exactly once.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 1000 ) — the number of test cases. The description of
+the test cases follows.
+
+The only line of each test case contains a single integer n (2 \le n \le 10^5
+) — the number of vertices in the graph.
+
+It is guaranteed that the sum of n over all test cases does not exceed 10^5 .
+
+Interaction
+
+Interaction for each test case begins with reading the integer n .
+
+Then you can make no more than n queries.
+
+To make a query, output a line in the format ""? d "" (without quotes) (0 \le d
+\le n - 1 ). After each query, read two integers — the answer to your query.
+
+When you are ready to report the answer, output a line in the format ""! v_1\
+v_2 \ldots v_n "" (without quotes) — the vertices in the order of their
+occurrence in the Hamiltonian path. Outputting the answer does not count as
+one of the n queries. After solving one test case, the program should
+immediately move on to the next one. After solving all test cases, the program
+should be terminated immediately.
+
+If your program makes more than n queries for one test case or makes an
+incorrect query, then the response to the query will be -1 , and after
+receiving such a response, your program should immediately terminate to
+receive the verdict Wrong answer. Otherwise, it may receive any other verdict.
+
+After outputting a query, do not forget to output an end of line and flush the
+output buffer. Otherwise, you will receive the verdict Idleness limit
+exceeded. To do this, use:
+
+  * fflush(stdout) or cout.flush() in C++; 
+  * System.out.flush() in Java; 
+  * flush(output) in Pascal; 
+  * stdout.flush() in Python; 
+  * see documentation for other languages. 
+
+The interactor is non-adaptive. The graph does not change during the
+interaction.
+
+Hacks
+
+To hack, use the following format:
+
+The first line contains a single integer t (1 \le t \le 1000 ) — the number of
+test cases.
+
+The only line of each test case contains a single integer n (2 \le n \le 10^5
+) — the number of vertices in the graph.
+
+Each of the following (n - 2) lines should contains two integers u and v (1
+\le u, v \le n , u \ne v ) — ends of the edge that was removed from the graph.
+Each edge must not occur more than once.
+
+The sum of n over all test cases should not exceed 10^5 .
+
+Example
+
+Input
+
+    3
+    4
+    
+    0 0
+    
+    1 4
+    
+    2 3
+    
+    4
+    
+    1 0
+    
+    4 2
+    
+    2
+    
+    1 0
+    
+Output
+
+    ? 3
+    
+    ? 2
+    
+    ? 1
+    
+    ! 4 3 1 2
+    
+    ? 3
+    
+    ? 0
+    
+    ! 4 1 2 3
+    
+    ? 0
+    
+    ! 2 1
+
+Note
+
+In the first test case, the original graph looks as follows:
+
+![](https://espresso.codeforces.com/75d8c5328ccca8f82b69ba8300140bed4d40ce80.png)
+
+Consider the queries:
+
+  * There are no vertices with a degree of at least 3 in the graph, so ""0\ 0 "" is reported.
+  * There are four vertices with a degree of at least 2 , and all of them have a degree of exactly 2 : 1 , 2 , 3 , 4 . Vertex 1 is reported, because it has the minimum number, and vertex 4 is reported, because it is the only one not connected to vertex 1 . After this, vertex 1 is removed from the graph.
+  * There are three vertices with a degree of at least 1 , among them vertices 2 and 3 have a minimum degree of 1 (vertex 4 has a degree of 2 ). Vertex 2 is reported, because it has the minimum number, and vertex 3 is reported, because it is the only one not connected to vertex 2 . After this, vertex 2 is removed from the graph.
+
+The path 4 - 3 - 1 - 2 is a Hamiltonian path.
+
+In the second test case, the original graph looks as follows:
+
+![](https://espresso.codeforces.com/44d26c229eaff752c0a00c7160792daef41c7502.png)
+
+Consider the queries:
+
+  * Vertex 1 has a degree of at least 3 , but it is connected to all vertices, so ""1\ 0 "" is reported. After this, vertex 1 is removed from the graph.
+  * The remaining vertices 2 , 3 , and 4 have a degree of at least 0 , but among them vertex 4 has the minimum degree of 0 (vertices 2 and 3 have a degree of 1 ). Vertex 4 is not connected to both vertices 2 and 3 , so vertex 2 is reported (as it has the minimum number). After this, vertex 4 is removed from the graph.
+
+The path 4 - 1 - 2 - 3 is a Hamiltonian path.
+
+In the third test case, the graph consists of 2 vertices connected by an edge.","import sys
+ 
+def query(d):
+    print(f""? {d}"")
+    sys.stdout.flush()
+    v, u = map(int, input().split())
+    return v, u
+ 
+def solve(n):
+    path = []
+    remaining_vertices = set(range(1, n + 1))
+    
+    while remaining_vertices:
+        for d in range(n - 1, -1, -1):
+            v, u = query(d)
+            if v == 0:
+                continue
+            if v in remaining_vertices:
+                path.append(v)
+                remaining_vertices.remove(v)
+                break
+    
+    print(f""! {' '.join(map(str, path))}"")
+    sys.stdout.flush()
+ 
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    solve(n)",1,False,False,False,True,True,True,True,True,True,True,True,True,False,False,0.7415091230330192,0.27758503249367616,0.6666666666666666
+1979_F,1979_F_Cryptic10_0.00%,codeforces2024,human,qwen2.5-7b-instruct,"This is an interactive problem.
+
+Kostyanych has chosen a complete undirected graph^{\dagger} with n vertices,
+and then removed exactly (n - 2) edges from it. You can ask queries of the
+following type:
+
+  * ""? d "" — Kostyanych tells you the number of vertex v with a degree at least d . Among all possible such vertices, he selects the vertex with the minimum degree, and if there are several such vertices, he selects the one with the minimum number. He also tells you the number of another vertex in the graph, with which v is not connected by an edge (if none is found, then 0 is reported). Among all possible such vertices, he selects the one with the minimum number. Then he removes the vertex v and all edges coming out of it. If the required vertex v is not found, then ""0\ 0 "" is reported. 
+
+Find a Hamiltonian path^{\ddagger} in the original graph in at most n queries.
+It can be proven that under these constraints, a Hamiltonian path always
+exists.
+
+^{\dagger} A complete undirected graph is a graph in which there is exactly
+one undirected edge between any pair of distinct vertices. Thus, a complete
+undirected graph with n vertices contains \frac{n(n-1)}{2} edges.
+
+^{\ddagger} A Hamiltonian path in a graph is a path that passes through each
+vertex exactly once.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 1000 ) — the number of test cases. The description of
+the test cases follows.
+
+The only line of each test case contains a single integer n (2 \le n \le 10^5
+) — the number of vertices in the graph.
+
+It is guaranteed that the sum of n over all test cases does not exceed 10^5 .
+
+Interaction
+
+Interaction for each test case begins with reading the integer n .
+
+Then you can make no more than n queries.
+
+To make a query, output a line in the format ""? d "" (without quotes) (0 \le d
+\le n - 1 ). After each query, read two integers — the answer to your query.
+
+When you are ready to report the answer, output a line in the format ""! v_1\
+v_2 \ldots v_n "" (without quotes) — the vertices in the order of their
+occurrence in the Hamiltonian path. Outputting the answer does not count as
+one of the n queries. After solving one test case, the program should
+immediately move on to the next one. After solving all test cases, the program
+should be terminated immediately.
+
+If your program makes more than n queries for one test case or makes an
+incorrect query, then the response to the query will be -1 , and after
+receiving such a response, your program should immediately terminate to
+receive the verdict Wrong answer. Otherwise, it may receive any other verdict.
+
+After outputting a query, do not forget to output an end of line and flush the
+output buffer. Otherwise, you will receive the verdict Idleness limit
+exceeded. To do this, use:
+
+  * fflush(stdout) or cout.flush() in C++; 
+  * System.out.flush() in Java; 
+  * flush(output) in Pascal; 
+  * stdout.flush() in Python; 
+  * see documentation for other languages. 
+
+The interactor is non-adaptive. The graph does not change during the
+interaction.
+
+Hacks
+
+To hack, use the following format:
+
+The first line contains a single integer t (1 \le t \le 1000 ) — the number of
+test cases.
+
+The only line of each test case contains a single integer n (2 \le n \le 10^5
+) — the number of vertices in the graph.
+
+Each of the following (n - 2) lines should contains two integers u and v (1
+\le u, v \le n , u \ne v ) — ends of the edge that was removed from the graph.
+Each edge must not occur more than once.
+
+The sum of n over all test cases should not exceed 10^5 .
+
+Example
+
+Input
+
+    3
+    4
+    
+    0 0
+    
+    1 4
+    
+    2 3
+    
+    4
+    
+    1 0
+    
+    4 2
+    
+    2
+    
+    1 0
+    
+Output
+
+    ? 3
+    
+    ? 2
+    
+    ? 1
+    
+    ! 4 3 1 2
+    
+    ? 3
+    
+    ? 0
+    
+    ! 4 1 2 3
+    
+    ? 0
+    
+    ! 2 1
+
+Note
+
+In the first test case, the original graph looks as follows:
+
+![](https://espresso.codeforces.com/75d8c5328ccca8f82b69ba8300140bed4d40ce80.png)
+
+Consider the queries:
+
+  * There are no vertices with a degree of at least 3 in the graph, so ""0\ 0 "" is reported.
+  * There are four vertices with a degree of at least 2 , and all of them have a degree of exactly 2 : 1 , 2 , 3 , 4 . Vertex 1 is reported, because it has the minimum number, and vertex 4 is reported, because it is the only one not connected to vertex 1 . After this, vertex 1 is removed from the graph.
+  * There are three vertices with a degree of at least 1 , among them vertices 2 and 3 have a minimum degree of 1 (vertex 4 has a degree of 2 ). Vertex 2 is reported, because it has the minimum number, and vertex 3 is reported, because it is the only one not connected to vertex 2 . After this, vertex 2 is removed from the graph.
+
+The path 4 - 3 - 1 - 2 is a Hamiltonian path.
+
+In the second test case, the original graph looks as follows:
+
+![](https://espresso.codeforces.com/44d26c229eaff752c0a00c7160792daef41c7502.png)
+
+Consider the queries:
+
+  * Vertex 1 has a degree of at least 3 , but it is connected to all vertices, so ""1\ 0 "" is reported. After this, vertex 1 is removed from the graph.
+  * The remaining vertices 2 , 3 , and 4 have a degree of at least 0 , but among them vertex 4 has the minimum degree of 0 (vertices 2 and 3 have a degree of 1 ). Vertex 4 is not connected to both vertices 2 and 3 , so vertex 2 is reported (as it has the minimum number). After this, vertex 4 is removed from the graph.
+
+The path 4 - 1 - 2 - 3 is a Hamiltonian path.
+
+In the third test case, the graph consists of 2 vertices connected by an edge.","import sys
+ 
+def query(d):
+    print(f""? {d}"")
+    sys.stdout.flush()
+    v, u = map(int, input().split())
+    return v, u
+ 
+def solve(n):
+    path = []
+    remaining_vertices = set(range(1, n + 1))
+    
+    while remaining_vertices:
+        for d in range(n - 1, -1, -1):
+            v, u = query(d)
+            if v == 0:
+                continue
+            if v in remaining_vertices:
+                path.append(v)
+                remaining_vertices.remove(v)
+                break
+    
+    print(f""! {' '.join(map(str, path))}"")
+    sys.stdout.flush()
+ 
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    solve(n)",1,False,False,False,True,True,True,True,True,True,True,True,False,False,False,0.7415091230330192,0.27758503249367616,0.6666666666666666
+1979_F,1979_F_Cryptic10_0.00%,codeforces2024,human,qwen2.5-7b-instruct,"This is an interactive problem.
+
+Kostyanych has chosen a complete undirected graph^{\dagger} with n vertices,
+and then removed exactly (n - 2) edges from it. You can ask queries of the
+following type:
+
+  * ""? d "" — Kostyanych tells you the number of vertex v with a degree at least d . Among all possible such vertices, he selects the vertex with the minimum degree, and if there are several such vertices, he selects the one with the minimum number. He also tells you the number of another vertex in the graph, with which v is not connected by an edge (if none is found, then 0 is reported). Among all possible such vertices, he selects the one with the minimum number. Then he removes the vertex v and all edges coming out of it. If the required vertex v is not found, then ""0\ 0 "" is reported. 
+
+Find a Hamiltonian path^{\ddagger} in the original graph in at most n queries.
+It can be proven that under these constraints, a Hamiltonian path always
+exists.
+
+^{\dagger} A complete undirected graph is a graph in which there is exactly
+one undirected edge between any pair of distinct vertices. Thus, a complete
+undirected graph with n vertices contains \frac{n(n-1)}{2} edges.
+
+^{\ddagger} A Hamiltonian path in a graph is a path that passes through each
+vertex exactly once.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 1000 ) — the number of test cases. The description of
+the test cases follows.
+
+The only line of each test case contains a single integer n (2 \le n \le 10^5
+) — the number of vertices in the graph.
+
+It is guaranteed that the sum of n over all test cases does not exceed 10^5 .
+
+Interaction
+
+Interaction for each test case begins with reading the integer n .
+
+Then you can make no more than n queries.
+
+To make a query, output a line in the format ""? d "" (without quotes) (0 \le d
+\le n - 1 ). After each query, read two integers — the answer to your query.
+
+When you are ready to report the answer, output a line in the format ""! v_1\
+v_2 \ldots v_n "" (without quotes) — the vertices in the order of their
+occurrence in the Hamiltonian path. Outputting the answer does not count as
+one of the n queries. After solving one test case, the program should
+immediately move on to the next one. After solving all test cases, the program
+should be terminated immediately.
+
+If your program makes more than n queries for one test case or makes an
+incorrect query, then the response to the query will be -1 , and after
+receiving such a response, your program should immediately terminate to
+receive the verdict Wrong answer. Otherwise, it may receive any other verdict.
+
+After outputting a query, do not forget to output an end of line and flush the
+output buffer. Otherwise, you will receive the verdict Idleness limit
+exceeded. To do this, use:
+
+  * fflush(stdout) or cout.flush() in C++; 
+  * System.out.flush() in Java; 
+  * flush(output) in Pascal; 
+  * stdout.flush() in Python; 
+  * see documentation for other languages. 
+
+The interactor is non-adaptive. The graph does not change during the
+interaction.
+
+Hacks
+
+To hack, use the following format:
+
+The first line contains a single integer t (1 \le t \le 1000 ) — the number of
+test cases.
+
+The only line of each test case contains a single integer n (2 \le n \le 10^5
+) — the number of vertices in the graph.
+
+Each of the following (n - 2) lines should contains two integers u and v (1
+\le u, v \le n , u \ne v ) — ends of the edge that was removed from the graph.
+Each edge must not occur more than once.
+
+The sum of n over all test cases should not exceed 10^5 .
+
+Example
+
+Input
+
+    3
+    4
+    
+    0 0
+    
+    1 4
+    
+    2 3
+    
+    4
+    
+    1 0
+    
+    4 2
+    
+    2
+    
+    1 0
+    
+Output
+
+    ? 3
+    
+    ? 2
+    
+    ? 1
+    
+    ! 4 3 1 2
+    
+    ? 3
+    
+    ? 0
+    
+    ! 4 1 2 3
+    
+    ? 0
+    
+    ! 2 1
+
+Note
+
+In the first test case, the original graph looks as follows:
+
+![](https://espresso.codeforces.com/75d8c5328ccca8f82b69ba8300140bed4d40ce80.png)
+
+Consider the queries:
+
+  * There are no vertices with a degree of at least 3 in the graph, so ""0\ 0 "" is reported.
+  * There are four vertices with a degree of at least 2 , and all of them have a degree of exactly 2 : 1 , 2 , 3 , 4 . Vertex 1 is reported, because it has the minimum number, and vertex 4 is reported, because it is the only one not connected to vertex 1 . After this, vertex 1 is removed from the graph.
+  * There are three vertices with a degree of at least 1 , among them vertices 2 and 3 have a minimum degree of 1 (vertex 4 has a degree of 2 ). Vertex 2 is reported, because it has the minimum number, and vertex 3 is reported, because it is the only one not connected to vertex 2 . After this, vertex 2 is removed from the graph.
+
+The path 4 - 3 - 1 - 2 is a Hamiltonian path.
+
+In the second test case, the original graph looks as follows:
+
+![](https://espresso.codeforces.com/44d26c229eaff752c0a00c7160792daef41c7502.png)
+
+Consider the queries:
+
+  * Vertex 1 has a degree of at least 3 , but it is connected to all vertices, so ""1\ 0 "" is reported. After this, vertex 1 is removed from the graph.
+  * The remaining vertices 2 , 3 , and 4 have a degree of at least 0 , but among them vertex 4 has the minimum degree of 0 (vertices 2 and 3 have a degree of 1 ). Vertex 4 is not connected to both vertices 2 and 3 , so vertex 2 is reported (as it has the minimum number). After this, vertex 4 is removed from the graph.
+
+The path 4 - 1 - 2 - 3 is a Hamiltonian path.
+
+In the third test case, the graph consists of 2 vertices connected by an edge.","import sys
+ 
+def query(d):
+    print(f""? {d}"")
+    sys.stdout.flush()
+    v, u = map(int, input().split())
+    return v, u
+ 
+def solve(n):
+    path = []
+    remaining_vertices = set(range(1, n + 1))
+    
+    while remaining_vertices:
+        for d in range(n - 1, -1, -1):
+            v, u = query(d)
+            if v == 0:
+                continue
+            if v in remaining_vertices:
+                path.append(v)
+                remaining_vertices.remove(v)
+                break
+    
+    print(f""! {' '.join(map(str, path))}"")
+    sys.stdout.flush()
+ 
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    solve(n)",1,False,False,False,True,True,True,True,True,True,True,True,False,False,False,0.7415091230330192,0.27758503249367616,0.6666666666666666
+1968_C,1968_C_tah23seen_6.67%,codeforces2024,human,qwen2.5-7b-instruct,"You are given an array x_2,x_3,\dots,x_n . Your task is to find any array
+a_1,\dots,a_n , where:
+
+  * 1\le a_i\le 10^9 for all 1\le i\le n . 
+  * x_i=a_i \bmod a_{i-1} for all 2\le i\le n . 
+
+Here c\bmod d denotes the remainder of the division of the integer c by the
+integer d . For example 5 \bmod 2 = 1 , 72 \bmod 3 = 0 , 143 \bmod 14 = 3 .
+
+Note that if there is more than one a which satisfies the statement, you are
+allowed to find any.
+
+Input
+
+The first line contains a single integer t (1\le t\le 10^4) — the number of
+test cases.
+
+The first line of each test case contains a single integer n (2\le n\le 500) —
+the number of elements in a .
+
+The second line of each test case contains n-1 integers x_2,\dots,x_n (1\le
+x_i\le 500) — the elements of x .
+
+It is guaranteed that the sum of values n over all test cases does not exceed
+2 \cdot 10^5 .
+
+Output
+
+For each test case output any a_1,\dots,a_n (1 \le a_i \le 10^9 ) which
+satisfies the statement.
+
+Example
+
+Input
+
+    5
+    
+    4
+    
+    2 4 1
+    
+    3
+    
+    1 1
+    
+    6
+    
+    4 2 5 1 2
+    
+    2
+    
+    500
+    
+    3
+    
+    1 5
+
+Output
+
+    3 5 4 9
+    2 5 11
+    5 14 16 5 11 24
+    501 500
+    2 7 5
+
+Note
+
+In the first test case a=[3,5,4,9] satisfies the conditions, because:
+
+  * a_2\bmod a_1=5\bmod 3=2=x_2 ; 
+  * a_3\bmod a_2=4\bmod 5=4=x_3 ; 
+  * a_4\bmod a_3=9\bmod 4=1=x_4 ;","def solve(arr,n):
+  ans=[0]*(n)
+  ans[0]=arr[0]+1
+  for i in range(n-2):
+    ans[i+1]=arr[i]+ans[i]
+    if ans[i+1]<arr[i+1]:
+      while ans[i+1]<=arr[i+1]:
+        ans[i+1]+=ans[i]
+  ans[-1]=ans[-2]+arr[-1]
+  return ans
+ 
+t=int(input())
+while t:
+  n=int(input())
+  arr=[int(x) for x in input().split("" "")]
+  ans=solve(arr,n)
+  for i in ans:
+    print(i,end=' ')
+  print()
+  t-=1",1,False,False,False,True,False,True,True,True,True,True,True,True,False,True,0.7740908088003147,0.31561793909854163,0.6666666666666666

@@ -1,0 +1,768 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1951_E,human,codeforces2024,qwq-32b-preview,"t = int(input())
+for i in range(t):
+    string = input()
+    s = list(string)
+    n = len(s)
+    done = False
+    if n == 1:
+        print(""NO"")
+        continue
+    x = s[0]
+    if x != s[-1]:
+        print(""YES"")
+        print(1)
+        print(string)
+        continue
+    if s.count(x) == n:
+        print(""NO"")
+        continue
+    elif s.count(x) == n-1:
+        if n%2 == 1 and s[(n-1)//2] != x:
+            print(""NO"")
+        else:
+            print(""YES"")
+            print(1)
+            print(string)
+        continue
+    count = 0
+    count2 = 0
+    for j in range(n):
+        if s[j] != s[n-1-j]:
+            print(""YES"")
+            print(1)
+            print(string)
+            done = True
+            break
+        if s[j] != x and count < 1:
+            count = j
+            continue
+        if count > 0:
+            if s[j] != x:
+                if count2 < count:
+                    print(""YES"")
+                    print(2)
+                    print(string[:j], string[j:])
+                    done = True
+                    break
+                elif count2 == count:
+                    if count > 1:
+                        print(""YES"")
+                        print(2)
+                        print(string[:j-1], string[j-1:])
+                        done = True
+                        break
+                    else:
+                        count2 = 0
+                        continue
+                elif count2 > count:
+                    print(""YES"")
+                    print(2)
+                    print(string[:j], string[j:])
+                    done=True
+                    break
+            else:
+                count2 += 1
+    if not done:
+        print(""NO"")",Error: 'str' object has no attribute 'trim',hoareprompt
+1922_B,human,codeforces2024,qwq-32b-preview,"t=int(input())
+buffer=[]
+for i in range(t):
+    n=int(input())
+    w=[int(k) for k in input().split()]
+    if n>=3:
+        q=[0 for j in range(n+1)]
+        for j in range(n):
+            q[w[j]]+=1
+        eta=[]
+        for j in range(n+1):
+            if q[j]>0:
+                eta.append(j)
+        eta_ln=len(eta)
+        rho=q[eta[0]]
+        if eta_ln==1:
+            print(n*(n-1)*(n-2)//6)
+        else:
+            res=q[eta[0]]*(q[eta[0]]-1)*(q[eta[0]]-2)//6
+            for j in range(1, eta_ln):
+                res+=q[eta[j]]*(q[eta[j]]-1)*(q[eta[j]]-2)//6
+                res+=q[eta[j]]*(q[eta[j]]-1)//2*rho
+                rho+=q[eta[j]]
+            print(res)
+    else:
+        print(0)",Error: 'str' object has no attribute 'trim',hoareprompt
+1951_D,human,codeforces2024,qwq-32b-preview,"from sys import stdin
+t=int(input())
+for _ in range(t):
+    n,k=map(int,stdin.readline().split())
+    rep=0
+    number=0
+    tab=[]
+    while n!=0 and k>0 and rep<60 and n>=k:
+        
+        Min,Max=min(n//k,k),max(int(n/k),k)
+        if Max==k and n*Min<=k:
+            number=Min
+            k=k-Max
+        else:
+            number=Max
+            k=k-Min
+        tab.append(str(number))
+        n-=Min*Max
+        rep+=1
+    if k==0:
+        print(""YES"")
+        print(len(tab))
+        for i in tab:
+            print(i,end="" "")
+    else:
+        print(""NO"")",Error: 'str' object has no attribute 'trim',hoareprompt
+1932_D,human,codeforces2024,qwq-32b-preview,"# https://codeforces.com/problemset/problem/1932/D
+ 
+def solve():
+    input()
+    trump = input()
+    trumps = []
+    answers = []
+    suits = {'C':None , 'D': None, 'H': None, 'S':None}
+    for card in input().split():
+        rank, suit = card
+        if suit == trump:
+            trumps.append(rank)
+        else:
+            if suits[suit] is not None:
+                answers.append("" "".join([x + suit for x in sorted([suits[suit] , rank])]))
+                suits[suit] = None
+            else:
+                suits[suit] = rank
+ 
+    for suit, rank in suits.items():
+        if rank is None:
+            continue
+        if trumps != []:
+            answers.append(f""{rank}{suit} {trumps.pop()}{trump}"")
+        else:
+            print(""IMPOSSIBLE"")
+            return
+    trumps = sorted(trumps)
+    while trumps != []:
+        print(f""{trumps.pop()}{trump} {trumps.pop()}{trump}"")
+    for answer in answers:
+        print(answer)
+ 
+ 
+for _ in range(int(input())):
+    solve()",Error: 'str' object has no attribute 'trim',hoareprompt
+1931_D,human,codeforces2024,qwq-32b-preview,"def count_beautiful_pairs(test_cases):
+    results = []
+    
+    for n, x, y, arr in test_cases:
+        freq = {}
+        count = 0
+        
+        for a in arr:
+            # Calculate required remainders
+            rx = (-a % x + x) % x  # Required remainder for x
+            ry = a % y             # Required remainder for y
+            
+            # Count pairs matching the remainders
+            if (rx, ry) in freq:
+                count += freq[(rx, ry)]
+            
+            # Update frequency of current remainders
+            current_pair = (a % x, a % y)
+            if current_pair in freq:
+                freq[current_pair] += 1
+            else:
+                freq[current_pair] = 1
+        
+        results.append(count)
+    
+    return results
+ 
+ 
+# Input and output handling
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().splitlines()
+ 
+    t = int(data[0])
+    test_cases = []
+    idx = 1
+ 
+    for _ in range(t):
+        n, x, y = map(int, data[idx].split())
+        arr = list(map(int, data[idx + 1].split()))
+        test_cases.append((n, x, y, arr))
+        idx += 2
+ 
+    results = count_beautiful_pairs(test_cases)
+ 
+    for result in results:
+        print(result)
+ 
+ 
+if __name__ == ""__main__"":
+    main()",Error: 'str' object has no attribute 'trim',hoareprompt
+1979_B,human,codeforces2024,qwq-32b-preview,"for i in range(int(input())):
+    n,m=map(int,input().split())
+    k=abs(n-m)
+    if (k&(k-1))==0:
+        print(k)
+    elif k%2!=0:
+        print(1)
+    else:
+        l=bin(k).replace('0b','')
+        p=len(l)
+        q=2**(p-1)
+        f=k-q
+        while (f&(f-1))!=0:
+            l=bin(f).replace('0b','')
+            p=len(l)
+            q=2**(p-1)
+            f=f-q
+        print(f)",Error: 'str' object has no attribute 'trim',hoareprompt
+1945_F,human,codeforces2024,qwq-32b-preview,"import math
+from bisect import bisect_left, bisect_right
+from typing import Generic, Iterable, Iterator, List, Tuple, TypeVar, Optional
+T = TypeVar('T')
+ 
+class SortedMultiset(Generic[T]):
+    BUCKET_RATIO = 16
+    SPLIT_RATIO = 24
+    
+    def __init__(self, a: Iterable[T] = []) -> None:
+        ""Make a new SortedMultiset from iterable. / O(N) if sorted / O(N log N)""
+        a = list(a)
+        n = self.size = len(a)
+        if any(a[i] > a[i + 1] for i in range(n - 1)):
+            a.sort()
+        num_bucket = int(math.ceil(math.sqrt(n / self.BUCKET_RATIO)))
+        self.a = [a[n * i // num_bucket : n * (i + 1) // num_bucket] for i in range(num_bucket)]
+ 
+    def __iter__(self) -> Iterator[T]:
+        for i in self.a:
+            for j in i: yield j
+ 
+    def __reversed__(self) -> Iterator[T]:
+        for i in reversed(self.a):
+            for j in reversed(i): yield j
+    
+    def __eq__(self, other) -> bool:
+        return list(self) == list(other)
+    
+    def __len__(self) -> int:
+        return self.size
+    
+    def __repr__(self) -> str:
+        return ""SortedMultiset"" + str(self.a)
+    
+    def __str__(self) -> str:
+        s = str(list(self))
+        return ""{"" + s[1 : len(s) - 1] + ""}""
+ 
+    def _position(self, x: T) -> Tuple[List[T], int, int]:
+        ""return the bucket, index of the bucket and position in which x should be. self must not be empty.""
+        for i, a in enumerate(self.a):
+            if x <= a[-1]: break
+        return (a, i, bisect_left(a, x))
+ 
+    def __contains__(self, x: T) -> bool:
+        if self.size == 0: return False
+        a, _, i = self._position(x)
+        return i != len(a) and a[i] == x
+ 
+    def count(self, x: T) -> int:
+        ""Count the number of x.""
+        return self.index_right(x) - self.index(x)
+ 
+    def add(self, x: T) -> None:
+        ""Add an element. / O(√N)""
+        if self.size == 0:
+            self.a = [[x]]
+            self.size = 1
+            return
+        a, b, i = self._position(x)
+        a.insert(i, x)
+        self.size += 1
+        if len(a) > len(self.a) * self.SPLIT_RATIO:
+            mid = len(a) >> 1
+            self.a[b:b+1] = [a[:mid], a[mid:]]
+    
+    def _pop(self, a: List[T], b: int, i: int) -> T:
+        ans = a.pop(i)
+        self.size -= 1
+        if not a: del self.a[b]
+        return ans
+ 
+    def discard(self, x: T) -> bool:
+        ""Remove an element and return True if removed. / O(√N)""
+        if self.size == 0: return False
+        a, b, i = self._position(x)
+        if i == len(a) or a[i] != x: return False
+        self._pop(a, b, i)
+        return True
+ 
+    def lt(self, x: T) -> Optional[T]:
+        ""Find the largest element < x, or None if it doesn't exist.""
+        for a in reversed(self.a):
+            if a[0] < x:
+                return a[bisect_left(a, x) - 1]
+ 
+    def le(self, x: T) -> Optional[T]:
+        ""Find the largest element <= x, or None if it doesn't exist.""
+        for a in reversed(self.a):
+            if a[0] <= x:
+                return a[bisect_right(a, x) - 1]
+ 
+    def gt(self, x: T) -> Optional[T]:
+        ""Find the smallest element > x, or None if it doesn't exist.""
+        for a in self.a:
+            if a[-1] > x:
+                return a[bisect_right(a, x)]
+ 
+    def ge(self, x: T) -> Optional[T]:
+        ""Find the smallest element >= x, or None if it doesn't exist.""
+        for a in self.a:
+            if a[-1] >= x:
+                return a[bisect_left(a, x)]
+    
+    def __getitem__(self, i: int) -> T:
+        ""Return the i-th element.""
+        if i < 0:
+            for a in reversed(self.a):
+                i += len(a)
+                if i >= 0: return a[i]
+        else:
+            for a in self.a:
+                if i < len(a): return a[i]
+                i -= len(a)
+        raise IndexError
+    
+    def pop(self, i: int = -1) -> T:
+        ""Pop and return the i-th element.""
+        if i < 0:
+            for b, a in enumerate(reversed(self.a)):
+                i += len(a)
+                if i >= 0: return self._pop(a, ~b, i)
+        else:
+            for b, a in enumerate(self.a):
+                if i < len(a): return self._pop(a, b, i)
+                i -= len(a)
+        raise IndexError
+ 
+    def index(self, x: T) -> int:
+        ""Count the number of elements < x.""
+        ans = 0
+        for a in self.a:
+            if a[-1] >= x:
+                return ans + bisect_left(a, x)
+            ans += len(a)
+        return ans
+ 
+    def index_right(self, x: T) -> int:
+        ""Count the number of elements <= x.""
+        ans = 0
+        for a in self.a:
+            if a[-1] > x:
+                return ans + bisect_right(a, x)
+            ans += len(a)
+        return ans
+ 
+ 
+ 
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    v = list(map(int,input().split()))
+    p = list(map(int,input().split()))
+    a = []
+    for i in range(n):
+        a.append(-v[p[i]-1])
+    r = SortedMultiset(a)
+    ans = -1
+    idx = 1
+    for i in range((n+1)//2):
+        x = (i+1)* -r[i]  
+        if x >ans:
+            ans = x
+            idx = i +1
+        r.discard(a[i]) 
+    print(ans,idx)",Error: 'str' object has no attribute 'trim',hoareprompt
+1945_B,human,codeforces2024,qwq-32b-preview,"t=int(input())
+for _ in range(t):
+    a,b,m=map(int,input().split())
+    A=int(m/a)+1
+    B=int(m/b)+1
+    print(A+B)",Error: 'str' object has no attribute 'trim',hoareprompt
+1956_C,human,codeforces2024,qwq-32b-preview,"t = int(input())
+ 
+for _ in range(t):
+    n = int(input())
+    
+    sum, r = 0, 0
+    for i in range(1, n + 1):
+        if (n * (n + 1)) // 2 > i * n:
+            r = i
+            sum += (n * (n + 1)) // 2
+        else:
+            sum += i * n
+ 
+    print(sum, n + r)
+    for j in range(1, n + r + 1):
+        if j <= n:
+            print(1, j, end="" "")
+            print(*range(1, n + 1))
+        else:
+            print(2, j % n, end="" "")
+            print(*range(1, n + 1))",Error: 'str' object has no attribute 'trim',hoareprompt
+1923_C,human,codeforces2024,qwq-32b-preview,"from itertools import accumulate
+def solve():
+    n,q=map(int,input().split())
+    a=[0]+[int(x) for x in input().split()]
+    b=[0]*(n+1)
+    for i in range(1,n+1):
+        x = 1 if a[i]>1 else 2
+        b[i]=b[i-1] + x
+    a=list(accumulate(a))
+    print(*a)
+    for _ in range(q):
+        x,y=map(int,input().split())
+        print(""NO"") if a[y]-a[x-1]<b[y]-b[x-1] or x==y else print(""YES"") 
+   
+   
+ 
+for _ in range(int(input())):
+    solve()",Error: 'str' object has no attribute 'trim',hoareprompt
+1956_B,human,codeforces2024,qwq-32b-preview,"def max_points(n, a):
+    from collections import Counter
+ 
+    # Count the frequency of each card in your hand
+    counter = Counter(a)
+ 
+    # The initial number of pairs we can make
+    pairs = sum(1 for count in counter.values() if count == 2)
+ 
+    # The maximum score we can achieve is limited by the minimum of pairs and n // 2
+    return min(pairs, n // 2)
+ 
+def solve():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    idx = 0
+    t = int(data[idx])
+    idx += 1
+    results = []
+    
+    for _ in range(t):
+        n = int(data[idx])
+        idx += 1
+        a = list(map(int, data[idx:idx + n]))
+        idx += n
+        results.append(max_points(n, a))
+    
+    for result in results:
+        print(result)",Error: 'str' object has no attribute 'trim',hoareprompt
+1972_A,human,codeforces2024,qwq-32b-preview,"# import sys
+# sys.stdout = open('Div3/output.txt', 'w')
+# sys.stdin = open('Div3/input.txt', 'r')
+ 
+import math
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = list(map(int, input().split()))
+    b = list(map(int, input().split()))
+ 
+    cnt = 0
+    i = 0
+    for j in range(n):
+        if(b[j]<a[i]):
+            cnt+=1
+        else:
+            i+=1
+ 
+    print(cnt)",Error: 'str' object has no attribute 'trim',hoareprompt
+1925_B,human,codeforces2024,qwq-32b-preview,"from math import * 
+def main(): 
+    x,n = list(map(int, input().split())) 
+    ans = 0 
+    for i in range(1, isqrt(x) + 1): 
+        if x % i == 0: 
+            if n <= (x//i):
+                ans = max(ans , i) 
+            if (n <= i): ans = max(ans , x//i) 
+    print(ans) 
+ 
+tc = int(input()) 
+for _ in range(tc): 
+    main()",Error: 'str' object has no attribute 'trim',hoareprompt
+1931_E,human,codeforces2024,qwq-32b-preview,"for y in range(int(input())):
+    rev_val = []
+    rev_res = ''
+    list_len, max_power = input().split()
+    operational_list = input().split()
+    
+    for x in operational_list:
+        x_rev = int(x[::-1])
+        if len(str(x_rev)) == len(x):
+            rev_res = rev_res + x
+        else:
+            rev_val.append(x[::-1])
+            
+    rev_val.sort()
+    
+    
+    # print(operational_list)
+    # print(rev_res,'/',rev_val)
+    
+    for x in range(len(rev_val)):
+        if (x % 2) == 0:
+            # print('X:',rev_val[x])
+            val_in = int(rev_val[x])
+            # print('X:',val_in)
+            rev_res += str(val_in)
+        else:
+            val_in = rev_val[x]
+            rev_res += val_in[::-1]
+        # print(rev_res)
+    
+    
+    if 10**int(max_power) < int(rev_res):
+        print('Sasha')
+    else:
+        print('Anna')",Error: 'str' object has no attribute 'trim',hoareprompt
+1942_B,human,codeforces2024,qwq-32b-preview,"def what_the_mex():
+    n = int(input())
+    arr = list(map(int , input().split()))
+    mex = []
+    minn = 0
+    maxx = 0
+    for i in range(n):
+        if arr[i] > 0:
+            mex.append(minn)
+            minn += 1
+            if minn == maxx:
+                minn = maxx + 1
+        else:
+            mex.append(abs(arr[i] - minn))
+            if abs(arr[i] - minn)  > maxx:
+               maxx = abs(arr[i] - minn)
+        
+    for itm in mex:
+        print(itm , end = ' ')
+    print()
+ 
+for _ in range(int(input())):
+    what_the_mex()",Error: 'str' object has no attribute 'trim',hoareprompt
+1945_D,human,codeforces2024,qwq-32b-preview,"import sys
+ 
+cases = int(input())
+ 
+for c in range(cases):
+    na_frente, pos_final = map(int, input().split())
+    custo_pra_trocar_a = list(map(int, input().split()))
+    custo_pra_passar_b = list(map(int, input().split()))
+ 
+    na_frente -= 1
+    pos_final -= 1
+ 
+    total = 0
+    best = sys.float_info.max
+    for v in range(na_frente, -1, -1):
+        if(v <= pos_final):
+            if(best > total + custo_pra_trocar_a[v]):
+                best = total + custo_pra_trocar_a[v]
+ 
+            if(custo_pra_trocar_a[v] < custo_pra_passar_b[v]):
+                total += custo_pra_trocar_a[v]
+            else:
+                total += custo_pra_passar_b[v]
+        else:
+            if(custo_pra_trocar_a[v] < custo_pra_passar_b[v]):
+                total += custo_pra_trocar_a[v]
+            else:
+                total += custo_pra_passar_b[v]
+    
+    print(best)",Error: 'str' object has no attribute 'trim',hoareprompt
+1928_A,human,codeforces2024,qwq-32b-preview,"# Number of test cases
+t = int(input())
+ 
+# Loop over all test cases
+for _ in range(t):
+    # Read the dimensions a and b
+    a, b = map(int, input().split())
+    
+    # If either dimension is even, we can form a different rectangle
+    if a % 2 == 0 or b % 2 == 0:
+        print(""Yes"")
+    else:
+        print(""No"")",Error: 'str' object has no attribute 'trim',hoareprompt
+1974_A,human,codeforces2024,qwq-32b-preview,"import math
+ 
+def mins(a, b):
+    return a if a < b else b
+ 
+def sol():
+    x, y = map(int, input().split())
+    if x > 0 and y > 0:
+        bxsfory = math.ceil(y / 2)
+        x = x - bxsfory * 15 + y * 4
+        bxsfory1 = 0 if x <= 0 else (math.ceil(x / 15) + 1)
+        print(bxsfory1 + bxsfory)
+    elif x == 0 and y > 0:
+        print(math.ceil(y / 2))
+    elif x > 0 and y == 0:
+        print(math.ceil(x / 15))
+    else:
+        print(0)
+ 
+def main():
+    t = int(input())
+    for _ in range(t):
+        sol()
+ 
+if __name__ == ""__main__"":
+    main()",Error: 'str' object has no attribute 'trim',hoareprompt
+1943_A,human,codeforces2024,qwq-32b-preview,"for _ in range(int(input())):
+    n= int(input())
+    a=list(map(int, input().split()))
+    cntl=[0 for _ in range(n+1)]
+    for i in a:
+        cntl[i]+=1
+    if cntl[0]==0:print(0)
+    else:
+        c=min(2,cntl[0])
+        for j in range(1,n+1):
+            if cntl[j]<2:
+                c-=1
+                if not c or j==n:print(j);break",Error: 'str' object has no attribute 'trim',hoareprompt
+1945_C,human,codeforces2024,qwq-32b-preview,"from heapq import heappush, heappop, heapify
+from collections import defaultdict, deque,Counter
+from math import ceil, floor, sqrt, factorial,gcd,cos,sin,pi
+from itertools import permutations, combinations,product
+from bisect import bisect_left, bisect_right
+from copy import deepcopy
+from fractions import Fraction
+import sys
+#from functools import cache,lru_cache #@lru_cache(maxsize=None)
+# sys.setrecursionlimit(10**6)
+# input = sys.stdin.readline
+vector1 = [[0, -1], [1, 0], [0, 1], [-1, 0]]
+vector2 = [[0, 1], [1, 0], [-1, 0], [0, -1],
+           [1,-1], [-1, 1], [1, 1], [-1, -1]]
+ 
+ 
+ 
+def solve():
+    
+    n = int(input())
+    a = input()
+    S = [[0,0]]
+    for s in a:
+        x, y = S[-1]
+        if s == ""0"":
+            x += 1
+        else:
+            y += 1
+        S.append([x,y])
+    ans = -1
+    for i in range(n+1):
+        left = S[i][0]
+        lsum = i
+        right = S[-1][1] - S[i][1]
+        rsum = n - i
+        #print(left,right)
+        if left*2 < lsum or right*2 < rsum:
+            continue
+        elif abs(n/2 - i) < abs(n/2 - ans):
+                ans = i
+        
+    print(ans)
+    #print(S)
+ 
+    
+def main():
+    for _ in range(int(input())):
+        solve()
+    
+    
+    
+    
+ 
+if __name__ == '__main__':
+    main()",Error: 'str' object has no attribute 'trim',hoareprompt
+1968_D,human,codeforces2024,qwq-32b-preview,"YES, NO = ""YES"", ""NO""
+MOD = 10 ** 9 + 7 
+alpha = 'abcdefghijklmnopqrstuvwxyz'
+ 
+for _ in range(int(input())):
+    n, k, pb, ps = input().split()
+    n, k, pb, ps = int(n), int(k), int(pb), int(ps)
+    p = list(map(int, input().split()))
+    a = list(map(int, input().split()))
+    
+    pathb, paths = [], []
+    vis = [0] * n
+    
+    vis[pb - 1] = 1
+    while True:
+        pathb.append(a[pb - 1])
+        pb = p[pb - 1]
+        if vis[pb - 1] == 1:
+            break
+    
+    vis = [0] * n
+    
+    vis[ps - 1] = 1
+    while True:
+        paths.append(a[ps - 1])
+        ps = p[ps - 1]
+        if vis[ps - 1] == 1:
+            break
+    resb, ress = 0, 0
+    preb, pres = 0, 0
+    for i in range(len(pathb)):
+        if k < i + 1:
+            break
+        curr = preb + pathb[i] * (k - i)
+        preb += pathb[i]
+        resb = max(resb, curr)
+    
+    for i in range(len(paths)):
+        if k < i + 1:
+            break
+        curr = pres + paths[i] * (k - i)
+        pres += paths[i]
+        ress = max(ress, curr)
+ 
+    if resb > ress:
+        print(""Bodya"")
+    elif ress > resb:
+        print(""Sasha"")
+    else:
+        print(""Draw"")",Error: 'str' object has no attribute 'trim',hoareprompt
+1929_C,human,codeforces2024,qwq-32b-preview,"for s in [*open(0)][1:]:
+    k,x,a=map(int,s.split())
+    if x<k-1:
+        if a>=(x+1):
+            print('YES')
+        else:
+            print('NO')
+    elif x==k-1:
+       
+        if a>=x+2:
+            print('YES')
+        else:
+            print('NO')
+    else:
+        z = k-2
+        for i in range(x-k+3):
+            z += (z//(k-1) + 1)
+        if a>=z:
+            print('YES')
+        else:
+            print('NO')",Error: 'str' object has no attribute 'trim',hoareprompt

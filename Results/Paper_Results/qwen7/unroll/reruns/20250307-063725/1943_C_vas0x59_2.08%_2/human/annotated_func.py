@@ -1,0 +1,64 @@
+#State of the program right berfore the function call: l is a list of integers.
+def func_1(l):
+    return max(range(len(l)), key=lambda x: l[x])
+    #The program returns the index of the maximum value in the list 'l'
+#Overall this is what the function does:The function accepts a list of integers `l` and returns the index of the maximum value within that list. If the list is empty, it will raise a `ValueError`.
+
+#State of the program right berfore the function call: n is an integer representing the number of vertices in the tree, where 1 ≤ n ≤ 2 \cdot 10^3. u2vs is a list of lists where u2vs[i] contains the indices of vertices connected to vertex i, and (u, v) are integers representing the indices of vertices connected by an edge such that 1 ≤ u, v ≤ n and u ≠ v.
+def func_2():
+    n = int(input())
+    u2vs = [[] for _ in range(n)]
+    for _ in range(n - 1):
+        u, v = tuple(map(int, input().split()))
+        
+        u -= 1
+        
+        v -= 1
+        
+        u2vs[u].append(v)
+        
+        u2vs[v].append(u)
+        
+    #State: Output State: `n` is an input integer, `u2vs` is a list of `n` empty lists where each list contains its connected nodes as elements based on user inputs. Each pair `(u, v)` from the input is added to both `u2vs[u]` and `u2vs[v]`, with indices adjusted by subtracting 1.
+    d, _ = bfs(0)
+    a = func_1(d)
+    d, previous = bfs(a)
+    b = func_1(d)
+    path_ba = [b]
+    while True:
+        n = previous[path_ba[-1]]
+        
+        if n == -1:
+            break
+        
+        path_ba.append(n)
+        
+    #State: Output State: `path_ba` is a list containing the path from node `b` back to node `0` in reverse order, and all other variables (`b`, `n`, `u2vs`, `d`, `previous`, `a`) remain unchanged.
+    #
+    #Explanation: The loop iteratively appends the previous node (`n`) of the current last node in `path_ba` until it reaches node `0` (where `previous[0] == -1`). The loop constructs the path from `b` back to `0` by following the `previous` list, but since the path is built by appending nodes, the final `path_ba` will be in reverse order. All other variables remain unchanged because they are not modified within the loop.
+    ops = []
+    if (len(path_ba) % 2 == 1) :
+        ci = len(path_ba) // 2
+        c = path_ba[ci]
+        for i in range(ci + 1):
+            ops.append((c, i))
+            
+        #State: Output State: `ops` is a list containing tuples `(c, i)` for each `i` in the range from `0` to `ci` inclusive, where `ci` is half the length of `path_ba` rounded down, and `c` is the element at index `ci` in `path_ba`.
+    else :
+        c2 = len(path_ba) // 2
+        c1 = c2 - 1
+        for i in range(1, len(path_ba) - c1, 2):
+            ops.append((c1, i))
+            
+            ops.append((c2, i))
+            
+        #State: Output State: `path_ba` is a list containing the path from node `b` back to node `0` in reverse order, `b`, `n`, `u2vs`, `d`, `previous`, and `a` remain unchanged, `c2` is the length of `path_ba` divided by 2, `c1` is `c2 - 1`, `ops` is a list containing tuples `(c1, i)` and `(c2, i)` for every odd index `i` in the range from 1 to `len(path_ba) - c1 - 1` with a step of 2.
+    #State: `path_ba` is a list containing the path from node `b` back to node `0` in reverse order, and all other variables (`b`, `n`, `u2vs`, `d`, `previous`, `a`) remain unchanged. If the length of `path_ba` is odd, `ops` is a list containing tuples `(c, i)` for each `i` in the range from `0` to `ci` inclusive, where `ci` is half the length of `path_ba` rounded down, and `c` is the element at index `ci` in `path_ba`. If the length of `path_ba` is even, `ops` is a list containing tuples `(c1, i)` and `(c2, i)` for every odd index `i` in the range from `1` to `len(path_ba) - c1 - 1` with a step of `2`, where `c2` is the length of `path_ba` divided by `2`, and `c1` is `c2 - 1`.
+    print(len(ops))
+    #This is printed: len(path_ba) // 2 + 1 if len(path_ba) is odd, else len(path_ba) // 2
+    print(*map(lambda x: f'{x[0] + 1} {x[1]}', ops), sep='\n')
+    #This is printed: d 0\nd 1\nd 2
+    return None
+    #The program returns None
+#Overall this is what the function does:The function processes an input tree represented by the number of vertices `n` and a list of lists `u2vs`. It first builds the adjacency list representation of the tree. Then, it performs two breadth-first searches (BFS) to find a specific path from node `b` back to node `0`. Based on the length of this path, it constructs a list of operations `ops` which consists of tuples indicating certain pairs of nodes and indices. Finally, it prints the number of operations and the detailed operations themselves. The function does not return any value.
+

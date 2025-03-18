@@ -1,0 +1,1 @@
+The function `wrapper` takes a tuple of arguments `args` and checks if `args` is a key in the dictionary `d`. If `args` is not a key in `d`, it computes the result of `func(*args)`, stores this result in `d` with `args` as the key, and returns the result. If `args` is already a key in `d`, it returns the pre-existing value associated with `args`.

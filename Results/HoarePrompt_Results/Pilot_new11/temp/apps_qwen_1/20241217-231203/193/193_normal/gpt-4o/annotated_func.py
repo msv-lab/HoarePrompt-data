@@ -1,6 +1,0 @@
-#State of the program right berfore the function call: x and y are integers such that 3 <= y < x <= 100,000.
-def func():
-    x, y = map(int, input().split())
-    print((x - y) // 2 + (x - y) % 2)
-#Overall this is what the function does:The function reads two integers \(x\) and \(y\) from standard input, where \(3 \leq y < x \leq 100,000\). It then calculates and prints the integer division of \((x - y)\) by 2 plus the remainder of \((x - y)\) divided by 2. This results in the function outputting the smallest integer greater than or equal to \(\frac{x - y}{2}\). There are no explicit return values; the function only prints the result. Potential edge cases include the minimum and maximum values for \(x\) and \(y\) as specified. If \(x\) and \(y\) do not meet the specified constraints, the function will raise a ValueError when attempting to split the input.
-

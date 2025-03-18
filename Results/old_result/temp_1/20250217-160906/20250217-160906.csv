@@ -1,0 +1,242 @@
+Task ID,Dataset,model_created,model_run,description,Code,run_number,original correctness,summary fsl,naive correctness fsl,vanilla,vanilla_no_cot,simple tree,complex tree,summary,simple verify fsl,complex verify fsl,summary verify fsl,simple verify,complex verify,summary verify
+1978_A,codeforces2024,human,qwen2.5-7b-instruct,"Alice has n books. The 1 -st book contains a_1 pages, the 2 -nd book contains
+a_2 pages, \ldots , the n -th book contains a_n pages. Alice does the
+following:
+
+  * She divides all the books into two non-empty piles. Thus, each book ends up in exactly one of the two piles.
+  * Alice reads one book with the highest number in each pile.
+
+Alice loves reading very much. Help her find the maximum total number of pages
+she can read by dividing the books into two piles.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 500 ) — the number of test cases. The description of
+the test cases follows.
+
+The first line of each test case contains a single integer n (2 \le n \le 100
+) — the number of books Alice has.
+
+The second line of each test case contains n integers a_1, a_2, \ldots, a_n (1
+\le a_i \le 10^9 ) — the number of pages in each book.
+
+Output
+
+For each test case, output a single integer — the maximum number of pages
+Alice can read.
+
+Example
+
+Input
+
+    5
+    
+    2
+    
+    1 1
+    
+    4
+    
+    2 3 3 1
+    
+    5
+    
+    2 2 3 2 2
+    
+    2
+    
+    10 3
+    
+    3
+    
+    1 2 3
+
+Output
+
+    2
+    4
+    5
+    13
+    5
+    
+Note
+
+In the first test case, Alice can put book number 1 in the first pile, and
+book number 2 in the second pile. Then she will read a_1 + a_2 = 1 + 1 = 2
+pages.
+
+In the second test case, Alice can put books with numbers 2 and 3 in the first
+pile, and books with numbers 1 and 4 in the second pile. Then she will read
+the book with the highest number 3 from the first pile, and the book with the
+highest number 4 from the second pile. Then she will read a_3 + a_4 = 3 + 1 =
+4 pages.","t = int(input().strip())
+ 
+for i in range(t):
+    # n is no. books
+    n = int(input().strip())
+    ls = input().split()
+    last = int(ls.pop())
+    other = int(sorted(ls).pop())
+    print(last + other)",1,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+1930_B,codeforces2024,human,qwen2.5-7b-instruct,"You are given a positive integer n .
+
+Find a permutation^\dagger p of length n such that there do not exist two
+distinct indices i and j (1 \leq i, j < n ; i \neq j ) such that p_i divides
+p_j and p_{i+1} divides p_{j+1} .
+
+Refer to the Notes section for some examples.
+
+Under the constraints of this problem, it can be proven that at least one p
+exists.
+
+^\dagger A permutation of length n is an array consisting of n distinct
+integers from 1 to n in arbitrary order. For example, [2,3,1,5,4] is a
+permutation, but [1,2,2] is not a permutation (2 appears twice in the array),
+and [1,3,4] is also not a permutation (n=3 but there is 4 in the array).
+
+Input
+
+Each test contains multiple test cases. The first line contains a single
+integer t (1 \leq t \leq 10^3 ) — the number of test cases. The description of
+the test cases follows.
+
+The first line of each test case contains a single integer n (3 \leq n \leq
+10^5 ) — the length of the permutation p .
+
+It is guaranteed that the sum of n over all test cases does not exceed 10^5 .
+
+Output
+
+For each test case, output p_1, p_2, \ldots, p_n .
+
+If there are multiple solutions, you may output any one of them.
+
+Example
+
+Input
+
+    2
+    
+    4
+    
+    3
+
+Output
+
+    4 1 2 3
+    1 2 3
+    
+Note
+
+In the first test case, p=[4,1,2,3] is a valid permutation. However, the
+permutation p=[1,2,3,4] is not a valid permutation as we can choose i=1 and
+j=3 . Then p_1=1 divides p_3=3 and p_2=2 divides p_4=4 . Note that the
+permutation p=[3, 4, 2, 1] is also not a valid permutation as we can choose
+i=3 and j=2 . Then p_3=2 divides p_2=4 and p_4=1 divides p_3=2 .
+
+In the second test case, p=[1,2,3] is a valid permutation. In fact, all 6
+permutations of length 3 are valid.","for _ in range(int(input())):
+    n = int(input())
+    a = list(range(1, n + 1)) 
+    for i in range(n//2):
+        a[2*i+1]=n-i
+        a[2*i]=i+1
+    if len(a)%2==1:
+        a[n-1]=n//2+1
+    print(*a)",1,True,False,False,True,False,True,True,False,False,False,False,True,True,True
+1926_E,codeforces2024,human,qwen2.5-7b-instruct,"Vladislav has n cards numbered 1, 2, \dots, n . He wants to lay them down in a
+row as follows:
+
+  * First, he lays down all the odd-numbered cards from smallest to largest. 
+  * Next, he lays down all cards that are twice an odd number from smallest to largest (i.e. 2 multiplied by an odd number). 
+  * Next, he lays down all cards that are 3 times an odd number from smallest to largest (i.e. 3 multiplied by an odd number). 
+  * Next, he lays down all cards that are 4 times an odd number from smallest to largest (i.e. 4 multiplied by an odd number). 
+  * And so on, until all cards are laid down. 
+
+What is the k -th card he lays down in this process? Once Vladislav puts a
+card down, he cannot use that card again.
+
+Input
+
+The first line contains an integer t (1 \leq t \leq 5 \cdot 10^4 ) — the
+number of test cases.
+
+The only line of each test case contains two integers n and k (1 \leq k \leq n
+\leq 10^9 ) — the number of cards Vlad has, and the position of the card you
+need to output.
+
+Output
+
+For each test case, output a single integer — the k -th card Vladislav lays
+down.
+
+Example
+
+Input
+
+    11
+    
+    7 1
+    
+    7 2
+    
+    7 3
+    
+    7 4
+    
+    7 5
+    
+    7 6
+    
+    7 7
+    
+    1 1
+    
+    34 14
+    
+    84 19
+    
+    1000000000 1000000000
+
+Output
+
+    1
+    3
+    5
+    7
+    2
+    6
+    4
+    1
+    27
+    37
+    536870912
+    
+Note
+
+In the first seven test cases, n=7 . Vladislav lays down the cards as follows:
+
+  * First — all the odd-numbered cards in the order 1 , 3 , 5 , 7 . 
+  * Next — all cards that are twice an odd number in the order 2 , 6 . 
+  * Next, there are no remaining cards that are 3 times an odd number. (Vladislav has only one of each card.) 
+  * Next — all cards that are 4 times an odd number, and there is only one such card: 4 . 
+  * There are no more cards left, so Vladislav stops. 
+
+Thus the order of cards is 1 , 3 , 5 , 7 , 2 , 6 , 4 .","t = int(input())
+for _ in range(t):
+    n, k = map(int, input().split())
+    n_back = n
+    s = (n + 1) // 2
+    n = (n + 1) // 2
+    m = 1
+    while s < k:
+        if n == 0:
+            s = n_back
+            n = 1
+            break
+        m *= 2
+        n //= 2
+        s += n
+    # print(n, s, k, m, (k - (s - n)))
+    print((2 * (k - (s - n)) - 1) * m)",1,False,False,False,True,False,True,True,False,False,False,False,True,True,True

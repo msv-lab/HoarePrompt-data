@@ -1,0 +1,275 @@
+Task ID,unique_id,Dataset,model_created,model_run,description,Code,run_number,original correctness,summary fsl,naive correctness fsl,vanilla,vanilla_no_cot,simple tree,complex tree,summary,simple verify fsl,complex verify fsl,summary verify fsl,simple verify,complex verify,summary verify,consistency,consistency_mine,consistency_old
+1957_C,1957_C_hx199411_100%,codeforces2024,human,qwen2p5-72b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","t = int(input())
+while t:
+    t -= 1
+    n,k = list(map(int,input().split(' ')))
+    num = 0
+    for i in range(k):
+        c,r = list(map(int,input().split(' ')))
+        if c == r:
+            num += 1
+        else:
+            num += 2
+    m = n - num
+    if m == 0:
+        print(1)
+    elif m == 1:
+        print(1)
+    else:
+        dp = [0 for i in range(m+1)]
+        dp[1] = 1
+        dp[2] = 3
+        for i in range(3,m+1):
+            dp[i] = (dp[i-1] + (i-1)*dp[i-2]*2)%(10**9+7)
+        print(dp[m])",3,True,False,False,True,True,True,True,True,True,True,True,True,True,True,0.40849978776192514,-0.09525744994067215,0.5
+1948_A,1948_A_Tirthraj_Raval_0.00%,codeforces2024,human,qwen2p5-72b-instruct,"You are given an integer n .
+
+Your task is to build a string of uppercase Latin letters. There must be
+exactly n special characters in this string. Let's call a character special if
+it is equal to exactly one of its neighbors.
+
+For example, there are 6 special characters in the AAABAACC string (at
+positions: 1 , 3 , 5 , 6 , 7 and 8 ).
+
+Print any suitable string or report that there is no such string.
+
+Input
+
+The first line contains a single integer t (1 \le t \le 50 ) — the number of
+test cases.
+
+The only line of each test case contains a single integer n (1 \le n \le 50 ).
+
+Output
+
+For each test case, print the answer as follows:
+
+  * if there is no suitable string, print one line containing the string NO; 
+  * otherwise, print two lines. The first line should contain the string YES; on the second line print a string of length at most 200  — the answer itself (it can be shown that if some answers exist, then there is an answer of length at most 200 ). If there are several solutions, print any of them. 
+
+Example
+
+Input
+
+    3
+    
+    6
+    
+    1
+    
+    2
+
+Output
+
+    YES
+    AAABAACC
+    NO
+    YES
+    MM","t = int(input())
+for _ in range(t):
+        n = int(input())
+        
+        if n % 2 == 1:
+            print(""NO"")
+        else:
+            print(""YES"")
+            pattern = []
+            for i in range(n // 2):
+                pattern.append(""AB""[i % 2])
+                pattern.append(""AB""[(i % 2) ^ 1])
+            print("""".join(pattern))",3,False,False,False,True,True,True,True,True,False,False,False,True,True,True,0.5175726262592018,0.018300057959463222,0.5833333333333334
+1968_B,1968_B_MALIK_ANTUPARTHI_100%,codeforces2024,human,qwen2p5-72b-instruct,"You are given two binary strings a and b . A binary string is a string
+consisting of the characters '0' and '1'.
+
+Your task is to determine the maximum possible number k such that a prefix of
+string a of length k is a subsequence of string b .
+
+A sequence a is a subsequence of a sequence b if a can be obtained from b by
+the deletion of several (possibly, zero or all) elements.
+
+Input
+
+The first line consists of a single integer t (1 \le t \le 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and m (1\le n,m \le 2
+\cdot 10^5 ) — the length of string a and the length of string b ,
+respectively.
+
+The second line of each test case contains a binary string a of length n .
+
+The third line of each test case contains a binary string b of length m .
+
+It is guaranteed that the sum of values n over all test cases does not exceed
+2 \cdot 10^5 . Similarly, the sum of values m over all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output a single number — the maximum k , such that the
+first k characters of a form a subsequence of b .
+
+Example
+
+Input
+
+    6
+    
+    5 4
+    
+    10011
+    
+    1110
+    
+    3 3
+    
+    100
+    
+    110
+    
+    1 3
+    
+    1
+    
+    111
+    
+    4 4
+    
+    1011
+    
+    1111
+    
+    3 5
+    
+    100
+    
+    11010
+    
+    3 1
+    
+    100
+    
+    0
+
+Output
+
+    2
+    2
+    1
+    1
+    3
+    0
+    
+Note
+
+In the first example, the string '10 ' is a subsequence of
+'1\color{red}11\color{red}0 ' but the string '100 ' is not. So the answer is 2
+.
+
+In the fifth example, a ='100 ', b ='1\color{red}{10}1\color{red}0 ', whole
+string a is a subsequence of string b . So the answer is 3 .
+
+In the sixth example, string b does not contain '1 ' so the answer is 0 .","a=int(input())
+for i in range(a):
+    b,c=map(int,input().split())
+    d=input()
+    e=input()
+    k=0
+    for j in range(b):
+        if d[j] in e[k:]:
+            k=e[k:].index(d[j])+1+k
+            if k==c or j==b-1:
+                k=j+1
+                break
+        else:
+            k=j
+            break
+    print(k)",3,True,False,False,True,False,True,False,True,True,False,False,True,True,True,0.5225905238974631,0.024000142121750116,0.5833333333333334

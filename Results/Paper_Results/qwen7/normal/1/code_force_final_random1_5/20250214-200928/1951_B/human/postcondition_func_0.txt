@@ -1,0 +1,8 @@
+The function `func_1` accepts a list `a` of distinct integers representing Cowdeforce ratings and an integer `k`. It searches for the first two elements in `a` that are greater than the `k`-th element. If found, it returns a specific value based on the positions of these elements relative to `k`. If no such elements are found, it returns -1. The function can return one of the following values:
+1. -1 if no conditions are met.
+2. `k - 1` if `k` is not 14 and the list `ind` contains exactly one element, which is 0.
+3. `ind[0] - 1` if `ind` contains the indices of the first two elements greater than `x` and `ind[0]` is greater than `k`.
+4. The maximum of `k - ind[0]` and `ind[0] - 1` if `ind[0]` is less than or equal to `k`.
+5. The minimum of `ind[1] - 1` and `13` if `ind[0]` is 0.
+6. The maximum of `ind[0] - 1` and `ind[1] - ind[0]` if `ind[0]` is not 0.
+7. The maximum of `ind[0] - 1` and `k - ind[0]` otherwise.

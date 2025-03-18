@@ -1,0 +1,56 @@
+import io
+import sys
+
+# Assuming the provided program is saved as 'program.py' and can be imported from the same directory.
+from program import func
+
+def capture_output(func, input_data):
+    sys.stdin = io.StringIO(input_data)
+    captured_output = io.StringIO()
+    sys.stdout = captured_output
+    func()
+    sys.stdout = sys.__stdout__
+    return captured_output.getvalue().strip()
+
+# Test cases
+input_data_1 = """5
+5
+1 2 3 4 5
+8
+8 2 3 1 1 7 4 3
+5
+3 3 3 3 3
+1
+1
+2
+2 1"""
+expected_output_1 = "3\n1\n0\n0\n0"
+
+input_data_2 = """1
+3
+1 1 1"""
+expected_output_2 = "0"
+
+input_data_3 = """1
+4
+1 2 2 3"""
+expected_output_3 = "1"
+
+input_data_4 = """1
+6
+5 4 3 2 1 6"""
+expected_output_4 = "1"
+
+input_data_5 = """1
+2
+1 2"""
+expected_output_5 = "0"
+
+# Assertions
+assert capture_output(func, input_data_1) == expected_output_1
+assert capture_output(func, input_data_2) == expected_output_2
+assert capture_output(func, input_data_3) == expected_output_3
+assert capture_output(func, input_data_4) == expected_output_4
+assert capture_output(func, input_data_5) == expected_output_5
+
+print("All tests passed!")

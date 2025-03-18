@@ -1,0 +1,142 @@
+# Include necessary imports if any
+# Assume the provided program is saved as 'program.py' and can be imported from the same dir.
+import io
+import sys
+from program import *
+
+def run_program_with_captured_io(input_data):
+    original_stdin = sys.stdin
+    original_stdout = sys.stdout
+
+    try:
+        sys.stdin = io.StringIO(input_data)
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
+
+        with open("program.py", "r", encoding="utf-8") as f:
+            code = f.read()
+            exec(code, {})
+
+        return captured_output.getvalue().strip()
+    
+    finally:
+        sys.stdin = original_stdin
+        sys.stdout = original_stdout
+
+# Write your test cases below
+# Each test case should include assertions based on the problem description
+
+# Test case 1 from the example
+input_data = """6
+5 1
+1 2
+1 3
+3 4
+3 5
+2 1
+1 2
+6 1
+1 2
+2 3
+3 4
+4 5
+5 6
+3 1
+1 2
+1 3
+8 2
+1 2
+1 3
+2 4
+2 5
+3 6
+3 7
+3 8
+6 2
+1 2
+2 3
+1 4
+4 5
+5 6"""
+expected_output = """2
+1
+3
+1
+1
+2"""
+assert run_program_with_captured_io(input_data) == expected_output
+
+# Test case 2: Single node tree
+input_data = """1
+1 0"""
+expected_output = """1"""
+assert run_program_with_captured_io(input_data) == expected_output
+
+# Test case 3: Small tree with multiple components after removal
+input_data = """1
+4 2
+1 2
+2 3
+3 4"""
+expected_output = """1"""
+assert run_program_with_captured_io(input_data) == expected_output
+
+# Test case 4: Larger tree with balanced components
+input_data = """1
+7 3
+1 2
+1 3
+1 4
+2 5
+2 6
+2 7"""
+expected_output = """2"""
+assert run_program_with_captured_io(input_data) == expected_output
+
+# Test case 5: Tree where maximum x is larger than 1
+input_data = """1
+8 3
+1 2
+1 3
+2 4
+2 5
+3 6
+3 7
+3 8"""
+expected_output = """2"""
+assert run_program_with_captured_io(input_data) == expected_output
+
+# Test case 6: Edge case where k is close to n
+input_data = """1
+9 7
+1 2
+1 3
+1 4
+1 5
+1 6
+1 7
+1 8
+1 9"""
+expected_output = """1"""
+assert run_program_with_captured_io(input_data) == expected_output
+
+# Test case 7: Multiple sets of input data
+input_data = """3
+3 1
+1 2
+2 3
+4 2
+1 2
+2 3
+3 4
+5 3
+1 2
+1 3
+1 4
+1 5"""
+expected_output = """1
+1
+1"""
+assert run_program_with_captured_io(input_data) == expected_output
+
+# End of script

@@ -1,0 +1,26 @@
+#State of the program right berfore the function call: There are four lines, each containing two integers x_i, y_i such that -1000 ≤ x_i, y_i ≤ 1000. These coordinates represent the corners of a square with sides parallel to the coordinate axes and a positive area. There are t such sets of coordinates, where 1 ≤ t ≤ 100.
+def func():
+    t = int(input())
+    for steps in range(t):
+        a, b = map(int, input().split())
+        
+        c, d = map(int, input().split())
+        
+        e, f = map(int, input().split())
+        
+        g, h = map(int, input().split())
+        
+        n = (a - e) * (a - e) + (b - f) * (b - f)
+        
+        x = (c - g) * (c - g) + (d - h) * (d - h)
+        
+        if x > n:
+            print(n)
+        else:
+            print(x)
+        
+    #State: Output State: The value of `t` must be greater than 0, `steps` will be equal to `t-1` after all iterations, `a`, `b`, `c`, `d`, `e`, `f`, `g`, and `h` will each hold the last set of integers entered for their respective roles in the loop. The variable `n` will be equal to \((a - e)^2 + (b - f)^2\) and `x` will be equal to \((c - g)^2 + (d - h)^2\). If at any point during the loop, `x` is greater than `n`, `x` will retain its original value from that iteration; otherwise, it will be updated to `n`. After all iterations, the maximum value between `n` and `x` from the last iteration will be printed.
+    #
+    #This means that after all iterations, the final output will be the maximum value between `n` and `x` calculated in the last iteration of the loop.
+#Overall this is what the function does:The function processes up to 100 sets of coordinates, where each set consists of four integers representing the corners of a square. For each set, it calculates the squared distance between the first and fourth corners, and the squared distance between the second and third corners. It then prints the larger of these two distances. The function does not return any value but outputs the maximum distance found among all sets processed.
+

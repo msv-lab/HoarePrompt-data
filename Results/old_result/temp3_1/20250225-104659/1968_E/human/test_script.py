@@ -1,0 +1,135 @@
+import io
+import sys
+
+def run_program_with_captured_io(input_data):
+    original_stdin = sys.stdin
+    original_stdout = sys.stdout
+
+    try:
+        sys.stdin = io.StringIO(input_data)
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
+
+        with open("program.py", "r", encoding="utf-8") as f:
+            code = f.read()
+            exec(code, {})
+
+        return captured_output.getvalue().strip()
+    
+    finally:
+        sys.stdin = original_stdin
+        sys.stdout = original_stdout
+
+
+# Test cases
+def test_program():
+    # Test case 1
+    input_data = "5\n2\n3\n4\n5\n6"
+    expected_output = """1 1
+1 2
+1 1
+1 2
+2 1
+2 3
+3 1
+1 1
+1 2
+1 1
+1 3
+4 3
+4 4
+1 1
+1 2
+1 1
+1 3
+1 4
+2 1
+5 5
+1 1
+1 2
+1 1
+1 4
+1 5
+1 6
+5 2
+5 5
+6 1"""
+    assert run_program_with_captured_io(input_data) == expected_output
+
+    # Test case 2: Only two cells
+    input_data = "1\n2"
+    expected_output = """1 1
+1 2"""
+    assert run_program_with_captured_io(input_data) == expected_output
+
+    # Test case 3: Three cells
+    input_data = "1\n3"
+    expected_output = """1 1
+1 2
+2 1"""
+    assert run_program_with_captured_io(input_data) == expected_output
+
+    # Test case 4: Four cells
+    input_data = "1\n4"
+    expected_output = """1 1
+1 2
+1 1
+1 2
+1 3
+4 3
+4 4"""
+    assert run_program_with_captured_io(input_data) == expected_output
+
+    # Test case 5: Five cells
+    input_data = "1\n5"
+    expected_output = """1 1
+1 2
+1 1
+1 2
+1 3
+1 4
+2 1
+5 5"""
+    assert run_program_with_captured_io(input_data) == expected_output
+
+    # Test case 6: Six cells
+    input_data = "1\n6"
+    expected_output = """1 1
+1 2
+1 1
+1 2
+1 3
+1 4
+1 5
+1 6
+5 2
+5 5
+6 1"""
+    assert run_program_with_captured_io(input_data) == expected_output
+
+    # Test case 7: Multiple test cases with different n values
+    input_data = "3\n2\n4\n6"
+    expected_output = """1 1
+1 2
+1 1
+1 2
+1 3
+4 3
+4 4
+1 1
+1 2
+1 1
+1 2
+1 3
+1 4
+1 5
+1 6
+5 2
+5 5
+6 1"""
+    assert run_program_with_captured_io(input_data) == expected_output
+
+    print("All test cases passed!")
+
+# Run the tests
+test_program()

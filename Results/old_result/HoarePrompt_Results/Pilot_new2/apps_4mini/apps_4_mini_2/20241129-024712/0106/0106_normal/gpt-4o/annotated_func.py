@@ -1,0 +1,27 @@
+#State of the program right berfore the function call: n, m, and k are positive integers such that 1 ≤ n, m, k ≤ 1000; a and b are distinct integers such that 1 ≤ a, b ≤ n·m·k.
+def func_1(n, m, k, a, b):
+    block_a, floor_a = get_location(a)
+    block_b, floor_b = get_location(b)
+    if (floor_a == 1) :
+        time_to_exit = 0
+    else :
+        time_to_exit = 10 + (floor_a - 1)
+    #State of the program after the if-else block has been executed: *`n`, `m`, and `k` are positive integers such that 1 ≤ `n`, `m`, `k` ≤ 1000; `a` and `b` are distinct integers such that 1 ≤ `a`, `b` ≤ `n`·`m`·`k`; `block_a` and `floor_a` are assigned values based on `get_location(a)`; `block_b` and `floor_b` are assigned values based on `get_location(b)`; if `floor_a` is 1, then `time_to_exit` is 0. Otherwise, if `floor_a` is not equal to 1, then `time_to_exit` is at least 11.
+    direct_walk_time = abs(block_a - block_b) % n * 15
+    reverse_walk_time = (n - abs(block_a - block_b)) % n * 15
+    min_walk_time = min(direct_walk_time, reverse_walk_time)
+    time_to_target_floor = (floor_b - 1) * 5
+    total_time = time_to_exit + min_walk_time + time_to_target_floor
+    return total_time
+    #The program returns total_time, which is calculated based on time_to_exit, min_walk_time, and time_to_target_floor, where time_to_exit is defined based on floor_a, min_walk_time is the minimum of direct_walk_time and reverse_walk_time, and time_to_target_floor is based on floor_b.
+#Overall this is what the function does:The function accepts positive integers `n`, `m`, `k`, and distinct integers `a` and `b`, and returns the total time calculated based on the time to exit from `a`, the minimum walking time between blocks, and the time to reach the floor of `b`.
+
+#State of the program right berfore the function call: n, m, and k are integers such that 1 ≤ n, m, k ≤ 1000, a and b are integers such that 1 ≤ a, b ≤ n·m·k and a ≠ b.
+def get_location(apartment):
+    block = (apartment - 1) // (m * k) + 1
+    floor_within_block = (apartment - 1) % (m * k)
+    floor = floor_within_block // k + 1
+    return block, floor
+    #The program returns the values of 'block' and 'floor', where 'block' is calculated as (apartment - 1) // (m * k) + 1 and 'floor' is calculated as (floor_within_block // k + 1)
+#Overall this is what the function does:The function accepts an integer `apartment` and calculates the corresponding `block` and `floor` within a structure where each block contains `m` floors and each floor contains `k` apartments. The function returns the values of `block` and `floor` based on the provided apartment number, assuming that the apartment number is valid within the given structure. If `apartment` is outside the valid range (1 to `n*m*k`), the behavior is undefined as no error handling is implemented.
+

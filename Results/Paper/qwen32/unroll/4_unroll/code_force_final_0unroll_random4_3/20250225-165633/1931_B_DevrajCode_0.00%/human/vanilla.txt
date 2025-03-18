@@ -1,5 +1,0 @@
-- The core logic of the program is correct: if, while going through the containers, we ever find that we need to take water from a container that doesn't have enough (i.e., the running balance goes negative), then it's impossible to equalize the water levels using the allowed operations (pouring from left to right only).
-   - However, the program does not correctly parse the input for multiple test cases, which is a critical issue.
-
-### Conclusion:
-The program contains a significant flaw in how it reads and processes multiple test cases. It assumes all input is provided in a single line, which is not correct according to the problem description. Therefore, the program will not work as intended for inputs with multiple test cases.

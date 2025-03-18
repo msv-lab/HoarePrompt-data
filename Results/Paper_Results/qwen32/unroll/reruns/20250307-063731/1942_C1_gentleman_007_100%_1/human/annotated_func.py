@@ -1,0 +1,414 @@
+#State of the program right berfore the function call: No variables are present in the function signature of `func_1`, thus no precondition can be derived from it.
+def func_1():
+    return map(int, input().split())
+    #The program returns a map object that contains integers from the input string, where the input string is split by spaces.
+#Overall this is what the function does:The function `func_1` does not accept any parameters. It reads a line of input from the user, splits it by spaces, converts each split substring into an integer, and returns a map object containing these integers.
+
+#State of the program right berfore the function call: No variables in the function signature. The function `func_2` is used to read input from the standard input and returns a list of integers.
+def func_2():
+    return list(map(int, input().split()))
+    #The program returns a list of integers that were read from the standard input, split by whitespace.
+#Overall this is what the function does:The function `func_2` reads a line of input from the standard input, splits the line into components based on whitespace, converts each component into an integer, and returns a list of these integers.
+
+#State of the program right berfore the function call: n is an integer representing the number of sides of the polygon (4 ≤ n ≤ 10^9), and v is a list of integers representing the vertices Bessie has chosen (length of v is x, where 2 ≤ x ≤ min(n, 2 · 10^5)).
+def func_3(n, v):
+    return [v for i in range(n)]
+    #The program returns a list that contains the list `v` repeated `n` times.
+#Overall this is what the function does:The function accepts an integer `n` and a list `v`. It returns a new list where the list `v` is repeated `n` times.
+
+#State of the program right berfore the function call: n is an integer representing the number of sides of the polygon (4 ≤ n ≤ 10^9), m is an integer representing the number of vertices Bessie has chosen (2 ≤ m ≤ min(n, 2 · 10^5)), and v is a value that is repeated in an m x n matrix.
+def func_4(n, m, v):
+    return [[v for i in range(m)] for i in range(n)]
+    #The program returns an n x m matrix where each element in the matrix is the value v.
+#Overall this is what the function does:The function generates and returns an m x n matrix where every element in the matrix is set to the value `v`.
+
+#State of the program right berfore the function call: n is an integer representing the number of sides of the polygon (4 ≤ n ≤ 10^9), and m is an integer representing the number of edges or connections to be added (0 ≤ m ≤ x, where x is the number of vertices Bessie has chosen).
+def func_5(n, m):
+    l = [[] for i in range(n + 1)]
+    for i in range(m):
+        x, y = func_1()
+        
+        l[x].append(y)
+        
+        l[y].append(x)
+        
+    #State: - After `m` iterations, the list `l` will contain `m` undirected edges represented as adjacency lists.
+    #   - The values of `n` and `m` will remain unchanged.
+    #   - The list `l` will have been modified to reflect the edges added.
+    #
+    #Putting this into the requested format:
+    #
+    #Output State:
+    return l
+    #The program returns the list `l` which contains `m` undirected edges represented as adjacency lists.
+#Overall this is what the function does:The function accepts two parameters: `n`, an integer representing the number of sides of a polygon, and `m`, an integer representing the number of edges to be added. It returns a list `l` containing `m` undirected edges represented as adjacency lists.
+
+#State of the program right berfore the function call: n is an integer representing the number of sides of the polygon (4 ≤ n ≤ 10^9), and m is an integer representing the number of vertices Bessie has chosen (2 ≤ m ≤ min(n, 2 · 10^5)).
+def func_6(n, m):
+    l = [[(0) for i in range(n + 1)] for i in range(n + 1)]
+    for i in range(m):
+        x, y = func_1()
+        
+        l[x][y] = 1
+        
+        l[y][x] = 1
+        
+    #State: `n` is an integer representing the number of sides of the polygon (4 ≤ n ≤ 10^9), `m` is an integer representing the number of vertices Bessie has chosen (2 ≤ m ≤ min(n, 2 · 10^5)), and `l` is a 2D list of size `(n+1) x (n+1)` where `l[x][y]` and `l[y][x]` are `1` for each pair `(x, y)` returned by `func_1()` during the `m` iterations, and all other elements are `0`.
+    return l
+    #The program returns a 2D list `l` of size `(n+1) x (n+1)` where `l[x][y]` and `l[y][x]` are `1` for each pair `(x, y)` returned by `func_1()` during the `m` iterations, and all other elements are `0`.
+#Overall this is what the function does:The function accepts two integer parameters, `n` representing the number of sides of a polygon and `m` representing the number of vertices chosen. It returns a 2D list `l` of size `(n+1) x (n+1)` where `l[x][y]` and `l[y][x]` are set to `1` for each pair `(x, y)` obtained from `m` iterations of `func_1()`, and all other elements are `0`.
+
+#State of the program right berfore the function call: l is a list of integers.
+def func_7(l):
+    d = {}
+    for i in l:
+        d[i] = d.get(i, 0) + 1
+        
+    #State: `l` is a list of integers; `d` is a dictionary where each key is a unique integer from the list `l` and each value is the count of occurrences of that integer in `l`.
+    return d
+    #The program returns a dictionary `d` where each key is a unique integer from the list `l` and each value is the count of occurrences of that integer in `l`.
+#Overall this is what the function does:The function takes a list of integers as input and returns a dictionary where each key is a unique integer from the list and each value is the count of how many times that integer appears in the list.
+
+#State of the program right berfore the function call: l is a 2D list of integers, n is the number of rows in l, and m is the number of columns in l.
+def func_8(l):
+    n = len(l)
+    m = len(l[0])
+    p = [[(0) for i in range(m + 1)] for j in range(n + 1)]
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            p[i][j] = p[i - 1][j] + p[i][j - 1] + l[i - 1][j - 1] - p[i - 1][j - 1]
+        
+    #State: `p` is a 2D list where `p[i][j]` is the sum of all elements in the submatrix of `l` from the top-left corner to the position `(i-1,j-1)`.
+    return p
+    #The program returns a 2D list `p` where each element `p[i][j]` is the sum of all elements in the submatrix of `l` from the top-left corner to the position `(i-1,j-1)`
+#Overall this is what the function does:The function accepts a 2D list `l` of integers and returns a 2D list `p` where each element `p[i][j]` represents the sum of all elements in the submatrix of `l` from the top-left corner to the position `(i-1, j-1)`.
+
+#State of the program right berfore the function call: x is an integer such that 2 <= x <= min(n, 2 * 10^5) for some n >= 4.
+def func_9(x):
+    return max(1 - (x & x - 1), 0)
+    #The program returns 1 if x is a power of 2, otherwise it returns 0
+#Overall this is what the function does:The function `func_9` accepts an integer `x` and returns 1 if `x` is a power of 2; otherwise, it returns 0.
+
+#State of the program right berfore the function call: l is a list of integers.
+def func_10(l):
+    a = 0
+    for i in l:
+        a = gcd(a, i)
+        
+    #State: `l` is a list of integers; `a` is the GCD of all integers in `l`.
+    return a
+    #The program returns the GCD of all integers in the list `l`.
+#Overall this is what the function does:The function accepts a list of integers and returns the greatest common divisor (GCD) of all integers in the list.
+
+#State of the program right berfore the function call: num is an integer greater than or equal to 2.
+def func_11(num):
+    prime = [(True) for i in range(num + 1)]
+    Highest_Prime = [(0) for i in range(num + 1)]
+    Lowest_Prime = [(0) for i in range(num + 1)]
+    prime[0] = prime[1] = False
+    p = 2
+    while p <= num:
+        if prime[p] == True:
+            Lowest_Prime[p] = p
+            Highest_Prime[p] = p
+            for i in range(2 * p, num + 1, p):
+                prime[i] = False
+                Highest_Prime[i] = p
+                if Lowest_Prime[i] == 0:
+                    Lowest_Prime[i] = p
+        
+        p += 1
+        
+    #State: `prime` contains `True` for prime indices and `False` for non-prime indices; `Lowest_Prime` and `Highest_Prime` contain the smallest and largest prime factors respectively for each index from 2 to `num`; `p` is `num + 1`.
+    p = []
+    for i in range(num + 1):
+        if prime[i]:
+            p.append(i)
+        
+    #State: `prime` contains `True` for prime indices and `False` for non-prime indices; `Lowest_Prime` and `Highest_Prime` contain the smallest and largest prime factors respectively for each index from 2 to `num`; `p` contains all prime numbers from 2 to `num`.
+    return p
+    #The program returns `p`, which contains all prime numbers from 2 to `num`.
+#Overall this is what the function does:The function accepts an integer `num` greater than or equal to 2 and returns a list of all prime numbers from 2 to `num`.
+
+#State of the program right berfore the function call: num is an integer greater than 1, and Prime_array is a list of integers where Prime_array[i] is the smallest prime factor of i for all i from 2 to num.
+def func_12(num, Prime_array):
+    d = {}
+    while num != 1:
+        x = Prime_array[num]
+        
+        d[x] = d.get(x, 0) + 1
+        
+        num //= x
+        
+    #State: `num` is 1, `Prime_array` remains unchanged, `d` is a dictionary where keys are the prime factors of the initial `num` and values are their respective counts in the prime factorization of `num`.
+    return d
+    #The program returns an empty dictionary {}
+#Overall this is what the function does:The function accepts an integer `num` greater than 1 and a list `Prime_array` where each element `Prime_array[i]` is the smallest prime factor of `i` for all `i` from 2 to `num`. It returns a dictionary where the keys are the prime factors of `num` and the values are their respective counts in the prime factorization of `num`.
+
+#State of the program right berfore the function call: n is an integer greater than or equal to 2.
+def func_13(n):
+    d = {}
+    x = 2
+    while x * x <= n:
+        while n % x == 0:
+            d[x] = d.get(x, 0) + 1
+            n //= x
+        
+        x += 1
+        
+    #State: `n` is either 1 or a prime number greater than the square root of its original value; `d` is a dictionary with prime factors of the original `n` as keys and their counts as values; `x` is the smallest integer greater than the square root of the original `n` or the next integer after the last factor checked.
+    if (n > 1) :
+        d[n] = d.get(n, 0) + 1
+    #State: `n` is either 1 or a prime number greater than the square root of its original value. If `n` is greater than 1, the dictionary `d` contains the prime factors of the original `n` as keys with their counts as values, where the count of `n` itself is incremented by 1. If `n` is not greater than 1, `d` remains unchanged. `x` is the smallest integer greater than the square root of the original `n` or the next integer after the last factor checked.
+    return d
+    #The program returns the dictionary `d` which contains the prime factors of the original `n` as keys with their counts as values, where the count of `n` itself is incremented by 1. If `n` is not greater than 1, `d` remains unchanged.
+#Overall this is what the function does:The function accepts an integer `n` greater than or equal to 2 and returns a dictionary containing the prime factors of `n` as keys with their counts as values. If `n` is a prime number greater than 1, it will appear in the dictionary with a count of 1.
+
+#State of the program right berfore the function call: d is a dictionary where keys are integers and values are positive integers.
+def func_14(d):
+    s = 0
+    for i in d:
+        s += pow(i, d[i] - 1) * (i - 1)
+        
+    #State: `d` is a dictionary where keys are integers and values are positive integers; `s` is the sum of \( i^{(d[i] - 1)} \times (i - 1) \) for each key `i` in `d`.
+    return s
+    #The program returns the sum of \( i^{(d[i] - 1)} \times (i - 1) \) for each key `i` in `d`
+#Overall this is what the function does:The function `func_14` takes a dictionary `d` with integer keys and positive integer values. It calculates and returns the sum of \( i^{(d[i] - 1)} \times (i - 1) \) for each key `i` in the dictionary.
+
+#State of the program right berfore the function call: n is a positive integer, and mod is an integer.
+def func_15(n, mod):
+    f = [1]
+    for i in range(1, n + 1):
+        f.append(f[i - 1] * i % mod % mod)
+        
+    #State: `n` is a positive integer, `mod` is an integer, `f` is a list containing `n + 1` elements, where `f[i]` is the factorial of `i` modulo `mod` for `i` in the range `0` to `n`.
+    return f
+    #The program returns a list `f` containing `n + 1` elements, where each element `f[i]` is the factorial of `i` modulo `mod` for `i` in the range `0` to `n`.
+#Overall this is what the function does:The function accepts a positive integer `n` and an integer `mod`. It returns a list `f` containing `n + 1` elements, where each element `f[i]` is the factorial of `i` modulo `mod` for `i` ranging from `0` to `n`.
+
+#State of the program right berfore the function call: n is a positive integer, and mod is an integer.
+def func_16(n, mod):
+    if (mod == -1) :
+        dearr = [1, 0]
+        for i in range(2, n + 1):
+            dearr.append((i - 1) * (dearr[i - 1] + dearr[i - 2]))
+            
+        #State: `n` is a positive integer, `mod` is -1, `dearr` is a list of length `n + 1` where the first two elements are `1` and `0`, and the subsequent elements are calculated as `(i - 1) * (dearr[i - 1] + dearr[i - 2])` for `i` from `2` to `n`.
+    else :
+        dearr = [1, 0]
+        for i in range(2, n + 1):
+            dearr.append((i - 1) % mod * (dearr[i - 1] + dearr[i - 2]) % mod % mod)
+            
+        #State: `dearr` is a list of `n + 1` elements starting with `[1, 0]` and followed by values calculated as `(i - 1) % mod * (dearr[i - 1] + dearr[i - 2]) % mod % mod` for `i` from `2` to `n`.
+    #State: `n` is a positive integer and `mod` is an integer. If `mod` is -1, `dearr` is a list of length `n + 1` where the first two elements are `1` and `0`, and the subsequent elements are calculated as `(i - 1) * (dearr[i - 1] + dearr[i - 2])` for `i` from `2` to `n`. Otherwise, `dearr` is a list of `n + 1` elements starting with `[1, 0]` and followed by values calculated as `(i - 1) % mod * (dearr[i - 1] + dearr[i - 2]) % mod` for `i` from `2` to `n`.
+    return dearr
+    #The program returns a list `dearr` of length `n + 1`. The first two elements of `dearr` are `1` and `0`. The subsequent elements are calculated as `(i - 1) * (dearr[i - 1] + dearr[i - 2])` for `i` from `2` to `n` if `mod` is `-1`. Otherwise, if `mod` is not `-1`, the elements are calculated as `(i - 1) % mod * (dearr[i - 1] + dearr[i - 2]) % mod` for `i` from `2` to `n`.
+#Overall this is what the function does:The function calculates and returns a list `dearr` of length `n + 1`. The first two elements of `dearr` are `1` and `0`. For each subsequent element from index `2` to `n`, the value is determined by the formula `(i - 1) * (dearr[i - 1] + dearr[i - 2])` if `mod` is `-1`. If `mod` is not `-1`, the value is calculated as `(i - 1) % mod * (dearr[i - 1] + dearr[i - 2]) % mod`.
+
+#State of the program right berfore the function call: p is a sorted list of integers, and x is an integer.
+def func_17(p, x):
+    i = bisect_left(p, x)
+    if (i != len(p) and p[i] == x) :
+        return i
+        #The program returns `i`, which is the index where `x` is found in the sorted list `p`.
+    else :
+        return -1
+        #The program returns -1.
+#Overall this is what the function does:The function accepts a sorted list of integers `p` and an integer `x`. It returns the index of `x` in `p` if `x` is present; otherwise, it returns -1.
+
+#State of the program right berfore the function call: p is a sorted list of integers, and x is an integer such that p[0] <= x <= p[-1].
+def func_18(p, x):
+    n = len(p)
+    l, r = 0, n - 1
+    if (p[0] > x) :
+        return -1
+        #The program returns -1.
+    #State: *`p` is a sorted list of integers, `x` is an integer such that `p[0] <= x <= p[-1]`, `n` is the length of the list `p`, `l` is 0, `r` is `n - 1`, and `p[0]` is less than or equal to `x`
+    while l <= r:
+        mid = (l + r) // 2
+        
+        if p[mid] <= x:
+            if mid != n - 1:
+                if p[mid + 1] > x:
+                    break
+                else:
+                    l = mid + 1
+            else:
+                mid = n - 1
+                break
+        else:
+            r = mid - 1
+        
+    #State: `mid` is the largest index such that `p[mid] <= x`, `l` and `r` can be any value depending on the last iteration of the loop.
+    return mid
+    #The program returns `mid`, which is the largest index such that `p[mid] <= x`.
+#Overall this is what the function does:The function `func_18` takes a sorted list of integers `p` and an integer `x` such that `p[0] <= x <= p[-1]`. It returns the largest index `mid` in the list `p` where `p[mid]` is less than or equal to `x`. If no such index exists (which should not occur given the constraints), it returns `-1`.
+
+#State of the program right berfore the function call: p is a sorted list of distinct integers, and x is an integer such that x >= p[0].
+def func_19(p, x):
+    n = len(p)
+    l, r = 0, n - 1
+    if (p[-1] < x) :
+        return n
+        #The program returns the length of the list `p`, which is `n`.
+    #State: `p` is a sorted list of distinct integers, `x` is an integer such that `x >= p[0]`, `n` is the length of `p`, `l` is 0, `r` is `n - 1`, and `x` is less than or equal to the last element of `p`
+    while l <= r:
+        mid = (l + r) // 2
+        
+        if p[mid] >= x:
+            if mid != 0:
+                if p[mid - 1] < x:
+                    break
+                else:
+                    r = mid - 1
+            else:
+                mid = 0
+                break
+        else:
+            l = mid + 1
+        
+    #State: `l` is the smallest index such that `p[l] >= x`, `r` is either `l` or `l-1`, and `mid` is the smallest index such that `p[mid] >= x`.
+    return mid
+    #The program returns `mid`, which is the smallest index such that `p[mid] >= x`.
+#Overall this is what the function does:The function `func_19` takes a sorted list of distinct integers `p` and an integer `x` such that `x` is greater than or equal to the first element of `p`. It returns the smallest index `mid` in `p` where `p[mid]` is greater than or equal to `x`. If `x` is greater than all elements in `p`, it returns the length of the list `p`.
+
+#State of the program right berfore the function call: x is a non-negative integer representing the number of vertices Bessie has chosen.
+def func_20(x):
+    if (x == 0 or x == 1) :
+        return x
+        #The program returns the value of x which is either 0 or 1.
+    #State: x is a non-negative integer representing the number of vertices Bessie has chosen, and x is greater than 1
+    l = 1
+    r = x
+    while l <= r:
+        mid = (l + r) / 2
+        
+        y = mid * mid
+        
+        if y > x:
+            r = mid - 1
+        elif y == x:
+            return mid
+        elif (mid + 1) * (mid + 1) > x:
+            return mid
+        else:
+            l = mid + 1
+        
+    #State: The largest integer `mid` such that `mid * mid` is less than or equal to `x`.
+#Overall this is what the function does:The function accepts a non-negative integer `x` and returns the greatest integer `mid` such that `mid * mid` is less than or equal to `x`.
+
+#State of the program right berfore the function call: a is an integer, b is a non-negative integer, and mod is a positive integer.
+def func_21(a, b, mod):
+    ans = 1
+    a %= mod
+    while b:
+        if b & 1:
+            ans = ans * a % mod
+        
+        a = a * a % mod
+        
+        b >>= 1
+        
+    #State: the output state you calculate.
+    return ans
+    #The program returns the value of 'ans'.
+#Overall this is what the function does:The function computes and returns the result of \( a^b \mod \text{mod} \), where \( a \) is an integer, \( b \) is a non-negative integer, and \( \text{mod} \) is a positive integer.
+
+#State of the program right berfore the function call: a and b are lists of elements (could be integers, characters, etc.).
+def func_22(a, b):
+    dp = [([0] * (len(b) + 1)) for _ in range(len(a) + 1)]
+    for i in range(1, len(a) + 1):
+        for j in range(1, len(b) + 1):
+            if a[i - 1] == b[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+        
+    #State: `dp` is a 2D list where `dp[i][j]` represents the length of the longest common subsequence between the first `i` elements of `a` and the first `j` elements of `b`. All other variables (`a` and `b`) remain unchanged.
+    i, j = len(a), len(b)
+    l = []
+    while i != 0 and j != 0:
+        if dp[i][j] == dp[i][j - 1]:
+            j -= 1
+        elif dp[i][j] == dp[i - 1][j]:
+            i -= 1
+        else:
+            i -= 1
+            j -= 1
+            l.append(a[i])
+        
+    #State: `i` is 0, `j` is 0, `l` is the reversed longest common subsequence of `a` and `b`.
+    s = ''.join(l)
+    return s[::-1]
+    #The program returns the string formed by joining the elements of the longest common subsequence of `a` and `b`
+#Overall this is what the function does:The function accepts two lists, `a` and `b`, and returns a string representing the longest common subsequence of elements from both lists.
+
+#State of the program right berfore the function call: arr is a list of integers.
+def func_23(arr):
+    l = []
+    for i in arr:
+        pos = bisect_left(l, i)
+        
+        if pos == len(l):
+            l.append(i)
+        else:
+            l[pos] = i
+        
+    #State: `arr` is a list of integers; `l` is a sorted list of unique integers from `arr`.
+    return len(l)
+    #The program returns the number of unique integers in the list `arr`.
+#Overall this is what the function does:The function accepts a list of integers and returns the number of unique integers in the list.
+
+#State of the program right berfore the function call: ver is an integer representing a vertex in the graph, stack is a list used to keep track of vertices to be visited, and vis is a list or dictionary used to mark visited vertices.
+def func_24(ver):
+    stack = []
+    stack.append(ver)
+    vis[ver] = 1
+    while len(stack):
+        ver = stack.pop()
+        
+        print(ver, end=' ')
+        
+        for node in graph[ver]:
+            if not vis[node]:
+                stack.append(node)
+                vis[node] = 1
+        
+    #State: the stack is empty, and all reachable vertices from the initial `ver` are marked as visited in `vis`.
+#Overall this is what the function does:The function `func_24` performs a depth-first search (DFS) starting from a given vertex `ver`. It marks all reachable vertices from `ver` as visited in the `vis` list or dictionary. The function does not return a value but modifies the `vis` to reflect the vertices visited during the DFS traversal.
+
+#State of the program right berfore the function call: ver is an integer representing a vertex in the graph, graph is a dictionary or list of lists representing the adjacency list of the graph, and vis is a list used to keep track of visited vertices where vis[ver] is 0 if the vertex has not been visited and 1 if it has.
+def func_25(ver):
+    q = deque()
+    q.append(ver)
+    vis[ver] = 1
+    while len(q):
+        ver = q.popleft()
+        
+        print(ver, end=' ')
+        
+        for node in graph[ver]:
+            if not vis[node]:
+                q.append(node)
+                vis[node] = 1
+        
+    #State: The provided loop is a typical Breadth-First Search (BFS) algorithm implementation. It starts from a given vertex (`ver`), explores all the vertices at the present depth level, and then moves on to vertices at the next depth level. The BFS algorithm ensures that each vertex is visited exactly once, and the order of visiting vertices is based on their distance from the starting vertex.
+    #
+    #Here's the step-by-step breakdown of what happens during the execution of the loop:
+    #
+    #1. **Initialization**: The `q` deque contains the starting vertex `ver`. The `vis` list indicates that `ver` is visited by setting `vis[ver]` to 1.
+    #
+    #2. **Processing**:
+    #   - The loop continues as long as there are elements in the deque `q`.
+    #   - In each iteration, the first element (`ver`) is popped from `q`.
+    #   - This vertex is printed.
+    #   - The algorithm then iterates over all the adjacent nodes of `ver` (i.e., `graph[ver]`).
+    #   - For each adjacent node (`node`), if it has not been visited (`vis[node] == 0`), it is appended to `q` and marked as visited by setting `vis[node]` to 1.
+    #
+    #3. **Termination**: The loop terminates when `q` is empty, meaning all reachable vertices from the initial vertex `ver` have been visited.
+    #
+    #**Output State**: **All vertices reachable from the initial vertex `ver` are printed in BFS order, and the `vis` list has 1s for all visited vertices. The deque `q` is empty.**
+    #
+    #In natural language, this means that after the loop finishes, all vertices that can be reached starting from the initial vertex `ver` will have been printed in the order they were discovered by the BFS algorithm. The `vis` list will reflect that these vertices have been visited by marking the corresponding indices with 1. The deque `q` will be empty since all elements have been processed.
+#Overall this is what the function does:The function `func_25` performs a Breadth-First Search (BFS) starting from a given vertex `ver` in a graph represented by `graph`. It prints all vertices reachable from `ver` in BFS order and updates the `vis` list to mark these vertices as visited. The function does not return a value.
+

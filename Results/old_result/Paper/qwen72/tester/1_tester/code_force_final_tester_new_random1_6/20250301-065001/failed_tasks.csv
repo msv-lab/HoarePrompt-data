@@ -1,0 +1,118 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1926_C,human,codeforces2024,qwen2p5-72b-instruct,"N = int(2 * 10e4) + 1
+ 
+t = int(input())
+ 
+pd = [0 for _ in range(N)]
+ 
+for i in range(1, N):
+    pd[i] += pd[i - 1]    
+    for j in str(i):
+        pd[i] += int(j)
+ 
+for _ in range(t):    
+    n = int(input())
+    print(pd[n])",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1926_E,human,codeforces2024,qwen2p5-72b-instruct,"for _ in range(int(input())):
+    n, k = map(int, input().split())
+    s = 0
+    i = 0
+    d = n
+    h = n
+    p = 1
+    g = 0
+ 
+    if k > (n + 1) // 2:
+        while s < k and d > 0:
+            s += (d + 1) // 2
+            d -= (d + 1) // 2
+            i += 1
+        
+        while p <= (i - 1):
+            g += (h + 1) // 2
+            h -= (h + 1) // 2
+            p += 1
+        
+        f = k - g
+        y = (2**(i-1)) *(2*f-1)
+        print(y)
+    else:
+        print(2*k - 1)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1966_C,human,codeforces2024,qwen2p5-72b-instruct,"tc = int(input())
+ 
+while tc > 0:
+    n = int(input())
+    arr = sorted(list(set([int(x) for x in input().split(' ')])), reverse=True) + [0]
+    dp = True
+    n = len(arr) - 1
+    for i in range(1, n):
+        dp = (arr[i] - arr[i+1] > 1) or not dp
+    print('Alice' if dp else 'Bob')
+    tc -= 1",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1970_C1,human,codeforces2024,qwen2p5-72b-instruct,"from collections import defaultdict
+x, y = map(int, input().split())
+lst = defaultdict(list)
+rev = defaultdict(list)
+for _ in range(x-1):
+    a,b = map(int, input().split())
+    lst[a].append(b)
+    rev[b].append(a)
+z = int(input())
+tmp = z
+one = True
+while lst[tmp] != []:
+    one = not one
+    tmp = lst[tmp].pop()
+ 
+two = True
+tmp = z
+while rev[tmp] != []:
+    two = not two
+    tmp = rev[tmp].pop()
+ 
+print('Hermione'if two and one else 'Ron')",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1927_C,human,codeforces2024,qwen2p5-72b-instruct,"for t in range(int(input())):
+    n,m,k=map(int,input().split())
+    a=list(map(int,input().split()))
+    b=list(map(int,input().split()))
+ 
+    aOnes=0
+    bOnes=0
+    newk=k//2
+    i=1
+    
+    while i<=k:
+        if i in a and i in b:
+            if aOnes<bOnes:
+                aOnes+=1
+            else:
+                bOnes+=1
+        elif i in a and aOnes<=newk:
+            aOnes+=1
+        elif i in b and bOnes<=newk:
+            bOnes+=1
+        else:
+            break
+        i+=1
+ 
+ 
+    if aOnes==newk and bOnes==newk:
+        print(""yes"")
+    else:
+        print(""no"")",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1968_A,human,codeforces2024,qwen2p5-72b-instruct,"from math import gcd
+ 
+n:int = int(input("""")) #no.of textcases
+for _ in range(n):
+    x:int = int(input(""""))
+    # we need to find y such that
+    # 1<=y<x; y = argmax[ gcd(x,y)+y ]
+    max = -1
+    argmax_y = -1
+    for y in range(1,x):
+        eq = gcd(x,y) + y
+        # print(f""gcd of {x},{y} is {eq-y}"")
+        if eq>max:
+            max=eq
+            argmax_y = y
+    print(argmax_y)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt

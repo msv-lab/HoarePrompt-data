@@ -1,0 +1,44 @@
+# Include necessary imports if any
+# Assume the provided program is saved as 'program.py' and can be imported from the same dir.
+
+import io
+import sys
+
+def run_program_with_captured_io(input_data):
+    original_stdin = sys.stdin
+    original_stdout = sys.stdout
+
+    try:
+        sys.stdin = io.StringIO(input_data)
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
+
+        with open("program.py", "r", encoding="utf-8") as f:
+            code = f.read()
+            exec(code, {})
+
+        return captured_output.getvalue().strip()
+    
+    finally:
+        sys.stdin = original_stdin
+        sys.stdout = original_stdout
+
+# Test cases
+test_cases = [
+    ("1\n1 1 1\n1\n", "0"),
+    ("1\n4 1 1\n3 1 2 4\n", "2"),
+    ("1\n6 6 3\n1 4 3 2 5 6\n", "0"),
+    ("1\n6 6 1\n3 7 3 3 32 15\n", "-5"),
+    ("1\n8 5 3\n5 5 3 3 3 2 9 9\n", "-9"),
+    ("1\n10 6 4\n1 8 2 9 3 3 4 5 3 200\n", "-1"),
+    ("1\n2 2 1\n4 3\n", "1"),
+    ("1\n2 1 2\n1 2\n", "0"),
+    ("1\n1 3\n1\n", "0"),
+    ("3\n1 1 1\n1\n4 1 1\n3 1 2 4\n6 6 3\n1 4 3 2 5 6\n", "0\n2\n0"),
+]
+
+# Run test cases
+for i, (input_data, expected_output) in enumerate(test_cases):
+    assert run_program_with_captured_io(input_data) == expected_output, f"Test case {i+1} failed"
+
+print("All test cases passed!")

@@ -1,5 +1,0 @@
-The function `find_new` accepts a list of non-negative integers `cur_arr` and a non-negative integer `bit`. It processes the list based on the value of `bit` and returns one of four possible values:
-- If `bit` is -1, it returns the length of `cur_arr`.
-- If certain conditions involving `xor` and `bit` are met, it returns the maximum value between 1 and the result of a recursive call to `find_new` with `bit` decremented by 1.
-- If another condition is met, it returns a specific value from a constructed list `new_arr` where the bit at position `bit - 1` is set to 1.
-- If no conditions are met, it returns -1.

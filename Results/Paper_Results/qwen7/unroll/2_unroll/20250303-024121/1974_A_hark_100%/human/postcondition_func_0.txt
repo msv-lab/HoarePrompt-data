@@ -1,0 +1,6 @@
+The function processes a series of test cases, each consisting of two non-negative integers \(x\) and \(y\), and a positive integer \(t\) (1 ≤ \(t\) ≤ 10^4). For each test case, it calculates and outputs a value based on the following conditions:
+- If both \(x\) and \(y\) are positive, it computes the sum of \(\text{math.ceil}(y / 2)\) and \(\text{math.ceil}(x / 15)\).
+- If \(x\) is zero and \(y\) is positive, it outputs \(\text{math.ceil}(y / 2)\).
+- If \(x\) is positive and \(y\) is zero, it outputs \(\text{math.ceil}(x / 15)\).
+- If both \(x\) and \(y\) are non-positive, it outputs 0.
+The function does not return a single value but prints the result for each test case individually.

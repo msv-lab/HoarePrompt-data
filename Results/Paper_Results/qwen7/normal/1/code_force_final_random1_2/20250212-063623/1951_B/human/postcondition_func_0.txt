@@ -1,0 +1,8 @@
+The function `func_1` accepts a list `a` of distinct integers and an integer `k`. It iterates through the list to find indices where elements are greater than a specific value `x`, which is the `k`-th element of the list. Based on certain conditions, it returns one of the following:
+1. The length of the list `a` minus 1.
+2. A value that is 1 less than the value of `k`.
+3. 0.
+4. The maximum value between `k - 0` and `0 - 1`.
+5. An invalid operation due to an IndexError because the list `ind` only contains one element (0) and does not have an element at index 1.
+6. The value of the second element of the list `ind` minus 1, where the second element is a non-zero value not equal to 1.
+7. `k - 1`, where `k` is at least 1.

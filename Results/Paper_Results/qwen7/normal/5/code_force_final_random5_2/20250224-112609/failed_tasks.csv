@@ -1,0 +1,464 @@
+task_id,unique_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1922_C,1922_C_Talharashid_0.00%,human,codeforces2024,qwen2.5-7b-instruct,"from collections import defaultdict
+t=int(input())
+for i in range(t):
+    d1=defaultdict(int)
+    d2=defaultdict(int)
+    n=int(input())
+    lst=list(map(int,input().split()))
+    start=0;end=len(lst)-1;inc=1;s=0
+    while start!=end:
+        mini=11111111
+        if (start+1)<len(lst):
+            mini=min(abs(lst[start]-lst[start+1]),mini)
+        if (start-1)>-1:
+            mini=min(abs(lst[start]-lst[start-1]),mini)
+        if mini==abs(lst[start]-lst[start+inc]):
+            s+=1
+        else:
+            s+=abs(lst[start]-lst[start+inc])
+        start+=inc
+        d1[start]=s
+    start=len(lst)-1;end=0;inc=-1;s=0
+    while start!=end:
+        mini=11111111
+        if (start+1)<len(lst):
+            mini=min(abs(lst[start]-lst[start+1]),mini)
+        if (start-1)>-1:
+            mini=min(abs(lst[start]-lst[start-1]),mini)
+        if mini==abs(lst[start]-lst[start+inc]):
+            s+=1
+        else:
+            s+=abs(lst[start]-lst[start+inc])
+        start+=inc
+        d2[start]=s
+    m=int(input())
+    for i in range(m):
+        start,end=map(int,input().split())
+        start-=1;
+        end-=1
+        s=0
+        if start<end:
+            s1=abs(d1[end]-d1[start])
+            s2=abs(d2[start]-d2[end])
+        else:
+            s1=abs(d2[end]-d2[start])
+            s2=abs(d1[start]-d1[end])
+        print(min(s1,s2))","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-d8e14a64-a6be-9cfb-b558-5f0fd259e7d9', 'request_id': 'd8e14a64-a6be-9cfb-b558-5f0fd259e7d9'}",hoareprompt
+1927_F,1927_F_tesfaymebre_2.70%,human,codeforces2024,qwen2.5-7b-instruct,"from collections import defaultdict
+import sys
+import threading
+ 
+class DSU:
+    def __init__(self, n):
+        self.parent = [i for i in range(n)]
+        self.size = [1] * n
+        self.min_edge = [float('inf')] * n
+ 
+    def find(self, x):
+        while self.parent[x] != x:
+            self.parent[x] = self.parent[self.parent[x]]
+            x = self.parent[x]
+ 
+        return x
+ 
+    def union(self, a, b, w):
+        parent_a = self.find(a)
+        parent_b = self.find(b)
+ 
+        self.min_edge[parent_a] = min(self.min_edge[parent_a], w)
+        self.min_edge[parent_b] = min(self.min_edge[parent_b], w)
+ 
+        if parent_a != parent_b:
+            if self.size[parent_a] < self.size[parent_b]:
+                parent_a, parent_b = parent_b, parent_a
+ 
+            self.size[parent_a] += self.size[parent_b]
+            self.min_edge[parent_a] = min(self.min_edge[parent_a],self.min_edge[parent_b])
+            self.parent[parent_b] = parent_a
+ 
+        return
+    
+def int_input():
+    return int(sys.stdin.readline().strip())
+ 
+def string():
+    return sys.stdin.readline().strip()
+ 
+def map_int():
+    return map(int, sys.stdin.readline().strip().split())
+ 
+def list_int_input():
+    return list(map(int, sys.stdin.readline().strip().split()))
+ 
+def list_string_input():
+    return list(sys.stdin.readline().strip().split())
+ 
+def solve():
+    n,m = map_int()
+    graph = defaultdict(list)
+    edges = []
+ 
+    for i in range(m):
+        u,v,w = map_int()
+        graph[u].append(v)
+        graph[v].append(u)
+ 
+        edges.append((w,u,v))
+ 
+ 
+    edges.sort(reverse=True)
+ 
+    
+    dsu = DSU(n+1)
+    _min_edge = float('inf')
+    node_u = -1
+    node_v = -1
+ 
+    for w,u,v in edges:
+        parent_u = dsu.find(u)
+        parent_v = dsu.find(v)
+        if parent_u == parent_v:
+            dsu.union(u,v,w)
+            if dsu.min_edge[parent_u] < _min_edge:
+                _min_edge = dsu.min_edge[parent_u]
+                node_u = u
+                node_v = v
+        else:
+            dsu.union(u,v,w)
+ 
+    colors = [0] * (n+1)
+    def dfs(curr, parent, path):
+        if colors[curr] == 1:
+            return path
+        
+        colors[curr] = 1
+        path.append(curr)
+ 
+        for nei in graph[curr]:
+            if colors[nei] != 2 and nei != parent:
+                res = dfs(nei, curr, path)
+                set_res = set(res)
+                if res and node_v in set_res:
+                    return res
+ 
+        colors[curr] = 2     
+        return []
+    
+    res = dfs(node_u,-1,[])
+    print(_min_edge,len(res))
+    print(*res)
+ 
+def main():
+    test_cases = int_input()
+    for _ in range(test_cases):
+        solve()
+ 
+if __name__ == '__main__':
+    sys.setrecursionlimit(1 << 30)
+    threading.stack_size(1 << 27)
+ 
+    main_thread = threading.Thread(target=main)
+    main_thread.start()
+    main_thread.join()","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-d81974e1-2fa7-91f3-97a1-2fc5c38b7611', 'request_id': 'd81974e1-2fa7-91f3-97a1-2fc5c38b7611'}",hoareprompt
+1945_C,1945_C_sahiltomar100303_8.33%,human,codeforces2024,qwen2.5-7b-instruct,"t = int(input())
+for _ in range(t):
+    n = int(input())
+    s = input()
+ 
+    mid = n // 2
+    leftZero = 0
+    rightZero = 0
+    leftOne = 0
+    rightOne = 0
+    tleftZero = 0
+    trightZero = 0
+    tleftOne = 0
+    trightOne = 0
+ 
+    for i in range(mid):
+        if s[i] == '0':
+            leftZero += 1
+            tleftZero += 1
+        else:
+            leftOne += 1
+            tleftOne += 1
+ 
+    for i in range(mid, n):
+        if s[i] == '0':
+            rightZero += 1
+            trightZero += 1
+        else:
+            rightOne += 1
+            trightOne += 1
+ 
+    left = mid
+    leftMove = 0
+    while left > 0 and (leftZero < (left+1)//2 or rightOne < (n-left+1)//2):
+        if s[left-1] == '0':
+            leftZero -= 1
+            rightZero += 1
+        else:
+            leftOne -= 1
+            rightOne += 1
+        left -= 1
+ 
+    right = mid
+    while right < n and (tleftZero < (right+1)//2 or trightOne < (n-right+1)//2):
+        if s[right] == '0':
+            tleftZero += 1
+            trightZero -= 1
+        else:
+            tleftOne += 1
+            trightOne -= 1
+        right += 1
+ 
+    if left == 0:
+        if right != n:
+            print(right)
+        else:
+            if rightOne >= (n+1)//2:
+                print(left)
+            else:
+                print(right)
+    elif right == n:
+        if tleftZero >= (n+1)//2:
+            print(right)
+        else:
+            print(left)
+    else:
+        if abs((n+1)//2-left) <= abs((n+1)//2-right):
+            print(left)
+        else:
+            print(right)","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-54ba2394-441c-92a1-8482-a05fc6971a10', 'request_id': '54ba2394-441c-92a1-8482-a05fc6971a10'}",hoareprompt
+1951_E,1951_E_harshkankhar1_1.79%,human,codeforces2024,qwen2.5-7b-instruct,"def Palindrome(s) -> bool:
+	return s == s[::-1]
+def solve():
+	s = input()
+	n,x=len(s),-1
+	if Palindrome(s[0:])==False:
+		print(""YES"")
+		print(1)
+		print(s)
+		return
+	for i in range(1,n):
+		if s[i] != s[0]:
+			x=i
+			break
+	if(x==-1):
+		print(""NO"")
+		return
+	if Palindrome(s[x+1:])==False:
+		print(""YES"")
+		print(2)
+		print(s[:x+1],"" "",s[x+1:])
+	elif(x==1 or x==n/2):
+		print(""NO"")
+	else:
+		print(""YES"")
+		print(2)
+		print(s[:x+2],"" "",s[x+2:])
+ 
+			
+ 
+for _ in range(int(input())):
+	solve()","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-0974b631-d357-9bc4-b0b0-e089cff48829', 'request_id': '0974b631-d357-9bc4-b0b0-e089cff48829'}",hoareprompt
+1931_F,1931_F_HClO_3.12%,human,codeforces2024,qwen2.5-7b-instruct,"from heapq import *
+ 
+t = int(input())
+ 
+ 
+for _ in range(t):
+    n, m = map(int, input().split())
+    if m == 1:
+        input()
+        print(""yes"")
+        continue
+    a1, *l1 = map(int, input().split())
+    a2, *l2 = map(int, input().split())
+    l11 = [i for i in l1 if i != a2]
+    l22 = [i for i in l2 if i != a1]
+    if l11 != l22:
+        for _ in range(m - 2):
+            input()
+        print(""no"")
+        continue
+    idx1 = idx2 = -1
+    p1 = p2 = 0
+    for i in range(n - 1):
+        if i + max(p1, p2) == n - 1:
+            break
+        if l1[i + p1] != l2[i + p2]:
+            if l1[i + p1] == a2 and l2[i + p2] == a1:
+                idx1 = idx2 = i
+                break
+            else:
+                if l1[i + p1] == a2:
+                    idx1 = i
+                    p1 = 1
+                else:
+                    idx2 = i
+                    p2 = 1
+                if idx1 >= 0 and idx2 >= 0:
+                    break
+    val = []
+    if idx1 < idx2:
+        l2.insert(idx1, a2)
+        l = l2
+    elif idx1 > idx2:
+        l1.insert(idx2, a1)
+        l = l1
+    else:
+        if m == 2:
+            print(""yes"")
+            continue
+        a3, *l3 = map(int, input().split())
+        if l3.index(a1) < l3.index(a2):
+            l1.insert(idx2, a1)
+            l = l1
+        else:
+            l2.insert(idx1, a2)
+            l = l2
+        val.append((a3, l3))
+        m -= 1
+    for _ in range(m - 2):
+        a3, *l3 = map(int, input().split())
+        val.append((a3, l3))
+    for a3, l3 in val:
+        if l3 != [i for i in l if i != a3]:
+            print(""no"")
+            break
+    else:
+        print(""yes"")","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-e0c789d8-addd-9cbd-9699-66a33ad2889d', 'request_id': 'e0c789d8-addd-9cbd-9699-66a33ad2889d'}",hoareprompt
+1955_D,1955_D_Greninja_007_0.00%,human,codeforces2024,qwen2.5-7b-instruct,"from collections import Counter
+ 
+def count_good_subarrays(a, b, k,n,m):
+ 
+    good_subarrays = 0
+    b_freq = Counter(b)
+    window_freq = Counter(a[:m])
+    matches = sum(min(window_freq[x], b_freq[x]) for x in window_freq if x in b_freq)
+ 
+    for i in range(n - m):
+        if matches >= k:
+            good_subarrays += 1
+        # Element exiting the window
+        if a[i] in b_freq:
+            matches -= min(window_freq[a[i]], b_freq[a[i]])
+        window_freq[a[i]] -= 1
+        if window_freq[a[i]] == 0:
+            del window_freq[a[i]]
+        # Element entering the window
+        if a[i + m] in b_freq:
+            matches += min(window_freq[a[i + m]] + 1, b_freq[a[i + m]])
+        window_freq[a[i + m]] += 1
+ 
+    # Check the last window
+    if matches >= k:
+        good_subarrays += 1
+ 
+    return good_subarrays
+ 
+for _ in range(int(input())):
+    n,m,k = map(int,input().split("" ""))
+    a = list(map(int,input().split("" "")))
+    b = list(map(int,input().split("" "")))
+    print(count_good_subarrays(a, b, k,n,m))","Error: unsupported statement type: <ast.Delete object at 0x77dee3e7feb0> del window_freq[a[i]]
+",hoareprompt
+1932_A,1932_A_verabuylova_100%,human,codeforces2024,qwen2.5-7b-instruct,"class Solution:
+    def Coins(self, n: int, s: str) -> int:
+        res = 0
+        i = 0
+        while i < n:
+            if s[i] == '@':
+                res += 1
+            if i + 1 < n and s[i + 1] != '*':
+                i += 1
+            elif i + 2 < n and s[i + 2] != '*':
+                i += 2
+            else:
+                break
+        return res
+ 
+solution = Solution()
+ 
+t = int(input())
+ 
+for _ in range(t):
+    n = int(input())
+    a = input()
+    print(solution.Coins(n, a))","Error: unsupported statement type: <ast.ClassDef object at 0x77dee3cfce20> class Solution:
+
+    def Coins(self, n: int, s: str) ->int:
+        res = 0
+        i = 0
+        while i < n:
+            if s[i] == '@':
+                res += 1
+            if i + 1 < n and s[i + 1] != '*':
+                i += 1
+            elif i + 2 < n and s[i + 2] != '*':
+                i += 2
+            else:
+                break
+        return res
+",hoareprompt
+1930_A,1930_A_Aadyant_05_33.33%,human,codeforces2024,qwen2.5-7b-instruct,"num=input()
+out=[]
+for numbers in range(int(num)):
+    list2=[]
+    list1=[]
+    a=input()
+    a=int(a)
+    
+    b=input("""")
+    list1=b.split()
+    list1.sort()
+    
+    for i in range(a):
+        list2.append(int(list1[2*i]))
+        
+ 
+    out.append(sum(list2))
+    del list1[:]
+    del list2[:]
+    
+    
+ 
+for outputs in out:
+    print(outputs)","Error: unsupported statement type: <ast.Delete object at 0x77dee3e2d2a0> del list1[:]
+",hoareprompt
+1926_E,1926_E_daniilrybakov_100%,human,codeforces2024,qwen2.5-7b-instruct,"t = int(input())
+for _ in range(t):
+    n, k = map(int, input().split())
+    # mas = []
+    # while n:
+    #     mas.append((n + 1) // 2)
+    #     n //= 2
+    # print(mas)
+    # continue
+    s = 0
+    m = 1
+    while n:
+        x = ((n + 1) // 2)
+        n //= 2
+        if (s < k) and (k <= s + x):
+            break
+        s += x
+        m *= 2
+    print((2 * (k - s) - 1) * m)
+ 
+    # n_back = n
+    # s = (n + 1) // 2
+    # n = (n + 1) // 2
+    # m = 1
+    # while s < k:
+    #     if n == 0:
+    #         s = n_back
+    #         n = 1
+    #         break
+    #     m *= 2
+    #     n //= 2
+    #     s += n
+    # # print(n, s, k, m, (k - (s - n)))
+    # print((2 * (k - (s - n)) - 1) * m)","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-2a71b434-d42a-9e06-a774-184b237fce8f', 'request_id': '2a71b434-d42a-9e06-a774-184b237fce8f'}",hoareprompt

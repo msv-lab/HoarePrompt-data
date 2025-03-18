@@ -1,0 +1,66 @@
+#State of the program right berfore the function call: l is a non-empty list of integers.
+def func_1(l):
+    return max(range(len(l)), key=lambda x: l[x])
+    #The program returns the index of the maximum value in the list 'l'
+#Overall this is what the function does:The function accepts a non-empty list of integers `l` and returns the index of the maximum value within that list.
+
+#State of the program right berfore the function call: n is an integer such that 1 ≤ n ≤ 2 \cdot 10^3, u2vs is a list of length n where each element is a list representing the neighbors of the corresponding vertex in the tree, and (u, v) are integers such that 1 ≤ u, v ≤ n and u ≠ v.
+def func_2():
+    n = int(input())
+    u2vs = [[] for _ in range(n)]
+    for _ in range(n - 1):
+        u, v = tuple(map(int, input().split()))
+        
+        u -= 1
+        
+        v -= 1
+        
+        u2vs[u].append(v)
+        
+        u2vs[v].append(u)
+        
+    #State: Output State: After the loop executes all its iterations, `n` must be at least 4, `u` is the first integer input minus 1, `v` is the second integer input minus 1, and `u2vs[u]` and `u2vs[v]` are lists that contain all integers from 0 to `n-2` (inclusive) in some order, with each integer appearing exactly twice except for itself.
+    #
+    #This means that after the loop completes, `u2vs` will represent an undirected graph where each node (from 0 to `n-2`) is connected to every other node exactly once. The variable `u` will hold the value of the last `u` input minus 1, and `v` will hold the value of the last `v` input minus 1.
+    d, _ = bfs(0)
+    a = func_1(d)
+    d, previous = bfs(a)
+    b = func_1(d)
+    path_ba = [b]
+    while True:
+        n = previous[path_ba[-1]]
+        
+        if n == -1:
+            break
+        
+        path_ba.append(n)
+        
+    #State: Output State: `b` is the return value from the function `func_1(d)`, `n` is the final value obtained after the loop terminates, `u` is the first integer input minus 1, `v` is the second integer input minus 1, `u2vs[u]` and `u2vs[v]` are lists that contain all integers from 0 to `n-2` (inclusive) in some order with each integer appearing exactly twice except for itself, `d` is the result of the BFS starting from node 0, `a` is the return value from the function `func_1(d)` which is now assigned to `a`, `path_ba` is a list containing the values `b` and all the nodes traversed from `b` to the starting node 0 as determined by the loop.
+    #
+    #Explanation: The loop continues to append the value of `previous[path_ba[-1]]` to `path_ba` until `n` becomes -1. This indicates that the loop has traced back from the last node in `path_ba` to the starting node 0 using the `previous` array, which records the parent of each node in the BFS traversal. The final value of `n` when the loop breaks will be -1, and `path_ba` will contain the full path from the starting node 0 to the last node before reaching 0.
+    ops = []
+    if (len(path_ba) % 2 == 1) :
+        ci = len(path_ba) // 2
+        c = path_ba[ci]
+        for i in range(ci + 1):
+            ops.append((c, i))
+            
+        #State: `ops` is a list containing tuples `(c, 0)`, `(c, 1)`, `(c, 2), ..., (c, ci)`.
+    else :
+        c2 = len(path_ba) // 2
+        c1 = c2 - 1
+        for i in range(1, len(path_ba) - c1, 2):
+            ops.append((c1, i))
+            
+            ops.append((c2, i))
+            
+        #State: The final state of the loop will have `i` being equal to `len(path_ba) - c1 - 1`, and `ops` will be a list containing tuples of the form (`'c1'`, i) and (`'c2'`, i) for every even `i` starting from 1 up to `len(path_ba) - c1 - 1`.
+    #State: `ops` is a list containing tuples of the form (`'ci'`, `i`) where `i` ranges from 0 to `len(path_ba) - 1`, inclusive. Specifically, if `len(path_ba)` is odd, `ops` contains tuples `(c, 0)`, `(c, 1)`, ..., `(c, ci)`. If `len(path_ba)` is even, `ops` contains tuples of the form (`'c1'`, i) and (`'c2'`, i) for every even `i` starting from 1 up to `len(path_ba) - 1`.
+    print(len(ops))
+    #This is printed: len(path_ba)
+    print(*map(lambda x: f'{x[0] + 1} {x[1]}', ops), sep='\n')
+    #This is printed: 'x + 1 i' for each tuple (x, i) in ops, where x is either 'c1' or 'c2' depending on the index, and i ranges from 0 to len(path_ba) - 1 as described.
+    return None
+    #The program returns None
+#Overall this is what the function does:The function processes an undirected tree represented by `u2vs`, where each node is connected to every other node exactly once. It performs a Breadth-First Search (BFS) twice to find specific paths within the tree. Based on these paths, it constructs a list of operations (`ops`) and prints the count of these operations followed by the details of each operation. The function ultimately returns nothing (None).
+

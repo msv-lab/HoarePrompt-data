@@ -1,0 +1,21 @@
+#State of the program right berfore the function call: t is an integer such that 1 ≤ t ≤ 10^4, and for each test case, n, a, and b are integers such that 1 ≤ n, a, b ≤ 10^9.
+def func():
+    t = int(input())
+    for _ in range(t):
+        n, a, b = map(int, input().split())
+        
+        if b <= a:
+            print(n * a)
+        elif b - a >= n:
+            print(int((2 * b - n + 1) * n // 2))
+        else:
+            print(int((b - a) * (b - a + 1) // 2 + a * n))
+        
+    #State: `t` is an input integer such that 1 ≤ t ≤ 10^4, and for each test case, `n`, `a`, and `b` are integers such that 1 ≤ n, a, b ≤ 10^9. The loop has executed `t` times, and for each iteration, the conditions and corresponding outputs have been evaluated and printed.
+#Overall this is what the function does:The function `func` reads an integer `t` from the input, where `1 ≤ t ≤ 10^4`, representing the number of test cases. For each test case, it reads three integers `n`, `a`, and `b` from the input, where `1 ≤ n, a, b ≤ 10^9`. The function then evaluates and prints a result based on the following conditions for each test case:
+- If `b` is less than or equal to `a`, it prints `n * a`.
+- If `b - a` is greater than or equal to `n`, it prints the result of the formula `(2 * b - n + 1) * n // 2`.
+- Otherwise, it prints the result of the formula `(b - a) * (b - a + 1) // 2 + a * n`.
+
+After executing `t` test cases, the function completes, and the final state is that `t` test cases have been processed, and the corresponding results have been printed for each case.
+

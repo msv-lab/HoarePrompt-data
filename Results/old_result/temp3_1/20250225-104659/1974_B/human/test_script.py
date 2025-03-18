@@ -1,0 +1,50 @@
+# Include necessary imports if any
+# Assume the provided program is saved as 'program.py' and can be imported from the same dir.
+
+# If there is a specific function we can call import it
+from program import func_1
+
+# Write your test cases below
+# Each test case should include assertions based on the problem description
+
+# Test case 1 from the example
+encoded1 = "serofedsoc"
+assert func_1(encoded1) == "codeforces"
+
+# Test case 2 from the example
+encoded2 = "ttf"
+assert func_1(encoded2) == "fft"
+
+# Test case 3 from the example
+encoded3 = "tlrhgmaoi"
+assert func_1(encoded3) == "algorithm"
+
+# Test case 4 from the example
+encoded4 = "w"
+assert func_1(encoded4) == "w"
+
+# Test case 5 from the example
+encoded5 = "hnndledmnhlttin"
+assert func_1(encoded5) == "meetinthemiddle"
+
+# Additional test case: Single character, different character
+encoded6 = "a"
+assert func_1(encoded6) == "a"
+
+# Additional test case: All characters are the same
+encoded7 = "zzz"
+assert func_1(encoded7) == "zzz"
+
+# Additional test case: Two distinct characters
+encoded8 = "baab"
+assert func_1(encoded8) == "abba"
+
+# Additional test case: Long string with all distinct characters
+encoded9 = "zyxwvutsrqponmlkjihgfedcba"
+assert func_1(encoded9) == "abcdefghijklmnopqrstuvwxyz"
+
+# Additional test case: Long string with repeated characters
+encoded10 = "mnopqrstuvwxyzyxwvutsrqponmlkjihgfedcbazyxwvutsrqponmlkjihgfedcba"
+assert func_1(encoded10) == "abcdefghijklmnopqrstuvwxyzzyxwvutsrqponmlkjihgfedcba"
+
+# End of script

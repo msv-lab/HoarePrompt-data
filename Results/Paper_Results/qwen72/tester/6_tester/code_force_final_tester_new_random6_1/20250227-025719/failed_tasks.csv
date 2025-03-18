@@ -1,0 +1,67 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1926_C,human,codeforces2024,qwen2p5-72b-instruct,"def problem():
+    t = int(input())
+    numbers = []
+    for _ in range(t):
+        n = int(input())
+        numbers.append(n)
+ 
+    values = [0 for _ in range(max(numbers)  + 1)]
+    sum_values = [0 for _ in range(max(numbers) + 1)]
+ 
+    total = 0
+    for i in range(10):
+        values[i] = i
+        total += i
+        sum_values[i] = total
+ 
+    for i in range(10, n + 1):
+        word = str(i)
+        last = int(word[len(word) - 1])
+        remainder = int(word[:-1])
+        values[i] = values[last] + values[remainder]
+        sum_total = values[i] + sum_values[i - 1]
+        sum_values[i] = sum_total
+ 
+    for n in numbers:
+        print(sum_values[n])
+ 
+problem()",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt
+1955_C,human,codeforces2024,qwen2p5-72b-instruct,"# -*- coding: utf-8 -*-
+""""""
+    @Time : 2024/8/26 17:59
+    @Author : Zhiliang.L
+    @Email : 2410103062@mails.edu.cn
+    @File : 1955-C.py
+""""""
+T = int(input())
+while T:
+    T -= 1
+    n, k = input().split()
+    n = int(n)
+    k = int(k)
+    a = input().split()
+    a = list(map(lambda x: int(x), a))
+    l = 0
+    r = n - 1
+    ans = 0
+    while l < r and k > 0:
+        mi = min(a[l], a[r])
+        if mi * 2 <= k:
+            a[l] -= mi
+            a[r] -= mi
+            k -= (mi * 2)
+            if a[l] == 0:
+                ans += 1
+                l += 1
+            if a[r] == 0:
+                ans += 1
+                r -= 1
+        else:
+            t = k % 2
+            if a[l] - t - k // 2 == 0:
+                ans += 1
+            break
+    if l == r:
+        ans += (k >= a[l])
+    print(ans)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt

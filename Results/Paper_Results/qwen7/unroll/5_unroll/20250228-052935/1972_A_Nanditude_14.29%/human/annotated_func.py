@@ -1,0 +1,6 @@
+#State of the program right berfore the function call: arr is a list of two lists, where the first list contains n non-decreasing integers representing the difficulties of the initial problems (a_1, a_2, ..., a_n), and the second list contains n non-decreasing integers representing the expected maximum difficulties (b_1, b_2, ..., b_n), with 1 <= n <= 100 and 1 <= a_i, b_i <= 10^9.
+def func_1(arr):
+    return sorted(arr, reverse=True)
+    #The program returns a list of two lists, where the first list contains n non-decreasing integers representing the difficulties of the initial problems, and the second list contains n non-decreasing integers representing the expected maximum difficulties, but both lists are sorted in descending order.
+#Overall this is what the function does:The function accepts a parameter `arr`, which is a list containing two lists. The first list consists of `n` non-decreasing integers representing the difficulties of the initial problems, and the second list consists of `n` non-decreasing integers representing the expected maximum difficulties. After sorting both lists in descending order, the function returns a new list of two lists with the same structure but with the integers sorted in descending order.
+

@@ -1,0 +1,4914 @@
+Task ID,unique_id,Dataset,model_created,model_run,description,Code,run_number,original correctness,summary fsl,naive correctness fsl,vanilla,vanilla_no_cot,simple tree,complex tree,summary,simple verify fsl,complex verify fsl,summary verify fsl,simple verify,complex verify,summary verify
+1942_C2,1942_C2_Campass_100%,codeforces2024,human,qwen2.5-7b-instruct,"[Proof Geometric Construction Can Solve All Love Affairs -
+manbo-p](https://soundcloud.com/alice-law-314125270/manbo-p-proof-geometric-
+construction-can-solve-all-love-affairs)
+
+⠀
+
+This is the hard version of the problem. The only difference between the two
+versions is the constraint on y . In this version 0 \leq y \leq n - x . You
+can make hacks only if both versions are solved.
+
+Bessie has received a birthday cake from her best friend Elsie, and it came in
+the form of a regular polygon with n sides. The vertices of the cake are
+numbered from 1 to n clockwise. You and Bessie are going to choose some of
+those vertices to cut non-intersecting diagonals into the cake. In other
+words, the endpoints of the diagonals must be part of the chosen vertices.
+
+Bessie would only like to give out pieces of cake which result in a triangle
+to keep consistency. The size of the pieces doesn't matter, and the whole cake
+does not have to be separated into all triangles (other shapes are allowed in
+the cake, but those will not be counted).
+
+Bessie has already chosen x of those vertices that can be used to form
+diagonals. She wants you to choose no more than y other vertices such that the
+number of triangular pieces of cake she can give out is maximized.
+
+What is the maximum number of triangular pieces of cake Bessie can give out?
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case consists of three integers, n , x , and y (4
+\leq n \leq 10^9 , 2 \leq x \leq \min(n, 2 \cdot 10^5) , 0 \leq y \leq n - x )
+— the number of sides of the polygon, number of vertices Bessie has chosen,
+and the maximum number of other vertices you can choose.
+
+The second line consists of x distinct integers from 1 to n , representing the
+vertices Bessie has chosen.
+
+It is guaranteed the sum of x over all test cases does not exceed 2 \cdot 10^5
+.
+
+Output
+
+For each test case, output a single integer: the maximum number of non-
+intersecting triangular pieces of cake she can give out.
+
+Example
+
+Input
+
+    3
+    
+    8 4 2
+    
+    1 6 2 5
+    
+    7 3 1
+    
+    6 4 3
+    
+    4 2 2
+    
+    1 3
+
+Output
+
+    6
+    5
+    2
+    
+Note
+
+In test cases 1 , 2 and 3 , you can get 6 , 5 and 2 non-intersecting
+triangular pieces of cake, respectively. A possible construction is shown in
+the following pictures:
+
+The green dots represent vertices that Bessie chose, the yellow dots represent
+vertices that you chose, the blue lines represent diagonals that are drawn,
+and the red numbers represent triangles that are counted.
+
+![](https://espresso.codeforces.com/13b28beb7f5f0d100798f357f58c804c5314c869.png)","R = lambda: map(int, input().split())
+t,=R()
+while t:
+    t -= 1
+    n,x,y= R()
+    sx=0;
+    l = list(R())
+    l.sort()
+    l.append(n+l[0])
+    val=[]
+    for i in range(1,x+1):
+        c=l[i]-l[i-1]-1
+        val.append(c)
+    val.sort(key= lambda x:(1-x&1,x))
+    for i in val:
+        c=i//2
+        if y<c :
+            sx+=y*2 
+            break
+        sx+=i
+        y-=c
+    
+    cons=x+sx-2
+    # cons=min(n-2,cons)
+    print(cons)  # 使用 print 函数打印列表元素，而不是调用 P 函数",1,True,False,False,True,False,False,True,True,False,False,False,False,False,True
+1926_E,1926_E_Joyboy1730_100%,codeforces2024,human,qwen2.5-7b-instruct,"Vladislav has n cards numbered 1, 2, \dots, n . He wants to lay them down in a
+row as follows:
+
+  * First, he lays down all the odd-numbered cards from smallest to largest. 
+  * Next, he lays down all cards that are twice an odd number from smallest to largest (i.e. 2 multiplied by an odd number). 
+  * Next, he lays down all cards that are 3 times an odd number from smallest to largest (i.e. 3 multiplied by an odd number). 
+  * Next, he lays down all cards that are 4 times an odd number from smallest to largest (i.e. 4 multiplied by an odd number). 
+  * And so on, until all cards are laid down. 
+
+What is the k -th card he lays down in this process? Once Vladislav puts a
+card down, he cannot use that card again.
+
+Input
+
+The first line contains an integer t (1 \leq t \leq 5 \cdot 10^4 ) — the
+number of test cases.
+
+The only line of each test case contains two integers n and k (1 \leq k \leq n
+\leq 10^9 ) — the number of cards Vlad has, and the position of the card you
+need to output.
+
+Output
+
+For each test case, output a single integer — the k -th card Vladislav lays
+down.
+
+Example
+
+Input
+
+    11
+    
+    7 1
+    
+    7 2
+    
+    7 3
+    
+    7 4
+    
+    7 5
+    
+    7 6
+    
+    7 7
+    
+    1 1
+    
+    34 14
+    
+    84 19
+    
+    1000000000 1000000000
+
+Output
+
+    1
+    3
+    5
+    7
+    2
+    6
+    4
+    1
+    27
+    37
+    536870912
+    
+Note
+
+In the first seven test cases, n=7 . Vladislav lays down the cards as follows:
+
+  * First — all the odd-numbered cards in the order 1 , 3 , 5 , 7 . 
+  * Next — all cards that are twice an odd number in the order 2 , 6 . 
+  * Next, there are no remaining cards that are 3 times an odd number. (Vladislav has only one of each card.) 
+  * Next — all cards that are 4 times an odd number, and there is only one such card: 4 . 
+  * There are no more cards left, so Vladislav stops. 
+
+Thus the order of cards is 1 , 3 , 5 , 7 , 2 , 6 , 4 .","t=int(input())
+for _ in range(t):
+    n,k=map(int,input().split())
+    L=[]
+    while n:
+        m=(n+1)//2
+        n-=m
+        L.append(m)
+    tot=0;pow=1
+    for a in L:
+        if tot<k and k<=tot+a:
+            print(pow*(2*(k-tot)-1))
+        tot+=a
+        pow*=2",1,True,False,False,True,True,True,True,True,False,True,False,False,False,False
+1925_B,1925_B_WarsNitin_100%,codeforces2024,human,qwen2.5-7b-instruct,"Jay managed to create a problem of difficulty x and decided to make it the
+second problem for Codeforces Round #921.
+
+But Yash fears that this problem will make the contest highly unbalanced, and
+the coordinator will reject it. So, he decided to break it up into a
+problemset of n sub-problems such that the difficulties of all the sub-
+problems are a positive integer and their sum is equal to x .
+
+The coordinator, Aleksey, defines the balance of a problemset as the
+[GCD](https://en.wikipedia.org/wiki/Greatest_common_divisor) of the
+difficulties of all sub-problems in the problemset.
+
+Find the maximum balance that Yash can achieve if he chooses the difficulties
+of the sub-problems optimally.
+
+Input
+
+The first line of input contains a single integer t (1\leq t\leq 10^3 )
+denoting the number of test cases.
+
+Each test case contains a single line of input containing two integers x
+(1\leq x\leq 10^8 ) and n (1\leq n\leq x ).
+
+Output
+
+For each test case, print a single line containing a single integer denoting
+the maximum balance of the problemset Yash can achieve.
+
+Example
+
+Input
+
+    3
+    
+    10 3
+    
+    5 5
+    
+    420 69
+
+Output
+
+    2
+    1
+    6
+    
+Note
+
+For the first test case, one possible way is to break up the problem of
+difficulty 10 into a problemset having three problems of difficulties 4 , 2
+and 4 respectively, giving a balance equal to 2 .
+
+For the second test case, there is only one way to break up the problem of
+difficulty 5 into a problemset of 5 problems with each problem having a
+difficulty 1 giving a balance equal to 1 .","from math import sqrt
+for q in range(int(input())):
+    x,n=list(map(int,input().split(' ')))
+    ans=1
+    for i in range(1,int(sqrt(x))+1):
+        if(x%i==0):
+            if((x-n*i)>=0 and (x-n*i)%i==0):
+                ans=max(ans,i)
+            if((x-n*((x//i))>=0 and x//i>0 and ((x-n*((x//i)))%((x//i))==0))):
+                ans=max(ans,(x//i))
+    print(ans)",1,True,False,True,True,True,True,True,True,True,True,Nan,True,True,True
+1937_D,1937_D_Dipta_bar_100%,codeforces2024,human,qwen2.5-7b-instruct,"There is a one-dimensional grid of length n . The i -th cell of the grid
+contains a character s_i , which is either '<' or '>'.
+
+When a pinball is placed on one of the cells, it moves according to the
+following rules:
+
+  * If the pinball is on the i -th cell and s_i is '<', the pinball moves one cell to the left in the next second. If s_i is '>', it moves one cell to the right. 
+  * After the pinball has moved, the character s_i is inverted (i. e. if s_i used to be '<', it becomes '>', and vice versa). 
+  * The pinball stops moving when it leaves the grid: either from the left border or from the right one. 
+
+You need to answer n independent queries. In the i -th query, a pinball will
+be placed on the i -th cell. Note that we always place a pinball on the
+initial grid.
+
+For each query, calculate how many seconds it takes the pinball to leave the
+grid. It can be shown that the pinball will always leave the grid within a
+finite number of steps.
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t (1 \le t \le 10^5 ). The description of the test cases follows.
+
+The first line of each test case contains an integer n (1 \le n \le 5 \cdot
+10^5 ).
+
+The second line of each test case contains a string s_1s_2 \ldots s_{n} of
+length n consisting of characters '<' and '>'.
+
+It is guaranteed that the sum of n over all test cases does not exceed 5 \cdot
+10^5 .
+
+Output
+
+For each test case, for each i (1 \le i \le n ) output the answer if a pinball
+is initially placed on the i -th cell.
+
+Example
+
+Input
+
+    3
+    
+    3
+    
+    ><<
+    
+    4
+    
+    <<<<
+    
+    6
+    
+    <><<<>
+
+Output
+
+    3 6 5 
+    1 2 3 4 
+    1 4 7 10 8 1 
+    
+Note
+
+In the first test case, the movement of the pinball for i=1 is shown in the
+following pictures. It takes the pinball 3 seconds to leave the grid.
+
+![](https://espresso.codeforces.com/775b656d27e63ce8901e1ef80487972d536b4a54.png)
+
+The movement of the pinball for i=2 is shown in the following pictures. It
+takes the pinball 6 seconds to leave the grid.
+
+![](https://espresso.codeforces.com/515bd5576868cf33d4190893928faa21e69dd5c7.png)","t = int(input())
+ 
+ 
+ 
+def solve(s):
+    n = len(s)
+    A = [] 
+    idx_A = []
+    for i in range(0, n):
+        if s[i] == '>':
+            if (len(idx_A) == 0):
+                A.append(0)
+            else:
+                x = A[len(A) - 1] + (i - idx_A[len(idx_A) - 1]) * len(idx_A)
+                A.append(x)
+            idx_A.append(i)
+    B = []
+    idx_B = []
+    for j in range(0, n):
+        i = n - 1 - j
+        if s[i] == '<':
+            if (len(idx_B) == 0):
+                B.append(0)
+            else:
+                x = B[len(B) - 1] + (idx_B[len(B) - 1] - i) * len(idx_B)
+                B.append(x)
+            idx_B.append(i)
+    l = 0
+    r = len(B)
+ 
+ 
+    for i in range(0, n):
+        if (s[i] == '>'):
+            if l < r:
+                a = A[l]
+                x = r - (l + 2)
+                b = B[r - 1]
+                if x >= 0:
+                    b = b - B[x]
+                    b = b - (idx_B[x] - idx_B[r - 1]) * (x + 1)
+                b = b + (idx_B[r - 1] - i) * (l + 1)
+                print(a * 2 + b * 2 + i + 1, end = "" "")
+            else:
+                if (r == 0):
+                    print(n - i, end = "" "")
+                else:
+                    a = B[r - 1] + (idx_B[r - 1] - i) * r
+                    b = A[l - 1]
+                    if l - r > 0:
+                        b = b - A[l - r - 1]
+                        b = b - (idx_A[l - 1] - idx_A[l - r - 1]) * (l - r)
+                    b = b + (i - idx_A[l - 1]) * r
+                    print(a * 2 + b * 2 + (n - i), end = "" "")
+            l += 1
+        else:
+            r -= 1
+            if (l <= r):
+                if (l == 0):
+                    print(i + 1, end = "" "")
+                else:
+                    a = A[l - 1]
+                    a = a + (i - idx_A[l - 1]) * l
+                    b = B[r]
+                    if r - l >= 0:
+                        b = b - B[r - l]
+                        b = b - (idx_B[r - l] - i) * (r - l)
+                    b = b + (idx_B[r] - i) * l
+                    print(a * 2 + b * 2 + i + 1, end = "" "")
+            else:
+                if (r == 0):
+                    print((n - i) + (i - idx_A[l - 1]) * 2, end = "" "")
+                else:
+                    a = B[r]
+                    b = A[l - 1]
+                    if l - r - 1 > 0:
+                        b = b - A[l - r - 2]
+                        b = b - (idx_A[l - 1] - idx_A[l - r - 2]) * (l - r - 1)
+                    b = b + (i - idx_A[l - 1]) * (r + 1)
+                    print(a * 2 + b * 2 + (n - i), end = "" "")
+ 
+ 
+for i in range(0, t):
+    n = int(input())
+    s = input()
+    solve(s)
+    print()",1,True,False,False,True,False,True,True,True,False,False,False,False,False,False
+1937_D,1937_D_Dipta_bar_100%,codeforces2024,human,qwen2.5-7b-instruct,"There is a one-dimensional grid of length n . The i -th cell of the grid
+contains a character s_i , which is either '<' or '>'.
+
+When a pinball is placed on one of the cells, it moves according to the
+following rules:
+
+  * If the pinball is on the i -th cell and s_i is '<', the pinball moves one cell to the left in the next second. If s_i is '>', it moves one cell to the right. 
+  * After the pinball has moved, the character s_i is inverted (i. e. if s_i used to be '<', it becomes '>', and vice versa). 
+  * The pinball stops moving when it leaves the grid: either from the left border or from the right one. 
+
+You need to answer n independent queries. In the i -th query, a pinball will
+be placed on the i -th cell. Note that we always place a pinball on the
+initial grid.
+
+For each query, calculate how many seconds it takes the pinball to leave the
+grid. It can be shown that the pinball will always leave the grid within a
+finite number of steps.
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t (1 \le t \le 10^5 ). The description of the test cases follows.
+
+The first line of each test case contains an integer n (1 \le n \le 5 \cdot
+10^5 ).
+
+The second line of each test case contains a string s_1s_2 \ldots s_{n} of
+length n consisting of characters '<' and '>'.
+
+It is guaranteed that the sum of n over all test cases does not exceed 5 \cdot
+10^5 .
+
+Output
+
+For each test case, for each i (1 \le i \le n ) output the answer if a pinball
+is initially placed on the i -th cell.
+
+Example
+
+Input
+
+    3
+    
+    3
+    
+    ><<
+    
+    4
+    
+    <<<<
+    
+    6
+    
+    <><<<>
+
+Output
+
+    3 6 5 
+    1 2 3 4 
+    1 4 7 10 8 1 
+    
+Note
+
+In the first test case, the movement of the pinball for i=1 is shown in the
+following pictures. It takes the pinball 3 seconds to leave the grid.
+
+![](https://espresso.codeforces.com/775b656d27e63ce8901e1ef80487972d536b4a54.png)
+
+The movement of the pinball for i=2 is shown in the following pictures. It
+takes the pinball 6 seconds to leave the grid.
+
+![](https://espresso.codeforces.com/515bd5576868cf33d4190893928faa21e69dd5c7.png)","t = int(input())
+ 
+ 
+ 
+def solve(s):
+    n = len(s)
+    A = [] 
+    idx_A = []
+    for i in range(0, n):
+        if s[i] == '>':
+            if (len(idx_A) == 0):
+                A.append(0)
+            else:
+                x = A[len(A) - 1] + (i - idx_A[len(idx_A) - 1]) * len(idx_A)
+                A.append(x)
+            idx_A.append(i)
+    B = []
+    idx_B = []
+    for j in range(0, n):
+        i = n - 1 - j
+        if s[i] == '<':
+            if (len(idx_B) == 0):
+                B.append(0)
+            else:
+                x = B[len(B) - 1] + (idx_B[len(B) - 1] - i) * len(idx_B)
+                B.append(x)
+            idx_B.append(i)
+    l = 0
+    r = len(B)
+ 
+ 
+    for i in range(0, n):
+        if (s[i] == '>'):
+            if l < r:
+                a = A[l]
+                x = r - (l + 2)
+                b = B[r - 1]
+                if x >= 0:
+                    b = b - B[x]
+                    b = b - (idx_B[x] - idx_B[r - 1]) * (x + 1)
+                b = b + (idx_B[r - 1] - i) * (l + 1)
+                print(a * 2 + b * 2 + i + 1, end = "" "")
+            else:
+                if (r == 0):
+                    print(n - i, end = "" "")
+                else:
+                    a = B[r - 1] + (idx_B[r - 1] - i) * r
+                    b = A[l - 1]
+                    if l - r > 0:
+                        b = b - A[l - r - 1]
+                        b = b - (idx_A[l - 1] - idx_A[l - r - 1]) * (l - r)
+                    b = b + (i - idx_A[l - 1]) * r
+                    print(a * 2 + b * 2 + (n - i), end = "" "")
+            l += 1
+        else:
+            r -= 1
+            if (l <= r):
+                if (l == 0):
+                    print(i + 1, end = "" "")
+                else:
+                    a = A[l - 1]
+                    a = a + (i - idx_A[l - 1]) * l
+                    b = B[r]
+                    if r - l >= 0:
+                        b = b - B[r - l]
+                        b = b - (idx_B[r - l] - i) * (r - l)
+                    b = b + (idx_B[r] - i) * l
+                    print(a * 2 + b * 2 + i + 1, end = "" "")
+            else:
+                if (r == 0):
+                    print((n - i) + (i - idx_A[l - 1]) * 2, end = "" "")
+                else:
+                    a = B[r]
+                    b = A[l - 1]
+                    if l - r - 1 > 0:
+                        b = b - A[l - r - 2]
+                        b = b - (idx_A[l - 1] - idx_A[l - r - 2]) * (l - r - 1)
+                    b = b + (i - idx_A[l - 1]) * (r + 1)
+                    print(a * 2 + b * 2 + (n - i), end = "" "")
+ 
+ 
+for i in range(0, t):
+    n = int(input())
+    s = input()
+    solve(s)
+    print()",1,True,False,False,True,False,True,True,False,False,False,False,False,False,False
+1931_A,1931_A_Outlastqr_20.00%,codeforces2024,human,qwen2.5-7b-instruct,"Nikita had a word consisting of exactly 3 lowercase Latin letters. The letters
+in the Latin alphabet are numbered from 1 to 26 , where the letter ""a"" has the
+index 1 , and the letter ""z"" has the index 26 .
+
+He encoded this word as the sum of the positions of all the characters in the
+alphabet. For example, the word ""cat"" he would encode as the integer 3 + 1 +
+20 = 24 , because the letter ""c"" has the index 3 in the alphabet, the letter
+""a"" has the index 1 , and the letter ""t"" has the index 20 .
+
+However, this encoding turned out to be ambiguous! For example, when encoding
+the word ""ava"", the integer 1 + 22 + 1 = 24 is also obtained.
+
+Determine the lexicographically smallest word of 3 letters that could have
+been encoded.
+
+A string a is lexicographically smaller than a string b if and only if one of
+the following holds:
+
+  * a is a prefix of b , but a \ne b ;
+  * in the first position where a and b differ, the string a has a letter that appears earlier in the alphabet than the corresponding letter in b .
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 100 ) —
+the number of test cases in the test.
+
+This is followed by the descriptions of the test cases.
+
+The first and only line of each test case contains an integer n (3 \le n \le
+78 ) — the encoded word.
+
+Output
+
+For each test case, output the lexicographically smallest three-letter word
+that could have been encoded on a separate line.
+
+Example
+
+Input
+
+    5
+    
+    24
+    
+    70
+    
+    3
+    
+    55
+    
+    48
+
+Output
+
+    aav
+    rzz
+    aaa
+    czz
+    auz","import string
+ 
+alphabet = string.ascii_lowercase
+ 
+for i in range(int(input())):
+    n = int(input())
+    word = """"
+    if n > 52:
+        word += alphabet[n - 53] + ""zz""
+    elif n > 26:
+        word += ""a"" + alphabet[n - 28] + ""z""
+    else:
+        word += ""aa"" + alphabet[n - 3]
+    print(word)",1,False,False,False,False,False,True,True,False,False,False,False,False,False,True
+1965_B,1965_B_NS3081992_100%,codeforces2024,human,qwen2.5-7b-instruct,"You are given two integers n and k . Find a sequence a of non-negative
+integers of size at most 25 such that the following conditions hold.
+
+  * There is no subsequence of a with a sum of k . 
+  * For all 1 \le v \le n where v \ne k , there is a subsequence of a with a sum of v . 
+
+A sequence b is a subsequence of a if b can be obtained from a by the deletion
+of several (possibly, zero or all) elements, without changing the order of the
+remaining elements. For example, [5, 2, 3] is a subsequence of [1, 5, 7, 8, 2,
+4, 3] .
+
+It can be shown that under the given constraints, a solution always exists.
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 1000 ) —
+the number of test cases. The description of the test cases follows.
+
+Each test case consists of a single line containing two integers n and k (2
+\le n \le 10^6 , 1 \le k \le n ) — the parameters described above.
+
+It is guaranteed that the sum of n over all test cases does not exceed 10^7 .
+
+Output
+
+The first line of output for each test case should contain a single integer m
+(1 \le m \le 25 ) — the size of your chosen sequence.
+
+The second line of output for each test case should contain m integers a_i (0
+\le a_i \le 10^9 ) — the elements of your chosen sequence.
+
+If there are multiple solutions, print any.
+
+Example
+
+Input
+
+    5
+    
+    2 2
+    
+    6 1
+    
+    8 8
+    
+    9 3
+    
+    10 7
+
+Output
+
+    1
+    1
+    5
+    2 3 4 5 6
+    7
+    1 1 1 1 1 1 1
+    4
+    7 1 4 1
+    4
+    1 2 8 3
+    
+Note
+
+In the first example, we just need a subsequence that adds up to 1 , but not
+one that adds up to 2 . So the array a=[1] suffices.
+
+In the second example, all elements are greater than k=1 , so no subsequence
+adds up to 1 . Every other integer between 1 and n is present in the array, so
+there is a subsequence of size 1 adding up to each of those numbers.","# import random
+# import itertools
+# from sys import stdin, stdout
+# import operator
+# import collections
+import bisect
+import collections
+import heapq
+import math
+import sys
+from sys import maxsize
+# from decimal import Decimal
+ 
+#sys.setrecursionlimit(10**6)
+ 
+p2D = lambda x: print(*x, sep=""\n"")
+def II(): return int(sys.stdin.buffer.readline())
+def MI(): return map(int, sys.stdin.buffer.readline().split())
+def LI(): return list(map(int, sys.stdin.buffer.readline().split()))
+def LLI(rows_number): return [LI() for _ in range(rows_number)]
+def BI(): return sys.stdin.buffer.readline().rstrip()
+def SI(): return sys.stdin.buffer.readline().rstrip().decode()
+def li(): return [int(i) for i in input().split()]
+def lli(rows): return [li() for _ in range(rows)]
+def si(): return input()
+def ii(): return int(input())
+def ins(): return input().split()
+ 
+ 
+# mod = 998244353
+# fval = [1]
+# for i in range(1,1002):
+#     x = (fval[-1]*i)%mod
+#     fval.append(x)
+# #
+# ifac = [1]*(1002)
+# ifac[1001] = pow(fval[1001], -1, mod)
+# for i in range(1001-1, 1, -1): ifac[i] = ifac[i+1]*(i+1)%mod
+# print(fval)
+# print(ifac)
+# _________________ For taking Input from the Text Files __________________
+# import os.path
+#
+# if (os.path.exists('input.txt')):
+#     sys.stdin = open(""input.txt"", ""r"")
+#     sys.stdout = open(""output.txt"", ""w"")
+#     sys.stderr = open(""error.txt"", ""w"")
+ 
+def drank(d, processing, da, rank):
+    tmp = 10 ** 9
+    if len(d[da]) == 1:
+        return 1
+    for di in d[da]:
+        if processing[di - 1] == 0:
+            processing[di - 1] = 1
+            tmp = min(tmp, drank(d, processing, di, rank))
+            processing[di - 1] = 0
+    rank[da - 1] = tmp + 1
+    return tmp + 1
+ 
+# def primeFactors(n, d):
+#     if (n % 2 == 0):
+#         d[2] = 0
+#     while n % 2 == 0:
+#         d[2] += 1
+#         n = n // 2
+#     for i in range(3, int(math.sqrt(n)) + 1, 2):
+#         if (n % i == 0):
+#             d[i] = 0
+#         while n % i == 0:
+#             d[i] += 1
+#             n = n // i
+#     if n > 2:
+#         d[n] = 1
+# def powerofadivisor(n,div):
+#     x = 0
+#     while n%div == 0:
+#         n//=div
+#         x+=1
+#     return x
+ 
+#import heapq as hq
+#import math
+ 
+def gcd(a,b):
+    if b==0:
+        x = 1
+        y = 0
+        return x, y, a
+    x, y, g = gcd(b, a%b)
+    return y, x- (a//b)*y, g
+ 
+# mod = 998244353
+#
+# is_prime = [True]*(10**7+5)
+# primes = []
+# def primeseive(n):
+#     is_prime[0] = is_prime[1] = False
+#     for i in range(4,n+1,2): is_prime[i] = False
+#     i = 3
+#     while i*i<=n:
+#         if is_prime[i] == True:
+#             for j in range(i*i,n+1,i):
+#                 is_prime[j] = False
+#         i+=2
+    # for i in range(n):
+    #     if is_prime[i]: primes.append(i)
+import heapq
+ 
+def solve():
+    n, k = li()
+    b = bin(n)[2:]
+    l = len(b)
+    if k == 1:
+        if n == 2: return ""1\n2""
+        ans = [2, 3]
+        for i in range(2,l):
+            ans.append(2**i)
+    else:
+        bk = bin(k)[2:]
+        ans = []
+        lk = len(bk)
+        for i in range(lk-1):
+            ans.append(2**i)
+        ans.append(k-1-sum(ans))
+        ans.append(k+1)
+        ans.append(2*k+1)
+        for i in range(lk, l):
+            ans.append(2**i)
+    return str(len(ans))+""\n""+' '.join(map(str, ans))
+ 
+ 
+ 
+ 
+def main():
+    # primeseive(10**7+2)
+    # print(is_prime)
+    for _ in range(ii()):
+        sys.stdout.write(str(solve()) + ""\n"")
+        #solve()
+        # si()
+        #print(""? {} {}"".format(low, mid), flush=True)
+        # print(solve(), flush=True)
+    # print(solve())
+ 
+    #     z += str(ans) + '\n'
+    # print(len(ans), ' '.join(map(str, ans)), sep='\n')
+    # stdout.write(z)
+ 
+ 
+# for interactive problems
+# print(""? {} {}"".format(l,m), flush=True)
+# or print this after each print statement
+# sys.stdout.flush()
+ 
+ 
+if __name__ == ""__main__"":
+    main()",1,True,True,False,True,True,True,True,True,True,True,True,True,True,False
+1941_B,1941_B_m.olimovvv_20.00%,codeforces2024,human,qwen2.5-7b-instruct,"Rudolf has an array a of n integers, the elements are numbered from 1 to n .
+
+In one operation, he can choose an index i (2 \le i \le n - 1 ) and assign:
+
+  * a_{i - 1} = a_{i - 1} - 1 
+  * a_i = a_i - 2 
+  * a_{i + 1} = a_{i + 1} - 1 
+
+Rudolf can apply this operation any number of times. Any index i can be used
+zero or more times.
+
+Can he make all the elements of the array equal to zero using this operation?
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 10^4 ) —
+the number of test cases in the test.
+
+The first line of each case contains a single integer n (3 \le n \le 2 \cdot
+10^5 ) — the number of elements in the array.
+
+The second line of each case contains n integers a_1, a_2, \dots, a_n (0 \le
+a_j \le 10^9 ) — the elements of the array.
+
+It is guaranteed that the sum of the values of n over all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output ""YES"" if it is possible to make all the elements of
+the array zero using the described operations. Otherwise, output ""NO"".
+
+You can output each letter in any case (lowercase or uppercase). For example,
+the strings ""yEs"", ""yes"", ""Yes"", and ""YES"" will be accepted as a positive
+answer.
+
+Example
+
+Input
+
+    7
+    
+    5
+    
+    1 3 5 5 2
+    
+    5
+    
+    2 4 4 5 1
+    
+    5
+    
+    0 1 3 3 1
+    
+    6
+    
+    5 6 0 2 3 0
+    
+    4
+    
+    1 2 7 2
+    
+    3
+    
+    7 1 0
+    
+    4
+    
+    1 1 1 1
+
+Output
+
+    YES
+    NO
+    YES
+    NO
+    NO
+    NO
+    NO
+    
+Note
+
+In the first example, the original array is [1, 3, 5, 5, 2] , to make all its
+elements zero, Rudolf can act as follows:
+
+  * apply the operation at i=4 and get the array [1, 3, 4, 3, 1] ; 
+  * apply the operation at i=3 and get the array [1, 2, 2, 2, 1] ; 
+  * apply the operation at i=2 and get the array [0, 0, 1, 2, 1] ; 
+  * apply the operation at i=4 and get the array [0, 0, 0, 0, 0] .","for _ in range(int(input())):
+    a = int(input())
+    b = list(map(int, input().split()))
+    if b[0] % 2 == 1 and b[1] != b[0] + 2 or b[-1] % 2 == 1 and b[-2] != b[-1] + 2:
+        print(""NO"")
+    else:
+        print(""YES"")",1,False,False,False,False,False,False,False,False,False,False,False,False,False,False
+1948_C,1948_C_saurabh_k1_100%,codeforces2024,human,qwen2.5-7b-instruct,"There is a grid, consisting of 2 rows and n columns. The rows are numbered
+from 1 to 2 from top to bottom. The columns are numbered from 1 to n from left
+to right. Each cell of the grid contains an arrow pointing either to the left
+or to the right. No arrow points outside the grid.
+
+There is a robot that starts in a cell (1, 1) . Every second, the following
+two actions happen one after another:
+
+  1. Firstly, the robot moves left, right, down or up (it can't try to go outside the grid, and can't skip a move); 
+  2. then it moves along the arrow that is placed in the current cell (the cell it ends up after its move). 
+
+Your task is to determine whether the robot can reach the cell (2, n) .
+
+Input
+
+The first line contains a single integer t (1 \le t \le 10^4 ) — the number of
+test cases.
+
+The first line of each test case contains a single integer (2 \le n \le 2
+\cdot 10^5 ).
+
+The second line contains a string consisting of exactly n characters < and/or
+> — the first row of the grid.
+
+The third line contains a string consisting of exactly n characters < and/or >
+— the second row of the grid.
+
+Additional constraints on the input:
+
+  * n is even; 
+  * there are no arrows pointing outside the grid; 
+  * the sum of n over all test cases doesn't exceed 2 \cdot 10^5 . 
+
+Output
+
+For each test case, print YES if the robot can reach the cell (2, n) ;
+otherwise, print NO.
+
+You can print each letter in any case. For example, yes, Yes, YeS will all be
+recognized as positive answer.
+
+Example
+
+Input
+
+    4
+    
+    4
+    
+    >><<
+    
+    >>><
+    
+    2
+    
+    ><
+    
+    ><
+    
+    4
+    
+    >>><
+    
+    >><<
+    
+    6
+    
+    >><<><
+    
+    ><>>><
+
+Output
+
+    YES
+    YES
+    NO
+    YES
+    
+Note
+
+In the first example, one of the possible paths looks as follows: (1, 1)
+\rightarrow (1, 2) \rightarrow (1, 3) \rightarrow (2, 3) \rightarrow (2, 4) .
+
+In the second example, one of the possible paths looks as follows: (1, 1)
+\rightarrow (2, 1) \rightarrow (2, 2) .
+
+In the third example, there is no way to reach the cell (2, 4) .
+
+In the fourth example, one of the possible paths looks as follows: (1, 1)
+\rightarrow (2, 1) \rightarrow (2, 2) \rightarrow (1, 2) \rightarrow (1, 3)
+\rightarrow (2, 3) \rightarrow (2, 4) \rightarrow (2, 5) \rightarrow (2, 6) .","t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = input()
+    b = input()
+    for  i in range(1 ,n ,2):
+        if (i+1<n and a[i]== b[i+1] == ""<"") or (a[i] == b[i-1] == ""<"")  :
+            print(""No"")
+            break
+    else:
+        print(""yes"")",1,True,False,False,False,False,False,False,False,False,False,False,False,False,False
+1948_C,1948_C_saurabh_k1_100%,codeforces2024,human,qwen2.5-7b-instruct,"There is a grid, consisting of 2 rows and n columns. The rows are numbered
+from 1 to 2 from top to bottom. The columns are numbered from 1 to n from left
+to right. Each cell of the grid contains an arrow pointing either to the left
+or to the right. No arrow points outside the grid.
+
+There is a robot that starts in a cell (1, 1) . Every second, the following
+two actions happen one after another:
+
+  1. Firstly, the robot moves left, right, down or up (it can't try to go outside the grid, and can't skip a move); 
+  2. then it moves along the arrow that is placed in the current cell (the cell it ends up after its move). 
+
+Your task is to determine whether the robot can reach the cell (2, n) .
+
+Input
+
+The first line contains a single integer t (1 \le t \le 10^4 ) — the number of
+test cases.
+
+The first line of each test case contains a single integer (2 \le n \le 2
+\cdot 10^5 ).
+
+The second line contains a string consisting of exactly n characters < and/or
+> — the first row of the grid.
+
+The third line contains a string consisting of exactly n characters < and/or >
+— the second row of the grid.
+
+Additional constraints on the input:
+
+  * n is even; 
+  * there are no arrows pointing outside the grid; 
+  * the sum of n over all test cases doesn't exceed 2 \cdot 10^5 . 
+
+Output
+
+For each test case, print YES if the robot can reach the cell (2, n) ;
+otherwise, print NO.
+
+You can print each letter in any case. For example, yes, Yes, YeS will all be
+recognized as positive answer.
+
+Example
+
+Input
+
+    4
+    
+    4
+    
+    >><<
+    
+    >>><
+    
+    2
+    
+    ><
+    
+    ><
+    
+    4
+    
+    >>><
+    
+    >><<
+    
+    6
+    
+    >><<><
+    
+    ><>>><
+
+Output
+
+    YES
+    YES
+    NO
+    YES
+    
+Note
+
+In the first example, one of the possible paths looks as follows: (1, 1)
+\rightarrow (1, 2) \rightarrow (1, 3) \rightarrow (2, 3) \rightarrow (2, 4) .
+
+In the second example, one of the possible paths looks as follows: (1, 1)
+\rightarrow (2, 1) \rightarrow (2, 2) .
+
+In the third example, there is no way to reach the cell (2, 4) .
+
+In the fourth example, one of the possible paths looks as follows: (1, 1)
+\rightarrow (2, 1) \rightarrow (2, 2) \rightarrow (1, 2) \rightarrow (1, 3)
+\rightarrow (2, 3) \rightarrow (2, 4) \rightarrow (2, 5) \rightarrow (2, 6) .","t = int(input())
+for _ in range(t):
+    n = int(input())
+    a = input()
+    b = input()
+    for  i in range(1 ,n ,2):
+        if (i+1<n and a[i]== b[i+1] == ""<"") or (a[i] == b[i-1] == ""<"")  :
+            print(""No"")
+            break
+    else:
+        print(""yes"")",1,True,False,False,False,False,True,False,False,False,True,True,False,False,False
+1919_E,1919_E_zesso12138_0.00%,codeforces2024,human,qwen2.5-7b-instruct,"There is a hidden array a of size n consisting of only 1 and -1 . Let p be the
+prefix sums of array a . More formally, p is an array of length n defined as
+p_i = a_1 + a_2 + \ldots + a_i . Afterwards, array p is sorted in non-
+decreasing order. For example, if a = [1, -1, -1, 1, 1] , then p = [1, 0, -1,
+0, 1] before sorting and p = [-1, 0, 0, 1, 1] after sorting.
+
+You are given the prefix sum array p after sorting, but you do not know what
+array a is. Your task is to count the number of initial arrays a such that the
+above process results in the given sorted prefix sum array p . As this number
+can be large, you are only required to find it modulo 998\,244\,353 .
+
+Input
+
+Each test contains multiple test cases. The first line contains a single
+integer t (1 \leq t \leq 1000 ) — the number of test cases. The description of
+the test cases follows.
+
+The first line of each test case contains a single integer n (1 \le n \le 5000
+) — the size of the hidden array a .
+
+The second line of each test case contains n integers p_1, p_2, \ldots, p_n
+(|p_i| \le n ) — the n prefix sums of a sorted in non-decreasing order.
+
+It is guaranteed that p_1 \le p_2 \le \ldots \le p_n .
+
+It is guaranteed that the sum of n over all test cases does not exceed 5000 .
+
+Output
+
+For each test case, output the answer modulo 998\,244\,353 .
+
+Example
+
+Input
+
+    5
+    
+    1
+    
+    0
+    
+    1
+    
+    1
+    
+    3
+    
+    -1 1 2
+    
+    5
+    
+    -1 0 0 1 1
+    
+    5
+    
+    -4 -3 -3 -2 -1
+
+Output
+
+    0
+    1
+    0
+    3
+    1
+    
+Note
+
+In the first two test cases, the only possible arrays a for n = 1 are a = [1]
+and a = [-1] . Their respective sorted prefix sum arrays p are p = [1] and p =
+[-1] . Hence, there is no array a that can result in the sorted prefix sum
+array p = [0] and there is exactly 1 array a that can result in the sorted
+prefix sum array p = [1] .
+
+In the third test case, it can be proven that there is no array a that could
+result in the sorted prefix sum array p = [-1, 1, 2] .
+
+In the fourth test case, the 3 possible arrays a that could result in the
+sorted prefix sum array p = [-1, 0, 0, 1, 1] are:
+
+  * a = [1, -1, 1, -1, -1] . The prefix sum array before sorting is p = [1, 0, 1, 0, -1] , which after sorting gives p = [-1, 0, 0, 1, 1] . 
+  * a = [1, -1, -1, 1, 1] . The prefix sum array before sorting is p = [1, 0, -1, 0, 1] , which after sorting gives p = [-1, 0, 0, 1, 1] . 
+  * a = [-1, 1, 1, -1, 1] . The prefix sum array before sorting is p = [-1, 0, 1, 0, 1] , which after sorting gives p = [-1, 0, 0, 1, 1] . 
+
+For the fifth test case, the only possible array a that could result in the
+sorted prefix sum array p = [-4, -3, -3, -2, -1] is a = [-1, -1, -1, -1, 1] .","MOD = 998244353
+ 
+def count_valid_arrays(n, p):
+    # dp[i][j] will store the number of ways to achieve prefix sum j using first i elements
+    dp = [0] * (2 * n + 1)
+    offset = n  # To handle negative indices, we use an offset
+    dp[offset] = 1  # Base case: one way to have prefix sum 0 with 0 elements
+    
+    for i in range(1, n + 1):
+        new_dp = [0] * (2 * n + 1)
+        for j in range(2 * n + 1):
+            if dp[j] > 0:
+                # If we can achieve prefix sum j-offset with i-1 elements
+                # We can achieve j-offset+1 with i elements by adding 1
+                if j + 1 <= 2 * n:
+                    new_dp[j + 1] = (new_dp[j + 1] + dp[j]) % MOD
+                # We can achieve j-offset-1 with i elements by adding -1
+                if j - 1 >= 0:
+                    new_dp[j - 1] = (new_dp[j - 1] + dp[j]) % MOD
+        dp = new_dp
+    
+    # We need to count the number of ways to achieve the final prefix sum p_n
+    # which is p[-1] in the sorted array
+    final_sum = p[-1] + offset
+    return dp[final_sum]
+ 
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    
+    index = 0
+    t = int(data[index])
+    index += 1
+    results = []
+    
+    for _ in range(t):
+        n = int(data[index])
+        index += 1
+        p = list(map(int, data[index:index + n]))
+        index += n
+        
+        result = count_valid_arrays(n, p)
+        results.append(result)
+    
+    for res in results:
+        print(res)
+ 
+if __name__ == ""__main__"":
+    main()",1,False,False,False,True,False,False,True,True,True,False,False,True,True,True
+1971_D,1971_D_Macjony_0.00%,codeforces2024,human,qwen2.5-7b-instruct,"You are given a binary string^{\dagger} . Please find the minimum number of
+pieces you need to cut it into, so that the resulting pieces can be rearranged
+into a sorted binary string.
+
+![](https://espresso.codeforces.com/76039f9769ba94c1817dbbc5e1fb1b5e4f60950f.png)
+
+Note that:
+
+  * each character must lie in exactly one of the pieces; 
+  * the pieces must be contiguous substrings of the original string; 
+  * you must use all the pieces in the rearrangement. 
+
+^{\dagger} A binary string is a string consisting of characters \texttt{0} and
+\texttt{1} . A sorted binary string is a binary string such that all
+characters \texttt{0} come before all characters \texttt{1} .
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 500 ) — the number
+of test cases.
+
+The only line of each test case contains a single string s (1 \leq |s| \leq
+500 ) consisting of characters \texttt{0} and \texttt{1} , where |s| denotes
+the length of the string s .
+
+Output
+
+For each test case, output a single integer — the minimum number of pieces
+needed to be able to rearrange the string into a sorted binary string.
+
+Example
+
+Input
+
+    6
+    
+    11010
+    
+    00000000
+    
+    1
+    
+    10
+    
+    0001111
+    
+    0110
+
+Output
+
+    3
+    1
+    1
+    2
+    1
+    2
+    
+Note
+
+The first test case is pictured in the statement. It can be proven that you
+can't use fewer than 3 pieces.
+
+In the second and third test cases, the binary string is already sorted, so
+only 1 piece is needed.
+
+In the fourth test case, you need to make a single cut between the two
+characters and rearrange them to make the string \texttt{01} .","t=int(input())
+for i in range(t):
+    s=input()
+    count=1
+    flag=False
+    j=0
+    while j<len(s)-1:
+        if s[j]!=s[j+1]:
+            count+=1
+            if s[j]==""0"" and s[j+1]==""1"":
+                flag=True
+                j+=1
+        j+=1
+    if flag:
+        count-=1
+    print(count)",1,False,False,False,True,False,False,True,True,False,True,True,True,True,True
+1924_A,1924_A_ayyoub.mkadmi3_100%,codeforces2024,human,qwen2.5-7b-instruct,"You are given two integers n and k along with a string s .
+
+Your task is to check whether all possible strings of length n that can be
+formed using the first k lowercase English alphabets occur as a subsequence of
+s . If the answer is NO, you also need to print a string of length n that can
+be formed using the first k lowercase English alphabets which does not occur
+as a subsequence of s .
+
+If there are multiple answers, you may print any of them.
+
+Note: A string a is called a subsequence of another string b if a can be
+obtained by deleting some (possibly zero) characters from b without changing
+the order of the remaining characters.
+
+Input
+
+The first line of input contains a single integer t \, (1 \le t \le 10^5) ,
+the number of test cases.
+
+The first line of each test case contains 3 integers n \, (1 \le n \le 26), \:
+k \, (1 \le k \le 26), \: m \, (1 \le m \le 1000) , where n and k are the same
+as described in the input and m is the length of the string s .
+
+The second line of each test case contains a single string s of length m ,
+comprising only of the first k lowercase English alphabets.
+
+It is guaranteed that the sum of m and the sum of n over all test cases does
+not exceed 10^6 .
+
+Output
+
+For each test case, print YES if all possible strings of length n that can be
+formed using the first k lowercase English alphabets occur as a subsequence of
+s , else print NO.
+
+If your answer is NO, print a string of length n that can be formed using the
+first k lowercase English alphabets which does not occur as a subsequence of s
+in the next line.
+
+You may print each letter of YES or NO in any case (for example, YES, yES, YeS
+will all be recognized as a positive answer).
+
+Example
+
+Input
+
+    3
+    
+    2 2 4
+    
+    abba
+    
+    2 2 3
+    
+    abb
+    
+    3 3 10
+    
+    aabbccabab
+
+Output
+
+    YES
+    NO
+    aa
+    NO
+    ccc
+    
+Note
+
+For the first test case, all possible strings (aa, ab, ba, bb) of length 2
+that can be formed using the first 2 English alphabets occur as a subsequence
+of abba.
+
+For the second test case, the string aa is not a subsequence of abb.","def tandhif(s,k,n):
+    s1=""""
+    s2=""""
+    alphabet={chr(i) for i in range(97,97+k)}
+    for i in s:
+        if i in alphabet:
+            if len(alphabet)!=1:
+                alphabet.remove(i)  
+                
+            else:
+                s2+=i
+                alphabet={chr(i) for i in range(97,97+k)}
+            s1+=i
+    r=len(s1)//k
+    return len(s1)>=n*k,s1[r*k:],s2
+ 
+t=int(input())
+OUT=[]
+for _ in range(t):
+    n,k,m=map(int,input().split())
+    s=input()
+    b,s1,s2=tandhif(s,k,n)
+    if not b:
+        OUT.append(""No"")
+        i=97
+        while i<=k+97:
+            if chr(i) not in s1:
+                break
+            i+=1
+        be9i=chr(i)*(n-len(s2))
+        OUT.append(s2+be9i)
+    else:
+        OUT.append(""Yes"")
+for i in OUT:
+    print(i)",1,True,False,False,True,False,True,True,False,False,False,False,False,False,False
+1928_C,1928_C_DevK01_100%,codeforces2024,human,qwen2.5-7b-instruct,"In a well-known school, a physical education lesson took place. As usual,
+everyone was lined up and asked to settle in ""the first–k -th"" position.
+
+As is known, settling in ""the first–k -th"" position occurs as follows: the
+first k people have numbers 1, 2, 3, \ldots, k , the next k - 2 people have
+numbers k - 1, k - 2, \ldots, 2 , the next k people have numbers 1, 2, 3,
+\ldots, k , and so on. Thus, the settling repeats every 2k - 2 positions.
+Examples of settling are given in the ""Note"" section.
+
+The boy Vasya constantly forgets everything. For example, he forgot the number
+k described above. But he remembers the position he occupied in the line, as
+well as the number he received during the settling. Help Vasya understand how
+many natural numbers k fit under the given constraints.
+
+Note that the settling exists if and only if k > 1 . In particular, this means
+that the settling does not exist for k = 1 .
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \leq t \leq 100 ) — the number of test cases. This is followed by
+the description of the test cases.
+
+The only line of each test case contains two integers n and x (1 \le x < n \le
+10^9 ) — Vasya's position in the line and the number Vasya received during the
+settling.
+
+Output
+
+For each test case, output a single integer — the number of different k that
+fit under the given constraints.
+
+It can be proven that under the given constraints, the answer is finite.
+
+Example
+
+Input
+
+    5
+    
+    10 2
+    
+    3 1
+    
+    76 4
+    
+    100 99
+    
+    1000000000 500000000
+
+Output
+
+    4
+    1
+    9
+    0
+    1
+    
+Note
+
+In the first test case, k equals 2, 3, 5, 6 are suitable.
+
+An example of settling for these k :
+
+k / №| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10   
+---|---|---|---|---|---|---|---|---|---|---  
+2 | 1 | 2 | 1 | 2 | 1 | 2 | 1 | 2 | 1 | 2   
+3 | 1 | 2 | 3 | 2 | 1 | 2 | 3 | 2 | 1 | 2   
+5 | 1 | 2 | 3 | 4 | 5 | 4 | 3 | 2 | 1 | 2   
+6 | 1 | 2 | 3 | 4 | 5 | 6 | 5 | 4 | 3 | 2   
+  
+In the second test case, k = 2 is suitable.","import math
+def factors(q,x):
+    M=[]
+    w=math.sqrt(q)
+    if w==w//1 and w>=x-1:
+        M+=[w]
+    i=1
+    while i<w:
+        if q%i==0:
+            if i>=x-1:
+                M+=[i]
+            if (q//i)>=x-1:
+                M+=[q//i]
+        i+=1
+    return M
+ 
+t=int(input())
+for _ in range(t):
+    L=list(map(int, input().split()))
+    n=L[0]
+    x=L[1]
+    ans=0
+    y=(n+x)
+    if y%2!=0:
+        print(0)
+        continue
+    else:
+        L1=factors((y-2)//2,x)
+        if n>=3*x-2:
+            L1+=factors((n-x)//2,x)
+        L1=list(set(L1))
+        print(len(L1))
+        continue",1,True,False,False,True,False,True,True,True,False,False,False,True,True,True
+1979_B,1979_B_nandakishore1905_100%,codeforces2024,human,qwen2.5-7b-instruct,"You are given two distinct non-negative integers x and y . Consider two
+infinite sequences a_1, a_2, a_3, \ldots and b_1, b_2, b_3, \ldots , where
+
+  * a_n = n \oplus x ; 
+  * b_n = n \oplus y . 
+
+Here, x \oplus y denotes the [bitwise
+XOR](https://en.wikipedia.org/wiki/Bitwise_operation#XOR) operation of
+integers x and y .
+
+For example, with x = 6 , the first 8 elements of sequence a will look as
+follows: [7, 4, 5, 2, 3, 0, 1, 14, \ldots] . Note that the indices of elements
+start with 1 .
+
+Your task is to find the length of the longest common subsegment^\dagger of
+sequences a and b . In other words, find the maximum integer m such that a_i =
+b_j, a_{i + 1} = b_{j + 1}, \ldots, a_{i + m - 1} = b_{j + m - 1} for some i,
+j \ge 1 .
+
+^\dagger A subsegment of sequence p is a sequence p_l,p_{l+1},\ldots,p_r ,
+where 1 \le l \le r .
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 10^4 ) — the number of test cases. The description of
+the test cases follows.
+
+The only line of each test case contains two integers x and y (0 \le x, y \le
+10^9, x \neq y ) — the parameters of the sequences.
+
+Output
+
+For each test case, output a single integer — the length of the longest common
+subsegment.
+
+Example
+
+Input
+
+    4
+    
+    0 1
+    
+    12 4
+    
+    57 37
+    
+    316560849 14570961
+
+Output
+
+    1
+    8
+    4
+    33554432
+    
+Note
+
+In the first test case, the first 7 elements of sequences a and b are as
+follows:
+
+a = [1, 2, 3, 4, 5, 6, 7,\ldots]
+
+b = [0, 3, 2, 5, 4, 7, 6,\ldots]
+
+It can be shown that there isn't a positive integer k such that the sequence
+[k, k + 1] occurs in b as a subsegment. So the answer is 1 .
+
+In the third test case, the first 20 elements of sequences a and b are as
+follows:
+
+a = [56, 59, 58, 61, 60, 63, 62, 49, 48, 51, 50, 53, 52, 55, 54, \textbf{41,
+40, 43, 42}, 45, \ldots]
+
+b = [36, 39, 38, 33, 32, 35, 34, 45, 44, 47, 46, \textbf{41, 40, 43, 42}, 53,
+52, 55, 54, 49, \ldots]
+
+It can be shown that one of the longest common subsegments is the subsegment
+[41, 40, 43, 42] with a length of 4 .","for i in range(int(input())):
+    n,m=map(int,input().split())
+    k=abs(n-m)
+    if (k&(k-1))==0:
+        print(k)
+    elif k%2!=0:
+        print(1)
+    else:
+        l=bin(k).replace('0b','')
+        p=len(l)
+        q=2**(p-1)
+        f=k-q
+        while (f&(f-1))!=0:
+            l=bin(f).replace('0b','')
+            p=len(l)
+            q=2**(p-1)
+            f=f-q
+        print(f)",1,True,False,False,True,False,True,False,False,True,False,False,True,True,True
+1929_C,1929_C_avaniagr_12.50%,codeforces2024,human,qwen2.5-7b-instruct,"Sasha decided to give his girlfriend the best handbag, but unfortunately for
+Sasha, it is very expensive. Therefore, Sasha wants to earn it. After looking
+at earning tips on the internet, he decided to go to the casino.
+
+Sasha knows that the casino operates under the following rules. If Sasha
+places a bet of y coins (where y is a positive integer), then in case of
+winning, he will receive y \cdot k coins (i.e., his number of coins will
+increase by y \cdot (k - 1) ). And in case of losing, he will lose the entire
+bet amount (i.e., his number of coins will decrease by y ).
+
+Note that the bet amount must always be a positive (> 0 ) integer and cannot
+exceed Sasha's current number of coins.
+
+Sasha also knows that there is a promotion at the casino: he cannot lose more
+than x times in a row.
+
+Initially, Sasha has a coins. He wonders whether he can place bets such that
+he is guaranteed to win any number of coins. In other words, is it true that
+for any integer n , Sasha can make bets so that for any outcome that does not
+contradict the rules described above, at some moment of time he will have at
+least n coins.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 1000 ) — the number of test cases. The description of
+the test cases follows.
+
+The single line of each test case contains three integers k, x and a (2 \leq k
+\leq 30 , 1 \leq x \leq 100 , 1 \leq a \leq 10^9 ) — the number of times the
+bet is increased in case of a win, the maximum number of consecutive losses,
+and the initial number of coins Sasha has.
+
+Output
+
+For each test case, output ""YES"" (without quotes) if Sasha can achieve it and
+""NO"" (without quotes) otherwise.
+
+You can output ""YES"" and ""NO"" in any case (for example, the strings ""yEs"",
+""yes"" and ""Yes"" will be recognized as a positive answer).
+
+Example
+
+Input
+
+    9
+    
+    2 1 7
+    
+    2 1 1
+    
+    2 3 15
+    
+    3 3 6
+    
+    4 4 5
+    
+    5 4 7
+    
+    4 88 1000000000
+    
+    25 69 231
+    
+    13 97 18806
+
+Output
+
+    YES
+    NO
+    YES
+    NO
+    NO
+    YES
+    NO
+    NO
+    NO
+    
+Note
+
+In the first test case, Sasha can proceed as follows:
+
+  * If Sasha places a bet for the first time or if he won the previous bet, then he places 1 coin.
+  * If Sasha lost the previous bet, then he places 2 coins.
+
+Note that Sasha cannot lose more than once in a row.
+
+It can be proven that with this strategy, Sasha can obtain as many coins as he
+wants.
+
+In the second test case, Sasha can only place 1 coin for the first time. But
+in case of a loss, he will not be able to place any more bets, so he will not
+be able to guarantee having as many coins as he wants.","t = int(input())
+for _ in range(t):
+    k,x,a = map(int,input().split())
+# for s in [*open(0)][1:]:
+#     k,x,a=map(int,s.split())
+    if x<k-1:
+        if a>=(x+1):
+            print('YES')
+        else:
+            print('NO')
+    elif x==k-1:
+        if a>=x+3:
+            print('YES')
+        else:
+            print('NO')
+    else:
+        # z = k-2
+        # for i in range(x-k+3):
+        #     z += (z//(k-1) + 1)
+        # if a>=z:
+        #     print('YES')
+        # else:
+        #     print('NO')
+        z=0
+        for i in range(x+1):
+            z+=(z//(k-1) + 1)
+        if a>=z:
+            print(""YES"")
+        else:
+            print(""NO"")",1,False,False,False,True,False,True,True,True,False,False,False,False,False,False
+1971_A,1971_A_alsadeg190_100%,codeforces2024,human,qwen2.5-7b-instruct,"You are given two integers x and y .
+
+Output two integers: the minimum of x and y , followed by the maximum of x and
+y .
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 100 ) — the number
+of test cases.
+
+The only line of each test case contains two space-separated integers x and y
+(0 \leq x, y \leq 9 ).
+
+Output
+
+For each test case, output two integers: the minimum of x and y , followed by
+the maximum of x and y .
+
+Example
+
+Input
+
+    10
+    
+    1 9
+    
+    8 4
+    
+    1 4
+    
+    3 4
+    
+    2 0
+    
+    2 4
+    
+    6 9
+    
+    3 3
+    
+    0 0
+    
+    9 9
+
+Output
+
+    1 9
+    4 8
+    1 4
+    3 4
+    0 2
+    2 4
+    6 9
+    3 3
+    0 0
+    9 9","x = int(input())
+ 
+for i in range(x):
+    x , y = list(map(int, input().split()))
+    if x < y : print(x , y)
+    else: print(y , x)",1,True,False,False,True,False,True,True,False,True,False,True,False,False,False
+1951_A,1951_A_dhamer69_100%,codeforces2024,human,qwen2.5-7b-instruct,"import os def generate_files_for_html_in_range(start, end): # 获取当前目录下的所有子文件夹
+current_dir = os.getcwd() subfolders = [f.path for f in
+os.scandir(current_dir) if f.is_dir()] for folder in subfolders: #
+检查文件夹名称是否在指定范围内 folder_name = os.path.basename(folder) if
+folder_name.isdigit() and start <= int(folder_name) <= end: #
+获取子文件夹中的所有.html文件 html_files = [f for f in os.listdir(folder) if
+f.endswith('.html')] print(f""Folder '{folder}' contains {len(html_files)} HTML
+files."") # 为每个.html文件生成对应的文件 for html_file in html_files: base_name =
+os.path.splitext(html_file)[0] ac_file = os.path.join(folder,
+f""{base_name}-ac.py"") wa_file = os.path.join(folder, f""{base_name}-wa.py"") #
+创建文件 open(ac_file, 'w').close() open(wa_file, 'w').close() print(f""Generated
+files: {ac_file}, {wa_file}"") if __name__ == ""__main__"": # 指定目录范围 start_range
+= 1951 end_range = 1980 generate_files_for_html_in_range(start_range,
+end_range)","t=int(input())
+while(t>0):
+    n=int(input())
+    s=input()
+    if n==2:
+        if s==""00"":
+            print(""YES"")
+        else:
+            print(""NO"")
+    else:
+        count_1=s.count(""1"")
+        if count_1%2!=0:
+            print(""NO"")
+        else:
+            if s.count(""11"")==1 and count_1==2:
+                print(""NO"")
+            else:
+                print(""YES"")
+    t-=1",1,True,False,False,False,False,True,True,False,False,False,False,False,False,False
+1942_B,1942_B_IntruSieve_4.00%,codeforces2024,human,qwen2.5-7b-instruct,"[MOOO! - Doja Cat](https://soundcloud.com/amalaofficial/mooo)
+
+⠀
+
+Farmer John has a permutation p_1, p_2, \ldots, p_n , where every integer from
+0 to n-1 occurs exactly once. He gives Bessie an array a of length n and
+challenges her to construct p based on a .
+
+The array a is constructed so that a_i = \texttt{MEX}(p_1, p_2, \ldots, p_i) -
+p_i , where the \texttt{MEX} of an array is the minimum non-negative integer
+that does not appear in that array. For example, \texttt{MEX}(1, 2, 3) = 0 and
+\texttt{MEX}(3, 1, 0) = 2 .
+
+Help Bessie construct any valid permutation p that satisfies a . The input is
+given in such a way that at least one valid p exists. If there are multiple
+possible p , it is enough to print one of them.
+
+Input
+
+The first line contains t (1 \leq t \leq 10^4 ) — the number of test cases.
+
+The first line of each test case contains an integer n (1 \leq n \leq 2 \cdot
+10^5 ) — the lengths of p and a .
+
+The second line of each test case contains n integers a_1, a_2, \ldots, a_n
+(-n \leq a_i \leq n ) — the elements of array a .
+
+It is guaranteed that there is at least one valid p for the given data.
+
+It is guaranteed that the sum of n over all test cases does not exceed 2 \cdot
+10^5 .
+
+Output
+
+For each test case, output n integers on a new line, the elements of p .
+
+If there are multiple solutions, print any of them.
+
+Example
+
+Input
+
+    3
+    
+    5
+    
+    1 1 -2 1 2
+    
+    5
+    
+    1 1 1 1 1
+    
+    3
+    
+    -2 1 2
+
+Output
+
+    0 1 4 2 3 
+    0 1 2 3 4 
+    2 0 1 
+    
+Note
+
+In the first case, p = [0, 1, 4, 2, 3] is one possible output.
+
+a will then be calculated as a_1 = \texttt{MEX}(0) - 0 = 1 , a_2 =
+\texttt{MEX}(0, 1) - 1 = 1 , a_3 = \texttt{MEX}(0, 1, 4) - 4 = -2 , a_4 =
+\texttt{MEX}(0, 1, 4, 2) - 2 = 1 , a_5 = \texttt{MEX}(0, 1, 4, 2, 3) - 3 = 2 .
+
+So, as required, a will be [1, 1, -2, 1, 2] .","def what_the_mex():
+    n = int(input())
+    arr = list(map(int , input().split()))
+    mex = []
+    minn = 0
+    maxx = 0
+    for i in range(n):
+        if arr[i] > 0:
+            mex.append(minn)
+            minn += 1
+            if minn == maxx:
+                minn = maxx + 1
+        else:
+            mex.append(abs(arr[i] - minn))
+            if abs(arr[i] - minn)  > maxx:
+               maxx = abs(arr[i] - minn)
+        
+    for itm in mex:
+        print(itm , end = ' ')
+    print()
+ 
+for _ in range(int(input())):
+    what_the_mex()",1,False,False,False,True,False,False,False,False,False,True,False,False,False,False
+1945_D,1945_D_joaod_100%,codeforces2024,human,qwen2.5-7b-instruct,"The guys lined up in a queue of n people, starting with person number i = 1 ,
+to ask Serafim the Owl about the meaning of life. Unfortunately, Kirill was
+very busy writing the legend for this problem, so he arrived a little later
+and stood at the end of the line after the n -th person. Kirill is completely
+dissatisfied with this situation, so he decided to bribe some people ahead of
+him.
+
+For the i -th person in the queue, Kirill knows two values: a_i and b_i . If
+at the moment Kirill is standing at position i , then he can choose any
+position j such that j < i and exchange places with the person at position j .
+In this case, Kirill will have to pay him a_j coins. And for each k such that
+j < k < i , Kirill will have to pay b_k coins to the person at position k .
+Kirill can perform this action any number of times.
+
+Kirill is thrifty, so he wants to spend as few coins as possible, but he
+doesn't want to wait too long, so Kirill believes he should be among the first
+m people in line.
+
+Help Kirill determine the minimum number of coins he will have to spend in
+order to not wait too long.
+
+Input
+
+Each test consists of several sets of input data. The first line contains a
+single integer t (1 \le t \le 10^4 ) — the number of test cases. Then follows
+the description of the test case.
+
+The first line of each test case contains two integers n and m (1 \le m \le n
+\le 200\,000 ) — the number of people in the queue besides Kirill and the
+maximum allowable final position of Kirill, respectively.
+
+The second line contains n integers a_1, a_2, \dots, a_n separated by spaces
+(1 \le a_i \le 10^9 ).
+
+The third line contains n integers b_1, b_2, \dots, b_n separated by spaces (1
+\le b_i \le 10^9 ).
+
+It is guaranteed that the sum of the values of n over all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output a single integer — the minimum number of coins
+Kirill needs to spend.
+
+Example
+
+Input
+
+    4
+    
+    4 2
+    
+    7 3 6 9
+    
+    4 3 8 5
+    
+    6 2
+    
+    6 9 7 1 8 3
+    
+    5 8 8 1 4 1
+    
+    7 7
+    
+    7 2 9 2 6 5 9
+    
+    9 1 10 7 1 4 9
+    
+    2 1
+    
+    2 3
+    
+    1 1
+
+Output
+
+    14
+    22
+    9
+    3","import sys
+ 
+cases = int(input())
+ 
+for c in range(cases):
+    na_frente, pos_final = map(int, input().split())
+    custo_pra_trocar_a = list(map(int, input().split()))
+    custo_pra_passar_b = list(map(int, input().split()))
+ 
+    na_frente -= 1
+    pos_final -= 1
+ 
+    total = 0
+    best = sys.float_info.max
+    for v in range(na_frente, -1, -1):
+        if(v <= pos_final):
+            if(best > total + custo_pra_trocar_a[v]):
+                best = total + custo_pra_trocar_a[v]
+ 
+            if(custo_pra_trocar_a[v] < custo_pra_passar_b[v]):
+                total += custo_pra_trocar_a[v]
+            else:
+                total += custo_pra_passar_b[v]
+        else:
+            if(custo_pra_trocar_a[v] < custo_pra_passar_b[v]):
+                total += custo_pra_trocar_a[v]
+            else:
+                total += custo_pra_passar_b[v]
+    
+    print(best)",1,True,False,False,True,False,True,True,True,True,True,True,False,False,False
+1927_D,1927_D_dhruvdd8888_1.64%,codeforces2024,human,qwen2.5-7b-instruct,"You are given an array a of n integers, and q queries.
+
+Each query is represented by two integers l and r (1 \le l \le r \le n ). Your
+task is to find, for each query, two indices i and j (or determine that they
+do not exist) such that:
+
+  * l \le i \le r ; 
+  * l \le j \le r ; 
+  * a_i \ne a_j . 
+
+In other words, for each query, you need to find a pair of different elements
+among a_l, a_{l+1}, \dots, a_r , or report that such a pair does not exist.
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 10^4 ) —
+the number of test cases. The descriptions of the test cases follow.
+
+The first line of each test case contains a single integer n (2 \le n \le 2
+\cdot 10^5 ) — the length of the array a .
+
+The second line of each test case contains n integers a_1, a_2, \dots, a_n (1
+\le a_i \le 10^6 ) — the elements of the array a .
+
+The third line of each test case contains a single integer q (1 \le q \le 2
+\cdot 10^5 ) — the number of queries.
+
+The next q lines contain two integers each, l and r (1 \le l < r \le n ) — the
+boundaries of the query.
+
+It is guaranteed that the sum of the values of n across all test cases does
+not exceed 2 \cdot 10^5 . Similarly, it is guaranteed that the sum of the
+values of q across all test cases does not exceed 2 \cdot 10^5 .
+
+Output
+
+For each query, output two integers separated by space: i and j (l \le i, j
+\le r ), for which a_i \ne a_j . If such a pair does not exist, output i=-1
+and j=-1 .
+
+You may separate the outputs for the test cases with empty lines. This is not
+a mandatory requirement.
+
+Example
+
+Input
+
+    5
+    
+    5
+    
+    1 1 2 1 1
+    
+    3
+    
+    1 5
+    
+    1 2
+    
+    1 3
+    
+    6
+    
+    30 20 20 10 10 20
+    
+    5
+    
+    1 2
+    
+    2 3
+    
+    2 4
+    
+    2 6
+    
+    3 5
+    
+    4
+    
+    5 2 3 4
+    
+    4
+    
+    1 2
+    
+    1 4
+    
+    2 3
+    
+    2 4
+    
+    5
+    
+    1 4 3 2 4
+    
+    5
+    
+    1 5
+    
+    2 4
+    
+    3 4
+    
+    3 5
+    
+    4 5
+    
+    5
+    
+    2 3 1 4 2
+    
+    7
+    
+    1 2
+    
+    1 4
+    
+    1 5
+    
+    2 4
+    
+    2 5
+    
+    3 5
+    
+    4 5
+
+Output
+
+    2 3
+    -1 -1
+    1 3
+    
+    2 1
+    -1 -1
+    4 2
+    4 6
+    5 3
+    
+    1 2
+    1 2
+    2 3
+    3 2
+    
+    1 3
+    2 4
+    3 4
+    5 3
+    5 4
+    
+    1 2
+    4 2
+    1 3
+    2 3
+    3 2
+    5 4
+    5 4","from collections import *
+from math import log,log2,pow,gcd,ceil,floor
+from heapq import *
+import sys
+from bisect import *
+ 
+def sol():
+    input = sys.stdin.readline
+    N = int(input())
+    nums = list(map(int,input().split()))
+    s = 0
+    e = 0
+    num = nums[0]
+    arr = []
+    nums.append(-1)
+    for i in range(N+1):
+        if nums[i] != num:
+            arr.append((1+s,i,num))
+            s = i
+        
+        num = nums[i]
+    # print(nums)
+    # print(arr)
+    LA = len(arr)-1
+    if ppp == 23:print(nums)
+    for _ in range(int(input())):
+        l,r = tuple(map(int,input().split()))
+        if tc > 5:
+            if ppp == 23:
+                print(l,r)
+            continue
+        eli = bisect_left(arr,(l,0,0))
+        # if eli >= LA:s,e,_ = arr[-1]
+        s,e,_ = arr[min(eli,LA)]
+        # print(arr[bisect(arr,(l,0,0))])
+        # print(l,r ,end = ""   = "")
+        if s > l:
+            if s == 1:print(-1,-1)
+            else:print(s-1,s)
+        elif e >= r:print(-1,-1)
+        else:
+            if e < N:print(s,e+1)
+            else:print(-1,-1)
+        
+    # print()    
+ 
+tc= int(input())
+ 
+ 
+for ppp in range(tc):
+    sol()",1,False,False,False,True,False,True,True,True,True,True,True,True,True,True
+1950_C,1950_C_tw1zz_100%,codeforces2024,human,qwen2.5-7b-instruct,"Given the time in 24-hour format, output the equivalent time in 12-hour
+format.
+
+  * [24-hour format](https://en.wikipedia.org/wiki/24-hour_clock#Description) divides the day into 24 hours from 00 to 23 , each of which has 60 minutes from 00 to 59 . 
+  * [12-hour format](https://en.wikipedia.org/wiki/12-hour_clock#Description) divides the day into two halves: the first half is \mathrm{AM} , and the second half is \mathrm{PM} . In each half, the hours are numbered in the order 12, 01, 02, 03, \dots, 11 . Each hour has 60 minutes numbered from 00 to 59 . 
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 1440 ) — the number
+of test cases.
+
+The only line of each test case contains a string s of length 5 with format
+hh:mm representing a valid time in the 24-hour format. hh represents the hour
+from 00 to 23 , and mm represents the minute from 00 to 59 .
+
+The input will always be a valid time in 24-hour format.
+
+Output
+
+For each test case, output two strings separated by a space (""hh:mm AM"" or
+""hh:mm PM""), which are the 12-hour equivalent to the time provided in the test
+case (without quotes).
+
+You should output the time exactly as indicated; in particular, you should not
+remove leading zeroes.
+
+Example
+
+Input
+
+    11
+    
+    09:41
+    
+    18:06
+    
+    12:14
+    
+    00:59
+    
+    00:00
+    
+    14:34
+    
+    01:01
+    
+    19:07
+    
+    11:59
+    
+    12:00
+    
+    21:37
+
+Output
+
+    09:41 AM
+    06:06 PM
+    12:14 PM
+    12:59 AM
+    12:00 AM
+    02:34 PM
+    01:01 AM
+    07:07 PM
+    11:59 AM
+    12:00 PM
+    09:37 PM","for _ in range(int(input())):
+    h,m = map(str,input().split(':'))
+    h1,m1 = '',m
+    time = ''
+    if h == '01':
+        h1 = '01'
+        time = 'AM'
+    elif h == '02':
+        h1 = '02'
+        time = 'AM'
+    elif h == '03':
+        h1 = '03'
+        time = 'AM'
+    elif h == '04':
+        h1 = '04'
+        time = 'AM'
+    elif h == '05':
+        h1 = '05'
+        time = 'AM'
+    elif h == '06':
+        h1 = '06'
+        time = 'AM'
+    elif h == '07':
+        h1 = '07'
+        time = 'AM'
+    elif h == '08':
+        h1 = '08'
+        time = 'AM'
+    elif h == '09':
+        h1 = '09'
+        time = 'AM'
+    elif h == '10':
+        h1 = '10'
+        time = 'AM'
+    elif h == '11':
+        h1 = '11'
+        time = 'AM'
+    elif h == '12':
+        h1 = '12'
+        time = 'PM'
+    elif h == '13':
+        h1 = '01'
+        time = 'PM'
+    elif h == '14':
+        h1 = '02'
+        time = 'PM'
+    elif h == '15':
+        h1 = '03'
+        time = 'PM'
+    elif h == '16':
+        h1 = '04'
+        time = 'PM'
+    elif h == '17':
+        h1 = '05'
+        time = 'PM'
+    elif h == '18':
+        h1 = '06'
+        time = 'PM'
+    elif h == '19':
+        h1 = '07'
+        time = 'PM'
+    elif h == '20':
+        h1 = '08'
+        time = 'PM'
+    elif h == '21':
+        h1 = '09'
+        time = 'PM'
+    elif h == '22':
+        h1 = '10'
+        time = 'PM'
+    elif h == '23':
+        h1 = '11'
+        time = 'PM'
+    elif h == '00':
+        h1 = '12'
+        time = 'AM'
+ 
+    print(h1,':',m,' ',time,sep='')",1,True,False,False,False,False,True,True,True,True,True,True,False,False,False
+1974_A,1974_A_hark_0.00%,codeforces2024,human,qwen2.5-7b-instruct,"Little Rosie has a phone with a desktop (or launcher, as it is also called).
+The desktop can consist of several screens. Each screen is represented as a
+grid of size 5 \times 3 , i.e., five rows and three columns.
+
+There are x applications with an icon size of 1 \times 1 cells; such an icon
+occupies only one cell of the screen. There are also y applications with an
+icon size of 2 \times 2 cells; such an icon occupies a square of 4 cells on
+the screen. Each cell of each screen can be occupied by no more than one icon.
+
+Rosie wants to place the application icons on the minimum number of screens.
+Help her find the minimum number of screens needed.
+
+Input
+
+The first line of the input contains t (1 \leq t \leq 10^4 ) — the number of
+test cases.
+
+The first and only line of each test case contains two integers x and y (0
+\leq x, y \leq 99 ) — the number of applications with a 1 \times 1 icon and
+the number of applications with a 2 \times 2 icon, respectively.
+
+Output
+
+For each test case, output the minimal number of required screens on a
+separate line.
+
+Example
+
+Input
+
+    11
+    
+    1 1
+    
+    7 2
+    
+    12 4
+    
+    0 3
+    
+    1 0
+    
+    8 1
+    
+    0 0
+    
+    2 0
+    
+    15 0
+    
+    8 2
+    
+    0 9
+
+Output
+
+    1
+    1
+    2
+    2
+    1
+    1
+    0
+    1
+    1
+    2
+    5
+    
+Note
+
+The solution for the first test case can look as follows:
+
+![](https://espresso.codeforces.com/f9882979f0d9b5c31c5260fd626217227c2f05de.png)
+Blue squares represent empty spaces for icons, green squares represent 1
+\times 1 icons, red squares represent 2 \times 2 icons
+
+The solution for the third test case can look as follows:
+
+![](https://espresso.codeforces.com/0e737a290e056a29f38918bf06c13be790307a8d.png)","import math
+ 
+def mins(a, b):
+    return a if a < b else b
+ 
+def sol():
+    x, y = map(int, input().split())
+    if x > 0 and y > 0:
+        bxsfory = math.ceil(y / 2)
+        x = x - bxsfory * 15 + y * 4
+        bxsfory1 = 0 if x <= 0 else (math.ceil(x / 15) + 1)
+        print(bxsfory1 + bxsfory)
+    elif x == 0 and y > 0:
+        print(math.ceil(y / 2))
+    elif x > 0 and y == 0:
+        print(math.ceil(x / 15))
+    else:
+        print(0)
+ 
+def main():
+    t = int(input())
+    for _ in range(t):
+        sol()
+ 
+if __name__ == ""__main__"":
+    main()",1,False,False,False,True,False,True,True,True,False,False,False,True,True,True
+1929_C,1929_C_avaniagr_100%,codeforces2024,human,qwen2.5-7b-instruct,"Sasha decided to give his girlfriend the best handbag, but unfortunately for
+Sasha, it is very expensive. Therefore, Sasha wants to earn it. After looking
+at earning tips on the internet, he decided to go to the casino.
+
+Sasha knows that the casino operates under the following rules. If Sasha
+places a bet of y coins (where y is a positive integer), then in case of
+winning, he will receive y \cdot k coins (i.e., his number of coins will
+increase by y \cdot (k - 1) ). And in case of losing, he will lose the entire
+bet amount (i.e., his number of coins will decrease by y ).
+
+Note that the bet amount must always be a positive (> 0 ) integer and cannot
+exceed Sasha's current number of coins.
+
+Sasha also knows that there is a promotion at the casino: he cannot lose more
+than x times in a row.
+
+Initially, Sasha has a coins. He wonders whether he can place bets such that
+he is guaranteed to win any number of coins. In other words, is it true that
+for any integer n , Sasha can make bets so that for any outcome that does not
+contradict the rules described above, at some moment of time he will have at
+least n coins.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 1000 ) — the number of test cases. The description of
+the test cases follows.
+
+The single line of each test case contains three integers k, x and a (2 \leq k
+\leq 30 , 1 \leq x \leq 100 , 1 \leq a \leq 10^9 ) — the number of times the
+bet is increased in case of a win, the maximum number of consecutive losses,
+and the initial number of coins Sasha has.
+
+Output
+
+For each test case, output ""YES"" (without quotes) if Sasha can achieve it and
+""NO"" (without quotes) otherwise.
+
+You can output ""YES"" and ""NO"" in any case (for example, the strings ""yEs"",
+""yes"" and ""Yes"" will be recognized as a positive answer).
+
+Example
+
+Input
+
+    9
+    
+    2 1 7
+    
+    2 1 1
+    
+    2 3 15
+    
+    3 3 6
+    
+    4 4 5
+    
+    5 4 7
+    
+    4 88 1000000000
+    
+    25 69 231
+    
+    13 97 18806
+
+Output
+
+    YES
+    NO
+    YES
+    NO
+    NO
+    YES
+    NO
+    NO
+    NO
+    
+Note
+
+In the first test case, Sasha can proceed as follows:
+
+  * If Sasha places a bet for the first time or if he won the previous bet, then he places 1 coin.
+  * If Sasha lost the previous bet, then he places 2 coins.
+
+Note that Sasha cannot lose more than once in a row.
+
+It can be proven that with this strategy, Sasha can obtain as many coins as he
+wants.
+
+In the second test case, Sasha can only place 1 coin for the first time. But
+in case of a loss, he will not be able to place any more bets, so he will not
+be able to guarantee having as many coins as he wants.","for s in [*open(0)][1:]:
+    k,x,a=map(int,s.split())
+    if x<k-1:
+        if a>=(x+1):
+            print('YES')
+        else:
+            print('NO')
+    elif x==k-1:
+       
+        if a>=x+2:
+            print('YES')
+        else:
+            print('NO')
+    else:
+        z = k-2
+        for i in range(x-k+3):
+            z += (z//(k-1) + 1)
+        if a>=z:
+            print('YES')
+        else:
+            print('NO')",1,True,False,False,True,False,True,True,False,True,True,True,False,False,False
+1956_A,1956_A_Sniperlyfe_0.00%,codeforces2024,human,qwen2.5-7b-instruct,"Nene invented a new game based on an increasing sequence of integers a_1, a_2,
+\ldots, a_k .
+
+In this game, initially n players are lined up in a row. In each of the rounds
+of this game, the following happens:
+
+  * Nene finds the a_1 -th, a_2 -th, \ldots , a_k -th players in a row. They are kicked out of the game simultaneously. If the i -th player in a row should be kicked out, but there are fewer than i players in a row, they are skipped. 
+
+Once no one is kicked out of the game in some round, all the players that are
+still in the game are declared as winners.
+
+For example, consider the game with a=[3, 5] and n=5 players. Let the players
+be named player A, player B, \ldots , player E in the order they are lined up
+initially. Then,
+
+  * Before the first round, players are lined up as ABCDE. Nene finds the 3 -rd and the 5 -th players in a row. These are players C and E. They are kicked out in the first round. 
+  * Now players are lined up as ABD. Nene finds the 3 -rd and the 5 -th players in a row. The 3 -rd player is player D and there is no 5 -th player in a row. Thus, only player D is kicked out in the second round. 
+  * In the third round, no one is kicked out of the game, so the game ends after this round. 
+  * Players A and B are declared as the winners. 
+
+Nene has not yet decided how many people would join the game initially. Nene
+gave you q integers n_1, n_2, \ldots, n_q and you should answer the following
+question for each 1 \le i \le q independently:
+
+  * How many people would be declared as winners if there are n_i players in the game initially? 
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t (1 \le t \le 250 ). The description of test cases follows.
+
+The first line case contains two integers k and q (1 \le k, q \le 100 ) — the
+length of the sequence a and the number of values n_i you should solve this
+problem for.
+
+The second line contains k integers a_1,a_2,\ldots,a_k (1\leq
+a_1<a_2<\ldots<a_k\leq 100 ) — the sequence a .
+
+The third line contains q integers n_1,n_2,\ldots,n_q (1\leq n_i \leq 100 ).
+
+Output
+
+For each test case, output q integers: the i -th (1\le i \le q ) of them
+should be the number of players declared as winners if initially n_i players
+join the game.
+
+Example
+
+Input
+
+    6
+    
+    2 1
+    
+    3 5
+    
+    5
+    
+    5 3
+    
+    2 4 6 7 9
+    
+    1 3 5
+    
+    5 4
+    
+    3 4 5 6 7
+    
+    1 2 3 4
+    
+    2 3
+    
+    69 96
+    
+    1 10 100
+    
+    1 1
+    
+    100
+    
+    50
+    
+    3 3
+    
+    10 20 30
+    
+    1 10 100
+
+Output
+
+    2 
+    1 1 1 
+    1 2 2 2 
+    1 10 68 
+    50 
+    1 9 9 
+    
+Note
+
+The first test case was explained in the statement.
+
+In the second test case, when n=1 , the only player stays in the game in the
+first round. After that, the game ends and the only player is declared as a
+winner.","def rem_p(n, p):
+    while n >= min(p):
+        n -= sum(1 for x in p if x<= n)
+    return n
+    
+def solve():
+    t = int(input())
+    for _ in range(t):
+        k, q = map(int, input().split())
+        p = list(map(int, input().split()))
+        qs = list(map(int, input().split()))
+        
+        res = []
+        for n in qs:
+            res.append(rem_p(n, p))
+            print(' '.join(map(str, res)))
+            
+solve()",1,False,False,False,True,True,True,True,True,True,True,True,True,True,True
+1977_B,1977_B_coder_ISM_0.00%,codeforces2024,human,qwen2.5-7b-instruct,"You are given a positive integer x . Find any array of integers a_0, a_1,
+\ldots, a_{n-1} for which the following holds:
+
+  * 1 \le n \le 32 , 
+  * a_i is 1 , 0 , or -1 for all 0 \le i \le n - 1 , 
+  * x = \displaystyle{\sum_{i=0}^{n - 1}{a_i \cdot 2^i}} , 
+  * There does not exist an index 0 \le i \le n - 2 such that both a_{i} \neq 0 and a_{i + 1} \neq 0 . 
+
+It can be proven that under the constraints of the problem, a valid array
+always exists.
+
+Input
+
+Each test contains multiple test cases. The first line of input contains a
+single integer t (1 \le t \le 10^4 ) — the number of test cases. The
+description of the test cases follows.
+
+The only line of each test case contains a single positive integer x (1 \le x
+< 2^{30} ).
+
+Output
+
+For each test case, output two lines.
+
+On the first line, output an integer n (1 \le n \le 32 ) — the length of the
+array a_0, a_1, \ldots, a_{n-1} .
+
+On the second line, output the array a_0, a_1, \ldots, a_{n-1} .
+
+If there are multiple valid arrays, you can output any of them.
+
+Example
+
+Input
+
+    7
+    
+    1
+    
+    14
+    
+    24
+    
+    15
+    
+    27
+    
+    11
+    
+    19
+
+Output
+
+    1
+    1
+    5
+    0 -1 0 0 1
+    6
+    0 0 0 -1 0 1
+    5
+    -1 0 0 0 1
+    6
+    -1 0 -1 0 0 1
+    5
+    -1 0 -1 0 1
+    5
+    -1 0 1 0 1
+
+Note
+
+In the first test case, one valid array is [1] , since (1) \cdot 2^0 = 1 .
+
+In the second test case, one possible valid array is [0,-1,0,0,1] , since (0)
+\cdot 2^0 + (-1) \cdot 2^1 + (0) \cdot 2^2 + (0) \cdot 2^3 + (1) \cdot 2^4 =
+-2 + 16 = 14 .","t=int(input())
+for nalla in range(t):
+    x=int(input())
+    s=[]
+    length=30
+    for i in range(30):
+        if(x & pow(2,i)):
+            s.append('1')
+        else:
+            s.append('0')
+    print(*s)
+    flag=0
+    for i in range(0,29):
+        if(flag and s[i]=='0'):
+            s[i]='1'
+            flag=0
+        if(flag==0 and s[i]==s[i+1] and s[i]=='1'):
+            s[i]='-1'
+            flag=1
+        elif(flag==1):
+            s[i]='0'
+        else:
+            pass
+    if(flag and s[29]=='0'):
+        s[29]='1'
+    elif(flag):
+        s[29]='0'
+        s.append('1')
+        length+=1
+    for i in range(1, length):
+        if (s[i] == '-1') & (s[i-1] == '1'):
+            s[i] = '0'
+            s[i-1]= '-1'
+    print(length)
+    print(*s)
+    # print(*ans)",1,False,False,False,True,False,False,True,True,False,True,False,True,False,False
+1937_D,1937_D_r-tron18_5.26%,codeforces2024,human,qwen2.5-7b-instruct,"There is a one-dimensional grid of length n . The i -th cell of the grid
+contains a character s_i , which is either '<' or '>'.
+
+When a pinball is placed on one of the cells, it moves according to the
+following rules:
+
+  * If the pinball is on the i -th cell and s_i is '<', the pinball moves one cell to the left in the next second. If s_i is '>', it moves one cell to the right. 
+  * After the pinball has moved, the character s_i is inverted (i. e. if s_i used to be '<', it becomes '>', and vice versa). 
+  * The pinball stops moving when it leaves the grid: either from the left border or from the right one. 
+
+You need to answer n independent queries. In the i -th query, a pinball will
+be placed on the i -th cell. Note that we always place a pinball on the
+initial grid.
+
+For each query, calculate how many seconds it takes the pinball to leave the
+grid. It can be shown that the pinball will always leave the grid within a
+finite number of steps.
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t (1 \le t \le 10^5 ). The description of the test cases follows.
+
+The first line of each test case contains an integer n (1 \le n \le 5 \cdot
+10^5 ).
+
+The second line of each test case contains a string s_1s_2 \ldots s_{n} of
+length n consisting of characters '<' and '>'.
+
+It is guaranteed that the sum of n over all test cases does not exceed 5 \cdot
+10^5 .
+
+Output
+
+For each test case, for each i (1 \le i \le n ) output the answer if a pinball
+is initially placed on the i -th cell.
+
+Example
+
+Input
+
+    3
+    
+    3
+    
+    ><<
+    
+    4
+    
+    <<<<
+    
+    6
+    
+    <><<<>
+
+Output
+
+    3 6 5 
+    1 2 3 4 
+    1 4 7 10 8 1 
+    
+Note
+
+In the first test case, the movement of the pinball for i=1 is shown in the
+following pictures. It takes the pinball 3 seconds to leave the grid.
+
+![](https://espresso.codeforces.com/775b656d27e63ce8901e1ef80487972d536b4a54.png)
+
+The movement of the pinball for i=2 is shown in the following pictures. It
+takes the pinball 6 seconds to leave the grid.
+
+![](https://espresso.codeforces.com/515bd5576868cf33d4190893928faa21e69dd5c7.png)","from itertools import accumulate
+ 
+def last(arr, times):
+    l = len(arr)
+    return arr[-1] - arr[max(-n, -1-times)]
+ 
+def solve(s1, n):
+    pre = [i+1 for i,el in enumerate(s1) if el=="">""]
+    totalOne = len(pre)
+    preOne = list(accumulate(pre, initial=0))
+    suffZero = [0]
+ 
+    ans = [0]*n
+    for i in range(n-1, -1, -1):
+        el = s1[i]
+        if el == "">"":
+            ## this is a one
+            ol, zr = totalOne, len(suffZero) - 1
+            if ol <= zr:
+                ## exit on the left
+                zeroInd = 2*last(suffZero, ol)
+                oneInd = 2*preOne[-1] - last(preOne, 1)
+                ans[i] = zeroInd - oneInd
+            else:
+                ## exit on the right
+                zeroInd = 2*suffZero[-1]
+                oneInd = last(preOne, zr) + last(preOne, zr+1)
+                oneInd -= last(preOne, 1)
+                fi = last(preOne, zr+1) - last(preOne, zr)
+                ans[i] = zeroInd - oneInd + n+1 - fi
+            preOne.pop()
+            totalOne -= 1
+        else:
+            ## this is a zero
+            suffZero.append(suffZero[-1] + i+1)
+            ol, zr = totalOne, len(suffZero) - 1
+            if zr <= ol:
+                ## zr is atleast 1
+                ## exit on the right
+                zeroInd = suffZero[-1] + suffZero[-2]
+                oneInd = 2*last(preOne, zr)
+                ans[i] = zeroInd - oneInd + n+1
+            else:
+                ## exit on the left
+                ## ol can be zero
+                zeroInd = 2*last(suffZero, ol+1) - last(suffZero, 1)
+                oneInd = 2*preOne[-1]
+                ans[i] = zeroInd - oneInd
+                
+    print(*ans)
+for case in range(int(input())):
+    n = int(input())
+    s1 = input()
+    solve(s1, n)",1,False,False,False,True,False,False,True,True,False,True,True,True,True,True
+1937_D,1937_D_r-tron18_5.26%,codeforces2024,human,qwen2.5-7b-instruct,"There is a one-dimensional grid of length n . The i -th cell of the grid
+contains a character s_i , which is either '<' or '>'.
+
+When a pinball is placed on one of the cells, it moves according to the
+following rules:
+
+  * If the pinball is on the i -th cell and s_i is '<', the pinball moves one cell to the left in the next second. If s_i is '>', it moves one cell to the right. 
+  * After the pinball has moved, the character s_i is inverted (i. e. if s_i used to be '<', it becomes '>', and vice versa). 
+  * The pinball stops moving when it leaves the grid: either from the left border or from the right one. 
+
+You need to answer n independent queries. In the i -th query, a pinball will
+be placed on the i -th cell. Note that we always place a pinball on the
+initial grid.
+
+For each query, calculate how many seconds it takes the pinball to leave the
+grid. It can be shown that the pinball will always leave the grid within a
+finite number of steps.
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t (1 \le t \le 10^5 ). The description of the test cases follows.
+
+The first line of each test case contains an integer n (1 \le n \le 5 \cdot
+10^5 ).
+
+The second line of each test case contains a string s_1s_2 \ldots s_{n} of
+length n consisting of characters '<' and '>'.
+
+It is guaranteed that the sum of n over all test cases does not exceed 5 \cdot
+10^5 .
+
+Output
+
+For each test case, for each i (1 \le i \le n ) output the answer if a pinball
+is initially placed on the i -th cell.
+
+Example
+
+Input
+
+    3
+    
+    3
+    
+    ><<
+    
+    4
+    
+    <<<<
+    
+    6
+    
+    <><<<>
+
+Output
+
+    3 6 5 
+    1 2 3 4 
+    1 4 7 10 8 1 
+    
+Note
+
+In the first test case, the movement of the pinball for i=1 is shown in the
+following pictures. It takes the pinball 3 seconds to leave the grid.
+
+![](https://espresso.codeforces.com/775b656d27e63ce8901e1ef80487972d536b4a54.png)
+
+The movement of the pinball for i=2 is shown in the following pictures. It
+takes the pinball 6 seconds to leave the grid.
+
+![](https://espresso.codeforces.com/515bd5576868cf33d4190893928faa21e69dd5c7.png)","from itertools import accumulate
+ 
+def last(arr, times):
+    l = len(arr)
+    return arr[-1] - arr[max(-n, -1-times)]
+ 
+def solve(s1, n):
+    pre = [i+1 for i,el in enumerate(s1) if el=="">""]
+    totalOne = len(pre)
+    preOne = list(accumulate(pre, initial=0))
+    suffZero = [0]
+ 
+    ans = [0]*n
+    for i in range(n-1, -1, -1):
+        el = s1[i]
+        if el == "">"":
+            ## this is a one
+            ol, zr = totalOne, len(suffZero) - 1
+            if ol <= zr:
+                ## exit on the left
+                zeroInd = 2*last(suffZero, ol)
+                oneInd = 2*preOne[-1] - last(preOne, 1)
+                ans[i] = zeroInd - oneInd
+            else:
+                ## exit on the right
+                zeroInd = 2*suffZero[-1]
+                oneInd = last(preOne, zr) + last(preOne, zr+1)
+                oneInd -= last(preOne, 1)
+                fi = last(preOne, zr+1) - last(preOne, zr)
+                ans[i] = zeroInd - oneInd + n+1 - fi
+            preOne.pop()
+            totalOne -= 1
+        else:
+            ## this is a zero
+            suffZero.append(suffZero[-1] + i+1)
+            ol, zr = totalOne, len(suffZero) - 1
+            if zr <= ol:
+                ## zr is atleast 1
+                ## exit on the right
+                zeroInd = suffZero[-1] + suffZero[-2]
+                oneInd = 2*last(preOne, zr)
+                ans[i] = zeroInd - oneInd + n+1
+            else:
+                ## exit on the left
+                ## ol can be zero
+                zeroInd = 2*last(suffZero, ol+1) - last(suffZero, 1)
+                oneInd = 2*preOne[-1]
+                ans[i] = zeroInd - oneInd
+                
+    print(*ans)
+for case in range(int(input())):
+    n = int(input())
+    s1 = input()
+    solve(s1, n)",1,False,False,False,True,False,True,True,True,False,True,True,True,False,False
+1922_C,1922_C_Talharashid_0.00%,codeforces2024,human,qwen2.5-7b-instruct,"There are n cities located on the number line, the i -th city is in the point
+a_i . The coordinates of the cities are given in ascending order, so a_1 < a_2
+< \dots < a_n .
+
+The distance between two cities x and y is equal to |a_x - a_y| .
+
+For each city i , let's define the closest city j as the city such that the
+distance between i and j is not greater than the distance between i and each
+other city k . For example, if the cities are located in points [0, 8, 12, 15,
+20] , then:
+
+  * the closest city to the city 1 is the city 2 ; 
+  * the closest city to the city 2 is the city 3 ; 
+  * the closest city to the city 3 is the city 4 ; 
+  * the closest city to the city 4 is the city 3 ; 
+  * the closest city to the city 5 is the city 4 . 
+
+The cities are located in such a way that for every city, the closest city is
+unique. For example, it is impossible for the cities to be situated in points
+[1, 2, 3] , since this would mean that the city 2 has two closest cities (1
+and 3 , both having distance 1 ).
+
+You can travel between cities. Suppose you are currently in the city x . Then
+you can perform one of the following actions:
+
+  * travel to any other city y , paying |a_x - a_y| coins; 
+  * travel to the city which is the closest to x , paying 1 coin. 
+
+You are given m queries. In each query, you will be given two cities, and you
+have to calculate the minimum number of coins you have to spend to travel from
+one city to the other city.
+
+Input
+
+The first line contains one integer t (1 \le t \le 10^4 ) — the number of test
+cases.
+
+Each test case is given in the following format:
+
+  * the first line contains one integer n (2 \le n \le 10^5 ); 
+  * the second line contains n integers a_1, a_2, \dots, a_n (0 \le a_1 < a_2 < \dots < a_n \le 10^9 ); 
+  * the third line contains one integer m (1 \le m \le 10^5 ); 
+  * then m lines follow; the i -th of them contains two integers x_i and y_i (1 \le x_i, y_i \le n ; x_i \ne y_i ), denoting that in the i -th query, you have to calculate the minimum number of coins you have to spend to travel from the city x_i to the city y_i . 
+
+Additional constraints on the input:
+
+  * in every test case, for each city, the closest city is determined uniquely; 
+  * the sum of n over all test cases does not exceed 10^5 ; 
+  * the sum of m over all test cases does not exceed 10^5 . 
+
+Output
+
+For each query, print one integer — the minimum number of coins you have to
+spend.
+
+Example
+
+Input
+
+    1
+    
+    5
+    
+    0 8 12 15 20
+    
+    5
+    
+    1 4
+    
+    1 5
+    
+    3 4
+    
+    3 2
+    
+    5 1
+
+Output
+
+    3
+    8
+    1
+    4
+    14
+    
+Note
+
+Let's consider the first two queries in the example from the statement:
+
+  * in the first query, you are initially in the city 1 . You can travel to the closest city (which is the city 2 ), paying 1 coin. Then you travel to the closest city (which is the city 3 ) again, paying 1 coin. Then you travel to the closest city (which is the city 4 ) again, paying 1 coin. In total, you spend 3 coins to get from the city 1 to the city 4 ; 
+  * in the second query, you can use the same way to get from the city 1 to the city 4 , and then spend 5 coins to travel from the city 4 to the city 5 .","from collections import defaultdict
+t=int(input())
+for i in range(t):
+    d1=defaultdict(int)
+    d2=defaultdict(int)
+    n=int(input())
+    lst=list(map(int,input().split()))
+    start=0;end=len(lst)-1;inc=1;s=0
+    while start!=end:
+        mini=11111111
+        if (start+1)<len(lst):
+            mini=min(abs(lst[start]-lst[start+1]),mini)
+        if (start-1)>-1:
+            mini=min(abs(lst[start]-lst[start-1]),mini)
+        if mini==abs(lst[start]-lst[start+inc]):
+            s+=1
+        else:
+            s+=abs(lst[start]-lst[start+inc])
+        start+=inc
+        d1[start]=s
+    start=len(lst)-1;end=0;inc=-1;s=0
+    while start!=end:
+        mini=11111111
+        if (start+1)<len(lst):
+            mini=min(abs(lst[start]-lst[start+1]),mini)
+        if (start-1)>-1:
+            mini=min(abs(lst[start]-lst[start-1]),mini)
+        if mini==abs(lst[start]-lst[start+inc]):
+            s+=1
+        else:
+            s+=abs(lst[start]-lst[start+inc])
+        start+=inc
+        d2[start]=s
+    m=int(input())
+    for i in range(m):
+        start,end=map(int,input().split())
+        start-=1;
+        end-=1
+        s=0
+        if start<end:
+            s1=abs(d1[end]-d1[start])
+            s2=abs(d2[start]-d2[end])
+        else:
+            s1=abs(d2[end]-d2[start])
+            s2=abs(d1[start]-d1[end])
+        print(min(s1,s2))",1,False,False,False,False,False,False,False,False,True,False,False,False,False,False
+1927_F,1927_F_tesfaymebre_2.70%,codeforces2024,human,qwen2.5-7b-instruct,"Given an undirected weighted graph with n vertices and m edges. There is at
+most one edge between each pair of vertices in the graph, and the graph does
+not contain loops (edges from a vertex to itself). The graph is not
+necessarily connected.
+
+A cycle in the graph is called simple if it doesn't pass through the same
+vertex twice and doesn't contain the same edge twice.
+
+Find any simple cycle in this graph in which the weight of the lightest edge
+is minimal.
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 10^4 ) —
+the number of test cases. Then follow the descriptions of the test cases.
+
+The first line of each test case contains two integers n and m (3 \le n \le m
+\le \min(\frac{n\cdot(n - 1)}{2}, 2 \cdot 10^5) ) — the size of the graph and
+the number of edges.
+
+The next m lines of the test case contain three integers u , v , and w (1 \le
+u, v \le n , u \ne v , 1 \le w \le 10^6 ) — vertices u and v are connected by
+an edge of weight w .
+
+It is guaranteed that there is at most one edge between each pair of vertices.
+Note that under the given constraints, there is always at least one simple
+cycle in the graph.
+
+It is guaranteed that the sum of the values of m for all test cases does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output a pair of numbers b and k , where:
+
+  * b — the minimum weight of the edge in the found cycle, 
+  * k — the number of vertices in the found cycle. 
+
+On the next line, output k numbers from 1 to n — the vertices of the cycle in
+traversal order.
+
+Note that the answer always exists, as under the given constraints, there is
+always at least one simple cycle in the graph.
+
+Example
+
+Input
+
+    5
+    
+    6 6
+    
+    1 2 1
+    
+    2 3 1
+    
+    3 1 1
+    
+    4 5 1
+    
+    5 6 1
+    
+    6 4 1
+    
+    6 6
+    
+    1 2 10
+    
+    2 3 8
+    
+    3 1 5
+    
+    4 5 100
+    
+    5 6 40
+    
+    6 4 3
+    
+    6 15
+    
+    1 2 4
+    
+    5 2 8
+    
+    6 1 7
+    
+    6 3 10
+    
+    6 5 1
+    
+    3 2 8
+    
+    4 3 4
+    
+    5 3 6
+    
+    2 6 6
+    
+    5 4 5
+    
+    4 1 3
+    
+    6 4 5
+    
+    4 2 1
+    
+    3 1 7
+    
+    1 5 5
+    
+    4 6
+    
+    2 3 2
+    
+    1 3 10
+    
+    1 4 1
+    
+    3 4 7
+    
+    2 4 5
+    
+    1 2 2
+    
+    4 5
+    
+    2 1 10
+    
+    3 1 3
+    
+    4 2 6
+    
+    1 4 7
+    
+    2 3 3
+
+Output
+
+    1 3
+    1 2 3 
+    3 3
+    6 4 5 
+    1 5
+    4 2 1 6 3 
+    1 4
+    1 4 3 2 
+    3 3
+    2 3 1","from collections import defaultdict
+import sys
+import threading
+ 
+class DSU:
+    def __init__(self, n):
+        self.parent = [i for i in range(n)]
+        self.size = [1] * n
+        self.min_edge = [float('inf')] * n
+ 
+    def find(self, x):
+        while self.parent[x] != x:
+            self.parent[x] = self.parent[self.parent[x]]
+            x = self.parent[x]
+ 
+        return x
+ 
+    def union(self, a, b, w):
+        parent_a = self.find(a)
+        parent_b = self.find(b)
+ 
+        self.min_edge[parent_a] = min(self.min_edge[parent_a], w)
+        self.min_edge[parent_b] = min(self.min_edge[parent_b], w)
+ 
+        if parent_a != parent_b:
+            if self.size[parent_a] < self.size[parent_b]:
+                parent_a, parent_b = parent_b, parent_a
+ 
+            self.size[parent_a] += self.size[parent_b]
+            self.min_edge[parent_a] = min(self.min_edge[parent_a],self.min_edge[parent_b])
+            self.parent[parent_b] = parent_a
+ 
+        return
+    
+def int_input():
+    return int(sys.stdin.readline().strip())
+ 
+def string():
+    return sys.stdin.readline().strip()
+ 
+def map_int():
+    return map(int, sys.stdin.readline().strip().split())
+ 
+def list_int_input():
+    return list(map(int, sys.stdin.readline().strip().split()))
+ 
+def list_string_input():
+    return list(sys.stdin.readline().strip().split())
+ 
+def solve():
+    n,m = map_int()
+    graph = defaultdict(list)
+    edges = []
+ 
+    for i in range(m):
+        u,v,w = map_int()
+        graph[u].append(v)
+        graph[v].append(u)
+ 
+        edges.append((w,u,v))
+ 
+ 
+    edges.sort(reverse=True)
+ 
+    
+    dsu = DSU(n+1)
+    _min_edge = float('inf')
+    node_u = -1
+    node_v = -1
+ 
+    for w,u,v in edges:
+        parent_u = dsu.find(u)
+        parent_v = dsu.find(v)
+        if parent_u == parent_v:
+            dsu.union(u,v,w)
+            if dsu.min_edge[parent_u] < _min_edge:
+                _min_edge = dsu.min_edge[parent_u]
+                node_u = u
+                node_v = v
+        else:
+            dsu.union(u,v,w)
+ 
+    colors = [0] * (n+1)
+    def dfs(curr, parent, path):
+        if colors[curr] == 1:
+            return path
+        
+        colors[curr] = 1
+        path.append(curr)
+ 
+        for nei in graph[curr]:
+            if colors[nei] != 2 and nei != parent:
+                res = dfs(nei, curr, path)
+                set_res = set(res)
+                if res and node_v in set_res:
+                    return res
+ 
+        colors[curr] = 2     
+        return []
+    
+    res = dfs(node_u,-1,[])
+    print(_min_edge,len(res))
+    print(*res)
+ 
+def main():
+    test_cases = int_input()
+    for _ in range(test_cases):
+        solve()
+ 
+if __name__ == '__main__':
+    sys.setrecursionlimit(1 << 30)
+    threading.stack_size(1 << 27)
+ 
+    main_thread = threading.Thread(target=main)
+    main_thread.start()
+    main_thread.join()",1,False,False,False,True,False,True,True,True,True,True,True,True,False,False
+1945_C,1945_C_sahiltomar100303_8.33%,codeforces2024,human,qwen2.5-7b-instruct,"In the village of Letovo, there are n houses. The villagers decided to build a
+big road that will divide the village into left and right sides. Each resident
+wants to live on either the right or the left side of the street, which is
+described as a sequence a_1, a_2, \dots, a_n , where a_j = 0 if the resident
+of the j -th house wants to live on the left side of the street; otherwise,
+a_j = 1 .
+
+The road will pass between two houses. The houses to the left of it will be
+declared the left-side, and the houses to the right will be declared the
+right-side. More formally, let the road pass between houses i and i+1 . Then
+the houses at positions between 1 and i will be on the left side of the
+street, and at positions between i+1 and n will be on the right side. The road
+also may pass before the first and after the last house; in this case, the
+entire village is declared to be either the right or left side, respectively.
+
+To make the design fair, it was decided to lay the road so that at least half
+of the residents on each side of the village are satisfied with the choice.
+That is, among x residents on one side, at least \lceil\frac{x}{2}\rceil
+should want to live on that side, where \lceil x \rceil denotes rounding up a
+real number x .
+
+![](https://espresso.codeforces.com/75baa17903d65a630fb0d3334683e857d5fdc345.png)
+To the left of the road, there will be i houses, among the corresponding a_j
+there must be at least \lceil\frac{i}{2}\rceil zeros. To the right of the
+road, there will be n-i houses, among the corresponding a_j there must be at
+least \lceil\frac{n-i}{2}\rceil ones.
+
+Determine after which house i the road should be laid in order to satisfy the
+described condition and be as close to the middle of the village as possible.
+Formally, among all suitable positions i , minimize \left|\frac{n}{2} -
+i\right| .
+
+If there are multiple suitable positions i with the minimum \left|\frac{n}{2}
+- i\right| , output the smaller one.
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t (1 \le t \le 2\cdot 10^4 ). The description of the test cases
+follows.
+
+The first line of each test case contains a single integer n (3 \le n \le
+3\cdot 10^5 ). The next line of each test case contains a string a of length n
+, consisting only of 0 and 1 .
+
+It is guaranteed that the sum of n over all test cases does not exceed 3\cdot
+10^5 .
+
+Output
+
+For each test case, output a single number i — the position of the house after
+which the road should be laid (if it should be laid before the first house,
+output 0 ). We can show that the answer always exists.
+
+Example
+
+Input
+
+    7
+    
+    3
+    
+    101
+    
+    6
+    
+    010111
+    
+    6
+    
+    011001
+    
+    3
+    
+    000
+    
+    3
+    
+    110
+    
+    3
+    
+    001
+    
+    4
+    
+    1100
+
+Output
+
+    2
+    3
+    2
+    3
+    0
+    1
+    0
+    
+Note
+
+Let's consider the first example of input data.
+
+If we lay the road after the first house, there will be one house a_1 = 1 on
+the left side of the street, the resident of which would like to live on the
+right side of the street. Then 0 out of 1 residents on the even side will be
+satisfied with the choice, which means that the road cannot be laid after
+house 1 .
+
+If we lay the road after the second house, 1 out of 2 residents on the left
+side (with preferences a_1 = 1 , a_2 = 0 ) and 1 out of 1 resident on the
+right side (with preference a_3 = 1 ) will be satisfied with the choice. More
+than half of the residents on each side are satisfied with the choice, which
+means that the road can be laid after house 2 . We can show that this is the
+optimal answer.","t = int(input())
+for _ in range(t):
+    n = int(input())
+    s = input()
+ 
+    mid = n // 2
+    leftZero = 0
+    rightZero = 0
+    leftOne = 0
+    rightOne = 0
+    tleftZero = 0
+    trightZero = 0
+    tleftOne = 0
+    trightOne = 0
+ 
+    for i in range(mid):
+        if s[i] == '0':
+            leftZero += 1
+            tleftZero += 1
+        else:
+            leftOne += 1
+            tleftOne += 1
+ 
+    for i in range(mid, n):
+        if s[i] == '0':
+            rightZero += 1
+            trightZero += 1
+        else:
+            rightOne += 1
+            trightOne += 1
+ 
+    left = mid
+    leftMove = 0
+    while left > 0 and (leftZero < (left+1)//2 or rightOne < (n-left+1)//2):
+        if s[left-1] == '0':
+            leftZero -= 1
+            rightZero += 1
+        else:
+            leftOne -= 1
+            rightOne += 1
+        left -= 1
+ 
+    right = mid
+    while right < n and (tleftZero < (right+1)//2 or trightOne < (n-right+1)//2):
+        if s[right] == '0':
+            tleftZero += 1
+            trightZero -= 1
+        else:
+            tleftOne += 1
+            trightOne -= 1
+        right += 1
+ 
+    if left == 0:
+        if right != n:
+            print(right)
+        else:
+            if rightOne >= (n+1)//2:
+                print(left)
+            else:
+                print(right)
+    elif right == n:
+        if tleftZero >= (n+1)//2:
+            print(right)
+        else:
+            print(left)
+    else:
+        if abs((n+1)//2-left) <= abs((n+1)//2-right):
+            print(left)
+        else:
+            print(right)",1,False,False,False,True,True,True,True,True,True,False,True,False,False,False
+1931_F,1931_F_HClO_3.12%,codeforces2024,human,qwen2.5-7b-instruct,"There are n people in the programming contest chat. Chat participants are
+ordered by activity, but each person sees himself at the top of the list.
+
+For example, there are 4 participants in the chat, and their order is [2, 3,
+1, 4] . Then
+
+  * 1 -st user sees the order [1, 2, 3, 4] . 
+  * 2 -nd user sees the order [2, 3, 1, 4] . 
+  * 3 -rd user sees the order [3, 2, 1, 4] . 
+  * 4 -th user sees the order [4, 2, 3, 1] . 
+
+k people posted screenshots in the chat, which show the order of participants
+shown to this user. The screenshots were taken within a short period of time,
+and the order of participants has not changed.
+
+Your task is to determine whether there is a certain order that all
+screenshots correspond to.
+
+Input
+
+The first line contains a single integer t (1 \le t \le 10^4 ) — the number of
+input test cases. The descriptions of test cases follow.
+
+The first line of the description of each test case contains two integers n
+and k (1 \le k \le n \le 2 \cdot 10^5, n \cdot k \le 2 \cdot 10^5 ) — the
+number of chat participants and the number of participants who posted
+screenshots.
+
+The following k lines contain descriptions of screenshots posted by the
+participants.
+
+The i -th row contains n integers a_{ij} each (1 \le a_{ij} \le n , all a_{ij}
+are different) — the order of participants shown to the participant a_{i0} ,
+where a_{i0} — the author of the screenshot. You can show that in the
+screenshot description it will always be at the top of the list.
+
+It is guaranteed that the sum of n \cdot k for all test cases does not exceed
+2 \cdot 10^5 . It is also guaranteed that all the authors of the screenshots
+are different.
+
+Output
+
+Output t lines, each of which is the answer to the corresponding test case. As
+an answer, output ""YES"" if there exists at least one order of participants,
+under which all k screenshots could have been obtained. Otherwise, output
+""NO"".
+
+You can output the answer in any case (upper or lower). For example, the
+strings ""yEs"", ""yes"", ""Yes"", and ""YES"" will be recognized as positive
+responses.
+
+Example
+
+Input
+
+    10
+    
+    5 1
+    
+    1 2 3 4 5
+    
+    4 4
+    
+    1 2 3 4
+    
+    2 3 1 4
+    
+    3 2 1 4
+    
+    4 2 3 1
+    
+    6 2
+    
+    1 3 5 2 4 6
+    
+    6 3 5 2 1 4
+    
+    3 3
+    
+    1 2 3
+    
+    2 3 1
+    
+    3 2 1
+    
+    10 2
+    
+    1 2 3 4 5 6 7 8 9 10
+    
+    10 9 8 7 6 5 4 3 2 1
+    
+    1 1
+    
+    1
+    
+    5 2
+    
+    1 2 3 5 4
+    
+    2 1 3 5 4
+    
+    3 3
+    
+    3 1 2
+    
+    2 3 1
+    
+    1 3 2
+    
+    5 4
+    
+    3 5 1 4 2
+    
+    2 5 1 4 3
+    
+    1 5 4 3 2
+    
+    5 1 4 3 2
+    
+    3 3
+    
+    1 3 2
+    
+    2 1 3
+    
+    3 2 1
+
+Output
+
+    YES
+    YES
+    YES
+    YES
+    NO
+    YES
+    YES
+    YES
+    YES
+    NO","from heapq import *
+ 
+t = int(input())
+ 
+ 
+for _ in range(t):
+    n, m = map(int, input().split())
+    if m == 1:
+        input()
+        print(""yes"")
+        continue
+    a1, *l1 = map(int, input().split())
+    a2, *l2 = map(int, input().split())
+    l11 = [i for i in l1 if i != a2]
+    l22 = [i for i in l2 if i != a1]
+    if l11 != l22:
+        for _ in range(m - 2):
+            input()
+        print(""no"")
+        continue
+    idx1 = idx2 = -1
+    p1 = p2 = 0
+    for i in range(n - 1):
+        if i + max(p1, p2) == n - 1:
+            break
+        if l1[i + p1] != l2[i + p2]:
+            if l1[i + p1] == a2 and l2[i + p2] == a1:
+                idx1 = idx2 = i
+                break
+            else:
+                if l1[i + p1] == a2:
+                    idx1 = i
+                    p1 = 1
+                else:
+                    idx2 = i
+                    p2 = 1
+                if idx1 >= 0 and idx2 >= 0:
+                    break
+    val = []
+    if idx1 < idx2:
+        l2.insert(idx1, a2)
+        l = l2
+    elif idx1 > idx2:
+        l1.insert(idx2, a1)
+        l = l1
+    else:
+        if m == 2:
+            print(""yes"")
+            continue
+        a3, *l3 = map(int, input().split())
+        if l3.index(a1) < l3.index(a2):
+            l1.insert(idx2, a1)
+            l = l1
+        else:
+            l2.insert(idx1, a2)
+            l = l2
+        val.append((a3, l3))
+        m -= 1
+    for _ in range(m - 2):
+        a3, *l3 = map(int, input().split())
+        val.append((a3, l3))
+    for a3, l3 in val:
+        if l3 != [i for i in l if i != a3]:
+            print(""no"")
+            break
+    else:
+        print(""yes"")",1,False,False,False,True,False,True,True,True,False,True,False,False,False,False
+1965_B,1965_B_just_average_ok_0.00%,codeforces2024,human,qwen2.5-7b-instruct,"You are given two integers n and k . Find a sequence a of non-negative
+integers of size at most 25 such that the following conditions hold.
+
+  * There is no subsequence of a with a sum of k . 
+  * For all 1 \le v \le n where v \ne k , there is a subsequence of a with a sum of v . 
+
+A sequence b is a subsequence of a if b can be obtained from a by the deletion
+of several (possibly, zero or all) elements, without changing the order of the
+remaining elements. For example, [5, 2, 3] is a subsequence of [1, 5, 7, 8, 2,
+4, 3] .
+
+It can be shown that under the given constraints, a solution always exists.
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 1000 ) —
+the number of test cases. The description of the test cases follows.
+
+Each test case consists of a single line containing two integers n and k (2
+\le n \le 10^6 , 1 \le k \le n ) — the parameters described above.
+
+It is guaranteed that the sum of n over all test cases does not exceed 10^7 .
+
+Output
+
+The first line of output for each test case should contain a single integer m
+(1 \le m \le 25 ) — the size of your chosen sequence.
+
+The second line of output for each test case should contain m integers a_i (0
+\le a_i \le 10^9 ) — the elements of your chosen sequence.
+
+If there are multiple solutions, print any.
+
+Example
+
+Input
+
+    5
+    
+    2 2
+    
+    6 1
+    
+    8 8
+    
+    9 3
+    
+    10 7
+
+Output
+
+    1
+    1
+    5
+    2 3 4 5 6
+    7
+    1 1 1 1 1 1 1
+    4
+    7 1 4 1
+    4
+    1 2 8 3
+    
+Note
+
+In the first example, we just need a subsequence that adds up to 1 , but not
+one that adds up to 2 . So the array a=[1] suffices.
+
+In the second example, all elements are greater than k=1 , so no subsequence
+adds up to 1 . Every other integer between 1 and n is present in the array, so
+there is a subsequence of size 1 adding up to each of those numbers.","for _ in range(int(input())):
+    n, k = map(int, input().split())
+    
+    nums = [(1<<i) for i in range(24)]
+    idx = 0
+    while k >= (1 << idx): idx+=1
+    idx -= 1
+    nums.append(k-nums[idx])
+    nums.append(k+1)
+    nums.append(k+nums[idx]+1)
+    nums.remove(1 << idx)
+    print(len(nums))
+    print(*nums)",1,False,False,False,True,False,True,True,True,False,True,True,False,True,False
+1969_D,1969_D_Both_10.00%,codeforces2024,human,qwen2.5-7b-instruct,"Alice and Bob are playing a game in the shop. There are n items in the shop;
+each item has two parameters: a_i (item price for Alice) and b_i (item price
+for Bob).
+
+Alice wants to choose a subset (possibly empty) of items and buy them. After
+that, Bob does the following:
+
+  * if Alice bought less than k items, Bob can take all of them for free; 
+  * otherwise, he will take k items for free that Alice bought (Bob chooses which k items it will be), and for the rest of the chosen items, Bob will buy them from Alice and pay b_i for the i -th item. 
+
+Alice's profit is equal to \sum\limits_{i \in S} b_i - \sum\limits_{j \in T}
+a_j , where S is the set of items Bob buys from Alice, and T is the set of
+items Alice buys from the shop. In other words, Alice's profit is the
+difference between the amount Bob pays her and the amount she spends buying
+the items.
+
+Alice wants to maximize her profit, Bob wants to minimize Alice's profit. Your
+task is to calculate Alice's profit if both Alice and Bob act optimally.
+
+Input
+
+The first line contains a single integer t (1 \le t \le 10^4 ) — the number of
+test cases.
+
+The first line of each test case contains two integers n and k (1 \le n \le 2
+\cdot 10^5 ; 0 \le k \le n ).
+
+The second line contains n integers a_1, a_2, \dots, a_n (1 \le a_i \le 10^9
+).
+
+The third line contains n integers b_1, b_2, \dots, b_n (1 \le b_i \le 10^9 ).
+
+Additional constraint on the input: the sum of n over all test cases doesn't
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, print a single integer — Alice's profit if both Alice and
+Bob act optimally.
+
+Example
+
+Input
+
+    4
+    
+    2 0
+    
+    2 1
+    
+    1 2
+    
+    4 1
+    
+    1 2 1 4
+    
+    3 3 2 3
+    
+    4 2
+    
+    2 1 1 1
+    
+    4 2 3 2
+    
+    6 2
+    
+    1 3 4 9 1 3
+    
+    7 6 8 10 6 8
+
+Output
+
+    1
+    1
+    0
+    7
+    
+Note
+
+In the first test case, Alice should buy the 2 -nd item and sell it to Bob, so
+her profit is 2 - 1 = 1 .
+
+In the second test case, Alice should buy the 1 -st, the 2 -nd and the 3 -rd
+item; then Bob takes the 1 -st item for free and pays for the 2 -nd and the 3
+-rd item. Alice's profit is (3+2) - (1+2+1) = 1 . Bob could take 2 -nd item
+for free instead; this does not change Alice's profit. Bob won't take the 3
+-rd item for free, since this would lead to a profit of 2 .","import heapq
+import sys
+ 
+putin = sys.stdin.readline
+ 
+ 
+def inp():
+    return int(putin())
+ 
+ 
+def invert():
+    return map(int, putin().split())
+ 
+ 
+def starting_price(main_ar, sec_arr):
+    sub_summ = 0
+    for val_a in sec_arr:
+        sub_summ += val_a[0]
+    for val_b in main_ar:
+        if val_b[0] + val_b[1] >= 0:
+            sub_summ += val_b[0] + val_b[1]
+    return sub_summ
+ 
+ 
+if __name__ == ""__main__"":
+    t = inp()
+    for x in range(t):
+        arr = []
+        k_arr = []
+        temp_pop = []
+        n, k = invert()
+        a = list(invert())
+        a = [-x for x in a]
+        b = list(invert())
+        max_value = 0
+        sub_sum = 0
+        my_bool = False
+ 
+        for i in range(n):
+            arr.append([a[i], b[i]])
+        arr.sort(key=lambda y: y[1], reverse=False)
+ 
+        for k_range in range(1, k + 1):
+            if arr:
+                heapq.heappush(k_arr, arr[-1])
+                arr.pop()
+        if arr:
+            sub_sum = starting_price(arr, k_arr)
+        if sub_sum > max_value:
+            max_value = sub_sum
+        while arr:
+            if arr:
+                sub_sum -= arr[-1][1]
+                if arr[-1][1] + arr[-1][0] <= 0:
+                    sub_sum += arr[-1][0]
+                temp_pop = heapq.heappushpop(k_arr, arr[-1])
+                arr.pop()
+                if temp_pop:
+                    sub_sum -= temp_pop[0]
+            if sub_sum > max_value:
+                if k_range != 0:
+                    max_value = sub_sum
+        print(max_value)",1,False,False,False,False,False,True,False,True,True,True,False,False,False,False
+1926_E,1926_E_daniilrybakov_100%,codeforces2024,human,qwen2.5-7b-instruct,"Vladislav has n cards numbered 1, 2, \dots, n . He wants to lay them down in a
+row as follows:
+
+  * First, he lays down all the odd-numbered cards from smallest to largest. 
+  * Next, he lays down all cards that are twice an odd number from smallest to largest (i.e. 2 multiplied by an odd number). 
+  * Next, he lays down all cards that are 3 times an odd number from smallest to largest (i.e. 3 multiplied by an odd number). 
+  * Next, he lays down all cards that are 4 times an odd number from smallest to largest (i.e. 4 multiplied by an odd number). 
+  * And so on, until all cards are laid down. 
+
+What is the k -th card he lays down in this process? Once Vladislav puts a
+card down, he cannot use that card again.
+
+Input
+
+The first line contains an integer t (1 \leq t \leq 5 \cdot 10^4 ) — the
+number of test cases.
+
+The only line of each test case contains two integers n and k (1 \leq k \leq n
+\leq 10^9 ) — the number of cards Vlad has, and the position of the card you
+need to output.
+
+Output
+
+For each test case, output a single integer — the k -th card Vladislav lays
+down.
+
+Example
+
+Input
+
+    11
+    
+    7 1
+    
+    7 2
+    
+    7 3
+    
+    7 4
+    
+    7 5
+    
+    7 6
+    
+    7 7
+    
+    1 1
+    
+    34 14
+    
+    84 19
+    
+    1000000000 1000000000
+
+Output
+
+    1
+    3
+    5
+    7
+    2
+    6
+    4
+    1
+    27
+    37
+    536870912
+    
+Note
+
+In the first seven test cases, n=7 . Vladislav lays down the cards as follows:
+
+  * First — all the odd-numbered cards in the order 1 , 3 , 5 , 7 . 
+  * Next — all cards that are twice an odd number in the order 2 , 6 . 
+  * Next, there are no remaining cards that are 3 times an odd number. (Vladislav has only one of each card.) 
+  * Next — all cards that are 4 times an odd number, and there is only one such card: 4 . 
+  * There are no more cards left, so Vladislav stops. 
+
+Thus the order of cards is 1 , 3 , 5 , 7 , 2 , 6 , 4 .","t = int(input())
+for _ in range(t):
+    n, k = map(int, input().split())
+    # mas = []
+    # while n:
+    #     mas.append((n + 1) // 2)
+    #     n //= 2
+    # print(mas)
+    # continue
+    s = 0
+    m = 1
+    while n:
+        x = ((n + 1) // 2)
+        n //= 2
+        if (s < k) and (k <= s + x):
+            break
+        s += x
+        m *= 2
+    print((2 * (k - s) - 1) * m)
+ 
+    # n_back = n
+    # s = (n + 1) // 2
+    # n = (n + 1) // 2
+    # m = 1
+    # while s < k:
+    #     if n == 0:
+    #         s = n_back
+    #         n = 1
+    #         break
+    #     m *= 2
+    #     n //= 2
+    #     s += n
+    # # print(n, s, k, m, (k - (s - n)))
+    # print((2 * (k - (s - n)) - 1) * m)",1,True,False,False,True,".., 32958915605933964438914283339776, 79230821648560997971143950336, 2376924653456829939131318283584, 396154108242804989855719751680, ..., 65917831211867928877828566679552, 158461643297121991942287900",True,True,True,False,False,True,True,True,True
+1926_E,1926_E_daniilrybakov_100%,codeforces2024,human,qwen2.5-7b-instruct,"Vladislav has n cards numbered 1, 2, \dots, n . He wants to lay them down in a
+row as follows:
+
+  * First, he lays down all the odd-numbered cards from smallest to largest. 
+  * Next, he lays down all cards that are twice an odd number from smallest to largest (i.e. 2 multiplied by an odd number). 
+  * Next, he lays down all cards that are 3 times an odd number from smallest to largest (i.e. 3 multiplied by an odd number). 
+  * Next, he lays down all cards that are 4 times an odd number from smallest to largest (i.e. 4 multiplied by an odd number). 
+  * And so on, until all cards are laid down. 
+
+What is the k -th card he lays down in this process? Once Vladislav puts a
+card down, he cannot use that card again.
+
+Input
+
+The first line contains an integer t (1 \leq t \leq 5 \cdot 10^4 ) — the
+number of test cases.
+
+The only line of each test case contains two integers n and k (1 \leq k \leq n
+\leq 10^9 ) — the number of cards Vlad has, and the position of the card you
+need to output.
+
+Output
+
+For each test case, output a single integer — the k -th card Vladislav lays
+down.
+
+Example
+
+Input
+
+    11
+    
+    7 1
+    
+    7 2
+    
+    7 3
+    
+    7 4
+    
+    7 5
+    
+    7 6
+    
+    7 7
+    
+    1 1
+    
+    34 14
+    
+    84 19
+    
+    1000000000 1000000000
+
+Output
+
+    1
+    3
+    5
+    7
+    2
+    6
+    4
+    1
+    27
+    37
+    536870912
+    
+Note
+
+In the first seven test cases, n=7 . Vladislav lays down the cards as follows:
+
+  * First — all the odd-numbered cards in the order 1 , 3 , 5 , 7 . 
+  * Next — all cards that are twice an odd number in the order 2 , 6 . 
+  * Next, there are no remaining cards that are 3 times an odd number. (Vladislav has only one of each card.) 
+  * Next — all cards that are 4 times an odd number, and there is only one such card: 4 . 
+  * There are no more cards left, so Vladislav stops. 
+
+Thus the order of cards is 1 , 3 , 5 , 7 , 2 , 6 , 4 .","t = int(input())
+for _ in range(t):
+    n, k = map(int, input().split())
+    # mas = []
+    # while n:
+    #     mas.append((n + 1) // 2)
+    #     n //= 2
+    # print(mas)
+    # continue
+    s = 0
+    m = 1
+    while n:
+        x = ((n + 1) // 2)
+        n //= 2
+        if (s < k) and (k <= s + x):
+            break
+        s += x
+        m *= 2
+    print((2 * (k - s) - 1) * m)
+ 
+    # n_back = n
+    # s = (n + 1) // 2
+    # n = (n + 1) // 2
+    # m = 1
+    # while s < k:
+    #     if n == 0:
+    #         s = n_back
+    #         n = 1
+    #         break
+    #     m *= 2
+    #     n //= 2
+    #     s += n
+    # # print(n, s, k, m, (k - (s - n)))
+    # print((2 * (k - (s - n)) - 1) * m)",1,True,False,False,True," 801, 833, 2, 6, 10, ..., 82, 4, 12, 20, ..., 80, 8, 24, 40, ..., 72, 16, 32, 48, ..., 64, 33, 65, 97, 129, 161, 193, 225, 257, 289, 321, 353, 385, 417, 449, 481, 513, 545, 577, 609, 641, 673, 705, 73",True,True,True,True,True,True,True,True,False
+1929_C,1929_C_muhammadhamid_100%,codeforces2024,human,qwen2.5-7b-instruct,"Sasha decided to give his girlfriend the best handbag, but unfortunately for
+Sasha, it is very expensive. Therefore, Sasha wants to earn it. After looking
+at earning tips on the internet, he decided to go to the casino.
+
+Sasha knows that the casino operates under the following rules. If Sasha
+places a bet of y coins (where y is a positive integer), then in case of
+winning, he will receive y \cdot k coins (i.e., his number of coins will
+increase by y \cdot (k - 1) ). And in case of losing, he will lose the entire
+bet amount (i.e., his number of coins will decrease by y ).
+
+Note that the bet amount must always be a positive (> 0 ) integer and cannot
+exceed Sasha's current number of coins.
+
+Sasha also knows that there is a promotion at the casino: he cannot lose more
+than x times in a row.
+
+Initially, Sasha has a coins. He wonders whether he can place bets such that
+he is guaranteed to win any number of coins. In other words, is it true that
+for any integer n , Sasha can make bets so that for any outcome that does not
+contradict the rules described above, at some moment of time he will have at
+least n coins.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 1000 ) — the number of test cases. The description of
+the test cases follows.
+
+The single line of each test case contains three integers k, x and a (2 \leq k
+\leq 30 , 1 \leq x \leq 100 , 1 \leq a \leq 10^9 ) — the number of times the
+bet is increased in case of a win, the maximum number of consecutive losses,
+and the initial number of coins Sasha has.
+
+Output
+
+For each test case, output ""YES"" (without quotes) if Sasha can achieve it and
+""NO"" (without quotes) otherwise.
+
+You can output ""YES"" and ""NO"" in any case (for example, the strings ""yEs"",
+""yes"" and ""Yes"" will be recognized as a positive answer).
+
+Example
+
+Input
+
+    9
+    
+    2 1 7
+    
+    2 1 1
+    
+    2 3 15
+    
+    3 3 6
+    
+    4 4 5
+    
+    5 4 7
+    
+    4 88 1000000000
+    
+    25 69 231
+    
+    13 97 18806
+
+Output
+
+    YES
+    NO
+    YES
+    NO
+    NO
+    YES
+    NO
+    NO
+    NO
+    
+Note
+
+In the first test case, Sasha can proceed as follows:
+
+  * If Sasha places a bet for the first time or if he won the previous bet, then he places 1 coin.
+  * If Sasha lost the previous bet, then he places 2 coins.
+
+Note that Sasha cannot lose more than once in a row.
+
+It can be proven that with this strategy, Sasha can obtain as many coins as he
+wants.
+
+In the second test case, Sasha can only place 1 coin for the first time. But
+in case of a loss, he will not be able to place any more bets, so he will not
+be able to guarantee having as many coins as he wants.","for _ in range(int(input())):
+    k, x, a = map(int, input().split())
+    s = 1
+    for i in range(x):
+        s += s//(k-1)+1
+    print('Yes' if a >= s else 'No')",1,True,False,False,False,False,True,True,True,False,True,False,False,False,False
+1956_D,1956_D_ahmdhsammfarge_95.24%,codeforces2024,human,qwen2.5-7b-instruct,"Nene gave you an array of integers a_1, a_2, \ldots, a_n of length n .
+
+You can perform the following operation no more than 5\cdot 10^5 times
+(possibly zero):
+
+  * Choose two integers l and r such that 1 \le l \le r \le n , compute x as \operatorname{MEX}(\\{a_l, a_{l+1}, \ldots, a_r\\}) , and simultaneously set a_l:=x, a_{l+1}:=x, \ldots, a_r:=x . 
+
+Here, \operatorname{MEX} of a set of integers \\{c_1, c_2, \ldots, c_k\\} is
+defined as the smallest non-negative integer m which does not occur in the set
+c .
+
+Your goal is to maximize the sum of the elements of the array a . Find the
+maximum sum and construct a sequence of operations that achieves this sum.
+Note that you don't need to minimize the number of operations in this
+sequence, you only should use no more than 5\cdot 10^5 operations in your
+solution.
+
+Input
+
+The first line contains an integer n (1 \le n \le 18 ) — the length of the
+array a .
+
+The second line contains n integers a_1,a_2,\ldots,a_n (0\leq a_i \leq 10^7 )
+— the array a .
+
+Output
+
+In the first line, output two integers s and m (0\le m\le 5\cdot 10^5 ) — the
+maximum sum of elements of the array a and the number of operations in your
+solution.
+
+In the i -th of the following m lines, output two integers l and r (1 \le l
+\le r \le n ), representing the parameters of the i -th operation.
+
+It can be shown that the maximum sum of elements of the array a can always be
+obtained in no more than 5 \cdot 10^5 operations.
+
+Examples
+
+Input
+
+    2
+    
+    0 1
+
+Output
+
+    4 1
+    1 2
+    
+Input
+
+    3
+    
+    1 3 9
+
+Output
+
+    13 0
+    
+Input
+
+    4
+    
+    1 100 2 1
+
+Output
+
+    105 2
+    3 3
+    3 4
+    
+Input
+
+    1
+    
+    0
+
+Output
+
+    1 1
+    1 1
+    
+Note
+
+In the first example, after the operation with l=1 and r=2 the array a becomes
+equal to [2,2] . It can be shown that it is impossible to achieve a larger sum
+of the elements of a , so the answer is 4 .
+
+In the second example, the initial sum of elements is 13 which can be shown to
+be the largest.
+
+In the third example, the array a changes as follows:
+
+  * after the first operation (l=3 , r=3 ), the array a becomes equal to [1,100,0,1] ; 
+  * after the second operation (l=3 , r=4 ), the array a becomes equal to [1,100,2,2] . 
+
+It can be shown that it is impossible to achieve a larger sum of the elements
+of a , so the answer is 105 .","def getMaxable(lst):
+    r = l = 0
+    over_sum = sum(lst)
+    for i in range(len(lst)):
+        for j in range(i + 1, len(lst)):
+            sm = sum(lst[:i]) + sum(lst[j+1:]) + (j - i + 1) ** 2
+            if sm > over_sum:
+                r, l = [i, j]
+                over_sum = sm
+    return r, l
+ 
+ 
+def addOps(r, l, ops: list):
+    if r == l:
+        ops.append([r + 1, l + 1])
+        return
+    addOps(r, l - 1, ops)
+    ops.append([r + 1, l + 1])
+    addOps(r, l - 1, ops)
+ 
+ 
+def doOps(r, l, lst: list, ops: list):
+    ops.append([r + 1, l + 1])
+    if min(lst[r:l + 1]) == 0:
+        ops.append([r + 1, l + 1])
+    ops.append([r + 1, r + 1])
+    addOps(r, l, ops)
+    ops.append([r + 1, l + 1])
+    n = l - r + 1
+    lst[r:l + 1] = [n for _ in range(n)]
+    return lst
+ 
+ 
+input()
+lst = list(map(int, input().split()))
+ 
+ops = []
+r, l = getMaxable(lst)
+while r != l:
+    lst = doOps(r, l, lst, ops)
+    r, l = getMaxable(lst)
+try:
+    while True:
+        i = lst.index(0) + 1
+        lst[i - 1] = 1
+        ops.append([i, i])
+except ValueError:
+    pass
+print(sum(lst), len(ops))
+for r in ops:
+    print(*r)",1,False,False,False,False,False,False,False,False,False,False,False,False,False,True
+1979_B,1979_B_nandakishore1905_20.00%,codeforces2024,human,qwen2.5-7b-instruct,"You are given two distinct non-negative integers x and y . Consider two
+infinite sequences a_1, a_2, a_3, \ldots and b_1, b_2, b_3, \ldots , where
+
+  * a_n = n \oplus x ; 
+  * b_n = n \oplus y . 
+
+Here, x \oplus y denotes the [bitwise
+XOR](https://en.wikipedia.org/wiki/Bitwise_operation#XOR) operation of
+integers x and y .
+
+For example, with x = 6 , the first 8 elements of sequence a will look as
+follows: [7, 4, 5, 2, 3, 0, 1, 14, \ldots] . Note that the indices of elements
+start with 1 .
+
+Your task is to find the length of the longest common subsegment^\dagger of
+sequences a and b . In other words, find the maximum integer m such that a_i =
+b_j, a_{i + 1} = b_{j + 1}, \ldots, a_{i + m - 1} = b_{j + m - 1} for some i,
+j \ge 1 .
+
+^\dagger A subsegment of sequence p is a sequence p_l,p_{l+1},\ldots,p_r ,
+where 1 \le l \le r .
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 10^4 ) — the number of test cases. The description of
+the test cases follows.
+
+The only line of each test case contains two integers x and y (0 \le x, y \le
+10^9, x \neq y ) — the parameters of the sequences.
+
+Output
+
+For each test case, output a single integer — the length of the longest common
+subsegment.
+
+Example
+
+Input
+
+    4
+    
+    0 1
+    
+    12 4
+    
+    57 37
+    
+    316560849 14570961
+
+Output
+
+    1
+    8
+    4
+    33554432
+    
+Note
+
+In the first test case, the first 7 elements of sequences a and b are as
+follows:
+
+a = [1, 2, 3, 4, 5, 6, 7,\ldots]
+
+b = [0, 3, 2, 5, 4, 7, 6,\ldots]
+
+It can be shown that there isn't a positive integer k such that the sequence
+[k, k + 1] occurs in b as a subsegment. So the answer is 1 .
+
+In the third test case, the first 20 elements of sequences a and b are as
+follows:
+
+a = [56, 59, 58, 61, 60, 63, 62, 49, 48, 51, 50, 53, 52, 55, 54, \textbf{41,
+40, 43, 42}, 45, \ldots]
+
+b = [36, 39, 38, 33, 32, 35, 34, 45, 44, 47, 46, \textbf{41, 40, 43, 42}, 53,
+52, 55, 54, 49, \ldots]
+
+It can be shown that one of the longest common subsegments is the subsegment
+[41, 40, 43, 42] with a length of 4 .","for i in range(int(input())):
+    n,m=map(int,input().split())
+    k=abs(n-m)
+    if (k&(k-1))==0:
+        print(k)
+    elif n==0 and m%2!=0:
+        print(1)
+    elif n==0 and m%2==0:
+        print(2)
+    else:
+        l=bin(k).replace('0b','')
+        p=len(l)
+        q=2**(p-1)
+        print(k-q)",1,False,False,False,False,False,True,False,False,False,False,True,False,False,True
+1979_B,1979_B_nandakishore1905_20.00%,codeforces2024,human,qwen2.5-7b-instruct,"You are given two distinct non-negative integers x and y . Consider two
+infinite sequences a_1, a_2, a_3, \ldots and b_1, b_2, b_3, \ldots , where
+
+  * a_n = n \oplus x ; 
+  * b_n = n \oplus y . 
+
+Here, x \oplus y denotes the [bitwise
+XOR](https://en.wikipedia.org/wiki/Bitwise_operation#XOR) operation of
+integers x and y .
+
+For example, with x = 6 , the first 8 elements of sequence a will look as
+follows: [7, 4, 5, 2, 3, 0, 1, 14, \ldots] . Note that the indices of elements
+start with 1 .
+
+Your task is to find the length of the longest common subsegment^\dagger of
+sequences a and b . In other words, find the maximum integer m such that a_i =
+b_j, a_{i + 1} = b_{j + 1}, \ldots, a_{i + m - 1} = b_{j + m - 1} for some i,
+j \ge 1 .
+
+^\dagger A subsegment of sequence p is a sequence p_l,p_{l+1},\ldots,p_r ,
+where 1 \le l \le r .
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 10^4 ) — the number of test cases. The description of
+the test cases follows.
+
+The only line of each test case contains two integers x and y (0 \le x, y \le
+10^9, x \neq y ) — the parameters of the sequences.
+
+Output
+
+For each test case, output a single integer — the length of the longest common
+subsegment.
+
+Example
+
+Input
+
+    4
+    
+    0 1
+    
+    12 4
+    
+    57 37
+    
+    316560849 14570961
+
+Output
+
+    1
+    8
+    4
+    33554432
+    
+Note
+
+In the first test case, the first 7 elements of sequences a and b are as
+follows:
+
+a = [1, 2, 3, 4, 5, 6, 7,\ldots]
+
+b = [0, 3, 2, 5, 4, 7, 6,\ldots]
+
+It can be shown that there isn't a positive integer k such that the sequence
+[k, k + 1] occurs in b as a subsegment. So the answer is 1 .
+
+In the third test case, the first 20 elements of sequences a and b are as
+follows:
+
+a = [56, 59, 58, 61, 60, 63, 62, 49, 48, 51, 50, 53, 52, 55, 54, \textbf{41,
+40, 43, 42}, 45, \ldots]
+
+b = [36, 39, 38, 33, 32, 35, 34, 45, 44, 47, 46, \textbf{41, 40, 43, 42}, 53,
+52, 55, 54, 49, \ldots]
+
+It can be shown that one of the longest common subsegments is the subsegment
+[41, 40, 43, 42] with a length of 4 .","for i in range(int(input())):
+    n,m=map(int,input().split())
+    k=abs(n-m)
+    if (k&(k-1))==0:
+        print(k)
+    elif n==0 and m%2!=0:
+        print(1)
+    elif n==0 and m%2==0:
+        print(2)
+    else:
+        l=bin(k).replace('0b','')
+        p=len(l)
+        q=2**(p-1)
+        print(k-q)",1,False,False,False,False,False,True,False,False,False,False,False,True,False,True
+1957_B,1957_B_Sukhbir_bachhal_100%,codeforces2024,human,qwen2.5-7b-instruct,"Given integers n and k , construct a sequence of n non-negative (i.e. \geq 0 )
+integers a_1, a_2, \ldots, a_n such that
+
+  1. \sum\limits_{i = 1}^n a_i = k 
+  2. The number of 1 s in the binary representation of a_1 | a_2 | \ldots | a_n is maximized, where | denotes the [bitwise OR operation](https://en.wikipedia.org/wiki/Bitwise_operation#OR). 
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The only line of each test case contains two integers n and k (1 \leq n \leq 2
+\cdot 10^5 , 1 \leq k \leq 10^9 ) — the number of non-negative integers to be
+printed and the sum respectively.
+
+It is guaranteed that the sum of n over all test cases does not exceed 2 \cdot
+10^5 .
+
+Output
+
+For each test case, output a sequence a_1, a_2, \ldots, a_n on a new line that
+satisfies the conditions given above.
+
+If there are multiple solutions, print any of them.
+
+Example
+
+Input
+
+    4
+    
+    1 5
+    
+    2 3
+    
+    2 5
+    
+    6 51
+
+Output
+
+    5
+    1 2
+    5 0
+    3 1 1 32 2 12
+
+Note
+
+In the first test case, we have to print exactly one integer, hence we can
+only output 5 as the answer.
+
+In the second test case, we output 1, 2 which sum up to 3 , and 1 | 2 = (11)_2 has two 1 s in its binary representation, which is the maximum we can achieve in these constraints.
+
+In the fourth test case, we output 3, 1, 1, 32, 2, 12 which sum up to 51 , and 3 | 1 | 1 | 32 | 2 | 12 = (101\,111)_2 has five 1 s in its binary representation, which is the maximum we can achieve in these constraints.","t = int(input())
+def highest_set_bit(n):
+    if n == 0:
+        return -1  # No bits are set in 0
+    position = 0
+    while n != 0:
+        n >>= 1
+        position += 1
+    return position - 1
+for _ in range(t):
+    n,k = [int(x) for x in input().split()]
+    arr = []
+    if n>1:
+        counter = highest_set_bit(k)
+        arr.append(2**(counter)-1)
+        arr.append(k-arr[-1])
+        for _ in range(n-2):
+            arr.append(0)
+        print(*arr)
+    else:
+        print(k)",1,True,False,False,True,False,True,True,False,True,True,True,False,False,False

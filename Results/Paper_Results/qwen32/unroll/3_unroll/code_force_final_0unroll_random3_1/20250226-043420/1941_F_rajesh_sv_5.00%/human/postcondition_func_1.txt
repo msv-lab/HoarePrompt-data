@@ -1,0 +1,1 @@
+The function `wrapper` accepts a tuple `args` containing any type and number of values. It returns the result of `func(*args)`, caching the result in a dictionary `d` to avoid redundant computations. If `args` is already in `d`, it returns the cached result.

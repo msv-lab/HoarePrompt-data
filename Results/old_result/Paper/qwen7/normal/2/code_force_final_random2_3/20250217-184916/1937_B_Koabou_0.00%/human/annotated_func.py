@@ -1,0 +1,34 @@
+#State of the program right berfore the function call: t is an integer such that 1 ≤ t ≤ 10^4. For each test case, n is an integer such that 2 ≤ n ≤ 2 \cdot 10^5, and two binary strings a_{11} a_{12} … a_{1n} and a_{21} a_{22} … a_{2n} are given, where each a_{1i} and a_{2i} is either 0 or 1. The sum of all n values across all test cases does not exceed 2 \cdot 10^5.
+def func_1():
+    a = []
+    n = int(input())
+    for _ in range(2):
+        a.append(input())
+        
+    #State: Output State: `t` is an integer such that \(1 \leq t \leq 10^4\), `a` is a list containing four elements where the first element is the original input integer, the second element is the new input integer, the third element is another input integer, and the fourth element is yet another input integer, `n` is an input integer.
+    #
+    #This means that after the loop has executed all its iterations (which is 2 times as per the given code), the list `a` will contain four elements, each being an input integer provided during the loop's execution. The variable `t` remains within the range \(1 \leq t \leq 10^4\) and `n` retains its initial value as an input integer.
+    s = []
+    x = 0
+    for i in range(n - 1):
+        if a[0][i + 1] == '1' and a[1][i] == '0':
+            s = a[0][:i + 1] + a[1][i:]
+            x = i
+            break
+        
+    #State: Output State: `t` is an integer such that \(1 \leq t \leq 10^4\), `a` is a list containing four elements where the first element is the original input integer, the second element is the new input integer, the third element is another input integer, and the fourth element is yet another input integer, `n` must be at least 1, `s` is a list containing the concatenation of the first `i + 1` elements of `a[0]` and the first `i` elements of `a[1]` up to the last iteration of the loop, `x` is `n - 1`, `i` is `n - 1`, and we break out of the most internal loop or if statement.
+    #
+    #In simpler terms, after the loop has executed all its iterations, the variable `t` remains unchanged, `a` remains unchanged, `n` remains unchanged, `s` will contain the concatenation of the first `n` elements of `a[0]` and the first `n-1` elements of `a[1]`, `x` will be set to `n - 1`, and the loop will have broken out of its final iteration.
+    t = 1
+    for i in range(x):
+        if a[0][:i + 1] == s[:i + 1]:
+            t = x - i + 1
+            break
+        
+    #State: After all iterations of the loop, the variable `t` will be set to the length of the longest common prefix between the first string in list `a` and string `s`. The variable `i` will be the index at which the common prefix ends plus one. Variables `a`, `s`, and `x` will retain their final values from the last iteration of the loop.
+    print(s, sep='')
+    #This is printed: s
+    print(t)
+    #This is printed: t (where t is the length of the longest common prefix between the first string in list a and string s)
+#Overall this is what the function does:The function processes multiple test cases. For each test case, it reads an integer \( t \) (1 ≤ \( t \) ≤ 10^4), an integer \( n \) (2 ≤ \( n \) ≤ 2 * 10^5), and two binary strings \( a_1 \) and \( a_2 \) of length \( n \). It then finds the longest common prefix between \( a_1 \) and \( a_2 \) and prints the concatenated string \( s \) formed by combining the prefix of \( a_1 \) and the suffix of \( a_2 \). Finally, it prints the length of this common prefix.
+

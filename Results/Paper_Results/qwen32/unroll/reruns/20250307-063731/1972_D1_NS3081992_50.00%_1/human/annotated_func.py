@@ -1,0 +1,136 @@
+#State of the program right berfore the function call: No variables are present in the function signature.
+def func_1():
+    return int(sys.stdin.buffer.readline())
+    #The program returns an integer value that is read from the standard input.
+#Overall this is what the function does:The function `func_1` does not accept any parameters and returns an integer value read from the standard input.
+
+#State of the program right berfore the function call: No variables are present in the function signature. The function `func_2` is designed to read integers from standard input, but since there are no parameters, we cannot describe a precondition based on the function signature alone.
+def func_2():
+    return map(int, sys.stdin.buffer.readline().split())
+    #The program returns a map object that contains integers read from standard input. These integers are split based on whitespace from a single line of input.
+#Overall this is what the function does:The function `func_2` reads a single line of input from standard input, splits the line into integers based on whitespace, and returns a map object containing these integers.
+
+#State of the program right berfore the function call: No variables are present in the function signature of `func_3`. The function reads from standard input and returns a list of integers.
+def func_3():
+    return list(map(int, sys.stdin.buffer.readline().split()))
+    #The program returns a list of integers that were read from standard input, split by whitespace, and converted from strings to integers.
+#Overall this is what the function does:The function reads a line of input from standard input, splits it into components based on whitespace, converts each component to an integer, and returns a list of these integers.
+
+#State of the program right berfore the function call: rows_number is a positive integer representing the number of test cases.
+def func_4(rows_number):
+    return [func_3() for _ in range(rows_number)]
+    #The program returns a list of length `rows_number`, where each element is the result of the function `func_3()` called `rows_number` times.
+#Overall this is what the function does:The function accepts a positive integer `rows_number` and returns a list of length `rows_number`, where each element is the result of calling the function `func_3()`.
+
+#State of the program right berfore the function call: This function does not have any parameters. It reads a line from the standard input using sys.stdin.buffer.readline() and returns it after stripping the trailing newline character.
+def func_5():
+    return sys.stdin.buffer.readline().rstrip()
+    #The program returns a string that is read from the standard input, with the trailing newline character removed.
+#Overall this is what the function does:The function reads a line from the standard input and returns it as a string with the trailing newline character removed.
+
+#State of the program right berfore the function call: This function does not have any parameters in its signature, so there are no variables to describe. It seems to be a helper function for reading input from standard input.
+def func_6():
+    return sys.stdin.buffer.readline().rstrip().decode()
+    #The program returns a string that is the line read from standard input, with any trailing newline characters removed and decoded from bytes to a string.
+#Overall this is what the function does:The function reads a line from standard input, removes any trailing newline characters, decodes it from bytes to a string, and returns the resulting string.
+
+#State of the program right berfore the function call: No variables are present in the function signature. The function `func_7` is not directly related to the problem description provided. However, based on the context and typical usage, it seems to read a line of input and return a list of integers. If we were to infer a precondition for a function with parameters similar to those used in the problem, it might be something like: n and m are positive integers such that 1 <= n, m <= 2 * 10^6.
+def func_7():
+    return [int(i) for i in input().split()]
+    #The program returns a list of integers that are parsed from the input string, where each integer is obtained by splitting the input string by whitespace.
+#Overall this is what the function does:The function reads a line of input from the user, splits it by whitespace, and returns a list of integers parsed from the input.
+
+#State of the program right berfore the function call: rows is a positive integer representing the number of test cases, where each test case consists of two positive integers n and m such that 1 <= n, m <= 2 * 10^6.
+def func_8(rows):
+    return [func_7() for _ in range(rows)]
+    #The program returns a list of results from `func_7()` called `rows` times, where each result corresponds to the output of `func_7()` for each of the `rows` test cases.
+#Overall this is what the function does:The function `func_8` takes a positive integer `rows` as input, representing the number of test cases. It returns a list containing the results of calling `func_7()` `rows` times, with each result corresponding to the output of `func_7()` for each test case.
+
+#State of the program right berfore the function call: The function `func_9` does not have any parameters, so there are no variables to describe in terms of preconditions.
+def func_9():
+    return input()
+    #The program returns whatever value is provided as input by the user.
+#Overall this is what the function does:The function `func_9` does not accept any parameters and returns whatever value is provided as input by the user.
+
+#State of the program right berfore the function call: The function `func_10` does not take any parameters and returns an integer.
+def func_10():
+    return int(input())
+    #The program returns an integer that is provided as input.
+#Overall this is what the function does:The function `func_10` does not accept any parameters and returns an integer provided by the user as input.
+
+#State of the program right berfore the function call: No variables in the function signature. The function `func_11` does not take any parameters.
+def func_11():
+    return input().split()
+    #The program returns a list of strings that are the words from the input provided by the user.
+#Overall this is what the function does:The function `func_11` does not accept any parameters and returns a list of strings, where each string is a word from the input provided by the user.
+
+#State of the program right berfore the function call: d is a dictionary where keys are integers and values are lists of integers, processing is a list of integers, da is an integer, and rank is a list of integers.
+def func_12(d, processing, da, rank):
+    tmp = 10 ** 9
+    if (len(d[da]) == 1) :
+        return 1
+        #The program returns 1
+    #State: `d` is a dictionary where keys are integers and values are lists of integers, `processing` is a list of integers, `da` is an integer, `rank` is a list of integers, `tmp` is 1000000000. The length of `d[da]` is not equal to 1.
+    for di in d[da]:
+        if processing[di - 1] == 0:
+            processing[di - 1] = 1
+            tmp = min(tmp, func_12(d, processing, di, rank))
+            processing[di - 1] = 0
+        
+    #State: `d` is a dictionary where keys are integers and values are lists of integers, `processing` is a list of integers (all elements are 0), `da` is an integer, `rank` is a list of integers, `tmp` is the minimum value returned by `func_12(d, processing, di, rank)` across all iterations.
+    rank[da - 1] = tmp + 1
+    return tmp + 1
+    #The program returns `tmp + 1`, where `tmp` is the minimum value returned by `func_12(d, processing, di, rank)` across all iterations.
+#Overall this is what the function does:The function `func_12` calculates and returns a rank value for a given integer `da` based on the structure of the dictionary `d` and the list `processing`. If the list associated with `da` in `d` contains only one element, it returns 1. Otherwise, it recursively calculates the minimum rank value for each element in the list associated with `da`, updates the `rank` list with this value incremented by 1 for the index `da - 1`, and returns this incremented value.
+
+#State of the program right berfore the function call: a and b are non-negative integers where b is not necessarily greater than a.
+def func_13(a, b):
+    if (b == 0) :
+        x = 1
+        y = 0
+        return x, y, a
+        #The program returns 1, 0, a, where 'a' is a non-negative integer.
+    #State: a and b are non-negative integers where b is not necessarily greater than a, and b is not equal to 0
+    x, y, g = func_13(b, a % b)
+    return y, x - a // b * y, g
+    #The program returns `y`, `x - a // b * y`, and `g`.
+#Overall this is what the function does:The function `func_13` accepts two non-negative integers `a` and `b` (where `b` is not necessarily greater than `a`). It returns three values: in the case where `b` is 0, it returns 1, 0, and `a`. Otherwise, it returns values `y`, `x - a // b * y`, and `g`, which are derived through recursive computation, likely related to the Extended Euclidean Algorithm.
+
+#State of the program right berfore the function call: a is a list of integers, n and m are positive integers such that 0 <= n <= len(a) and m is a positive integer, k is an integer.
+def func_14(a, n, m, k):
+    for i in range(n):
+        if a[i] < m:
+            k -= m - a[i]
+        
+    #State: a is a list of integers, n and m are positive integers such that 0 <= n <= len(a) and m is a positive integer, k is an integer decremented by the sum of (m - a[i]) for all i in range(n) where a[i] < m.
+    if (k >= 0) :
+        return 1
+        #The program returns 1
+    #State: a is a list of integers, n and m are positive integers such that 0 <= n <= len(a) and m is a positive integer, k is an integer decremented by the sum of (m - a[i]) for all i in range(n) where a[i] < m, and k is less than 0
+    return -1
+    #The program returns -1
+#Overall this is what the function does:The function `func_14` accepts a list of integers `a`, and two positive integers `n` and `m` such that 0 <= n <= len(a), and another integer `k`. It returns 1 if the integer `k` is non-negative after being decremented by the sum of `(m - a[i])` for all `i` in the range `[0, n)` where `a[i]` is less than `m`. Otherwise, it returns -1.
+
+#State of the program right berfore the function call: n and m are positive integers such that 1 <= n <= 2 * 10^6 and 1 <= m <= 2 * 10^6.
+def func_15():
+    n, m = func_7()
+    i = 1
+    ans = 0
+    while i * i <= n + i:
+        ans += (n + i) // (i * i)
+        
+        i += 1
+        
+    #State: the final value of `ans` after all iterations.
+    return ans - 1
+    #The program returns the final value of `ans` minus 1.
+#Overall this is what the function does:The function `func_15` does not accept any parameters. It calculates a value based on the integers `n` and `m` returned by `func_7`, and returns a computed result which is the final value of `ans` minus 1.
+
+#State of the program right berfore the function call: n and m are positive integers such that 1 <= n <= 2 * 10^6 and 1 <= m <= 2 * 10^6.
+def func_16():
+    for _ in range(func_10()):
+        sys.stdout.write(str(func_15()) + '\n')
+        
+    #State: The loop has printed the number 1, m times, each on a new line.
+#Overall this is what the function does:The function `func_16` prints the number 1, `m` times, each on a new line.
+

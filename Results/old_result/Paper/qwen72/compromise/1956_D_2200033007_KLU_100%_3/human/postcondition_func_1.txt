@@ -1,0 +1,10 @@
+The function `func_2` accepts two parameters, `start_index` and `end_index`, which are integers such that 0 <= `start_index` <= `end_index` < len(arr), where `arr` is an array of integers. The function returns a list of tuples, each representing a segment of the array. The specific output depends on the following conditions:
+
+- If the length of the segment (end_index - start_index + 1) is 1 and the element at `start_index` is greater than 0, the function returns an empty list.
+- If the length of the segment is 1 and the element at `start_index` is less than or equal to 0, the function returns a list containing a single tuple (start_index, start_index).
+- If the maximum value of a certain calculation (determined by `func_1`) over the segment is equal to the square of the segment's length, the function returns a list containing the tuple (start_index, end_index).
+- If the function finds a position `i` within the segment such that the sum of the element at `i` and the results of `func_1` on the segments before and after `i` equals the maximum value, the function returns the concatenation of the results of `func_2` on the segments before and after `i`.
+- If the sum of the element at `start_index` and the result of `func_1` on the segment starting from `start_index + 1` equals the maximum value, the function returns the result of `func_2` on the segment starting from `start_index + 1`.
+- If the sum of the element at `end_index` and the result of `func_1` on the segment ending at `end_index - 1` equals the maximum value, the function returns the result of `func_2` on the segment ending at `end_index - 1`.
+
+In all cases, the function modifies the segment of the array between `start_index` and `end_index` to identify and return the appropriate list of tuples.

@@ -1,0 +1,89 @@
+# Import the function to be tested
+from program import func
+
+# Helper function to capture input and output
+import io
+import sys
+
+def capture_output(func, input_data):
+    sys.stdin = io.StringIO(input_data)
+    captured_output = io.StringIO()
+    sys.stdout = captured_output
+    func()
+    sys.stdout = sys.__stdout__
+    return captured_output.getvalue().strip()
+
+# Test cases based on the problem description
+
+# Test case 1: Basic example
+input_data_1 = """7
+4 4 5
+5 5 9
+10 10 5
+5 5 11
+1000000000 1000000000 1000000000
+1000000000 1000000000 1
+1000 1 1000"""
+expected_output_1 = """17
+35
+100
+45
+1000000000000000000
+1000000000000000000
+500500"""
+assert capture_output(func, input_data_1) == expected_output_1
+
+# Test case 2: Single bun with different prices
+input_data_2 = """3
+1 1 1
+1 2 1
+1 1 2"""
+expected_output_2 = """1
+2
+2"""
+assert capture_output(func, input_data_2) == expected_output_2
+
+# Test case 3: Equal number of buns and promotional price
+input_data_3 = """2
+10 10 10
+100 100 100"""
+expected_output_3 = """100
+10000"""
+assert capture_output(func, input_data_3) == expected_output_3
+
+# Test case 4: Large number of buns with high prices
+input_data_4 = """1
+1000000000 999999999 1000000000"""
+expected_output_4 = """999999999000000000"""
+assert capture_output(func, input_data_4) == expected_output_4
+
+# Test case 5: Promotional price lower than usual price
+input_data_5 = """2
+10 10 5
+100 100 50"""
+expected_output_5 = """100
+10000"""
+assert capture_output(func, input_data_5) == expected_output_5
+
+# Test case 6: Promotional price much higher than usual price
+input_data_6 = """2
+10 1 100
+100 1 1000"""
+expected_output_6 = """505
+500500"""
+assert capture_output(func, input_data_6) == expected_output_6
+
+# Test case 7: Edge case with minimum values
+input_data_7 = """1
+1 1 1"""
+expected_output_7 = """1"""
+assert capture_output(func, input_data_7) == expected_output_7
+
+# Test case 8: Edge case with maximum values
+input_data_8 = """1
+1000000000 1000000000 1000000000"""
+expected_output_8 = """1000000000000000000"""
+assert capture_output(func, input_data_8) == expected_output_8
+
+# If all tests pass, print a success message
+print("All tests passed!")

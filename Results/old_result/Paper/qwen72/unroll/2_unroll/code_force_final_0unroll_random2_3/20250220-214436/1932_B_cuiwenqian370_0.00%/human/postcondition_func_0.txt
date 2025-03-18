@@ -1,0 +1,5 @@
+The function `func_1` accepts a parameter `path`, which is a non-empty list of strings. Each string in `path` is either '@', '*', or some other character. The function returns the maximum value in a derived list `dp` that is greater than negative infinity. The `dp` list is constructed such that for each index `i` in `path`:
+- If `path[i]` is '*', `dp[i]` is set to `-inf`.
+- If `path[i]` is '@', `dp[i]` is set to the maximum of `dp[i-1]` and `dp[i-2]` plus 1.
+- If `path[i]` is neither '@' nor '*', `dp[i]` is set to the maximum of `dp[i-1]` and `dp[i-2]` plus 0.
+If all elements in `path` are '*', the function returns 0.

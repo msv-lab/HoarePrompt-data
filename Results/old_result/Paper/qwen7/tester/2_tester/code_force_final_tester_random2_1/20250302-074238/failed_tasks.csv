@@ -1,0 +1,33 @@
+task_id,model_created,dataset,model_run,code,fail_reason,type_of_run
+1941_C,human,codeforces2024,qwen2.5-7b-instruct,"t=int(input())
+for i in range(t):
+    n=int(input())
+    s=input()
+    m=s.count(""map"")
+    s=s.replace(""map"","""")
+    
+    p=s.count(""pie"")
+    print(m+p)","Error: Error code: 400 - {'error': {'code': 'RequestTimeOut', 'param': None, 'message': 'Request timed out, please try again later.', 'type': 'RequestTimeOut'}, 'id': 'chatcmpl-ecee15fa-17dc-9495-8cd0-01490badfbe6', 'request_id': 'ecee15fa-17dc-9495-8cd0-01490badfbe6'}",hoareprompt
+1972_D1,human,codeforces2024,qwen2.5-7b-instruct,"import  math
+T = int(input())
+ 
+for t in range(T):
+    info = input().split()
+ 
+    a, b = int(info[0]), int(info[1])
+ 
+    """"""for i in range(1,a+1):
+        for j in range(4,b+1):
+            if int((j+i)%(j*math.gcd(i,j))) == 0:
+                print(i,j)""""""
+ 
+    suma = 0
+    for i in range(1,b+1):
+        x = (a-(i*(i-1)))//(i**2) + 1
+        if (a-(i*(i-1))) > 0:
+            suma += x
+            #if (a-(i*(i-1)))%(i**2) == 0:
+            #    suma += 1
+ 
+ 
+    print(suma-1)",Error: [Errno 2] No such file or directory: 'temp_program.py',hoareprompt

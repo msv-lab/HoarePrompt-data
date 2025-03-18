@@ -1,0 +1,26 @@
+#State of the program right berfore the function call: t is an integer such that 1 ≤ t ≤ 10^4, representing the number of test cases. For each test case, n is an integer such that 1 ≤ n ≤ 2·10^5, representing the number of piles, and a list of n integers a_1, a_2, ..., a_n (1 ≤ a_i ≤ 10^9) represents the initial number of stones in each pile. The sum of n over all test cases does not exceed 2·10^5.
+def func():
+    t = int(input())
+    for tc in range(t):
+        n = int(input())
+        
+        a = list(map(int, input().split()))
+        
+        maxsize = max(a)
+        
+        a.sort()
+        
+        mexsize = 1
+        
+        for sz in a:
+            if sz == mexsize:
+                mexsize = mexsize + 1
+        
+        if mexsize > maxsize:
+            print('Alice' if mexsize % 2 == 0 else 'Bob')
+        else:
+            print('Alice' if mexsize % 2 == 1 else 'Bob')
+        
+    #State: `t` is 0, `tc` is equal to the initial value of `t` minus 1, `n` is the last input integer, `a` is the last sorted list of integers provided by the input, `maxsize` is the maximum value in the last list `a`, and `mexsize` is the smallest positive integer not present in the last list `a`. If `mexsize` is greater than `maxsize`, the program follows the logic for the if part. If `mexsize` is less than or equal to `maxsize`, the program follows the logic for the else part.
+#Overall this is what the function does:The function reads multiple test cases, each containing an integer `n` and a list of `n` integers representing the number of stones in each pile. For each test case, it determines the smallest positive integer not present in the list (`mexsize`). It then prints 'Alice' if `mexsize` is even and `mexsize` is greater than the maximum value in the list, or if `mexsize` is odd and `mexsize` is less than or equal to the maximum value in the list. Otherwise, it prints 'Bob'. After processing all test cases, the function completes its execution.
+

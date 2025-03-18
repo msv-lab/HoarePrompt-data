@@ -1,0 +1,44 @@
+#State of the program right berfore the function call: t is an integer such that 1 ≤ t ≤ 10^4. For each test case, n and k are integers such that 1 ≤ n ≤ 3 ⋅ 10^5 and 0 ≤ k ≤ n. The coordinates (r_i, c_i) for each of the k moves you made are integers such that 1 ≤ r_i, c_i ≤ n, and no two rooks attack each other based on the given rules.
+def func():
+    t = int(input())
+    while t:
+        t -= 1
+        
+        n, k = list(map(int, input().split(' ')))
+        
+        num = 0
+        
+        for i in range(k):
+            c, r = list(map(int, input().split(' ')))
+            if c == r:
+                num += 1
+            else:
+                num += 2
+        
+        m = n - num
+        
+        if m == 0:
+            print(1)
+        elif m == 1:
+            print(1)
+        else:
+            dp = [(0) for i in range(m + 1)]
+            dp[1] = 1
+            dp[2] = 3
+            for i in range(3, m + 1):
+                dp[i] = (dp[i - 1] + (i - 1) * dp[i - 2] * 2) % (10 ** 9 + 7)
+            print(dp[m])
+        
+    #State: Output State: The output state will be a series of integers printed based on the input provided within each iteration of the loop. Each integer represents the result of the computation for a given set of inputs \(n\) and \(k\), and their corresponding pairs \((c, r)\).
+    #
+    #To break it down:
+    #- For each iteration, the value of \(t\) is decremented until it reaches 0.
+    #- Within each iteration, the user provides two integers \(n\) and \(k\).
+    #- Then, \(k\) pairs of integers \((c, r)\) are provided.
+    #- The variable `num` is updated based on the comparison between \(c\) and \(r\): if they are equal, `num` increases by 1; otherwise, it increases by 2.
+    #- After processing all pairs, `m` is calculated as \(n - num\).
+    #- Depending on the value of `m`, the script prints either 1 or computes and prints a value from a dynamic programming array `dp`.
+    #
+    #The final output state is the sequence of printed integers, each representing the result of the computation for the respective input sets.
+#Overall this is what the function does:The function processes multiple test cases, where each case consists of integers \(t\), \(n\), \(k\), and \(k\) pairs of integers \((c, r)\). It calculates the number of non-attacking rook positions and uses dynamic programming to compute a result based on the difference between \(n\) and this count. The function outputs a series of integers, one for each test case, indicating the result of the computation.
+

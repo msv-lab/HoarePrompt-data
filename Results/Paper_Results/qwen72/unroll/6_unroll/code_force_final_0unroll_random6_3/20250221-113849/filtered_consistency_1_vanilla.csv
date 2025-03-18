@@ -1,0 +1,2087 @@
+Task ID,unique_id,Dataset,model_created,model_run,description,Code,run_number,original correctness,summary fsl,naive correctness fsl,vanilla,vanilla_no_cot,simple tree,complex tree,summary,simple verify fsl,complex verify fsl,summary verify fsl,simple verify,complex verify,summary verify,consistency,consistency_mine,consistency_old
+1967_A,1967_A_MinakoKojima_100%,codeforces2024,human,qwen2p5-72b-instruct,"You have some cards. An integer between 1 and n is written on each card:
+specifically, for each i from 1 to n , you have a_i cards which have the
+number i written on them.
+
+There is also a shop which contains unlimited cards of each type. You have k
+coins, so you can buy k new cards in total, and the cards you buy can contain
+any integer between 1 and n .
+
+After buying the new cards, you rearrange all your cards in a line. The score
+of a rearrangement is the number of (contiguous) subarrays of length n which
+are a permutation of [1, 2, \ldots, n] . What's the maximum score you can get?
+
+Input
+
+Each test contains multiple test cases. The first line contains the number of
+test cases t\ (1\le t\le 100) . The description of the test cases follows.
+
+The first line of each test case contains two integers n , k (1\le n \le 2
+\cdot 10^5 , 0\le k \le 10^{12} ) — the number of distinct types of cards and
+the number of coins.
+
+The second line of each test case contains n integers a_1, a_2, \ldots, a_n (1
+\le a_i \le 10^{12} ) — the number of cards of type i you have at the
+beginning.
+
+It is guaranteed that the sum of n over all test cases does not exceed 5 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single line containing an integer: the maximum
+score you can get.
+
+Example
+
+Input
+
+    8
+    
+    1 10
+    
+    1
+    
+    2 4
+    
+    8 4
+    
+    3 4
+    
+    6 1 8
+    
+    3 9
+    
+    7 6 2
+    
+    5 3
+    
+    6 6 7 4 6
+    
+    9 7
+    
+    7 6 1 7 6 2 4 3 3
+    
+    10 10
+    
+    1 3 1 2 1 9 3 5 7 5
+    
+    9 8
+    
+    5 8 7 5 1 3 2 9 8
+
+Output
+
+    11
+    15
+    15
+    22
+    28
+    32
+    28
+    36
+    
+Note
+
+In the first test case, the final (and only) array we can get is [1, 1, 1, 1,
+1, 1, 1, 1, 1, 1, 1] (including 11 single 1 s), which contains 11 subarrays
+consisting of a permutation of [1] .
+
+In the second test case, we can buy 0 cards of type 1 and 4 cards of type 2 ,
+and then we rearrange the cards as following: [1, 2, 1, 2, 1, 2, 1, 2, 1, 2,
+1, 2, 1, 2, 1, 2] . There are 8 subarrays equal to [1, 2] and 7 subarrays
+equal to [2, 1] , which make a total of 15 subarrays which are a permutation
+of [1, 2] . It can also be proved that this is the maximum score we can get.
+
+In the third test case, one of the possible optimal rearrangements is [3, 3,
+1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 3] .","import math
+ 
+ans_list = []
+for _ in range(int(input())):
+	(n, k) = map(int, input().split())
+	a = list(map(int, input().split()))
+	a.sort()
+	ans = a[0]
+	res = n - 1
+	for i in range(n - 1):
+		dif = a[i + 1] - a[i]
+		if dif == 0:
+			res -= 1
+		if dif != 0:
+			if k >= dif * (i + 1):
+				ans += dif
+				k -= dif * (i + 1)
+				res -= 1
+			else:
+				ans += k // (i + 1)
+				if i != 0:
+					res += k % (i + 1)
+				k = 0
+				break
+			if k == 0:
+				break
+	if k != 0:
+		ans += k // n
+		res += k % n
+	ans += (ans - 1) * (n - 1)
+	ans += res
+	ans_list.append(ans)
+for a in ans_list:
+	print(a)",3,True,False,True,True,True,True,True,True,False,False,True,True,False,True,0.9325227599290423,0.5496270912689385,0.8333333333333334
+1931_A,1931_A_Outlastqr_100%,codeforces2024,human,qwen2p5-72b-instruct,"Nikita had a word consisting of exactly 3 lowercase Latin letters. The letters
+in the Latin alphabet are numbered from 1 to 26 , where the letter ""a"" has the
+index 1 , and the letter ""z"" has the index 26 .
+
+He encoded this word as the sum of the positions of all the characters in the
+alphabet. For example, the word ""cat"" he would encode as the integer 3 + 1 +
+20 = 24 , because the letter ""c"" has the index 3 in the alphabet, the letter
+""a"" has the index 1 , and the letter ""t"" has the index 20 .
+
+However, this encoding turned out to be ambiguous! For example, when encoding
+the word ""ava"", the integer 1 + 22 + 1 = 24 is also obtained.
+
+Determine the lexicographically smallest word of 3 letters that could have
+been encoded.
+
+A string a is lexicographically smaller than a string b if and only if one of
+the following holds:
+
+  * a is a prefix of b , but a \ne b ;
+  * in the first position where a and b differ, the string a has a letter that appears earlier in the alphabet than the corresponding letter in b .
+
+Input
+
+The first line of the input contains a single integer t (1 \le t \le 100 ) —
+the number of test cases in the test.
+
+This is followed by the descriptions of the test cases.
+
+The first and only line of each test case contains an integer n (3 \le n \le
+78 ) — the encoded word.
+
+Output
+
+For each test case, output the lexicographically smallest three-letter word
+that could have been encoded on a separate line.
+
+Example
+
+Input
+
+    5
+    
+    24
+    
+    70
+    
+    3
+    
+    55
+    
+    48
+
+Output
+
+    aav
+    rzz
+    aaa
+    czz
+    auz","import string
+ 
+alphabet = string.ascii_lowercase
+ 
+for i in range(int(input())):
+    n = int(input())
+    word = """"
+    if n > 52:
+        word += alphabet[n - 53] + ""zz""
+    elif n > 27:
+        word += ""a"" + alphabet[n - 28] + ""z""
+    elif n == 27:
+        word = ""aay""
+    else:
+        word += ""aa"" + alphabet[n - 3]
+    print(word)",3,True,False,False,True,False,True,True,True,False,False,False,True,True,True,0.9755738041762556,0.767488312627103,0.9166666666666666
+1929_B,1929_B_avaniagr_0.00%,codeforces2024,human,qwen2p5-72b-instruct,"Even in kindergarten, Sasha liked a girl. Therefore, he wanted to give her a
+drawing and attract her attention.
+
+As a drawing, he decided to draw a square grid of size n \times n , in which
+some cells are colored. But coloring the cells is difficult, so he wants to
+color as few cells as possible. But at the same time, he wants at least k
+diagonals to have at least one colored cell. Note that the square grid of size
+n \times n has a total of 4n - 2 diagonals.
+
+Help little Sasha to make the girl fall in love with him and tell him the
+minimum number of cells he needs to color.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 1000 ) — the number of test cases. The description of
+the test cases follows.
+
+The only line of each test case contains two integers n and k (2 \leq n \leq
+10^8 , 1 \leq k \leq 4n - 2 ) — the size of the square grid and the minimum
+number of diagonals in which there should be at least one colored cell.
+
+Output
+
+For each test case, output a single integer — the minimum number of cells that
+need to be colored.
+
+Example
+
+Input
+
+    7
+    
+    3 4
+    
+    3 3
+    
+    3 10
+    
+    3 9
+    
+    4 7
+    
+    7 11
+    
+    2 3
+
+Output
+
+    2
+    2
+    6
+    5
+    4
+    6
+    2
+    
+Note
+
+In the pictures below, the colored cells are marked in black, and all
+diagonals are marked in purple.
+
+In the first test case, you can color 2 cells so that 4 diagonals contain at
+least one colored cell:
+
+![](https://espresso.codeforces.com/c88e80de5be4f91764dbe5bdc534c50fec115db3.png)
+
+In the third test case, you can color 6 cells so that all 10 diagonals contain
+at least one colored cell:
+
+![](https://espresso.codeforces.com/624a36083689f6fb20bf243e5d1707fdcd71ef60.png)","for s in [*open(0)][1:]:
+    n,k=map(int,s.split())
+    print((k//2 + k%2)*(k<(4*n-3)) + (2*n)*(k>=(4*n-3)) + (k==(4*n-2)))",3,False,False,False,True,False,True,True,False,False,False,False,True,True,False,0.8832500100152313,0.4492905240382878,0.75
+1974_A,1974_A_Ridham__100%,codeforces2024,human,qwen2p5-72b-instruct,"Little Rosie has a phone with a desktop (or launcher, as it is also called).
+The desktop can consist of several screens. Each screen is represented as a
+grid of size 5 \times 3 , i.e., five rows and three columns.
+
+There are x applications with an icon size of 1 \times 1 cells; such an icon
+occupies only one cell of the screen. There are also y applications with an
+icon size of 2 \times 2 cells; such an icon occupies a square of 4 cells on
+the screen. Each cell of each screen can be occupied by no more than one icon.
+
+Rosie wants to place the application icons on the minimum number of screens.
+Help her find the minimum number of screens needed.
+
+Input
+
+The first line of the input contains t (1 \leq t \leq 10^4 ) — the number of
+test cases.
+
+The first and only line of each test case contains two integers x and y (0
+\leq x, y \leq 99 ) — the number of applications with a 1 \times 1 icon and
+the number of applications with a 2 \times 2 icon, respectively.
+
+Output
+
+For each test case, output the minimal number of required screens on a
+separate line.
+
+Example
+
+Input
+
+    11
+    
+    1 1
+    
+    7 2
+    
+    12 4
+    
+    0 3
+    
+    1 0
+    
+    8 1
+    
+    0 0
+    
+    2 0
+    
+    15 0
+    
+    8 2
+    
+    0 9
+
+Output
+
+    1
+    1
+    2
+    2
+    1
+    1
+    0
+    1
+    1
+    2
+    5
+    
+Note
+
+The solution for the first test case can look as follows:
+
+![](https://espresso.codeforces.com/f9882979f0d9b5c31c5260fd626217227c2f05de.png)
+Blue squares represent empty spaces for icons, green squares represent 1
+\times 1 icons, red squares represent 2 \times 2 icons
+
+The solution for the third test case can look as follows:
+
+![](https://espresso.codeforces.com/0e737a290e056a29f38918bf06c13be790307a8d.png)","n = int(input())
+ 
+result = []
+ 
+for _ in range(n):
+    
+    x , y = list(map(int , input().split()))
+    
+    space_x = x*1
+    space_y = y*4
+    total_space = space_y + space_x
+    
+    if (y % 2 == 0):
+        screen_require_for_y = y // 2
+    else:
+        screen_require_for_y = (y // 2) + 1
+        
+    # print(screen_require_for_y)
+    
+    
+    remaining_cells =( 15*screen_require_for_y) - space_y
+    
+    if (space_x <= remaining_cells):
+        result.append(screen_require_for_y)
+    else :
+        extra_space = space_x - remaining_cells
+        # if extra_space <= 15 :
+        #     extra_screen = 1
+        if extra_space % 15 == 0:
+            extra_screen = extra_space // 15
+        else :
+           extra_screen = ( extra_space // 15 ) + 1
+           
+        result.append(extra_screen + screen_require_for_y)
+    
+ 
+print(""\n"".join(map(str,result)))",3,True,False,False,True,False,True,True,True,True,False,False,True,True,True,0.6193543023221867,0.1089695043870584,0.5833333333333334
+1923_A,1923_A_Athena___100%,codeforces2024,human,qwen2p5-72b-instruct,"There is a ribbon divided into n cells, numbered from 1 to n from left to
+right. Each cell either contains a chip or is free.
+
+You can perform the following operation any number of times (possibly zero):
+choose a chip and move it to the closest free cell to the left. You can choose
+any chip that you want, provided that there is at least one free cell to the
+left of it. When you move the chip, the cell where it was before the operation
+becomes free.
+
+Your goal is to move the chips in such a way that they form a single block,
+without any free cells between them. What is the minimum number of operations
+you have to perform?
+
+Input
+
+The first line contains one integer t (1 \le t \le 1000 ) — the number of test
+cases.
+
+Each test case consists of two lines:
+
+  * the first line contains one integer n (2 \le n \le 50 ) — the number of cells; 
+  * the second line contains n integers a_1, a_2, \dots, a_n (0 \le a_i \le 1 ); a_i = 0 means that the i -th cell is free; a_i = 1 means that the i -th cell contains a chip. 
+
+Additional constraint on the input: in each test case, at least one cell
+contains a chip.
+
+Output
+
+For each test case, print one integer — the minimum number of operations you
+have to perform so that all chips form a single block without any free cells
+between them.
+
+Example
+
+Input
+
+    5
+    
+    8
+    
+    0 1 1 1 0 1 1 0
+    
+    6
+    
+    0 1 0 0 0 0
+    
+    6
+    
+    1 1 1 1 1 1
+    
+    5
+    
+    1 0 1 0 1
+    
+    9
+    
+    0 1 1 0 0 0 1 1 0
+
+Output
+
+    1
+    0
+    0
+    2
+    3
+    
+Note
+
+In the first example, you can perform the operation on the chip in the 7 -th
+cell. The closest free cell to the left is the 5 -th cell, so it moves there.
+After that, all chips form a single block.
+
+In the second example, all chips are already in a single block. Same for the
+third example.","t=int(input())
+for _ in range(t):
+    n = int(input())
+    a = list(map(int,input().split()))
+    res = 0
+    
+    while a and a[0]== 0:
+        a.pop(0)
+    
+    while a and a[-1] == 0:
+        a.pop()
+        
+    for i in range(len(a)):
+        if a[i]==0:
+            res += 1 
+    print(res)",3,True,False,True,True,True,True,True,False,False,True,True,False,False,False,0.6934867526887587,0.20831313677005722,0.5833333333333334
+1969_B,1969_B_gingmzmzx_100%,codeforces2024,human,qwen2p5-72b-instruct,"Let's define a cyclic shift of some string s as a transformation from s_1 s_2
+\dots s_{n-1} s_{n} into s_{n} s_1 s_2 \dots s_{n-1} . In other words, you
+take one last character s_n and place it before the first character while
+moving all other characters to the right.
+
+You are given a binary string s (a string consisting of only 0-s and/or 1-s).
+
+In one operation, you can choose any substring s_l s_{l+1} \dots s_r (1 \le l
+< r \le |s| ) and cyclically shift it. The cost of such operation is equal to
+r - l + 1 (or the length of the chosen substring).
+
+You can perform the given operation any number of times. What is the minimum
+total cost to make s sorted in non-descending order?
+
+Input
+
+The first line contains a single integer t (1 \le t \le 10^4 ) — the number of
+test cases.
+
+The first and only line of each test case contains a binary string s (2 \le
+|s| \le 2 \cdot 10^5 ; s_i \in {0, 1}) — the string you need to sort.
+
+Additional constraint on the input: the sum of lengths of strings over all
+test cases doesn't exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, print the single integer — the minimum total cost to make
+string sorted using operation above any number of times.
+
+Example
+
+Input
+
+    5
+    
+    10
+    
+    0000
+    
+    11000
+    
+    101011
+    
+    01101001
+
+Output
+
+    2
+    0
+    9
+    5
+    11
+    
+Note
+
+In the first test case, you can choose the whole string and perform a cyclic
+shift: 10 \rightarrow 01. The length of the substring is 2 , so the cost is 2
+.
+
+In the second test case, the string is already sorted, so you don't need to
+perform any operations.
+
+In the third test case, one of the optimal strategies is the next:
+
+  1. choose substring [1, 3] : 11000 \rightarrow 01100; 
+  2. choose substring [2, 4] : 01100 \rightarrow 00110; 
+  3. choose substring [3, 5] : 00110 \rightarrow 00011. 
+
+The total cost is 3 + 3 + 3 = 9 .","# LUOGU_RID: 160731685
+def main():
+    n = int(input())
+    for _ in range(n):
+        s = list(map(int, input().strip()))
+        zeroes = s.count(0)
+        cnt = [0, 0]
+        ans = 0
+        for c in s:
+            cnt[c] += 1
+            if c == 0:
+                ans += 1 if cnt[1] > 0 else 0
+            else:
+                ans += (zeroes - cnt[0])
+        print(ans)
+ 
+if __name__ == ""__main__"":
+    main()",3,True,False,False,True,True,True,True,True,False,False,False,True,True,True,0.9400250702317776,0.6441013264498999,0.8333333333333334
+1968_C,1968_C_tah23seen_6.67%,codeforces2024,human,qwen2p5-72b-instruct,"You are given an array x_2,x_3,\dots,x_n . Your task is to find any array
+a_1,\dots,a_n , where:
+
+  * 1\le a_i\le 10^9 for all 1\le i\le n . 
+  * x_i=a_i \bmod a_{i-1} for all 2\le i\le n . 
+
+Here c\bmod d denotes the remainder of the division of the integer c by the
+integer d . For example 5 \bmod 2 = 1 , 72 \bmod 3 = 0 , 143 \bmod 14 = 3 .
+
+Note that if there is more than one a which satisfies the statement, you are
+allowed to find any.
+
+Input
+
+The first line contains a single integer t (1\le t\le 10^4) — the number of
+test cases.
+
+The first line of each test case contains a single integer n (2\le n\le 500) —
+the number of elements in a .
+
+The second line of each test case contains n-1 integers x_2,\dots,x_n (1\le
+x_i\le 500) — the elements of x .
+
+It is guaranteed that the sum of values n over all test cases does not exceed
+2 \cdot 10^5 .
+
+Output
+
+For each test case output any a_1,\dots,a_n (1 \le a_i \le 10^9 ) which
+satisfies the statement.
+
+Example
+
+Input
+
+    5
+    
+    4
+    
+    2 4 1
+    
+    3
+    
+    1 1
+    
+    6
+    
+    4 2 5 1 2
+    
+    2
+    
+    500
+    
+    3
+    
+    1 5
+
+Output
+
+    3 5 4 9
+    2 5 11
+    5 14 16 5 11 24
+    501 500
+    2 7 5
+
+Note
+
+In the first test case a=[3,5,4,9] satisfies the conditions, because:
+
+  * a_2\bmod a_1=5\bmod 3=2=x_2 ; 
+  * a_3\bmod a_2=4\bmod 5=4=x_3 ; 
+  * a_4\bmod a_3=9\bmod 4=1=x_4 ;","def solve(arr,n):
+  ans=[0]*(n)
+  ans[0]=arr[0]+1
+  for i in range(n-2):
+    ans[i+1]=arr[i]+ans[i]
+    if ans[i+1]<arr[i+1]:
+      while ans[i+1]<=arr[i+1]:
+        ans[i+1]+=ans[i]
+  ans[-1]=ans[-2]+arr[-1]
+  return ans
+ 
+t=int(input())
+while t:
+  n=int(input())
+  arr=[int(x) for x in input().split("" "")]
+  ans=solve(arr,n)
+  for i in ans:
+    print(i,end=' ')
+  print()
+  t-=1",3,False,False,False,True,True,True,True,False,True,True,False,True,True,True,0.7740908088003147,0.31561793909854163,0.6666666666666666
+1921_B,1921_B_gogorya_7.69%,codeforces2024,human,qwen2p5-72b-instruct,"In order to test the hypothesis about the cats, the scientists must arrange
+the cats in the boxes in a specific way. Of course, they would like to test
+the hypothesis and publish a sensational article as quickly as possible,
+because they are too engrossed in the next hypothesis about the phone's
+battery charge.
+
+Scientists have n boxes in which cats may or may not sit. Let the current
+state of the boxes be denoted by the sequence b_1, \dots, b_n : b_i = 1 if
+there is a cat in box number i , and b_i = 0 otherwise.
+
+Fortunately, the unlimited production of cats has already been established, so
+in one day, the scientists can perform one of the following operations:
+
+  * Take a new cat and place it in a box (for some i such that b_i = 0 , assign b_i = 1 ). 
+  * Remove a cat from a box and send it into retirement (for some i such that b_i = 1 , assign b_i = 0 ). 
+  * Move a cat from one box to another (for some i, j such that b_i = 1, b_j = 0 , assign b_i = 0, b_j = 1 ). 
+
+It has also been found that some boxes were immediately filled with cats.
+Therefore, the scientists know the initial position of the cats in the boxes
+s_1, \dots, s_n and the desired position f_1, \dots, f_n .
+
+Due to the large amount of paperwork, the scientists do not have time to solve
+this problem. Help them for the sake of science and indicate the minimum
+number of days required to test the hypothesis.
+
+Input
+
+Each test consists of several test cases. The first line contains a single
+integer t (1 \le t \le 10^4 ) — the number of test cases. This is followed by
+descriptions of the test cases.
+
+Each test case consists of three lines.
+
+The first line of each test case contains a single integer n (1 \le n \le 10^5
+) — the number of boxes.
+
+The second line of each test case contains a string s of n characters, where
+the i -th character is '1' if there is a cat in the i -th box and '0'
+otherwise.
+
+The third line of each test case contains a string f of n characters, where
+the i -th character is '1' if there should be a cat in the i -th box and '0'
+otherwise.
+
+It is guaranteed that in a test the sum of n over all test cases does not
+exceed 10^5 .
+
+Output
+
+For each test case, output a single integer on a separate line — the minimum
+number of operations required to obtain the desired position from the initial
+position. It can be shown that a solution always exists.
+
+Example
+
+Input
+
+    6
+    
+    5
+    
+    10010
+    
+    00001
+    
+    1
+    
+    1
+    
+    1
+    
+    3
+    
+    000
+    
+    111
+    
+    4
+    
+    0101
+    
+    1010
+    
+    3
+    
+    100
+    
+    101
+    
+    8
+    
+    10011001
+    
+    11111110
+
+Output
+
+    2
+    0
+    3
+    2
+    1
+    4
+    
+Note
+
+In the first test case, you can first move the cat from the first box to the
+fifth, and then remove the cat from the fourth box.
+
+In the second test case, there is nothing to do — the only cat is already
+sitting in the correct box.
+
+In the third test case of input data, it takes three days to place a cat in
+each box.","t = int(input())
+ 
+for _ in range(t):
+    n = int(input())
+    s1 = input()
+    s2 = input()
+ 
+    a1 = s1.count(""1"")
+    a2 = s2.count(""1"")
+    hd = a1 - a2
+    res = abs(a1 - a2)
+    for i in range(n):
+        if hd > 0:
+            hd -= 1
+            continue
+        if s1[i] == ""1"" and s2[i] == ""0"": res += 1
+    print(res)",3,False,False,False,True,False,False,False,False,False,False,True,False,True,False,0.9412117975743126,0.6784855365885599,0.8333333333333334
+1928_C,1928_C_jinyiqi_100%,codeforces2024,human,qwen2p5-72b-instruct,"In a well-known school, a physical education lesson took place. As usual,
+everyone was lined up and asked to settle in ""the first–k -th"" position.
+
+As is known, settling in ""the first–k -th"" position occurs as follows: the
+first k people have numbers 1, 2, 3, \ldots, k , the next k - 2 people have
+numbers k - 1, k - 2, \ldots, 2 , the next k people have numbers 1, 2, 3,
+\ldots, k , and so on. Thus, the settling repeats every 2k - 2 positions.
+Examples of settling are given in the ""Note"" section.
+
+The boy Vasya constantly forgets everything. For example, he forgot the number
+k described above. But he remembers the position he occupied in the line, as
+well as the number he received during the settling. Help Vasya understand how
+many natural numbers k fit under the given constraints.
+
+Note that the settling exists if and only if k > 1 . In particular, this means
+that the settling does not exist for k = 1 .
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \leq t \leq 100 ) — the number of test cases. This is followed by
+the description of the test cases.
+
+The only line of each test case contains two integers n and x (1 \le x < n \le
+10^9 ) — Vasya's position in the line and the number Vasya received during the
+settling.
+
+Output
+
+For each test case, output a single integer — the number of different k that
+fit under the given constraints.
+
+It can be proven that under the given constraints, the answer is finite.
+
+Example
+
+Input
+
+    5
+    
+    10 2
+    
+    3 1
+    
+    76 4
+    
+    100 99
+    
+    1000000000 500000000
+
+Output
+
+    4
+    1
+    9
+    0
+    1
+    
+Note
+
+In the first test case, k equals 2, 3, 5, 6 are suitable.
+
+An example of settling for these k :
+
+k / №| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10   
+---|---|---|---|---|---|---|---|---|---|---  
+2 | 1 | 2 | 1 | 2 | 1 | 2 | 1 | 2 | 1 | 2   
+3 | 1 | 2 | 3 | 2 | 1 | 2 | 3 | 2 | 1 | 2   
+5 | 1 | 2 | 3 | 4 | 5 | 4 | 3 | 2 | 1 | 2   
+6 | 1 | 2 | 3 | 4 | 5 | 6 | 5 | 4 | 3 | 2   
+  
+In the second test case, k = 2 is suitable.","def sep_num(x):
+    output1 = []
+    output2 = []
+    for i in range(1, int(x ** 0.5) + 1):
+        if x % i == 0:
+            output1.append(i)
+            output2.append(int(x / i))
+    output1.reverse()
+    return output2 + output1
+ 
+t = int(input())
+ 
+for i in range(t):
+    n, x = map(int, input().split())
+    output = []
+    if (n + x - 2) % 2 == 0:
+        sep = sep_num(n + x - 2)
+        for s in sep:
+            if (s + 2) % 2 == 0 and (s + 2) / 2 >= x:
+                output.append((s + 2) / 2)
+    if (n - x) % 2 == 0:
+        sep = sep_num(n - x)
+        for s in sep:
+            if (s + 2) % 2 == 0 and (s + 2) / 2 >= x:
+                output.append((s + 2) / 2)
+    output = list(set(output))
+    print(len(output))",3,True,False,False,True,True,True,True,True,True,True,True,True,True,True,0.7116860173769588,0.2247467626540343,0.5833333333333334
+1979_C,1979_C_cr0n_100%,codeforces2024,human,qwen2p5-72b-instruct,"You have been offered to play a game. In this game, there are n possible
+outcomes, and for each of them, you must bet a certain integer amount of
+coins. In the event that the i -th outcome turns out to be winning, you will
+receive back the amount of coins equal to your bet on that outcome, multiplied
+by k_i . Note that exactly one of the n outcomes will be winning.
+
+Your task is to determine how to distribute the coins in such a way that you
+will come out ahead in the event of any winning outcome. More formally, the
+total amount of coins you bet on all outcomes must be strictly less than the
+number of coins received back for each possible winning outcome.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 10^4 ) — the number of test cases. The description of
+the test cases follows.
+
+The first line of each test case contains a single integer n (1 \le n \le 50 )
+— the number of outcomes.
+
+The second line of each test case contains n integers k_1,k_2,\ldots,k_n (2
+\le k_i \le 20 ) — the multiplier for the amount of coins if the i -th outcome
+turns out to be winning.
+
+It is guaranteed that the sum of n over all test cases does not exceed 2 \cdot
+10^5 .
+
+Output
+
+For each test case, output -1 if there is no way to distribute the coins as
+required. Otherwise, output n integers x_1, x_2,\ldots, x_n (1 \le x_i \le
+10^{9} ) — your bets on the outcomes.
+
+It can be shown that if a solution exists, there is always a solution that
+satisfies these constraints.
+
+If there are multiple suitable solutions, output any of them.
+
+Example
+
+Input
+
+    6
+    
+    3
+    
+    3 2 7
+    
+    2
+    
+    3 3
+    
+    5
+    
+    5 5 5 5 5
+    
+    6
+    
+    7 9 3 17 9 13
+    
+    3
+    
+    6 3 2
+    
+    5
+    
+    9 4 6 8 3
+
+Output
+
+    27 41 12 
+    1 1 
+    -1
+    1989 1547 4641 819 1547 1071 
+    -1
+    8 18 12 9 24
+    
+Note
+
+In the first test case, the coins can be distributed as follows: 27 coins on
+the first outcome, 41 coins on the second outcome, 12 coins on the third
+outcome. Then the total amount of coins bet on all outcomes is 27 + 41 + 12 =
+80 coins. If the first outcome turns out to be winning, you will receive back
+3 \cdot 27 = 81 coins, if the second outcome turns out to be winning, you will
+receive back 2 \cdot 41 = 82 coins, if the third outcome turns out to be
+winning, you will receive back 7 \cdot 12 = 84 coins. All these values are
+strictly greater than 80 .
+
+In the second test case, one way is to bet one coin on each of the outcomes.","from math import gcd
+def lcm(a, b):
+    return a * b // gcd(a, b)
+ 
+def solve():
+    N = int(input().strip())
+    vals = [int(r) for r in input().strip().split()]
+    den = vals[0]
+    for x in vals:
+        den = lcm(den, x)
+    # prod = 1
+    # for r in vals:
+    #     prod *= r
+    vprod = [den//r for r in vals]
+    den = den - sum(vprod)
+    if den <= 0:
+        print(-1)
+        return
+    
+    print("" "".join([str(x) for x in vprod]))
+ 
+cases = int(input())
+for n in range(cases):
+    solve()",3,True,False,False,True,True,False,True,False,False,False,False,True,True,False,0.9787539670645234,0.8777156062995962,0.9166666666666666
+1945_A,1945_A_josie.elliston_100%,codeforces2024,human,qwen2p5-72b-instruct,"The organizing committee plans to take the participants of the Olympiad on a
+hike after the tour. Currently, the number of tents needed to be taken is
+being calculated. It is known that each tent can accommodate up to 3 people.
+
+Among the participants, there are a introverts, b extroverts, and c
+universals:
+
+  * Each introvert wants to live in a tent alone. Thus, a tent with an introvert must contain exactly one person — only the introvert himself. 
+  * Each extrovert wants to live in a tent with two others. Thus, the tent with an extrovert must contain exactly three people. 
+  * Each universal is fine with any option (living alone, with one other person, or with two others). 
+
+The organizing committee respects the wishes of each participant very much, so
+they want to fulfill all of them.
+
+Tell us the minimum number of tents needed to be taken so that all
+participants can be accommodated according to their preferences. If it is
+impossible to accommodate the participants in a way that fulfills all the
+wishes, output -1 .
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 10^4 ) — the number of test cases. This is followed by
+the descriptions of the test cases.
+
+Each test case is described by a single line containing three integers a , b ,
+c (0 \le a, b, c \le 10^9 ) — the number of introverts, extroverts, and
+universals, respectively.
+
+Output
+
+For each test case, output a single integer — the minimum number of tents, or
+-1 if it is impossible to accommodate the participants.
+
+Example
+
+Input
+
+    10
+    
+    1 2 3
+    
+    1 4 1
+    
+    1 4 2
+    
+    1 1 1
+    
+    1 3 2
+    
+    19 7 18
+    
+    0 0 0
+    
+    7 0 0
+    
+    0 24 0
+    
+    1000000000 1000000000 1000000000
+
+Output
+
+    3
+    -1
+    3
+    -1
+    3
+    28
+    0
+    7
+    8
+    1666666667
+    
+Note
+
+In the first test case, 1 tent will be given to the introverts, 1 tent will be
+shared by two extroverts and one universal, and the last tent will be shared
+by two universals. In total, 3 tents are needed.
+
+In the second test case, three extroverts will take 1 tent, and 1 tent will be
+taken by an introvert. Then, one extrovert and one universal will be left.
+This extrovert will not be able to live with two others.","from math import ceil
+from typing import Optional
+ 
+ 
+# Each introvert wants to live in a tent alone. Thus, a tent with an introvert must contain exactly one person — only the introvert himself.
+# Each extrovert wants to live in a tent with two others. Thus, the tent with an extrovert must contain exactly three people.
+# Each universal is fine with any option(living alone, with one other person, or with two others).
+ 
+ 
+def f(extroverts: int, universals: int) -> Optional[int]:
+    if extroverts % 3 != 0:
+        if extroverts % 3 + universals < 3:
+            return None
+    return ceil((extroverts + universals) / 3)
+ 
+ 
+def g(introverts: int, extroverts: int, universals: int) -> int:
+    ret = f(extroverts, universals)
+    return -1 if ret is None else introverts+ret
+ 
+test_case_n = int(input())
+for _ in range(test_case_n):
+    (introverts, extroverts, universals) = map(int, input().split(' '))
+    # return min area
+    print(g(introverts, extroverts, universals))
+ 
+ 
+# for line in '''1 2 3
+# 1 4 1
+# 1 4 2
+# 1 1 1
+# 1 3 2
+# 19 7 18
+# 0 0 0
+# 7 0 0
+# 0 24 0
+# 1000000000 1000000000 1000000000'''.splitlines():
+#     (introverts, extroverts, universals) = map(int, line.split(' '))
+#     print('line:', line)
+#     print('ret:', g(introverts, extroverts, universals))",3,True,False,False,True,True,True,True,True,True,False,True,True,True,True,0.8786389892330472,0.5522690850328354,0.6666666666666666
+1974_A,1974_A_chiwuu_0.00%,codeforces2024,human,qwen2p5-72b-instruct,"Little Rosie has a phone with a desktop (or launcher, as it is also called).
+The desktop can consist of several screens. Each screen is represented as a
+grid of size 5 \times 3 , i.e., five rows and three columns.
+
+There are x applications with an icon size of 1 \times 1 cells; such an icon
+occupies only one cell of the screen. There are also y applications with an
+icon size of 2 \times 2 cells; such an icon occupies a square of 4 cells on
+the screen. Each cell of each screen can be occupied by no more than one icon.
+
+Rosie wants to place the application icons on the minimum number of screens.
+Help her find the minimum number of screens needed.
+
+Input
+
+The first line of the input contains t (1 \leq t \leq 10^4 ) — the number of
+test cases.
+
+The first and only line of each test case contains two integers x and y (0
+\leq x, y \leq 99 ) — the number of applications with a 1 \times 1 icon and
+the number of applications with a 2 \times 2 icon, respectively.
+
+Output
+
+For each test case, output the minimal number of required screens on a
+separate line.
+
+Example
+
+Input
+
+    11
+    
+    1 1
+    
+    7 2
+    
+    12 4
+    
+    0 3
+    
+    1 0
+    
+    8 1
+    
+    0 0
+    
+    2 0
+    
+    15 0
+    
+    8 2
+    
+    0 9
+
+Output
+
+    1
+    1
+    2
+    2
+    1
+    1
+    0
+    1
+    1
+    2
+    5
+    
+Note
+
+The solution for the first test case can look as follows:
+
+![](https://espresso.codeforces.com/f9882979f0d9b5c31c5260fd626217227c2f05de.png)
+Blue squares represent empty spaces for icons, green squares represent 1
+\times 1 icons, red squares represent 2 \times 2 icons
+
+The solution for the third test case can look as follows:
+
+![](https://espresso.codeforces.com/0e737a290e056a29f38918bf06c13be790307a8d.png)","n=int(input())
+for i in range(n):
+    a,b=input().split()
+    a=int(a)
+    b=int(b)
+    t=b*2
+    if t%5==0:
+        t=t//5
+    else:
+        t=t//5+1
+    t1=t*15-b*4
+    if t1>=a:
+        t=t
+    else:
+        t2=a-t1
+        if t2%15==0:
+            t=t+t2//15
+        else:
+            t=t+t2//15+1
+    print(t)",3,False,False,False,False,False,False,True,True,True,True,True,False,False,False,0.5034942620944419,0.003558429730204223,0.5
+1979_C,1979_C_akashtiwari0704_100%,codeforces2024,human,qwen2p5-72b-instruct,"You have been offered to play a game. In this game, there are n possible
+outcomes, and for each of them, you must bet a certain integer amount of
+coins. In the event that the i -th outcome turns out to be winning, you will
+receive back the amount of coins equal to your bet on that outcome, multiplied
+by k_i . Note that exactly one of the n outcomes will be winning.
+
+Your task is to determine how to distribute the coins in such a way that you
+will come out ahead in the event of any winning outcome. More formally, the
+total amount of coins you bet on all outcomes must be strictly less than the
+number of coins received back for each possible winning outcome.
+
+Input
+
+Each test consists of multiple test cases. The first line contains a single
+integer t (1 \le t \le 10^4 ) — the number of test cases. The description of
+the test cases follows.
+
+The first line of each test case contains a single integer n (1 \le n \le 50 )
+— the number of outcomes.
+
+The second line of each test case contains n integers k_1,k_2,\ldots,k_n (2
+\le k_i \le 20 ) — the multiplier for the amount of coins if the i -th outcome
+turns out to be winning.
+
+It is guaranteed that the sum of n over all test cases does not exceed 2 \cdot
+10^5 .
+
+Output
+
+For each test case, output -1 if there is no way to distribute the coins as
+required. Otherwise, output n integers x_1, x_2,\ldots, x_n (1 \le x_i \le
+10^{9} ) — your bets on the outcomes.
+
+It can be shown that if a solution exists, there is always a solution that
+satisfies these constraints.
+
+If there are multiple suitable solutions, output any of them.
+
+Example
+
+Input
+
+    6
+    
+    3
+    
+    3 2 7
+    
+    2
+    
+    3 3
+    
+    5
+    
+    5 5 5 5 5
+    
+    6
+    
+    7 9 3 17 9 13
+    
+    3
+    
+    6 3 2
+    
+    5
+    
+    9 4 6 8 3
+
+Output
+
+    27 41 12 
+    1 1 
+    -1
+    1989 1547 4641 819 1547 1071 
+    -1
+    8 18 12 9 24
+    
+Note
+
+In the first test case, the coins can be distributed as follows: 27 coins on
+the first outcome, 41 coins on the second outcome, 12 coins on the third
+outcome. Then the total amount of coins bet on all outcomes is 27 + 41 + 12 =
+80 coins. If the first outcome turns out to be winning, you will receive back
+3 \cdot 27 = 81 coins, if the second outcome turns out to be winning, you will
+receive back 2 \cdot 41 = 82 coins, if the third outcome turns out to be
+winning, you will receive back 7 \cdot 12 = 84 coins. All these values are
+strictly greater than 80 .
+
+In the second test case, one way is to bet one coin on each of the outcomes.","from math import gcd
+t = int(input())
+for T in range(t):
+	#x, y, k = map(int, input().split())
+	def lcm(l):
+	    g=1
+	    for i in range(len(l)):
+	        g=g*l[i]//gcd(g,l[i])
+	    return g
+	bets=int(input())
+	a = [int(x) for x in input().split()]
+	prod=lcm(a)
+	
+	sumo=0
+	for i in range(bets):
+	    a[i]=(prod//a[i])
+	    sumo+=int(a[i])
+	
+	if sumo>=prod:
+	    print(-1)
+	else:
+	    ans=""""
+	    for i in range(bets):
+	        ans+=str(a[i])+"" ""
+	    print(ans)",3,True,False,False,True,True,True,True,True,False,False,True,True,True,True,0.7993990421817424,0.34449932638372327,0.75
+1957_C,1957_C_DevK01_100%,codeforces2024,human,qwen2p5-72b-instruct,"You are given an n \times n chessboard where you and the computer take turns
+alternatingly to place white rooks & black rooks on the board respectively.
+While placing rooks, you have to ensure that no two rooks attack each other.
+Two rooks attack each other if they share the same row or column regardless of
+color.
+
+A valid move is placing a rook on a position (r , c ) such that it doesn't
+attack any other rook.
+
+You start first, and when you make a valid move in your turn, placing a white
+rook at position (r , c ), the computer will mirror you and place a black rook
+at position (c , r ) in its turn. If r = c , then the computer can't mirror
+your move, and skips its turn.
+
+You have already played k moves with the computer (the computer tries to
+mirror these moves too), and you must continue playing the game until there
+are no valid moves remaining. How many different final configurations are
+possible when you continue the game after the k moves? It is guaranteed that
+the k moves and the implied computer moves are valid. Since the answer may be
+large, print it modulo 10^9+7 .
+
+Two configurations are considered different if there exists a coordinate (r ,
+c ) which has a rook in one configuration, but not in the other or the color
+of the rook on the coordinate is different.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 10^4 ) — the number
+of test cases.
+
+The first line of each test case contains two integers n and k (1 \leq n \leq
+3 \cdot 10^5 , 0 \leq k \leq n ) — the size of the chessboard and the number
+of moves you have already played respectively.
+
+Each of the next k lines of the test case contains two integers r_i and c_i ,
+denoting the i -th move you made.
+
+It is guaranteed that the k moves and the implied computer moves are valid.
+
+It is guaranteed that the sum of n over all test cases does not exceed 3 \cdot
+10^5 .
+
+Output
+
+For each test case, output a single integer on a new line — the total number
+of possible final configurations modulo 10^9+7 .
+
+Example
+
+Input
+
+    3
+    
+    4 1
+    
+    1 2
+    
+    8 1
+    
+    7 6
+    
+    1000 4
+    
+    4 4
+    
+    952 343
+    
+    222 333
+    
+    90 91
+
+Output
+
+    3
+    331
+    671968183
+    
+Note
+
+In the first test case, we have a 4 \times 4 grid and you've already played 1
+move. After you and the computer play a turn, we have a white rook at (1 , 2
+), and a black rook at (2 , 1 ). There are three possible configurations from
+this state —
+
+  1. You place a white rook at (3 , 4 ) and the computer places a black rook at (4 , 3 ) as a response. 
+  2. You place a white rook at (4 , 3 ) and the computer places a black rook at (3 , 4 ) as a response. 
+  3. You place a white rook at (3 , 3 ) and then at (4 , 4 ), or the other way around. They both result in the same configuration. 
+
+![](https://espresso.codeforces.com/e7812b315860201676eb89d5690dd84b3eb85862.png)","def sol(n):
+ 
+    dp=[1,1]
+    for i in range(2,n+1):
+        dp+=[(dp[-1]+2*(i-1)*dp[-2])%(7+10**9)]
+        dp.pop(0)
+    return dp[-1]
+ 
+t=int(input())
+for _ in range(t):
+    L=list(map(int,input().split()))
+    n,k=L[0],L[1]
+    for j in range(k):
+        L1=list(map(int,input().split()))
+        a,b=L1[0],L1[1]
+        if a!=b:
+            n-=2
+        else:
+            n-=1
+    print(sol(n))
+    continue",3,True,False,False,True,True,True,True,True,True,True,True,True,True,True,0.5721055503863547,0.07567107112319255,0.5833333333333334
+1923_D,1923_D_InfinityInsight_100%,codeforces2024,human,qwen2p5-72b-instruct,"There are n slimes placed in a line. The slimes are numbered from 1 to n in
+order from left to right. The size of the i -th slime is a_i .
+
+Every second, the following happens: exactly one slime eats one of its
+neighbors and increases its size by the eaten neighbor's size. A slime can eat
+its neighbor only if it is strictly bigger than this neighbor. If there is no
+slime which is strictly bigger than one of its neighbors, the process ends.
+
+For example, suppose n = 5 , a = [2, 2, 3, 1, 4] . The process can go as
+follows:
+
+  * first, the 3 -rd slime eats the 2 -nd slime. The size of the 3 -rd slime becomes 5 , the 2 -nd slime is eaten. 
+  * then, the 3 -rd slime eats the 1 -st slime (they are neighbors since the 2 -nd slime is already eaten). The size of the 3 -rd slime becomes 7 , the 1 -st slime is eaten. 
+  * then, the 5 -th slime eats the 4 -th slime. The size of the 5 -th slime becomes 5 , the 4 -th slime is eaten. 
+  * then, the 3 -rd slime eats the 5 -th slime (they are neighbors since the 4 -th slime is already eaten). The size of the 3 -rd slime becomes 12 , the 5 -th slime is eaten. 
+
+For each slime, calculate the minimum number of seconds it takes for this
+slime to be eaten by another slime (among all possible ways the process can
+go), or report that it is impossible.
+
+Input
+
+The first line contains a single integer t (1 \le t \le 10^4 ) — the number of
+test cases.
+
+The first line of each test case contains a single integer n (1 \le n \le 3
+\cdot 10^5 ) — the number of slimes.
+
+The second line contains n integers a_1, a_2, \dots, a_n (1 \le a_i \le 10^9
+).
+
+The sum of n over all test cases doesn't exceed 3 \cdot 10^5 .
+
+Output
+
+For each test case, print n integers. The i -th integer should be equal to the
+minimum number of seconds it takes for the i -th slime to be eaten by another
+slime or -1 if it is impossible.
+
+Example
+
+Input
+
+    4
+    
+    4
+    
+    3 2 4 2
+    
+    3
+    
+    1 2 3
+    
+    5
+    
+    2 2 3 1 1
+    
+    7
+    
+    4 2 3 6 1 1 8
+
+Output
+
+    2 1 2 1 
+    1 1 -1 
+    2 1 -1 1 2 
+    2 1 1 3 1 1 4","from bisect import bisect_left as bl
+def bin_search(a,x):
+    if x<0:
+        return -1 
+    inx = bl(a,x)
+    if a[inx]==x:
+        return inx+1 
+    return inx 
+     
+def ss(a,n):
+    
+    left = [0] 
+    last = [-1] 
+    ans = [-1]*n
+    for i in range(1,n):
+        if a[i]!=a[i-1]:
+            last.append(i) 
+        else:
+            last.append(last[-1])
+    for i in a:
+        left.append(left[-1]+i)
+    
+    for i in range(1,n):
+        if a[i]<a[i-1]:
+            ans[i] = 1 
+            continue 
+        x = left[i]-a[i]-1 
+        inx = bin_search(left,x)
+        inx2 = last[i-1] 
+ 
+        if inx2<inx:
+            inx = inx2
+        
+        if inx<0:
+            continue 
+        ans[i] = i+1 - inx 
+ 
+    return ans 
+ 
+ 
+for iiii in range(int(input())):
+    n = int(input()) 
+    a = list(map(int,input().split())) 
+    ans = ss(a,n)
+    
+    
+    ans2 = ss(a[::-1],n)
+    ans2 = ans2[::-1] 
+    for i in range(n):
+        if ans[i]==-1 or ans2[i]==-1:
+            ans[i] = max(ans[i],ans2[i])
+        else:
+            ans[i] = min(ans[i],ans2[i])
+    print(*ans)",3,True,False,False,True,False,True,True,True,True,False,False,True,True,True,0.9420839250714097,0.6273437521746732,0.8333333333333334
+1955_D,1955_D_lpt2000_6.67%,codeforces2024,human,qwen2p5-72b-instruct,"Maxim has an array a of n integers and an array b of m integers (m \le n ).
+
+Maxim considers an array c of length m to be good if the elements of array c
+can be rearranged in such a way that at least k of them match the elements of
+array b .
+
+For example, if b = [1, 2, 3, 4] and k = 3 , then the arrays [4, 1, 2, 3] and
+[2, 3, 4, 5] are good (they can be reordered as follows: [1, 2, 3, 4] and [5,
+2, 3, 4] ), while the arrays [3, 4, 5, 6] and [3, 4, 3, 4] are not good.
+
+Maxim wants to choose every subsegment of array a of length m as the elements
+of array c . Help Maxim count how many selected arrays will be good.
+
+In other words, find the number of positions 1 \le l \le n - m + 1 such that
+the elements a_l, a_{l+1}, \dots, a_{l + m - 1} form a good array.
+
+Input
+
+The first line contains an integer t (1 \le t \le 10^4 ) — the number of test
+cases.
+
+The first line of each test case contains three integers n , m , and k (1 \le
+k \le m \le n \le 2 \cdot 10^5 ) — the number of elements in arrays a and b ,
+the required number of matching elements.
+
+The second line of each test case contains n integers a_1, a_2, \dots, a_n (1
+\le a_i \le 10^6 ) — the elements of array a . Elements of the array a are not
+necessarily unique.
+
+The third line of each test case contains m integers b_1, b_2, \dots, b_m (1
+\le b_i \le 10^6 ) — the elements of array b . Elements of the array b are not
+necessarily unique.
+
+It is guaranteed that the sum of n over all test cases does not exceed 2 \cdot
+10^5 . Similarly, it is guaranteed that the sum of m over all test cases does
+not exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output the number of good subsegments of array a on a
+separate line.
+
+Example
+
+Input
+
+    5
+    
+    7 4 2
+    
+    4 1 2 3 4 5 6
+    
+    1 2 3 4
+    
+    7 4 3
+    
+    4 1 2 3 4 5 6
+    
+    1 2 3 4
+    
+    7 4 4
+    
+    4 1 2 3 4 5 6
+    
+    1 2 3 4
+    
+    11 5 3
+    
+    9 9 2 2 10 9 7 6 3 6 3
+    
+    6 9 7 8 10
+    
+    4 1 1
+    
+    4 1 5 6
+    
+    6
+
+Output
+
+    4
+    3
+    2
+    4
+    1
+    
+Note
+
+In the first example, all subsegments are good.
+
+In the second example, good subsegments start at positions 1 , 2 , and 3 .
+
+In the third example, good subsegments start at positions 1 and 2 .","from collections import Counter
+ 
+nabors = int(input())
+for _ in range(nabors):
+    # цикл по наборам данных ----------------
+    
+    # в каждом наборе получаем по две строки
+    # 1)  три целых числа n, m и k
+    n, m, k = [int(i) for i in input().split()]
+    
+    # 2) элементы массива a
+    aa = [int(i) for i in input().split()]
+ 
+    # 3) элементы массива b
+    bb = [int(i) for i in input().split()]
+    
+    cnt_aa = Counter(aa[:m])  
+    cnt_bb = Counter(bb)
+    D = cnt_aa & cnt_bb  # D -найденные парные совпадения в cnt_aa и cnt_bb
+    E = cnt_aa - D       # E - несовпавшие элементы из cnt_aa
+    C = cnt_bb - D       # C - несовпавшие элементы из cnt_bb
+    
+    tot = sum(D.values())
+    fnd = 1 if tot >= k else 0
+    
+    for in_aa,out_aa in zip(aa[m:], aa[:n-m]):
+        if D[out_aa] > 0:
+            if E[out_aa] > 0:
+                E[out_aa] -= 1
+            else:
+                D[out_aa] -= 1
+                C[out_aa] += 1
+        else:
+            E[out_aa] -= 1
+            
+        if C[in_aa] > 0:
+            # случай, когда возможно ранее уже есть такая пара
+            if C[in_aa] == D[in_aa]:
+                C[in_aa] += 1
+            else:
+                D[in_aa] += 1
+        else:
+            E[in_aa] += 1
+        tot = sum(D.values())
+        fnd += 1 if tot >= k else 0    
+    
+    print(fnd)",3,False,False,False,True,False,False,True,True,False,False,False,True,True,True,0.9639900444236204,0.6388191674617884,0.9166666666666666
+1941_E,1941_E_tanavamsikrishna_100%,codeforces2024,human,qwen2p5-72b-instruct,"Bernard loves visiting Rudolf, but he is always running late. The problem is
+that Bernard has to cross the river on a ferry. Rudolf decided to help his
+friend solve this problem.
+
+The river is a grid of n rows and m columns. The intersection of the i -th row
+and the j -th column contains the number a_{i,j} — the depth in the
+corresponding cell. All cells in the first and last columns correspond to the
+river banks, so the depth for them is 0 .
+
+![](https://espresso.codeforces.com/816a5df3aef86d5882f59471315c4a5e3c241fef.png)
+The river may look like this.
+
+Rudolf can choose the row (i,1), (i,2), \ldots, (i,m) and build a bridge over
+it. In each cell of the row, he can install a support for the bridge. The cost
+of installing a support in the cell (i,j) is a_{i,j}+1 . Supports must be
+installed so that the following conditions are met:
+
+  1. A support must be installed in cell (i,1) ; 
+  2. A support must be installed in cell (i,m) ; 
+  3. The distance between any pair of adjacent supports must be no more than d . The distance between supports (i, j_1) and (i, j_2) is |j_1 - j_2| - 1 . 
+
+Building just one bridge is boring. Therefore, Rudolf decided to build k
+bridges on consecutive rows of the river, that is, to choose some i (1 \le i
+\le n - k + 1 ) and independently build a bridge on each of the rows i, i + 1,
+\ldots, i + k - 1 . Help Rudolf minimize the total cost of installing
+supports.
+
+Input
+
+The first line contains a single integer t (1 \le t \le 10^3) — the number of
+test cases. The descriptions of the test cases follow.
+
+The first line of each test case contains four integers n , m , k , and d (1
+\le k \le n \le 100 , 3 \le m \le 2 \cdot 10^5 , 1 \le d \le m ) — the number
+of rows and columns of the field, the number of bridges, and the maximum
+distance between supports.
+
+Then follow n lines, i -th line contains m positive integers a_{i, j} (0 \le
+a_{i, j} \le 10^6 , a_{i, 1} = a_{i, m} = 0 ) — the depths of the river cells.
+
+It is guaranteed that the sum of n \cdot m for all sets of input data does not
+exceed 2 \cdot 10^5 .
+
+Output
+
+For each test case, output a single number — the minimum total cost of
+supports installation.
+
+Example
+
+Input
+
+    5
+    
+    3 11 1 4
+    
+    0 1 2 3 4 5 4 3 2 1 0
+    
+    0 1 2 3 2 1 2 3 3 2 0
+    
+    0 1 2 3 5 5 5 5 5 2 0
+    
+    4 4 2 1
+    
+    0 3 3 0
+    
+    0 2 1 0
+    
+    0 1 2 0
+    
+    0 3 3 0
+    
+    4 5 2 5
+    
+    0 1 1 1 0
+    
+    0 2 2 2 0
+    
+    0 2 1 1 0
+    
+    0 3 2 1 0
+    
+    1 8 1 1
+    
+    0 10 4 8 4 4 2 0
+    
+    4 5 3 2
+    
+    0 8 4 4 0
+    
+    0 3 4 8 0
+    
+    0 8 1 10 0
+    
+    0 10 1 5 0
+
+Output
+
+    4
+    8
+    4
+    15
+    14
+    
+Note
+
+In the first test case, it is most profitable to build a bridge on the second
+row.
+
+![](https://espresso.codeforces.com/6b5282a065196a0a0ca650a68a351af816de8549.png)
+It is not a top view, but side view: gray cells — bridge itself, white cells
+are empty, black cells — supports, blue cells — water, brown cells — river
+bottom.
+
+In the second test case, it is most profitable to build bridges on the second
+and third rows. The supports will be placed in cells (2, 3) , (3, 2) , and on
+the river banks.
+
+In the third test case the supports can be placed along the river banks.","from heapq import heapify, heappop, heappush
+ 
+ 
+def best_bridge_cost(row, d: int):
+    row[0] = 1
+    for i in range(1, d):
+        row[i] = row[i] + 2
+    min_heap = [(e, i) for i, e in enumerate(row[:d])]
+    heapify(min_heap)
+    for i in range(d, len(row)):
+        while (e := heappop(min_heap))[1] <= i - (d + 2):
+            pass
+        row[i] = e[0] + row[i] + 1
+        heappush(min_heap, e)
+        heappush(min_heap, (row[i], i))
+    return row[-1]
+ 
+ 
+def solve():
+    n, m, k, d = (int(e) for e in input().split("" ""))
+    rows = [[int(e) for e in input().split("" "")] for _ in range(n)]
+    costs = [best_bridge_cost(row, d) for row in rows]
+    total_costs = []
+    for i in range(len(costs) - (k - 1)):
+        total_costs.append(sum(costs[i : i + k]))
+    print(min(total_costs))
+ 
+ 
+if __name__ == ""__main__"":
+    for _ in range(int(input())):
+        solve()",3,True,False,False,True,False,True,True,True,True,True,True,True,True,True,0.9553769965490565,0.7213862445789725,0.8333333333333334
+1971_B,1971_B_ragali_50.00%,codeforces2024,human,qwen2p5-72b-instruct,"You are given a string s consisting of lowercase English letters.
+
+Rearrange the characters of s to form a new string r that is not equal to s ,
+or report that it's impossible.
+
+Input
+
+The first line contains a single integer t (1 \leq t \leq 1000 ) — the number
+of test cases.
+
+The only line of each test case contains a string s of length at most 10
+consisting of lowercase English letters.
+
+Output
+
+For each test case, if no such string r exists as described in the statement,
+output ""NO"" (without quotes).
+
+Otherwise, output ""YES"" (without quotes). Then, output one line — the string r
+, consisting of letters of string s .
+
+You can output ""YES"" and ""NO"" in any case (for example, strings ""yEs"", ""yes"",
+and ""Yes"" will be recognized as a positive response).
+
+If multiple answers are possible, you can output any of them.
+
+Example
+
+Input
+
+    8
+    
+    codeforces
+    
+    aaaaa
+    
+    xxxxy
+    
+    co
+    
+    d
+    
+    nutdealer
+    
+    mwistht
+    
+    hhhhhhhhhh
+
+Output
+
+    YES
+    forcodesec
+    NO
+    YES
+    xxyxx
+    YES
+    oc
+    NO
+    YES
+    undertale
+    YES
+    thtsiwm
+    NO
+    
+Note
+
+In the first test case, another possible answer is \texttt{forcescode} .
+
+In the second test case, all rearrangements of \texttt{aaaaa} are equal to
+\texttt{aaaaa} .","t = int(input().strip("" ""))
+for i in range(t):
+	s = input().strip("" "")
+	a = set()
+	for i in s:
+		a.add(i)
+	if len(a) > 1:
+		print(""YES"")
+		newstr = s[len(s)//2:]+s[:len(s)//2]
+		isreverse = s[::-1]
+		if newstr != s:
+			print(s[len(s)//2:]+s[:len(s)//2])
+		elif isreverse !=s:
+			print(isreverse)
+		else:
+			print(s[len(s)//2::]+s[0:len(s)//2])
+	else:
+		print(""NO"")",3,False,False,False,True,True,True,True,True,True,False,True,True,True,True,0.9371267410438423,0.6212191912075489,0.8333333333333334
+1930_B,1930_B_bigdamdam_100%,codeforces2024,human,qwen2p5-72b-instruct,"You are given a positive integer n .
+
+Find a permutation^\dagger p of length n such that there do not exist two
+distinct indices i and j (1 \leq i, j < n ; i \neq j ) such that p_i divides
+p_j and p_{i+1} divides p_{j+1} .
+
+Refer to the Notes section for some examples.
+
+Under the constraints of this problem, it can be proven that at least one p
+exists.
+
+^\dagger A permutation of length n is an array consisting of n distinct
+integers from 1 to n in arbitrary order. For example, [2,3,1,5,4] is a
+permutation, but [1,2,2] is not a permutation (2 appears twice in the array),
+and [1,3,4] is also not a permutation (n=3 but there is 4 in the array).
+
+Input
+
+Each test contains multiple test cases. The first line contains a single
+integer t (1 \leq t \leq 10^3 ) — the number of test cases. The description of
+the test cases follows.
+
+The first line of each test case contains a single integer n (3 \leq n \leq
+10^5 ) — the length of the permutation p .
+
+It is guaranteed that the sum of n over all test cases does not exceed 10^5 .
+
+Output
+
+For each test case, output p_1, p_2, \ldots, p_n .
+
+If there are multiple solutions, you may output any one of them.
+
+Example
+
+Input
+
+    2
+    
+    4
+    
+    3
+
+Output
+
+    4 1 2 3
+    1 2 3
+    
+Note
+
+In the first test case, p=[4,1,2,3] is a valid permutation. However, the
+permutation p=[1,2,3,4] is not a valid permutation as we can choose i=1 and
+j=3 . Then p_1=1 divides p_3=3 and p_2=2 divides p_4=4 . Note that the
+permutation p=[3, 4, 2, 1] is also not a valid permutation as we can choose
+i=3 and j=2 . Then p_3=2 divides p_2=4 and p_4=1 divides p_3=2 .
+
+In the second test case, p=[1,2,3] is a valid permutation. In fact, all 6
+permutations of length 3 are valid.","for i in range(int(input())):
+      n = [int(i)for i in input().split()][0]
+      p = [0]*n;ind = n
+      for i in range(0,n,2):p[i]=ind;ind -= 2
+      ind = 1 + n%2
+      for i in range(1,n,2):p[i]=ind;ind += 2
+      print(*p)",3,True,False,False,True,True,True,True,True,False,True,False,True,True,True,0.722070980084832,0.23786776414090813,0.5833333333333334
+1919_A,1919_A_vjudge.7_100%,codeforces2024,human,qwen2p5-72b-instruct,"Alice and Bob are bored, so they decide to play a game with their wallets.
+Alice has a coins in her wallet, while Bob has b coins in his wallet.
+
+Both players take turns playing, with Alice making the first move. In each
+turn, the player will perform the following steps in order:
+
+  1. Choose to exchange wallets with their opponent, or to keep their current wallets. 
+  2. Remove 1 coin from the player's current wallet. The current wallet cannot have 0 coins before performing this step. 
+
+The player who cannot make a valid move on their turn loses. If both Alice and
+Bob play optimally, determine who will win the game.
+
+Input
+
+Each test contains multiple test cases. The first line contains a single
+integer t (1 \leq t \leq 1000 ) — the number of test cases. The description of
+the test cases follows.
+
+The first and only line of each test case contains two integers a and b (1 \le
+a, b \le 10^9 ) — the number of coins in Alice's and Bob's wallets,
+respectively.
+
+Output
+
+For each test case, output ""Alice"" if Alice will win the game, and ""Bob"" if
+Bob will win the game.
+
+Example
+
+Input
+
+    10
+    
+    1 1
+    
+    1 4
+    
+    5 3
+    
+    4 5
+    
+    11 9
+    
+    83 91
+    
+    1032 9307
+    
+    839204 7281
+    
+    1000000000 1000000000
+    
+    53110 2024
+
+Output
+
+    Bob
+    Alice
+    Bob
+    Alice
+    Bob
+    Bob
+    Alice
+    Alice
+    Bob
+    Bob
+    
+Note
+
+In the first test case, an example of the game is shown below:
+
+  * Alice chooses to not swap wallets with Bob in step 1 of her move. Now, a=0 and b=1 . 
+  * Since Alice's wallet is empty, Bob must choose to not swap their wallets in step 1 of his move. Now, a=0 and b=0 . 
+  * Since both Alice's and Bob's wallets are empty, Alice is unable to make a move. Hence, Bob wins. 
+
+In the second test case, an example of the game is shown below:
+
+  * Alice chooses to swap wallets with Bob in step 1 of her move. Now, a=3 and b=1 . 
+  * Bob chooses to swap wallets with Alice in step 1 of his move. Now, a=1 and b=2 . 
+  * Alice chooses to not swap wallets with Bob in step 1 of her move. Now, a=0 and b=2 . 
+  * Since Alice's wallet is empty, Bob can only choose to not swap wallets with Alice in step 1 of his move. Now, a=0 and b=1 . 
+  * Since Alice's wallet is empty, Alice can only choose to swap wallets with Bob in step 1 of her move. Now, a=0 and b=0 . 
+  * Since both Alice's wallet and Bob's wallet are empty, Bob is unable to make a move. Hence, Alice wins.","test = int(input())
+for t in range(test):
+    a,b=map(int,input().split())
+    if (a+b)&1==0:
+        print(""Bob"")
+    else:
+        print(""Alice"")",3,True,False,False,True,True,True,False,True,False,False,False,False,True,True,0.8480091814352945,0.456940958143876,0.75

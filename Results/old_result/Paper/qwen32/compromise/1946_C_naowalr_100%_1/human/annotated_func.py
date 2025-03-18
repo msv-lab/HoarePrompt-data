@@ -1,0 +1,8 @@
+#State of the program right berfore the function call: The function `func_1` does not take any parameters. It reads input from standard input, which includes multiple sets of input data. Each set starts with two integers `n` and `k` where `1 <= k < n <= 10^5`, representing the number of vertices and the number of edges to be removed, respectively. This is followed by `n-1` lines, each containing two integers `v` and `u` (1 <= v, u <= n) representing an edge between vertices `v` and `u`. The function processes each set of input data to determine the maximum number `x` such that removing exactly `k` edges results in all remaining connected components having at least `x` vertices.
+def func_1():
+    for _ in range(int(sys.stdin.readline())):
+        solve()
+        
+    #State: The function `func_1` has processed all sets of input data provided through standard input. For each set, it has determined the maximum number `x` such that removing exactly `k` edges results in all remaining connected components having at least `x` vertices. The state of variables not involved in the loop (such as those used within the `solve()` function) remains unchanged from their state after processing the last input set.
+#Overall this is what the function does:The function reads multiple sets of input data from standard input, where each set consists of two integers `n` and `k` representing the number of vertices and the number of edges to be removed, respectively, followed by `n-1` lines of edges between vertices. For each set, the function determines the maximum number `x` such that removing exactly `k` edges results in all remaining connected components having at least `x` vertices.
+

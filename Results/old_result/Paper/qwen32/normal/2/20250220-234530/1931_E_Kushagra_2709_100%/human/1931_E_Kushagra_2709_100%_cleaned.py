@@ -1,0 +1,19 @@
+def func_1(n, m, nums):
+
+    def zerocnts(num):
+        num = str(num)
+        tot = 0
+        for i in range(len(num) - 1, -1, -1):
+            if num[i] != '0':
+                break
+            tot += 1
+        return tot
+    tot = sum((len(val) for val in map(str, nums)))
+    cntvals = sorted((zerocnts(val) for val in nums), reverse=True)
+    for i in range(0, len(cntvals), 2):
+        tot -= cntvals[i]
+    return 'Sasha' if tot >= m + 1 else 'Anna'
+for _ in range(int(input())):
+    (n, m) = map(int, input().split())
+    nums = list(map(int, input().split()))
+    print(func_1(n, m, nums))

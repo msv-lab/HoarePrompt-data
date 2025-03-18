@@ -1,7 +1,0 @@
-The function `func_1` takes two positive integers, `n` and `k`, both within the range 1 ≤ n, k ≤ 10^18, and performs the following actions based on their values:
-
-1. If `n` equals `k`, it prints 'YES', followed by three lines each containing the number 1, and then exits without returning any value.
-2. If `n` is less than `k`, it prints 'NO' and exits without returning any value.
-3. If `n` is greater than or equal to `k` and not equal to `k`, it calculates a list `costs` with elements `[n - k + 1, 1]`. It then iterates over these costs, updating `n` and a variable `h` which accumulates the quotient of `n` divided by each cost. After the loop, if `h` is less than `k`, it prints 'NO'. Otherwise, it prints '2', 'YES', and the elements of `costs`.
-
-In all cases, the function does not return any value.

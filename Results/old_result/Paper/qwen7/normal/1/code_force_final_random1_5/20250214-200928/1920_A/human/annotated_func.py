@@ -1,0 +1,111 @@
+#State of the program right berfore the function call: t is an integer such that 1 ≤ t ≤ 500, n is an integer such that 2 ≤ n ≤ 100, and for each test case, the input consists of n lines where each line contains two integers a and x such that a ∈ {1, 2, 3} and 1 ≤ x ≤ 10^9. There is at least one constraint of type 1 and at least one constraint of type 2, and no two constraints are the same.
+def func_1(isOne):
+    if (not isOne) :
+        return int(input())
+        #The program returns an integer input by the user, which could be any integer as no specific value is provided for the input.
+    else :
+        return 1
+        #The program returns 1
+#Overall this is what the function does:The function `func_1` accepts a boolean parameter `isOne`. If `isOne` is `True`, it returns an integer input by the user. If `isOne` is `False`, it returns the integer `1`.
+
+#State of the program right berfore the function call: t is an integer representing the number of test cases, and each test case consists of multiple lines as described in the problem statement. Each line within a test case contains two integers separated by space, where the first integer a represents the type of constraint (1, 2, or 3), and the second integer x represents the value associated with the constraint (1 ≤ x ≤ 10^9).
+def func_2(space, to_int):
+    line = input()
+    if space :
+        items = line.split()
+    else :
+        items = list(line)
+    #State: Postcondition: `t` is an integer representing the number of test cases, and `line` is the next input string. If `space` is True, `items` is a list of strings obtained by splitting `line` by spaces. Otherwise, `items` is a list containing each character from the string `line`.
+    if to_int :
+        return [int(i) for i in items]
+        #The program returns a list of integers obtained by converting each element of the list 'items' to an integer.
+    else :
+        return items
+        #The program returns a list of strings obtained by splitting the next input string `line` by spaces.
+#Overall this is what the function does:The function `func_2` accepts two parameters: `space` and `to_int`. Depending on the value of `to_int`, it either converts each element of the list `items` into an integer and returns the list, or it splits the next input string `line` by spaces and returns the resulting list of strings. If `space` is True, the input string is split by spaces; otherwise, it is split based on other criteria (not specified in the provided code). The function returns a list of integers or strings based on the conditions given.
+
+#State of the program right berfore the function call: arr is a list of integers, and sym is a string representing a separator (e.g., ' ', ',', etc.).
+def func_3(arr, sym):
+    string = ''
+    for i in arr:
+        string += str(i) + sym
+        
+    #State: Output State: `arr` is a list of integers that must contain at least one integer, `i` is the last element of `arr`, `string` is the concatenation of the string representations of all elements of `arr` separated by `sym`.
+    #
+    #This means that after the loop has executed all its iterations, `string` will contain the concatenation of all the string representations of the integers in `arr`, with each integer followed by the separator `sym`, except after the last integer.
+    return string
+    #The program returns a string that is the concatenation of the string representations of all elements in list `arr`, separated by `sym`, ending with the last element `i` of `arr`.
+#Overall this is what the function does:The function accepts a list of integers `arr` and a string `sym`. It returns a string where all elements in `arr` are converted to their string representations and concatenated together with each element separated by `sym`, followed by the last element `i` of `arr`.
+
+#State of the program right berfore the function call: string is a string, and substring is a non-empty string.
+def func_4(string, substring):
+    indices = []
+    index = string.find(substring)
+    while index != -1:
+        indices.append(index)
+        
+        index = string.find(substring, index + 1)
+        
+    #State: Output State: `string` is a string, `substring` is a non-empty string, `indices` is a list containing all the positions where `substring` occurs in `string`, `index` is -1.
+    #
+    #Explanation: After the loop has executed all its iterations, it means that `substring` has been found no more times in `string`. Therefore, the `index` variable will eventually become -1, which is the condition that terminates the loop. At this point, `indices` will contain all the positions (indices) where `substring` was found during each iteration of the loop.
+    return indices
+    #The program returns a list `indices` containing all the positions where the substring occurred in the string `string`
+#Overall this is what the function does:The function accepts a string and a non-empty substring as parameters. It searches for all occurrences of the substring within the string and returns a list of integers representing the starting positions of these occurrences.
+
+#State of the program right berfore the function call: arr is a list of integers, and element is an integer present in the list arr.
+def func_5(arr, element):
+    return [index for index, value in enumerate(arr) if value == element]
+    #A list of indices where the integer 'element' is found in the list 'arr'
+#Overall this is what the function does:The function accepts a list of integers `arr` and an integer `element`. It searches through the list `arr` and returns a list of indices where the integer `element` is found. If `element` is not found in `arr`, an empty list is returned.
+
+#State of the program right berfore the function call: arr is a list of lists, where each sublist represents a constraint and contains two integers (a, x) indicating the type of constraint and the value respectively; index is an integer representing the index of the element in each sublist to compare with value; value is an integer to match against the element at index in each sublist.
+def func_6(arr, index, value):
+    for subArray in arr:
+        if subArray[index] == value:
+            return subArray
+        
+    #State: Output State: The function returns the last subArray in `arr` that has a different value at the specified `index` compared to `value`. If all subArrays in `arr` have the same value at the specified `index`, the function will return the last subArray in the list.
+    #
+    #This means that after all iterations of the loop, if any subArray's element at the given index matches the given value, the loop will continue to the next subArray until it finds one that doesn't match or runs out of subArrays to check. If no such subArray exists, the last subArray in the list is returned.
+    return None
+    #None
+#Overall this is what the function does:The function `func_6` searches through a list of lists (`arr`) to find a sublist where the element at a specified index does not match a given value (`value`). If it finds such a sublist, it returns it. If no sublist matches the condition, it returns the next sublist that does not match the value, or `None` if all sublists match the value.
+
+#State of the program right berfore the function call: n is an integer such that 2 ≤ n ≤ 100, and for each constraint, t is an integer in the set {1, 2, 3} and x is an integer such that 1 ≤ x ≤ 10^9. Additionally, there is at least one constraint of type 1 and at least one constraint of type 2, and all pairs (t, x) are distinct.
+def func_7():
+    n = int(input())
+    start = -1
+    end = 1000000000.0
+    num = []
+    for i in range(n):
+        t, v = tuple(map(int, input().split()))
+        
+        if t == 1:
+            if start < v:
+                start = v
+        
+        if t == 2:
+            if end > v:
+                end = v
+        
+        if t == 3:
+            num.append(v)
+        
+    #State: Postcondition: `i` is `n-1`, `n` is an integer such that 2 ≤ n ≤ 100, `t` is `t`, `v` is `v`, `start` is the minimum value among all `v` where `t` is 1, `end` is the maximum value among all `v` where `t` is 2, and `num` is a list containing all `v` where `t` is 3.
+    count_num = 0
+    for i in num:
+        if i < start or i > end:
+            continue
+        else:
+            count_num += 1
+        
+    #State: `count_num` is the total number of elements in `num` that fall within the range [start, end], `i` is the last element in `num` processed by the loop, `t` is `t`, `v` is `v`, `start` is the minimum value among all `v` where `t` is 1, `end` is the maximum value among all `v` where `t` is 2, `num` is an empty list since all elements that satisfy the condition (fall within [start, end]) have been counted.
+    if (start > end) :
+        return 0
+        #The program returns 0
+    #State: `count_num` is the total number of elements in `num` that fall within the range [start, end], `i` is the last element in `num` processed by the loop, `t` is `t`, `v` is `v`, `start` is the minimum value among all `v` where `t` is 1, `end` is the maximum value among all `v` where `t` is 2, `num` is an empty list since all elements that satisfy the condition (fall within [start, end]) have been counted, and the condition `start <= end` is true
+    return end - start + 1 - count_num if end - start + 1 >= count_num else 0
+    #0
+#Overall this is what the function does:The function processes a series of constraints involving integers \( t \) and \( v \), where \( t \) can be 1, 2, or 3. It finds the minimum value among all \( v \) where \( t = 1 \), the maximum value among all \( v \) where \( t = 2 \), and collects all \( v \) where \( t = 3 \) into a list. Then, it counts how many of these collected values fall within the range defined by the minimum and maximum values. If the minimum value is greater than the maximum value, the function returns 0. Otherwise, it returns the difference between the maximum and minimum values plus one, minus the count of values within the range.
+

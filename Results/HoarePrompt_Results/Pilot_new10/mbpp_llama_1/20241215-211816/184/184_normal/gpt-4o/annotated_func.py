@@ -1,6 +1,0 @@
-#State of the program right berfore the function call: nums is a list of integers.
-def func_1(nums):
-    return [num for num in nums if num % 2 != 0]
-    #The program returns a list of odd integers from the list 'nums'
-#Overall this is what the function does:The function accepts a list of integers, returns a list of odd integers from the input list, and handles empty lists by returning an empty list; however, it may raise a TypeError if the input list contains non-integer values.
-

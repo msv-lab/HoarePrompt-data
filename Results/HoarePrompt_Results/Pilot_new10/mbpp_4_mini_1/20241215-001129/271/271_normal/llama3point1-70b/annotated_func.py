@@ -1,6 +1,0 @@
-#State of the program right berfore the function call: tuples is a tuple of tuples, where each inner tuple contains numeric values.
-def func_1(tuples):
-    return [(sum(val) / len(tuples)) for val in zip(*tuples)]
-    #The program returns a list containing the average of each numeric position across all inner tuples in the 'tuples' tuple of tuples.
-#Overall this is what the function does:The function accepts a tuple of tuples containing numeric values and returns a list of averages for each numeric position across all inner tuples. However, if the input is an empty tuple, it will raise a `ZeroDivisionError` when attempting to compute the average, as it will attempt to divide by zero when calculating the length of 'tuples'. Thus, the function does not handle the case where the input 'tuples' is empty.
-

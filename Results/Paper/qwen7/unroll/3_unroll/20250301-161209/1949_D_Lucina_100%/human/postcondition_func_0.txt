@@ -1,5 +1,0 @@
-The function processes a grid of size n x n, where n is an integer between 2 and 24. Each cell in the grid represents a transition video between two scenarios, with characters indicating whether the video is funny (F), scary (S), undecided (.), or unknown (?). The function determines the type of transition video for each undecided cell based on the following rules:
-1. If the count of 'F' is greater than 'S' for a scenario, the undecided cells are set to 'F'.
-2. If the count of 'S' is greater than 'F' for a scenario, the undecided cells are set to 'S'.
-3. If both counts are equal, the undecided cells are set to 'F' if the count of 'F' is greater than or equal to the count of 'S' in the first quarter of the scenarios, otherwise they are set to 'S'.
-After processing, the function prints the updated grid.

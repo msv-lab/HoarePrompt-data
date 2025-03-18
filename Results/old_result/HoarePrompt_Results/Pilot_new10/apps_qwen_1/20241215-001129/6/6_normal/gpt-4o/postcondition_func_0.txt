@@ -1,0 +1,5 @@
+The function accepts four integers `n`, `pos`, `l`, and `r` with the constraints 1 ≤ n ≤ 100, 1 ≤ pos ≤ n, 1 ≤ l ≤ r ≤ n. It prints the minimum number of moves required for `pos` to reach either `l` or `r`. Specifically:
+- If `l == 1` and `r == n`, it prints `0`.
+- If `l == 1`, it prints `abs(pos - r) + 1`.
+- If `r == n`, it prints `abs(pos - l) + 1`.
+- Otherwise, it calculates `close_both_sides` as the minimum of `abs(pos - l) + (r - l + 2)` and `abs(pos - r) + (r - l + 2)` and prints this value.
