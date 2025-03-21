@@ -1,0 +1,108 @@
+{
+    "individual_correlations": {
+        "complex tree": {
+            "depth": {
+                "pearson_correlation": -0.035694802007390544,
+                "p_value": 0.1225237791062863,
+                "count": 1873
+            },
+            "hard": {
+                "pearson_correlation": -0.0391642566879155,
+                "p_value": 0.09017488422631428,
+                "count": 1873
+            },
+            "LOC": {
+                "pearson_correlation": -0.016265836451884768,
+                "p_value": 0.4817241305963473,
+                "count": 1873
+            }
+        },
+        "vanilla": {
+            "depth": {
+                "pearson_correlation": -0.01484021795174936,
+                "p_value": 0.5242102209848212,
+                "count": 1844
+            },
+            "hard": {
+                "pearson_correlation": -0.08054858118194327,
+                "p_value": 0.0005358107538831178,
+                "count": 1844
+            },
+            "LOC": {
+                "pearson_correlation": -0.08437603457554758,
+                "p_value": 0.000286429984473175,
+                "count": 1844
+            }
+        },
+        "vanilla_no_cot": {
+            "depth": {
+                "pearson_correlation": -0.0781476255131359,
+                "p_value": 0.0007117670749148592,
+                "count": 1873
+            },
+            "hard": {
+                "pearson_correlation": -0.062586687142606,
+                "p_value": 0.006738764485050585,
+                "count": 1873
+            },
+            "LOC": {
+                "pearson_correlation": -0.0866099058425449,
+                "p_value": 0.00017482186362517346,
+                "count": 1873
+            }
+        }
+    },
+    "comparative_correlations": {
+        "depth": {
+            "vanilla_vs_complex tree": {
+                "delta_correlation": 0.01919496381073125,
+                "p_value": 0.4100624877304182,
+                "count": 1844
+            },
+            "vanilla_vs_vanilla_no_cot": {
+                "delta_correlation": 0.04993153924218528,
+                "p_value": 0.03203010687211937,
+                "count": 1844
+            },
+            "vanilla_no_cot_vs_complex tree": {
+                "delta_correlation": -0.04015524326458052,
+                "p_value": 0.08231905927797574,
+                "count": 1873
+            }
+        },
+        "hard": {
+            "vanilla_vs_complex tree": {
+                "delta_correlation": -0.03720893780176501,
+                "p_value": 0.11020125613779225,
+                "count": 1844
+            },
+            "vanilla_vs_vanilla_no_cot": {
+                "delta_correlation": -0.012634319218386123,
+                "p_value": 0.5876845749813229,
+                "count": 1844
+            },
+            "vanilla_no_cot_vs_complex tree": {
+                "delta_correlation": -0.02253555220076614,
+                "p_value": 0.32967428673457705,
+                "count": 1873
+            }
+        },
+        "LOC": {
+            "vanilla_vs_complex tree": {
+                "delta_correlation": -0.06731511499261278,
+                "p_value": 0.0038285385969832188,
+                "count": 1844
+            },
+            "vanilla_vs_vanilla_no_cot": {
+                "delta_correlation": 0.0035983818846977334,
+                "p_value": 0.8772811139356128,
+                "count": 1844
+            },
+            "vanilla_no_cot_vs_complex tree": {
+                "delta_correlation": -0.06569843017843514,
+                "p_value": 0.004448354631131933,
+                "count": 1873
+            }
+        }
+    }
+}
